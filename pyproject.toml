@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "typegraphs"
+version = "0.0.1"
+description = "All your preferred typegraphs in a single package."
+authors = ["Metatype Contributors <support@metatype.dev>"]
+license = "MPL-2.0"
+homepage = "https://metatype.dev"
+repository = "https://github.com/metatypedev/typegraphs"
+include = ["typegraphs/**/*", "LICENSE.md"]
+keywords = ["metatype", "typegraph"]
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python",
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8,<4.0"
+typegraph = "^0.1.5"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.0.261"
+black = "^23.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
