@@ -9,6 +9,8 @@ class Google(GeneratorScript):
         super().__init__()
 
     def post_run(self):
+        # TODO
+        # Retrieve all available APIs
         urls = {
             "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
             "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",

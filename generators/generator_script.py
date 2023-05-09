@@ -32,7 +32,7 @@ class GeneratorScript:
     """ Base generator class """
 
     base_path: str
-    """ Common prefix of all paths """
+    """ Common prefix for all paths """
 
     files: List[File]
     """ Files to be generated """
