@@ -1,4 +1,6 @@
 import argparse
+import traceback
+import sys
 from generators.google import Google
 
 parser = argparse.ArgumentParser(
@@ -25,7 +27,7 @@ for generator in generators:
     try:
         print(f"Running {name}")
         generator.run()
-    except Exception as e:
+    except Exception:
         print(f'Generator "{name}" failed')
-        if cli_args.verbosity:
-            print(e.__str__())
+        if cli_args.verbose:
+            traceback.print_exception(*sys.exc_info())
