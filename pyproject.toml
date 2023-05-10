@@ -18,7 +18,7 @@ python = ">=3.8,<4.0"
 typegraph = "^0.1.7"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.261"
+ruff = "^0.0.265"
 black = "^23.3.0"
 
 [build-system]
