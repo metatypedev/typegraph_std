@@ -1,4 +1,5 @@
 import black
+import os
 from typing import List, Dict
 
 
@@ -54,9 +55,12 @@ class GeneratorScript:
             path, content = file.path, file.content
             if file.is_enabled("black"):
                 content = black.format_str(content, mode=black.FileMode())
-            with open(f"{self.base_path}/{path}", "w") as f:
+            complete_path = f"{self.base_path}/{path}"
+
+            os.makedirs(os.path.dirname(complete_path), exist_ok=True)
+            with open(complete_path, mode="w") as f:
                 f.write(content)
-                print(f"Generated file {path}")
+                print(f"  Generated file {complete_path}")
             count += 1
 
         print(f"Total generated {count}")

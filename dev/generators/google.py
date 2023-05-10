@@ -1,6 +1,16 @@
 from generators.generator_script import GeneratorScript, File
 from typegraph.importers.base.importer import Codegen
+from typegraph.importers.base.importer import Importer
 from typegraph.importers.google_discovery import GoogleDiscoveryImporter
+
+
+def complete_source_from(importer: Importer):
+    body = importer.codegen(Codegen()).res
+    preambule = ""
+    for frm, imp in importer.imports:
+        preambule += f"from {frm} import {imp}\n"
+    preambule += f"def import_{importer.name}() -> Import:\n"
+    return preambule + body
 
 
 class Google(GeneratorScript):
@@ -18,6 +28,9 @@ class Google(GeneratorScript):
         path_prefix = "google"
         for title, url in urls.items():
             importer = GoogleDiscoveryImporter(name=title, url=url)
-            content = importer.codegen(Codegen()).res
+            content = complete_source_from(importer)
+            # TODO
+            # generate files using `res_hint`
             file = File(f"{path_prefix}/{title}.py", content)
+            file.flag("black", True)
             self.files.append(file)
