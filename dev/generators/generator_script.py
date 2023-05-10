@@ -39,7 +39,7 @@ class GeneratorScript:
     """ Files to be generated """
 
     def __init__(self) -> None:
-        self.base_path = "typegraph_core"
+        self.base_path = "typegraphs"
         self.files = []
 
     def post_run(self):
