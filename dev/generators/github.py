@@ -4,6 +4,10 @@ from tools.util import complete_source_from
 
 
 class Github(GeneratorScript):
+    """
+    Ref:
+        - https://github.com/github/rest-api-description
+    """
 
     def __init__(self) -> None:
         super().__init__("github")

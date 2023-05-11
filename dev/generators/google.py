@@ -6,16 +6,16 @@ from tools.util import complete_source_from
 
 
 class Google(GeneratorScript):
+    """
+    Ref:
+        - https://developers.google.com/apis-explorer
+        - https://discovery.googleapis.com/discovery/v1/apis
+    """
 
     def __init__(self) -> None:
         super().__init__("google")
 
     def get_links(self) -> Dict[str, str]:
-        """
-        Ref:
-            - https://developers.google.com/apis-explorer
-            - https://discovery.googleapis.com/discovery/v1/apis
-        """
         url = "https://discovery.googleapis.com/discovery/v1/apis"
         apis = httpx.get(url).json()
         items = apis.get("items")
@@ -26,7 +26,7 @@ class Google(GeneratorScript):
             name = item.get("name")
             url = item.get("discoveryRestUrl")
             if name is not None and url is not None:
-                urls[name.replace(' ', '_')] = url
+                urls[name.replace(" ", "_")] = url
         return urls
 
     def pre_run(self):
@@ -35,6 +35,8 @@ class Google(GeneratorScript):
         #     "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
         #     "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
         # }
+
+        fail_count, total = 0, len(urls)
         for title, url in urls.items():
             # Note: each iteration will do a request
             try:
@@ -48,3 +50,7 @@ class Google(GeneratorScript):
             except Exception as e:
                 self.error(f"Failed {title}: {url}")
                 self.error(e)
+                fail_count += 1
+        # > Failed to process 28/262 links
+        if fail_count > 0:
+            self.error(f"> Failed to process {fail_count}/{total} links")
