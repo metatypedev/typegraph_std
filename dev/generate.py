@@ -46,9 +46,10 @@ for generator in generators:
             continue
     try:
         print(f"[{count}/{total}] Running {name}")
+        count += 1
         generator.run()
     except Exception as e:
         if cli_args.verbose:
             traceback.print_exception(*sys.exc_info())
         else:
-            print(f'  {name} generator failed:', e.__str__())
+            print(f'{name} generator failed:', e.__str__())

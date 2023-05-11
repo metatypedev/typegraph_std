@@ -1,4 +1,3 @@
-import sys
 import httpx
 from typing import Dict
 from generators.generator_script import GeneratorScript, File
@@ -40,15 +39,14 @@ class Google(GeneratorScript):
         return urls
 
     def pre_run(self):
-        # urls = self.get_links()
-        urls = {
-            "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
-            "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
-        }
+        urls = self.get_links()
+        # urls = {
+        #     "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
+        #     "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
+        # }
         for title, url in urls.items():
             # Note:
             # Each iteration will do a request
-            # Solution: cache each json file ?
             try:
                 importer = GoogleDiscoveryImporter(name=title, url=url)
                 content = complete_source_from(importer)
