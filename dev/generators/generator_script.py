@@ -51,7 +51,7 @@ class GeneratorScript:
         """ `{base_path}/{folder_path}` """
         return os.path.join(self.base_path, self.folder_name)
 
-    def post_run(self):
+    def pre_run(self):
         """ Override this function to manually populate `self.files: List[File]` """
         pass
 
@@ -62,7 +62,7 @@ class GeneratorScript:
         print(f"  {msg}", file=sys.stderr)
 
     def run(self):
-        self.post_run()
+        self.pre_run()
 
         count = 0
 
@@ -78,4 +78,4 @@ class GeneratorScript:
                 self.log(f"Generated file {complete_path}")
             count += 1
 
-        print(f"Total generated {count}")
+        self.log(f"Total generated {count}")

@@ -2,6 +2,7 @@ import argparse
 import traceback
 import sys
 from generators.google import Google
+from generators.github import Github
 
 """
 Usage:
@@ -35,7 +36,8 @@ parser.add_argument(
 cli_args = parser.parse_args()
 
 generators = [
-    Google()
+    Google(),
+    Github()
 ]
 
 count, total = 1, len(generators)
