@@ -1,3 +1,4 @@
+import sys
 import black
 import os
 from typing import List, Dict
@@ -35,16 +36,30 @@ class GeneratorScript:
     base_path: str
     """ Common prefix for all paths """
 
+    folder_name: str
+    """ Folder that contains the files relative to `base_path` """
+
     files: List[File]
     """ Files to be generated """
 
-    def __init__(self) -> None:
-        self.base_path = "typegraphs"
+    def __init__(self, folder_name: str) -> None:
+        self.base_path = "typegraph_std"
+        self.folder_name = folder_name
         self.files = []
 
+    def get_prefix_path(self):
+        """ `{base_path}/{folder_path}` """
+        return os.path.join(self.base_path, self.folder_name)
+
     def post_run(self):
-        """Override this function to populate `self.files`"""
+        """ Override this function to manually populate `self.files: List[File]` """
         pass
+
+    def log(self, msg: str):
+        print(f"  {msg}", file=sys.stdout)
+
+    def error(self, msg: str):
+        print(f"  {msg}", file=sys.stderr)
 
     def run(self):
         self.post_run()
@@ -55,12 +70,12 @@ class GeneratorScript:
             path, content = file.path, file.content
             if file.is_enabled("black"):
                 content = black.format_str(content, mode=black.FileMode())
-            complete_path = f"{self.base_path}/{path}"
+            complete_path = os.path.join(self.get_prefix_path(), path)
 
             os.makedirs(os.path.dirname(complete_path), exist_ok=True)
             with open(complete_path, mode="w") as f:
                 f.write(content)
-                print(f"  Generated file {complete_path}")
+                self.log(f"Generated file {complete_path}")
             count += 1
 
         print(f"Total generated {count}")
