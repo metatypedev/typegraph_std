@@ -1,7 +1,9 @@
 import argparse
 import traceback
 import sys
+from generators.generator_script import GeneratorScript
 from generators.google import Google
+from generators.stripe import Stripe
 from generators.github import Github
 
 """
@@ -35,23 +37,36 @@ parser.add_argument(
 
 cli_args = parser.parse_args()
 
+GeneratorScript._VERBOSE = cli_args.verbose
+
+# generator list
 generators = [
+    Stripe(),
     Google(),
     Github()
 ]
 
+
+# flag g
+def gfilter(g: GeneratorScript):
+    if cli_args.generator is None:
+        return True
+    name = g.__class__.__name__
+    return name.lower() == cli_args.generator.lower()
+
+
+generators = list(filter(gfilter, generators))
+
 count, total = 1, len(generators)
 for generator in generators:
     name = generator.__class__.__name__
-    if cli_args.generator is not None:
-        if name.lower() != cli_args.generator.lower():
-            continue
     try:
         print(f"[{count}/{total}] Running {name}")
         count += 1
         generator.run()
+        print()
     except Exception as e:
         if cli_args.verbose:
             traceback.print_exception(*sys.exc_info())
         else:
-            print(f'{name} generator failed:', e.__str__())
+            print(f'{name} generator failed:', e.__str__(), file=sys.stderr)

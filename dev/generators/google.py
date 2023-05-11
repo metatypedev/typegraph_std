@@ -1,17 +1,8 @@
 import httpx
 from typing import Dict
 from generators.generator_script import GeneratorScript, File
-from typegraph.importers.base.importer import Codegen, Importer
 from typegraph.importers.google_discovery import GoogleDiscoveryImporter
-
-
-def complete_source_from(importer: Importer):
-    body = importer.codegen(Codegen()).res
-    preambule = ""
-    for frm, imp in importer.imports:
-        preambule += f"from {frm} import {imp}\n"
-    preambule += f"def import_{importer.name}() -> Import:\n"
-    return preambule + body
+from tools.util import complete_source_from
 
 
 class Google(GeneratorScript):
@@ -45,8 +36,7 @@ class Google(GeneratorScript):
         #     "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
         # }
         for title, url in urls.items():
-            # Note:
-            # Each iteration will do a request
+            # Note: each iteration will do a request
             try:
                 importer = GoogleDiscoveryImporter(name=title, url=url)
                 content = complete_source_from(importer)
@@ -55,5 +45,6 @@ class Google(GeneratorScript):
                 file = File(f"{title}.py", content)
                 file.flag("black", True)
                 self.files.append(file)
-            except Exception:
+            except Exception as e:
                 self.error(f"Failed {title}: {url}")
+                self.error(e)

@@ -1,15 +1,6 @@
 from generators.generator_script import GeneratorScript, File
-from typegraph.importers.base.importer import Codegen, Importer
-from typegraph.importers.google_discovery import GoogleDiscoveryImporter
-
-
-def complete_source_from(importer: Importer):
-    body = importer.codegen(Codegen()).res
-    preambule = ""
-    for frm, imp in importer.imports:
-        preambule += f"from {frm} import {imp}\n"
-    preambule += f"def import_{importer.name}() -> Import:\n"
-    return preambule + body
+from typegraph.importers.openapi import OpenApiImporter
+from tools.util import complete_source_from
 
 
 class Github(GeneratorScript):
@@ -18,16 +9,18 @@ class Github(GeneratorScript):
         super().__init__("github")
 
     def pre_run(self):
-        title = "api"
-        url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/api.github.com.json"
-        print("yay")
+        # FIX
+        # 'BoxList' object has no attribute 'items'
+        title = "ghes"
+        url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/dereferenced/api.github.com.2022-11-28.deref.yaml"
         try:
-            importer = GoogleDiscoveryImporter(name=title, url=url)
+            importer = OpenApiImporter(name=title, url=url)
             content = complete_source_from(importer)
             # TODO
             # generate files using `res_hint`
             file = File(f"{title}.py", content)
             file.flag("black", True)
             self.files.append(file)
-        except Exception:
+        except Exception as e:
             self.error(f"Failed {title}: {url}")
+            self.error(e)

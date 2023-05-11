@@ -1,7 +1,8 @@
 import sys
 import black
 import os
-from typing import List, Dict
+import traceback
+from typing import List, Dict, Union
 
 
 class File:
@@ -42,6 +43,8 @@ class GeneratorScript:
     files: List[File]
     """ Files to be generated """
 
+    _VERBOSE: bool = False
+
     def __init__(self, folder_name: str) -> None:
         self.base_path = "typegraph_std"
         self.folder_name = folder_name
@@ -58,8 +61,14 @@ class GeneratorScript:
     def log(self, msg: str):
         print(f"  {msg}", file=sys.stdout)
 
-    def error(self, msg: str):
-        print(f"  {msg}", file=sys.stderr)
+    def error(self, e: Union[str, Exception]):
+        if isinstance(e, Exception):
+            if not self._VERBOSE:
+                print(e.__str__(), file=sys.stderr)
+            else:
+                traceback.print_exception(*sys.exc_info())
+        else:
+            print(f"  {e}", file=sys.stdout)
 
     def run(self):
         self.pre_run()
