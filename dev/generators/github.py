@@ -19,12 +19,14 @@ class Github(GeneratorScript):
         url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/dereferenced/api.github.com.2022-11-28.deref.yaml"
         try:
             importer = OpenApiImporter(name=title, url=url)
-            content = complete_source_from(importer)
-            # TODO
-            # generate files using `res_hint`
-            file = File(f"{title}.py", content)
-            file.flag("black", True)
-            self.files.append(file)
+            content, content_hint = complete_source_from(importer)
+            files = [
+                File(f"{title}.py", content),
+                File(f"{title}.pyi", content_hint),
+            ]
+            for file in files:
+                file.flag("black", True)
+                self.files.append(file)
         except Exception as e:
             self.error(f"Failed {title}: {url}")
             self.error(e)

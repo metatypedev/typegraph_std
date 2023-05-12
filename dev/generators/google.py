@@ -30,23 +30,25 @@ class Google(GeneratorScript):
         return urls
 
     def pre_run(self):
-        urls = self.get_links()
-        # urls = {
-        #     "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
-        #     "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
-        # }
+        # urls = self.get_links()
+        urls = {
+            "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
+            "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
+        }
 
         fail_count, total = 0, len(urls)
         for title, url in urls.items():
             # Note: each iteration will do a request
             try:
                 importer = GoogleDiscoveryImporter(name=title, url=url)
-                content = complete_source_from(importer)
-                # TODO
-                # generate files using `res_hint`
-                file = File(f"{title}.py", content)
-                file.flag("black", True)
-                self.files.append(file)
+                content, content_hint = complete_source_from(importer)
+                files = [
+                    File(f"{title}.py", content),
+                    File(f"{title}.pyi", content_hint),
+                ]
+                for file in files:
+                    file.flag("black", True)
+                    self.files.append(file)
             except Exception as e:
                 self.error(f"Failed {title}: {url}")
                 self.error(e)

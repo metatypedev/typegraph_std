@@ -22,12 +22,14 @@ class Stripe(GeneratorScript):
         for title, url in urls.items():
             try:
                 importer = OpenApiImporter(name=title, url=url)
-                content = complete_source_from(importer)
-                # TODO
-                # generate files using `res_hint`
-                file = File(f"{title}.py", content)
-                file.flag("black", True)
-                self.files.append(file)
+                content, content_hint = complete_source_from(importer)
+                files = [
+                    File(f"{title}.py", content),
+                    File(f"{title}.pyi", content_hint),
+                ]
+                for file in files:
+                    file.flag("black", True)
+                    self.files.append(file)
             except Exception as e:
                 self.error(f"Failed {title}: {url}")
                 self.error(e)
