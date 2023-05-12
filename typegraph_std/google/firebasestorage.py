@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_firebasestorage() -> Import:
@@ -10,30 +9,59 @@ def import_firebasestorage() -> Import:
 
     renames = {
         "ErrorResponse": "_firebasestorage_1_ErrorResponse",
-        "EmptyIn": "_firebasestorage_2_EmptyIn",
-        "EmptyOut": "_firebasestorage_3_EmptyOut",
-        "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataIn": "_firebasestorage_4_GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataIn",
-        "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataOut": "_firebasestorage_5_GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataOut",
-        "RemoveFirebaseRequestIn": "_firebasestorage_6_RemoveFirebaseRequestIn",
-        "RemoveFirebaseRequestOut": "_firebasestorage_7_RemoveFirebaseRequestOut",
+        "AddFirebaseRequestIn": "_firebasestorage_2_AddFirebaseRequestIn",
+        "AddFirebaseRequestOut": "_firebasestorage_3_AddFirebaseRequestOut",
+        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn": "_firebasestorage_4_GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn",
+        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut": "_firebasestorage_5_GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut",
+        "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataIn": "_firebasestorage_6_GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataIn",
+        "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataOut": "_firebasestorage_7_GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataOut",
         "BucketIn": "_firebasestorage_8_BucketIn",
         "BucketOut": "_firebasestorage_9_BucketOut",
-        "AddFirebaseRequestIn": "_firebasestorage_10_AddFirebaseRequestIn",
-        "AddFirebaseRequestOut": "_firebasestorage_11_AddFirebaseRequestOut",
-        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn": "_firebasestorage_12_GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn",
-        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut": "_firebasestorage_13_GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut",
-        "ListBucketsResponseIn": "_firebasestorage_14_ListBucketsResponseIn",
-        "ListBucketsResponseOut": "_firebasestorage_15_ListBucketsResponseOut",
+        "EmptyIn": "_firebasestorage_10_EmptyIn",
+        "EmptyOut": "_firebasestorage_11_EmptyOut",
+        "ListBucketsResponseIn": "_firebasestorage_12_ListBucketsResponseIn",
+        "ListBucketsResponseOut": "_firebasestorage_13_ListBucketsResponseOut",
+        "RemoveFirebaseRequestIn": "_firebasestorage_14_RemoveFirebaseRequestIn",
+        "RemoveFirebaseRequestOut": "_firebasestorage_15_RemoveFirebaseRequestOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
+    types["AddFirebaseRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["AddFirebaseRequestIn"]
+    )
+    types["AddFirebaseRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
+    ).named(renames["AddFirebaseRequestOut"])
+    types[
+        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn"
+    ] = t.struct(
+        {
+            "lastUpdateTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "state": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn"
+        ]
+    )
+    types[
+        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut"
+    ] = t.struct(
+        {
+            "lastUpdateTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "state": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut"
+        ]
+    )
     types[
         "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataIn"
     ] = t.struct(
@@ -61,12 +89,6 @@ def import_firebasestorage() -> Import:
             "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadataOut"
         ]
     )
-    types["RemoveFirebaseRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["RemoveFirebaseRequestIn"]
-    )
-    types["RemoveFirebaseRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["RemoveFirebaseRequestOut"])
     types["BucketIn"] = t.struct({"name": t.string().optional()}).named(
         renames["BucketIn"]
     )
@@ -76,111 +98,87 @@ def import_firebasestorage() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["BucketOut"])
-    types["AddFirebaseRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["AddFirebaseRequestIn"]
-    )
-    types["AddFirebaseRequestOut"] = t.struct(
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["AddFirebaseRequestOut"])
-    types[
-        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn"
-    ] = t.struct(
-        {
-            "lastUpdateTime": t.string().optional(),
-            "state": t.string().optional(),
-            "createTime": t.string().optional(),
-        }
-    ).named(
-        renames[
-            "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataIn"
-        ]
-    )
-    types[
-        "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut"
-    ] = t.struct(
-        {
-            "lastUpdateTime": t.string().optional(),
-            "state": t.string().optional(),
-            "createTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(
-        renames[
-            "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadataOut"
-        ]
-    )
+    ).named(renames["EmptyOut"])
     types["ListBucketsResponseIn"] = t.struct(
         {
-            "buckets": t.array(t.proxy(renames["BucketIn"])).optional(),
             "nextPageToken": t.string().optional(),
+            "buckets": t.array(t.proxy(renames["BucketIn"])).optional(),
         }
     ).named(renames["ListBucketsResponseIn"])
     types["ListBucketsResponseOut"] = t.struct(
         {
-            "buckets": t.array(t.proxy(renames["BucketOut"])).optional(),
             "nextPageToken": t.string().optional(),
+            "buckets": t.array(t.proxy(renames["BucketOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListBucketsResponseOut"])
+    types["RemoveFirebaseRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["RemoveFirebaseRequestIn"]
+    )
+    types["RemoveFirebaseRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["RemoveFirebaseRequestOut"])
 
     functions = {}
-    functions["projectsBucketsRemoveFirebase"] = firebasestorage.get(
-        "v1beta/{parent}/buckets",
+    functions["projectsBucketsGet"] = firebasestorage.post(
+        "v1beta/{bucket}:removeFirebase",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "bucket": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListBucketsResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBucketsAddFirebase"] = firebasestorage.get(
-        "v1beta/{parent}/buckets",
+    functions["projectsBucketsAddFirebase"] = firebasestorage.post(
+        "v1beta/{bucket}:removeFirebase",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "bucket": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListBucketsResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBucketsGet"] = firebasestorage.get(
-        "v1beta/{parent}/buckets",
+    functions["projectsBucketsList"] = firebasestorage.post(
+        "v1beta/{bucket}:removeFirebase",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "bucket": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListBucketsResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBucketsList"] = firebasestorage.get(
-        "v1beta/{parent}/buckets",
+    functions["projectsBucketsRemoveFirebase"] = firebasestorage.post(
+        "v1beta/{bucket}:removeFirebase",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "bucket": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListBucketsResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
 
     return Import(
-        importer="firebasestorage", renames=renames, types=types, functions=functions
+        importer="firebasestorage",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

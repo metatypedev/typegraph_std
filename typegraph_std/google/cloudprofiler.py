@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_cloudprofiler() -> Import:
@@ -10,48 +9,35 @@ def import_cloudprofiler() -> Import:
 
     renames = {
         "ErrorResponse": "_cloudprofiler_1_ErrorResponse",
-        "CreateProfileRequestIn": "_cloudprofiler_2_CreateProfileRequestIn",
-        "CreateProfileRequestOut": "_cloudprofiler_3_CreateProfileRequestOut",
-        "ProfileIn": "_cloudprofiler_4_ProfileIn",
-        "ProfileOut": "_cloudprofiler_5_ProfileOut",
-        "DeploymentIn": "_cloudprofiler_6_DeploymentIn",
-        "DeploymentOut": "_cloudprofiler_7_DeploymentOut",
+        "ProfileIn": "_cloudprofiler_2_ProfileIn",
+        "ProfileOut": "_cloudprofiler_3_ProfileOut",
+        "DeploymentIn": "_cloudprofiler_4_DeploymentIn",
+        "DeploymentOut": "_cloudprofiler_5_DeploymentOut",
+        "CreateProfileRequestIn": "_cloudprofiler_6_CreateProfileRequestIn",
+        "CreateProfileRequestOut": "_cloudprofiler_7_CreateProfileRequestOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["CreateProfileRequestIn"] = t.struct(
-        {
-            "profileType": t.array(t.string()).optional(),
-            "deployment": t.proxy(renames["DeploymentIn"]).optional(),
-        }
-    ).named(renames["CreateProfileRequestIn"])
-    types["CreateProfileRequestOut"] = t.struct(
-        {
-            "profileType": t.array(t.string()).optional(),
-            "deployment": t.proxy(renames["DeploymentOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CreateProfileRequestOut"])
     types["ProfileIn"] = t.struct(
         {
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "profileType": t.string().optional(),
-            "profileBytes": t.string().optional(),
             "deployment": t.proxy(renames["DeploymentIn"]).optional(),
             "duration": t.string().optional(),
+            "profileType": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "profileBytes": t.string().optional(),
         }
     ).named(renames["ProfileIn"])
     types["ProfileOut"] = t.struct(
         {
             "name": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "profileType": t.string().optional(),
-            "profileBytes": t.string().optional(),
             "deployment": t.proxy(renames["DeploymentOut"]).optional(),
             "duration": t.string().optional(),
+            "profileType": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "profileBytes": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ProfileOut"])
@@ -70,19 +56,28 @@ def import_cloudprofiler() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DeploymentOut"])
+    types["CreateProfileRequestIn"] = t.struct(
+        {
+            "deployment": t.proxy(renames["DeploymentIn"]).optional(),
+            "profileType": t.array(t.string()).optional(),
+        }
+    ).named(renames["CreateProfileRequestIn"])
+    types["CreateProfileRequestOut"] = t.struct(
+        {
+            "deployment": t.proxy(renames["DeploymentOut"]).optional(),
+            "profileType": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CreateProfileRequestOut"])
 
     functions = {}
-    functions["projectsProfilesCreateOffline"] = cloudprofiler.patch(
-        "v2/{name}",
+    functions["projectsProfilesCreateOffline"] = cloudprofiler.post(
+        "v2/{parent}/profiles",
         t.struct(
             {
-                "name": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "labels": t.struct({"_": t.string().optional()}).optional(),
-                "profileType": t.string().optional(),
-                "profileBytes": t.string().optional(),
+                "parent": t.string().optional(),
                 "deployment": t.proxy(renames["DeploymentIn"]).optional(),
-                "duration": t.string().optional(),
+                "profileType": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -90,17 +85,13 @@ def import_cloudprofiler() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsProfilesCreate"] = cloudprofiler.patch(
-        "v2/{name}",
+    functions["projectsProfilesPatch"] = cloudprofiler.post(
+        "v2/{parent}/profiles",
         t.struct(
             {
-                "name": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "labels": t.struct({"_": t.string().optional()}).optional(),
-                "profileType": t.string().optional(),
-                "profileBytes": t.string().optional(),
+                "parent": t.string().optional(),
                 "deployment": t.proxy(renames["DeploymentIn"]).optional(),
-                "duration": t.string().optional(),
+                "profileType": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -108,17 +99,13 @@ def import_cloudprofiler() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsProfilesPatch"] = cloudprofiler.patch(
-        "v2/{name}",
+    functions["projectsProfilesCreate"] = cloudprofiler.post(
+        "v2/{parent}/profiles",
         t.struct(
             {
-                "name": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "labels": t.struct({"_": t.string().optional()}).optional(),
-                "profileType": t.string().optional(),
-                "profileBytes": t.string().optional(),
+                "parent": t.string().optional(),
                 "deployment": t.proxy(renames["DeploymentIn"]).optional(),
-                "duration": t.string().optional(),
+                "profileType": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -128,5 +115,8 @@ def import_cloudprofiler() -> Import:
     )
 
     return Import(
-        importer="cloudprofiler", renames=renames, types=types, functions=functions
+        importer="cloudprofiler",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

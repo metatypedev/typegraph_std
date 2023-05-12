@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_abusiveexperiencereport() -> Import:
@@ -39,36 +38,29 @@ def import_abusiveexperiencereport() -> Import:
     ).named(renames["ViolatingSitesResponseOut"])
     types["SiteSummaryResponseIn"] = t.struct(
         {
-            "abusiveStatus": t.string().optional(),
-            "reviewedSite": t.string().optional(),
             "enforcementTime": t.string().optional(),
-            "reportUrl": t.string().optional(),
             "lastChangeTime": t.string().optional(),
             "filterStatus": t.string().optional(),
             "underReview": t.boolean().optional(),
+            "abusiveStatus": t.string().optional(),
+            "reportUrl": t.string().optional(),
+            "reviewedSite": t.string().optional(),
         }
     ).named(renames["SiteSummaryResponseIn"])
     types["SiteSummaryResponseOut"] = t.struct(
         {
-            "abusiveStatus": t.string().optional(),
-            "reviewedSite": t.string().optional(),
             "enforcementTime": t.string().optional(),
-            "reportUrl": t.string().optional(),
             "lastChangeTime": t.string().optional(),
             "filterStatus": t.string().optional(),
             "underReview": t.boolean().optional(),
+            "abusiveStatus": t.string().optional(),
+            "reportUrl": t.string().optional(),
+            "reviewedSite": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SiteSummaryResponseOut"])
 
     functions = {}
-    functions["violatingSitesList"] = abusiveexperiencereport.get(
-        "v1/violatingSites",
-        t.struct({"auth": t.string().optional()}),
-        t.proxy(renames["ViolatingSitesResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["sitesGet"] = abusiveexperiencereport.get(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
@@ -76,10 +68,17 @@ def import_abusiveexperiencereport() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
+    functions["violatingSitesList"] = abusiveexperiencereport.get(
+        "v1/violatingSites",
+        t.struct({"auth": t.string().optional()}),
+        t.proxy(renames["ViolatingSitesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
 
     return Import(
         importer="abusiveexperiencereport",
         renames=renames,
-        types=types,
-        functions=functions,
+        types=Box(types),
+        functions=Box(functions),
     )

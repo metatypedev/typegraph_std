@@ -30,11 +30,12 @@ class Google(GeneratorScript):
         return urls
 
     def pre_run(self):
-        # urls = self.get_links()
-        urls = {
-            "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
-            "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
-        }
+        urls = self.get_links()
+        # urls = {
+        #     "healthcare": "https://healthcare.googleapis.com/$discovery/rest?version=v1beta1",
+        #     "fcm": "https://fcm.googleapis.com/$discovery/rest?version=v1",
+        #     "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
+        # }
 
         fail_count, total = 0, len(urls)
         for title, url in urls.items():

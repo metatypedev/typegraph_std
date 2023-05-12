@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_publicca() -> Import:
@@ -23,9 +22,9 @@ def import_publicca() -> Import:
     )
     types["ExternalAccountKeyOut"] = t.struct(
         {
+            "name": t.string().optional(),
             "keyId": t.string().optional(),
             "b64MacKey": t.string().optional(),
-            "name": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ExternalAccountKeyOut"])
@@ -46,5 +45,5 @@ def import_publicca() -> Import:
     )
 
     return Import(
-        importer="publicca", renames=renames, types=types, functions=functions
+        importer="publicca", renames=renames, types=Box(types), functions=Box(functions)
     )

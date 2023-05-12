@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_firebasedynamiclinks() -> Import:
@@ -10,212 +9,265 @@ def import_firebasedynamiclinks() -> Import:
 
     renames = {
         "ErrorResponse": "_firebasedynamiclinks_1_ErrorResponse",
-        "DynamicLinkWarningIn": "_firebasedynamiclinks_2_DynamicLinkWarningIn",
-        "DynamicLinkWarningOut": "_firebasedynamiclinks_3_DynamicLinkWarningOut",
-        "ITunesConnectAnalyticsIn": "_firebasedynamiclinks_4_ITunesConnectAnalyticsIn",
-        "ITunesConnectAnalyticsOut": "_firebasedynamiclinks_5_ITunesConnectAnalyticsOut",
-        "GetIosPostInstallAttributionRequestIn": "_firebasedynamiclinks_6_GetIosPostInstallAttributionRequestIn",
-        "GetIosPostInstallAttributionRequestOut": "_firebasedynamiclinks_7_GetIosPostInstallAttributionRequestOut",
-        "CreateManagedShortLinkResponseIn": "_firebasedynamiclinks_8_CreateManagedShortLinkResponseIn",
-        "CreateManagedShortLinkResponseOut": "_firebasedynamiclinks_9_CreateManagedShortLinkResponseOut",
-        "CreateManagedShortLinkRequestIn": "_firebasedynamiclinks_10_CreateManagedShortLinkRequestIn",
-        "CreateManagedShortLinkRequestOut": "_firebasedynamiclinks_11_CreateManagedShortLinkRequestOut",
-        "ManagedShortLinkIn": "_firebasedynamiclinks_12_ManagedShortLinkIn",
-        "ManagedShortLinkOut": "_firebasedynamiclinks_13_ManagedShortLinkOut",
-        "AnalyticsInfoIn": "_firebasedynamiclinks_14_AnalyticsInfoIn",
-        "AnalyticsInfoOut": "_firebasedynamiclinks_15_AnalyticsInfoOut",
+        "ITunesConnectAnalyticsIn": "_firebasedynamiclinks_2_ITunesConnectAnalyticsIn",
+        "ITunesConnectAnalyticsOut": "_firebasedynamiclinks_3_ITunesConnectAnalyticsOut",
+        "CreateManagedShortLinkResponseIn": "_firebasedynamiclinks_4_CreateManagedShortLinkResponseIn",
+        "CreateManagedShortLinkResponseOut": "_firebasedynamiclinks_5_CreateManagedShortLinkResponseOut",
+        "GetIosReopenAttributionResponseIn": "_firebasedynamiclinks_6_GetIosReopenAttributionResponseIn",
+        "GetIosReopenAttributionResponseOut": "_firebasedynamiclinks_7_GetIosReopenAttributionResponseOut",
+        "CreateManagedShortLinkRequestIn": "_firebasedynamiclinks_8_CreateManagedShortLinkRequestIn",
+        "CreateManagedShortLinkRequestOut": "_firebasedynamiclinks_9_CreateManagedShortLinkRequestOut",
+        "IosInfoIn": "_firebasedynamiclinks_10_IosInfoIn",
+        "IosInfoOut": "_firebasedynamiclinks_11_IosInfoOut",
+        "DynamicLinkInfoIn": "_firebasedynamiclinks_12_DynamicLinkInfoIn",
+        "DynamicLinkInfoOut": "_firebasedynamiclinks_13_DynamicLinkInfoOut",
+        "GetIosPostInstallAttributionRequestIn": "_firebasedynamiclinks_14_GetIosPostInstallAttributionRequestIn",
+        "GetIosPostInstallAttributionRequestOut": "_firebasedynamiclinks_15_GetIosPostInstallAttributionRequestOut",
         "DeviceInfoIn": "_firebasedynamiclinks_16_DeviceInfoIn",
         "DeviceInfoOut": "_firebasedynamiclinks_17_DeviceInfoOut",
-        "DesktopInfoIn": "_firebasedynamiclinks_18_DesktopInfoIn",
-        "DesktopInfoOut": "_firebasedynamiclinks_19_DesktopInfoOut",
-        "GetIosReopenAttributionRequestIn": "_firebasedynamiclinks_20_GetIosReopenAttributionRequestIn",
-        "GetIosReopenAttributionRequestOut": "_firebasedynamiclinks_21_GetIosReopenAttributionRequestOut",
-        "SocialMetaTagInfoIn": "_firebasedynamiclinks_22_SocialMetaTagInfoIn",
-        "SocialMetaTagInfoOut": "_firebasedynamiclinks_23_SocialMetaTagInfoOut",
-        "NavigationInfoIn": "_firebasedynamiclinks_24_NavigationInfoIn",
-        "NavigationInfoOut": "_firebasedynamiclinks_25_NavigationInfoOut",
-        "IosInfoIn": "_firebasedynamiclinks_26_IosInfoIn",
-        "IosInfoOut": "_firebasedynamiclinks_27_IosInfoOut",
-        "CreateShortDynamicLinkRequestIn": "_firebasedynamiclinks_28_CreateShortDynamicLinkRequestIn",
-        "CreateShortDynamicLinkRequestOut": "_firebasedynamiclinks_29_CreateShortDynamicLinkRequestOut",
-        "AndroidInfoIn": "_firebasedynamiclinks_30_AndroidInfoIn",
-        "AndroidInfoOut": "_firebasedynamiclinks_31_AndroidInfoOut",
-        "DynamicLinkEventStatIn": "_firebasedynamiclinks_32_DynamicLinkEventStatIn",
-        "DynamicLinkEventStatOut": "_firebasedynamiclinks_33_DynamicLinkEventStatOut",
-        "DynamicLinkStatsIn": "_firebasedynamiclinks_34_DynamicLinkStatsIn",
-        "DynamicLinkStatsOut": "_firebasedynamiclinks_35_DynamicLinkStatsOut",
-        "GetIosReopenAttributionResponseIn": "_firebasedynamiclinks_36_GetIosReopenAttributionResponseIn",
-        "GetIosReopenAttributionResponseOut": "_firebasedynamiclinks_37_GetIosReopenAttributionResponseOut",
+        "SuffixIn": "_firebasedynamiclinks_18_SuffixIn",
+        "SuffixOut": "_firebasedynamiclinks_19_SuffixOut",
+        "ManagedShortLinkIn": "_firebasedynamiclinks_20_ManagedShortLinkIn",
+        "ManagedShortLinkOut": "_firebasedynamiclinks_21_ManagedShortLinkOut",
+        "DesktopInfoIn": "_firebasedynamiclinks_22_DesktopInfoIn",
+        "DesktopInfoOut": "_firebasedynamiclinks_23_DesktopInfoOut",
+        "AndroidInfoIn": "_firebasedynamiclinks_24_AndroidInfoIn",
+        "AndroidInfoOut": "_firebasedynamiclinks_25_AndroidInfoOut",
+        "AnalyticsInfoIn": "_firebasedynamiclinks_26_AnalyticsInfoIn",
+        "AnalyticsInfoOut": "_firebasedynamiclinks_27_AnalyticsInfoOut",
+        "DynamicLinkEventStatIn": "_firebasedynamiclinks_28_DynamicLinkEventStatIn",
+        "DynamicLinkEventStatOut": "_firebasedynamiclinks_29_DynamicLinkEventStatOut",
+        "CreateShortDynamicLinkRequestIn": "_firebasedynamiclinks_30_CreateShortDynamicLinkRequestIn",
+        "CreateShortDynamicLinkRequestOut": "_firebasedynamiclinks_31_CreateShortDynamicLinkRequestOut",
+        "DynamicLinkWarningIn": "_firebasedynamiclinks_32_DynamicLinkWarningIn",
+        "DynamicLinkWarningOut": "_firebasedynamiclinks_33_DynamicLinkWarningOut",
+        "SocialMetaTagInfoIn": "_firebasedynamiclinks_34_SocialMetaTagInfoIn",
+        "SocialMetaTagInfoOut": "_firebasedynamiclinks_35_SocialMetaTagInfoOut",
+        "DynamicLinkStatsIn": "_firebasedynamiclinks_36_DynamicLinkStatsIn",
+        "DynamicLinkStatsOut": "_firebasedynamiclinks_37_DynamicLinkStatsOut",
         "GetIosPostInstallAttributionResponseIn": "_firebasedynamiclinks_38_GetIosPostInstallAttributionResponseIn",
         "GetIosPostInstallAttributionResponseOut": "_firebasedynamiclinks_39_GetIosPostInstallAttributionResponseOut",
-        "GooglePlayAnalyticsIn": "_firebasedynamiclinks_40_GooglePlayAnalyticsIn",
-        "GooglePlayAnalyticsOut": "_firebasedynamiclinks_41_GooglePlayAnalyticsOut",
+        "GetIosReopenAttributionRequestIn": "_firebasedynamiclinks_40_GetIosReopenAttributionRequestIn",
+        "GetIosReopenAttributionRequestOut": "_firebasedynamiclinks_41_GetIosReopenAttributionRequestOut",
         "CreateShortDynamicLinkResponseIn": "_firebasedynamiclinks_42_CreateShortDynamicLinkResponseIn",
         "CreateShortDynamicLinkResponseOut": "_firebasedynamiclinks_43_CreateShortDynamicLinkResponseOut",
-        "SuffixIn": "_firebasedynamiclinks_44_SuffixIn",
-        "SuffixOut": "_firebasedynamiclinks_45_SuffixOut",
-        "DynamicLinkInfoIn": "_firebasedynamiclinks_46_DynamicLinkInfoIn",
-        "DynamicLinkInfoOut": "_firebasedynamiclinks_47_DynamicLinkInfoOut",
+        "NavigationInfoIn": "_firebasedynamiclinks_44_NavigationInfoIn",
+        "NavigationInfoOut": "_firebasedynamiclinks_45_NavigationInfoOut",
+        "GooglePlayAnalyticsIn": "_firebasedynamiclinks_46_GooglePlayAnalyticsIn",
+        "GooglePlayAnalyticsOut": "_firebasedynamiclinks_47_GooglePlayAnalyticsOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["DynamicLinkWarningIn"] = t.struct(
-        {
-            "warningDocumentLink": t.string().optional(),
-            "warningCode": t.string().optional(),
-            "warningMessage": t.string().optional(),
-        }
-    ).named(renames["DynamicLinkWarningIn"])
-    types["DynamicLinkWarningOut"] = t.struct(
-        {
-            "warningDocumentLink": t.string().optional(),
-            "warningCode": t.string().optional(),
-            "warningMessage": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DynamicLinkWarningOut"])
     types["ITunesConnectAnalyticsIn"] = t.struct(
         {
-            "at": t.string().optional(),
-            "pt": t.string().optional(),
             "ct": t.string().optional(),
+            "pt": t.string().optional(),
             "mt": t.string().optional(),
+            "at": t.string().optional(),
         }
     ).named(renames["ITunesConnectAnalyticsIn"])
     types["ITunesConnectAnalyticsOut"] = t.struct(
         {
-            "at": t.string().optional(),
-            "pt": t.string().optional(),
             "ct": t.string().optional(),
+            "pt": t.string().optional(),
             "mt": t.string().optional(),
+            "at": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ITunesConnectAnalyticsOut"])
-    types["GetIosPostInstallAttributionRequestIn"] = t.struct(
-        {
-            "device": t.proxy(renames["DeviceInfoIn"]).optional(),
-            "iosVersion": t.string().optional(),
-            "visualStyle": t.string().optional(),
-            "bundleId": t.string().optional(),
-            "appInstallationTime": t.string().optional(),
-            "uniqueMatchLinkToCheck": t.string().optional(),
-            "retrievalMethod": t.string().optional(),
-            "sdkVersion": t.string().optional(),
-        }
-    ).named(renames["GetIosPostInstallAttributionRequestIn"])
-    types["GetIosPostInstallAttributionRequestOut"] = t.struct(
-        {
-            "device": t.proxy(renames["DeviceInfoOut"]).optional(),
-            "iosVersion": t.string().optional(),
-            "visualStyle": t.string().optional(),
-            "bundleId": t.string().optional(),
-            "appInstallationTime": t.string().optional(),
-            "uniqueMatchLinkToCheck": t.string().optional(),
-            "retrievalMethod": t.string().optional(),
-            "sdkVersion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GetIosPostInstallAttributionRequestOut"])
     types["CreateManagedShortLinkResponseIn"] = t.struct(
         {
-            "managedShortLink": t.proxy(renames["ManagedShortLinkIn"]).optional(),
-            "warning": t.array(t.proxy(renames["DynamicLinkWarningIn"])).optional(),
             "previewLink": t.string().optional(),
+            "warning": t.array(t.proxy(renames["DynamicLinkWarningIn"])).optional(),
+            "managedShortLink": t.proxy(renames["ManagedShortLinkIn"]).optional(),
         }
     ).named(renames["CreateManagedShortLinkResponseIn"])
     types["CreateManagedShortLinkResponseOut"] = t.struct(
         {
-            "managedShortLink": t.proxy(renames["ManagedShortLinkOut"]).optional(),
-            "warning": t.array(t.proxy(renames["DynamicLinkWarningOut"])).optional(),
             "previewLink": t.string().optional(),
+            "warning": t.array(t.proxy(renames["DynamicLinkWarningOut"])).optional(),
+            "managedShortLink": t.proxy(renames["ManagedShortLinkOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CreateManagedShortLinkResponseOut"])
+    types["GetIosReopenAttributionResponseIn"] = t.struct(
+        {
+            "utmContent": t.string().optional(),
+            "deepLink": t.string().optional(),
+            "iosMinAppVersion": t.string().optional(),
+            "utmCampaign": t.string().optional(),
+            "utmMedium": t.string().optional(),
+            "invitationId": t.string().optional(),
+            "utmTerm": t.string().optional(),
+            "resolvedLink": t.string().optional(),
+            "utmSource": t.string().optional(),
+        }
+    ).named(renames["GetIosReopenAttributionResponseIn"])
+    types["GetIosReopenAttributionResponseOut"] = t.struct(
+        {
+            "utmContent": t.string().optional(),
+            "deepLink": t.string().optional(),
+            "iosMinAppVersion": t.string().optional(),
+            "utmCampaign": t.string().optional(),
+            "utmMedium": t.string().optional(),
+            "invitationId": t.string().optional(),
+            "utmTerm": t.string().optional(),
+            "resolvedLink": t.string().optional(),
+            "utmSource": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetIosReopenAttributionResponseOut"])
     types["CreateManagedShortLinkRequestIn"] = t.struct(
         {
-            "name": t.string().optional(),
             "dynamicLinkInfo": t.proxy(renames["DynamicLinkInfoIn"]).optional(),
             "sdkVersion": t.string().optional(),
             "longDynamicLink": t.string().optional(),
+            "name": t.string().optional(),
             "suffix": t.proxy(renames["SuffixIn"]).optional(),
         }
     ).named(renames["CreateManagedShortLinkRequestIn"])
     types["CreateManagedShortLinkRequestOut"] = t.struct(
         {
-            "name": t.string().optional(),
             "dynamicLinkInfo": t.proxy(renames["DynamicLinkInfoOut"]).optional(),
             "sdkVersion": t.string().optional(),
             "longDynamicLink": t.string().optional(),
+            "name": t.string().optional(),
             "suffix": t.proxy(renames["SuffixOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CreateManagedShortLinkRequestOut"])
-    types["ManagedShortLinkIn"] = t.struct(
+    types["IosInfoIn"] = t.struct(
         {
-            "link": t.string().optional(),
-            "visibility": t.string().optional(),
-            "creationTime": t.string().optional(),
-            "info": t.proxy(renames["DynamicLinkInfoIn"]).optional(),
-            "flaggedAttribute": t.array(t.string()).optional(),
-            "linkName": t.string().optional(),
+            "iosBundleId": t.string().optional(),
+            "iosIpadBundleId": t.string().optional(),
+            "iosFallbackLink": t.string().optional(),
+            "iosAppStoreId": t.string().optional(),
+            "iosCustomScheme": t.string().optional(),
+            "iosMinimumVersion": t.string().optional(),
+            "iosIpadFallbackLink": t.string().optional(),
         }
-    ).named(renames["ManagedShortLinkIn"])
-    types["ManagedShortLinkOut"] = t.struct(
+    ).named(renames["IosInfoIn"])
+    types["IosInfoOut"] = t.struct(
         {
-            "link": t.string().optional(),
-            "visibility": t.string().optional(),
-            "creationTime": t.string().optional(),
-            "info": t.proxy(renames["DynamicLinkInfoOut"]).optional(),
-            "flaggedAttribute": t.array(t.string()).optional(),
-            "linkName": t.string().optional(),
+            "iosBundleId": t.string().optional(),
+            "iosIpadBundleId": t.string().optional(),
+            "iosFallbackLink": t.string().optional(),
+            "iosAppStoreId": t.string().optional(),
+            "iosCustomScheme": t.string().optional(),
+            "iosMinimumVersion": t.string().optional(),
+            "iosIpadFallbackLink": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ManagedShortLinkOut"])
-    types["AnalyticsInfoIn"] = t.struct(
+    ).named(renames["IosInfoOut"])
+    types["DynamicLinkInfoIn"] = t.struct(
         {
-            "googlePlayAnalytics": t.proxy(renames["GooglePlayAnalyticsIn"]).optional(),
-            "itunesConnectAnalytics": t.proxy(
-                renames["ITunesConnectAnalyticsIn"]
-            ).optional(),
+            "socialMetaTagInfo": t.proxy(renames["SocialMetaTagInfoIn"]).optional(),
+            "domainUriPrefix": t.string().optional(),
+            "dynamicLinkDomain": t.string().optional(),
+            "navigationInfo": t.proxy(renames["NavigationInfoIn"]).optional(),
+            "androidInfo": t.proxy(renames["AndroidInfoIn"]).optional(),
+            "link": t.string().optional(),
+            "iosInfo": t.proxy(renames["IosInfoIn"]).optional(),
+            "desktopInfo": t.proxy(renames["DesktopInfoIn"]).optional(),
+            "analyticsInfo": t.proxy(renames["AnalyticsInfoIn"]).optional(),
         }
-    ).named(renames["AnalyticsInfoIn"])
-    types["AnalyticsInfoOut"] = t.struct(
+    ).named(renames["DynamicLinkInfoIn"])
+    types["DynamicLinkInfoOut"] = t.struct(
         {
-            "googlePlayAnalytics": t.proxy(
-                renames["GooglePlayAnalyticsOut"]
-            ).optional(),
-            "itunesConnectAnalytics": t.proxy(
-                renames["ITunesConnectAnalyticsOut"]
-            ).optional(),
+            "socialMetaTagInfo": t.proxy(renames["SocialMetaTagInfoOut"]).optional(),
+            "domainUriPrefix": t.string().optional(),
+            "dynamicLinkDomain": t.string().optional(),
+            "navigationInfo": t.proxy(renames["NavigationInfoOut"]).optional(),
+            "androidInfo": t.proxy(renames["AndroidInfoOut"]).optional(),
+            "link": t.string().optional(),
+            "iosInfo": t.proxy(renames["IosInfoOut"]).optional(),
+            "desktopInfo": t.proxy(renames["DesktopInfoOut"]).optional(),
+            "analyticsInfo": t.proxy(renames["AnalyticsInfoOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AnalyticsInfoOut"])
+    ).named(renames["DynamicLinkInfoOut"])
+    types["GetIosPostInstallAttributionRequestIn"] = t.struct(
+        {
+            "device": t.proxy(renames["DeviceInfoIn"]).optional(),
+            "sdkVersion": t.string().optional(),
+            "uniqueMatchLinkToCheck": t.string().optional(),
+            "visualStyle": t.string().optional(),
+            "appInstallationTime": t.string().optional(),
+            "bundleId": t.string().optional(),
+            "iosVersion": t.string().optional(),
+            "retrievalMethod": t.string().optional(),
+        }
+    ).named(renames["GetIosPostInstallAttributionRequestIn"])
+    types["GetIosPostInstallAttributionRequestOut"] = t.struct(
+        {
+            "device": t.proxy(renames["DeviceInfoOut"]).optional(),
+            "sdkVersion": t.string().optional(),
+            "uniqueMatchLinkToCheck": t.string().optional(),
+            "visualStyle": t.string().optional(),
+            "appInstallationTime": t.string().optional(),
+            "bundleId": t.string().optional(),
+            "iosVersion": t.string().optional(),
+            "retrievalMethod": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetIosPostInstallAttributionRequestOut"])
     types["DeviceInfoIn"] = t.struct(
         {
-            "screenResolutionWidth": t.string().optional(),
-            "deviceModelName": t.string().optional(),
-            "timezone": t.string().optional(),
             "languageCodeFromWebview": t.string().optional(),
+            "timezone": t.string().optional(),
             "languageCodeRaw": t.string().optional(),
             "languageCode": t.string().optional(),
+            "screenResolutionWidth": t.string().optional(),
             "screenResolutionHeight": t.string().optional(),
+            "deviceModelName": t.string().optional(),
         }
     ).named(renames["DeviceInfoIn"])
     types["DeviceInfoOut"] = t.struct(
         {
-            "screenResolutionWidth": t.string().optional(),
-            "deviceModelName": t.string().optional(),
-            "timezone": t.string().optional(),
             "languageCodeFromWebview": t.string().optional(),
+            "timezone": t.string().optional(),
             "languageCodeRaw": t.string().optional(),
             "languageCode": t.string().optional(),
+            "screenResolutionWidth": t.string().optional(),
             "screenResolutionHeight": t.string().optional(),
+            "deviceModelName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DeviceInfoOut"])
+    types["SuffixIn"] = t.struct(
+        {"option": t.string().optional(), "customSuffix": t.string().optional()}
+    ).named(renames["SuffixIn"])
+    types["SuffixOut"] = t.struct(
+        {
+            "option": t.string().optional(),
+            "customSuffix": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SuffixOut"])
+    types["ManagedShortLinkIn"] = t.struct(
+        {
+            "creationTime": t.string().optional(),
+            "info": t.proxy(renames["DynamicLinkInfoIn"]).optional(),
+            "flaggedAttribute": t.array(t.string()).optional(),
+            "linkName": t.string().optional(),
+            "visibility": t.string().optional(),
+            "link": t.string().optional(),
+        }
+    ).named(renames["ManagedShortLinkIn"])
+    types["ManagedShortLinkOut"] = t.struct(
+        {
+            "creationTime": t.string().optional(),
+            "info": t.proxy(renames["DynamicLinkInfoOut"]).optional(),
+            "flaggedAttribute": t.array(t.string()).optional(),
+            "linkName": t.string().optional(),
+            "visibility": t.string().optional(),
+            "link": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ManagedShortLinkOut"])
     types["DesktopInfoIn"] = t.struct(
         {"desktopFallbackLink": t.string().optional()}
     ).named(renames["DesktopInfoIn"])
@@ -225,117 +277,104 @@ def import_firebasedynamiclinks() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DesktopInfoOut"])
-    types["GetIosReopenAttributionRequestIn"] = t.struct(
+    types["AndroidInfoIn"] = t.struct(
         {
-            "sdkVersion": t.string().optional(),
-            "bundleId": t.string().optional(),
-            "requestedLink": t.string().optional(),
+            "androidMinPackageVersionCode": t.string().optional(),
+            "androidFallbackLink": t.string().optional(),
+            "androidPackageName": t.string().optional(),
+            "androidLink": t.string().optional(),
         }
-    ).named(renames["GetIosReopenAttributionRequestIn"])
-    types["GetIosReopenAttributionRequestOut"] = t.struct(
+    ).named(renames["AndroidInfoIn"])
+    types["AndroidInfoOut"] = t.struct(
         {
-            "sdkVersion": t.string().optional(),
-            "bundleId": t.string().optional(),
-            "requestedLink": t.string().optional(),
+            "androidMinPackageVersionCode": t.string().optional(),
+            "androidFallbackLink": t.string().optional(),
+            "androidPackageName": t.string().optional(),
+            "androidLink": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GetIosReopenAttributionRequestOut"])
-    types["SocialMetaTagInfoIn"] = t.struct(
+    ).named(renames["AndroidInfoOut"])
+    types["AnalyticsInfoIn"] = t.struct(
         {
-            "socialTitle": t.string().optional(),
-            "socialDescription": t.string().optional(),
-            "socialImageLink": t.string().optional(),
+            "itunesConnectAnalytics": t.proxy(
+                renames["ITunesConnectAnalyticsIn"]
+            ).optional(),
+            "googlePlayAnalytics": t.proxy(renames["GooglePlayAnalyticsIn"]).optional(),
         }
-    ).named(renames["SocialMetaTagInfoIn"])
-    types["SocialMetaTagInfoOut"] = t.struct(
+    ).named(renames["AnalyticsInfoIn"])
+    types["AnalyticsInfoOut"] = t.struct(
         {
-            "socialTitle": t.string().optional(),
-            "socialDescription": t.string().optional(),
-            "socialImageLink": t.string().optional(),
+            "itunesConnectAnalytics": t.proxy(
+                renames["ITunesConnectAnalyticsOut"]
+            ).optional(),
+            "googlePlayAnalytics": t.proxy(
+                renames["GooglePlayAnalyticsOut"]
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SocialMetaTagInfoOut"])
-    types["NavigationInfoIn"] = t.struct(
-        {"enableForcedRedirect": t.boolean().optional()}
-    ).named(renames["NavigationInfoIn"])
-    types["NavigationInfoOut"] = t.struct(
+    ).named(renames["AnalyticsInfoOut"])
+    types["DynamicLinkEventStatIn"] = t.struct(
         {
-            "enableForcedRedirect": t.boolean().optional(),
+            "event": t.string().optional(),
+            "platform": t.string().optional(),
+            "count": t.string().optional(),
+        }
+    ).named(renames["DynamicLinkEventStatIn"])
+    types["DynamicLinkEventStatOut"] = t.struct(
+        {
+            "event": t.string().optional(),
+            "platform": t.string().optional(),
+            "count": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["NavigationInfoOut"])
-    types["IosInfoIn"] = t.struct(
-        {
-            "iosIpadFallbackLink": t.string().optional(),
-            "iosBundleId": t.string().optional(),
-            "iosCustomScheme": t.string().optional(),
-            "iosMinimumVersion": t.string().optional(),
-            "iosAppStoreId": t.string().optional(),
-            "iosIpadBundleId": t.string().optional(),
-            "iosFallbackLink": t.string().optional(),
-        }
-    ).named(renames["IosInfoIn"])
-    types["IosInfoOut"] = t.struct(
-        {
-            "iosIpadFallbackLink": t.string().optional(),
-            "iosBundleId": t.string().optional(),
-            "iosCustomScheme": t.string().optional(),
-            "iosMinimumVersion": t.string().optional(),
-            "iosAppStoreId": t.string().optional(),
-            "iosIpadBundleId": t.string().optional(),
-            "iosFallbackLink": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["IosInfoOut"])
+    ).named(renames["DynamicLinkEventStatOut"])
     types["CreateShortDynamicLinkRequestIn"] = t.struct(
         {
             "dynamicLinkInfo": t.proxy(renames["DynamicLinkInfoIn"]).optional(),
             "sdkVersion": t.string().optional(),
-            "suffix": t.proxy(renames["SuffixIn"]).optional(),
             "longDynamicLink": t.string().optional(),
+            "suffix": t.proxy(renames["SuffixIn"]).optional(),
         }
     ).named(renames["CreateShortDynamicLinkRequestIn"])
     types["CreateShortDynamicLinkRequestOut"] = t.struct(
         {
             "dynamicLinkInfo": t.proxy(renames["DynamicLinkInfoOut"]).optional(),
             "sdkVersion": t.string().optional(),
-            "suffix": t.proxy(renames["SuffixOut"]).optional(),
             "longDynamicLink": t.string().optional(),
+            "suffix": t.proxy(renames["SuffixOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CreateShortDynamicLinkRequestOut"])
-    types["AndroidInfoIn"] = t.struct(
+    types["DynamicLinkWarningIn"] = t.struct(
         {
-            "androidPackageName": t.string().optional(),
-            "androidLink": t.string().optional(),
-            "androidMinPackageVersionCode": t.string().optional(),
-            "androidFallbackLink": t.string().optional(),
+            "warningMessage": t.string().optional(),
+            "warningCode": t.string().optional(),
+            "warningDocumentLink": t.string().optional(),
         }
-    ).named(renames["AndroidInfoIn"])
-    types["AndroidInfoOut"] = t.struct(
+    ).named(renames["DynamicLinkWarningIn"])
+    types["DynamicLinkWarningOut"] = t.struct(
         {
-            "androidPackageName": t.string().optional(),
-            "androidLink": t.string().optional(),
-            "androidMinPackageVersionCode": t.string().optional(),
-            "androidFallbackLink": t.string().optional(),
+            "warningMessage": t.string().optional(),
+            "warningCode": t.string().optional(),
+            "warningDocumentLink": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AndroidInfoOut"])
-    types["DynamicLinkEventStatIn"] = t.struct(
+    ).named(renames["DynamicLinkWarningOut"])
+    types["SocialMetaTagInfoIn"] = t.struct(
         {
-            "event": t.string().optional(),
-            "count": t.string().optional(),
-            "platform": t.string().optional(),
+            "socialDescription": t.string().optional(),
+            "socialImageLink": t.string().optional(),
+            "socialTitle": t.string().optional(),
         }
-    ).named(renames["DynamicLinkEventStatIn"])
-    types["DynamicLinkEventStatOut"] = t.struct(
+    ).named(renames["SocialMetaTagInfoIn"])
+    types["SocialMetaTagInfoOut"] = t.struct(
         {
-            "event": t.string().optional(),
-            "count": t.string().optional(),
-            "platform": t.string().optional(),
+            "socialDescription": t.string().optional(),
+            "socialImageLink": t.string().optional(),
+            "socialTitle": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DynamicLinkEventStatOut"])
+    ).named(renames["SocialMetaTagInfoOut"])
     types["DynamicLinkStatsIn"] = t.struct(
         {
             "linkEventStats": t.array(
@@ -351,219 +390,122 @@ def import_firebasedynamiclinks() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DynamicLinkStatsOut"])
-    types["GetIosReopenAttributionResponseIn"] = t.struct(
-        {
-            "iosMinAppVersion": t.string().optional(),
-            "utmContent": t.string().optional(),
-            "utmCampaign": t.string().optional(),
-            "resolvedLink": t.string().optional(),
-            "invitationId": t.string().optional(),
-            "deepLink": t.string().optional(),
-            "utmMedium": t.string().optional(),
-            "utmSource": t.string().optional(),
-            "utmTerm": t.string().optional(),
-        }
-    ).named(renames["GetIosReopenAttributionResponseIn"])
-    types["GetIosReopenAttributionResponseOut"] = t.struct(
-        {
-            "iosMinAppVersion": t.string().optional(),
-            "utmContent": t.string().optional(),
-            "utmCampaign": t.string().optional(),
-            "resolvedLink": t.string().optional(),
-            "invitationId": t.string().optional(),
-            "deepLink": t.string().optional(),
-            "utmMedium": t.string().optional(),
-            "utmSource": t.string().optional(),
-            "utmTerm": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GetIosReopenAttributionResponseOut"])
     types["GetIosPostInstallAttributionResponseIn"] = t.struct(
         {
-            "isStrongMatchExecutable": t.boolean().optional(),
-            "externalBrowserDestinationLink": t.string().optional(),
-            "invitationId": t.string().optional(),
-            "deepLink": t.string().optional(),
-            "utmContent": t.string().optional(),
-            "matchMessage": t.string().optional(),
             "requestedLink": t.string().optional(),
-            "utmCampaign": t.string().optional(),
-            "utmSource": t.string().optional(),
-            "utmMedium": t.string().optional(),
+            "deepLink": t.string().optional(),
             "attributionConfidence": t.string().optional(),
-            "utmTerm": t.string().optional(),
-            "resolvedLink": t.string().optional(),
-            "appMinimumVersion": t.string().optional(),
-            "fallbackLink": t.string().optional(),
+            "invitationId": t.string().optional(),
+            "externalBrowserDestinationLink": t.string().optional(),
             "requestIpVersion": t.string().optional(),
+            "utmMedium": t.string().optional(),
+            "utmTerm": t.string().optional(),
+            "utmContent": t.string().optional(),
+            "utmCampaign": t.string().optional(),
+            "resolvedLink": t.string().optional(),
+            "fallbackLink": t.string().optional(),
+            "utmSource": t.string().optional(),
+            "isStrongMatchExecutable": t.boolean().optional(),
+            "matchMessage": t.string().optional(),
+            "appMinimumVersion": t.string().optional(),
         }
     ).named(renames["GetIosPostInstallAttributionResponseIn"])
     types["GetIosPostInstallAttributionResponseOut"] = t.struct(
         {
-            "isStrongMatchExecutable": t.boolean().optional(),
-            "externalBrowserDestinationLink": t.string().optional(),
-            "invitationId": t.string().optional(),
-            "deepLink": t.string().optional(),
-            "utmContent": t.string().optional(),
-            "matchMessage": t.string().optional(),
             "requestedLink": t.string().optional(),
-            "utmCampaign": t.string().optional(),
-            "utmSource": t.string().optional(),
-            "utmMedium": t.string().optional(),
+            "deepLink": t.string().optional(),
             "attributionConfidence": t.string().optional(),
-            "utmTerm": t.string().optional(),
-            "resolvedLink": t.string().optional(),
-            "appMinimumVersion": t.string().optional(),
-            "fallbackLink": t.string().optional(),
+            "invitationId": t.string().optional(),
+            "externalBrowserDestinationLink": t.string().optional(),
             "requestIpVersion": t.string().optional(),
+            "utmMedium": t.string().optional(),
+            "utmTerm": t.string().optional(),
+            "utmContent": t.string().optional(),
+            "utmCampaign": t.string().optional(),
+            "resolvedLink": t.string().optional(),
+            "fallbackLink": t.string().optional(),
+            "utmSource": t.string().optional(),
+            "isStrongMatchExecutable": t.boolean().optional(),
+            "matchMessage": t.string().optional(),
+            "appMinimumVersion": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GetIosPostInstallAttributionResponseOut"])
+    types["GetIosReopenAttributionRequestIn"] = t.struct(
+        {
+            "sdkVersion": t.string().optional(),
+            "requestedLink": t.string().optional(),
+            "bundleId": t.string().optional(),
+        }
+    ).named(renames["GetIosReopenAttributionRequestIn"])
+    types["GetIosReopenAttributionRequestOut"] = t.struct(
+        {
+            "sdkVersion": t.string().optional(),
+            "requestedLink": t.string().optional(),
+            "bundleId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetIosReopenAttributionRequestOut"])
+    types["CreateShortDynamicLinkResponseIn"] = t.struct(
+        {
+            "previewLink": t.string().optional(),
+            "shortLink": t.string().optional(),
+            "warning": t.array(t.proxy(renames["DynamicLinkWarningIn"])).optional(),
+        }
+    ).named(renames["CreateShortDynamicLinkResponseIn"])
+    types["CreateShortDynamicLinkResponseOut"] = t.struct(
+        {
+            "previewLink": t.string().optional(),
+            "shortLink": t.string().optional(),
+            "warning": t.array(t.proxy(renames["DynamicLinkWarningOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CreateShortDynamicLinkResponseOut"])
+    types["NavigationInfoIn"] = t.struct(
+        {"enableForcedRedirect": t.boolean().optional()}
+    ).named(renames["NavigationInfoIn"])
+    types["NavigationInfoOut"] = t.struct(
+        {
+            "enableForcedRedirect": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["NavigationInfoOut"])
     types["GooglePlayAnalyticsIn"] = t.struct(
         {
             "gclid": t.string().optional(),
+            "utmMedium": t.string().optional(),
+            "utmContent": t.string().optional(),
             "utmSource": t.string().optional(),
             "utmTerm": t.string().optional(),
-            "utmContent": t.string().optional(),
-            "utmMedium": t.string().optional(),
             "utmCampaign": t.string().optional(),
         }
     ).named(renames["GooglePlayAnalyticsIn"])
     types["GooglePlayAnalyticsOut"] = t.struct(
         {
             "gclid": t.string().optional(),
+            "utmMedium": t.string().optional(),
+            "utmContent": t.string().optional(),
             "utmSource": t.string().optional(),
             "utmTerm": t.string().optional(),
-            "utmContent": t.string().optional(),
-            "utmMedium": t.string().optional(),
             "utmCampaign": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GooglePlayAnalyticsOut"])
-    types["CreateShortDynamicLinkResponseIn"] = t.struct(
-        {
-            "warning": t.array(t.proxy(renames["DynamicLinkWarningIn"])).optional(),
-            "previewLink": t.string().optional(),
-            "shortLink": t.string().optional(),
-        }
-    ).named(renames["CreateShortDynamicLinkResponseIn"])
-    types["CreateShortDynamicLinkResponseOut"] = t.struct(
-        {
-            "warning": t.array(t.proxy(renames["DynamicLinkWarningOut"])).optional(),
-            "previewLink": t.string().optional(),
-            "shortLink": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CreateShortDynamicLinkResponseOut"])
-    types["SuffixIn"] = t.struct(
-        {"option": t.string().optional(), "customSuffix": t.string().optional()}
-    ).named(renames["SuffixIn"])
-    types["SuffixOut"] = t.struct(
-        {
-            "option": t.string().optional(),
-            "customSuffix": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SuffixOut"])
-    types["DynamicLinkInfoIn"] = t.struct(
-        {
-            "link": t.string().optional(),
-            "analyticsInfo": t.proxy(renames["AnalyticsInfoIn"]).optional(),
-            "androidInfo": t.proxy(renames["AndroidInfoIn"]).optional(),
-            "navigationInfo": t.proxy(renames["NavigationInfoIn"]).optional(),
-            "domainUriPrefix": t.string().optional(),
-            "iosInfo": t.proxy(renames["IosInfoIn"]).optional(),
-            "dynamicLinkDomain": t.string().optional(),
-            "desktopInfo": t.proxy(renames["DesktopInfoIn"]).optional(),
-            "socialMetaTagInfo": t.proxy(renames["SocialMetaTagInfoIn"]).optional(),
-        }
-    ).named(renames["DynamicLinkInfoIn"])
-    types["DynamicLinkInfoOut"] = t.struct(
-        {
-            "link": t.string().optional(),
-            "analyticsInfo": t.proxy(renames["AnalyticsInfoOut"]).optional(),
-            "androidInfo": t.proxy(renames["AndroidInfoOut"]).optional(),
-            "navigationInfo": t.proxy(renames["NavigationInfoOut"]).optional(),
-            "domainUriPrefix": t.string().optional(),
-            "iosInfo": t.proxy(renames["IosInfoOut"]).optional(),
-            "dynamicLinkDomain": t.string().optional(),
-            "desktopInfo": t.proxy(renames["DesktopInfoOut"]).optional(),
-            "socialMetaTagInfo": t.proxy(renames["SocialMetaTagInfoOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DynamicLinkInfoOut"])
 
     functions = {}
     functions["managedShortLinksCreate"] = firebasedynamiclinks.post(
         "v1/managedShortLinks:create",
         t.struct(
             {
-                "name": t.string().optional(),
                 "dynamicLinkInfo": t.proxy(renames["DynamicLinkInfoIn"]).optional(),
                 "sdkVersion": t.string().optional(),
                 "longDynamicLink": t.string().optional(),
+                "name": t.string().optional(),
                 "suffix": t.proxy(renames["SuffixIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
         t.proxy(renames["CreateManagedShortLinkResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["v1GetLinkStats"] = firebasedynamiclinks.post(
-        "v1/installAttribution",
-        t.struct(
-            {
-                "device": t.proxy(renames["DeviceInfoIn"]).optional(),
-                "iosVersion": t.string().optional(),
-                "visualStyle": t.string().optional(),
-                "bundleId": t.string().optional(),
-                "appInstallationTime": t.string().optional(),
-                "uniqueMatchLinkToCheck": t.string().optional(),
-                "retrievalMethod": t.string().optional(),
-                "sdkVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetIosPostInstallAttributionResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["v1ReopenAttribution"] = firebasedynamiclinks.post(
-        "v1/installAttribution",
-        t.struct(
-            {
-                "device": t.proxy(renames["DeviceInfoIn"]).optional(),
-                "iosVersion": t.string().optional(),
-                "visualStyle": t.string().optional(),
-                "bundleId": t.string().optional(),
-                "appInstallationTime": t.string().optional(),
-                "uniqueMatchLinkToCheck": t.string().optional(),
-                "retrievalMethod": t.string().optional(),
-                "sdkVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetIosPostInstallAttributionResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["v1InstallAttribution"] = firebasedynamiclinks.post(
-        "v1/installAttribution",
-        t.struct(
-            {
-                "device": t.proxy(renames["DeviceInfoIn"]).optional(),
-                "iosVersion": t.string().optional(),
-                "visualStyle": t.string().optional(),
-                "bundleId": t.string().optional(),
-                "appInstallationTime": t.string().optional(),
-                "uniqueMatchLinkToCheck": t.string().optional(),
-                "retrievalMethod": t.string().optional(),
-                "sdkVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetIosPostInstallAttributionResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -573,8 +515,8 @@ def import_firebasedynamiclinks() -> Import:
             {
                 "dynamicLinkInfo": t.proxy(renames["DynamicLinkInfoIn"]).optional(),
                 "sdkVersion": t.string().optional(),
-                "suffix": t.proxy(renames["SuffixIn"]).optional(),
                 "longDynamicLink": t.string().optional(),
+                "suffix": t.proxy(renames["SuffixIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -582,10 +524,52 @@ def import_firebasedynamiclinks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
+    functions["v1GetLinkStats"] = firebasedynamiclinks.post(
+        "v1/reopenAttribution",
+        t.struct(
+            {
+                "sdkVersion": t.string().optional(),
+                "requestedLink": t.string().optional(),
+                "bundleId": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GetIosReopenAttributionResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["v1InstallAttribution"] = firebasedynamiclinks.post(
+        "v1/reopenAttribution",
+        t.struct(
+            {
+                "sdkVersion": t.string().optional(),
+                "requestedLink": t.string().optional(),
+                "bundleId": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GetIosReopenAttributionResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["v1ReopenAttribution"] = firebasedynamiclinks.post(
+        "v1/reopenAttribution",
+        t.struct(
+            {
+                "sdkVersion": t.string().optional(),
+                "requestedLink": t.string().optional(),
+                "bundleId": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GetIosReopenAttributionResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
 
     return Import(
         importer="firebasedynamiclinks",
         renames=renames,
-        types=types,
-        functions=functions,
+        types=Box(types),
+        functions=Box(functions),
     )

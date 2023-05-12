@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_versionhistory() -> Import:
@@ -10,92 +9,30 @@ def import_versionhistory() -> Import:
 
     renames = {
         "ErrorResponse": "_versionhistory_1_ErrorResponse",
-        "VersionIn": "_versionhistory_2_VersionIn",
-        "VersionOut": "_versionhistory_3_VersionOut",
+        "ListPlatformsResponseIn": "_versionhistory_2_ListPlatformsResponseIn",
+        "ListPlatformsResponseOut": "_versionhistory_3_ListPlatformsResponseOut",
         "ListReleasesResponseIn": "_versionhistory_4_ListReleasesResponseIn",
         "ListReleasesResponseOut": "_versionhistory_5_ListReleasesResponseOut",
-        "PlatformIn": "_versionhistory_6_PlatformIn",
-        "PlatformOut": "_versionhistory_7_PlatformOut",
-        "ReleaseIn": "_versionhistory_8_ReleaseIn",
-        "ReleaseOut": "_versionhistory_9_ReleaseOut",
-        "ChannelIn": "_versionhistory_10_ChannelIn",
-        "ChannelOut": "_versionhistory_11_ChannelOut",
-        "ListPlatformsResponseIn": "_versionhistory_12_ListPlatformsResponseIn",
-        "ListPlatformsResponseOut": "_versionhistory_13_ListPlatformsResponseOut",
-        "IntervalIn": "_versionhistory_14_IntervalIn",
-        "IntervalOut": "_versionhistory_15_IntervalOut",
-        "ListVersionsResponseIn": "_versionhistory_16_ListVersionsResponseIn",
-        "ListVersionsResponseOut": "_versionhistory_17_ListVersionsResponseOut",
-        "ListChannelsResponseIn": "_versionhistory_18_ListChannelsResponseIn",
-        "ListChannelsResponseOut": "_versionhistory_19_ListChannelsResponseOut",
+        "ChannelIn": "_versionhistory_6_ChannelIn",
+        "ChannelOut": "_versionhistory_7_ChannelOut",
+        "ListVersionsResponseIn": "_versionhistory_8_ListVersionsResponseIn",
+        "ListVersionsResponseOut": "_versionhistory_9_ListVersionsResponseOut",
+        "ListChannelsResponseIn": "_versionhistory_10_ListChannelsResponseIn",
+        "ListChannelsResponseOut": "_versionhistory_11_ListChannelsResponseOut",
+        "VersionIn": "_versionhistory_12_VersionIn",
+        "VersionOut": "_versionhistory_13_VersionOut",
+        "ReleaseIn": "_versionhistory_14_ReleaseIn",
+        "ReleaseOut": "_versionhistory_15_ReleaseOut",
+        "PlatformIn": "_versionhistory_16_PlatformIn",
+        "PlatformOut": "_versionhistory_17_PlatformOut",
+        "IntervalIn": "_versionhistory_18_IntervalIn",
+        "IntervalOut": "_versionhistory_19_IntervalOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["VersionIn"] = t.struct(
-        {"name": t.string().optional(), "version": t.string().optional()}
-    ).named(renames["VersionIn"])
-    types["VersionOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "version": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["VersionOut"])
-    types["ListReleasesResponseIn"] = t.struct(
-        {
-            "releases": t.array(t.proxy(renames["ReleaseIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListReleasesResponseIn"])
-    types["ListReleasesResponseOut"] = t.struct(
-        {
-            "releases": t.array(t.proxy(renames["ReleaseOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListReleasesResponseOut"])
-    types["PlatformIn"] = t.struct(
-        {"name": t.string().optional(), "platformType": t.string().optional()}
-    ).named(renames["PlatformIn"])
-    types["PlatformOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "platformType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PlatformOut"])
-    types["ReleaseIn"] = t.struct(
-        {
-            "version": t.string().optional(),
-            "fraction": t.number().optional(),
-            "fractionGroup": t.string().optional(),
-            "serving": t.proxy(renames["IntervalIn"]).optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["ReleaseIn"])
-    types["ReleaseOut"] = t.struct(
-        {
-            "version": t.string().optional(),
-            "fraction": t.number().optional(),
-            "fractionGroup": t.string().optional(),
-            "serving": t.proxy(renames["IntervalOut"]).optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReleaseOut"])
-    types["ChannelIn"] = t.struct(
-        {"name": t.string().optional(), "channelType": t.string().optional()}
-    ).named(renames["ChannelIn"])
-    types["ChannelOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "channelType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ChannelOut"])
     types["ListPlatformsResponseIn"] = t.struct(
         {
             "platforms": t.array(t.proxy(renames["PlatformIn"])).optional(),
@@ -109,16 +46,29 @@ def import_versionhistory() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListPlatformsResponseOut"])
-    types["IntervalIn"] = t.struct(
-        {"endTime": t.string().optional(), "startTime": t.string().optional()}
-    ).named(renames["IntervalIn"])
-    types["IntervalOut"] = t.struct(
+    types["ListReleasesResponseIn"] = t.struct(
         {
-            "endTime": t.string().optional(),
-            "startTime": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "releases": t.array(t.proxy(renames["ReleaseIn"])).optional(),
+        }
+    ).named(renames["ListReleasesResponseIn"])
+    types["ListReleasesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "releases": t.array(t.proxy(renames["ReleaseOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["IntervalOut"])
+    ).named(renames["ListReleasesResponseOut"])
+    types["ChannelIn"] = t.struct(
+        {"name": t.string().optional(), "channelType": t.string().optional()}
+    ).named(renames["ChannelIn"])
+    types["ChannelOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "channelType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ChannelOut"])
     types["ListVersionsResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -134,17 +84,66 @@ def import_versionhistory() -> Import:
     ).named(renames["ListVersionsResponseOut"])
     types["ListChannelsResponseIn"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
             "channels": t.array(t.proxy(renames["ChannelIn"])).optional(),
+            "nextPageToken": t.string().optional(),
         }
     ).named(renames["ListChannelsResponseIn"])
     types["ListChannelsResponseOut"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
             "channels": t.array(t.proxy(renames["ChannelOut"])).optional(),
+            "nextPageToken": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListChannelsResponseOut"])
+    types["VersionIn"] = t.struct(
+        {"name": t.string().optional(), "version": t.string().optional()}
+    ).named(renames["VersionIn"])
+    types["VersionOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "version": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["VersionOut"])
+    types["ReleaseIn"] = t.struct(
+        {
+            "fraction": t.number().optional(),
+            "fractionGroup": t.string().optional(),
+            "serving": t.proxy(renames["IntervalIn"]).optional(),
+            "name": t.string().optional(),
+            "version": t.string().optional(),
+        }
+    ).named(renames["ReleaseIn"])
+    types["ReleaseOut"] = t.struct(
+        {
+            "fraction": t.number().optional(),
+            "fractionGroup": t.string().optional(),
+            "serving": t.proxy(renames["IntervalOut"]).optional(),
+            "name": t.string().optional(),
+            "version": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReleaseOut"])
+    types["PlatformIn"] = t.struct(
+        {"name": t.string().optional(), "platformType": t.string().optional()}
+    ).named(renames["PlatformIn"])
+    types["PlatformOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "platformType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PlatformOut"])
+    types["IntervalIn"] = t.struct(
+        {"endTime": t.string().optional(), "startTime": t.string().optional()}
+    ).named(renames["IntervalIn"])
+    types["IntervalOut"] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "startTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["IntervalOut"])
 
     functions = {}
     functions["platformsList"] = versionhistory.get(
@@ -166,8 +165,8 @@ def import_versionhistory() -> Import:
         t.struct(
             {
                 "pageSize": t.integer().optional(),
-                "parent": t.string(),
                 "pageToken": t.string().optional(),
+                "parent": t.string(),
                 "auth": t.string().optional(),
             }
         ),
@@ -179,11 +178,11 @@ def import_versionhistory() -> Import:
         "v1/{parent}/versions",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
+                "pageToken": t.string().optional(),
                 "parent": t.string(),
+                "pageSize": t.integer().optional(),
                 "filter": t.string().optional(),
                 "orderBy": t.string().optional(),
-                "pageToken": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -195,9 +194,9 @@ def import_versionhistory() -> Import:
         "v1/{parent}/releases",
         t.struct(
             {
+                "pageSize": t.integer().optional(),
                 "orderBy": t.string().optional(),
                 "parent": t.string(),
-                "pageSize": t.integer().optional(),
                 "filter": t.string().optional(),
                 "pageToken": t.string().optional(),
                 "auth": t.string().optional(),
@@ -209,5 +208,8 @@ def import_versionhistory() -> Import:
     )
 
     return Import(
-        importer="versionhistory", renames=renames, types=types, functions=functions
+        importer="versionhistory",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

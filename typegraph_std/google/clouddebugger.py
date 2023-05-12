@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_clouddebugger() -> Import:
@@ -10,334 +9,148 @@ def import_clouddebugger() -> Import:
 
     renames = {
         "ErrorResponse": "_clouddebugger_1_ErrorResponse",
-        "UpdateActiveBreakpointRequestIn": "_clouddebugger_2_UpdateActiveBreakpointRequestIn",
-        "UpdateActiveBreakpointRequestOut": "_clouddebugger_3_UpdateActiveBreakpointRequestOut",
-        "GerritSourceContextIn": "_clouddebugger_4_GerritSourceContextIn",
-        "GerritSourceContextOut": "_clouddebugger_5_GerritSourceContextOut",
-        "CloudWorkspaceSourceContextIn": "_clouddebugger_6_CloudWorkspaceSourceContextIn",
-        "CloudWorkspaceSourceContextOut": "_clouddebugger_7_CloudWorkspaceSourceContextOut",
-        "ProjectRepoIdIn": "_clouddebugger_8_ProjectRepoIdIn",
-        "ProjectRepoIdOut": "_clouddebugger_9_ProjectRepoIdOut",
-        "FormatMessageIn": "_clouddebugger_10_FormatMessageIn",
-        "FormatMessageOut": "_clouddebugger_11_FormatMessageOut",
-        "BreakpointIn": "_clouddebugger_12_BreakpointIn",
-        "BreakpointOut": "_clouddebugger_13_BreakpointOut",
-        "RepoIdIn": "_clouddebugger_14_RepoIdIn",
-        "RepoIdOut": "_clouddebugger_15_RepoIdOut",
-        "EmptyIn": "_clouddebugger_16_EmptyIn",
-        "EmptyOut": "_clouddebugger_17_EmptyOut",
-        "RegisterDebuggeeRequestIn": "_clouddebugger_18_RegisterDebuggeeRequestIn",
-        "RegisterDebuggeeRequestOut": "_clouddebugger_19_RegisterDebuggeeRequestOut",
-        "SetBreakpointResponseIn": "_clouddebugger_20_SetBreakpointResponseIn",
-        "SetBreakpointResponseOut": "_clouddebugger_21_SetBreakpointResponseOut",
-        "DebuggeeIn": "_clouddebugger_22_DebuggeeIn",
-        "DebuggeeOut": "_clouddebugger_23_DebuggeeOut",
-        "GitSourceContextIn": "_clouddebugger_24_GitSourceContextIn",
-        "GitSourceContextOut": "_clouddebugger_25_GitSourceContextOut",
-        "AliasContextIn": "_clouddebugger_26_AliasContextIn",
-        "AliasContextOut": "_clouddebugger_27_AliasContextOut",
-        "ListActiveBreakpointsResponseIn": "_clouddebugger_28_ListActiveBreakpointsResponseIn",
-        "ListActiveBreakpointsResponseOut": "_clouddebugger_29_ListActiveBreakpointsResponseOut",
-        "SourceContextIn": "_clouddebugger_30_SourceContextIn",
-        "SourceContextOut": "_clouddebugger_31_SourceContextOut",
+        "DebuggeeIn": "_clouddebugger_2_DebuggeeIn",
+        "DebuggeeOut": "_clouddebugger_3_DebuggeeOut",
+        "BreakpointIn": "_clouddebugger_4_BreakpointIn",
+        "BreakpointOut": "_clouddebugger_5_BreakpointOut",
+        "CloudWorkspaceIdIn": "_clouddebugger_6_CloudWorkspaceIdIn",
+        "CloudWorkspaceIdOut": "_clouddebugger_7_CloudWorkspaceIdOut",
+        "UpdateActiveBreakpointRequestIn": "_clouddebugger_8_UpdateActiveBreakpointRequestIn",
+        "UpdateActiveBreakpointRequestOut": "_clouddebugger_9_UpdateActiveBreakpointRequestOut",
+        "SourceLocationIn": "_clouddebugger_10_SourceLocationIn",
+        "SourceLocationOut": "_clouddebugger_11_SourceLocationOut",
+        "SetBreakpointResponseIn": "_clouddebugger_12_SetBreakpointResponseIn",
+        "SetBreakpointResponseOut": "_clouddebugger_13_SetBreakpointResponseOut",
+        "RegisterDebuggeeResponseIn": "_clouddebugger_14_RegisterDebuggeeResponseIn",
+        "RegisterDebuggeeResponseOut": "_clouddebugger_15_RegisterDebuggeeResponseOut",
+        "ListActiveBreakpointsResponseIn": "_clouddebugger_16_ListActiveBreakpointsResponseIn",
+        "ListActiveBreakpointsResponseOut": "_clouddebugger_17_ListActiveBreakpointsResponseOut",
+        "CloudWorkspaceSourceContextIn": "_clouddebugger_18_CloudWorkspaceSourceContextIn",
+        "CloudWorkspaceSourceContextOut": "_clouddebugger_19_CloudWorkspaceSourceContextOut",
+        "RegisterDebuggeeRequestIn": "_clouddebugger_20_RegisterDebuggeeRequestIn",
+        "RegisterDebuggeeRequestOut": "_clouddebugger_21_RegisterDebuggeeRequestOut",
+        "ListDebuggeesResponseIn": "_clouddebugger_22_ListDebuggeesResponseIn",
+        "ListDebuggeesResponseOut": "_clouddebugger_23_ListDebuggeesResponseOut",
+        "SourceContextIn": "_clouddebugger_24_SourceContextIn",
+        "SourceContextOut": "_clouddebugger_25_SourceContextOut",
+        "UpdateActiveBreakpointResponseIn": "_clouddebugger_26_UpdateActiveBreakpointResponseIn",
+        "UpdateActiveBreakpointResponseOut": "_clouddebugger_27_UpdateActiveBreakpointResponseOut",
+        "ProjectRepoIdIn": "_clouddebugger_28_ProjectRepoIdIn",
+        "ProjectRepoIdOut": "_clouddebugger_29_ProjectRepoIdOut",
+        "StackFrameIn": "_clouddebugger_30_StackFrameIn",
+        "StackFrameOut": "_clouddebugger_31_StackFrameOut",
         "ListBreakpointsResponseIn": "_clouddebugger_32_ListBreakpointsResponseIn",
         "ListBreakpointsResponseOut": "_clouddebugger_33_ListBreakpointsResponseOut",
         "VariableIn": "_clouddebugger_34_VariableIn",
         "VariableOut": "_clouddebugger_35_VariableOut",
-        "CloudWorkspaceIdIn": "_clouddebugger_36_CloudWorkspaceIdIn",
-        "CloudWorkspaceIdOut": "_clouddebugger_37_CloudWorkspaceIdOut",
-        "GetBreakpointResponseIn": "_clouddebugger_38_GetBreakpointResponseIn",
-        "GetBreakpointResponseOut": "_clouddebugger_39_GetBreakpointResponseOut",
-        "RegisterDebuggeeResponseIn": "_clouddebugger_40_RegisterDebuggeeResponseIn",
-        "RegisterDebuggeeResponseOut": "_clouddebugger_41_RegisterDebuggeeResponseOut",
-        "StatusMessageIn": "_clouddebugger_42_StatusMessageIn",
-        "StatusMessageOut": "_clouddebugger_43_StatusMessageOut",
-        "ListDebuggeesResponseIn": "_clouddebugger_44_ListDebuggeesResponseIn",
-        "ListDebuggeesResponseOut": "_clouddebugger_45_ListDebuggeesResponseOut",
+        "CloudRepoSourceContextIn": "_clouddebugger_36_CloudRepoSourceContextIn",
+        "CloudRepoSourceContextOut": "_clouddebugger_37_CloudRepoSourceContextOut",
+        "RepoIdIn": "_clouddebugger_38_RepoIdIn",
+        "RepoIdOut": "_clouddebugger_39_RepoIdOut",
+        "StatusMessageIn": "_clouddebugger_40_StatusMessageIn",
+        "StatusMessageOut": "_clouddebugger_41_StatusMessageOut",
+        "GitSourceContextIn": "_clouddebugger_42_GitSourceContextIn",
+        "GitSourceContextOut": "_clouddebugger_43_GitSourceContextOut",
+        "EmptyIn": "_clouddebugger_44_EmptyIn",
+        "EmptyOut": "_clouddebugger_45_EmptyOut",
         "ExtendedSourceContextIn": "_clouddebugger_46_ExtendedSourceContextIn",
         "ExtendedSourceContextOut": "_clouddebugger_47_ExtendedSourceContextOut",
-        "CloudRepoSourceContextIn": "_clouddebugger_48_CloudRepoSourceContextIn",
-        "CloudRepoSourceContextOut": "_clouddebugger_49_CloudRepoSourceContextOut",
-        "SourceLocationIn": "_clouddebugger_50_SourceLocationIn",
-        "SourceLocationOut": "_clouddebugger_51_SourceLocationOut",
-        "StackFrameIn": "_clouddebugger_52_StackFrameIn",
-        "StackFrameOut": "_clouddebugger_53_StackFrameOut",
-        "UpdateActiveBreakpointResponseIn": "_clouddebugger_54_UpdateActiveBreakpointResponseIn",
-        "UpdateActiveBreakpointResponseOut": "_clouddebugger_55_UpdateActiveBreakpointResponseOut",
+        "AliasContextIn": "_clouddebugger_48_AliasContextIn",
+        "AliasContextOut": "_clouddebugger_49_AliasContextOut",
+        "GetBreakpointResponseIn": "_clouddebugger_50_GetBreakpointResponseIn",
+        "GetBreakpointResponseOut": "_clouddebugger_51_GetBreakpointResponseOut",
+        "FormatMessageIn": "_clouddebugger_52_FormatMessageIn",
+        "FormatMessageOut": "_clouddebugger_53_FormatMessageOut",
+        "GerritSourceContextIn": "_clouddebugger_54_GerritSourceContextIn",
+        "GerritSourceContextOut": "_clouddebugger_55_GerritSourceContextOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["UpdateActiveBreakpointRequestIn"] = t.struct(
-        {"breakpoint": t.proxy(renames["BreakpointIn"])}
-    ).named(renames["UpdateActiveBreakpointRequestIn"])
-    types["UpdateActiveBreakpointRequestOut"] = t.struct(
-        {
-            "breakpoint": t.proxy(renames["BreakpointOut"]),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UpdateActiveBreakpointRequestOut"])
-    types["GerritSourceContextIn"] = t.struct(
-        {
-            "gerritProject": t.string().optional(),
-            "aliasName": t.string().optional(),
-            "revisionId": t.string().optional(),
-            "hostUri": t.string().optional(),
-            "aliasContext": t.proxy(renames["AliasContextIn"]).optional(),
-        }
-    ).named(renames["GerritSourceContextIn"])
-    types["GerritSourceContextOut"] = t.struct(
-        {
-            "gerritProject": t.string().optional(),
-            "aliasName": t.string().optional(),
-            "revisionId": t.string().optional(),
-            "hostUri": t.string().optional(),
-            "aliasContext": t.proxy(renames["AliasContextOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GerritSourceContextOut"])
-    types["CloudWorkspaceSourceContextIn"] = t.struct(
-        {
-            "workspaceId": t.proxy(renames["CloudWorkspaceIdIn"]).optional(),
-            "snapshotId": t.string().optional(),
-        }
-    ).named(renames["CloudWorkspaceSourceContextIn"])
-    types["CloudWorkspaceSourceContextOut"] = t.struct(
-        {
-            "workspaceId": t.proxy(renames["CloudWorkspaceIdOut"]).optional(),
-            "snapshotId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CloudWorkspaceSourceContextOut"])
-    types["ProjectRepoIdIn"] = t.struct(
-        {"projectId": t.string().optional(), "repoName": t.string().optional()}
-    ).named(renames["ProjectRepoIdIn"])
-    types["ProjectRepoIdOut"] = t.struct(
-        {
-            "projectId": t.string().optional(),
-            "repoName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ProjectRepoIdOut"])
-    types["FormatMessageIn"] = t.struct(
-        {"parameters": t.array(t.string()).optional(), "format": t.string().optional()}
-    ).named(renames["FormatMessageIn"])
-    types["FormatMessageOut"] = t.struct(
-        {
-            "parameters": t.array(t.string()).optional(),
-            "format": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FormatMessageOut"])
-    types["BreakpointIn"] = t.struct(
-        {
-            "userEmail": t.string().optional(),
-            "finalTime": t.string().optional(),
-            "logMessageFormat": t.string().optional(),
-            "status": t.proxy(renames["StatusMessageIn"]).optional(),
-            "isFinalState": t.boolean().optional(),
-            "createTime": t.string().optional(),
-            "canaryExpireTime": t.string().optional(),
-            "expressions": t.array(t.string()).optional(),
-            "stackFrames": t.array(t.proxy(renames["StackFrameIn"])).optional(),
-            "action": t.string().optional(),
-            "location": t.proxy(renames["SourceLocationIn"]).optional(),
-            "id": t.string().optional(),
-            "state": t.string().optional(),
-            "condition": t.string().optional(),
-            "variableTable": t.array(t.proxy(renames["VariableIn"])).optional(),
-            "logLevel": t.string().optional(),
-            "evaluatedExpressions": t.array(t.proxy(renames["VariableIn"])).optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["BreakpointIn"])
-    types["BreakpointOut"] = t.struct(
-        {
-            "userEmail": t.string().optional(),
-            "finalTime": t.string().optional(),
-            "logMessageFormat": t.string().optional(),
-            "status": t.proxy(renames["StatusMessageOut"]).optional(),
-            "isFinalState": t.boolean().optional(),
-            "createTime": t.string().optional(),
-            "canaryExpireTime": t.string().optional(),
-            "expressions": t.array(t.string()).optional(),
-            "stackFrames": t.array(t.proxy(renames["StackFrameOut"])).optional(),
-            "action": t.string().optional(),
-            "location": t.proxy(renames["SourceLocationOut"]).optional(),
-            "id": t.string().optional(),
-            "state": t.string().optional(),
-            "condition": t.string().optional(),
-            "variableTable": t.array(t.proxy(renames["VariableOut"])).optional(),
-            "logLevel": t.string().optional(),
-            "evaluatedExpressions": t.array(t.proxy(renames["VariableOut"])).optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BreakpointOut"])
-    types["RepoIdIn"] = t.struct(
-        {
-            "projectRepoId": t.proxy(renames["ProjectRepoIdIn"]).optional(),
-            "uid": t.string().optional(),
-        }
-    ).named(renames["RepoIdIn"])
-    types["RepoIdOut"] = t.struct(
-        {
-            "projectRepoId": t.proxy(renames["ProjectRepoIdOut"]).optional(),
-            "uid": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RepoIdOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["RegisterDebuggeeRequestIn"] = t.struct(
-        {"debuggee": t.proxy(renames["DebuggeeIn"])}
-    ).named(renames["RegisterDebuggeeRequestIn"])
-    types["RegisterDebuggeeRequestOut"] = t.struct(
-        {
-            "debuggee": t.proxy(renames["DebuggeeOut"]),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RegisterDebuggeeRequestOut"])
-    types["SetBreakpointResponseIn"] = t.struct(
-        {"breakpoint": t.proxy(renames["BreakpointIn"]).optional()}
-    ).named(renames["SetBreakpointResponseIn"])
-    types["SetBreakpointResponseOut"] = t.struct(
-        {
-            "breakpoint": t.proxy(renames["BreakpointOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SetBreakpointResponseOut"])
     types["DebuggeeIn"] = t.struct(
         {
-            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "isDisabled": t.boolean().optional(),
             "sourceContexts": t.array(t.proxy(renames["SourceContextIn"])).optional(),
             "uniquifier": t.string().optional(),
-            "project": t.string().optional(),
+            "agentVersion": t.string().optional(),
             "status": t.proxy(renames["StatusMessageIn"]).optional(),
+            "description": t.string().optional(),
+            "isInactive": t.boolean().optional(),
+            "project": t.string().optional(),
+            "canaryMode": t.string().optional(),
             "id": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
             "extSourceContexts": t.array(
                 t.proxy(renames["ExtendedSourceContextIn"])
             ).optional(),
-            "isDisabled": t.boolean().optional(),
-            "agentVersion": t.string().optional(),
-            "isInactive": t.boolean().optional(),
-            "description": t.string().optional(),
-            "canaryMode": t.string().optional(),
         }
     ).named(renames["DebuggeeIn"])
     types["DebuggeeOut"] = t.struct(
         {
-            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "isDisabled": t.boolean().optional(),
             "sourceContexts": t.array(t.proxy(renames["SourceContextOut"])).optional(),
             "uniquifier": t.string().optional(),
-            "project": t.string().optional(),
+            "agentVersion": t.string().optional(),
             "status": t.proxy(renames["StatusMessageOut"]).optional(),
+            "description": t.string().optional(),
+            "isInactive": t.boolean().optional(),
+            "project": t.string().optional(),
+            "canaryMode": t.string().optional(),
             "id": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
             "extSourceContexts": t.array(
                 t.proxy(renames["ExtendedSourceContextOut"])
             ).optional(),
-            "isDisabled": t.boolean().optional(),
-            "agentVersion": t.string().optional(),
-            "isInactive": t.boolean().optional(),
-            "description": t.string().optional(),
-            "canaryMode": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DebuggeeOut"])
-    types["GitSourceContextIn"] = t.struct(
-        {"revisionId": t.string().optional(), "url": t.string().optional()}
-    ).named(renames["GitSourceContextIn"])
-    types["GitSourceContextOut"] = t.struct(
+    types["BreakpointIn"] = t.struct(
         {
-            "revisionId": t.string().optional(),
-            "url": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GitSourceContextOut"])
-    types["AliasContextIn"] = t.struct(
-        {"name": t.string().optional(), "kind": t.string().optional()}
-    ).named(renames["AliasContextIn"])
-    types["AliasContextOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AliasContextOut"])
-    types["ListActiveBreakpointsResponseIn"] = t.struct(
-        {
-            "nextWaitToken": t.string().optional(),
-            "waitExpired": t.boolean().optional(),
-            "breakpoints": t.array(t.proxy(renames["BreakpointIn"])).optional(),
-        }
-    ).named(renames["ListActiveBreakpointsResponseIn"])
-    types["ListActiveBreakpointsResponseOut"] = t.struct(
-        {
-            "nextWaitToken": t.string().optional(),
-            "waitExpired": t.boolean().optional(),
-            "breakpoints": t.array(t.proxy(renames["BreakpointOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListActiveBreakpointsResponseOut"])
-    types["SourceContextIn"] = t.struct(
-        {
-            "cloudRepo": t.proxy(renames["CloudRepoSourceContextIn"]).optional(),
-            "git": t.proxy(renames["GitSourceContextIn"]).optional(),
-            "cloudWorkspace": t.proxy(
-                renames["CloudWorkspaceSourceContextIn"]
-            ).optional(),
-            "gerrit": t.proxy(renames["GerritSourceContextIn"]).optional(),
-        }
-    ).named(renames["SourceContextIn"])
-    types["SourceContextOut"] = t.struct(
-        {
-            "cloudRepo": t.proxy(renames["CloudRepoSourceContextOut"]).optional(),
-            "git": t.proxy(renames["GitSourceContextOut"]).optional(),
-            "cloudWorkspace": t.proxy(
-                renames["CloudWorkspaceSourceContextOut"]
-            ).optional(),
-            "gerrit": t.proxy(renames["GerritSourceContextOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SourceContextOut"])
-    types["ListBreakpointsResponseIn"] = t.struct(
-        {
-            "nextWaitToken": t.string().optional(),
-            "breakpoints": t.array(t.proxy(renames["BreakpointIn"])).optional(),
-        }
-    ).named(renames["ListBreakpointsResponseIn"])
-    types["ListBreakpointsResponseOut"] = t.struct(
-        {
-            "nextWaitToken": t.string().optional(),
-            "breakpoints": t.array(t.proxy(renames["BreakpointOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListBreakpointsResponseOut"])
-    types["VariableIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "varTableIndex": t.integer().optional(),
-            "type": t.string().optional(),
+            "stackFrames": t.array(t.proxy(renames["StackFrameIn"])).optional(),
+            "variableTable": t.array(t.proxy(renames["VariableIn"])).optional(),
+            "state": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "evaluatedExpressions": t.array(t.proxy(renames["VariableIn"])).optional(),
+            "logMessageFormat": t.string().optional(),
+            "condition": t.string().optional(),
+            "logLevel": t.string().optional(),
+            "expressions": t.array(t.string()).optional(),
+            "canaryExpireTime": t.string().optional(),
+            "isFinalState": t.boolean().optional(),
+            "id": t.string().optional(),
             "status": t.proxy(renames["StatusMessageIn"]).optional(),
-            "value": t.string().optional(),
-            "members": t.array(t.proxy(renames["VariableIn"])).optional(),
+            "action": t.string().optional(),
+            "createTime": t.string().optional(),
+            "location": t.proxy(renames["SourceLocationIn"]).optional(),
+            "userEmail": t.string().optional(),
+            "finalTime": t.string().optional(),
         }
-    ).named(renames["VariableIn"])
-    types["VariableOut"] = t.struct(
+    ).named(renames["BreakpointIn"])
+    types["BreakpointOut"] = t.struct(
         {
-            "name": t.string().optional(),
-            "varTableIndex": t.integer().optional(),
-            "type": t.string().optional(),
+            "stackFrames": t.array(t.proxy(renames["StackFrameOut"])).optional(),
+            "variableTable": t.array(t.proxy(renames["VariableOut"])).optional(),
+            "state": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "evaluatedExpressions": t.array(t.proxy(renames["VariableOut"])).optional(),
+            "logMessageFormat": t.string().optional(),
+            "condition": t.string().optional(),
+            "logLevel": t.string().optional(),
+            "expressions": t.array(t.string()).optional(),
+            "canaryExpireTime": t.string().optional(),
+            "isFinalState": t.boolean().optional(),
+            "id": t.string().optional(),
             "status": t.proxy(renames["StatusMessageOut"]).optional(),
-            "value": t.string().optional(),
-            "members": t.array(t.proxy(renames["VariableOut"])).optional(),
+            "action": t.string().optional(),
+            "createTime": t.string().optional(),
+            "location": t.proxy(renames["SourceLocationOut"]).optional(),
+            "userEmail": t.string().optional(),
+            "finalTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["VariableOut"])
+    ).named(renames["BreakpointOut"])
     types["CloudWorkspaceIdIn"] = t.struct(
         {
             "name": t.string().optional(),
@@ -351,15 +164,39 @@ def import_clouddebugger() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CloudWorkspaceIdOut"])
-    types["GetBreakpointResponseIn"] = t.struct(
+    types["UpdateActiveBreakpointRequestIn"] = t.struct(
+        {"breakpoint": t.proxy(renames["BreakpointIn"])}
+    ).named(renames["UpdateActiveBreakpointRequestIn"])
+    types["UpdateActiveBreakpointRequestOut"] = t.struct(
+        {
+            "breakpoint": t.proxy(renames["BreakpointOut"]),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UpdateActiveBreakpointRequestOut"])
+    types["SourceLocationIn"] = t.struct(
+        {
+            "line": t.integer().optional(),
+            "column": t.integer().optional(),
+            "path": t.string().optional(),
+        }
+    ).named(renames["SourceLocationIn"])
+    types["SourceLocationOut"] = t.struct(
+        {
+            "line": t.integer().optional(),
+            "column": t.integer().optional(),
+            "path": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SourceLocationOut"])
+    types["SetBreakpointResponseIn"] = t.struct(
         {"breakpoint": t.proxy(renames["BreakpointIn"]).optional()}
-    ).named(renames["GetBreakpointResponseIn"])
-    types["GetBreakpointResponseOut"] = t.struct(
+    ).named(renames["SetBreakpointResponseIn"])
+    types["SetBreakpointResponseOut"] = t.struct(
         {
             "breakpoint": t.proxy(renames["BreakpointOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GetBreakpointResponseOut"])
+    ).named(renames["SetBreakpointResponseOut"])
     types["RegisterDebuggeeResponseIn"] = t.struct(
         {
             "agentId": t.string().optional(),
@@ -373,21 +210,43 @@ def import_clouddebugger() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["RegisterDebuggeeResponseOut"])
-    types["StatusMessageIn"] = t.struct(
+    types["ListActiveBreakpointsResponseIn"] = t.struct(
         {
-            "isError": t.boolean().optional(),
-            "description": t.proxy(renames["FormatMessageIn"]).optional(),
-            "refersTo": t.string().optional(),
+            "waitExpired": t.boolean().optional(),
+            "breakpoints": t.array(t.proxy(renames["BreakpointIn"])).optional(),
+            "nextWaitToken": t.string().optional(),
         }
-    ).named(renames["StatusMessageIn"])
-    types["StatusMessageOut"] = t.struct(
+    ).named(renames["ListActiveBreakpointsResponseIn"])
+    types["ListActiveBreakpointsResponseOut"] = t.struct(
         {
-            "isError": t.boolean().optional(),
-            "description": t.proxy(renames["FormatMessageOut"]).optional(),
-            "refersTo": t.string().optional(),
+            "waitExpired": t.boolean().optional(),
+            "breakpoints": t.array(t.proxy(renames["BreakpointOut"])).optional(),
+            "nextWaitToken": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["StatusMessageOut"])
+    ).named(renames["ListActiveBreakpointsResponseOut"])
+    types["CloudWorkspaceSourceContextIn"] = t.struct(
+        {
+            "snapshotId": t.string().optional(),
+            "workspaceId": t.proxy(renames["CloudWorkspaceIdIn"]).optional(),
+        }
+    ).named(renames["CloudWorkspaceSourceContextIn"])
+    types["CloudWorkspaceSourceContextOut"] = t.struct(
+        {
+            "snapshotId": t.string().optional(),
+            "workspaceId": t.proxy(renames["CloudWorkspaceIdOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CloudWorkspaceSourceContextOut"])
+    types["RegisterDebuggeeRequestIn"] = t.struct(
+        {"debuggee": t.proxy(renames["DebuggeeIn"])}
+    ).named(renames["RegisterDebuggeeRequestIn"])
+    types["RegisterDebuggeeRequestOut"] = t.struct(
+        {
+            "debuggee": t.proxy(renames["DebuggeeOut"]),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RegisterDebuggeeRequestOut"])
     types["ListDebuggeesResponseIn"] = t.struct(
         {"debuggees": t.array(t.proxy(renames["DebuggeeIn"])).optional()}
     ).named(renames["ListDebuggeesResponseIn"])
@@ -397,6 +256,153 @@ def import_clouddebugger() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListDebuggeesResponseOut"])
+    types["SourceContextIn"] = t.struct(
+        {
+            "gerrit": t.proxy(renames["GerritSourceContextIn"]).optional(),
+            "cloudWorkspace": t.proxy(
+                renames["CloudWorkspaceSourceContextIn"]
+            ).optional(),
+            "git": t.proxy(renames["GitSourceContextIn"]).optional(),
+            "cloudRepo": t.proxy(renames["CloudRepoSourceContextIn"]).optional(),
+        }
+    ).named(renames["SourceContextIn"])
+    types["SourceContextOut"] = t.struct(
+        {
+            "gerrit": t.proxy(renames["GerritSourceContextOut"]).optional(),
+            "cloudWorkspace": t.proxy(
+                renames["CloudWorkspaceSourceContextOut"]
+            ).optional(),
+            "git": t.proxy(renames["GitSourceContextOut"]).optional(),
+            "cloudRepo": t.proxy(renames["CloudRepoSourceContextOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SourceContextOut"])
+    types["UpdateActiveBreakpointResponseIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["UpdateActiveBreakpointResponseIn"])
+    types["UpdateActiveBreakpointResponseOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["UpdateActiveBreakpointResponseOut"])
+    types["ProjectRepoIdIn"] = t.struct(
+        {"repoName": t.string().optional(), "projectId": t.string().optional()}
+    ).named(renames["ProjectRepoIdIn"])
+    types["ProjectRepoIdOut"] = t.struct(
+        {
+            "repoName": t.string().optional(),
+            "projectId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ProjectRepoIdOut"])
+    types["StackFrameIn"] = t.struct(
+        {
+            "locals": t.array(t.proxy(renames["VariableIn"])).optional(),
+            "arguments": t.array(t.proxy(renames["VariableIn"])).optional(),
+            "function": t.string().optional(),
+            "location": t.proxy(renames["SourceLocationIn"]).optional(),
+        }
+    ).named(renames["StackFrameIn"])
+    types["StackFrameOut"] = t.struct(
+        {
+            "locals": t.array(t.proxy(renames["VariableOut"])).optional(),
+            "arguments": t.array(t.proxy(renames["VariableOut"])).optional(),
+            "function": t.string().optional(),
+            "location": t.proxy(renames["SourceLocationOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StackFrameOut"])
+    types["ListBreakpointsResponseIn"] = t.struct(
+        {
+            "breakpoints": t.array(t.proxy(renames["BreakpointIn"])).optional(),
+            "nextWaitToken": t.string().optional(),
+        }
+    ).named(renames["ListBreakpointsResponseIn"])
+    types["ListBreakpointsResponseOut"] = t.struct(
+        {
+            "breakpoints": t.array(t.proxy(renames["BreakpointOut"])).optional(),
+            "nextWaitToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListBreakpointsResponseOut"])
+    types["VariableIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "members": t.array(t.proxy(renames["VariableIn"])).optional(),
+            "value": t.string().optional(),
+            "type": t.string().optional(),
+            "varTableIndex": t.integer().optional(),
+            "status": t.proxy(renames["StatusMessageIn"]).optional(),
+        }
+    ).named(renames["VariableIn"])
+    types["VariableOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "members": t.array(t.proxy(renames["VariableOut"])).optional(),
+            "value": t.string().optional(),
+            "type": t.string().optional(),
+            "varTableIndex": t.integer().optional(),
+            "status": t.proxy(renames["StatusMessageOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["VariableOut"])
+    types["CloudRepoSourceContextIn"] = t.struct(
+        {
+            "repoId": t.proxy(renames["RepoIdIn"]).optional(),
+            "aliasContext": t.proxy(renames["AliasContextIn"]).optional(),
+            "aliasName": t.string().optional(),
+            "revisionId": t.string().optional(),
+        }
+    ).named(renames["CloudRepoSourceContextIn"])
+    types["CloudRepoSourceContextOut"] = t.struct(
+        {
+            "repoId": t.proxy(renames["RepoIdOut"]).optional(),
+            "aliasContext": t.proxy(renames["AliasContextOut"]).optional(),
+            "aliasName": t.string().optional(),
+            "revisionId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CloudRepoSourceContextOut"])
+    types["RepoIdIn"] = t.struct(
+        {
+            "projectRepoId": t.proxy(renames["ProjectRepoIdIn"]).optional(),
+            "uid": t.string().optional(),
+        }
+    ).named(renames["RepoIdIn"])
+    types["RepoIdOut"] = t.struct(
+        {
+            "projectRepoId": t.proxy(renames["ProjectRepoIdOut"]).optional(),
+            "uid": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RepoIdOut"])
+    types["StatusMessageIn"] = t.struct(
+        {
+            "description": t.proxy(renames["FormatMessageIn"]).optional(),
+            "isError": t.boolean().optional(),
+            "refersTo": t.string().optional(),
+        }
+    ).named(renames["StatusMessageIn"])
+    types["StatusMessageOut"] = t.struct(
+        {
+            "description": t.proxy(renames["FormatMessageOut"]).optional(),
+            "isError": t.boolean().optional(),
+            "refersTo": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StatusMessageOut"])
+    types["GitSourceContextIn"] = t.struct(
+        {"revisionId": t.string().optional(), "url": t.string().optional()}
+    ).named(renames["GitSourceContextIn"])
+    types["GitSourceContextOut"] = t.struct(
+        {
+            "revisionId": t.string().optional(),
+            "url": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GitSourceContextOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
     types["ExtendedSourceContextIn"] = t.struct(
         {
             "labels": t.struct({"_": t.string().optional()}).optional(),
@@ -410,61 +416,54 @@ def import_clouddebugger() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ExtendedSourceContextOut"])
-    types["CloudRepoSourceContextIn"] = t.struct(
+    types["AliasContextIn"] = t.struct(
+        {"kind": t.string().optional(), "name": t.string().optional()}
+    ).named(renames["AliasContextIn"])
+    types["AliasContextOut"] = t.struct(
         {
-            "aliasName": t.string().optional(),
+            "kind": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AliasContextOut"])
+    types["GetBreakpointResponseIn"] = t.struct(
+        {"breakpoint": t.proxy(renames["BreakpointIn"]).optional()}
+    ).named(renames["GetBreakpointResponseIn"])
+    types["GetBreakpointResponseOut"] = t.struct(
+        {
+            "breakpoint": t.proxy(renames["BreakpointOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetBreakpointResponseOut"])
+    types["FormatMessageIn"] = t.struct(
+        {"format": t.string().optional(), "parameters": t.array(t.string()).optional()}
+    ).named(renames["FormatMessageIn"])
+    types["FormatMessageOut"] = t.struct(
+        {
+            "format": t.string().optional(),
+            "parameters": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FormatMessageOut"])
+    types["GerritSourceContextIn"] = t.struct(
+        {
             "revisionId": t.string().optional(),
+            "aliasName": t.string().optional(),
+            "gerritProject": t.string().optional(),
             "aliasContext": t.proxy(renames["AliasContextIn"]).optional(),
-            "repoId": t.proxy(renames["RepoIdIn"]).optional(),
+            "hostUri": t.string().optional(),
         }
-    ).named(renames["CloudRepoSourceContextIn"])
-    types["CloudRepoSourceContextOut"] = t.struct(
+    ).named(renames["GerritSourceContextIn"])
+    types["GerritSourceContextOut"] = t.struct(
         {
-            "aliasName": t.string().optional(),
             "revisionId": t.string().optional(),
+            "aliasName": t.string().optional(),
+            "gerritProject": t.string().optional(),
             "aliasContext": t.proxy(renames["AliasContextOut"]).optional(),
-            "repoId": t.proxy(renames["RepoIdOut"]).optional(),
+            "hostUri": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["CloudRepoSourceContextOut"])
-    types["SourceLocationIn"] = t.struct(
-        {
-            "column": t.integer().optional(),
-            "line": t.integer().optional(),
-            "path": t.string().optional(),
-        }
-    ).named(renames["SourceLocationIn"])
-    types["SourceLocationOut"] = t.struct(
-        {
-            "column": t.integer().optional(),
-            "line": t.integer().optional(),
-            "path": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SourceLocationOut"])
-    types["StackFrameIn"] = t.struct(
-        {
-            "arguments": t.array(t.proxy(renames["VariableIn"])).optional(),
-            "function": t.string().optional(),
-            "location": t.proxy(renames["SourceLocationIn"]).optional(),
-            "locals": t.array(t.proxy(renames["VariableIn"])).optional(),
-        }
-    ).named(renames["StackFrameIn"])
-    types["StackFrameOut"] = t.struct(
-        {
-            "arguments": t.array(t.proxy(renames["VariableOut"])).optional(),
-            "function": t.string().optional(),
-            "location": t.proxy(renames["SourceLocationOut"]).optional(),
-            "locals": t.array(t.proxy(renames["VariableOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StackFrameOut"])
-    types["UpdateActiveBreakpointResponseIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["UpdateActiveBreakpointResponseIn"])
-    types["UpdateActiveBreakpointResponseOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["UpdateActiveBreakpointResponseOut"])
+    ).named(renames["GerritSourceContextOut"])
 
     functions = {}
     functions["debuggerDebuggeesList"] = clouddebugger.get(
@@ -481,7 +480,7 @@ def import_clouddebugger() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["debuggerDebuggeesBreakpointsSet"] = clouddebugger.get(
+    functions["debuggerDebuggeesBreakpointsGet"] = clouddebugger.delete(
         "v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}",
         t.struct(
             {
@@ -491,11 +490,11 @@ def import_clouddebugger() -> Import:
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GetBreakpointResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["debuggerDebuggeesBreakpointsDelete"] = clouddebugger.get(
+    functions["debuggerDebuggeesBreakpointsList"] = clouddebugger.delete(
         "v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}",
         t.struct(
             {
@@ -505,11 +504,11 @@ def import_clouddebugger() -> Import:
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GetBreakpointResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["debuggerDebuggeesBreakpointsList"] = clouddebugger.get(
+    functions["debuggerDebuggeesBreakpointsSet"] = clouddebugger.delete(
         "v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}",
         t.struct(
             {
@@ -519,11 +518,11 @@ def import_clouddebugger() -> Import:
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GetBreakpointResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["debuggerDebuggeesBreakpointsGet"] = clouddebugger.get(
+    functions["debuggerDebuggeesBreakpointsDelete"] = clouddebugger.delete(
         "v2/debugger/debuggees/{debuggeeId}/breakpoints/{breakpointId}",
         t.struct(
             {
@@ -533,7 +532,7 @@ def import_clouddebugger() -> Import:
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GetBreakpointResponseOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -576,5 +575,8 @@ def import_clouddebugger() -> Import:
     )
 
     return Import(
-        importer="clouddebugger", renames=renames, types=types, functions=functions
+        importer="clouddebugger",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

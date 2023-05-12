@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_mybusinessbusinesscalls() -> Import:
@@ -12,58 +11,104 @@ def import_mybusinessbusinesscalls() -> Import:
 
     renames = {
         "ErrorResponse": "_mybusinessbusinesscalls_1_ErrorResponse",
-        "BusinessCallsInsightsIn": "_mybusinessbusinesscalls_2_BusinessCallsInsightsIn",
-        "BusinessCallsInsightsOut": "_mybusinessbusinesscalls_3_BusinessCallsInsightsOut",
+        "AggregateMetricsIn": "_mybusinessbusinesscalls_2_AggregateMetricsIn",
+        "AggregateMetricsOut": "_mybusinessbusinesscalls_3_AggregateMetricsOut",
         "ListBusinessCallsInsightsResponseIn": "_mybusinessbusinesscalls_4_ListBusinessCallsInsightsResponseIn",
         "ListBusinessCallsInsightsResponseOut": "_mybusinessbusinesscalls_5_ListBusinessCallsInsightsResponseOut",
-        "HourlyMetricsIn": "_mybusinessbusinesscalls_6_HourlyMetricsIn",
-        "HourlyMetricsOut": "_mybusinessbusinesscalls_7_HourlyMetricsOut",
-        "DateIn": "_mybusinessbusinesscalls_8_DateIn",
-        "DateOut": "_mybusinessbusinesscalls_9_DateOut",
+        "BusinessCallsSettingsIn": "_mybusinessbusinesscalls_6_BusinessCallsSettingsIn",
+        "BusinessCallsSettingsOut": "_mybusinessbusinesscalls_7_BusinessCallsSettingsOut",
+        "BusinessCallsInsightsIn": "_mybusinessbusinesscalls_8_BusinessCallsInsightsIn",
+        "BusinessCallsInsightsOut": "_mybusinessbusinesscalls_9_BusinessCallsInsightsOut",
         "WeekDayMetricsIn": "_mybusinessbusinesscalls_10_WeekDayMetricsIn",
         "WeekDayMetricsOut": "_mybusinessbusinesscalls_11_WeekDayMetricsOut",
-        "AggregateMetricsIn": "_mybusinessbusinesscalls_12_AggregateMetricsIn",
-        "AggregateMetricsOut": "_mybusinessbusinesscalls_13_AggregateMetricsOut",
-        "BusinessCallsSettingsIn": "_mybusinessbusinesscalls_14_BusinessCallsSettingsIn",
-        "BusinessCallsSettingsOut": "_mybusinessbusinesscalls_15_BusinessCallsSettingsOut",
+        "HourlyMetricsIn": "_mybusinessbusinesscalls_12_HourlyMetricsIn",
+        "HourlyMetricsOut": "_mybusinessbusinesscalls_13_HourlyMetricsOut",
+        "DateIn": "_mybusinessbusinesscalls_14_DateIn",
+        "DateOut": "_mybusinessbusinesscalls_15_DateOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
+    types["AggregateMetricsIn"] = t.struct(
+        {
+            "missedCallsCount": t.integer().optional(),
+            "endDate": t.proxy(renames["DateIn"]).optional(),
+            "answeredCallsCount": t.integer().optional(),
+            "weekdayMetrics": t.array(t.proxy(renames["WeekDayMetricsIn"])).optional(),
+            "hourlyMetrics": t.array(t.proxy(renames["HourlyMetricsIn"])).optional(),
+            "startDate": t.proxy(renames["DateIn"]).optional(),
+        }
+    ).named(renames["AggregateMetricsIn"])
+    types["AggregateMetricsOut"] = t.struct(
+        {
+            "missedCallsCount": t.integer().optional(),
+            "endDate": t.proxy(renames["DateOut"]).optional(),
+            "answeredCallsCount": t.integer().optional(),
+            "weekdayMetrics": t.array(t.proxy(renames["WeekDayMetricsOut"])).optional(),
+            "hourlyMetrics": t.array(t.proxy(renames["HourlyMetricsOut"])).optional(),
+            "startDate": t.proxy(renames["DateOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AggregateMetricsOut"])
+    types["ListBusinessCallsInsightsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "businessCallsInsights": t.array(
+                t.proxy(renames["BusinessCallsInsightsIn"])
+            ).optional(),
+        }
+    ).named(renames["ListBusinessCallsInsightsResponseIn"])
+    types["ListBusinessCallsInsightsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "businessCallsInsights": t.array(
+                t.proxy(renames["BusinessCallsInsightsOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListBusinessCallsInsightsResponseOut"])
+    types["BusinessCallsSettingsIn"] = t.struct(
+        {
+            "consentTime": t.string().optional(),
+            "callsState": t.string(),
+            "name": t.string(),
+        }
+    ).named(renames["BusinessCallsSettingsIn"])
+    types["BusinessCallsSettingsOut"] = t.struct(
+        {
+            "consentTime": t.string().optional(),
+            "callsState": t.string(),
+            "name": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BusinessCallsSettingsOut"])
     types["BusinessCallsInsightsIn"] = t.struct(
         {
             "metricType": t.string().optional(),
-            "name": t.string(),
             "aggregateMetrics": t.proxy(renames["AggregateMetricsIn"]).optional(),
+            "name": t.string(),
         }
     ).named(renames["BusinessCallsInsightsIn"])
     types["BusinessCallsInsightsOut"] = t.struct(
         {
             "metricType": t.string().optional(),
-            "name": t.string(),
             "aggregateMetrics": t.proxy(renames["AggregateMetricsOut"]).optional(),
+            "name": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["BusinessCallsInsightsOut"])
-    types["ListBusinessCallsInsightsResponseIn"] = t.struct(
+    types["WeekDayMetricsIn"] = t.struct(
+        {"day": t.string().optional(), "missedCallsCount": t.integer().optional()}
+    ).named(renames["WeekDayMetricsIn"])
+    types["WeekDayMetricsOut"] = t.struct(
         {
-            "businessCallsInsights": t.array(
-                t.proxy(renames["BusinessCallsInsightsIn"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListBusinessCallsInsightsResponseIn"])
-    types["ListBusinessCallsInsightsResponseOut"] = t.struct(
-        {
-            "businessCallsInsights": t.array(
-                t.proxy(renames["BusinessCallsInsightsOut"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
+            "day": t.string().optional(),
+            "missedCallsCount": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListBusinessCallsInsightsResponseOut"])
+    ).named(renames["WeekDayMetricsOut"])
     types["HourlyMetricsIn"] = t.struct(
         {"hour": t.integer().optional(), "missedCallsCount": t.integer().optional()}
     ).named(renames["HourlyMetricsIn"])
@@ -76,93 +121,31 @@ def import_mybusinessbusinesscalls() -> Import:
     ).named(renames["HourlyMetricsOut"])
     types["DateIn"] = t.struct(
         {
-            "day": t.integer().optional(),
             "month": t.integer().optional(),
+            "day": t.integer().optional(),
             "year": t.integer().optional(),
         }
     ).named(renames["DateIn"])
     types["DateOut"] = t.struct(
         {
-            "day": t.integer().optional(),
             "month": t.integer().optional(),
+            "day": t.integer().optional(),
             "year": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DateOut"])
-    types["WeekDayMetricsIn"] = t.struct(
-        {"missedCallsCount": t.integer().optional(), "day": t.string().optional()}
-    ).named(renames["WeekDayMetricsIn"])
-    types["WeekDayMetricsOut"] = t.struct(
-        {
-            "missedCallsCount": t.integer().optional(),
-            "day": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["WeekDayMetricsOut"])
-    types["AggregateMetricsIn"] = t.struct(
-        {
-            "hourlyMetrics": t.array(t.proxy(renames["HourlyMetricsIn"])).optional(),
-            "weekdayMetrics": t.array(t.proxy(renames["WeekDayMetricsIn"])).optional(),
-            "endDate": t.proxy(renames["DateIn"]).optional(),
-            "missedCallsCount": t.integer().optional(),
-            "answeredCallsCount": t.integer().optional(),
-            "startDate": t.proxy(renames["DateIn"]).optional(),
-        }
-    ).named(renames["AggregateMetricsIn"])
-    types["AggregateMetricsOut"] = t.struct(
-        {
-            "hourlyMetrics": t.array(t.proxy(renames["HourlyMetricsOut"])).optional(),
-            "weekdayMetrics": t.array(t.proxy(renames["WeekDayMetricsOut"])).optional(),
-            "endDate": t.proxy(renames["DateOut"]).optional(),
-            "missedCallsCount": t.integer().optional(),
-            "answeredCallsCount": t.integer().optional(),
-            "startDate": t.proxy(renames["DateOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AggregateMetricsOut"])
-    types["BusinessCallsSettingsIn"] = t.struct(
-        {
-            "name": t.string(),
-            "consentTime": t.string().optional(),
-            "callsState": t.string(),
-        }
-    ).named(renames["BusinessCallsSettingsIn"])
-    types["BusinessCallsSettingsOut"] = t.struct(
-        {
-            "name": t.string(),
-            "consentTime": t.string().optional(),
-            "callsState": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BusinessCallsSettingsOut"])
 
     functions = {}
-    functions["locationsGetBusinesscallssettings"] = mybusinessbusinesscalls.patch(
+    functions["locationsUpdateBusinesscallssettings"] = mybusinessbusinesscalls.get(
         "v1/{name}",
-        t.struct(
-            {
-                "name": t.string(),
-                "updateMask": t.string(),
-                "consentTime": t.string().optional(),
-                "callsState": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["BusinessCallsSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["locationsUpdateBusinesscallssettings"] = mybusinessbusinesscalls.patch(
+    functions["locationsGetBusinesscallssettings"] = mybusinessbusinesscalls.get(
         "v1/{name}",
-        t.struct(
-            {
-                "name": t.string(),
-                "updateMask": t.string(),
-                "consentTime": t.string().optional(),
-                "callsState": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["BusinessCallsSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
@@ -171,8 +154,8 @@ def import_mybusinessbusinesscalls() -> Import:
         "v1/{parent}/businesscallsinsights",
         t.struct(
             {
-                "filter": t.string().optional(),
                 "pageToken": t.string().optional(),
+                "filter": t.string().optional(),
                 "pageSize": t.integer().optional(),
                 "parent": t.string(),
                 "auth": t.string().optional(),
@@ -186,6 +169,6 @@ def import_mybusinessbusinesscalls() -> Import:
     return Import(
         importer="mybusinessbusinesscalls",
         renames=renames,
-        types=types,
-        functions=functions,
+        types=Box(types),
+        functions=Box(functions),
     )

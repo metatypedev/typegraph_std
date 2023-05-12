@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_cloudscheduler() -> Import:
@@ -10,168 +9,119 @@ def import_cloudscheduler() -> Import:
 
     renames = {
         "ErrorResponse": "_cloudscheduler_1_ErrorResponse",
-        "HttpTargetIn": "_cloudscheduler_2_HttpTargetIn",
-        "HttpTargetOut": "_cloudscheduler_3_HttpTargetOut",
-        "LocationIn": "_cloudscheduler_4_LocationIn",
-        "LocationOut": "_cloudscheduler_5_LocationOut",
-        "ListJobsResponseIn": "_cloudscheduler_6_ListJobsResponseIn",
-        "ListJobsResponseOut": "_cloudscheduler_7_ListJobsResponseOut",
-        "OAuthTokenIn": "_cloudscheduler_8_OAuthTokenIn",
-        "OAuthTokenOut": "_cloudscheduler_9_OAuthTokenOut",
-        "ResumeJobRequestIn": "_cloudscheduler_10_ResumeJobRequestIn",
-        "ResumeJobRequestOut": "_cloudscheduler_11_ResumeJobRequestOut",
-        "RunJobRequestIn": "_cloudscheduler_12_RunJobRequestIn",
-        "RunJobRequestOut": "_cloudscheduler_13_RunJobRequestOut",
-        "RetryConfigIn": "_cloudscheduler_14_RetryConfigIn",
-        "RetryConfigOut": "_cloudscheduler_15_RetryConfigOut",
-        "OidcTokenIn": "_cloudscheduler_16_OidcTokenIn",
-        "OidcTokenOut": "_cloudscheduler_17_OidcTokenOut",
-        "PubsubTargetIn": "_cloudscheduler_18_PubsubTargetIn",
-        "PubsubTargetOut": "_cloudscheduler_19_PubsubTargetOut",
-        "StatusIn": "_cloudscheduler_20_StatusIn",
-        "StatusOut": "_cloudscheduler_21_StatusOut",
-        "JobIn": "_cloudscheduler_22_JobIn",
-        "JobOut": "_cloudscheduler_23_JobOut",
-        "AppEngineHttpTargetIn": "_cloudscheduler_24_AppEngineHttpTargetIn",
-        "AppEngineHttpTargetOut": "_cloudscheduler_25_AppEngineHttpTargetOut",
-        "EmptyIn": "_cloudscheduler_26_EmptyIn",
-        "EmptyOut": "_cloudscheduler_27_EmptyOut",
-        "AppEngineRoutingIn": "_cloudscheduler_28_AppEngineRoutingIn",
-        "AppEngineRoutingOut": "_cloudscheduler_29_AppEngineRoutingOut",
-        "PauseJobRequestIn": "_cloudscheduler_30_PauseJobRequestIn",
-        "PauseJobRequestOut": "_cloudscheduler_31_PauseJobRequestOut",
-        "ListLocationsResponseIn": "_cloudscheduler_32_ListLocationsResponseIn",
-        "ListLocationsResponseOut": "_cloudscheduler_33_ListLocationsResponseOut",
-        "PubsubMessageIn": "_cloudscheduler_34_PubsubMessageIn",
-        "PubsubMessageOut": "_cloudscheduler_35_PubsubMessageOut",
+        "PubsubTargetIn": "_cloudscheduler_2_PubsubTargetIn",
+        "PubsubTargetOut": "_cloudscheduler_3_PubsubTargetOut",
+        "JobIn": "_cloudscheduler_4_JobIn",
+        "JobOut": "_cloudscheduler_5_JobOut",
+        "RunJobRequestIn": "_cloudscheduler_6_RunJobRequestIn",
+        "RunJobRequestOut": "_cloudscheduler_7_RunJobRequestOut",
+        "ListLocationsResponseIn": "_cloudscheduler_8_ListLocationsResponseIn",
+        "ListLocationsResponseOut": "_cloudscheduler_9_ListLocationsResponseOut",
+        "StatusIn": "_cloudscheduler_10_StatusIn",
+        "StatusOut": "_cloudscheduler_11_StatusOut",
+        "RetryConfigIn": "_cloudscheduler_12_RetryConfigIn",
+        "RetryConfigOut": "_cloudscheduler_13_RetryConfigOut",
+        "AppEngineRoutingIn": "_cloudscheduler_14_AppEngineRoutingIn",
+        "AppEngineRoutingOut": "_cloudscheduler_15_AppEngineRoutingOut",
+        "PauseJobRequestIn": "_cloudscheduler_16_PauseJobRequestIn",
+        "PauseJobRequestOut": "_cloudscheduler_17_PauseJobRequestOut",
+        "LocationIn": "_cloudscheduler_18_LocationIn",
+        "LocationOut": "_cloudscheduler_19_LocationOut",
+        "OAuthTokenIn": "_cloudscheduler_20_OAuthTokenIn",
+        "OAuthTokenOut": "_cloudscheduler_21_OAuthTokenOut",
+        "HttpTargetIn": "_cloudscheduler_22_HttpTargetIn",
+        "HttpTargetOut": "_cloudscheduler_23_HttpTargetOut",
+        "PubsubMessageIn": "_cloudscheduler_24_PubsubMessageIn",
+        "PubsubMessageOut": "_cloudscheduler_25_PubsubMessageOut",
+        "ListJobsResponseIn": "_cloudscheduler_26_ListJobsResponseIn",
+        "ListJobsResponseOut": "_cloudscheduler_27_ListJobsResponseOut",
+        "EmptyIn": "_cloudscheduler_28_EmptyIn",
+        "EmptyOut": "_cloudscheduler_29_EmptyOut",
+        "ResumeJobRequestIn": "_cloudscheduler_30_ResumeJobRequestIn",
+        "ResumeJobRequestOut": "_cloudscheduler_31_ResumeJobRequestOut",
+        "OidcTokenIn": "_cloudscheduler_32_OidcTokenIn",
+        "OidcTokenOut": "_cloudscheduler_33_OidcTokenOut",
+        "AppEngineHttpTargetIn": "_cloudscheduler_34_AppEngineHttpTargetIn",
+        "AppEngineHttpTargetOut": "_cloudscheduler_35_AppEngineHttpTargetOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["HttpTargetIn"] = t.struct(
+    types["PubsubTargetIn"] = t.struct(
         {
-            "uri": t.string(),
-            "oidcToken": t.proxy(renames["OidcTokenIn"]).optional(),
-            "body": t.string().optional(),
-            "headers": t.struct({"_": t.string().optional()}).optional(),
-            "httpMethod": t.string().optional(),
-            "oauthToken": t.proxy(renames["OAuthTokenIn"]).optional(),
+            "attributes": t.struct({"_": t.string().optional()}).optional(),
+            "data": t.string().optional(),
+            "topicName": t.string(),
         }
-    ).named(renames["HttpTargetIn"])
-    types["HttpTargetOut"] = t.struct(
+    ).named(renames["PubsubTargetIn"])
+    types["PubsubTargetOut"] = t.struct(
         {
-            "uri": t.string(),
-            "oidcToken": t.proxy(renames["OidcTokenOut"]).optional(),
-            "body": t.string().optional(),
-            "headers": t.struct({"_": t.string().optional()}).optional(),
-            "httpMethod": t.string().optional(),
-            "oauthToken": t.proxy(renames["OAuthTokenOut"]).optional(),
+            "attributes": t.struct({"_": t.string().optional()}).optional(),
+            "data": t.string().optional(),
+            "topicName": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HttpTargetOut"])
-    types["LocationIn"] = t.struct(
+    ).named(renames["PubsubTargetOut"])
+    types["JobIn"] = t.struct(
         {
+            "appEngineHttpTarget": t.proxy(renames["AppEngineHttpTargetIn"]).optional(),
+            "httpTarget": t.proxy(renames["HttpTargetIn"]).optional(),
+            "timeZone": t.string().optional(),
+            "userUpdateTime": t.string().optional(),
+            "status": t.proxy(renames["StatusIn"]).optional(),
+            "state": t.string().optional(),
+            "pubsubTarget": t.proxy(renames["PubsubTargetIn"]).optional(),
+            "scheduleTime": t.string().optional(),
+            "schedule": t.string(),
             "name": t.string().optional(),
-            "displayName": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "locationId": t.string().optional(),
+            "lastAttemptTime": t.string().optional(),
+            "attemptDeadline": t.string().optional(),
+            "description": t.string().optional(),
+            "retryConfig": t.proxy(renames["RetryConfigIn"]).optional(),
         }
-    ).named(renames["LocationIn"])
-    types["LocationOut"] = t.struct(
+    ).named(renames["JobIn"])
+    types["JobOut"] = t.struct(
         {
+            "appEngineHttpTarget": t.proxy(
+                renames["AppEngineHttpTargetOut"]
+            ).optional(),
+            "httpTarget": t.proxy(renames["HttpTargetOut"]).optional(),
+            "timeZone": t.string().optional(),
+            "userUpdateTime": t.string().optional(),
+            "status": t.proxy(renames["StatusOut"]).optional(),
+            "state": t.string().optional(),
+            "pubsubTarget": t.proxy(renames["PubsubTargetOut"]).optional(),
+            "scheduleTime": t.string().optional(),
+            "schedule": t.string(),
             "name": t.string().optional(),
-            "displayName": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "locationId": t.string().optional(),
+            "lastAttemptTime": t.string().optional(),
+            "attemptDeadline": t.string().optional(),
+            "description": t.string().optional(),
+            "retryConfig": t.proxy(renames["RetryConfigOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["LocationOut"])
-    types["ListJobsResponseIn"] = t.struct(
-        {
-            "jobs": t.array(t.proxy(renames["JobIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListJobsResponseIn"])
-    types["ListJobsResponseOut"] = t.struct(
-        {
-            "jobs": t.array(t.proxy(renames["JobOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListJobsResponseOut"])
-    types["OAuthTokenIn"] = t.struct(
-        {"scope": t.string().optional(), "serviceAccountEmail": t.string().optional()}
-    ).named(renames["OAuthTokenIn"])
-    types["OAuthTokenOut"] = t.struct(
-        {
-            "scope": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OAuthTokenOut"])
-    types["ResumeJobRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["ResumeJobRequestIn"]
-    )
-    types["ResumeJobRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["ResumeJobRequestOut"])
+    ).named(renames["JobOut"])
     types["RunJobRequestIn"] = t.struct({"_": t.string().optional()}).named(
         renames["RunJobRequestIn"]
     )
     types["RunJobRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["RunJobRequestOut"])
-    types["RetryConfigIn"] = t.struct(
+    types["ListLocationsResponseIn"] = t.struct(
         {
-            "maxRetryDuration": t.string().optional(),
-            "maxBackoffDuration": t.string().optional(),
-            "retryCount": t.integer().optional(),
-            "maxDoublings": t.integer().optional(),
-            "minBackoffDuration": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
         }
-    ).named(renames["RetryConfigIn"])
-    types["RetryConfigOut"] = t.struct(
+    ).named(renames["ListLocationsResponseIn"])
+    types["ListLocationsResponseOut"] = t.struct(
         {
-            "maxRetryDuration": t.string().optional(),
-            "maxBackoffDuration": t.string().optional(),
-            "retryCount": t.integer().optional(),
-            "maxDoublings": t.integer().optional(),
-            "minBackoffDuration": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["RetryConfigOut"])
-    types["OidcTokenIn"] = t.struct(
-        {
-            "audience": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-        }
-    ).named(renames["OidcTokenIn"])
-    types["OidcTokenOut"] = t.struct(
-        {
-            "audience": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OidcTokenOut"])
-    types["PubsubTargetIn"] = t.struct(
-        {
-            "data": t.string().optional(),
-            "attributes": t.struct({"_": t.string().optional()}).optional(),
-            "topicName": t.string(),
-        }
-    ).named(renames["PubsubTargetIn"])
-    types["PubsubTargetOut"] = t.struct(
-        {
-            "data": t.string().optional(),
-            "attributes": t.struct({"_": t.string().optional()}).optional(),
-            "topicName": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PubsubTargetOut"])
+    ).named(renames["ListLocationsResponseOut"])
     types["StatusIn"] = t.struct(
         {
             "details": t.array(t.struct({"_": t.string().optional()})).optional(),
@@ -187,82 +137,39 @@ def import_cloudscheduler() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["StatusOut"])
-    types["JobIn"] = t.struct(
+    types["RetryConfigIn"] = t.struct(
         {
-            "pubsubTarget": t.proxy(renames["PubsubTargetIn"]).optional(),
-            "status": t.proxy(renames["StatusIn"]).optional(),
-            "userUpdateTime": t.string().optional(),
-            "description": t.string().optional(),
-            "state": t.string().optional(),
-            "appEngineHttpTarget": t.proxy(renames["AppEngineHttpTargetIn"]).optional(),
-            "timeZone": t.string().optional(),
-            "lastAttemptTime": t.string().optional(),
-            "scheduleTime": t.string().optional(),
-            "attemptDeadline": t.string().optional(),
-            "httpTarget": t.proxy(renames["HttpTargetIn"]).optional(),
-            "name": t.string().optional(),
-            "retryConfig": t.proxy(renames["RetryConfigIn"]).optional(),
-            "schedule": t.string(),
+            "maxBackoffDuration": t.string().optional(),
+            "retryCount": t.integer().optional(),
+            "minBackoffDuration": t.string().optional(),
+            "maxRetryDuration": t.string().optional(),
+            "maxDoublings": t.integer().optional(),
         }
-    ).named(renames["JobIn"])
-    types["JobOut"] = t.struct(
+    ).named(renames["RetryConfigIn"])
+    types["RetryConfigOut"] = t.struct(
         {
-            "pubsubTarget": t.proxy(renames["PubsubTargetOut"]).optional(),
-            "status": t.proxy(renames["StatusOut"]).optional(),
-            "userUpdateTime": t.string().optional(),
-            "description": t.string().optional(),
-            "state": t.string().optional(),
-            "appEngineHttpTarget": t.proxy(
-                renames["AppEngineHttpTargetOut"]
-            ).optional(),
-            "timeZone": t.string().optional(),
-            "lastAttemptTime": t.string().optional(),
-            "scheduleTime": t.string().optional(),
-            "attemptDeadline": t.string().optional(),
-            "httpTarget": t.proxy(renames["HttpTargetOut"]).optional(),
-            "name": t.string().optional(),
-            "retryConfig": t.proxy(renames["RetryConfigOut"]).optional(),
-            "schedule": t.string(),
+            "maxBackoffDuration": t.string().optional(),
+            "retryCount": t.integer().optional(),
+            "minBackoffDuration": t.string().optional(),
+            "maxRetryDuration": t.string().optional(),
+            "maxDoublings": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["JobOut"])
-    types["AppEngineHttpTargetIn"] = t.struct(
-        {
-            "relativeUri": t.string().optional(),
-            "httpMethod": t.string().optional(),
-            "appEngineRouting": t.proxy(renames["AppEngineRoutingIn"]).optional(),
-            "body": t.string().optional(),
-            "headers": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["AppEngineHttpTargetIn"])
-    types["AppEngineHttpTargetOut"] = t.struct(
-        {
-            "relativeUri": t.string().optional(),
-            "httpMethod": t.string().optional(),
-            "appEngineRouting": t.proxy(renames["AppEngineRoutingOut"]).optional(),
-            "body": t.string().optional(),
-            "headers": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AppEngineHttpTargetOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
+    ).named(renames["RetryConfigOut"])
     types["AppEngineRoutingIn"] = t.struct(
         {
+            "service": t.string().optional(),
+            "version": t.string().optional(),
             "instance": t.string().optional(),
             "host": t.string().optional(),
-            "version": t.string().optional(),
-            "service": t.string().optional(),
         }
     ).named(renames["AppEngineRoutingIn"])
     types["AppEngineRoutingOut"] = t.struct(
         {
+            "service": t.string().optional(),
+            "version": t.string().optional(),
             "instance": t.string().optional(),
             "host": t.string().optional(),
-            "version": t.string().optional(),
-            "service": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AppEngineRoutingOut"])
@@ -272,64 +179,159 @@ def import_cloudscheduler() -> Import:
     types["PauseJobRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["PauseJobRequestOut"])
-    types["ListLocationsResponseIn"] = t.struct(
+    types["LocationIn"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "displayName": t.string().optional(),
+            "locationId": t.string().optional(),
         }
-    ).named(renames["ListLocationsResponseIn"])
-    types["ListLocationsResponseOut"] = t.struct(
+    ).named(renames["LocationIn"])
+    types["LocationOut"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "displayName": t.string().optional(),
+            "locationId": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListLocationsResponseOut"])
+    ).named(renames["LocationOut"])
+    types["OAuthTokenIn"] = t.struct(
+        {"scope": t.string().optional(), "serviceAccountEmail": t.string().optional()}
+    ).named(renames["OAuthTokenIn"])
+    types["OAuthTokenOut"] = t.struct(
+        {
+            "scope": t.string().optional(),
+            "serviceAccountEmail": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OAuthTokenOut"])
+    types["HttpTargetIn"] = t.struct(
+        {
+            "httpMethod": t.string().optional(),
+            "oauthToken": t.proxy(renames["OAuthTokenIn"]).optional(),
+            "oidcToken": t.proxy(renames["OidcTokenIn"]).optional(),
+            "headers": t.struct({"_": t.string().optional()}).optional(),
+            "uri": t.string(),
+            "body": t.string().optional(),
+        }
+    ).named(renames["HttpTargetIn"])
+    types["HttpTargetOut"] = t.struct(
+        {
+            "httpMethod": t.string().optional(),
+            "oauthToken": t.proxy(renames["OAuthTokenOut"]).optional(),
+            "oidcToken": t.proxy(renames["OidcTokenOut"]).optional(),
+            "headers": t.struct({"_": t.string().optional()}).optional(),
+            "uri": t.string(),
+            "body": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpTargetOut"])
     types["PubsubMessageIn"] = t.struct(
         {
-            "orderingKey": t.string().optional(),
             "messageId": t.string().optional(),
             "publishTime": t.string().optional(),
+            "orderingKey": t.string().optional(),
             "data": t.string().optional(),
             "attributes": t.struct({"_": t.string().optional()}).optional(),
         }
     ).named(renames["PubsubMessageIn"])
     types["PubsubMessageOut"] = t.struct(
         {
-            "orderingKey": t.string().optional(),
             "messageId": t.string().optional(),
             "publishTime": t.string().optional(),
+            "orderingKey": t.string().optional(),
             "data": t.string().optional(),
             "attributes": t.struct({"_": t.string().optional()}).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["PubsubMessageOut"])
+    types["ListJobsResponseIn"] = t.struct(
+        {
+            "jobs": t.array(t.proxy(renames["JobIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListJobsResponseIn"])
+    types["ListJobsResponseOut"] = t.struct(
+        {
+            "jobs": t.array(t.proxy(renames["JobOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListJobsResponseOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
+    types["ResumeJobRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["ResumeJobRequestIn"]
+    )
+    types["ResumeJobRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["ResumeJobRequestOut"])
+    types["OidcTokenIn"] = t.struct(
+        {
+            "serviceAccountEmail": t.string().optional(),
+            "audience": t.string().optional(),
+        }
+    ).named(renames["OidcTokenIn"])
+    types["OidcTokenOut"] = t.struct(
+        {
+            "serviceAccountEmail": t.string().optional(),
+            "audience": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OidcTokenOut"])
+    types["AppEngineHttpTargetIn"] = t.struct(
+        {
+            "appEngineRouting": t.proxy(renames["AppEngineRoutingIn"]).optional(),
+            "body": t.string().optional(),
+            "httpMethod": t.string().optional(),
+            "headers": t.struct({"_": t.string().optional()}).optional(),
+            "relativeUri": t.string().optional(),
+        }
+    ).named(renames["AppEngineHttpTargetIn"])
+    types["AppEngineHttpTargetOut"] = t.struct(
+        {
+            "appEngineRouting": t.proxy(renames["AppEngineRoutingOut"]).optional(),
+            "body": t.string().optional(),
+            "httpMethod": t.string().optional(),
+            "headers": t.struct({"_": t.string().optional()}).optional(),
+            "relativeUri": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AppEngineHttpTargetOut"])
 
     functions = {}
-    functions["projectsLocationsList"] = cloudscheduler.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["LocationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["projectsLocationsGet"] = cloudscheduler.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["LocationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsJobsGet"] = cloudscheduler.post(
-        "v1/{name}:resume",
+        "v1/{name}/locations",
         t.struct(
             {
-                "name": t.string(),
-                "_": t.string().optional(),
+                "filter": t.string().optional(),
+                "name": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["JobOut"]),
+        t.proxy(renames["ListLocationsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsList"] = cloudscheduler.get(
+        "v1/{name}/locations",
+        t.struct(
+            {
+                "filter": t.string().optional(),
+                "name": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListLocationsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -346,20 +348,7 @@ def import_cloudscheduler() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsJobsPatch"] = cloudscheduler.post(
-        "v1/{name}:resume",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["JobOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsJobsRun"] = cloudscheduler.post(
+    functions["projectsLocationsJobsGet"] = cloudscheduler.post(
         "v1/{name}:resume",
         t.struct(
             {
@@ -411,6 +400,32 @@ def import_cloudscheduler() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
+    functions["projectsLocationsJobsPatch"] = cloudscheduler.post(
+        "v1/{name}:resume",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["JobOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsJobsRun"] = cloudscheduler.post(
+        "v1/{name}:resume",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["JobOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
     functions["projectsLocationsJobsResume"] = cloudscheduler.post(
         "v1/{name}:resume",
         t.struct(
@@ -426,5 +441,8 @@ def import_cloudscheduler() -> Import:
     )
 
     return Import(
-        importer="cloudscheduler", renames=renames, types=types, functions=functions
+        importer="cloudscheduler",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

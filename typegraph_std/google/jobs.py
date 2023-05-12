@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_jobs() -> Import:
@@ -1480,4 +1479,6 @@ def import_jobs() -> Import:
         content_type="application/json",
     )
 
-    return Import(importer="jobs", renames=renames, types=types, functions=functions)
+    return Import(
+        importer="jobs", renames=renames, types=Box(types), functions=Box(functions)
+    )

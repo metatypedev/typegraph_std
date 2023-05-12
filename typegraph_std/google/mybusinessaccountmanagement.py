@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_mybusinessaccountmanagement() -> Import:
@@ -12,73 +11,126 @@ def import_mybusinessaccountmanagement() -> Import:
 
     renames = {
         "ErrorResponse": "_mybusinessaccountmanagement_1_ErrorResponse",
-        "ListAccountsResponseIn": "_mybusinessaccountmanagement_2_ListAccountsResponseIn",
-        "ListAccountsResponseOut": "_mybusinessaccountmanagement_3_ListAccountsResponseOut",
-        "OrganizationInfoIn": "_mybusinessaccountmanagement_4_OrganizationInfoIn",
-        "OrganizationInfoOut": "_mybusinessaccountmanagement_5_OrganizationInfoOut",
-        "ListLocationAdminsResponseIn": "_mybusinessaccountmanagement_6_ListLocationAdminsResponseIn",
-        "ListLocationAdminsResponseOut": "_mybusinessaccountmanagement_7_ListLocationAdminsResponseOut",
-        "TargetLocationIn": "_mybusinessaccountmanagement_8_TargetLocationIn",
-        "TargetLocationOut": "_mybusinessaccountmanagement_9_TargetLocationOut",
-        "PostalAddressIn": "_mybusinessaccountmanagement_10_PostalAddressIn",
-        "PostalAddressOut": "_mybusinessaccountmanagement_11_PostalAddressOut",
-        "AcceptInvitationRequestIn": "_mybusinessaccountmanagement_12_AcceptInvitationRequestIn",
-        "AcceptInvitationRequestOut": "_mybusinessaccountmanagement_13_AcceptInvitationRequestOut",
-        "AccountIn": "_mybusinessaccountmanagement_14_AccountIn",
-        "AccountOut": "_mybusinessaccountmanagement_15_AccountOut",
-        "AdminIn": "_mybusinessaccountmanagement_16_AdminIn",
-        "AdminOut": "_mybusinessaccountmanagement_17_AdminOut",
-        "InvitationIn": "_mybusinessaccountmanagement_18_InvitationIn",
-        "InvitationOut": "_mybusinessaccountmanagement_19_InvitationOut",
-        "TransferLocationRequestIn": "_mybusinessaccountmanagement_20_TransferLocationRequestIn",
-        "TransferLocationRequestOut": "_mybusinessaccountmanagement_21_TransferLocationRequestOut",
-        "ListAccountAdminsResponseIn": "_mybusinessaccountmanagement_22_ListAccountAdminsResponseIn",
-        "ListAccountAdminsResponseOut": "_mybusinessaccountmanagement_23_ListAccountAdminsResponseOut",
-        "DeclineInvitationRequestIn": "_mybusinessaccountmanagement_24_DeclineInvitationRequestIn",
-        "DeclineInvitationRequestOut": "_mybusinessaccountmanagement_25_DeclineInvitationRequestOut",
-        "EmptyIn": "_mybusinessaccountmanagement_26_EmptyIn",
-        "EmptyOut": "_mybusinessaccountmanagement_27_EmptyOut",
-        "ListInvitationsResponseIn": "_mybusinessaccountmanagement_28_ListInvitationsResponseIn",
-        "ListInvitationsResponseOut": "_mybusinessaccountmanagement_29_ListInvitationsResponseOut",
+        "PostalAddressIn": "_mybusinessaccountmanagement_2_PostalAddressIn",
+        "PostalAddressOut": "_mybusinessaccountmanagement_3_PostalAddressOut",
+        "InvitationIn": "_mybusinessaccountmanagement_4_InvitationIn",
+        "InvitationOut": "_mybusinessaccountmanagement_5_InvitationOut",
+        "OrganizationInfoIn": "_mybusinessaccountmanagement_6_OrganizationInfoIn",
+        "OrganizationInfoOut": "_mybusinessaccountmanagement_7_OrganizationInfoOut",
+        "ListInvitationsResponseIn": "_mybusinessaccountmanagement_8_ListInvitationsResponseIn",
+        "ListInvitationsResponseOut": "_mybusinessaccountmanagement_9_ListInvitationsResponseOut",
+        "ListAccountAdminsResponseIn": "_mybusinessaccountmanagement_10_ListAccountAdminsResponseIn",
+        "ListAccountAdminsResponseOut": "_mybusinessaccountmanagement_11_ListAccountAdminsResponseOut",
+        "TransferLocationRequestIn": "_mybusinessaccountmanagement_12_TransferLocationRequestIn",
+        "TransferLocationRequestOut": "_mybusinessaccountmanagement_13_TransferLocationRequestOut",
+        "TargetLocationIn": "_mybusinessaccountmanagement_14_TargetLocationIn",
+        "TargetLocationOut": "_mybusinessaccountmanagement_15_TargetLocationOut",
+        "AccountIn": "_mybusinessaccountmanagement_16_AccountIn",
+        "AccountOut": "_mybusinessaccountmanagement_17_AccountOut",
+        "ListAccountsResponseIn": "_mybusinessaccountmanagement_18_ListAccountsResponseIn",
+        "ListAccountsResponseOut": "_mybusinessaccountmanagement_19_ListAccountsResponseOut",
+        "AdminIn": "_mybusinessaccountmanagement_20_AdminIn",
+        "AdminOut": "_mybusinessaccountmanagement_21_AdminOut",
+        "ListLocationAdminsResponseIn": "_mybusinessaccountmanagement_22_ListLocationAdminsResponseIn",
+        "ListLocationAdminsResponseOut": "_mybusinessaccountmanagement_23_ListLocationAdminsResponseOut",
+        "EmptyIn": "_mybusinessaccountmanagement_24_EmptyIn",
+        "EmptyOut": "_mybusinessaccountmanagement_25_EmptyOut",
+        "AcceptInvitationRequestIn": "_mybusinessaccountmanagement_26_AcceptInvitationRequestIn",
+        "AcceptInvitationRequestOut": "_mybusinessaccountmanagement_27_AcceptInvitationRequestOut",
+        "DeclineInvitationRequestIn": "_mybusinessaccountmanagement_28_DeclineInvitationRequestIn",
+        "DeclineInvitationRequestOut": "_mybusinessaccountmanagement_29_DeclineInvitationRequestOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["ListAccountsResponseIn"] = t.struct(
+    types["PostalAddressIn"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "accounts": t.array(t.proxy(renames["AccountIn"])).optional(),
+            "addressLines": t.array(t.string()).optional(),
+            "recipients": t.array(t.string()).optional(),
+            "locality": t.string().optional(),
+            "regionCode": t.string(),
+            "administrativeArea": t.string().optional(),
+            "revision": t.integer().optional(),
+            "organization": t.string().optional(),
+            "languageCode": t.string().optional(),
+            "postalCode": t.string().optional(),
+            "sortingCode": t.string().optional(),
+            "sublocality": t.string().optional(),
         }
-    ).named(renames["ListAccountsResponseIn"])
-    types["ListAccountsResponseOut"] = t.struct(
+    ).named(renames["PostalAddressIn"])
+    types["PostalAddressOut"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "accounts": t.array(t.proxy(renames["AccountOut"])).optional(),
+            "addressLines": t.array(t.string()).optional(),
+            "recipients": t.array(t.string()).optional(),
+            "locality": t.string().optional(),
+            "regionCode": t.string(),
+            "administrativeArea": t.string().optional(),
+            "revision": t.integer().optional(),
+            "organization": t.string().optional(),
+            "languageCode": t.string().optional(),
+            "postalCode": t.string().optional(),
+            "sortingCode": t.string().optional(),
+            "sublocality": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListAccountsResponseOut"])
+    ).named(renames["PostalAddressOut"])
+    types["InvitationIn"] = t.struct(
+        {
+            "targetAccount": t.proxy(renames["AccountIn"]).optional(),
+            "name": t.string(),
+            "targetLocation": t.proxy(renames["TargetLocationIn"]).optional(),
+        }
+    ).named(renames["InvitationIn"])
+    types["InvitationOut"] = t.struct(
+        {
+            "targetAccount": t.proxy(renames["AccountOut"]).optional(),
+            "name": t.string(),
+            "targetLocation": t.proxy(renames["TargetLocationOut"]).optional(),
+            "role": t.string().optional(),
+            "targetType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InvitationOut"])
     types["OrganizationInfoIn"] = t.struct({"_": t.string().optional()}).named(
         renames["OrganizationInfoIn"]
     )
     types["OrganizationInfoOut"] = t.struct(
         {
+            "address": t.proxy(renames["PostalAddressOut"]).optional(),
             "registeredDomain": t.string().optional(),
             "phoneNumber": t.string().optional(),
-            "address": t.proxy(renames["PostalAddressOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["OrganizationInfoOut"])
-    types["ListLocationAdminsResponseIn"] = t.struct(
-        {"admins": t.array(t.proxy(renames["AdminIn"])).optional()}
-    ).named(renames["ListLocationAdminsResponseIn"])
-    types["ListLocationAdminsResponseOut"] = t.struct(
+    types["ListInvitationsResponseIn"] = t.struct(
+        {"invitations": t.array(t.proxy(renames["InvitationIn"])).optional()}
+    ).named(renames["ListInvitationsResponseIn"])
+    types["ListInvitationsResponseOut"] = t.struct(
         {
-            "admins": t.array(t.proxy(renames["AdminOut"])).optional(),
+            "invitations": t.array(t.proxy(renames["InvitationOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListLocationAdminsResponseOut"])
+    ).named(renames["ListInvitationsResponseOut"])
+    types["ListAccountAdminsResponseIn"] = t.struct(
+        {"accountAdmins": t.array(t.proxy(renames["AdminIn"])).optional()}
+    ).named(renames["ListAccountAdminsResponseIn"])
+    types["ListAccountAdminsResponseOut"] = t.struct(
+        {
+            "accountAdmins": t.array(t.proxy(renames["AdminOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListAccountAdminsResponseOut"])
+    types["TransferLocationRequestIn"] = t.struct(
+        {"destinationAccount": t.string()}
+    ).named(renames["TransferLocationRequestIn"])
+    types["TransferLocationRequestOut"] = t.struct(
+        {
+            "destinationAccount": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TransferLocationRequestOut"])
     types["TargetLocationIn"] = t.struct(
         {"locationName": t.string().optional(), "address": t.string().optional()}
     ).named(renames["TargetLocationIn"])
@@ -89,197 +141,297 @@ def import_mybusinessaccountmanagement() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TargetLocationOut"])
-    types["PostalAddressIn"] = t.struct(
+    types["AccountIn"] = t.struct(
         {
-            "recipients": t.array(t.string()).optional(),
-            "organization": t.string().optional(),
-            "locality": t.string().optional(),
-            "addressLines": t.array(t.string()).optional(),
-            "revision": t.integer().optional(),
-            "postalCode": t.string().optional(),
-            "sublocality": t.string().optional(),
-            "sortingCode": t.string().optional(),
-            "languageCode": t.string().optional(),
-            "administrativeArea": t.string().optional(),
-            "regionCode": t.string(),
+            "type": t.string(),
+            "name": t.string().optional(),
+            "accountName": t.string(),
+            "primaryOwner": t.string(),
         }
-    ).named(renames["PostalAddressIn"])
-    types["PostalAddressOut"] = t.struct(
+    ).named(renames["AccountIn"])
+    types["AccountOut"] = t.struct(
         {
-            "recipients": t.array(t.string()).optional(),
-            "organization": t.string().optional(),
-            "locality": t.string().optional(),
-            "addressLines": t.array(t.string()).optional(),
-            "revision": t.integer().optional(),
-            "postalCode": t.string().optional(),
-            "sublocality": t.string().optional(),
-            "sortingCode": t.string().optional(),
-            "languageCode": t.string().optional(),
-            "administrativeArea": t.string().optional(),
-            "regionCode": t.string(),
+            "accountNumber": t.string().optional(),
+            "role": t.string().optional(),
+            "type": t.string(),
+            "organizationInfo": t.proxy(renames["OrganizationInfoOut"]).optional(),
+            "name": t.string().optional(),
+            "verificationState": t.string().optional(),
+            "vettedState": t.string().optional(),
+            "accountName": t.string(),
+            "permissionLevel": t.string().optional(),
+            "primaryOwner": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PostalAddressOut"])
+    ).named(renames["AccountOut"])
+    types["ListAccountsResponseIn"] = t.struct(
+        {
+            "accounts": t.array(t.proxy(renames["AccountIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListAccountsResponseIn"])
+    types["ListAccountsResponseOut"] = t.struct(
+        {
+            "accounts": t.array(t.proxy(renames["AccountOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListAccountsResponseOut"])
+    types["AdminIn"] = t.struct(
+        {
+            "account": t.string().optional(),
+            "admin": t.string().optional(),
+            "role": t.string(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["AdminIn"])
+    types["AdminOut"] = t.struct(
+        {
+            "pendingInvitation": t.boolean().optional(),
+            "account": t.string().optional(),
+            "admin": t.string().optional(),
+            "role": t.string(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AdminOut"])
+    types["ListLocationAdminsResponseIn"] = t.struct(
+        {"admins": t.array(t.proxy(renames["AdminIn"])).optional()}
+    ).named(renames["ListLocationAdminsResponseIn"])
+    types["ListLocationAdminsResponseOut"] = t.struct(
+        {
+            "admins": t.array(t.proxy(renames["AdminOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListLocationAdminsResponseOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
     types["AcceptInvitationRequestIn"] = t.struct({"_": t.string().optional()}).named(
         renames["AcceptInvitationRequestIn"]
     )
     types["AcceptInvitationRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["AcceptInvitationRequestOut"])
-    types["AccountIn"] = t.struct(
-        {
-            "type": t.string(),
-            "primaryOwner": t.string(),
-            "accountName": t.string(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["AccountIn"])
-    types["AccountOut"] = t.struct(
-        {
-            "type": t.string(),
-            "role": t.string().optional(),
-            "accountNumber": t.string().optional(),
-            "verificationState": t.string().optional(),
-            "primaryOwner": t.string(),
-            "accountName": t.string(),
-            "permissionLevel": t.string().optional(),
-            "organizationInfo": t.proxy(renames["OrganizationInfoOut"]).optional(),
-            "vettedState": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AccountOut"])
-    types["AdminIn"] = t.struct(
-        {
-            "admin": t.string().optional(),
-            "role": t.string(),
-            "name": t.string().optional(),
-            "account": t.string().optional(),
-        }
-    ).named(renames["AdminIn"])
-    types["AdminOut"] = t.struct(
-        {
-            "admin": t.string().optional(),
-            "role": t.string(),
-            "name": t.string().optional(),
-            "account": t.string().optional(),
-            "pendingInvitation": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AdminOut"])
-    types["InvitationIn"] = t.struct(
-        {
-            "name": t.string(),
-            "targetAccount": t.proxy(renames["AccountIn"]).optional(),
-            "targetLocation": t.proxy(renames["TargetLocationIn"]).optional(),
-        }
-    ).named(renames["InvitationIn"])
-    types["InvitationOut"] = t.struct(
-        {
-            "name": t.string(),
-            "role": t.string().optional(),
-            "targetAccount": t.proxy(renames["AccountOut"]).optional(),
-            "targetType": t.string().optional(),
-            "targetLocation": t.proxy(renames["TargetLocationOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InvitationOut"])
-    types["TransferLocationRequestIn"] = t.struct(
-        {"destinationAccount": t.string()}
-    ).named(renames["TransferLocationRequestIn"])
-    types["TransferLocationRequestOut"] = t.struct(
-        {
-            "destinationAccount": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TransferLocationRequestOut"])
-    types["ListAccountAdminsResponseIn"] = t.struct(
-        {"accountAdmins": t.array(t.proxy(renames["AdminIn"])).optional()}
-    ).named(renames["ListAccountAdminsResponseIn"])
-    types["ListAccountAdminsResponseOut"] = t.struct(
-        {
-            "accountAdmins": t.array(t.proxy(renames["AdminOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListAccountAdminsResponseOut"])
     types["DeclineInvitationRequestIn"] = t.struct({"_": t.string().optional()}).named(
         renames["DeclineInvitationRequestIn"]
     )
     types["DeclineInvitationRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["DeclineInvitationRequestOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["ListInvitationsResponseIn"] = t.struct(
-        {"invitations": t.array(t.proxy(renames["InvitationIn"])).optional()}
-    ).named(renames["ListInvitationsResponseIn"])
-    types["ListInvitationsResponseOut"] = t.struct(
-        {
-            "invitations": t.array(t.proxy(renames["InvitationOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListInvitationsResponseOut"])
 
     functions = {}
-    functions["accountsPatch"] = mybusinessaccountmanagement.get(
+    functions["locationsTransfer"] = mybusinessaccountmanagement.post(
+        "v1/{name}:transfer",
+        t.struct(
+            {
+                "name": t.string(),
+                "destinationAccount": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsAdminsList"] = mybusinessaccountmanagement.post(
+        "v1/{parent}/admins",
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsAdminsDelete"] = mybusinessaccountmanagement.post(
+        "v1/{parent}/admins",
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsAdminsPatch"] = mybusinessaccountmanagement.post(
+        "v1/{parent}/admins",
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsAdminsCreate"] = mybusinessaccountmanagement.post(
+        "v1/{parent}/admins",
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["accountsList"] = mybusinessaccountmanagement.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string(),
+                "accountName": t.string(),
+                "primaryOwner": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["AccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsList"] = mybusinessaccountmanagement.get(
+    functions["accountsGet"] = mybusinessaccountmanagement.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string(),
+                "accountName": t.string(),
+                "primaryOwner": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["AccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsCreate"] = mybusinessaccountmanagement.get(
+    functions["accountsCreate"] = mybusinessaccountmanagement.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string(),
+                "accountName": t.string(),
+                "primaryOwner": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["AccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsGet"] = mybusinessaccountmanagement.get(
+    functions["accountsPatch"] = mybusinessaccountmanagement.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string(),
+                "accountName": t.string(),
+                "primaryOwner": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["AccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsAdminsPatch"] = mybusinessaccountmanagement.get(
+    functions["accountsAdminsDelete"] = mybusinessaccountmanagement.post(
         "v1/{parent}/admins",
-        t.struct({"parent": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["ListAccountAdminsResponseOut"]),
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsAdminsCreate"] = mybusinessaccountmanagement.get(
+    functions["accountsAdminsList"] = mybusinessaccountmanagement.post(
         "v1/{parent}/admins",
-        t.struct({"parent": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["ListAccountAdminsResponseOut"]),
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsAdminsDelete"] = mybusinessaccountmanagement.get(
+    functions["accountsAdminsPatch"] = mybusinessaccountmanagement.post(
         "v1/{parent}/admins",
-        t.struct({"parent": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["ListAccountAdminsResponseOut"]),
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsAdminsList"] = mybusinessaccountmanagement.get(
+    functions["accountsAdminsCreate"] = mybusinessaccountmanagement.post(
         "v1/{parent}/admins",
-        t.struct({"parent": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["ListAccountAdminsResponseOut"]),
+        t.struct(
+            {
+                "parent": t.string(),
+                "account": t.string().optional(),
+                "admin": t.string().optional(),
+                "role": t.string(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AdminOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsInvitationsDecline"] = mybusinessaccountmanagement.get(
+    functions["accountsInvitationsAccept"] = mybusinessaccountmanagement.get(
         "v1/{parent}/invitations",
         t.struct(
             {
@@ -292,7 +444,7 @@ def import_mybusinessaccountmanagement() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["accountsInvitationsAccept"] = mybusinessaccountmanagement.get(
+    functions["accountsInvitationsDecline"] = mybusinessaccountmanagement.get(
         "v1/{parent}/invitations",
         t.struct(
             {
@@ -318,51 +470,10 @@ def import_mybusinessaccountmanagement() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["locationsTransfer"] = mybusinessaccountmanagement.post(
-        "v1/{name}:transfer",
-        t.struct(
-            {
-                "name": t.string(),
-                "destinationAccount": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsAdminsCreate"] = mybusinessaccountmanagement.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsAdminsPatch"] = mybusinessaccountmanagement.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsAdminsList"] = mybusinessaccountmanagement.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsAdminsDelete"] = mybusinessaccountmanagement.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
 
     return Import(
         importer="mybusinessaccountmanagement",
         renames=renames,
-        types=types,
-        functions=functions,
+        types=Box(types),
+        functions=Box(functions),
     )

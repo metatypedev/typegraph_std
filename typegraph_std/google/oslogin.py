@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_oslogin() -> Import:
@@ -10,34 +9,26 @@ def import_oslogin() -> Import:
 
     renames = {
         "ErrorResponse": "_oslogin_1_ErrorResponse",
-        "SshPublicKeyIn": "_oslogin_2_SshPublicKeyIn",
-        "SshPublicKeyOut": "_oslogin_3_SshPublicKeyOut",
+        "EmptyIn": "_oslogin_2_EmptyIn",
+        "EmptyOut": "_oslogin_3_EmptyOut",
         "ImportSshPublicKeyResponseIn": "_oslogin_4_ImportSshPublicKeyResponseIn",
         "ImportSshPublicKeyResponseOut": "_oslogin_5_ImportSshPublicKeyResponseOut",
-        "EmptyIn": "_oslogin_6_EmptyIn",
-        "EmptyOut": "_oslogin_7_EmptyOut",
-        "PosixAccountIn": "_oslogin_8_PosixAccountIn",
-        "PosixAccountOut": "_oslogin_9_PosixAccountOut",
-        "LoginProfileIn": "_oslogin_10_LoginProfileIn",
-        "LoginProfileOut": "_oslogin_11_LoginProfileOut",
+        "LoginProfileIn": "_oslogin_6_LoginProfileIn",
+        "LoginProfileOut": "_oslogin_7_LoginProfileOut",
+        "SshPublicKeyIn": "_oslogin_8_SshPublicKeyIn",
+        "SshPublicKeyOut": "_oslogin_9_SshPublicKeyOut",
+        "PosixAccountIn": "_oslogin_10_PosixAccountIn",
+        "PosixAccountOut": "_oslogin_11_PosixAccountOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["SshPublicKeyIn"] = t.struct(
-        {"expirationTimeUsec": t.string().optional(), "key": t.string().optional()}
-    ).named(renames["SshPublicKeyIn"])
-    types["SshPublicKeyOut"] = t.struct(
-        {
-            "fingerprint": t.string().optional(),
-            "expirationTimeUsec": t.string().optional(),
-            "key": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SshPublicKeyOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
     types["ImportSshPublicKeyResponseIn"] = t.struct(
         {
             "details": t.string().optional(),
@@ -51,62 +42,70 @@ def import_oslogin() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ImportSshPublicKeyResponseOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["PosixAccountIn"] = t.struct(
-        {
-            "username": t.string().optional(),
-            "primary": t.boolean().optional(),
-            "systemId": t.string().optional(),
-            "operatingSystemType": t.string().optional(),
-            "uid": t.string().optional(),
-            "homeDirectory": t.string().optional(),
-            "gecos": t.string().optional(),
-            "shell": t.string().optional(),
-            "gid": t.string().optional(),
-        }
-    ).named(renames["PosixAccountIn"])
-    types["PosixAccountOut"] = t.struct(
-        {
-            "username": t.string().optional(),
-            "primary": t.boolean().optional(),
-            "systemId": t.string().optional(),
-            "operatingSystemType": t.string().optional(),
-            "uid": t.string().optional(),
-            "accountId": t.string().optional(),
-            "homeDirectory": t.string().optional(),
-            "name": t.string().optional(),
-            "gecos": t.string().optional(),
-            "shell": t.string().optional(),
-            "gid": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PosixAccountOut"])
     types["LoginProfileIn"] = t.struct(
         {
+            "sshPublicKeys": t.struct({"_": t.string().optional()}).optional(),
             "name": t.string(),
             "posixAccounts": t.array(t.proxy(renames["PosixAccountIn"])).optional(),
-            "sshPublicKeys": t.struct({"_": t.string().optional()}).optional(),
         }
     ).named(renames["LoginProfileIn"])
     types["LoginProfileOut"] = t.struct(
         {
+            "sshPublicKeys": t.struct({"_": t.string().optional()}).optional(),
             "name": t.string(),
             "posixAccounts": t.array(t.proxy(renames["PosixAccountOut"])).optional(),
-            "sshPublicKeys": t.struct({"_": t.string().optional()}).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["LoginProfileOut"])
+    types["SshPublicKeyIn"] = t.struct(
+        {"key": t.string().optional(), "expirationTimeUsec": t.string().optional()}
+    ).named(renames["SshPublicKeyIn"])
+    types["SshPublicKeyOut"] = t.struct(
+        {
+            "fingerprint": t.string().optional(),
+            "name": t.string().optional(),
+            "key": t.string().optional(),
+            "expirationTimeUsec": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SshPublicKeyOut"])
+    types["PosixAccountIn"] = t.struct(
+        {
+            "primary": t.boolean().optional(),
+            "uid": t.string().optional(),
+            "systemId": t.string().optional(),
+            "username": t.string().optional(),
+            "homeDirectory": t.string().optional(),
+            "operatingSystemType": t.string().optional(),
+            "shell": t.string().optional(),
+            "gid": t.string().optional(),
+            "gecos": t.string().optional(),
+        }
+    ).named(renames["PosixAccountIn"])
+    types["PosixAccountOut"] = t.struct(
+        {
+            "primary": t.boolean().optional(),
+            "uid": t.string().optional(),
+            "systemId": t.string().optional(),
+            "username": t.string().optional(),
+            "homeDirectory": t.string().optional(),
+            "name": t.string().optional(),
+            "operatingSystemType": t.string().optional(),
+            "shell": t.string().optional(),
+            "accountId": t.string().optional(),
+            "gid": t.string().optional(),
+            "gecos": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PosixAccountOut"])
 
     functions = {}
     functions["usersImportSshPublicKey"] = oslogin.get(
         "v1/{name}/loginProfile",
         t.struct(
             {
-                "name": t.string(),
                 "projectId": t.string().optional(),
+                "name": t.string(),
                 "systemId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -119,8 +118,8 @@ def import_oslogin() -> Import:
         "v1/{name}/loginProfile",
         t.struct(
             {
-                "name": t.string(),
                 "projectId": t.string().optional(),
+                "name": t.string(),
                 "systemId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -129,31 +128,31 @@ def import_oslogin() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersSshPublicKeysDelete"] = oslogin.get(
+    functions["usersSshPublicKeysCreate"] = oslogin.delete(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["SshPublicKeyOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersSshPublicKeysCreate"] = oslogin.get(
+    functions["usersSshPublicKeysPatch"] = oslogin.delete(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["SshPublicKeyOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersSshPublicKeysPatch"] = oslogin.get(
+    functions["usersSshPublicKeysGet"] = oslogin.delete(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["SshPublicKeyOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersSshPublicKeysGet"] = oslogin.get(
+    functions["usersSshPublicKeysDelete"] = oslogin.delete(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["SshPublicKeyOut"]),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -165,4 +164,6 @@ def import_oslogin() -> Import:
         content_type="application/json",
     )
 
-    return Import(importer="oslogin", renames=renames, types=types, functions=functions)
+    return Import(
+        importer="oslogin", renames=renames, types=Box(types), functions=Box(functions)
+    )

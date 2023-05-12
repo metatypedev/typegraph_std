@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_businessprofileperformance() -> Import:
@@ -12,36 +11,51 @@ def import_businessprofileperformance() -> Import:
 
     renames = {
         "ErrorResponse": "_businessprofileperformance_1_ErrorResponse",
-        "ListSearchKeywordImpressionsMonthlyResponseIn": "_businessprofileperformance_2_ListSearchKeywordImpressionsMonthlyResponseIn",
-        "ListSearchKeywordImpressionsMonthlyResponseOut": "_businessprofileperformance_3_ListSearchKeywordImpressionsMonthlyResponseOut",
-        "DatedValueIn": "_businessprofileperformance_4_DatedValueIn",
-        "DatedValueOut": "_businessprofileperformance_5_DatedValueOut",
-        "SearchKeywordCountIn": "_businessprofileperformance_6_SearchKeywordCountIn",
-        "SearchKeywordCountOut": "_businessprofileperformance_7_SearchKeywordCountOut",
-        "InsightsValueIn": "_businessprofileperformance_8_InsightsValueIn",
-        "InsightsValueOut": "_businessprofileperformance_9_InsightsValueOut",
+        "MultiDailyMetricTimeSeriesIn": "_businessprofileperformance_2_MultiDailyMetricTimeSeriesIn",
+        "MultiDailyMetricTimeSeriesOut": "_businessprofileperformance_3_MultiDailyMetricTimeSeriesOut",
+        "ListSearchKeywordImpressionsMonthlyResponseIn": "_businessprofileperformance_4_ListSearchKeywordImpressionsMonthlyResponseIn",
+        "ListSearchKeywordImpressionsMonthlyResponseOut": "_businessprofileperformance_5_ListSearchKeywordImpressionsMonthlyResponseOut",
+        "InsightsValueIn": "_businessprofileperformance_6_InsightsValueIn",
+        "InsightsValueOut": "_businessprofileperformance_7_InsightsValueOut",
+        "DatedValueIn": "_businessprofileperformance_8_DatedValueIn",
+        "DatedValueOut": "_businessprofileperformance_9_DatedValueOut",
         "DailyMetricTimeSeriesIn": "_businessprofileperformance_10_DailyMetricTimeSeriesIn",
         "DailyMetricTimeSeriesOut": "_businessprofileperformance_11_DailyMetricTimeSeriesOut",
-        "DateIn": "_businessprofileperformance_12_DateIn",
-        "DateOut": "_businessprofileperformance_13_DateOut",
-        "TimeSeriesIn": "_businessprofileperformance_14_TimeSeriesIn",
-        "TimeSeriesOut": "_businessprofileperformance_15_TimeSeriesOut",
+        "TimeOfDayIn": "_businessprofileperformance_12_TimeOfDayIn",
+        "TimeOfDayOut": "_businessprofileperformance_13_TimeOfDayOut",
+        "FetchMultiDailyMetricsTimeSeriesResponseIn": "_businessprofileperformance_14_FetchMultiDailyMetricsTimeSeriesResponseIn",
+        "FetchMultiDailyMetricsTimeSeriesResponseOut": "_businessprofileperformance_15_FetchMultiDailyMetricsTimeSeriesResponseOut",
         "DailySubEntityTypeIn": "_businessprofileperformance_16_DailySubEntityTypeIn",
         "DailySubEntityTypeOut": "_businessprofileperformance_17_DailySubEntityTypeOut",
-        "FetchMultiDailyMetricsTimeSeriesResponseIn": "_businessprofileperformance_18_FetchMultiDailyMetricsTimeSeriesResponseIn",
-        "FetchMultiDailyMetricsTimeSeriesResponseOut": "_businessprofileperformance_19_FetchMultiDailyMetricsTimeSeriesResponseOut",
-        "TimeOfDayIn": "_businessprofileperformance_20_TimeOfDayIn",
-        "TimeOfDayOut": "_businessprofileperformance_21_TimeOfDayOut",
-        "GetDailyMetricsTimeSeriesResponseIn": "_businessprofileperformance_22_GetDailyMetricsTimeSeriesResponseIn",
-        "GetDailyMetricsTimeSeriesResponseOut": "_businessprofileperformance_23_GetDailyMetricsTimeSeriesResponseOut",
-        "MultiDailyMetricTimeSeriesIn": "_businessprofileperformance_24_MultiDailyMetricTimeSeriesIn",
-        "MultiDailyMetricTimeSeriesOut": "_businessprofileperformance_25_MultiDailyMetricTimeSeriesOut",
+        "SearchKeywordCountIn": "_businessprofileperformance_18_SearchKeywordCountIn",
+        "SearchKeywordCountOut": "_businessprofileperformance_19_SearchKeywordCountOut",
+        "DateIn": "_businessprofileperformance_20_DateIn",
+        "DateOut": "_businessprofileperformance_21_DateOut",
+        "TimeSeriesIn": "_businessprofileperformance_22_TimeSeriesIn",
+        "TimeSeriesOut": "_businessprofileperformance_23_TimeSeriesOut",
+        "GetDailyMetricsTimeSeriesResponseIn": "_businessprofileperformance_24_GetDailyMetricsTimeSeriesResponseIn",
+        "GetDailyMetricsTimeSeriesResponseOut": "_businessprofileperformance_25_GetDailyMetricsTimeSeriesResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
+    types["MultiDailyMetricTimeSeriesIn"] = t.struct(
+        {
+            "dailyMetricTimeSeries": t.array(
+                t.proxy(renames["DailyMetricTimeSeriesIn"])
+            ).optional()
+        }
+    ).named(renames["MultiDailyMetricTimeSeriesIn"])
+    types["MultiDailyMetricTimeSeriesOut"] = t.struct(
+        {
+            "dailyMetricTimeSeries": t.array(
+                t.proxy(renames["DailyMetricTimeSeriesOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MultiDailyMetricTimeSeriesOut"])
     types["ListSearchKeywordImpressionsMonthlyResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -59,6 +73,16 @@ def import_businessprofileperformance() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListSearchKeywordImpressionsMonthlyResponseOut"])
+    types["InsightsValueIn"] = t.struct(
+        {"threshold": t.string().optional(), "value": t.string().optional()}
+    ).named(renames["InsightsValueIn"])
+    types["InsightsValueOut"] = t.struct(
+        {
+            "threshold": t.string().optional(),
+            "value": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InsightsValueOut"])
     types["DatedValueIn"] = t.struct(
         {"value": t.string().optional(), "date": t.proxy(renames["DateIn"]).optional()}
     ).named(renames["DatedValueIn"])
@@ -69,81 +93,38 @@ def import_businessprofileperformance() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DatedValueOut"])
-    types["SearchKeywordCountIn"] = t.struct(
-        {
-            "insightsValue": t.proxy(renames["InsightsValueIn"]).optional(),
-            "searchKeyword": t.string().optional(),
-        }
-    ).named(renames["SearchKeywordCountIn"])
-    types["SearchKeywordCountOut"] = t.struct(
-        {
-            "insightsValue": t.proxy(renames["InsightsValueOut"]).optional(),
-            "searchKeyword": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SearchKeywordCountOut"])
-    types["InsightsValueIn"] = t.struct(
-        {"value": t.string().optional(), "threshold": t.string().optional()}
-    ).named(renames["InsightsValueIn"])
-    types["InsightsValueOut"] = t.struct(
-        {
-            "value": t.string().optional(),
-            "threshold": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InsightsValueOut"])
     types["DailyMetricTimeSeriesIn"] = t.struct(
         {
+            "timeSeries": t.proxy(renames["TimeSeriesIn"]).optional(),
             "dailyMetric": t.string().optional(),
             "dailySubEntityType": t.proxy(renames["DailySubEntityTypeIn"]).optional(),
-            "timeSeries": t.proxy(renames["TimeSeriesIn"]).optional(),
         }
     ).named(renames["DailyMetricTimeSeriesIn"])
     types["DailyMetricTimeSeriesOut"] = t.struct(
         {
+            "timeSeries": t.proxy(renames["TimeSeriesOut"]).optional(),
             "dailyMetric": t.string().optional(),
             "dailySubEntityType": t.proxy(renames["DailySubEntityTypeOut"]).optional(),
-            "timeSeries": t.proxy(renames["TimeSeriesOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DailyMetricTimeSeriesOut"])
-    types["DateIn"] = t.struct(
+    types["TimeOfDayIn"] = t.struct(
         {
-            "month": t.integer().optional(),
-            "day": t.integer().optional(),
-            "year": t.integer().optional(),
+            "seconds": t.integer().optional(),
+            "hours": t.integer().optional(),
+            "minutes": t.integer().optional(),
+            "nanos": t.integer().optional(),
         }
-    ).named(renames["DateIn"])
-    types["DateOut"] = t.struct(
+    ).named(renames["TimeOfDayIn"])
+    types["TimeOfDayOut"] = t.struct(
         {
-            "month": t.integer().optional(),
-            "day": t.integer().optional(),
-            "year": t.integer().optional(),
+            "seconds": t.integer().optional(),
+            "hours": t.integer().optional(),
+            "minutes": t.integer().optional(),
+            "nanos": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DateOut"])
-    types["TimeSeriesIn"] = t.struct(
-        {"datedValues": t.array(t.proxy(renames["DatedValueIn"])).optional()}
-    ).named(renames["TimeSeriesIn"])
-    types["TimeSeriesOut"] = t.struct(
-        {
-            "datedValues": t.array(t.proxy(renames["DatedValueOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TimeSeriesOut"])
-    types["DailySubEntityTypeIn"] = t.struct(
-        {
-            "dayOfWeek": t.string().optional(),
-            "timeOfDay": t.proxy(renames["TimeOfDayIn"]).optional(),
-        }
-    ).named(renames["DailySubEntityTypeIn"])
-    types["DailySubEntityTypeOut"] = t.struct(
-        {
-            "dayOfWeek": t.string().optional(),
-            "timeOfDay": t.proxy(renames["TimeOfDayOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DailySubEntityTypeOut"])
+    ).named(renames["TimeOfDayOut"])
     types["FetchMultiDailyMetricsTimeSeriesResponseIn"] = t.struct(
         {
             "multiDailyMetricTimeSeries": t.array(
@@ -159,23 +140,56 @@ def import_businessprofileperformance() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["FetchMultiDailyMetricsTimeSeriesResponseOut"])
-    types["TimeOfDayIn"] = t.struct(
+    types["DailySubEntityTypeIn"] = t.struct(
         {
-            "nanos": t.integer().optional(),
-            "hours": t.integer().optional(),
-            "minutes": t.integer().optional(),
-            "seconds": t.integer().optional(),
+            "timeOfDay": t.proxy(renames["TimeOfDayIn"]).optional(),
+            "dayOfWeek": t.string().optional(),
         }
-    ).named(renames["TimeOfDayIn"])
-    types["TimeOfDayOut"] = t.struct(
+    ).named(renames["DailySubEntityTypeIn"])
+    types["DailySubEntityTypeOut"] = t.struct(
         {
-            "nanos": t.integer().optional(),
-            "hours": t.integer().optional(),
-            "minutes": t.integer().optional(),
-            "seconds": t.integer().optional(),
+            "timeOfDay": t.proxy(renames["TimeOfDayOut"]).optional(),
+            "dayOfWeek": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TimeOfDayOut"])
+    ).named(renames["DailySubEntityTypeOut"])
+    types["SearchKeywordCountIn"] = t.struct(
+        {
+            "searchKeyword": t.string().optional(),
+            "insightsValue": t.proxy(renames["InsightsValueIn"]).optional(),
+        }
+    ).named(renames["SearchKeywordCountIn"])
+    types["SearchKeywordCountOut"] = t.struct(
+        {
+            "searchKeyword": t.string().optional(),
+            "insightsValue": t.proxy(renames["InsightsValueOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SearchKeywordCountOut"])
+    types["DateIn"] = t.struct(
+        {
+            "year": t.integer().optional(),
+            "month": t.integer().optional(),
+            "day": t.integer().optional(),
+        }
+    ).named(renames["DateIn"])
+    types["DateOut"] = t.struct(
+        {
+            "year": t.integer().optional(),
+            "month": t.integer().optional(),
+            "day": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DateOut"])
+    types["TimeSeriesIn"] = t.struct(
+        {"datedValues": t.array(t.proxy(renames["DatedValueIn"])).optional()}
+    ).named(renames["TimeSeriesIn"])
+    types["TimeSeriesOut"] = t.struct(
+        {
+            "datedValues": t.array(t.proxy(renames["DatedValueOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TimeSeriesOut"])
     types["GetDailyMetricsTimeSeriesResponseIn"] = t.struct(
         {"timeSeries": t.proxy(renames["TimeSeriesIn"]).optional()}
     ).named(renames["GetDailyMetricsTimeSeriesResponseIn"])
@@ -185,21 +199,6 @@ def import_businessprofileperformance() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GetDailyMetricsTimeSeriesResponseOut"])
-    types["MultiDailyMetricTimeSeriesIn"] = t.struct(
-        {
-            "dailyMetricTimeSeries": t.array(
-                t.proxy(renames["DailyMetricTimeSeriesIn"])
-            ).optional()
-        }
-    ).named(renames["MultiDailyMetricTimeSeriesIn"])
-    types["MultiDailyMetricTimeSeriesOut"] = t.struct(
-        {
-            "dailyMetricTimeSeries": t.array(
-                t.proxy(renames["DailyMetricTimeSeriesOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MultiDailyMetricTimeSeriesOut"])
 
     functions = {}
     functions[
@@ -208,19 +207,19 @@ def import_businessprofileperformance() -> Import:
         "v1/{name}:getDailyMetricsTimeSeries",
         t.struct(
             {
-                "dailyRange.endDate.month": t.integer().optional(),
-                "dailySubEntityType.dayOfWeek": t.string().optional(),
-                "dailySubEntityType.timeOfDay.nanos": t.integer().optional(),
                 "dailySubEntityType.timeOfDay.hours": t.integer().optional(),
-                "dailySubEntityType.timeOfDay.seconds": t.integer().optional(),
-                "dailyRange.endDate.year": t.integer().optional(),
-                "dailyMetric": t.string(),
-                "dailyRange.startDate.day": t.integer().optional(),
+                "name": t.string(),
+                "dailySubEntityType.dayOfWeek": t.string().optional(),
                 "dailyRange.startDate.month": t.integer().optional(),
                 "dailyRange.endDate.day": t.integer().optional(),
-                "name": t.string(),
-                "dailySubEntityType.timeOfDay.minutes": t.integer().optional(),
                 "dailyRange.startDate.year": t.integer().optional(),
+                "dailyRange.startDate.day": t.integer().optional(),
+                "dailyRange.endDate.year": t.integer().optional(),
+                "dailyRange.endDate.month": t.integer().optional(),
+                "dailyMetric": t.string(),
+                "dailySubEntityType.timeOfDay.nanos": t.integer().optional(),
+                "dailySubEntityType.timeOfDay.seconds": t.integer().optional(),
+                "dailySubEntityType.timeOfDay.minutes": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -232,19 +231,19 @@ def import_businessprofileperformance() -> Import:
         "v1/{name}:getDailyMetricsTimeSeries",
         t.struct(
             {
-                "dailyRange.endDate.month": t.integer().optional(),
-                "dailySubEntityType.dayOfWeek": t.string().optional(),
-                "dailySubEntityType.timeOfDay.nanos": t.integer().optional(),
                 "dailySubEntityType.timeOfDay.hours": t.integer().optional(),
-                "dailySubEntityType.timeOfDay.seconds": t.integer().optional(),
-                "dailyRange.endDate.year": t.integer().optional(),
-                "dailyMetric": t.string(),
-                "dailyRange.startDate.day": t.integer().optional(),
+                "name": t.string(),
+                "dailySubEntityType.dayOfWeek": t.string().optional(),
                 "dailyRange.startDate.month": t.integer().optional(),
                 "dailyRange.endDate.day": t.integer().optional(),
-                "name": t.string(),
-                "dailySubEntityType.timeOfDay.minutes": t.integer().optional(),
                 "dailyRange.startDate.year": t.integer().optional(),
+                "dailyRange.startDate.day": t.integer().optional(),
+                "dailyRange.endDate.year": t.integer().optional(),
+                "dailyRange.endDate.month": t.integer().optional(),
+                "dailyMetric": t.string(),
+                "dailySubEntityType.timeOfDay.nanos": t.integer().optional(),
+                "dailySubEntityType.timeOfDay.seconds": t.integer().optional(),
+                "dailySubEntityType.timeOfDay.minutes": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -258,15 +257,15 @@ def import_businessprofileperformance() -> Import:
         "v1/{parent}/searchkeywords/impressions/monthly",
         t.struct(
             {
-                "monthlyRange.endMonth.year": t.integer().optional(),
-                "pageSize": t.integer().optional(),
-                "monthlyRange.endMonth.month": t.integer().optional(),
-                "monthlyRange.startMonth.month": t.integer().optional(),
-                "parent": t.string(),
-                "monthlyRange.endMonth.day": t.integer().optional(),
-                "monthlyRange.startMonth.day": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "monthlyRange.startMonth.month": t.integer().optional(),
+                "monthlyRange.endMonth.year": t.integer().optional(),
                 "monthlyRange.startMonth.year": t.integer().optional(),
+                "monthlyRange.endMonth.day": t.integer().optional(),
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "monthlyRange.endMonth.month": t.integer().optional(),
+                "monthlyRange.startMonth.day": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -278,6 +277,6 @@ def import_businessprofileperformance() -> Import:
     return Import(
         importer="businessprofileperformance",
         renames=renames,
-        types=types,
-        functions=functions,
+        types=Box(types),
+        functions=Box(functions),
     )

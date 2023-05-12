@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_cloudtrace() -> Import:
@@ -10,61 +9,46 @@ def import_cloudtrace() -> Import:
 
     renames = {
         "ErrorResponse": "_cloudtrace_1_ErrorResponse",
-        "AttributeValueIn": "_cloudtrace_2_AttributeValueIn",
-        "AttributeValueOut": "_cloudtrace_3_AttributeValueOut",
-        "ModuleIn": "_cloudtrace_4_ModuleIn",
-        "ModuleOut": "_cloudtrace_5_ModuleOut",
+        "ModuleIn": "_cloudtrace_2_ModuleIn",
+        "ModuleOut": "_cloudtrace_3_ModuleOut",
+        "StackFramesIn": "_cloudtrace_4_StackFramesIn",
+        "StackFramesOut": "_cloudtrace_5_StackFramesOut",
         "TimeEventsIn": "_cloudtrace_6_TimeEventsIn",
         "TimeEventsOut": "_cloudtrace_7_TimeEventsOut",
-        "BatchWriteSpansRequestIn": "_cloudtrace_8_BatchWriteSpansRequestIn",
-        "BatchWriteSpansRequestOut": "_cloudtrace_9_BatchWriteSpansRequestOut",
-        "TruncatableStringIn": "_cloudtrace_10_TruncatableStringIn",
-        "TruncatableStringOut": "_cloudtrace_11_TruncatableStringOut",
-        "StatusIn": "_cloudtrace_12_StatusIn",
-        "StatusOut": "_cloudtrace_13_StatusOut",
-        "MessageEventIn": "_cloudtrace_14_MessageEventIn",
-        "MessageEventOut": "_cloudtrace_15_MessageEventOut",
+        "TimeEventIn": "_cloudtrace_8_TimeEventIn",
+        "TimeEventOut": "_cloudtrace_9_TimeEventOut",
+        "StackTraceIn": "_cloudtrace_10_StackTraceIn",
+        "StackTraceOut": "_cloudtrace_11_StackTraceOut",
+        "StackFrameIn": "_cloudtrace_12_StackFrameIn",
+        "StackFrameOut": "_cloudtrace_13_StackFrameOut",
+        "LinksIn": "_cloudtrace_14_LinksIn",
+        "LinksOut": "_cloudtrace_15_LinksOut",
         "SpanIn": "_cloudtrace_16_SpanIn",
         "SpanOut": "_cloudtrace_17_SpanOut",
-        "StackTraceIn": "_cloudtrace_18_StackTraceIn",
-        "StackTraceOut": "_cloudtrace_19_StackTraceOut",
-        "TimeEventIn": "_cloudtrace_20_TimeEventIn",
-        "TimeEventOut": "_cloudtrace_21_TimeEventOut",
-        "AnnotationIn": "_cloudtrace_22_AnnotationIn",
-        "AnnotationOut": "_cloudtrace_23_AnnotationOut",
-        "EmptyIn": "_cloudtrace_24_EmptyIn",
-        "EmptyOut": "_cloudtrace_25_EmptyOut",
-        "StackFramesIn": "_cloudtrace_26_StackFramesIn",
-        "StackFramesOut": "_cloudtrace_27_StackFramesOut",
-        "LinksIn": "_cloudtrace_28_LinksIn",
-        "LinksOut": "_cloudtrace_29_LinksOut",
-        "LinkIn": "_cloudtrace_30_LinkIn",
-        "LinkOut": "_cloudtrace_31_LinkOut",
-        "AttributesIn": "_cloudtrace_32_AttributesIn",
-        "AttributesOut": "_cloudtrace_33_AttributesOut",
-        "StackFrameIn": "_cloudtrace_34_StackFrameIn",
-        "StackFrameOut": "_cloudtrace_35_StackFrameOut",
+        "TruncatableStringIn": "_cloudtrace_18_TruncatableStringIn",
+        "TruncatableStringOut": "_cloudtrace_19_TruncatableStringOut",
+        "EmptyIn": "_cloudtrace_20_EmptyIn",
+        "EmptyOut": "_cloudtrace_21_EmptyOut",
+        "AttributesIn": "_cloudtrace_22_AttributesIn",
+        "AttributesOut": "_cloudtrace_23_AttributesOut",
+        "AttributeValueIn": "_cloudtrace_24_AttributeValueIn",
+        "AttributeValueOut": "_cloudtrace_25_AttributeValueOut",
+        "LinkIn": "_cloudtrace_26_LinkIn",
+        "LinkOut": "_cloudtrace_27_LinkOut",
+        "StatusIn": "_cloudtrace_28_StatusIn",
+        "StatusOut": "_cloudtrace_29_StatusOut",
+        "MessageEventIn": "_cloudtrace_30_MessageEventIn",
+        "MessageEventOut": "_cloudtrace_31_MessageEventOut",
+        "AnnotationIn": "_cloudtrace_32_AnnotationIn",
+        "AnnotationOut": "_cloudtrace_33_AnnotationOut",
+        "BatchWriteSpansRequestIn": "_cloudtrace_34_BatchWriteSpansRequestIn",
+        "BatchWriteSpansRequestOut": "_cloudtrace_35_BatchWriteSpansRequestOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["AttributeValueIn"] = t.struct(
-        {
-            "boolValue": t.boolean().optional(),
-            "stringValue": t.proxy(renames["TruncatableStringIn"]).optional(),
-            "intValue": t.string().optional(),
-        }
-    ).named(renames["AttributeValueIn"])
-    types["AttributeValueOut"] = t.struct(
-        {
-            "boolValue": t.boolean().optional(),
-            "stringValue": t.proxy(renames["TruncatableStringOut"]).optional(),
-            "intValue": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AttributeValueOut"])
     types["ModuleIn"] = t.struct(
         {
             "module": t.proxy(renames["TruncatableStringIn"]).optional(),
@@ -78,122 +62,34 @@ def import_cloudtrace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ModuleOut"])
+    types["StackFramesIn"] = t.struct(
+        {
+            "frame": t.array(t.proxy(renames["StackFrameIn"])).optional(),
+            "droppedFramesCount": t.integer().optional(),
+        }
+    ).named(renames["StackFramesIn"])
+    types["StackFramesOut"] = t.struct(
+        {
+            "frame": t.array(t.proxy(renames["StackFrameOut"])).optional(),
+            "droppedFramesCount": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StackFramesOut"])
     types["TimeEventsIn"] = t.struct(
         {
+            "droppedAnnotationsCount": t.integer().optional(),
             "droppedMessageEventsCount": t.integer().optional(),
             "timeEvent": t.array(t.proxy(renames["TimeEventIn"])).optional(),
-            "droppedAnnotationsCount": t.integer().optional(),
         }
     ).named(renames["TimeEventsIn"])
     types["TimeEventsOut"] = t.struct(
         {
+            "droppedAnnotationsCount": t.integer().optional(),
             "droppedMessageEventsCount": t.integer().optional(),
             "timeEvent": t.array(t.proxy(renames["TimeEventOut"])).optional(),
-            "droppedAnnotationsCount": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TimeEventsOut"])
-    types["BatchWriteSpansRequestIn"] = t.struct(
-        {"spans": t.array(t.proxy(renames["SpanIn"]))}
-    ).named(renames["BatchWriteSpansRequestIn"])
-    types["BatchWriteSpansRequestOut"] = t.struct(
-        {
-            "spans": t.array(t.proxy(renames["SpanOut"])),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BatchWriteSpansRequestOut"])
-    types["TruncatableStringIn"] = t.struct(
-        {"truncatedByteCount": t.integer().optional(), "value": t.string().optional()}
-    ).named(renames["TruncatableStringIn"])
-    types["TruncatableStringOut"] = t.struct(
-        {
-            "truncatedByteCount": t.integer().optional(),
-            "value": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TruncatableStringOut"])
-    types["StatusIn"] = t.struct(
-        {
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "message": t.string().optional(),
-        }
-    ).named(renames["StatusIn"])
-    types["StatusOut"] = t.struct(
-        {
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "message": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusOut"])
-    types["MessageEventIn"] = t.struct(
-        {
-            "uncompressedSizeBytes": t.string().optional(),
-            "id": t.string().optional(),
-            "type": t.string().optional(),
-            "compressedSizeBytes": t.string().optional(),
-        }
-    ).named(renames["MessageEventIn"])
-    types["MessageEventOut"] = t.struct(
-        {
-            "uncompressedSizeBytes": t.string().optional(),
-            "id": t.string().optional(),
-            "type": t.string().optional(),
-            "compressedSizeBytes": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MessageEventOut"])
-    types["SpanIn"] = t.struct(
-        {
-            "spanKind": t.string().optional(),
-            "links": t.proxy(renames["LinksIn"]).optional(),
-            "stackTrace": t.proxy(renames["StackTraceIn"]).optional(),
-            "startTime": t.string(),
-            "endTime": t.string(),
-            "timeEvents": t.proxy(renames["TimeEventsIn"]).optional(),
-            "parentSpanId": t.string().optional(),
-            "childSpanCount": t.integer().optional(),
-            "sameProcessAsParentSpan": t.boolean().optional(),
-            "name": t.string(),
-            "displayName": t.proxy(renames["TruncatableStringIn"]),
-            "attributes": t.proxy(renames["AttributesIn"]).optional(),
-            "spanId": t.string(),
-            "status": t.proxy(renames["StatusIn"]).optional(),
-        }
-    ).named(renames["SpanIn"])
-    types["SpanOut"] = t.struct(
-        {
-            "spanKind": t.string().optional(),
-            "links": t.proxy(renames["LinksOut"]).optional(),
-            "stackTrace": t.proxy(renames["StackTraceOut"]).optional(),
-            "startTime": t.string(),
-            "endTime": t.string(),
-            "timeEvents": t.proxy(renames["TimeEventsOut"]).optional(),
-            "parentSpanId": t.string().optional(),
-            "childSpanCount": t.integer().optional(),
-            "sameProcessAsParentSpan": t.boolean().optional(),
-            "name": t.string(),
-            "displayName": t.proxy(renames["TruncatableStringOut"]),
-            "attributes": t.proxy(renames["AttributesOut"]).optional(),
-            "spanId": t.string(),
-            "status": t.proxy(renames["StatusOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SpanOut"])
-    types["StackTraceIn"] = t.struct(
-        {
-            "stackTraceHashId": t.string().optional(),
-            "stackFrames": t.proxy(renames["StackFramesIn"]).optional(),
-        }
-    ).named(renames["StackTraceIn"])
-    types["StackTraceOut"] = t.struct(
-        {
-            "stackTraceHashId": t.string().optional(),
-            "stackFrames": t.proxy(renames["StackFramesOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StackTraceOut"])
     types["TimeEventIn"] = t.struct(
         {
             "time": t.string().optional(),
@@ -209,36 +105,42 @@ def import_cloudtrace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TimeEventOut"])
-    types["AnnotationIn"] = t.struct(
+    types["StackTraceIn"] = t.struct(
         {
-            "attributes": t.proxy(renames["AttributesIn"]).optional(),
-            "description": t.proxy(renames["TruncatableStringIn"]).optional(),
+            "stackTraceHashId": t.string().optional(),
+            "stackFrames": t.proxy(renames["StackFramesIn"]).optional(),
         }
-    ).named(renames["AnnotationIn"])
-    types["AnnotationOut"] = t.struct(
+    ).named(renames["StackTraceIn"])
+    types["StackTraceOut"] = t.struct(
         {
-            "attributes": t.proxy(renames["AttributesOut"]).optional(),
-            "description": t.proxy(renames["TruncatableStringOut"]).optional(),
+            "stackTraceHashId": t.string().optional(),
+            "stackFrames": t.proxy(renames["StackFramesOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AnnotationOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["StackFramesIn"] = t.struct(
+    ).named(renames["StackTraceOut"])
+    types["StackFrameIn"] = t.struct(
         {
-            "droppedFramesCount": t.integer().optional(),
-            "frame": t.array(t.proxy(renames["StackFrameIn"])).optional(),
+            "sourceVersion": t.proxy(renames["TruncatableStringIn"]).optional(),
+            "loadModule": t.proxy(renames["ModuleIn"]).optional(),
+            "functionName": t.proxy(renames["TruncatableStringIn"]).optional(),
+            "lineNumber": t.string().optional(),
+            "columnNumber": t.string().optional(),
+            "originalFunctionName": t.proxy(renames["TruncatableStringIn"]).optional(),
+            "fileName": t.proxy(renames["TruncatableStringIn"]).optional(),
         }
-    ).named(renames["StackFramesIn"])
-    types["StackFramesOut"] = t.struct(
+    ).named(renames["StackFrameIn"])
+    types["StackFrameOut"] = t.struct(
         {
-            "droppedFramesCount": t.integer().optional(),
-            "frame": t.array(t.proxy(renames["StackFrameOut"])).optional(),
+            "sourceVersion": t.proxy(renames["TruncatableStringOut"]).optional(),
+            "loadModule": t.proxy(renames["ModuleOut"]).optional(),
+            "functionName": t.proxy(renames["TruncatableStringOut"]).optional(),
+            "lineNumber": t.string().optional(),
+            "columnNumber": t.string().optional(),
+            "originalFunctionName": t.proxy(renames["TruncatableStringOut"]).optional(),
+            "fileName": t.proxy(renames["TruncatableStringOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["StackFramesOut"])
+    ).named(renames["StackFrameOut"])
     types["LinksIn"] = t.struct(
         {
             "link": t.array(t.proxy(renames["LinkIn"])).optional(),
@@ -252,23 +154,57 @@ def import_cloudtrace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["LinksOut"])
-    types["LinkIn"] = t.struct(
+    types["SpanIn"] = t.struct(
         {
-            "traceId": t.string().optional(),
             "attributes": t.proxy(renames["AttributesIn"]).optional(),
-            "spanId": t.string().optional(),
-            "type": t.string().optional(),
+            "links": t.proxy(renames["LinksIn"]).optional(),
+            "status": t.proxy(renames["StatusIn"]).optional(),
+            "endTime": t.string(),
+            "spanId": t.string(),
+            "parentSpanId": t.string().optional(),
+            "displayName": t.proxy(renames["TruncatableStringIn"]),
+            "childSpanCount": t.integer().optional(),
+            "startTime": t.string(),
+            "sameProcessAsParentSpan": t.boolean().optional(),
+            "stackTrace": t.proxy(renames["StackTraceIn"]).optional(),
+            "timeEvents": t.proxy(renames["TimeEventsIn"]).optional(),
+            "name": t.string(),
+            "spanKind": t.string().optional(),
         }
-    ).named(renames["LinkIn"])
-    types["LinkOut"] = t.struct(
+    ).named(renames["SpanIn"])
+    types["SpanOut"] = t.struct(
         {
-            "traceId": t.string().optional(),
             "attributes": t.proxy(renames["AttributesOut"]).optional(),
-            "spanId": t.string().optional(),
-            "type": t.string().optional(),
+            "links": t.proxy(renames["LinksOut"]).optional(),
+            "status": t.proxy(renames["StatusOut"]).optional(),
+            "endTime": t.string(),
+            "spanId": t.string(),
+            "parentSpanId": t.string().optional(),
+            "displayName": t.proxy(renames["TruncatableStringOut"]),
+            "childSpanCount": t.integer().optional(),
+            "startTime": t.string(),
+            "sameProcessAsParentSpan": t.boolean().optional(),
+            "stackTrace": t.proxy(renames["StackTraceOut"]).optional(),
+            "timeEvents": t.proxy(renames["TimeEventsOut"]).optional(),
+            "name": t.string(),
+            "spanKind": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["LinkOut"])
+    ).named(renames["SpanOut"])
+    types["TruncatableStringIn"] = t.struct(
+        {"truncatedByteCount": t.integer().optional(), "value": t.string().optional()}
+    ).named(renames["TruncatableStringIn"])
+    types["TruncatableStringOut"] = t.struct(
+        {
+            "truncatedByteCount": t.integer().optional(),
+            "value": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TruncatableStringOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
     types["AttributesIn"] = t.struct(
         {
             "droppedAttributesCount": t.integer().optional(),
@@ -282,29 +218,92 @@ def import_cloudtrace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AttributesOut"])
-    types["StackFrameIn"] = t.struct(
+    types["AttributeValueIn"] = t.struct(
         {
-            "originalFunctionName": t.proxy(renames["TruncatableStringIn"]).optional(),
-            "functionName": t.proxy(renames["TruncatableStringIn"]).optional(),
-            "fileName": t.proxy(renames["TruncatableStringIn"]).optional(),
-            "lineNumber": t.string().optional(),
-            "columnNumber": t.string().optional(),
-            "sourceVersion": t.proxy(renames["TruncatableStringIn"]).optional(),
-            "loadModule": t.proxy(renames["ModuleIn"]).optional(),
+            "intValue": t.string().optional(),
+            "boolValue": t.boolean().optional(),
+            "stringValue": t.proxy(renames["TruncatableStringIn"]).optional(),
         }
-    ).named(renames["StackFrameIn"])
-    types["StackFrameOut"] = t.struct(
+    ).named(renames["AttributeValueIn"])
+    types["AttributeValueOut"] = t.struct(
         {
-            "originalFunctionName": t.proxy(renames["TruncatableStringOut"]).optional(),
-            "functionName": t.proxy(renames["TruncatableStringOut"]).optional(),
-            "fileName": t.proxy(renames["TruncatableStringOut"]).optional(),
-            "lineNumber": t.string().optional(),
-            "columnNumber": t.string().optional(),
-            "sourceVersion": t.proxy(renames["TruncatableStringOut"]).optional(),
-            "loadModule": t.proxy(renames["ModuleOut"]).optional(),
+            "intValue": t.string().optional(),
+            "boolValue": t.boolean().optional(),
+            "stringValue": t.proxy(renames["TruncatableStringOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["StackFrameOut"])
+    ).named(renames["AttributeValueOut"])
+    types["LinkIn"] = t.struct(
+        {
+            "spanId": t.string().optional(),
+            "traceId": t.string().optional(),
+            "attributes": t.proxy(renames["AttributesIn"]).optional(),
+            "type": t.string().optional(),
+        }
+    ).named(renames["LinkIn"])
+    types["LinkOut"] = t.struct(
+        {
+            "spanId": t.string().optional(),
+            "traceId": t.string().optional(),
+            "attributes": t.proxy(renames["AttributesOut"]).optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["LinkOut"])
+    types["StatusIn"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
+        }
+    ).named(renames["StatusIn"])
+    types["StatusOut"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StatusOut"])
+    types["MessageEventIn"] = t.struct(
+        {
+            "uncompressedSizeBytes": t.string().optional(),
+            "compressedSizeBytes": t.string().optional(),
+            "id": t.string().optional(),
+            "type": t.string().optional(),
+        }
+    ).named(renames["MessageEventIn"])
+    types["MessageEventOut"] = t.struct(
+        {
+            "uncompressedSizeBytes": t.string().optional(),
+            "compressedSizeBytes": t.string().optional(),
+            "id": t.string().optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MessageEventOut"])
+    types["AnnotationIn"] = t.struct(
+        {
+            "description": t.proxy(renames["TruncatableStringIn"]).optional(),
+            "attributes": t.proxy(renames["AttributesIn"]).optional(),
+        }
+    ).named(renames["AnnotationIn"])
+    types["AnnotationOut"] = t.struct(
+        {
+            "description": t.proxy(renames["TruncatableStringOut"]).optional(),
+            "attributes": t.proxy(renames["AttributesOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AnnotationOut"])
+    types["BatchWriteSpansRequestIn"] = t.struct(
+        {"spans": t.array(t.proxy(renames["SpanIn"]))}
+    ).named(renames["BatchWriteSpansRequestIn"])
+    types["BatchWriteSpansRequestOut"] = t.struct(
+        {
+            "spans": t.array(t.proxy(renames["SpanOut"])),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BatchWriteSpansRequestOut"])
 
     functions = {}
     functions["projectsTracesBatchWrite"] = cloudtrace.post(
@@ -325,19 +324,19 @@ def import_cloudtrace() -> Import:
         t.struct(
             {
                 "name": t.string(),
-                "spanKind": t.string().optional(),
-                "links": t.proxy(renames["LinksIn"]).optional(),
-                "stackTrace": t.proxy(renames["StackTraceIn"]).optional(),
-                "startTime": t.string(),
-                "endTime": t.string(),
-                "timeEvents": t.proxy(renames["TimeEventsIn"]).optional(),
-                "parentSpanId": t.string().optional(),
-                "childSpanCount": t.integer().optional(),
-                "sameProcessAsParentSpan": t.boolean().optional(),
-                "displayName": t.proxy(renames["TruncatableStringIn"]),
                 "attributes": t.proxy(renames["AttributesIn"]).optional(),
-                "spanId": t.string(),
+                "links": t.proxy(renames["LinksIn"]).optional(),
                 "status": t.proxy(renames["StatusIn"]).optional(),
+                "endTime": t.string(),
+                "spanId": t.string(),
+                "parentSpanId": t.string().optional(),
+                "displayName": t.proxy(renames["TruncatableStringIn"]),
+                "childSpanCount": t.integer().optional(),
+                "startTime": t.string(),
+                "sameProcessAsParentSpan": t.boolean().optional(),
+                "stackTrace": t.proxy(renames["StackTraceIn"]).optional(),
+                "timeEvents": t.proxy(renames["TimeEventsIn"]).optional(),
+                "spanKind": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -347,5 +346,8 @@ def import_cloudtrace() -> Import:
     )
 
     return Import(
-        importer="cloudtrace", renames=renames, types=types, functions=functions
+        importer="cloudtrace",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

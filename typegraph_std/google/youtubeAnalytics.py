@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_youtubeAnalytics() -> Import:
@@ -10,135 +9,112 @@ def import_youtubeAnalytics() -> Import:
 
     renames = {
         "ErrorResponse": "_youtubeAnalytics_1_ErrorResponse",
-        "GroupSnippetIn": "_youtubeAnalytics_2_GroupSnippetIn",
-        "GroupSnippetOut": "_youtubeAnalytics_3_GroupSnippetOut",
-        "GroupContentDetailsIn": "_youtubeAnalytics_4_GroupContentDetailsIn",
-        "GroupContentDetailsOut": "_youtubeAnalytics_5_GroupContentDetailsOut",
-        "GroupItemIn": "_youtubeAnalytics_6_GroupItemIn",
-        "GroupItemOut": "_youtubeAnalytics_7_GroupItemOut",
-        "QueryResponseIn": "_youtubeAnalytics_8_QueryResponseIn",
-        "QueryResponseOut": "_youtubeAnalytics_9_QueryResponseOut",
-        "ErrorsIn": "_youtubeAnalytics_10_ErrorsIn",
-        "ErrorsOut": "_youtubeAnalytics_11_ErrorsOut",
-        "ErrorProtoIn": "_youtubeAnalytics_12_ErrorProtoIn",
-        "ErrorProtoOut": "_youtubeAnalytics_13_ErrorProtoOut",
-        "GroupItemResourceIn": "_youtubeAnalytics_14_GroupItemResourceIn",
-        "GroupItemResourceOut": "_youtubeAnalytics_15_GroupItemResourceOut",
-        "ListGroupItemsResponseIn": "_youtubeAnalytics_16_ListGroupItemsResponseIn",
-        "ListGroupItemsResponseOut": "_youtubeAnalytics_17_ListGroupItemsResponseOut",
-        "ResultTableColumnHeaderIn": "_youtubeAnalytics_18_ResultTableColumnHeaderIn",
-        "ResultTableColumnHeaderOut": "_youtubeAnalytics_19_ResultTableColumnHeaderOut",
-        "ListGroupsResponseIn": "_youtubeAnalytics_20_ListGroupsResponseIn",
-        "ListGroupsResponseOut": "_youtubeAnalytics_21_ListGroupsResponseOut",
-        "EmptyResponseIn": "_youtubeAnalytics_22_EmptyResponseIn",
-        "EmptyResponseOut": "_youtubeAnalytics_23_EmptyResponseOut",
-        "GroupIn": "_youtubeAnalytics_24_GroupIn",
-        "GroupOut": "_youtubeAnalytics_25_GroupOut",
+        "QueryResponseIn": "_youtubeAnalytics_2_QueryResponseIn",
+        "QueryResponseOut": "_youtubeAnalytics_3_QueryResponseOut",
+        "GroupItemIn": "_youtubeAnalytics_4_GroupItemIn",
+        "GroupItemOut": "_youtubeAnalytics_5_GroupItemOut",
+        "EmptyResponseIn": "_youtubeAnalytics_6_EmptyResponseIn",
+        "EmptyResponseOut": "_youtubeAnalytics_7_EmptyResponseOut",
+        "GroupContentDetailsIn": "_youtubeAnalytics_8_GroupContentDetailsIn",
+        "GroupContentDetailsOut": "_youtubeAnalytics_9_GroupContentDetailsOut",
+        "ResultTableColumnHeaderIn": "_youtubeAnalytics_10_ResultTableColumnHeaderIn",
+        "ResultTableColumnHeaderOut": "_youtubeAnalytics_11_ResultTableColumnHeaderOut",
+        "GroupItemResourceIn": "_youtubeAnalytics_12_GroupItemResourceIn",
+        "GroupItemResourceOut": "_youtubeAnalytics_13_GroupItemResourceOut",
+        "ErrorsIn": "_youtubeAnalytics_14_ErrorsIn",
+        "ErrorsOut": "_youtubeAnalytics_15_ErrorsOut",
+        "GroupIn": "_youtubeAnalytics_16_GroupIn",
+        "GroupOut": "_youtubeAnalytics_17_GroupOut",
+        "ErrorProtoIn": "_youtubeAnalytics_18_ErrorProtoIn",
+        "ErrorProtoOut": "_youtubeAnalytics_19_ErrorProtoOut",
+        "GroupSnippetIn": "_youtubeAnalytics_20_GroupSnippetIn",
+        "GroupSnippetOut": "_youtubeAnalytics_21_GroupSnippetOut",
+        "ListGroupsResponseIn": "_youtubeAnalytics_22_ListGroupsResponseIn",
+        "ListGroupsResponseOut": "_youtubeAnalytics_23_ListGroupsResponseOut",
+        "ListGroupItemsResponseIn": "_youtubeAnalytics_24_ListGroupItemsResponseIn",
+        "ListGroupItemsResponseOut": "_youtubeAnalytics_25_ListGroupItemsResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["GroupSnippetIn"] = t.struct(
-        {"title": t.string().optional(), "publishedAt": t.string().optional()}
-    ).named(renames["GroupSnippetIn"])
-    types["GroupSnippetOut"] = t.struct(
-        {
-            "title": t.string().optional(),
-            "publishedAt": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GroupSnippetOut"])
-    types["GroupContentDetailsIn"] = t.struct(
-        {"itemType": t.string().optional(), "itemCount": t.string().optional()}
-    ).named(renames["GroupContentDetailsIn"])
-    types["GroupContentDetailsOut"] = t.struct(
-        {
-            "itemType": t.string().optional(),
-            "itemCount": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GroupContentDetailsOut"])
-    types["GroupItemIn"] = t.struct(
-        {
-            "resource": t.proxy(renames["GroupItemResourceIn"]).optional(),
-            "groupId": t.string().optional(),
-            "kind": t.string().optional(),
-            "id": t.string().optional(),
-            "etag": t.string().optional(),
-            "errors": t.proxy(renames["ErrorsIn"]).optional(),
-        }
-    ).named(renames["GroupItemIn"])
-    types["GroupItemOut"] = t.struct(
-        {
-            "resource": t.proxy(renames["GroupItemResourceOut"]).optional(),
-            "groupId": t.string().optional(),
-            "kind": t.string().optional(),
-            "id": t.string().optional(),
-            "etag": t.string().optional(),
-            "errors": t.proxy(renames["ErrorsOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GroupItemOut"])
     types["QueryResponseIn"] = t.struct(
         {
+            "rows": t.array(t.array(t.struct({"_": t.string().optional()}))).optional(),
+            "kind": t.string().optional(),
             "columnHeaders": t.array(
                 t.proxy(renames["ResultTableColumnHeaderIn"])
             ).optional(),
-            "kind": t.string().optional(),
             "errors": t.proxy(renames["ErrorsIn"]).optional(),
-            "rows": t.array(t.array(t.struct({"_": t.string().optional()}))).optional(),
         }
     ).named(renames["QueryResponseIn"])
     types["QueryResponseOut"] = t.struct(
         {
+            "rows": t.array(t.array(t.struct({"_": t.string().optional()}))).optional(),
+            "kind": t.string().optional(),
             "columnHeaders": t.array(
                 t.proxy(renames["ResultTableColumnHeaderOut"])
             ).optional(),
-            "kind": t.string().optional(),
             "errors": t.proxy(renames["ErrorsOut"]).optional(),
-            "rows": t.array(t.array(t.struct({"_": t.string().optional()}))).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["QueryResponseOut"])
-    types["ErrorsIn"] = t.struct(
+    types["GroupItemIn"] = t.struct(
         {
-            "code": t.string().optional(),
-            "error": t.array(t.proxy(renames["ErrorProtoIn"])).optional(),
-            "requestId": t.string().optional(),
+            "groupId": t.string().optional(),
+            "kind": t.string().optional(),
+            "errors": t.proxy(renames["ErrorsIn"]).optional(),
+            "id": t.string().optional(),
+            "resource": t.proxy(renames["GroupItemResourceIn"]).optional(),
+            "etag": t.string().optional(),
         }
-    ).named(renames["ErrorsIn"])
-    types["ErrorsOut"] = t.struct(
+    ).named(renames["GroupItemIn"])
+    types["GroupItemOut"] = t.struct(
         {
-            "code": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "requestId": t.string().optional(),
-        }
-    ).named(renames["ErrorsOut"])
-    types["ErrorProtoIn"] = t.struct(
-        {
-            "argument": t.array(t.string()).optional(),
-            "locationType": t.string(),
-            "domain": t.string().optional(),
-            "debugInfo": t.string().optional(),
-            "code": t.string().optional(),
-            "externalErrorMessage": t.string().optional(),
-            "location": t.string().optional(),
-        }
-    ).named(renames["ErrorProtoIn"])
-    types["ErrorProtoOut"] = t.struct(
-        {
-            "argument": t.array(t.string()).optional(),
-            "locationType": t.string(),
-            "domain": t.string().optional(),
-            "debugInfo": t.string().optional(),
-            "code": t.string().optional(),
-            "externalErrorMessage": t.string().optional(),
-            "location": t.string().optional(),
+            "groupId": t.string().optional(),
+            "kind": t.string().optional(),
+            "errors": t.proxy(renames["ErrorsOut"]).optional(),
+            "id": t.string().optional(),
+            "resource": t.proxy(renames["GroupItemResourceOut"]).optional(),
+            "etag": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ErrorProtoOut"])
+    ).named(renames["GroupItemOut"])
+    types["EmptyResponseIn"] = t.struct(
+        {"errors": t.proxy(renames["ErrorsIn"]).optional()}
+    ).named(renames["EmptyResponseIn"])
+    types["EmptyResponseOut"] = t.struct(
+        {
+            "errors": t.proxy(renames["ErrorsOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["EmptyResponseOut"])
+    types["GroupContentDetailsIn"] = t.struct(
+        {"itemCount": t.string().optional(), "itemType": t.string().optional()}
+    ).named(renames["GroupContentDetailsIn"])
+    types["GroupContentDetailsOut"] = t.struct(
+        {
+            "itemCount": t.string().optional(),
+            "itemType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GroupContentDetailsOut"])
+    types["ResultTableColumnHeaderIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "dataType": t.string().optional(),
+            "columnType": t.string().optional(),
+        }
+    ).named(renames["ResultTableColumnHeaderIn"])
+    types["ResultTableColumnHeaderOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "dataType": t.string().optional(),
+            "columnType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ResultTableColumnHeaderOut"])
     types["GroupItemResourceIn"] = t.struct(
         {"kind": t.string().optional(), "id": t.string().optional()}
     ).named(renames["GroupItemResourceIn"])
@@ -149,139 +125,162 @@ def import_youtubeAnalytics() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GroupItemResourceOut"])
-    types["ListGroupItemsResponseIn"] = t.struct(
+    types["ErrorsIn"] = t.struct(
         {
-            "items": t.array(t.proxy(renames["GroupItemIn"])).optional(),
+            "error": t.array(t.proxy(renames["ErrorProtoIn"])).optional(),
+            "code": t.string().optional(),
+            "requestId": t.string().optional(),
+        }
+    ).named(renames["ErrorsIn"])
+    types["ErrorsOut"] = t.struct(
+        {
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "code": t.string().optional(),
+            "requestId": t.string().optional(),
+        }
+    ).named(renames["ErrorsOut"])
+    types["GroupIn"] = t.struct(
+        {
+            "etag": t.string().optional(),
+            "id": t.string().optional(),
             "errors": t.proxy(renames["ErrorsIn"]).optional(),
-            "etag": t.string().optional(),
             "kind": t.string().optional(),
+            "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
+            "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
         }
-    ).named(renames["ListGroupItemsResponseIn"])
-    types["ListGroupItemsResponseOut"] = t.struct(
+    ).named(renames["GroupIn"])
+    types["GroupOut"] = t.struct(
         {
-            "items": t.array(t.proxy(renames["GroupItemOut"])).optional(),
+            "etag": t.string().optional(),
+            "id": t.string().optional(),
             "errors": t.proxy(renames["ErrorsOut"]).optional(),
-            "etag": t.string().optional(),
             "kind": t.string().optional(),
+            "snippet": t.proxy(renames["GroupSnippetOut"]).optional(),
+            "contentDetails": t.proxy(renames["GroupContentDetailsOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListGroupItemsResponseOut"])
-    types["ResultTableColumnHeaderIn"] = t.struct(
+    ).named(renames["GroupOut"])
+    types["ErrorProtoIn"] = t.struct(
         {
-            "columnType": t.string().optional(),
-            "dataType": t.string().optional(),
-            "name": t.string().optional(),
+            "domain": t.string().optional(),
+            "debugInfo": t.string().optional(),
+            "argument": t.array(t.string()).optional(),
+            "externalErrorMessage": t.string().optional(),
+            "locationType": t.string(),
+            "location": t.string().optional(),
+            "code": t.string().optional(),
         }
-    ).named(renames["ResultTableColumnHeaderIn"])
-    types["ResultTableColumnHeaderOut"] = t.struct(
+    ).named(renames["ErrorProtoIn"])
+    types["ErrorProtoOut"] = t.struct(
         {
-            "columnType": t.string().optional(),
-            "dataType": t.string().optional(),
-            "name": t.string().optional(),
+            "domain": t.string().optional(),
+            "debugInfo": t.string().optional(),
+            "argument": t.array(t.string()).optional(),
+            "externalErrorMessage": t.string().optional(),
+            "locationType": t.string(),
+            "location": t.string().optional(),
+            "code": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ResultTableColumnHeaderOut"])
+    ).named(renames["ErrorProtoOut"])
+    types["GroupSnippetIn"] = t.struct(
+        {"publishedAt": t.string().optional(), "title": t.string().optional()}
+    ).named(renames["GroupSnippetIn"])
+    types["GroupSnippetOut"] = t.struct(
+        {
+            "publishedAt": t.string().optional(),
+            "title": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GroupSnippetOut"])
     types["ListGroupsResponseIn"] = t.struct(
         {
             "errors": t.proxy(renames["ErrorsIn"]).optional(),
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
             "etag": t.string().optional(),
             "items": t.array(t.proxy(renames["GroupIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "kind": t.string().optional(),
         }
     ).named(renames["ListGroupsResponseIn"])
     types["ListGroupsResponseOut"] = t.struct(
         {
             "errors": t.proxy(renames["ErrorsOut"]).optional(),
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
             "etag": t.string().optional(),
             "items": t.array(t.proxy(renames["GroupOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "kind": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListGroupsResponseOut"])
-    types["EmptyResponseIn"] = t.struct(
-        {"errors": t.proxy(renames["ErrorsIn"]).optional()}
-    ).named(renames["EmptyResponseIn"])
-    types["EmptyResponseOut"] = t.struct(
+    types["ListGroupItemsResponseIn"] = t.struct(
         {
-            "errors": t.proxy(renames["ErrorsOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EmptyResponseOut"])
-    types["GroupIn"] = t.struct(
-        {
-            "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
             "kind": t.string().optional(),
-            "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
-            "etag": t.string().optional(),
             "errors": t.proxy(renames["ErrorsIn"]).optional(),
-            "id": t.string().optional(),
-        }
-    ).named(renames["GroupIn"])
-    types["GroupOut"] = t.struct(
-        {
-            "snippet": t.proxy(renames["GroupSnippetOut"]).optional(),
-            "kind": t.string().optional(),
-            "contentDetails": t.proxy(renames["GroupContentDetailsOut"]).optional(),
+            "items": t.array(t.proxy(renames["GroupItemIn"])).optional(),
             "etag": t.string().optional(),
+        }
+    ).named(renames["ListGroupItemsResponseIn"])
+    types["ListGroupItemsResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
             "errors": t.proxy(renames["ErrorsOut"]).optional(),
-            "id": t.string().optional(),
+            "items": t.array(t.proxy(renames["GroupItemOut"])).optional(),
+            "etag": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GroupOut"])
+    ).named(renames["ListGroupItemsResponseOut"])
 
     functions = {}
-    functions["groupItemsDelete"] = youtubeAnalytics.get(
+    functions["groupItemsList"] = youtubeAnalytics.delete(
         "v2/groupItems",
         t.struct(
             {
-                "groupId": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
+                "id": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListGroupItemsResponseOut"]),
+        t.proxy(renames["EmptyResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["groupItemsInsert"] = youtubeAnalytics.get(
+    functions["groupItemsInsert"] = youtubeAnalytics.delete(
         "v2/groupItems",
         t.struct(
             {
-                "groupId": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
+                "id": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListGroupItemsResponseOut"]),
+        t.proxy(renames["EmptyResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["groupItemsList"] = youtubeAnalytics.get(
+    functions["groupItemsDelete"] = youtubeAnalytics.delete(
         "v2/groupItems",
         t.struct(
             {
-                "groupId": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
+                "id": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListGroupItemsResponseOut"]),
+        t.proxy(renames["EmptyResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["groupsDelete"] = youtubeAnalytics.put(
+    functions["groupsUpdate"] = youtubeAnalytics.post(
         "v2/groups",
         t.struct(
             {
                 "onBehalfOfContentOwner": t.string().optional(),
-                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
-                "kind": t.string().optional(),
-                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "etag": t.string().optional(),
-                "errors": t.proxy(renames["ErrorsIn"]).optional(),
                 "id": t.string().optional(),
+                "errors": t.proxy(renames["ErrorsIn"]).optional(),
+                "kind": t.string().optional(),
+                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
+                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -289,17 +288,17 @@ def import_youtubeAnalytics() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["groupsList"] = youtubeAnalytics.put(
+    functions["groupsDelete"] = youtubeAnalytics.post(
         "v2/groups",
         t.struct(
             {
                 "onBehalfOfContentOwner": t.string().optional(),
-                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
-                "kind": t.string().optional(),
-                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "etag": t.string().optional(),
-                "errors": t.proxy(renames["ErrorsIn"]).optional(),
                 "id": t.string().optional(),
+                "errors": t.proxy(renames["ErrorsIn"]).optional(),
+                "kind": t.string().optional(),
+                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
+                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -307,17 +306,17 @@ def import_youtubeAnalytics() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["groupsInsert"] = youtubeAnalytics.put(
+    functions["groupsList"] = youtubeAnalytics.post(
         "v2/groups",
         t.struct(
             {
                 "onBehalfOfContentOwner": t.string().optional(),
-                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
-                "kind": t.string().optional(),
-                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "etag": t.string().optional(),
-                "errors": t.proxy(renames["ErrorsIn"]).optional(),
                 "id": t.string().optional(),
+                "errors": t.proxy(renames["ErrorsIn"]).optional(),
+                "kind": t.string().optional(),
+                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
+                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -325,17 +324,17 @@ def import_youtubeAnalytics() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["groupsUpdate"] = youtubeAnalytics.put(
+    functions["groupsInsert"] = youtubeAnalytics.post(
         "v2/groups",
         t.struct(
             {
                 "onBehalfOfContentOwner": t.string().optional(),
-                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
-                "kind": t.string().optional(),
-                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "etag": t.string().optional(),
-                "errors": t.proxy(renames["ErrorsIn"]).optional(),
                 "id": t.string().optional(),
+                "errors": t.proxy(renames["ErrorsIn"]).optional(),
+                "kind": t.string().optional(),
+                "snippet": t.proxy(renames["GroupSnippetIn"]).optional(),
+                "contentDetails": t.proxy(renames["GroupContentDetailsIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -347,17 +346,17 @@ def import_youtubeAnalytics() -> Import:
         "v2/reports",
         t.struct(
             {
-                "currency": t.string().optional(),
-                "includeHistoricalChannelData": t.boolean().optional(),
                 "startIndex": t.integer().optional(),
-                "filters": t.string().optional(),
+                "currency": t.string().optional(),
                 "dimensions": t.string().optional(),
-                "ids": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "metrics": t.string().optional(),
-                "endDate": t.string().optional(),
-                "startDate": t.string().optional(),
                 "sort": t.string().optional(),
+                "metrics": t.string().optional(),
+                "startDate": t.string().optional(),
+                "filters": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "endDate": t.string().optional(),
+                "includeHistoricalChannelData": t.boolean().optional(),
+                "ids": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -367,5 +366,8 @@ def import_youtubeAnalytics() -> Import:
     )
 
     return Import(
-        importer="youtubeAnalytics", renames=renames, types=types, functions=functions
+        importer="youtubeAnalytics",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

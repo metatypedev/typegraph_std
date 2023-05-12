@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_groupsmigration() -> Import:
@@ -39,5 +38,8 @@ def import_groupsmigration() -> Import:
     )
 
     return Import(
-        importer="groupsmigration", renames=renames, types=types, functions=functions
+        importer="groupsmigration",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

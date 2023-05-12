@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_bigtableadmin() -> Import:
@@ -1783,5 +1782,8 @@ def import_bigtableadmin() -> Import:
     )
 
     return Import(
-        importer="bigtableadmin", renames=renames, types=types, functions=functions
+        importer="bigtableadmin",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

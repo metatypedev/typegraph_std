@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_firebasedatabase() -> Import:
@@ -10,40 +9,41 @@ def import_firebasedatabase() -> Import:
 
     renames = {
         "ErrorResponse": "_firebasedatabase_1_ErrorResponse",
-        "UndeleteDatabaseInstanceRequestIn": "_firebasedatabase_2_UndeleteDatabaseInstanceRequestIn",
-        "UndeleteDatabaseInstanceRequestOut": "_firebasedatabase_3_UndeleteDatabaseInstanceRequestOut",
-        "DisableDatabaseInstanceRequestIn": "_firebasedatabase_4_DisableDatabaseInstanceRequestIn",
-        "DisableDatabaseInstanceRequestOut": "_firebasedatabase_5_DisableDatabaseInstanceRequestOut",
-        "ReenableDatabaseInstanceRequestIn": "_firebasedatabase_6_ReenableDatabaseInstanceRequestIn",
-        "ReenableDatabaseInstanceRequestOut": "_firebasedatabase_7_ReenableDatabaseInstanceRequestOut",
-        "ListDatabaseInstancesResponseIn": "_firebasedatabase_8_ListDatabaseInstancesResponseIn",
-        "ListDatabaseInstancesResponseOut": "_firebasedatabase_9_ListDatabaseInstancesResponseOut",
-        "DatabaseInstanceIn": "_firebasedatabase_10_DatabaseInstanceIn",
-        "DatabaseInstanceOut": "_firebasedatabase_11_DatabaseInstanceOut",
+        "DisableDatabaseInstanceRequestIn": "_firebasedatabase_2_DisableDatabaseInstanceRequestIn",
+        "DisableDatabaseInstanceRequestOut": "_firebasedatabase_3_DisableDatabaseInstanceRequestOut",
+        "DatabaseInstanceIn": "_firebasedatabase_4_DatabaseInstanceIn",
+        "DatabaseInstanceOut": "_firebasedatabase_5_DatabaseInstanceOut",
+        "ListDatabaseInstancesResponseIn": "_firebasedatabase_6_ListDatabaseInstancesResponseIn",
+        "ListDatabaseInstancesResponseOut": "_firebasedatabase_7_ListDatabaseInstancesResponseOut",
+        "UndeleteDatabaseInstanceRequestIn": "_firebasedatabase_8_UndeleteDatabaseInstanceRequestIn",
+        "UndeleteDatabaseInstanceRequestOut": "_firebasedatabase_9_UndeleteDatabaseInstanceRequestOut",
+        "ReenableDatabaseInstanceRequestIn": "_firebasedatabase_10_ReenableDatabaseInstanceRequestIn",
+        "ReenableDatabaseInstanceRequestOut": "_firebasedatabase_11_ReenableDatabaseInstanceRequestOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["UndeleteDatabaseInstanceRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["UndeleteDatabaseInstanceRequestIn"])
-    types["UndeleteDatabaseInstanceRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["UndeleteDatabaseInstanceRequestOut"])
     types["DisableDatabaseInstanceRequestIn"] = t.struct(
         {"_": t.string().optional()}
     ).named(renames["DisableDatabaseInstanceRequestIn"])
     types["DisableDatabaseInstanceRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["DisableDatabaseInstanceRequestOut"])
-    types["ReenableDatabaseInstanceRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["ReenableDatabaseInstanceRequestIn"])
-    types["ReenableDatabaseInstanceRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["ReenableDatabaseInstanceRequestOut"])
+    types["DatabaseInstanceIn"] = t.struct(
+        {"type": t.string().optional(), "name": t.string().optional()}
+    ).named(renames["DatabaseInstanceIn"])
+    types["DatabaseInstanceOut"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "state": t.string().optional(),
+            "project": t.string().optional(),
+            "name": t.string().optional(),
+            "databaseUrl": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DatabaseInstanceOut"])
     types["ListDatabaseInstancesResponseIn"] = t.struct(
         {
             "instances": t.array(t.proxy(renames["DatabaseInstanceIn"])).optional(),
@@ -57,71 +57,136 @@ def import_firebasedatabase() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListDatabaseInstancesResponseOut"])
-    types["DatabaseInstanceIn"] = t.struct(
-        {"type": t.string().optional(), "name": t.string().optional()}
-    ).named(renames["DatabaseInstanceIn"])
-    types["DatabaseInstanceOut"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "databaseUrl": t.string().optional(),
-            "state": t.string().optional(),
-            "name": t.string().optional(),
-            "project": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DatabaseInstanceOut"])
+    types["UndeleteDatabaseInstanceRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["UndeleteDatabaseInstanceRequestIn"])
+    types["UndeleteDatabaseInstanceRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["UndeleteDatabaseInstanceRequestOut"])
+    types["ReenableDatabaseInstanceRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["ReenableDatabaseInstanceRequestIn"])
+    types["ReenableDatabaseInstanceRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["ReenableDatabaseInstanceRequestOut"])
 
     functions = {}
-    functions["projectsLocationsInstancesList"] = firebasedatabase.delete(
-        "v1beta/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+    functions["projectsLocationsInstancesDisable"] = firebasedatabase.post(
+        "v1beta/{parent}/instances",
+        t.struct(
+            {
+                "parent": t.string(),
+                "databaseId": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["DatabaseInstanceOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesCreate"] = firebasedatabase.delete(
-        "v1beta/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+    functions["projectsLocationsInstancesGet"] = firebasedatabase.post(
+        "v1beta/{parent}/instances",
+        t.struct(
+            {
+                "parent": t.string(),
+                "databaseId": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["DatabaseInstanceOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesUndelete"] = firebasedatabase.delete(
-        "v1beta/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+    functions["projectsLocationsInstancesList"] = firebasedatabase.post(
+        "v1beta/{parent}/instances",
+        t.struct(
+            {
+                "parent": t.string(),
+                "databaseId": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["DatabaseInstanceOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesDisable"] = firebasedatabase.delete(
-        "v1beta/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+    functions["projectsLocationsInstancesReenable"] = firebasedatabase.post(
+        "v1beta/{parent}/instances",
+        t.struct(
+            {
+                "parent": t.string(),
+                "databaseId": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["DatabaseInstanceOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesReenable"] = firebasedatabase.delete(
-        "v1beta/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+    functions["projectsLocationsInstancesUndelete"] = firebasedatabase.post(
+        "v1beta/{parent}/instances",
+        t.struct(
+            {
+                "parent": t.string(),
+                "databaseId": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["DatabaseInstanceOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesGet"] = firebasedatabase.delete(
-        "v1beta/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+    functions["projectsLocationsInstancesDelete"] = firebasedatabase.post(
+        "v1beta/{parent}/instances",
+        t.struct(
+            {
+                "parent": t.string(),
+                "databaseId": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["DatabaseInstanceOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesDelete"] = firebasedatabase.delete(
-        "v1beta/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+    functions["projectsLocationsInstancesCreate"] = firebasedatabase.post(
+        "v1beta/{parent}/instances",
+        t.struct(
+            {
+                "parent": t.string(),
+                "databaseId": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "type": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["DatabaseInstanceOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
 
     return Import(
-        importer="firebasedatabase", renames=renames, types=types, functions=functions
+        importer="firebasedatabase",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

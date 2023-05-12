@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_firebaserules() -> Import:
@@ -10,115 +9,164 @@ def import_firebaserules() -> Import:
 
     renames = {
         "ErrorResponse": "_firebaserules_1_ErrorResponse",
-        "TestResultIn": "_firebaserules_2_TestResultIn",
-        "TestResultOut": "_firebaserules_3_TestResultOut",
-        "ValueCountIn": "_firebaserules_4_ValueCountIn",
-        "ValueCountOut": "_firebaserules_5_ValueCountOut",
-        "ArgIn": "_firebaserules_6_ArgIn",
-        "ArgOut": "_firebaserules_7_ArgOut",
-        "ResultIn": "_firebaserules_8_ResultIn",
-        "ResultOut": "_firebaserules_9_ResultOut",
-        "SourceIn": "_firebaserules_10_SourceIn",
-        "SourceOut": "_firebaserules_11_SourceOut",
-        "TestRulesetRequestIn": "_firebaserules_12_TestRulesetRequestIn",
-        "TestRulesetRequestOut": "_firebaserules_13_TestRulesetRequestOut",
-        "ExpressionReportIn": "_firebaserules_14_ExpressionReportIn",
-        "ExpressionReportOut": "_firebaserules_15_ExpressionReportOut",
-        "EmptyIn": "_firebaserules_16_EmptyIn",
-        "EmptyOut": "_firebaserules_17_EmptyOut",
-        "FunctionCallIn": "_firebaserules_18_FunctionCallIn",
-        "FunctionCallOut": "_firebaserules_19_FunctionCallOut",
-        "IssueIn": "_firebaserules_20_IssueIn",
-        "IssueOut": "_firebaserules_21_IssueOut",
-        "ReleaseIn": "_firebaserules_22_ReleaseIn",
-        "ReleaseOut": "_firebaserules_23_ReleaseOut",
-        "TestCaseIn": "_firebaserules_24_TestCaseIn",
-        "TestCaseOut": "_firebaserules_25_TestCaseOut",
+        "TestRulesetRequestIn": "_firebaserules_2_TestRulesetRequestIn",
+        "TestRulesetRequestOut": "_firebaserules_3_TestRulesetRequestOut",
+        "FunctionMockIn": "_firebaserules_4_FunctionMockIn",
+        "FunctionMockOut": "_firebaserules_5_FunctionMockOut",
+        "IssueIn": "_firebaserules_6_IssueIn",
+        "IssueOut": "_firebaserules_7_IssueOut",
+        "RulesetIn": "_firebaserules_8_RulesetIn",
+        "RulesetOut": "_firebaserules_9_RulesetOut",
+        "SourcePositionIn": "_firebaserules_10_SourcePositionIn",
+        "SourcePositionOut": "_firebaserules_11_SourcePositionOut",
+        "SourceIn": "_firebaserules_12_SourceIn",
+        "SourceOut": "_firebaserules_13_SourceOut",
+        "GetReleaseExecutableResponseIn": "_firebaserules_14_GetReleaseExecutableResponseIn",
+        "GetReleaseExecutableResponseOut": "_firebaserules_15_GetReleaseExecutableResponseOut",
+        "ResultIn": "_firebaserules_16_ResultIn",
+        "ResultOut": "_firebaserules_17_ResultOut",
+        "TestCaseIn": "_firebaserules_18_TestCaseIn",
+        "TestCaseOut": "_firebaserules_19_TestCaseOut",
+        "TestSuiteIn": "_firebaserules_20_TestSuiteIn",
+        "TestSuiteOut": "_firebaserules_21_TestSuiteOut",
+        "EmptyIn": "_firebaserules_22_EmptyIn",
+        "EmptyOut": "_firebaserules_23_EmptyOut",
+        "FunctionCallIn": "_firebaserules_24_FunctionCallIn",
+        "FunctionCallOut": "_firebaserules_25_FunctionCallOut",
         "TestRulesetResponseIn": "_firebaserules_26_TestRulesetResponseIn",
         "TestRulesetResponseOut": "_firebaserules_27_TestRulesetResponseOut",
-        "FunctionMockIn": "_firebaserules_28_FunctionMockIn",
-        "FunctionMockOut": "_firebaserules_29_FunctionMockOut",
-        "GetReleaseExecutableResponseIn": "_firebaserules_30_GetReleaseExecutableResponseIn",
-        "GetReleaseExecutableResponseOut": "_firebaserules_31_GetReleaseExecutableResponseOut",
-        "UpdateReleaseRequestIn": "_firebaserules_32_UpdateReleaseRequestIn",
-        "UpdateReleaseRequestOut": "_firebaserules_33_UpdateReleaseRequestOut",
-        "SourcePositionIn": "_firebaserules_34_SourcePositionIn",
-        "SourcePositionOut": "_firebaserules_35_SourcePositionOut",
-        "MetadataIn": "_firebaserules_36_MetadataIn",
-        "MetadataOut": "_firebaserules_37_MetadataOut",
-        "VisitedExpressionIn": "_firebaserules_38_VisitedExpressionIn",
-        "VisitedExpressionOut": "_firebaserules_39_VisitedExpressionOut",
-        "ListRulesetsResponseIn": "_firebaserules_40_ListRulesetsResponseIn",
-        "ListRulesetsResponseOut": "_firebaserules_41_ListRulesetsResponseOut",
-        "RulesetIn": "_firebaserules_42_RulesetIn",
-        "RulesetOut": "_firebaserules_43_RulesetOut",
-        "FileIn": "_firebaserules_44_FileIn",
-        "FileOut": "_firebaserules_45_FileOut",
-        "TestSuiteIn": "_firebaserules_46_TestSuiteIn",
-        "TestSuiteOut": "_firebaserules_47_TestSuiteOut",
-        "ListReleasesResponseIn": "_firebaserules_48_ListReleasesResponseIn",
-        "ListReleasesResponseOut": "_firebaserules_49_ListReleasesResponseOut",
+        "ListReleasesResponseIn": "_firebaserules_28_ListReleasesResponseIn",
+        "ListReleasesResponseOut": "_firebaserules_29_ListReleasesResponseOut",
+        "MetadataIn": "_firebaserules_30_MetadataIn",
+        "MetadataOut": "_firebaserules_31_MetadataOut",
+        "ListRulesetsResponseIn": "_firebaserules_32_ListRulesetsResponseIn",
+        "ListRulesetsResponseOut": "_firebaserules_33_ListRulesetsResponseOut",
+        "VisitedExpressionIn": "_firebaserules_34_VisitedExpressionIn",
+        "VisitedExpressionOut": "_firebaserules_35_VisitedExpressionOut",
+        "FileIn": "_firebaserules_36_FileIn",
+        "FileOut": "_firebaserules_37_FileOut",
+        "UpdateReleaseRequestIn": "_firebaserules_38_UpdateReleaseRequestIn",
+        "UpdateReleaseRequestOut": "_firebaserules_39_UpdateReleaseRequestOut",
+        "ExpressionReportIn": "_firebaserules_40_ExpressionReportIn",
+        "ExpressionReportOut": "_firebaserules_41_ExpressionReportOut",
+        "TestResultIn": "_firebaserules_42_TestResultIn",
+        "TestResultOut": "_firebaserules_43_TestResultOut",
+        "ValueCountIn": "_firebaserules_44_ValueCountIn",
+        "ValueCountOut": "_firebaserules_45_ValueCountOut",
+        "ArgIn": "_firebaserules_46_ArgIn",
+        "ArgOut": "_firebaserules_47_ArgOut",
+        "ReleaseIn": "_firebaserules_48_ReleaseIn",
+        "ReleaseOut": "_firebaserules_49_ReleaseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["TestResultIn"] = t.struct(
+    types["TestRulesetRequestIn"] = t.struct(
         {
-            "functionCalls": t.array(t.proxy(renames["FunctionCallIn"])).optional(),
-            "debugMessages": t.array(t.string()).optional(),
-            "visitedExpressions": t.array(
-                t.proxy(renames["VisitedExpressionIn"])
-            ).optional(),
-            "expressionReports": t.array(
-                t.proxy(renames["ExpressionReportIn"])
-            ).optional(),
-            "errorPosition": t.proxy(renames["SourcePositionIn"]).optional(),
-            "state": t.string().optional(),
+            "source": t.proxy(renames["SourceIn"]).optional(),
+            "testSuite": t.proxy(renames["TestSuiteIn"]).optional(),
         }
-    ).named(renames["TestResultIn"])
-    types["TestResultOut"] = t.struct(
+    ).named(renames["TestRulesetRequestIn"])
+    types["TestRulesetRequestOut"] = t.struct(
         {
-            "functionCalls": t.array(t.proxy(renames["FunctionCallOut"])).optional(),
-            "debugMessages": t.array(t.string()).optional(),
-            "visitedExpressions": t.array(
-                t.proxy(renames["VisitedExpressionOut"])
-            ).optional(),
-            "expressionReports": t.array(
-                t.proxy(renames["ExpressionReportOut"])
-            ).optional(),
-            "errorPosition": t.proxy(renames["SourcePositionOut"]).optional(),
-            "state": t.string().optional(),
+            "source": t.proxy(renames["SourceOut"]).optional(),
+            "testSuite": t.proxy(renames["TestSuiteOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TestResultOut"])
-    types["ValueCountIn"] = t.struct(
+    ).named(renames["TestRulesetRequestOut"])
+    types["FunctionMockIn"] = t.struct(
         {
-            "count": t.integer().optional(),
-            "value": t.struct({"_": t.string().optional()}).optional(),
+            "args": t.array(t.proxy(renames["ArgIn"])).optional(),
+            "function": t.string().optional(),
+            "result": t.proxy(renames["ResultIn"]).optional(),
         }
-    ).named(renames["ValueCountIn"])
-    types["ValueCountOut"] = t.struct(
+    ).named(renames["FunctionMockIn"])
+    types["FunctionMockOut"] = t.struct(
         {
-            "count": t.integer().optional(),
-            "value": t.struct({"_": t.string().optional()}).optional(),
+            "args": t.array(t.proxy(renames["ArgOut"])).optional(),
+            "function": t.string().optional(),
+            "result": t.proxy(renames["ResultOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ValueCountOut"])
-    types["ArgIn"] = t.struct(
+    ).named(renames["FunctionMockOut"])
+    types["IssueIn"] = t.struct(
         {
-            "anyValue": t.proxy(renames["EmptyIn"]).optional(),
-            "exactValue": t.struct({"_": t.string().optional()}).optional(),
+            "sourcePosition": t.proxy(renames["SourcePositionIn"]).optional(),
+            "description": t.string().optional(),
+            "severity": t.string().optional(),
         }
-    ).named(renames["ArgIn"])
-    types["ArgOut"] = t.struct(
+    ).named(renames["IssueIn"])
+    types["IssueOut"] = t.struct(
         {
-            "anyValue": t.proxy(renames["EmptyOut"]).optional(),
-            "exactValue": t.struct({"_": t.string().optional()}).optional(),
+            "sourcePosition": t.proxy(renames["SourcePositionOut"]).optional(),
+            "description": t.string().optional(),
+            "severity": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ArgOut"])
+    ).named(renames["IssueOut"])
+    types["RulesetIn"] = t.struct({"source": t.proxy(renames["SourceIn"])}).named(
+        renames["RulesetIn"]
+    )
+    types["RulesetOut"] = t.struct(
+        {
+            "source": t.proxy(renames["SourceOut"]),
+            "metadata": t.proxy(renames["MetadataOut"]).optional(),
+            "name": t.string().optional(),
+            "createTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RulesetOut"])
+    types["SourcePositionIn"] = t.struct(
+        {
+            "currentOffset": t.integer().optional(),
+            "column": t.integer().optional(),
+            "endOffset": t.integer().optional(),
+            "fileName": t.string().optional(),
+            "line": t.integer().optional(),
+        }
+    ).named(renames["SourcePositionIn"])
+    types["SourcePositionOut"] = t.struct(
+        {
+            "currentOffset": t.integer().optional(),
+            "column": t.integer().optional(),
+            "endOffset": t.integer().optional(),
+            "fileName": t.string().optional(),
+            "line": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SourcePositionOut"])
+    types["SourceIn"] = t.struct({"files": t.array(t.proxy(renames["FileIn"]))}).named(
+        renames["SourceIn"]
+    )
+    types["SourceOut"] = t.struct(
+        {
+            "files": t.array(t.proxy(renames["FileOut"])),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SourceOut"])
+    types["GetReleaseExecutableResponseIn"] = t.struct(
+        {
+            "rulesetName": t.string().optional(),
+            "executableVersion": t.string().optional(),
+            "language": t.string().optional(),
+            "syncTime": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "executable": t.string().optional(),
+        }
+    ).named(renames["GetReleaseExecutableResponseIn"])
+    types["GetReleaseExecutableResponseOut"] = t.struct(
+        {
+            "rulesetName": t.string().optional(),
+            "executableVersion": t.string().optional(),
+            "language": t.string().optional(),
+            "syncTime": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "executable": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetReleaseExecutableResponseOut"])
     types["ResultIn"] = t.struct(
         {
             "value": t.struct({"_": t.string().optional()}).optional(),
@@ -132,43 +180,36 @@ def import_firebaserules() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ResultOut"])
-    types["SourceIn"] = t.struct({"files": t.array(t.proxy(renames["FileIn"]))}).named(
-        renames["SourceIn"]
-    )
-    types["SourceOut"] = t.struct(
+    types["TestCaseIn"] = t.struct(
         {
-            "files": t.array(t.proxy(renames["FileOut"])),
+            "functionMocks": t.array(t.proxy(renames["FunctionMockIn"])).optional(),
+            "pathEncoding": t.string().optional(),
+            "expectation": t.string().optional(),
+            "resource": t.struct({"_": t.string().optional()}).optional(),
+            "request": t.struct({"_": t.string().optional()}).optional(),
+            "expressionReportLevel": t.string().optional(),
+        }
+    ).named(renames["TestCaseIn"])
+    types["TestCaseOut"] = t.struct(
+        {
+            "functionMocks": t.array(t.proxy(renames["FunctionMockOut"])).optional(),
+            "pathEncoding": t.string().optional(),
+            "expectation": t.string().optional(),
+            "resource": t.struct({"_": t.string().optional()}).optional(),
+            "request": t.struct({"_": t.string().optional()}).optional(),
+            "expressionReportLevel": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SourceOut"])
-    types["TestRulesetRequestIn"] = t.struct(
+    ).named(renames["TestCaseOut"])
+    types["TestSuiteIn"] = t.struct(
+        {"testCases": t.array(t.proxy(renames["TestCaseIn"])).optional()}
+    ).named(renames["TestSuiteIn"])
+    types["TestSuiteOut"] = t.struct(
         {
-            "testSuite": t.proxy(renames["TestSuiteIn"]).optional(),
-            "source": t.proxy(renames["SourceIn"]).optional(),
-        }
-    ).named(renames["TestRulesetRequestIn"])
-    types["TestRulesetRequestOut"] = t.struct(
-        {
-            "testSuite": t.proxy(renames["TestSuiteOut"]).optional(),
-            "source": t.proxy(renames["SourceOut"]).optional(),
+            "testCases": t.array(t.proxy(renames["TestCaseOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TestRulesetRequestOut"])
-    types["ExpressionReportIn"] = t.struct(
-        {
-            "children": t.array(t.proxy(renames["ExpressionReportIn"])).optional(),
-            "sourcePosition": t.proxy(renames["SourcePositionIn"]).optional(),
-            "values": t.array(t.proxy(renames["ValueCountIn"])).optional(),
-        }
-    ).named(renames["ExpressionReportIn"])
-    types["ExpressionReportOut"] = t.struct(
-        {
-            "children": t.array(t.proxy(renames["ExpressionReportOut"])).optional(),
-            "sourcePosition": t.proxy(renames["SourcePositionOut"]).optional(),
-            "values": t.array(t.proxy(renames["ValueCountOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExpressionReportOut"])
+    ).named(renames["TestSuiteOut"])
     types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
     types["EmptyOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
@@ -186,132 +227,32 @@ def import_firebaserules() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["FunctionCallOut"])
-    types["IssueIn"] = t.struct(
-        {
-            "severity": t.string().optional(),
-            "sourcePosition": t.proxy(renames["SourcePositionIn"]).optional(),
-            "description": t.string().optional(),
-        }
-    ).named(renames["IssueIn"])
-    types["IssueOut"] = t.struct(
-        {
-            "severity": t.string().optional(),
-            "sourcePosition": t.proxy(renames["SourcePositionOut"]).optional(),
-            "description": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["IssueOut"])
-    types["ReleaseIn"] = t.struct(
-        {"rulesetName": t.string(), "name": t.string()}
-    ).named(renames["ReleaseIn"])
-    types["ReleaseOut"] = t.struct(
-        {
-            "createTime": t.string().optional(),
-            "rulesetName": t.string(),
-            "updateTime": t.string().optional(),
-            "name": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReleaseOut"])
-    types["TestCaseIn"] = t.struct(
-        {
-            "functionMocks": t.array(t.proxy(renames["FunctionMockIn"])).optional(),
-            "expressionReportLevel": t.string().optional(),
-            "pathEncoding": t.string().optional(),
-            "expectation": t.string().optional(),
-            "request": t.struct({"_": t.string().optional()}).optional(),
-            "resource": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["TestCaseIn"])
-    types["TestCaseOut"] = t.struct(
-        {
-            "functionMocks": t.array(t.proxy(renames["FunctionMockOut"])).optional(),
-            "expressionReportLevel": t.string().optional(),
-            "pathEncoding": t.string().optional(),
-            "expectation": t.string().optional(),
-            "request": t.struct({"_": t.string().optional()}).optional(),
-            "resource": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestCaseOut"])
     types["TestRulesetResponseIn"] = t.struct(
         {
-            "issues": t.array(t.proxy(renames["IssueIn"])).optional(),
             "testResults": t.array(t.proxy(renames["TestResultIn"])).optional(),
+            "issues": t.array(t.proxy(renames["IssueIn"])).optional(),
         }
     ).named(renames["TestRulesetResponseIn"])
     types["TestRulesetResponseOut"] = t.struct(
         {
-            "issues": t.array(t.proxy(renames["IssueOut"])).optional(),
             "testResults": t.array(t.proxy(renames["TestResultOut"])).optional(),
+            "issues": t.array(t.proxy(renames["IssueOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TestRulesetResponseOut"])
-    types["FunctionMockIn"] = t.struct(
+    types["ListReleasesResponseIn"] = t.struct(
         {
-            "args": t.array(t.proxy(renames["ArgIn"])).optional(),
-            "result": t.proxy(renames["ResultIn"]).optional(),
-            "function": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "releases": t.array(t.proxy(renames["ReleaseIn"])).optional(),
         }
-    ).named(renames["FunctionMockIn"])
-    types["FunctionMockOut"] = t.struct(
+    ).named(renames["ListReleasesResponseIn"])
+    types["ListReleasesResponseOut"] = t.struct(
         {
-            "args": t.array(t.proxy(renames["ArgOut"])).optional(),
-            "result": t.proxy(renames["ResultOut"]).optional(),
-            "function": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "releases": t.array(t.proxy(renames["ReleaseOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["FunctionMockOut"])
-    types["GetReleaseExecutableResponseIn"] = t.struct(
-        {
-            "updateTime": t.string().optional(),
-            "language": t.string().optional(),
-            "rulesetName": t.string().optional(),
-            "executable": t.string().optional(),
-            "syncTime": t.string().optional(),
-            "executableVersion": t.string().optional(),
-        }
-    ).named(renames["GetReleaseExecutableResponseIn"])
-    types["GetReleaseExecutableResponseOut"] = t.struct(
-        {
-            "updateTime": t.string().optional(),
-            "language": t.string().optional(),
-            "rulesetName": t.string().optional(),
-            "executable": t.string().optional(),
-            "syncTime": t.string().optional(),
-            "executableVersion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GetReleaseExecutableResponseOut"])
-    types["UpdateReleaseRequestIn"] = t.struct(
-        {"updateMask": t.string().optional(), "release": t.proxy(renames["ReleaseIn"])}
-    ).named(renames["UpdateReleaseRequestIn"])
-    types["UpdateReleaseRequestOut"] = t.struct(
-        {
-            "updateMask": t.string().optional(),
-            "release": t.proxy(renames["ReleaseOut"]),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UpdateReleaseRequestOut"])
-    types["SourcePositionIn"] = t.struct(
-        {
-            "currentOffset": t.integer().optional(),
-            "fileName": t.string().optional(),
-            "column": t.integer().optional(),
-            "line": t.integer().optional(),
-            "endOffset": t.integer().optional(),
-        }
-    ).named(renames["SourcePositionIn"])
-    types["SourcePositionOut"] = t.struct(
-        {
-            "currentOffset": t.integer().optional(),
-            "fileName": t.string().optional(),
-            "column": t.integer().optional(),
-            "line": t.integer().optional(),
-            "endOffset": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SourcePositionOut"])
+    ).named(renames["ListReleasesResponseOut"])
     types["MetadataIn"] = t.struct({"services": t.array(t.string()).optional()}).named(
         renames["MetadataIn"]
     )
@@ -321,81 +262,139 @@ def import_firebaserules() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["MetadataOut"])
-    types["VisitedExpressionIn"] = t.struct(
-        {
-            "value": t.struct({"_": t.string().optional()}).optional(),
-            "sourcePosition": t.proxy(renames["SourcePositionIn"]).optional(),
-        }
-    ).named(renames["VisitedExpressionIn"])
-    types["VisitedExpressionOut"] = t.struct(
-        {
-            "value": t.struct({"_": t.string().optional()}).optional(),
-            "sourcePosition": t.proxy(renames["SourcePositionOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["VisitedExpressionOut"])
     types["ListRulesetsResponseIn"] = t.struct(
         {
-            "rulesets": t.array(t.proxy(renames["RulesetIn"])).optional(),
             "nextPageToken": t.string().optional(),
+            "rulesets": t.array(t.proxy(renames["RulesetIn"])).optional(),
         }
     ).named(renames["ListRulesetsResponseIn"])
     types["ListRulesetsResponseOut"] = t.struct(
         {
-            "rulesets": t.array(t.proxy(renames["RulesetOut"])).optional(),
             "nextPageToken": t.string().optional(),
+            "rulesets": t.array(t.proxy(renames["RulesetOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListRulesetsResponseOut"])
-    types["RulesetIn"] = t.struct({"source": t.proxy(renames["SourceIn"])}).named(
-        renames["RulesetIn"]
-    )
-    types["RulesetOut"] = t.struct(
+    types["VisitedExpressionIn"] = t.struct(
         {
-            "source": t.proxy(renames["SourceOut"]),
-            "metadata": t.proxy(renames["MetadataOut"]).optional(),
-            "name": t.string().optional(),
-            "createTime": t.string().optional(),
+            "sourcePosition": t.proxy(renames["SourcePositionIn"]).optional(),
+            "value": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["VisitedExpressionIn"])
+    types["VisitedExpressionOut"] = t.struct(
+        {
+            "sourcePosition": t.proxy(renames["SourcePositionOut"]).optional(),
+            "value": t.struct({"_": t.string().optional()}).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["RulesetOut"])
+    ).named(renames["VisitedExpressionOut"])
     types["FileIn"] = t.struct(
         {
-            "fingerprint": t.string().optional(),
             "name": t.string(),
             "content": t.string(),
+            "fingerprint": t.string().optional(),
         }
     ).named(renames["FileIn"])
     types["FileOut"] = t.struct(
         {
-            "fingerprint": t.string().optional(),
             "name": t.string(),
             "content": t.string(),
+            "fingerprint": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["FileOut"])
-    types["TestSuiteIn"] = t.struct(
-        {"testCases": t.array(t.proxy(renames["TestCaseIn"])).optional()}
-    ).named(renames["TestSuiteIn"])
-    types["TestSuiteOut"] = t.struct(
+    types["UpdateReleaseRequestIn"] = t.struct(
+        {"release": t.proxy(renames["ReleaseIn"]), "updateMask": t.string().optional()}
+    ).named(renames["UpdateReleaseRequestIn"])
+    types["UpdateReleaseRequestOut"] = t.struct(
         {
-            "testCases": t.array(t.proxy(renames["TestCaseOut"])).optional(),
+            "release": t.proxy(renames["ReleaseOut"]),
+            "updateMask": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TestSuiteOut"])
-    types["ListReleasesResponseIn"] = t.struct(
+    ).named(renames["UpdateReleaseRequestOut"])
+    types["ExpressionReportIn"] = t.struct(
         {
-            "releases": t.array(t.proxy(renames["ReleaseIn"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "sourcePosition": t.proxy(renames["SourcePositionIn"]).optional(),
+            "values": t.array(t.proxy(renames["ValueCountIn"])).optional(),
+            "children": t.array(t.proxy(renames["ExpressionReportIn"])).optional(),
         }
-    ).named(renames["ListReleasesResponseIn"])
-    types["ListReleasesResponseOut"] = t.struct(
+    ).named(renames["ExpressionReportIn"])
+    types["ExpressionReportOut"] = t.struct(
         {
-            "releases": t.array(t.proxy(renames["ReleaseOut"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "sourcePosition": t.proxy(renames["SourcePositionOut"]).optional(),
+            "values": t.array(t.proxy(renames["ValueCountOut"])).optional(),
+            "children": t.array(t.proxy(renames["ExpressionReportOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListReleasesResponseOut"])
+    ).named(renames["ExpressionReportOut"])
+    types["TestResultIn"] = t.struct(
+        {
+            "state": t.string().optional(),
+            "errorPosition": t.proxy(renames["SourcePositionIn"]).optional(),
+            "debugMessages": t.array(t.string()).optional(),
+            "visitedExpressions": t.array(
+                t.proxy(renames["VisitedExpressionIn"])
+            ).optional(),
+            "expressionReports": t.array(
+                t.proxy(renames["ExpressionReportIn"])
+            ).optional(),
+            "functionCalls": t.array(t.proxy(renames["FunctionCallIn"])).optional(),
+        }
+    ).named(renames["TestResultIn"])
+    types["TestResultOut"] = t.struct(
+        {
+            "state": t.string().optional(),
+            "errorPosition": t.proxy(renames["SourcePositionOut"]).optional(),
+            "debugMessages": t.array(t.string()).optional(),
+            "visitedExpressions": t.array(
+                t.proxy(renames["VisitedExpressionOut"])
+            ).optional(),
+            "expressionReports": t.array(
+                t.proxy(renames["ExpressionReportOut"])
+            ).optional(),
+            "functionCalls": t.array(t.proxy(renames["FunctionCallOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestResultOut"])
+    types["ValueCountIn"] = t.struct(
+        {
+            "value": t.struct({"_": t.string().optional()}).optional(),
+            "count": t.integer().optional(),
+        }
+    ).named(renames["ValueCountIn"])
+    types["ValueCountOut"] = t.struct(
+        {
+            "value": t.struct({"_": t.string().optional()}).optional(),
+            "count": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ValueCountOut"])
+    types["ArgIn"] = t.struct(
+        {
+            "exactValue": t.struct({"_": t.string().optional()}).optional(),
+            "anyValue": t.proxy(renames["EmptyIn"]).optional(),
+        }
+    ).named(renames["ArgIn"])
+    types["ArgOut"] = t.struct(
+        {
+            "exactValue": t.struct({"_": t.string().optional()}).optional(),
+            "anyValue": t.proxy(renames["EmptyOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ArgOut"])
+    types["ReleaseIn"] = t.struct(
+        {"name": t.string(), "rulesetName": t.string()}
+    ).named(renames["ReleaseIn"])
+    types["ReleaseOut"] = t.struct(
+        {
+            "name": t.string(),
+            "rulesetName": t.string(),
+            "updateTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReleaseOut"])
 
     functions = {}
     functions["projectsTest"] = firebaserules.post(
@@ -403,8 +402,8 @@ def import_firebaserules() -> Import:
         t.struct(
             {
                 "name": t.string(),
-                "testSuite": t.proxy(renames["TestSuiteIn"]).optional(),
                 "source": t.proxy(renames["SourceIn"]).optional(),
+                "testSuite": t.proxy(renames["TestSuiteIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -412,137 +411,116 @@ def import_firebaserules() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsRulesetsDelete"] = firebaserules.post(
-        "v1/{name}/rulesets",
+    functions["projectsReleasesGet"] = firebaserules.post(
+        "v1/{name}/releases",
         t.struct(
             {
                 "name": t.string(),
-                "source": t.proxy(renames["SourceIn"]),
+                "rulesetName": t.string(),
                 "auth": t.string().optional(),
             }
         ),
+        t.proxy(renames["ReleaseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReleasesList"] = firebaserules.post(
+        "v1/{name}/releases",
+        t.struct(
+            {
+                "name": t.string(),
+                "rulesetName": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReleaseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReleasesDelete"] = firebaserules.post(
+        "v1/{name}/releases",
+        t.struct(
+            {
+                "name": t.string(),
+                "rulesetName": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReleaseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReleasesPatch"] = firebaserules.post(
+        "v1/{name}/releases",
+        t.struct(
+            {
+                "name": t.string(),
+                "rulesetName": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReleaseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReleasesGetExecutable"] = firebaserules.post(
+        "v1/{name}/releases",
+        t.struct(
+            {
+                "name": t.string(),
+                "rulesetName": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReleaseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReleasesCreate"] = firebaserules.post(
+        "v1/{name}/releases",
+        t.struct(
+            {
+                "name": t.string(),
+                "rulesetName": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReleaseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsRulesetsList"] = firebaserules.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["RulesetOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsRulesetsGet"] = firebaserules.post(
-        "v1/{name}/rulesets",
-        t.struct(
-            {
-                "name": t.string(),
-                "source": t.proxy(renames["SourceIn"]),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["projectsRulesetsDelete"] = firebaserules.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["RulesetOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsRulesetsList"] = firebaserules.post(
-        "v1/{name}/rulesets",
-        t.struct(
-            {
-                "name": t.string(),
-                "source": t.proxy(renames["SourceIn"]),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["projectsRulesetsCreate"] = firebaserules.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["RulesetOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsRulesetsCreate"] = firebaserules.post(
-        "v1/{name}/rulesets",
-        t.struct(
-            {
-                "name": t.string(),
-                "source": t.proxy(renames["SourceIn"]),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["projectsRulesetsGet"] = firebaserules.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["RulesetOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReleasesGet"] = firebaserules.get(
-        "v1/{name}:getExecutable",
-        t.struct(
-            {
-                "name": t.string(),
-                "executableVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetReleaseExecutableResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReleasesCreate"] = firebaserules.get(
-        "v1/{name}:getExecutable",
-        t.struct(
-            {
-                "name": t.string(),
-                "executableVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetReleaseExecutableResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReleasesDelete"] = firebaserules.get(
-        "v1/{name}:getExecutable",
-        t.struct(
-            {
-                "name": t.string(),
-                "executableVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetReleaseExecutableResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReleasesList"] = firebaserules.get(
-        "v1/{name}:getExecutable",
-        t.struct(
-            {
-                "name": t.string(),
-                "executableVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetReleaseExecutableResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReleasesPatch"] = firebaserules.get(
-        "v1/{name}:getExecutable",
-        t.struct(
-            {
-                "name": t.string(),
-                "executableVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetReleaseExecutableResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReleasesGetExecutable"] = firebaserules.get(
-        "v1/{name}:getExecutable",
-        t.struct(
-            {
-                "name": t.string(),
-                "executableVersion": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["GetReleaseExecutableResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
 
     return Import(
-        importer="firebaserules", renames=renames, types=types, functions=functions
+        importer="firebaserules",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

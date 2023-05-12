@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_indexing() -> Import:
@@ -85,5 +84,5 @@ def import_indexing() -> Import:
     )
 
     return Import(
-        importer="indexing", renames=renames, types=types, functions=functions
+        importer="indexing", renames=renames, types=Box(types), functions=Box(functions)
     )

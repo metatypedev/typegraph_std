@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_cloudtasks() -> Import:
@@ -714,5 +713,8 @@ def import_cloudtasks() -> Import:
     )
 
     return Import(
-        importer="cloudtasks", renames=renames, types=types, functions=functions
+        importer="cloudtasks",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

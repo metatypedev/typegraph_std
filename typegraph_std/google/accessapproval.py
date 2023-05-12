@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_accessapproval() -> Import:
@@ -10,173 +9,49 @@ def import_accessapproval() -> Import:
 
     renames = {
         "ErrorResponse": "_accessapproval_1_ErrorResponse",
-        "AccessApprovalServiceAccountIn": "_accessapproval_2_AccessApprovalServiceAccountIn",
-        "AccessApprovalServiceAccountOut": "_accessapproval_3_AccessApprovalServiceAccountOut",
-        "EmptyIn": "_accessapproval_4_EmptyIn",
-        "EmptyOut": "_accessapproval_5_EmptyOut",
-        "ApprovalRequestIn": "_accessapproval_6_ApprovalRequestIn",
-        "ApprovalRequestOut": "_accessapproval_7_ApprovalRequestOut",
-        "SignatureInfoIn": "_accessapproval_8_SignatureInfoIn",
-        "SignatureInfoOut": "_accessapproval_9_SignatureInfoOut",
-        "ApproveDecisionIn": "_accessapproval_10_ApproveDecisionIn",
-        "ApproveDecisionOut": "_accessapproval_11_ApproveDecisionOut",
-        "ResourcePropertiesIn": "_accessapproval_12_ResourcePropertiesIn",
-        "ResourcePropertiesOut": "_accessapproval_13_ResourcePropertiesOut",
-        "AccessLocationsIn": "_accessapproval_14_AccessLocationsIn",
-        "AccessLocationsOut": "_accessapproval_15_AccessLocationsOut",
-        "InvalidateApprovalRequestMessageIn": "_accessapproval_16_InvalidateApprovalRequestMessageIn",
-        "InvalidateApprovalRequestMessageOut": "_accessapproval_17_InvalidateApprovalRequestMessageOut",
-        "ListApprovalRequestsResponseIn": "_accessapproval_18_ListApprovalRequestsResponseIn",
-        "ListApprovalRequestsResponseOut": "_accessapproval_19_ListApprovalRequestsResponseOut",
-        "AccessReasonIn": "_accessapproval_20_AccessReasonIn",
-        "AccessReasonOut": "_accessapproval_21_AccessReasonOut",
-        "ApproveApprovalRequestMessageIn": "_accessapproval_22_ApproveApprovalRequestMessageIn",
-        "ApproveApprovalRequestMessageOut": "_accessapproval_23_ApproveApprovalRequestMessageOut",
-        "DismissApprovalRequestMessageIn": "_accessapproval_24_DismissApprovalRequestMessageIn",
-        "DismissApprovalRequestMessageOut": "_accessapproval_25_DismissApprovalRequestMessageOut",
-        "AccessApprovalSettingsIn": "_accessapproval_26_AccessApprovalSettingsIn",
-        "AccessApprovalSettingsOut": "_accessapproval_27_AccessApprovalSettingsOut",
-        "EnrolledServiceIn": "_accessapproval_28_EnrolledServiceIn",
-        "EnrolledServiceOut": "_accessapproval_29_EnrolledServiceOut",
-        "DismissDecisionIn": "_accessapproval_30_DismissDecisionIn",
-        "DismissDecisionOut": "_accessapproval_31_DismissDecisionOut",
+        "AccessReasonIn": "_accessapproval_2_AccessReasonIn",
+        "AccessReasonOut": "_accessapproval_3_AccessReasonOut",
+        "ApproveApprovalRequestMessageIn": "_accessapproval_4_ApproveApprovalRequestMessageIn",
+        "ApproveApprovalRequestMessageOut": "_accessapproval_5_ApproveApprovalRequestMessageOut",
+        "AccessLocationsIn": "_accessapproval_6_AccessLocationsIn",
+        "AccessLocationsOut": "_accessapproval_7_AccessLocationsOut",
+        "DismissApprovalRequestMessageIn": "_accessapproval_8_DismissApprovalRequestMessageIn",
+        "DismissApprovalRequestMessageOut": "_accessapproval_9_DismissApprovalRequestMessageOut",
+        "SignatureInfoIn": "_accessapproval_10_SignatureInfoIn",
+        "SignatureInfoOut": "_accessapproval_11_SignatureInfoOut",
+        "ApproveDecisionIn": "_accessapproval_12_ApproveDecisionIn",
+        "ApproveDecisionOut": "_accessapproval_13_ApproveDecisionOut",
+        "DismissDecisionIn": "_accessapproval_14_DismissDecisionIn",
+        "DismissDecisionOut": "_accessapproval_15_DismissDecisionOut",
+        "EmptyIn": "_accessapproval_16_EmptyIn",
+        "EmptyOut": "_accessapproval_17_EmptyOut",
+        "AccessApprovalSettingsIn": "_accessapproval_18_AccessApprovalSettingsIn",
+        "AccessApprovalSettingsOut": "_accessapproval_19_AccessApprovalSettingsOut",
+        "AccessApprovalServiceAccountIn": "_accessapproval_20_AccessApprovalServiceAccountIn",
+        "AccessApprovalServiceAccountOut": "_accessapproval_21_AccessApprovalServiceAccountOut",
+        "ListApprovalRequestsResponseIn": "_accessapproval_22_ListApprovalRequestsResponseIn",
+        "ListApprovalRequestsResponseOut": "_accessapproval_23_ListApprovalRequestsResponseOut",
+        "ResourcePropertiesIn": "_accessapproval_24_ResourcePropertiesIn",
+        "ResourcePropertiesOut": "_accessapproval_25_ResourcePropertiesOut",
+        "InvalidateApprovalRequestMessageIn": "_accessapproval_26_InvalidateApprovalRequestMessageIn",
+        "InvalidateApprovalRequestMessageOut": "_accessapproval_27_InvalidateApprovalRequestMessageOut",
+        "ApprovalRequestIn": "_accessapproval_28_ApprovalRequestIn",
+        "ApprovalRequestOut": "_accessapproval_29_ApprovalRequestOut",
+        "EnrolledServiceIn": "_accessapproval_30_EnrolledServiceIn",
+        "EnrolledServiceOut": "_accessapproval_31_EnrolledServiceOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["AccessApprovalServiceAccountIn"] = t.struct(
-        {"name": t.string().optional(), "accountEmail": t.string().optional()}
-    ).named(renames["AccessApprovalServiceAccountIn"])
-    types["AccessApprovalServiceAccountOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "accountEmail": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AccessApprovalServiceAccountOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["ApprovalRequestIn"] = t.struct(
-        {
-            "requestedExpiration": t.string().optional(),
-            "requestedResourceName": t.string().optional(),
-            "dismiss": t.proxy(renames["DismissDecisionIn"]).optional(),
-            "name": t.string().optional(),
-            "approve": t.proxy(renames["ApproveDecisionIn"]).optional(),
-            "requestedLocations": t.proxy(renames["AccessLocationsIn"]).optional(),
-            "requestedReason": t.proxy(renames["AccessReasonIn"]).optional(),
-            "requestedResourceProperties": t.proxy(
-                renames["ResourcePropertiesIn"]
-            ).optional(),
-            "requestTime": t.string().optional(),
-        }
-    ).named(renames["ApprovalRequestIn"])
-    types["ApprovalRequestOut"] = t.struct(
-        {
-            "requestedExpiration": t.string().optional(),
-            "requestedResourceName": t.string().optional(),
-            "dismiss": t.proxy(renames["DismissDecisionOut"]).optional(),
-            "name": t.string().optional(),
-            "approve": t.proxy(renames["ApproveDecisionOut"]).optional(),
-            "requestedLocations": t.proxy(renames["AccessLocationsOut"]).optional(),
-            "requestedReason": t.proxy(renames["AccessReasonOut"]).optional(),
-            "requestedResourceProperties": t.proxy(
-                renames["ResourcePropertiesOut"]
-            ).optional(),
-            "requestTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ApprovalRequestOut"])
-    types["SignatureInfoIn"] = t.struct(
-        {
-            "signature": t.string().optional(),
-            "googlePublicKeyPem": t.string().optional(),
-            "customerKmsKeyVersion": t.string().optional(),
-        }
-    ).named(renames["SignatureInfoIn"])
-    types["SignatureInfoOut"] = t.struct(
-        {
-            "signature": t.string().optional(),
-            "googlePublicKeyPem": t.string().optional(),
-            "customerKmsKeyVersion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SignatureInfoOut"])
-    types["ApproveDecisionIn"] = t.struct(
-        {
-            "invalidateTime": t.string().optional(),
-            "approveTime": t.string().optional(),
-            "autoApproved": t.boolean().optional(),
-            "signatureInfo": t.proxy(renames["SignatureInfoIn"]).optional(),
-            "expireTime": t.string().optional(),
-        }
-    ).named(renames["ApproveDecisionIn"])
-    types["ApproveDecisionOut"] = t.struct(
-        {
-            "invalidateTime": t.string().optional(),
-            "approveTime": t.string().optional(),
-            "autoApproved": t.boolean().optional(),
-            "signatureInfo": t.proxy(renames["SignatureInfoOut"]).optional(),
-            "expireTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ApproveDecisionOut"])
-    types["ResourcePropertiesIn"] = t.struct(
-        {"excludesDescendants": t.boolean().optional()}
-    ).named(renames["ResourcePropertiesIn"])
-    types["ResourcePropertiesOut"] = t.struct(
-        {
-            "excludesDescendants": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ResourcePropertiesOut"])
-    types["AccessLocationsIn"] = t.struct(
-        {
-            "principalPhysicalLocationCountry": t.string().optional(),
-            "principalOfficeCountry": t.string().optional(),
-        }
-    ).named(renames["AccessLocationsIn"])
-    types["AccessLocationsOut"] = t.struct(
-        {
-            "principalPhysicalLocationCountry": t.string().optional(),
-            "principalOfficeCountry": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AccessLocationsOut"])
-    types["InvalidateApprovalRequestMessageIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["InvalidateApprovalRequestMessageIn"])
-    types["InvalidateApprovalRequestMessageOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["InvalidateApprovalRequestMessageOut"])
-    types["ListApprovalRequestsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "approvalRequests": t.array(
-                t.proxy(renames["ApprovalRequestIn"])
-            ).optional(),
-        }
-    ).named(renames["ListApprovalRequestsResponseIn"])
-    types["ListApprovalRequestsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "approvalRequests": t.array(
-                t.proxy(renames["ApprovalRequestOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListApprovalRequestsResponseOut"])
     types["AccessReasonIn"] = t.struct(
-        {"detail": t.string().optional(), "type": t.string().optional()}
+        {"type": t.string().optional(), "detail": t.string().optional()}
     ).named(renames["AccessReasonIn"])
     types["AccessReasonOut"] = t.struct(
         {
-            "detail": t.string().optional(),
             "type": t.string().optional(),
+            "detail": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AccessReasonOut"])
@@ -189,53 +64,59 @@ def import_accessapproval() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ApproveApprovalRequestMessageOut"])
+    types["AccessLocationsIn"] = t.struct(
+        {
+            "principalOfficeCountry": t.string().optional(),
+            "principalPhysicalLocationCountry": t.string().optional(),
+        }
+    ).named(renames["AccessLocationsIn"])
+    types["AccessLocationsOut"] = t.struct(
+        {
+            "principalOfficeCountry": t.string().optional(),
+            "principalPhysicalLocationCountry": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AccessLocationsOut"])
     types["DismissApprovalRequestMessageIn"] = t.struct(
         {"_": t.string().optional()}
     ).named(renames["DismissApprovalRequestMessageIn"])
     types["DismissApprovalRequestMessageOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["DismissApprovalRequestMessageOut"])
-    types["AccessApprovalSettingsIn"] = t.struct(
+    types["SignatureInfoIn"] = t.struct(
         {
-            "preferNoBroadApprovalRequests": t.boolean().optional(),
-            "enrolledServices": t.array(
-                t.proxy(renames["EnrolledServiceIn"])
-            ).optional(),
-            "notificationEmails": t.array(t.string()).optional(),
-            "name": t.string().optional(),
-            "preferredRequestExpirationDays": t.integer().optional(),
-            "activeKeyVersion": t.string().optional(),
+            "customerKmsKeyVersion": t.string().optional(),
+            "googlePublicKeyPem": t.string().optional(),
+            "signature": t.string().optional(),
         }
-    ).named(renames["AccessApprovalSettingsIn"])
-    types["AccessApprovalSettingsOut"] = t.struct(
+    ).named(renames["SignatureInfoIn"])
+    types["SignatureInfoOut"] = t.struct(
         {
-            "preferNoBroadApprovalRequests": t.boolean().optional(),
-            "enrolledServices": t.array(
-                t.proxy(renames["EnrolledServiceOut"])
-            ).optional(),
-            "ancestorHasActiveKeyVersion": t.boolean().optional(),
-            "notificationEmails": t.array(t.string()).optional(),
-            "enrolledAncestor": t.boolean().optional(),
-            "name": t.string().optional(),
-            "preferredRequestExpirationDays": t.integer().optional(),
-            "invalidKeyVersion": t.boolean().optional(),
-            "activeKeyVersion": t.string().optional(),
+            "customerKmsKeyVersion": t.string().optional(),
+            "googlePublicKeyPem": t.string().optional(),
+            "signature": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AccessApprovalSettingsOut"])
-    types["EnrolledServiceIn"] = t.struct(
+    ).named(renames["SignatureInfoOut"])
+    types["ApproveDecisionIn"] = t.struct(
         {
-            "enrollmentLevel": t.string().optional(),
-            "cloudProduct": t.string().optional(),
+            "signatureInfo": t.proxy(renames["SignatureInfoIn"]).optional(),
+            "expireTime": t.string().optional(),
+            "invalidateTime": t.string().optional(),
+            "autoApproved": t.boolean().optional(),
+            "approveTime": t.string().optional(),
         }
-    ).named(renames["EnrolledServiceIn"])
-    types["EnrolledServiceOut"] = t.struct(
+    ).named(renames["ApproveDecisionIn"])
+    types["ApproveDecisionOut"] = t.struct(
         {
-            "enrollmentLevel": t.string().optional(),
-            "cloudProduct": t.string().optional(),
+            "signatureInfo": t.proxy(renames["SignatureInfoOut"]).optional(),
+            "expireTime": t.string().optional(),
+            "invalidateTime": t.string().optional(),
+            "autoApproved": t.boolean().optional(),
+            "approveTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["EnrolledServiceOut"])
+    ).named(renames["ApproveDecisionOut"])
     types["DismissDecisionIn"] = t.struct(
         {"implicit": t.boolean().optional(), "dismissTime": t.string().optional()}
     ).named(renames["DismissDecisionIn"])
@@ -246,6 +127,124 @@ def import_accessapproval() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DismissDecisionOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
+    types["AccessApprovalSettingsIn"] = t.struct(
+        {
+            "activeKeyVersion": t.string().optional(),
+            "preferredRequestExpirationDays": t.integer().optional(),
+            "notificationEmails": t.array(t.string()).optional(),
+            "enrolledServices": t.array(
+                t.proxy(renames["EnrolledServiceIn"])
+            ).optional(),
+            "name": t.string().optional(),
+            "preferNoBroadApprovalRequests": t.boolean().optional(),
+        }
+    ).named(renames["AccessApprovalSettingsIn"])
+    types["AccessApprovalSettingsOut"] = t.struct(
+        {
+            "activeKeyVersion": t.string().optional(),
+            "preferredRequestExpirationDays": t.integer().optional(),
+            "notificationEmails": t.array(t.string()).optional(),
+            "invalidKeyVersion": t.boolean().optional(),
+            "enrolledServices": t.array(
+                t.proxy(renames["EnrolledServiceOut"])
+            ).optional(),
+            "name": t.string().optional(),
+            "ancestorHasActiveKeyVersion": t.boolean().optional(),
+            "preferNoBroadApprovalRequests": t.boolean().optional(),
+            "enrolledAncestor": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AccessApprovalSettingsOut"])
+    types["AccessApprovalServiceAccountIn"] = t.struct(
+        {"name": t.string().optional(), "accountEmail": t.string().optional()}
+    ).named(renames["AccessApprovalServiceAccountIn"])
+    types["AccessApprovalServiceAccountOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "accountEmail": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AccessApprovalServiceAccountOut"])
+    types["ListApprovalRequestsResponseIn"] = t.struct(
+        {
+            "approvalRequests": t.array(
+                t.proxy(renames["ApprovalRequestIn"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListApprovalRequestsResponseIn"])
+    types["ListApprovalRequestsResponseOut"] = t.struct(
+        {
+            "approvalRequests": t.array(
+                t.proxy(renames["ApprovalRequestOut"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListApprovalRequestsResponseOut"])
+    types["ResourcePropertiesIn"] = t.struct(
+        {"excludesDescendants": t.boolean().optional()}
+    ).named(renames["ResourcePropertiesIn"])
+    types["ResourcePropertiesOut"] = t.struct(
+        {
+            "excludesDescendants": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ResourcePropertiesOut"])
+    types["InvalidateApprovalRequestMessageIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["InvalidateApprovalRequestMessageIn"])
+    types["InvalidateApprovalRequestMessageOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["InvalidateApprovalRequestMessageOut"])
+    types["ApprovalRequestIn"] = t.struct(
+        {
+            "approve": t.proxy(renames["ApproveDecisionIn"]).optional(),
+            "requestedResourceProperties": t.proxy(
+                renames["ResourcePropertiesIn"]
+            ).optional(),
+            "requestedLocations": t.proxy(renames["AccessLocationsIn"]).optional(),
+            "requestedResourceName": t.string().optional(),
+            "name": t.string().optional(),
+            "dismiss": t.proxy(renames["DismissDecisionIn"]).optional(),
+            "requestedExpiration": t.string().optional(),
+            "requestedReason": t.proxy(renames["AccessReasonIn"]).optional(),
+            "requestTime": t.string().optional(),
+        }
+    ).named(renames["ApprovalRequestIn"])
+    types["ApprovalRequestOut"] = t.struct(
+        {
+            "approve": t.proxy(renames["ApproveDecisionOut"]).optional(),
+            "requestedResourceProperties": t.proxy(
+                renames["ResourcePropertiesOut"]
+            ).optional(),
+            "requestedLocations": t.proxy(renames["AccessLocationsOut"]).optional(),
+            "requestedResourceName": t.string().optional(),
+            "name": t.string().optional(),
+            "dismiss": t.proxy(renames["DismissDecisionOut"]).optional(),
+            "requestedExpiration": t.string().optional(),
+            "requestedReason": t.proxy(renames["AccessReasonOut"]).optional(),
+            "requestTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ApprovalRequestOut"])
+    types["EnrolledServiceIn"] = t.struct(
+        {
+            "cloudProduct": t.string().optional(),
+            "enrollmentLevel": t.string().optional(),
+        }
+    ).named(renames["EnrolledServiceIn"])
+    types["EnrolledServiceOut"] = t.struct(
+        {
+            "cloudProduct": t.string().optional(),
+            "enrollmentLevel": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["EnrolledServiceOut"])
 
     functions = {}
     functions["projectsGetServiceAccount"] = accessapproval.delete(
@@ -276,140 +275,67 @@ def import_accessapproval() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsApprovalRequestsGet"] = accessapproval.get(
-        "v1/{parent}/approvalRequests",
+    functions["projectsApprovalRequestsGet"] = accessapproval.post(
+        "v1/{name}:invalidate",
         t.struct(
             {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "parent": t.string().optional(),
-                "pageSize": t.integer().optional(),
+                "name": t.string().optional(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListApprovalRequestsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsApprovalRequestsInvalidate"] = accessapproval.get(
-        "v1/{parent}/approvalRequests",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "parent": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListApprovalRequestsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsApprovalRequestsDismiss"] = accessapproval.get(
-        "v1/{parent}/approvalRequests",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "parent": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListApprovalRequestsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsApprovalRequestsApprove"] = accessapproval.get(
-        "v1/{parent}/approvalRequests",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "parent": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListApprovalRequestsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsApprovalRequestsList"] = accessapproval.get(
-        "v1/{parent}/approvalRequests",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "parent": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListApprovalRequestsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["organizationsGetServiceAccount"] = accessapproval.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["organizationsGetAccessApprovalSettings"] = accessapproval.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["organizationsUpdateAccessApprovalSettings"] = accessapproval.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["organizationsDeleteAccessApprovalSettings"] = accessapproval.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["organizationsApprovalRequestsList"] = accessapproval.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
         t.proxy(renames["ApprovalRequestOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["organizationsApprovalRequestsApprove"] = accessapproval.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+    functions["projectsApprovalRequestsApprove"] = accessapproval.post(
+        "v1/{name}:invalidate",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["ApprovalRequestOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["organizationsApprovalRequestsDismiss"] = accessapproval.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+    functions["projectsApprovalRequestsDismiss"] = accessapproval.post(
+        "v1/{name}:invalidate",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["ApprovalRequestOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["organizationsApprovalRequestsInvalidate"] = accessapproval.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+    functions["projectsApprovalRequestsList"] = accessapproval.post(
+        "v1/{name}:invalidate",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["ApprovalRequestOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["organizationsApprovalRequestsGet"] = accessapproval.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+    functions["projectsApprovalRequestsInvalidate"] = accessapproval.post(
+        "v1/{name}:invalidate",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["ApprovalRequestOut"]),
         auth_token_field="auth",
         content_type="application/json",
@@ -417,32 +343,187 @@ def import_accessapproval() -> Import:
     functions["foldersUpdateAccessApprovalSettings"] = accessapproval.get(
         "v1/{name}",
         t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AccessApprovalSettingsOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["foldersGetServiceAccount"] = accessapproval.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AccessApprovalSettingsOut"]),
+        t.proxy(renames["AccessApprovalServiceAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["foldersDeleteAccessApprovalSettings"] = accessapproval.get(
         "v1/{name}",
         t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AccessApprovalSettingsOut"]),
+        t.proxy(renames["AccessApprovalServiceAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["foldersGetAccessApprovalSettings"] = accessapproval.get(
         "v1/{name}",
         t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["AccessApprovalServiceAccountOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["foldersGetServiceAccount"] = accessapproval.get(
+        "v1/{name}",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["AccessApprovalServiceAccountOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["foldersApprovalRequestsGet"] = accessapproval.get(
+        "v1/{parent}/approvalRequests",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "filter": t.string().optional(),
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListApprovalRequestsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["foldersApprovalRequestsDismiss"] = accessapproval.get(
+        "v1/{parent}/approvalRequests",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "filter": t.string().optional(),
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListApprovalRequestsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["foldersApprovalRequestsInvalidate"] = accessapproval.get(
+        "v1/{parent}/approvalRequests",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "filter": t.string().optional(),
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListApprovalRequestsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["foldersApprovalRequestsApprove"] = accessapproval.get(
+        "v1/{parent}/approvalRequests",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "filter": t.string().optional(),
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListApprovalRequestsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["foldersApprovalRequestsList"] = accessapproval.get(
+        "v1/{parent}/approvalRequests",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "filter": t.string().optional(),
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListApprovalRequestsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["organizationsDeleteAccessApprovalSettings"] = accessapproval.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "activeKeyVersion": t.string().optional(),
+                "preferredRequestExpirationDays": t.integer().optional(),
+                "notificationEmails": t.array(t.string()).optional(),
+                "enrolledServices": t.array(
+                    t.proxy(renames["EnrolledServiceIn"])
+                ).optional(),
+                "preferNoBroadApprovalRequests": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["AccessApprovalSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["foldersApprovalRequestsInvalidate"] = accessapproval.post(
+    functions["organizationsGetServiceAccount"] = accessapproval.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "activeKeyVersion": t.string().optional(),
+                "preferredRequestExpirationDays": t.integer().optional(),
+                "notificationEmails": t.array(t.string()).optional(),
+                "enrolledServices": t.array(
+                    t.proxy(renames["EnrolledServiceIn"])
+                ).optional(),
+                "preferNoBroadApprovalRequests": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AccessApprovalSettingsOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["organizationsGetAccessApprovalSettings"] = accessapproval.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "activeKeyVersion": t.string().optional(),
+                "preferredRequestExpirationDays": t.integer().optional(),
+                "notificationEmails": t.array(t.string()).optional(),
+                "enrolledServices": t.array(
+                    t.proxy(renames["EnrolledServiceIn"])
+                ).optional(),
+                "preferNoBroadApprovalRequests": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AccessApprovalSettingsOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["organizationsUpdateAccessApprovalSettings"] = accessapproval.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "activeKeyVersion": t.string().optional(),
+                "preferredRequestExpirationDays": t.integer().optional(),
+                "notificationEmails": t.array(t.string()).optional(),
+                "enrolledServices": t.array(
+                    t.proxy(renames["EnrolledServiceIn"])
+                ).optional(),
+                "preferNoBroadApprovalRequests": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AccessApprovalSettingsOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["organizationsApprovalRequestsGet"] = accessapproval.post(
         "v1/{name}:dismiss",
         t.struct(
             {
@@ -455,7 +536,7 @@ def import_accessapproval() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["foldersApprovalRequestsApprove"] = accessapproval.post(
+    functions["organizationsApprovalRequestsInvalidate"] = accessapproval.post(
         "v1/{name}:dismiss",
         t.struct(
             {
@@ -468,7 +549,7 @@ def import_accessapproval() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["foldersApprovalRequestsList"] = accessapproval.post(
+    functions["organizationsApprovalRequestsApprove"] = accessapproval.post(
         "v1/{name}:dismiss",
         t.struct(
             {
@@ -481,7 +562,7 @@ def import_accessapproval() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["foldersApprovalRequestsGet"] = accessapproval.post(
+    functions["organizationsApprovalRequestsList"] = accessapproval.post(
         "v1/{name}:dismiss",
         t.struct(
             {
@@ -494,7 +575,7 @@ def import_accessapproval() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["foldersApprovalRequestsDismiss"] = accessapproval.post(
+    functions["organizationsApprovalRequestsDismiss"] = accessapproval.post(
         "v1/{name}:dismiss",
         t.struct(
             {
@@ -509,5 +590,8 @@ def import_accessapproval() -> Import:
     )
 
     return Import(
-        importer="accessapproval", renames=renames, types=types, functions=functions
+        importer="accessapproval",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
     )

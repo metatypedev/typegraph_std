@@ -1,8 +1,7 @@
-from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph import effects
-from typegraph import TypeGraph
+from box import Box
 
 
 def import_vault() -> Import:
@@ -10,361 +9,138 @@ def import_vault() -> Import:
 
     renames = {
         "ErrorResponse": "_vault_1_ErrorResponse",
-        "HeldOrgUnitIn": "_vault_2_HeldOrgUnitIn",
-        "HeldOrgUnitOut": "_vault_3_HeldOrgUnitOut",
-        "CountArtifactsRequestIn": "_vault_4_CountArtifactsRequestIn",
-        "CountArtifactsRequestOut": "_vault_5_CountArtifactsRequestOut",
-        "CloseMatterResponseIn": "_vault_6_CloseMatterResponseIn",
-        "CloseMatterResponseOut": "_vault_7_CloseMatterResponseOut",
-        "DriveExportOptionsIn": "_vault_8_DriveExportOptionsIn",
-        "DriveExportOptionsOut": "_vault_9_DriveExportOptionsOut",
-        "QueryIn": "_vault_10_QueryIn",
-        "QueryOut": "_vault_11_QueryOut",
-        "CountArtifactsMetadataIn": "_vault_12_CountArtifactsMetadataIn",
-        "CountArtifactsMetadataOut": "_vault_13_CountArtifactsMetadataOut",
-        "HeldVoiceQueryIn": "_vault_14_HeldVoiceQueryIn",
-        "HeldVoiceQueryOut": "_vault_15_HeldVoiceQueryOut",
-        "AccountCountErrorIn": "_vault_16_AccountCountErrorIn",
-        "AccountCountErrorOut": "_vault_17_AccountCountErrorOut",
-        "AddHeldAccountResultIn": "_vault_18_AddHeldAccountResultIn",
-        "AddHeldAccountResultOut": "_vault_19_AddHeldAccountResultOut",
-        "RemoveMatterPermissionsRequestIn": "_vault_20_RemoveMatterPermissionsRequestIn",
-        "RemoveMatterPermissionsRequestOut": "_vault_21_RemoveMatterPermissionsRequestOut",
-        "ListExportsResponseIn": "_vault_22_ListExportsResponseIn",
-        "ListExportsResponseOut": "_vault_23_ListExportsResponseOut",
-        "ExportIn": "_vault_24_ExportIn",
-        "ExportOut": "_vault_25_ExportOut",
-        "ListHoldsResponseIn": "_vault_26_ListHoldsResponseIn",
-        "ListHoldsResponseOut": "_vault_27_ListHoldsResponseOut",
-        "GroupsExportOptionsIn": "_vault_28_GroupsExportOptionsIn",
-        "GroupsExportOptionsOut": "_vault_29_GroupsExportOptionsOut",
-        "ListSavedQueriesResponseIn": "_vault_30_ListSavedQueriesResponseIn",
-        "ListSavedQueriesResponseOut": "_vault_31_ListSavedQueriesResponseOut",
-        "HangoutsChatExportOptionsIn": "_vault_32_HangoutsChatExportOptionsIn",
-        "HangoutsChatExportOptionsOut": "_vault_33_HangoutsChatExportOptionsOut",
-        "TeamDriveInfoIn": "_vault_34_TeamDriveInfoIn",
-        "TeamDriveInfoOut": "_vault_35_TeamDriveInfoOut",
-        "CancelOperationRequestIn": "_vault_36_CancelOperationRequestIn",
-        "CancelOperationRequestOut": "_vault_37_CancelOperationRequestOut",
-        "ReopenMatterRequestIn": "_vault_38_ReopenMatterRequestIn",
-        "ReopenMatterRequestOut": "_vault_39_ReopenMatterRequestOut",
-        "GroupsCountResultIn": "_vault_40_GroupsCountResultIn",
-        "GroupsCountResultOut": "_vault_41_GroupsCountResultOut",
-        "HeldAccountIn": "_vault_42_HeldAccountIn",
-        "HeldAccountOut": "_vault_43_HeldAccountOut",
-        "ListHeldAccountsResponseIn": "_vault_44_ListHeldAccountsResponseIn",
-        "ListHeldAccountsResponseOut": "_vault_45_ListHeldAccountsResponseOut",
-        "UndeleteMatterRequestIn": "_vault_46_UndeleteMatterRequestIn",
-        "UndeleteMatterRequestOut": "_vault_47_UndeleteMatterRequestOut",
-        "RemoveHeldAccountsRequestIn": "_vault_48_RemoveHeldAccountsRequestIn",
-        "RemoveHeldAccountsRequestOut": "_vault_49_RemoveHeldAccountsRequestOut",
-        "HangoutsChatOptionsIn": "_vault_50_HangoutsChatOptionsIn",
-        "HangoutsChatOptionsOut": "_vault_51_HangoutsChatOptionsOut",
-        "HeldGroupsQueryIn": "_vault_52_HeldGroupsQueryIn",
-        "HeldGroupsQueryOut": "_vault_53_HeldGroupsQueryOut",
-        "AddHeldAccountsRequestIn": "_vault_54_AddHeldAccountsRequestIn",
-        "AddHeldAccountsRequestOut": "_vault_55_AddHeldAccountsRequestOut",
-        "VoiceOptionsIn": "_vault_56_VoiceOptionsIn",
-        "VoiceOptionsOut": "_vault_57_VoiceOptionsOut",
-        "HoldIn": "_vault_58_HoldIn",
-        "HoldOut": "_vault_59_HoldOut",
-        "MatterPermissionIn": "_vault_60_MatterPermissionIn",
-        "MatterPermissionOut": "_vault_61_MatterPermissionOut",
-        "UserInfoIn": "_vault_62_UserInfoIn",
-        "UserInfoOut": "_vault_63_UserInfoOut",
-        "HeldHangoutsChatQueryIn": "_vault_64_HeldHangoutsChatQueryIn",
-        "HeldHangoutsChatQueryOut": "_vault_65_HeldHangoutsChatQueryOut",
-        "ListMattersResponseIn": "_vault_66_ListMattersResponseIn",
-        "ListMattersResponseOut": "_vault_67_ListMattersResponseOut",
-        "AccountCountIn": "_vault_68_AccountCountIn",
-        "AccountCountOut": "_vault_69_AccountCountOut",
-        "CloseMatterRequestIn": "_vault_70_CloseMatterRequestIn",
-        "CloseMatterRequestOut": "_vault_71_CloseMatterRequestOut",
-        "StatusIn": "_vault_72_StatusIn",
-        "StatusOut": "_vault_73_StatusOut",
-        "CloudStorageSinkIn": "_vault_74_CloudStorageSinkIn",
-        "CloudStorageSinkOut": "_vault_75_CloudStorageSinkOut",
-        "MailExportOptionsIn": "_vault_76_MailExportOptionsIn",
-        "MailExportOptionsOut": "_vault_77_MailExportOptionsOut",
-        "HangoutsChatInfoIn": "_vault_78_HangoutsChatInfoIn",
-        "HangoutsChatInfoOut": "_vault_79_HangoutsChatInfoOut",
-        "SharedDriveInfoIn": "_vault_80_SharedDriveInfoIn",
-        "SharedDriveInfoOut": "_vault_81_SharedDriveInfoOut",
-        "CorpusQueryIn": "_vault_82_CorpusQueryIn",
-        "CorpusQueryOut": "_vault_83_CorpusQueryOut",
-        "MatterIn": "_vault_84_MatterIn",
-        "MatterOut": "_vault_85_MatterOut",
-        "MailOptionsIn": "_vault_86_MailOptionsIn",
-        "MailOptionsOut": "_vault_87_MailOptionsOut",
-        "OrgUnitInfoIn": "_vault_88_OrgUnitInfoIn",
-        "OrgUnitInfoOut": "_vault_89_OrgUnitInfoOut",
-        "CountArtifactsResponseIn": "_vault_90_CountArtifactsResponseIn",
-        "CountArtifactsResponseOut": "_vault_91_CountArtifactsResponseOut",
-        "HeldMailQueryIn": "_vault_92_HeldMailQueryIn",
-        "HeldMailQueryOut": "_vault_93_HeldMailQueryOut",
-        "ListOperationsResponseIn": "_vault_94_ListOperationsResponseIn",
-        "ListOperationsResponseOut": "_vault_95_ListOperationsResponseOut",
-        "AccountInfoIn": "_vault_96_AccountInfoIn",
-        "AccountInfoOut": "_vault_97_AccountInfoOut",
-        "EmptyIn": "_vault_98_EmptyIn",
-        "EmptyOut": "_vault_99_EmptyOut",
-        "ReopenMatterResponseIn": "_vault_100_ReopenMatterResponseIn",
-        "ReopenMatterResponseOut": "_vault_101_ReopenMatterResponseOut",
-        "OperationIn": "_vault_102_OperationIn",
-        "OperationOut": "_vault_103_OperationOut",
-        "AddMatterPermissionsRequestIn": "_vault_104_AddMatterPermissionsRequestIn",
-        "AddMatterPermissionsRequestOut": "_vault_105_AddMatterPermissionsRequestOut",
-        "RemoveHeldAccountsResponseIn": "_vault_106_RemoveHeldAccountsResponseIn",
-        "RemoveHeldAccountsResponseOut": "_vault_107_RemoveHeldAccountsResponseOut",
-        "SitesUrlInfoIn": "_vault_108_SitesUrlInfoIn",
-        "SitesUrlInfoOut": "_vault_109_SitesUrlInfoOut",
-        "SavedQueryIn": "_vault_110_SavedQueryIn",
-        "SavedQueryOut": "_vault_111_SavedQueryOut",
-        "CloudStorageFileIn": "_vault_112_CloudStorageFileIn",
-        "CloudStorageFileOut": "_vault_113_CloudStorageFileOut",
-        "ExportStatsIn": "_vault_114_ExportStatsIn",
-        "ExportStatsOut": "_vault_115_ExportStatsOut",
-        "HeldDriveQueryIn": "_vault_116_HeldDriveQueryIn",
-        "HeldDriveQueryOut": "_vault_117_HeldDriveQueryOut",
-        "DriveOptionsIn": "_vault_118_DriveOptionsIn",
-        "DriveOptionsOut": "_vault_119_DriveOptionsOut",
-        "VoiceExportOptionsIn": "_vault_120_VoiceExportOptionsIn",
-        "VoiceExportOptionsOut": "_vault_121_VoiceExportOptionsOut",
-        "MailCountResultIn": "_vault_122_MailCountResultIn",
-        "MailCountResultOut": "_vault_123_MailCountResultOut",
-        "AddHeldAccountsResponseIn": "_vault_124_AddHeldAccountsResponseIn",
-        "AddHeldAccountsResponseOut": "_vault_125_AddHeldAccountsResponseOut",
-        "ExportOptionsIn": "_vault_126_ExportOptionsIn",
-        "ExportOptionsOut": "_vault_127_ExportOptionsOut",
+        "HangoutsChatExportOptionsIn": "_vault_2_HangoutsChatExportOptionsIn",
+        "HangoutsChatExportOptionsOut": "_vault_3_HangoutsChatExportOptionsOut",
+        "HangoutsChatOptionsIn": "_vault_4_HangoutsChatOptionsIn",
+        "HangoutsChatOptionsOut": "_vault_5_HangoutsChatOptionsOut",
+        "HeldAccountIn": "_vault_6_HeldAccountIn",
+        "HeldAccountOut": "_vault_7_HeldAccountOut",
+        "HeldGroupsQueryIn": "_vault_8_HeldGroupsQueryIn",
+        "HeldGroupsQueryOut": "_vault_9_HeldGroupsQueryOut",
+        "CloseMatterResponseIn": "_vault_10_CloseMatterResponseIn",
+        "CloseMatterResponseOut": "_vault_11_CloseMatterResponseOut",
+        "CountArtifactsResponseIn": "_vault_12_CountArtifactsResponseIn",
+        "CountArtifactsResponseOut": "_vault_13_CountArtifactsResponseOut",
+        "VoiceOptionsIn": "_vault_14_VoiceOptionsIn",
+        "VoiceOptionsOut": "_vault_15_VoiceOptionsOut",
+        "CloudStorageFileIn": "_vault_16_CloudStorageFileIn",
+        "CloudStorageFileOut": "_vault_17_CloudStorageFileOut",
+        "HangoutsChatInfoIn": "_vault_18_HangoutsChatInfoIn",
+        "HangoutsChatInfoOut": "_vault_19_HangoutsChatInfoOut",
+        "OrgUnitInfoIn": "_vault_20_OrgUnitInfoIn",
+        "OrgUnitInfoOut": "_vault_21_OrgUnitInfoOut",
+        "UserInfoIn": "_vault_22_UserInfoIn",
+        "UserInfoOut": "_vault_23_UserInfoOut",
+        "SitesUrlInfoIn": "_vault_24_SitesUrlInfoIn",
+        "SitesUrlInfoOut": "_vault_25_SitesUrlInfoOut",
+        "DriveExportOptionsIn": "_vault_26_DriveExportOptionsIn",
+        "DriveExportOptionsOut": "_vault_27_DriveExportOptionsOut",
+        "ReopenMatterResponseIn": "_vault_28_ReopenMatterResponseIn",
+        "ReopenMatterResponseOut": "_vault_29_ReopenMatterResponseOut",
+        "ListExportsResponseIn": "_vault_30_ListExportsResponseIn",
+        "ListExportsResponseOut": "_vault_31_ListExportsResponseOut",
+        "RemoveMatterPermissionsRequestIn": "_vault_32_RemoveMatterPermissionsRequestIn",
+        "RemoveMatterPermissionsRequestOut": "_vault_33_RemoveMatterPermissionsRequestOut",
+        "GroupsCountResultIn": "_vault_34_GroupsCountResultIn",
+        "GroupsCountResultOut": "_vault_35_GroupsCountResultOut",
+        "HeldMailQueryIn": "_vault_36_HeldMailQueryIn",
+        "HeldMailQueryOut": "_vault_37_HeldMailQueryOut",
+        "AddHeldAccountsResponseIn": "_vault_38_AddHeldAccountsResponseIn",
+        "AddHeldAccountsResponseOut": "_vault_39_AddHeldAccountsResponseOut",
+        "ExportOptionsIn": "_vault_40_ExportOptionsIn",
+        "ExportOptionsOut": "_vault_41_ExportOptionsOut",
+        "UndeleteMatterRequestIn": "_vault_42_UndeleteMatterRequestIn",
+        "UndeleteMatterRequestOut": "_vault_43_UndeleteMatterRequestOut",
+        "GroupsExportOptionsIn": "_vault_44_GroupsExportOptionsIn",
+        "GroupsExportOptionsOut": "_vault_45_GroupsExportOptionsOut",
+        "HeldHangoutsChatQueryIn": "_vault_46_HeldHangoutsChatQueryIn",
+        "HeldHangoutsChatQueryOut": "_vault_47_HeldHangoutsChatQueryOut",
+        "ListMattersResponseIn": "_vault_48_ListMattersResponseIn",
+        "ListMattersResponseOut": "_vault_49_ListMattersResponseOut",
+        "ListHoldsResponseIn": "_vault_50_ListHoldsResponseIn",
+        "ListHoldsResponseOut": "_vault_51_ListHoldsResponseOut",
+        "ExportStatsIn": "_vault_52_ExportStatsIn",
+        "ExportStatsOut": "_vault_53_ExportStatsOut",
+        "AccountCountIn": "_vault_54_AccountCountIn",
+        "AccountCountOut": "_vault_55_AccountCountOut",
+        "QueryIn": "_vault_56_QueryIn",
+        "QueryOut": "_vault_57_QueryOut",
+        "ListHeldAccountsResponseIn": "_vault_58_ListHeldAccountsResponseIn",
+        "ListHeldAccountsResponseOut": "_vault_59_ListHeldAccountsResponseOut",
+        "MailOptionsIn": "_vault_60_MailOptionsIn",
+        "MailOptionsOut": "_vault_61_MailOptionsOut",
+        "CorpusQueryIn": "_vault_62_CorpusQueryIn",
+        "CorpusQueryOut": "_vault_63_CorpusQueryOut",
+        "MatterIn": "_vault_64_MatterIn",
+        "MatterOut": "_vault_65_MatterOut",
+        "HoldIn": "_vault_66_HoldIn",
+        "HoldOut": "_vault_67_HoldOut",
+        "CancelOperationRequestIn": "_vault_68_CancelOperationRequestIn",
+        "CancelOperationRequestOut": "_vault_69_CancelOperationRequestOut",
+        "MatterPermissionIn": "_vault_70_MatterPermissionIn",
+        "MatterPermissionOut": "_vault_71_MatterPermissionOut",
+        "AddHeldAccountsRequestIn": "_vault_72_AddHeldAccountsRequestIn",
+        "AddHeldAccountsRequestOut": "_vault_73_AddHeldAccountsRequestOut",
+        "CountArtifactsMetadataIn": "_vault_74_CountArtifactsMetadataIn",
+        "CountArtifactsMetadataOut": "_vault_75_CountArtifactsMetadataOut",
+        "CloudStorageSinkIn": "_vault_76_CloudStorageSinkIn",
+        "CloudStorageSinkOut": "_vault_77_CloudStorageSinkOut",
+        "SharedDriveInfoIn": "_vault_78_SharedDriveInfoIn",
+        "SharedDriveInfoOut": "_vault_79_SharedDriveInfoOut",
+        "ReopenMatterRequestIn": "_vault_80_ReopenMatterRequestIn",
+        "ReopenMatterRequestOut": "_vault_81_ReopenMatterRequestOut",
+        "HeldVoiceQueryIn": "_vault_82_HeldVoiceQueryIn",
+        "HeldVoiceQueryOut": "_vault_83_HeldVoiceQueryOut",
+        "RemoveHeldAccountsRequestIn": "_vault_84_RemoveHeldAccountsRequestIn",
+        "RemoveHeldAccountsRequestOut": "_vault_85_RemoveHeldAccountsRequestOut",
+        "MailCountResultIn": "_vault_86_MailCountResultIn",
+        "MailCountResultOut": "_vault_87_MailCountResultOut",
+        "VoiceExportOptionsIn": "_vault_88_VoiceExportOptionsIn",
+        "VoiceExportOptionsOut": "_vault_89_VoiceExportOptionsOut",
+        "AddMatterPermissionsRequestIn": "_vault_90_AddMatterPermissionsRequestIn",
+        "AddMatterPermissionsRequestOut": "_vault_91_AddMatterPermissionsRequestOut",
+        "CloseMatterRequestIn": "_vault_92_CloseMatterRequestIn",
+        "CloseMatterRequestOut": "_vault_93_CloseMatterRequestOut",
+        "ListSavedQueriesResponseIn": "_vault_94_ListSavedQueriesResponseIn",
+        "ListSavedQueriesResponseOut": "_vault_95_ListSavedQueriesResponseOut",
+        "DriveOptionsIn": "_vault_96_DriveOptionsIn",
+        "DriveOptionsOut": "_vault_97_DriveOptionsOut",
+        "ExportIn": "_vault_98_ExportIn",
+        "ExportOut": "_vault_99_ExportOut",
+        "ListOperationsResponseIn": "_vault_100_ListOperationsResponseIn",
+        "ListOperationsResponseOut": "_vault_101_ListOperationsResponseOut",
+        "AccountInfoIn": "_vault_102_AccountInfoIn",
+        "AccountInfoOut": "_vault_103_AccountInfoOut",
+        "TeamDriveInfoIn": "_vault_104_TeamDriveInfoIn",
+        "TeamDriveInfoOut": "_vault_105_TeamDriveInfoOut",
+        "AccountCountErrorIn": "_vault_106_AccountCountErrorIn",
+        "AccountCountErrorOut": "_vault_107_AccountCountErrorOut",
+        "SavedQueryIn": "_vault_108_SavedQueryIn",
+        "SavedQueryOut": "_vault_109_SavedQueryOut",
+        "MailExportOptionsIn": "_vault_110_MailExportOptionsIn",
+        "MailExportOptionsOut": "_vault_111_MailExportOptionsOut",
+        "HeldDriveQueryIn": "_vault_112_HeldDriveQueryIn",
+        "HeldDriveQueryOut": "_vault_113_HeldDriveQueryOut",
+        "OperationIn": "_vault_114_OperationIn",
+        "OperationOut": "_vault_115_OperationOut",
+        "StatusIn": "_vault_116_StatusIn",
+        "StatusOut": "_vault_117_StatusOut",
+        "EmptyIn": "_vault_118_EmptyIn",
+        "EmptyOut": "_vault_119_EmptyOut",
+        "HeldOrgUnitIn": "_vault_120_HeldOrgUnitIn",
+        "HeldOrgUnitOut": "_vault_121_HeldOrgUnitOut",
+        "RemoveHeldAccountsResponseIn": "_vault_122_RemoveHeldAccountsResponseIn",
+        "RemoveHeldAccountsResponseOut": "_vault_123_RemoveHeldAccountsResponseOut",
+        "CountArtifactsRequestIn": "_vault_124_CountArtifactsRequestIn",
+        "CountArtifactsRequestOut": "_vault_125_CountArtifactsRequestOut",
+        "AddHeldAccountResultIn": "_vault_126_AddHeldAccountResultIn",
+        "AddHeldAccountResultOut": "_vault_127_AddHeldAccountResultOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["HeldOrgUnitIn"] = t.struct(
-        {"orgUnitId": t.string().optional(), "holdTime": t.string().optional()}
-    ).named(renames["HeldOrgUnitIn"])
-    types["HeldOrgUnitOut"] = t.struct(
-        {
-            "orgUnitId": t.string().optional(),
-            "holdTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HeldOrgUnitOut"])
-    types["CountArtifactsRequestIn"] = t.struct(
-        {"view": t.string().optional(), "query": t.proxy(renames["QueryIn"]).optional()}
-    ).named(renames["CountArtifactsRequestIn"])
-    types["CountArtifactsRequestOut"] = t.struct(
-        {
-            "view": t.string().optional(),
-            "query": t.proxy(renames["QueryOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CountArtifactsRequestOut"])
-    types["CloseMatterResponseIn"] = t.struct(
-        {"matter": t.proxy(renames["MatterIn"]).optional()}
-    ).named(renames["CloseMatterResponseIn"])
-    types["CloseMatterResponseOut"] = t.struct(
-        {
-            "matter": t.proxy(renames["MatterOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CloseMatterResponseOut"])
-    types["DriveExportOptionsIn"] = t.struct(
-        {"includeAccessInfo": t.boolean().optional()}
-    ).named(renames["DriveExportOptionsIn"])
-    types["DriveExportOptionsOut"] = t.struct(
-        {
-            "includeAccessInfo": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DriveExportOptionsOut"])
-    types["QueryIn"] = t.struct(
-        {
-            "timeZone": t.string().optional(),
-            "dataScope": t.string().optional(),
-            "orgUnitInfo": t.proxy(renames["OrgUnitInfoIn"]),
-            "teamDriveInfo": t.proxy(renames["TeamDriveInfoIn"]),
-            "searchMethod": t.string().optional(),
-            "hangoutsChatInfo": t.proxy(renames["HangoutsChatInfoIn"]),
-            "accountInfo": t.proxy(renames["AccountInfoIn"]),
-            "method": t.string().optional(),
-            "corpus": t.string().optional(),
-            "sitesUrlInfo": t.proxy(renames["SitesUrlInfoIn"]),
-            "hangoutsChatOptions": t.proxy(renames["HangoutsChatOptionsIn"]).optional(),
-            "startTime": t.string().optional(),
-            "terms": t.string().optional(),
-            "driveOptions": t.proxy(renames["DriveOptionsIn"]).optional(),
-            "endTime": t.string().optional(),
-            "sharedDriveInfo": t.proxy(renames["SharedDriveInfoIn"]),
-            "mailOptions": t.proxy(renames["MailOptionsIn"]).optional(),
-            "voiceOptions": t.proxy(renames["VoiceOptionsIn"]).optional(),
-        }
-    ).named(renames["QueryIn"])
-    types["QueryOut"] = t.struct(
-        {
-            "timeZone": t.string().optional(),
-            "dataScope": t.string().optional(),
-            "orgUnitInfo": t.proxy(renames["OrgUnitInfoOut"]),
-            "teamDriveInfo": t.proxy(renames["TeamDriveInfoOut"]),
-            "searchMethod": t.string().optional(),
-            "hangoutsChatInfo": t.proxy(renames["HangoutsChatInfoOut"]),
-            "accountInfo": t.proxy(renames["AccountInfoOut"]),
-            "method": t.string().optional(),
-            "corpus": t.string().optional(),
-            "sitesUrlInfo": t.proxy(renames["SitesUrlInfoOut"]),
-            "hangoutsChatOptions": t.proxy(
-                renames["HangoutsChatOptionsOut"]
-            ).optional(),
-            "startTime": t.string().optional(),
-            "terms": t.string().optional(),
-            "driveOptions": t.proxy(renames["DriveOptionsOut"]).optional(),
-            "endTime": t.string().optional(),
-            "sharedDriveInfo": t.proxy(renames["SharedDriveInfoOut"]),
-            "mailOptions": t.proxy(renames["MailOptionsOut"]).optional(),
-            "voiceOptions": t.proxy(renames["VoiceOptionsOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["QueryOut"])
-    types["CountArtifactsMetadataIn"] = t.struct(
-        {
-            "endTime": t.string().optional(),
-            "startTime": t.string().optional(),
-            "matterId": t.string().optional(),
-            "query": t.proxy(renames["QueryIn"]).optional(),
-        }
-    ).named(renames["CountArtifactsMetadataIn"])
-    types["CountArtifactsMetadataOut"] = t.struct(
-        {
-            "endTime": t.string().optional(),
-            "startTime": t.string().optional(),
-            "matterId": t.string().optional(),
-            "query": t.proxy(renames["QueryOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CountArtifactsMetadataOut"])
-    types["HeldVoiceQueryIn"] = t.struct(
-        {"coveredData": t.array(t.string()).optional()}
-    ).named(renames["HeldVoiceQueryIn"])
-    types["HeldVoiceQueryOut"] = t.struct(
-        {
-            "coveredData": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HeldVoiceQueryOut"])
-    types["AccountCountErrorIn"] = t.struct(
-        {
-            "account": t.proxy(renames["UserInfoIn"]).optional(),
-            "errorType": t.string().optional(),
-        }
-    ).named(renames["AccountCountErrorIn"])
-    types["AccountCountErrorOut"] = t.struct(
-        {
-            "account": t.proxy(renames["UserInfoOut"]).optional(),
-            "errorType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AccountCountErrorOut"])
-    types["AddHeldAccountResultIn"] = t.struct(
-        {
-            "account": t.proxy(renames["HeldAccountIn"]).optional(),
-            "status": t.proxy(renames["StatusIn"]).optional(),
-        }
-    ).named(renames["AddHeldAccountResultIn"])
-    types["AddHeldAccountResultOut"] = t.struct(
-        {
-            "account": t.proxy(renames["HeldAccountOut"]).optional(),
-            "status": t.proxy(renames["StatusOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AddHeldAccountResultOut"])
-    types["RemoveMatterPermissionsRequestIn"] = t.struct(
-        {"accountId": t.string().optional()}
-    ).named(renames["RemoveMatterPermissionsRequestIn"])
-    types["RemoveMatterPermissionsRequestOut"] = t.struct(
-        {
-            "accountId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RemoveMatterPermissionsRequestOut"])
-    types["ListExportsResponseIn"] = t.struct(
-        {
-            "exports": t.array(t.proxy(renames["ExportIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListExportsResponseIn"])
-    types["ListExportsResponseOut"] = t.struct(
-        {
-            "exports": t.array(t.proxy(renames["ExportOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListExportsResponseOut"])
-    types["ExportIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "exportOptions": t.proxy(renames["ExportOptionsIn"]).optional(),
-            "query": t.proxy(renames["QueryIn"]).optional(),
-            "stats": t.proxy(renames["ExportStatsIn"]).optional(),
-            "matterId": t.string().optional(),
-            "status": t.string().optional(),
-            "id": t.string().optional(),
-            "requester": t.proxy(renames["UserInfoIn"]).optional(),
-            "cloudStorageSink": t.proxy(renames["CloudStorageSinkIn"]).optional(),
-            "createTime": t.string().optional(),
-        }
-    ).named(renames["ExportIn"])
-    types["ExportOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "exportOptions": t.proxy(renames["ExportOptionsOut"]).optional(),
-            "query": t.proxy(renames["QueryOut"]).optional(),
-            "stats": t.proxy(renames["ExportStatsOut"]).optional(),
-            "matterId": t.string().optional(),
-            "status": t.string().optional(),
-            "id": t.string().optional(),
-            "requester": t.proxy(renames["UserInfoOut"]).optional(),
-            "cloudStorageSink": t.proxy(renames["CloudStorageSinkOut"]).optional(),
-            "createTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExportOut"])
-    types["ListHoldsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "holds": t.array(t.proxy(renames["HoldIn"])).optional(),
-        }
-    ).named(renames["ListHoldsResponseIn"])
-    types["ListHoldsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "holds": t.array(t.proxy(renames["HoldOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListHoldsResponseOut"])
-    types["GroupsExportOptionsIn"] = t.struct(
-        {"exportFormat": t.string().optional()}
-    ).named(renames["GroupsExportOptionsIn"])
-    types["GroupsExportOptionsOut"] = t.struct(
-        {
-            "exportFormat": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GroupsExportOptionsOut"])
-    types["ListSavedQueriesResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "savedQueries": t.array(t.proxy(renames["SavedQueryIn"])).optional(),
-        }
-    ).named(renames["ListSavedQueriesResponseIn"])
-    types["ListSavedQueriesResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "savedQueries": t.array(t.proxy(renames["SavedQueryOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListSavedQueriesResponseOut"])
     types["HangoutsChatExportOptionsIn"] = t.struct(
         {"exportFormat": t.string().optional()}
     ).named(renames["HangoutsChatExportOptionsIn"])
@@ -374,93 +150,6 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["HangoutsChatExportOptionsOut"])
-    types["TeamDriveInfoIn"] = t.struct(
-        {"teamDriveIds": t.array(t.string()).optional()}
-    ).named(renames["TeamDriveInfoIn"])
-    types["TeamDriveInfoOut"] = t.struct(
-        {
-            "teamDriveIds": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TeamDriveInfoOut"])
-    types["CancelOperationRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["CancelOperationRequestIn"]
-    )
-    types["CancelOperationRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["CancelOperationRequestOut"])
-    types["ReopenMatterRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["ReopenMatterRequestIn"]
-    )
-    types["ReopenMatterRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["ReopenMatterRequestOut"])
-    types["GroupsCountResultIn"] = t.struct(
-        {
-            "queriedAccountsCount": t.string().optional(),
-            "matchingAccountsCount": t.string().optional(),
-            "accountCounts": t.array(t.proxy(renames["AccountCountIn"])).optional(),
-            "accountCountErrors": t.array(
-                t.proxy(renames["AccountCountErrorIn"])
-            ).optional(),
-            "nonQueryableAccounts": t.array(t.string()).optional(),
-        }
-    ).named(renames["GroupsCountResultIn"])
-    types["GroupsCountResultOut"] = t.struct(
-        {
-            "queriedAccountsCount": t.string().optional(),
-            "matchingAccountsCount": t.string().optional(),
-            "accountCounts": t.array(t.proxy(renames["AccountCountOut"])).optional(),
-            "accountCountErrors": t.array(
-                t.proxy(renames["AccountCountErrorOut"])
-            ).optional(),
-            "nonQueryableAccounts": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GroupsCountResultOut"])
-    types["HeldAccountIn"] = t.struct(
-        {
-            "firstName": t.string().optional(),
-            "email": t.string().optional(),
-            "lastName": t.string().optional(),
-            "accountId": t.string().optional(),
-            "holdTime": t.string().optional(),
-        }
-    ).named(renames["HeldAccountIn"])
-    types["HeldAccountOut"] = t.struct(
-        {
-            "firstName": t.string().optional(),
-            "email": t.string().optional(),
-            "lastName": t.string().optional(),
-            "accountId": t.string().optional(),
-            "holdTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HeldAccountOut"])
-    types["ListHeldAccountsResponseIn"] = t.struct(
-        {"accounts": t.array(t.proxy(renames["HeldAccountIn"])).optional()}
-    ).named(renames["ListHeldAccountsResponseIn"])
-    types["ListHeldAccountsResponseOut"] = t.struct(
-        {
-            "accounts": t.array(t.proxy(renames["HeldAccountOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListHeldAccountsResponseOut"])
-    types["UndeleteMatterRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["UndeleteMatterRequestIn"]
-    )
-    types["UndeleteMatterRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["UndeleteMatterRequestOut"])
-    types["RemoveHeldAccountsRequestIn"] = t.struct(
-        {"accountIds": t.array(t.string()).optional()}
-    ).named(renames["RemoveHeldAccountsRequestIn"])
-    types["RemoveHeldAccountsRequestOut"] = t.struct(
-        {
-            "accountIds": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RemoveHeldAccountsRequestOut"])
     types["HangoutsChatOptionsIn"] = t.struct(
         {"includeRooms": t.boolean().optional()}
     ).named(renames["HangoutsChatOptionsIn"])
@@ -470,6 +159,25 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["HangoutsChatOptionsOut"])
+    types["HeldAccountIn"] = t.struct(
+        {
+            "lastName": t.string().optional(),
+            "accountId": t.string().optional(),
+            "firstName": t.string().optional(),
+            "holdTime": t.string().optional(),
+            "email": t.string().optional(),
+        }
+    ).named(renames["HeldAccountIn"])
+    types["HeldAccountOut"] = t.struct(
+        {
+            "lastName": t.string().optional(),
+            "accountId": t.string().optional(),
+            "firstName": t.string().optional(),
+            "holdTime": t.string().optional(),
+            "email": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HeldAccountOut"])
     types["HeldGroupsQueryIn"] = t.struct(
         {
             "terms": t.string().optional(),
@@ -485,19 +193,30 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["HeldGroupsQueryOut"])
-    types["AddHeldAccountsRequestIn"] = t.struct(
+    types["CloseMatterResponseIn"] = t.struct(
+        {"matter": t.proxy(renames["MatterIn"]).optional()}
+    ).named(renames["CloseMatterResponseIn"])
+    types["CloseMatterResponseOut"] = t.struct(
         {
-            "emails": t.array(t.string()).optional(),
-            "accountIds": t.array(t.string()).optional(),
-        }
-    ).named(renames["AddHeldAccountsRequestIn"])
-    types["AddHeldAccountsRequestOut"] = t.struct(
-        {
-            "emails": t.array(t.string()).optional(),
-            "accountIds": t.array(t.string()).optional(),
+            "matter": t.proxy(renames["MatterOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AddHeldAccountsRequestOut"])
+    ).named(renames["CloseMatterResponseOut"])
+    types["CountArtifactsResponseIn"] = t.struct(
+        {
+            "totalCount": t.string().optional(),
+            "mailCountResult": t.proxy(renames["MailCountResultIn"]).optional(),
+            "groupsCountResult": t.proxy(renames["GroupsCountResultIn"]).optional(),
+        }
+    ).named(renames["CountArtifactsResponseIn"])
+    types["CountArtifactsResponseOut"] = t.struct(
+        {
+            "totalCount": t.string().optional(),
+            "mailCountResult": t.proxy(renames["MailCountResultOut"]).optional(),
+            "groupsCountResult": t.proxy(renames["GroupsCountResultOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CountArtifactsResponseOut"])
     types["VoiceOptionsIn"] = t.struct(
         {"coveredData": t.array(t.string()).optional()}
     ).named(renames["VoiceOptionsIn"])
@@ -507,49 +226,189 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["VoiceOptionsOut"])
-    types["HoldIn"] = t.struct(
+    types["CloudStorageFileIn"] = t.struct(
         {
-            "holdId": t.string().optional(),
-            "accounts": t.array(t.proxy(renames["HeldAccountIn"])).optional(),
-            "updateTime": t.string().optional(),
-            "query": t.proxy(renames["CorpusQueryIn"]).optional(),
-            "name": t.string().optional(),
-            "corpus": t.string().optional(),
-            "orgUnit": t.proxy(renames["HeldOrgUnitIn"]).optional(),
+            "bucketName": t.string().optional(),
+            "size": t.string().optional(),
+            "md5Hash": t.string().optional(),
+            "objectName": t.string().optional(),
         }
-    ).named(renames["HoldIn"])
-    types["HoldOut"] = t.struct(
+    ).named(renames["CloudStorageFileIn"])
+    types["CloudStorageFileOut"] = t.struct(
         {
-            "holdId": t.string().optional(),
-            "accounts": t.array(t.proxy(renames["HeldAccountOut"])).optional(),
-            "updateTime": t.string().optional(),
-            "query": t.proxy(renames["CorpusQueryOut"]).optional(),
-            "name": t.string().optional(),
-            "corpus": t.string().optional(),
-            "orgUnit": t.proxy(renames["HeldOrgUnitOut"]).optional(),
+            "bucketName": t.string().optional(),
+            "size": t.string().optional(),
+            "md5Hash": t.string().optional(),
+            "objectName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HoldOut"])
-    types["MatterPermissionIn"] = t.struct(
-        {"role": t.string().optional(), "accountId": t.string().optional()}
-    ).named(renames["MatterPermissionIn"])
-    types["MatterPermissionOut"] = t.struct(
+    ).named(renames["CloudStorageFileOut"])
+    types["HangoutsChatInfoIn"] = t.struct(
+        {"roomId": t.array(t.string()).optional()}
+    ).named(renames["HangoutsChatInfoIn"])
+    types["HangoutsChatInfoOut"] = t.struct(
         {
-            "role": t.string().optional(),
-            "accountId": t.string().optional(),
+            "roomId": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["MatterPermissionOut"])
+    ).named(renames["HangoutsChatInfoOut"])
+    types["OrgUnitInfoIn"] = t.struct({"orgUnitId": t.string().optional()}).named(
+        renames["OrgUnitInfoIn"]
+    )
+    types["OrgUnitInfoOut"] = t.struct(
+        {
+            "orgUnitId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OrgUnitInfoOut"])
     types["UserInfoIn"] = t.struct(
-        {"displayName": t.string().optional(), "email": t.string().optional()}
+        {"email": t.string().optional(), "displayName": t.string().optional()}
     ).named(renames["UserInfoIn"])
     types["UserInfoOut"] = t.struct(
         {
-            "displayName": t.string().optional(),
             "email": t.string().optional(),
+            "displayName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["UserInfoOut"])
+    types["SitesUrlInfoIn"] = t.struct({"urls": t.array(t.string()).optional()}).named(
+        renames["SitesUrlInfoIn"]
+    )
+    types["SitesUrlInfoOut"] = t.struct(
+        {
+            "urls": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SitesUrlInfoOut"])
+    types["DriveExportOptionsIn"] = t.struct(
+        {"includeAccessInfo": t.boolean().optional()}
+    ).named(renames["DriveExportOptionsIn"])
+    types["DriveExportOptionsOut"] = t.struct(
+        {
+            "includeAccessInfo": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DriveExportOptionsOut"])
+    types["ReopenMatterResponseIn"] = t.struct(
+        {"matter": t.proxy(renames["MatterIn"]).optional()}
+    ).named(renames["ReopenMatterResponseIn"])
+    types["ReopenMatterResponseOut"] = t.struct(
+        {
+            "matter": t.proxy(renames["MatterOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReopenMatterResponseOut"])
+    types["ListExportsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "exports": t.array(t.proxy(renames["ExportIn"])).optional(),
+        }
+    ).named(renames["ListExportsResponseIn"])
+    types["ListExportsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "exports": t.array(t.proxy(renames["ExportOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListExportsResponseOut"])
+    types["RemoveMatterPermissionsRequestIn"] = t.struct(
+        {"accountId": t.string().optional()}
+    ).named(renames["RemoveMatterPermissionsRequestIn"])
+    types["RemoveMatterPermissionsRequestOut"] = t.struct(
+        {
+            "accountId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RemoveMatterPermissionsRequestOut"])
+    types["GroupsCountResultIn"] = t.struct(
+        {
+            "accountCounts": t.array(t.proxy(renames["AccountCountIn"])).optional(),
+            "accountCountErrors": t.array(
+                t.proxy(renames["AccountCountErrorIn"])
+            ).optional(),
+            "nonQueryableAccounts": t.array(t.string()).optional(),
+            "queriedAccountsCount": t.string().optional(),
+            "matchingAccountsCount": t.string().optional(),
+        }
+    ).named(renames["GroupsCountResultIn"])
+    types["GroupsCountResultOut"] = t.struct(
+        {
+            "accountCounts": t.array(t.proxy(renames["AccountCountOut"])).optional(),
+            "accountCountErrors": t.array(
+                t.proxy(renames["AccountCountErrorOut"])
+            ).optional(),
+            "nonQueryableAccounts": t.array(t.string()).optional(),
+            "queriedAccountsCount": t.string().optional(),
+            "matchingAccountsCount": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GroupsCountResultOut"])
+    types["HeldMailQueryIn"] = t.struct(
+        {
+            "startTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "terms": t.string().optional(),
+        }
+    ).named(renames["HeldMailQueryIn"])
+    types["HeldMailQueryOut"] = t.struct(
+        {
+            "startTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "terms": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HeldMailQueryOut"])
+    types["AddHeldAccountsResponseIn"] = t.struct(
+        {"responses": t.array(t.proxy(renames["AddHeldAccountResultIn"])).optional()}
+    ).named(renames["AddHeldAccountsResponseIn"])
+    types["AddHeldAccountsResponseOut"] = t.struct(
+        {
+            "responses": t.array(
+                t.proxy(renames["AddHeldAccountResultOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AddHeldAccountsResponseOut"])
+    types["ExportOptionsIn"] = t.struct(
+        {
+            "driveOptions": t.proxy(renames["DriveExportOptionsIn"]).optional(),
+            "hangoutsChatOptions": t.proxy(
+                renames["HangoutsChatExportOptionsIn"]
+            ).optional(),
+            "region": t.string().optional(),
+            "voiceOptions": t.proxy(renames["VoiceExportOptionsIn"]).optional(),
+            "mailOptions": t.proxy(renames["MailExportOptionsIn"]).optional(),
+            "groupsOptions": t.proxy(renames["GroupsExportOptionsIn"]).optional(),
+        }
+    ).named(renames["ExportOptionsIn"])
+    types["ExportOptionsOut"] = t.struct(
+        {
+            "driveOptions": t.proxy(renames["DriveExportOptionsOut"]).optional(),
+            "hangoutsChatOptions": t.proxy(
+                renames["HangoutsChatExportOptionsOut"]
+            ).optional(),
+            "region": t.string().optional(),
+            "voiceOptions": t.proxy(renames["VoiceExportOptionsOut"]).optional(),
+            "mailOptions": t.proxy(renames["MailExportOptionsOut"]).optional(),
+            "groupsOptions": t.proxy(renames["GroupsExportOptionsOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExportOptionsOut"])
+    types["UndeleteMatterRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["UndeleteMatterRequestIn"]
+    )
+    types["UndeleteMatterRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["UndeleteMatterRequestOut"])
+    types["GroupsExportOptionsIn"] = t.struct(
+        {"exportFormat": t.string().optional()}
+    ).named(renames["GroupsExportOptionsIn"])
+    types["GroupsExportOptionsOut"] = t.struct(
+        {
+            "exportFormat": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GroupsExportOptionsOut"])
     types["HeldHangoutsChatQueryIn"] = t.struct(
         {"includeRooms": t.boolean().optional()}
     ).named(renames["HeldHangoutsChatQueryIn"])
@@ -572,126 +431,103 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListMattersResponseOut"])
+    types["ListHoldsResponseIn"] = t.struct(
+        {
+            "holds": t.array(t.proxy(renames["HoldIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListHoldsResponseIn"])
+    types["ListHoldsResponseOut"] = t.struct(
+        {
+            "holds": t.array(t.proxy(renames["HoldOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListHoldsResponseOut"])
+    types["ExportStatsIn"] = t.struct(
+        {
+            "sizeInBytes": t.string().optional(),
+            "exportedArtifactCount": t.string().optional(),
+            "totalArtifactCount": t.string().optional(),
+        }
+    ).named(renames["ExportStatsIn"])
+    types["ExportStatsOut"] = t.struct(
+        {
+            "sizeInBytes": t.string().optional(),
+            "exportedArtifactCount": t.string().optional(),
+            "totalArtifactCount": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExportStatsOut"])
     types["AccountCountIn"] = t.struct(
         {
-            "count": t.string().optional(),
             "account": t.proxy(renames["UserInfoIn"]).optional(),
+            "count": t.string().optional(),
         }
     ).named(renames["AccountCountIn"])
     types["AccountCountOut"] = t.struct(
         {
-            "count": t.string().optional(),
             "account": t.proxy(renames["UserInfoOut"]).optional(),
+            "count": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AccountCountOut"])
-    types["CloseMatterRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["CloseMatterRequestIn"]
-    )
-    types["CloseMatterRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["CloseMatterRequestOut"])
-    types["StatusIn"] = t.struct(
+    types["QueryIn"] = t.struct(
         {
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "message": t.string().optional(),
+            "searchMethod": t.string().optional(),
+            "dataScope": t.string().optional(),
+            "teamDriveInfo": t.proxy(renames["TeamDriveInfoIn"]),
+            "orgUnitInfo": t.proxy(renames["OrgUnitInfoIn"]),
+            "driveOptions": t.proxy(renames["DriveOptionsIn"]).optional(),
+            "hangoutsChatOptions": t.proxy(renames["HangoutsChatOptionsIn"]).optional(),
+            "mailOptions": t.proxy(renames["MailOptionsIn"]).optional(),
+            "corpus": t.string().optional(),
+            "sharedDriveInfo": t.proxy(renames["SharedDriveInfoIn"]),
+            "sitesUrlInfo": t.proxy(renames["SitesUrlInfoIn"]),
+            "startTime": t.string().optional(),
+            "hangoutsChatInfo": t.proxy(renames["HangoutsChatInfoIn"]),
+            "method": t.string().optional(),
+            "timeZone": t.string().optional(),
+            "voiceOptions": t.proxy(renames["VoiceOptionsIn"]).optional(),
+            "endTime": t.string().optional(),
+            "accountInfo": t.proxy(renames["AccountInfoIn"]),
+            "terms": t.string().optional(),
         }
-    ).named(renames["StatusIn"])
-    types["StatusOut"] = t.struct(
+    ).named(renames["QueryIn"])
+    types["QueryOut"] = t.struct(
         {
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "message": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusOut"])
-    types["CloudStorageSinkIn"] = t.struct(
-        {"files": t.array(t.proxy(renames["CloudStorageFileIn"])).optional()}
-    ).named(renames["CloudStorageSinkIn"])
-    types["CloudStorageSinkOut"] = t.struct(
-        {
-            "files": t.array(t.proxy(renames["CloudStorageFileOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CloudStorageSinkOut"])
-    types["MailExportOptionsIn"] = t.struct(
-        {
-            "useNewExport": t.boolean().optional(),
-            "exportFormat": t.string().optional(),
-            "showConfidentialModeContent": t.boolean().optional(),
-        }
-    ).named(renames["MailExportOptionsIn"])
-    types["MailExportOptionsOut"] = t.struct(
-        {
-            "useNewExport": t.boolean().optional(),
-            "exportFormat": t.string().optional(),
-            "showConfidentialModeContent": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MailExportOptionsOut"])
-    types["HangoutsChatInfoIn"] = t.struct(
-        {"roomId": t.array(t.string()).optional()}
-    ).named(renames["HangoutsChatInfoIn"])
-    types["HangoutsChatInfoOut"] = t.struct(
-        {
-            "roomId": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HangoutsChatInfoOut"])
-    types["SharedDriveInfoIn"] = t.struct(
-        {"sharedDriveIds": t.array(t.string()).optional()}
-    ).named(renames["SharedDriveInfoIn"])
-    types["SharedDriveInfoOut"] = t.struct(
-        {
-            "sharedDriveIds": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SharedDriveInfoOut"])
-    types["CorpusQueryIn"] = t.struct(
-        {
-            "mailQuery": t.proxy(renames["HeldMailQueryIn"]).optional(),
-            "hangoutsChatQuery": t.proxy(renames["HeldHangoutsChatQueryIn"]).optional(),
-            "voiceQuery": t.proxy(renames["HeldVoiceQueryIn"]).optional(),
-            "groupsQuery": t.proxy(renames["HeldGroupsQueryIn"]).optional(),
-            "driveQuery": t.proxy(renames["HeldDriveQueryIn"]).optional(),
-        }
-    ).named(renames["CorpusQueryIn"])
-    types["CorpusQueryOut"] = t.struct(
-        {
-            "mailQuery": t.proxy(renames["HeldMailQueryOut"]).optional(),
-            "hangoutsChatQuery": t.proxy(
-                renames["HeldHangoutsChatQueryOut"]
+            "searchMethod": t.string().optional(),
+            "dataScope": t.string().optional(),
+            "teamDriveInfo": t.proxy(renames["TeamDriveInfoOut"]),
+            "orgUnitInfo": t.proxy(renames["OrgUnitInfoOut"]),
+            "driveOptions": t.proxy(renames["DriveOptionsOut"]).optional(),
+            "hangoutsChatOptions": t.proxy(
+                renames["HangoutsChatOptionsOut"]
             ).optional(),
-            "voiceQuery": t.proxy(renames["HeldVoiceQueryOut"]).optional(),
-            "groupsQuery": t.proxy(renames["HeldGroupsQueryOut"]).optional(),
-            "driveQuery": t.proxy(renames["HeldDriveQueryOut"]).optional(),
+            "mailOptions": t.proxy(renames["MailOptionsOut"]).optional(),
+            "corpus": t.string().optional(),
+            "sharedDriveInfo": t.proxy(renames["SharedDriveInfoOut"]),
+            "sitesUrlInfo": t.proxy(renames["SitesUrlInfoOut"]),
+            "startTime": t.string().optional(),
+            "hangoutsChatInfo": t.proxy(renames["HangoutsChatInfoOut"]),
+            "method": t.string().optional(),
+            "timeZone": t.string().optional(),
+            "voiceOptions": t.proxy(renames["VoiceOptionsOut"]).optional(),
+            "endTime": t.string().optional(),
+            "accountInfo": t.proxy(renames["AccountInfoOut"]),
+            "terms": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["CorpusQueryOut"])
-    types["MatterIn"] = t.struct(
+    ).named(renames["QueryOut"])
+    types["ListHeldAccountsResponseIn"] = t.struct(
+        {"accounts": t.array(t.proxy(renames["HeldAccountIn"])).optional()}
+    ).named(renames["ListHeldAccountsResponseIn"])
+    types["ListHeldAccountsResponseOut"] = t.struct(
         {
-            "matterPermissions": t.array(
-                t.proxy(renames["MatterPermissionIn"])
-            ).optional(),
-            "description": t.string().optional(),
-            "matterId": t.string().optional(),
-            "state": t.string().optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["MatterIn"])
-    types["MatterOut"] = t.struct(
-        {
-            "matterPermissions": t.array(
-                t.proxy(renames["MatterPermissionOut"])
-            ).optional(),
-            "description": t.string().optional(),
-            "matterId": t.string().optional(),
-            "state": t.string().optional(),
-            "name": t.string().optional(),
+            "accounts": t.array(t.proxy(renames["HeldAccountOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["MatterOut"])
+    ).named(renames["ListHeldAccountsResponseOut"])
     types["MailOptionsIn"] = t.struct(
         {
             "excludeDrafts": t.boolean().optional(),
@@ -705,45 +541,273 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["MailOptionsOut"])
-    types["OrgUnitInfoIn"] = t.struct({"orgUnitId": t.string().optional()}).named(
-        renames["OrgUnitInfoIn"]
+    types["CorpusQueryIn"] = t.struct(
+        {
+            "groupsQuery": t.proxy(renames["HeldGroupsQueryIn"]).optional(),
+            "voiceQuery": t.proxy(renames["HeldVoiceQueryIn"]).optional(),
+            "hangoutsChatQuery": t.proxy(renames["HeldHangoutsChatQueryIn"]).optional(),
+            "driveQuery": t.proxy(renames["HeldDriveQueryIn"]).optional(),
+            "mailQuery": t.proxy(renames["HeldMailQueryIn"]).optional(),
+        }
+    ).named(renames["CorpusQueryIn"])
+    types["CorpusQueryOut"] = t.struct(
+        {
+            "groupsQuery": t.proxy(renames["HeldGroupsQueryOut"]).optional(),
+            "voiceQuery": t.proxy(renames["HeldVoiceQueryOut"]).optional(),
+            "hangoutsChatQuery": t.proxy(
+                renames["HeldHangoutsChatQueryOut"]
+            ).optional(),
+            "driveQuery": t.proxy(renames["HeldDriveQueryOut"]).optional(),
+            "mailQuery": t.proxy(renames["HeldMailQueryOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CorpusQueryOut"])
+    types["MatterIn"] = t.struct(
+        {
+            "matterPermissions": t.array(
+                t.proxy(renames["MatterPermissionIn"])
+            ).optional(),
+            "name": t.string().optional(),
+            "state": t.string().optional(),
+            "description": t.string().optional(),
+            "matterId": t.string().optional(),
+        }
+    ).named(renames["MatterIn"])
+    types["MatterOut"] = t.struct(
+        {
+            "matterPermissions": t.array(
+                t.proxy(renames["MatterPermissionOut"])
+            ).optional(),
+            "name": t.string().optional(),
+            "state": t.string().optional(),
+            "description": t.string().optional(),
+            "matterId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MatterOut"])
+    types["HoldIn"] = t.struct(
+        {
+            "orgUnit": t.proxy(renames["HeldOrgUnitIn"]).optional(),
+            "updateTime": t.string().optional(),
+            "holdId": t.string().optional(),
+            "name": t.string().optional(),
+            "accounts": t.array(t.proxy(renames["HeldAccountIn"])).optional(),
+            "query": t.proxy(renames["CorpusQueryIn"]).optional(),
+            "corpus": t.string().optional(),
+        }
+    ).named(renames["HoldIn"])
+    types["HoldOut"] = t.struct(
+        {
+            "orgUnit": t.proxy(renames["HeldOrgUnitOut"]).optional(),
+            "updateTime": t.string().optional(),
+            "holdId": t.string().optional(),
+            "name": t.string().optional(),
+            "accounts": t.array(t.proxy(renames["HeldAccountOut"])).optional(),
+            "query": t.proxy(renames["CorpusQueryOut"]).optional(),
+            "corpus": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HoldOut"])
+    types["CancelOperationRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["CancelOperationRequestIn"]
     )
-    types["OrgUnitInfoOut"] = t.struct(
+    types["CancelOperationRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["CancelOperationRequestOut"])
+    types["MatterPermissionIn"] = t.struct(
+        {"role": t.string().optional(), "accountId": t.string().optional()}
+    ).named(renames["MatterPermissionIn"])
+    types["MatterPermissionOut"] = t.struct(
         {
-            "orgUnitId": t.string().optional(),
+            "role": t.string().optional(),
+            "accountId": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["OrgUnitInfoOut"])
-    types["CountArtifactsResponseIn"] = t.struct(
+    ).named(renames["MatterPermissionOut"])
+    types["AddHeldAccountsRequestIn"] = t.struct(
         {
-            "mailCountResult": t.proxy(renames["MailCountResultIn"]).optional(),
-            "totalCount": t.string().optional(),
-            "groupsCountResult": t.proxy(renames["GroupsCountResultIn"]).optional(),
+            "emails": t.array(t.string()).optional(),
+            "accountIds": t.array(t.string()).optional(),
         }
-    ).named(renames["CountArtifactsResponseIn"])
-    types["CountArtifactsResponseOut"] = t.struct(
+    ).named(renames["AddHeldAccountsRequestIn"])
+    types["AddHeldAccountsRequestOut"] = t.struct(
         {
-            "mailCountResult": t.proxy(renames["MailCountResultOut"]).optional(),
-            "totalCount": t.string().optional(),
-            "groupsCountResult": t.proxy(renames["GroupsCountResultOut"]).optional(),
+            "emails": t.array(t.string()).optional(),
+            "accountIds": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["CountArtifactsResponseOut"])
-    types["HeldMailQueryIn"] = t.struct(
+    ).named(renames["AddHeldAccountsRequestOut"])
+    types["CountArtifactsMetadataIn"] = t.struct(
         {
+            "matterId": t.string().optional(),
             "endTime": t.string().optional(),
-            "terms": t.string().optional(),
+            "query": t.proxy(renames["QueryIn"]).optional(),
             "startTime": t.string().optional(),
         }
-    ).named(renames["HeldMailQueryIn"])
-    types["HeldMailQueryOut"] = t.struct(
+    ).named(renames["CountArtifactsMetadataIn"])
+    types["CountArtifactsMetadataOut"] = t.struct(
         {
+            "matterId": t.string().optional(),
             "endTime": t.string().optional(),
-            "terms": t.string().optional(),
+            "query": t.proxy(renames["QueryOut"]).optional(),
             "startTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HeldMailQueryOut"])
+    ).named(renames["CountArtifactsMetadataOut"])
+    types["CloudStorageSinkIn"] = t.struct(
+        {"files": t.array(t.proxy(renames["CloudStorageFileIn"])).optional()}
+    ).named(renames["CloudStorageSinkIn"])
+    types["CloudStorageSinkOut"] = t.struct(
+        {
+            "files": t.array(t.proxy(renames["CloudStorageFileOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CloudStorageSinkOut"])
+    types["SharedDriveInfoIn"] = t.struct(
+        {"sharedDriveIds": t.array(t.string()).optional()}
+    ).named(renames["SharedDriveInfoIn"])
+    types["SharedDriveInfoOut"] = t.struct(
+        {
+            "sharedDriveIds": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SharedDriveInfoOut"])
+    types["ReopenMatterRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["ReopenMatterRequestIn"]
+    )
+    types["ReopenMatterRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["ReopenMatterRequestOut"])
+    types["HeldVoiceQueryIn"] = t.struct(
+        {"coveredData": t.array(t.string()).optional()}
+    ).named(renames["HeldVoiceQueryIn"])
+    types["HeldVoiceQueryOut"] = t.struct(
+        {
+            "coveredData": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HeldVoiceQueryOut"])
+    types["RemoveHeldAccountsRequestIn"] = t.struct(
+        {"accountIds": t.array(t.string()).optional()}
+    ).named(renames["RemoveHeldAccountsRequestIn"])
+    types["RemoveHeldAccountsRequestOut"] = t.struct(
+        {
+            "accountIds": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RemoveHeldAccountsRequestOut"])
+    types["MailCountResultIn"] = t.struct(
+        {
+            "accountCounts": t.array(t.proxy(renames["AccountCountIn"])).optional(),
+            "accountCountErrors": t.array(
+                t.proxy(renames["AccountCountErrorIn"])
+            ).optional(),
+            "nonQueryableAccounts": t.array(t.string()).optional(),
+            "queriedAccountsCount": t.string().optional(),
+            "matchingAccountsCount": t.string().optional(),
+        }
+    ).named(renames["MailCountResultIn"])
+    types["MailCountResultOut"] = t.struct(
+        {
+            "accountCounts": t.array(t.proxy(renames["AccountCountOut"])).optional(),
+            "accountCountErrors": t.array(
+                t.proxy(renames["AccountCountErrorOut"])
+            ).optional(),
+            "nonQueryableAccounts": t.array(t.string()).optional(),
+            "queriedAccountsCount": t.string().optional(),
+            "matchingAccountsCount": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MailCountResultOut"])
+    types["VoiceExportOptionsIn"] = t.struct(
+        {"exportFormat": t.string().optional()}
+    ).named(renames["VoiceExportOptionsIn"])
+    types["VoiceExportOptionsOut"] = t.struct(
+        {
+            "exportFormat": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["VoiceExportOptionsOut"])
+    types["AddMatterPermissionsRequestIn"] = t.struct(
+        {
+            "matterPermission": t.proxy(renames["MatterPermissionIn"]).optional(),
+            "sendEmails": t.boolean().optional(),
+            "ccMe": t.boolean().optional(),
+        }
+    ).named(renames["AddMatterPermissionsRequestIn"])
+    types["AddMatterPermissionsRequestOut"] = t.struct(
+        {
+            "matterPermission": t.proxy(renames["MatterPermissionOut"]).optional(),
+            "sendEmails": t.boolean().optional(),
+            "ccMe": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AddMatterPermissionsRequestOut"])
+    types["CloseMatterRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["CloseMatterRequestIn"]
+    )
+    types["CloseMatterRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["CloseMatterRequestOut"])
+    types["ListSavedQueriesResponseIn"] = t.struct(
+        {
+            "savedQueries": t.array(t.proxy(renames["SavedQueryIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListSavedQueriesResponseIn"])
+    types["ListSavedQueriesResponseOut"] = t.struct(
+        {
+            "savedQueries": t.array(t.proxy(renames["SavedQueryOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListSavedQueriesResponseOut"])
+    types["DriveOptionsIn"] = t.struct(
+        {
+            "clientSideEncryptedOption": t.string().optional(),
+            "versionDate": t.string().optional(),
+            "includeTeamDrives": t.boolean().optional(),
+            "includeSharedDrives": t.boolean().optional(),
+        }
+    ).named(renames["DriveOptionsIn"])
+    types["DriveOptionsOut"] = t.struct(
+        {
+            "clientSideEncryptedOption": t.string().optional(),
+            "versionDate": t.string().optional(),
+            "includeTeamDrives": t.boolean().optional(),
+            "includeSharedDrives": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DriveOptionsOut"])
+    types["ExportIn"] = t.struct(
+        {
+            "stats": t.proxy(renames["ExportStatsIn"]).optional(),
+            "matterId": t.string().optional(),
+            "name": t.string().optional(),
+            "id": t.string().optional(),
+            "cloudStorageSink": t.proxy(renames["CloudStorageSinkIn"]).optional(),
+            "requester": t.proxy(renames["UserInfoIn"]).optional(),
+            "exportOptions": t.proxy(renames["ExportOptionsIn"]).optional(),
+            "query": t.proxy(renames["QueryIn"]).optional(),
+            "status": t.string().optional(),
+            "createTime": t.string().optional(),
+        }
+    ).named(renames["ExportIn"])
+    types["ExportOut"] = t.struct(
+        {
+            "stats": t.proxy(renames["ExportStatsOut"]).optional(),
+            "matterId": t.string().optional(),
+            "name": t.string().optional(),
+            "id": t.string().optional(),
+            "cloudStorageSink": t.proxy(renames["CloudStorageSinkOut"]).optional(),
+            "requester": t.proxy(renames["UserInfoOut"]).optional(),
+            "exportOptions": t.proxy(renames["ExportOptionsOut"]).optional(),
+            "query": t.proxy(renames["QueryOut"]).optional(),
+            "status": t.string().optional(),
+            "createTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExportOut"])
     types["ListOperationsResponseIn"] = t.struct(
         {
             "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
@@ -766,121 +830,62 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AccountInfoOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["ReopenMatterResponseIn"] = t.struct(
-        {"matter": t.proxy(renames["MatterIn"]).optional()}
-    ).named(renames["ReopenMatterResponseIn"])
-    types["ReopenMatterResponseOut"] = t.struct(
+    types["TeamDriveInfoIn"] = t.struct(
+        {"teamDriveIds": t.array(t.string()).optional()}
+    ).named(renames["TeamDriveInfoIn"])
+    types["TeamDriveInfoOut"] = t.struct(
         {
-            "matter": t.proxy(renames["MatterOut"]).optional(),
+            "teamDriveIds": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ReopenMatterResponseOut"])
-    types["OperationIn"] = t.struct(
+    ).named(renames["TeamDriveInfoOut"])
+    types["AccountCountErrorIn"] = t.struct(
         {
-            "done": t.boolean().optional(),
-            "error": t.proxy(renames["StatusIn"]).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
+            "account": t.proxy(renames["UserInfoIn"]).optional(),
+            "errorType": t.string().optional(),
         }
-    ).named(renames["OperationIn"])
-    types["OperationOut"] = t.struct(
+    ).named(renames["AccountCountErrorIn"])
+    types["AccountCountErrorOut"] = t.struct(
         {
-            "done": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["OperationOut"])
-    types["AddMatterPermissionsRequestIn"] = t.struct(
-        {
-            "sendEmails": t.boolean().optional(),
-            "ccMe": t.boolean().optional(),
-            "matterPermission": t.proxy(renames["MatterPermissionIn"]).optional(),
-        }
-    ).named(renames["AddMatterPermissionsRequestIn"])
-    types["AddMatterPermissionsRequestOut"] = t.struct(
-        {
-            "sendEmails": t.boolean().optional(),
-            "ccMe": t.boolean().optional(),
-            "matterPermission": t.proxy(renames["MatterPermissionOut"]).optional(),
+            "account": t.proxy(renames["UserInfoOut"]).optional(),
+            "errorType": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AddMatterPermissionsRequestOut"])
-    types["RemoveHeldAccountsResponseIn"] = t.struct(
-        {"statuses": t.array(t.proxy(renames["StatusIn"])).optional()}
-    ).named(renames["RemoveHeldAccountsResponseIn"])
-    types["RemoveHeldAccountsResponseOut"] = t.struct(
-        {
-            "statuses": t.array(t.proxy(renames["StatusOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RemoveHeldAccountsResponseOut"])
-    types["SitesUrlInfoIn"] = t.struct({"urls": t.array(t.string()).optional()}).named(
-        renames["SitesUrlInfoIn"]
-    )
-    types["SitesUrlInfoOut"] = t.struct(
-        {
-            "urls": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SitesUrlInfoOut"])
+    ).named(renames["AccountCountErrorOut"])
     types["SavedQueryIn"] = t.struct(
         {
-            "displayName": t.string().optional(),
-            "createTime": t.string().optional(),
             "query": t.proxy(renames["QueryIn"]).optional(),
-            "matterId": t.string().optional(),
             "savedQueryId": t.string().optional(),
+            "displayName": t.string().optional(),
+            "matterId": t.string().optional(),
+            "createTime": t.string().optional(),
         }
     ).named(renames["SavedQueryIn"])
     types["SavedQueryOut"] = t.struct(
         {
-            "displayName": t.string().optional(),
-            "createTime": t.string().optional(),
             "query": t.proxy(renames["QueryOut"]).optional(),
-            "matterId": t.string().optional(),
             "savedQueryId": t.string().optional(),
+            "displayName": t.string().optional(),
+            "matterId": t.string().optional(),
+            "createTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SavedQueryOut"])
-    types["CloudStorageFileIn"] = t.struct(
+    types["MailExportOptionsIn"] = t.struct(
         {
-            "md5Hash": t.string().optional(),
-            "bucketName": t.string().optional(),
-            "size": t.string().optional(),
-            "objectName": t.string().optional(),
+            "showConfidentialModeContent": t.boolean().optional(),
+            "useNewExport": t.boolean().optional(),
+            "exportFormat": t.string().optional(),
         }
-    ).named(renames["CloudStorageFileIn"])
-    types["CloudStorageFileOut"] = t.struct(
+    ).named(renames["MailExportOptionsIn"])
+    types["MailExportOptionsOut"] = t.struct(
         {
-            "md5Hash": t.string().optional(),
-            "bucketName": t.string().optional(),
-            "size": t.string().optional(),
-            "objectName": t.string().optional(),
+            "showConfidentialModeContent": t.boolean().optional(),
+            "useNewExport": t.boolean().optional(),
+            "exportFormat": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["CloudStorageFileOut"])
-    types["ExportStatsIn"] = t.struct(
-        {
-            "sizeInBytes": t.string().optional(),
-            "exportedArtifactCount": t.string().optional(),
-            "totalArtifactCount": t.string().optional(),
-        }
-    ).named(renames["ExportStatsIn"])
-    types["ExportStatsOut"] = t.struct(
-        {
-            "sizeInBytes": t.string().optional(),
-            "exportedArtifactCount": t.string().optional(),
-            "totalArtifactCount": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExportStatsOut"])
+    ).named(renames["MailExportOptionsOut"])
     types["HeldDriveQueryIn"] = t.struct(
         {
             "includeTeamDriveFiles": t.boolean().optional(),
@@ -894,204 +899,93 @@ def import_vault() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["HeldDriveQueryOut"])
-    types["DriveOptionsIn"] = t.struct(
+    types["OperationIn"] = t.struct(
         {
-            "includeTeamDrives": t.boolean().optional(),
-            "versionDate": t.string().optional(),
-            "includeSharedDrives": t.boolean().optional(),
-            "clientSideEncryptedOption": t.string().optional(),
+            "error": t.proxy(renames["StatusIn"]).optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "done": t.boolean().optional(),
         }
-    ).named(renames["DriveOptionsIn"])
-    types["DriveOptionsOut"] = t.struct(
+    ).named(renames["OperationIn"])
+    types["OperationOut"] = t.struct(
         {
-            "includeTeamDrives": t.boolean().optional(),
-            "versionDate": t.string().optional(),
-            "includeSharedDrives": t.boolean().optional(),
-            "clientSideEncryptedOption": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "done": t.boolean().optional(),
+        }
+    ).named(renames["OperationOut"])
+    types["StatusIn"] = t.struct(
+        {
+            "message": t.string().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
+        }
+    ).named(renames["StatusIn"])
+    types["StatusOut"] = t.struct(
+        {
+            "message": t.string().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DriveOptionsOut"])
-    types["VoiceExportOptionsIn"] = t.struct(
-        {"exportFormat": t.string().optional()}
-    ).named(renames["VoiceExportOptionsIn"])
-    types["VoiceExportOptionsOut"] = t.struct(
+    ).named(renames["StatusOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
+    types["HeldOrgUnitIn"] = t.struct(
+        {"orgUnitId": t.string().optional(), "holdTime": t.string().optional()}
+    ).named(renames["HeldOrgUnitIn"])
+    types["HeldOrgUnitOut"] = t.struct(
         {
-            "exportFormat": t.string().optional(),
+            "orgUnitId": t.string().optional(),
+            "holdTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["VoiceExportOptionsOut"])
-    types["MailCountResultIn"] = t.struct(
+    ).named(renames["HeldOrgUnitOut"])
+    types["RemoveHeldAccountsResponseIn"] = t.struct(
+        {"statuses": t.array(t.proxy(renames["StatusIn"])).optional()}
+    ).named(renames["RemoveHeldAccountsResponseIn"])
+    types["RemoveHeldAccountsResponseOut"] = t.struct(
         {
-            "matchingAccountsCount": t.string().optional(),
-            "queriedAccountsCount": t.string().optional(),
-            "accountCounts": t.array(t.proxy(renames["AccountCountIn"])).optional(),
-            "accountCountErrors": t.array(
-                t.proxy(renames["AccountCountErrorIn"])
-            ).optional(),
-            "nonQueryableAccounts": t.array(t.string()).optional(),
-        }
-    ).named(renames["MailCountResultIn"])
-    types["MailCountResultOut"] = t.struct(
-        {
-            "matchingAccountsCount": t.string().optional(),
-            "queriedAccountsCount": t.string().optional(),
-            "accountCounts": t.array(t.proxy(renames["AccountCountOut"])).optional(),
-            "accountCountErrors": t.array(
-                t.proxy(renames["AccountCountErrorOut"])
-            ).optional(),
-            "nonQueryableAccounts": t.array(t.string()).optional(),
+            "statuses": t.array(t.proxy(renames["StatusOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["MailCountResultOut"])
-    types["AddHeldAccountsResponseIn"] = t.struct(
-        {"responses": t.array(t.proxy(renames["AddHeldAccountResultIn"])).optional()}
-    ).named(renames["AddHeldAccountsResponseIn"])
-    types["AddHeldAccountsResponseOut"] = t.struct(
+    ).named(renames["RemoveHeldAccountsResponseOut"])
+    types["CountArtifactsRequestIn"] = t.struct(
+        {"view": t.string().optional(), "query": t.proxy(renames["QueryIn"]).optional()}
+    ).named(renames["CountArtifactsRequestIn"])
+    types["CountArtifactsRequestOut"] = t.struct(
         {
-            "responses": t.array(
-                t.proxy(renames["AddHeldAccountResultOut"])
-            ).optional(),
+            "view": t.string().optional(),
+            "query": t.proxy(renames["QueryOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AddHeldAccountsResponseOut"])
-    types["ExportOptionsIn"] = t.struct(
+    ).named(renames["CountArtifactsRequestOut"])
+    types["AddHeldAccountResultIn"] = t.struct(
         {
-            "voiceOptions": t.proxy(renames["VoiceExportOptionsIn"]).optional(),
-            "region": t.string().optional(),
-            "hangoutsChatOptions": t.proxy(
-                renames["HangoutsChatExportOptionsIn"]
-            ).optional(),
-            "groupsOptions": t.proxy(renames["GroupsExportOptionsIn"]).optional(),
-            "mailOptions": t.proxy(renames["MailExportOptionsIn"]).optional(),
-            "driveOptions": t.proxy(renames["DriveExportOptionsIn"]).optional(),
+            "status": t.proxy(renames["StatusIn"]).optional(),
+            "account": t.proxy(renames["HeldAccountIn"]).optional(),
         }
-    ).named(renames["ExportOptionsIn"])
-    types["ExportOptionsOut"] = t.struct(
+    ).named(renames["AddHeldAccountResultIn"])
+    types["AddHeldAccountResultOut"] = t.struct(
         {
-            "voiceOptions": t.proxy(renames["VoiceExportOptionsOut"]).optional(),
-            "region": t.string().optional(),
-            "hangoutsChatOptions": t.proxy(
-                renames["HangoutsChatExportOptionsOut"]
-            ).optional(),
-            "groupsOptions": t.proxy(renames["GroupsExportOptionsOut"]).optional(),
-            "mailOptions": t.proxy(renames["MailExportOptionsOut"]).optional(),
-            "driveOptions": t.proxy(renames["DriveExportOptionsOut"]).optional(),
+            "status": t.proxy(renames["StatusOut"]).optional(),
+            "account": t.proxy(renames["HeldAccountOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ExportOptionsOut"])
+    ).named(renames["AddHeldAccountResultOut"])
 
     functions = {}
-    functions["operationsList"] = vault.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["operationsCancel"] = vault.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["operationsDelete"] = vault.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["operationsGet"] = vault.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersList"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersUndelete"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersCreate"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersRemovePermissions"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersUpdate"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersCount"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersClose"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersGet"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersAddPermissions"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersReopen"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersDelete"] = vault.delete(
-        "v1/matters/{matterId}",
-        t.struct({"matterId": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["MatterOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersHoldsList"] = vault.delete(
-        "v1/matters/{matterId}/holds/{holdId}",
+    functions["operationsGet"] = vault.post(
+        "v1/{name}:cancel",
         t.struct(
             {
-                "holdId": t.string().optional(),
-                "matterId": t.string().optional(),
+                "name": t.string().optional(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1099,12 +993,12 @@ def import_vault() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["mattersHoldsAddHeldAccounts"] = vault.delete(
-        "v1/matters/{matterId}/holds/{holdId}",
+    functions["operationsDelete"] = vault.post(
+        "v1/{name}:cancel",
         t.struct(
             {
-                "holdId": t.string().optional(),
-                "matterId": t.string().optional(),
+                "name": t.string().optional(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1112,12 +1006,12 @@ def import_vault() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["mattersHoldsCreate"] = vault.delete(
-        "v1/matters/{matterId}/holds/{holdId}",
+    functions["operationsList"] = vault.post(
+        "v1/{name}:cancel",
         t.struct(
             {
-                "holdId": t.string().optional(),
-                "matterId": t.string().optional(),
+                "name": t.string().optional(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1125,12 +1019,12 @@ def import_vault() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["mattersHoldsGet"] = vault.delete(
-        "v1/matters/{matterId}/holds/{holdId}",
+    functions["operationsCancel"] = vault.post(
+        "v1/{name}:cancel",
         t.struct(
             {
-                "holdId": t.string().optional(),
-                "matterId": t.string().optional(),
+                "name": t.string().optional(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1138,42 +1032,307 @@ def import_vault() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["mattersHoldsUpdate"] = vault.delete(
-        "v1/matters/{matterId}/holds/{holdId}",
+    functions["mattersRemovePermissions"] = vault.post(
+        "v1/matters/{matterId}:reopen",
         t.struct(
             {
-                "holdId": t.string().optional(),
                 "matterId": t.string().optional(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["EmptyOut"]),
+        t.proxy(renames["ReopenMatterResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["mattersHoldsRemoveHeldAccounts"] = vault.delete(
-        "v1/matters/{matterId}/holds/{holdId}",
+    functions["mattersList"] = vault.post(
+        "v1/matters/{matterId}:reopen",
         t.struct(
             {
-                "holdId": t.string().optional(),
                 "matterId": t.string().optional(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["EmptyOut"]),
+        t.proxy(renames["ReopenMatterResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["mattersHoldsDelete"] = vault.delete(
-        "v1/matters/{matterId}/holds/{holdId}",
+    functions["mattersGet"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersCount"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersDelete"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersUpdate"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersAddPermissions"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersClose"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersCreate"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersUndelete"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersReopen"] = vault.post(
+        "v1/matters/{matterId}:reopen",
+        t.struct(
+            {
+                "matterId": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReopenMatterResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersSavedQueriesGet"] = vault.get(
+        "v1/matters/{matterId}/savedQueries",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "matterId": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListSavedQueriesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersSavedQueriesCreate"] = vault.get(
+        "v1/matters/{matterId}/savedQueries",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "matterId": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListSavedQueriesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersSavedQueriesDelete"] = vault.get(
+        "v1/matters/{matterId}/savedQueries",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "matterId": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListSavedQueriesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersSavedQueriesList"] = vault.get(
+        "v1/matters/{matterId}/savedQueries",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "matterId": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListSavedQueriesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersHoldsRemoveHeldAccounts"] = vault.post(
+        "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
         t.struct(
             {
                 "holdId": t.string().optional(),
                 "matterId": t.string().optional(),
+                "emails": t.array(t.string()).optional(),
+                "accountIds": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["EmptyOut"]),
+        t.proxy(renames["AddHeldAccountsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersHoldsList"] = vault.post(
+        "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
+        t.struct(
+            {
+                "holdId": t.string().optional(),
+                "matterId": t.string().optional(),
+                "emails": t.array(t.string()).optional(),
+                "accountIds": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AddHeldAccountsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersHoldsDelete"] = vault.post(
+        "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
+        t.struct(
+            {
+                "holdId": t.string().optional(),
+                "matterId": t.string().optional(),
+                "emails": t.array(t.string()).optional(),
+                "accountIds": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AddHeldAccountsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersHoldsCreate"] = vault.post(
+        "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
+        t.struct(
+            {
+                "holdId": t.string().optional(),
+                "matterId": t.string().optional(),
+                "emails": t.array(t.string()).optional(),
+                "accountIds": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AddHeldAccountsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersHoldsUpdate"] = vault.post(
+        "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
+        t.struct(
+            {
+                "holdId": t.string().optional(),
+                "matterId": t.string().optional(),
+                "emails": t.array(t.string()).optional(),
+                "accountIds": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AddHeldAccountsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersHoldsGet"] = vault.post(
+        "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
+        t.struct(
+            {
+                "holdId": t.string().optional(),
+                "matterId": t.string().optional(),
+                "emails": t.array(t.string()).optional(),
+                "accountIds": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AddHeldAccountsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["mattersHoldsAddHeldAccounts"] = vault.post(
+        "v1/matters/{matterId}/holds/{holdId}:addHeldAccounts",
+        t.struct(
+            {
+                "holdId": t.string().optional(),
+                "matterId": t.string().optional(),
+                "emails": t.array(t.string()).optional(),
+                "accountIds": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["AddHeldAccountsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -1181,8 +1340,8 @@ def import_vault() -> Import:
         "v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}",
         t.struct(
             {
-                "accountId": t.string().optional(),
                 "matterId": t.string().optional(),
+                "accountId": t.string().optional(),
                 "holdId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -1195,8 +1354,8 @@ def import_vault() -> Import:
         "v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}",
         t.struct(
             {
-                "accountId": t.string().optional(),
                 "matterId": t.string().optional(),
+                "accountId": t.string().optional(),
                 "holdId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -1209,8 +1368,8 @@ def import_vault() -> Import:
         "v1/matters/{matterId}/holds/{holdId}/accounts/{accountId}",
         t.struct(
             {
-                "accountId": t.string().optional(),
                 "matterId": t.string().optional(),
+                "accountId": t.string().optional(),
                 "holdId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -1219,64 +1378,12 @@ def import_vault() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["mattersSavedQueriesDelete"] = vault.get(
-        "v1/matters/{matterId}/savedQueries/{savedQueryId}",
-        t.struct(
-            {
-                "matterId": t.string().optional(),
-                "savedQueryId": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["SavedQueryOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersSavedQueriesList"] = vault.get(
-        "v1/matters/{matterId}/savedQueries/{savedQueryId}",
-        t.struct(
-            {
-                "matterId": t.string().optional(),
-                "savedQueryId": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["SavedQueryOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersSavedQueriesCreate"] = vault.get(
-        "v1/matters/{matterId}/savedQueries/{savedQueryId}",
-        t.struct(
-            {
-                "matterId": t.string().optional(),
-                "savedQueryId": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["SavedQueryOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["mattersSavedQueriesGet"] = vault.get(
-        "v1/matters/{matterId}/savedQueries/{savedQueryId}",
-        t.struct(
-            {
-                "matterId": t.string().optional(),
-                "savedQueryId": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["SavedQueryOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["mattersExportsCreate"] = vault.get(
         "v1/matters/{matterId}/exports",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "matterId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -1289,8 +1396,8 @@ def import_vault() -> Import:
         "v1/matters/{matterId}/exports",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "matterId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -1303,8 +1410,8 @@ def import_vault() -> Import:
         "v1/matters/{matterId}/exports",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "matterId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -1317,8 +1424,8 @@ def import_vault() -> Import:
         "v1/matters/{matterId}/exports",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "matterId": t.string().optional(),
                 "auth": t.string().optional(),
             }
@@ -1328,4 +1435,6 @@ def import_vault() -> Import:
         content_type="application/json",
     )
 
-    return Import(importer="vault", renames=renames, types=types, functions=functions)
+    return Import(
+        importer="vault", renames=renames, types=Box(types), functions=Box(functions)
+    )
