@@ -1,0 +1,4487 @@
+from typegraph.runtimes.http import HTTPRuntime
+from typegraph.importers.base.importer import Import
+from typegraph import t
+from box import Box
+
+
+def import_contactcenterinsights() -> Import:
+    contactcenterinsights = HTTPRuntime("https://contactcenterinsights.googleapis.com/")
+
+    renames = {
+        "ErrorResponse": "_contactcenterinsights_1_ErrorResponse",
+        "GoogleCloudContactcenterinsightsV1DialogflowSourceIn": "_contactcenterinsights_2_GoogleCloudContactcenterinsightsV1DialogflowSourceIn",
+        "GoogleCloudContactcenterinsightsV1DialogflowSourceOut": "_contactcenterinsights_3_GoogleCloudContactcenterinsightsV1DialogflowSourceOut",
+        "GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataIn": "_contactcenterinsights_4_GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataOut": "_contactcenterinsights_5_GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataOut",
+        "GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigIn": "_contactcenterinsights_6_GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigIn",
+        "GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigOut": "_contactcenterinsights_7_GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigOut",
+        "GoogleCloudContactcenterinsightsV1UploadConversationMetadataIn": "_contactcenterinsights_8_GoogleCloudContactcenterinsightsV1UploadConversationMetadataIn",
+        "GoogleCloudContactcenterinsightsV1UploadConversationMetadataOut": "_contactcenterinsights_9_GoogleCloudContactcenterinsightsV1UploadConversationMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseIn": "_contactcenterinsights_10_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseOut": "_contactcenterinsights_11_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseOut",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestIn": "_contactcenterinsights_12_GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestIn",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestOut": "_contactcenterinsights_13_GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestOut",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn": "_contactcenterinsights_14_GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupOut": "_contactcenterinsights_15_GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupOut",
+        "GoogleCloudContactcenterinsightsV1ExactMatchConfigIn": "_contactcenterinsights_16_GoogleCloudContactcenterinsightsV1ExactMatchConfigIn",
+        "GoogleCloudContactcenterinsightsV1ExactMatchConfigOut": "_contactcenterinsights_17_GoogleCloudContactcenterinsightsV1ExactMatchConfigOut",
+        "GoogleCloudContactcenterinsightsV1CallAnnotationIn": "_contactcenterinsights_18_GoogleCloudContactcenterinsightsV1CallAnnotationIn",
+        "GoogleCloudContactcenterinsightsV1CallAnnotationOut": "_contactcenterinsights_19_GoogleCloudContactcenterinsightsV1CallAnnotationOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelIn": "_contactcenterinsights_20_GoogleCloudContactcenterinsightsV1alpha1IssueModelIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelOut": "_contactcenterinsights_21_GoogleCloudContactcenterinsightsV1alpha1IssueModelOut",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationIn": "_contactcenterinsights_22_GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationIn",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationOut": "_contactcenterinsights_23_GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationOut",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptIn": "_contactcenterinsights_24_GoogleCloudContactcenterinsightsV1ConversationTranscriptIn",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptOut": "_contactcenterinsights_25_GoogleCloudContactcenterinsightsV1ConversationTranscriptOut",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsIn": "_contactcenterinsights_26_GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsIn",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsOut": "_contactcenterinsights_27_GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentIn": "_contactcenterinsights_28_GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentOut": "_contactcenterinsights_29_GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentOut",
+        "GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataIn": "_contactcenterinsights_30_GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataIn",
+        "GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataOut": "_contactcenterinsights_31_GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataOut",
+        "GoogleCloudContactcenterinsightsV1SettingsIn": "_contactcenterinsights_32_GoogleCloudContactcenterinsightsV1SettingsIn",
+        "GoogleCloudContactcenterinsightsV1SettingsOut": "_contactcenterinsights_33_GoogleCloudContactcenterinsightsV1SettingsOut",
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseIn": "_contactcenterinsights_34_GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseIn",
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseOut": "_contactcenterinsights_35_GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseOut",
+        "GoogleCloudContactcenterinsightsV1IssueMatchDataIn": "_contactcenterinsights_36_GoogleCloudContactcenterinsightsV1IssueMatchDataIn",
+        "GoogleCloudContactcenterinsightsV1IssueMatchDataOut": "_contactcenterinsights_37_GoogleCloudContactcenterinsightsV1IssueMatchDataOut",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoIn": "_contactcenterinsights_38_GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoIn",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoOut": "_contactcenterinsights_39_GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoOut",
+        "GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataIn": "_contactcenterinsights_40_GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataOut": "_contactcenterinsights_41_GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataIn": "_contactcenterinsights_42_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataOut": "_contactcenterinsights_43_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentIn": "_contactcenterinsights_44_GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentOut": "_contactcenterinsights_45_GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentOut",
+        "GoogleCloudContactcenterinsightsV1alpha1RedactionConfigIn": "_contactcenterinsights_46_GoogleCloudContactcenterinsightsV1alpha1RedactionConfigIn",
+        "GoogleCloudContactcenterinsightsV1alpha1RedactionConfigOut": "_contactcenterinsights_47_GoogleCloudContactcenterinsightsV1alpha1RedactionConfigOut",
+        "GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn": "_contactcenterinsights_48_GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn",
+        "GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut": "_contactcenterinsights_49_GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut",
+        "GoogleCloudContactcenterinsightsV1ArticleSuggestionDataIn": "_contactcenterinsights_50_GoogleCloudContactcenterinsightsV1ArticleSuggestionDataIn",
+        "GoogleCloudContactcenterinsightsV1ArticleSuggestionDataOut": "_contactcenterinsights_51_GoogleCloudContactcenterinsightsV1ArticleSuggestionDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationIn": "_contactcenterinsights_52_GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationIn",
+        "GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationOut": "_contactcenterinsights_53_GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationOut",
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestIn": "_contactcenterinsights_54_GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestOut": "_contactcenterinsights_55_GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataIn": "_contactcenterinsights_56_GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataOut": "_contactcenterinsights_57_GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestIn": "_contactcenterinsights_58_GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestOut": "_contactcenterinsights_59_GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestOut",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIn": "_contactcenterinsights_60_GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIn",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataOut": "_contactcenterinsights_61_GoogleCloudContactcenterinsightsV1IngestConversationsMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataIn": "_contactcenterinsights_62_GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataOut": "_contactcenterinsights_63_GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataOut",
+        "GoogleCloudContactcenterinsightsV1RuntimeAnnotationIn": "_contactcenterinsights_64_GoogleCloudContactcenterinsightsV1RuntimeAnnotationIn",
+        "GoogleCloudContactcenterinsightsV1RuntimeAnnotationOut": "_contactcenterinsights_65_GoogleCloudContactcenterinsightsV1RuntimeAnnotationOut",
+        "GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataIn": "_contactcenterinsights_66_GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataOut": "_contactcenterinsights_67_GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestIn": "_contactcenterinsights_68_GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestOut": "_contactcenterinsights_69_GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestOut",
+        "GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataIn": "_contactcenterinsights_70_GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataOut": "_contactcenterinsights_71_GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataIn": "_contactcenterinsights_72_GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataOut": "_contactcenterinsights_73_GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataOut",
+        "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsIn": "_contactcenterinsights_74_GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsIn",
+        "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsOut": "_contactcenterinsights_75_GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsOut",
+        "GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataIn": "_contactcenterinsights_76_GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataOut": "_contactcenterinsights_77_GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptIn": "_contactcenterinsights_78_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptOut": "_contactcenterinsights_79_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptOut",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn": "_contactcenterinsights_80_GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut": "_contactcenterinsights_81_GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut",
+        "GoogleCloudContactcenterinsightsV1AnalysisIn": "_contactcenterinsights_82_GoogleCloudContactcenterinsightsV1AnalysisIn",
+        "GoogleCloudContactcenterinsightsV1AnalysisOut": "_contactcenterinsights_83_GoogleCloudContactcenterinsightsV1AnalysisOut",
+        "GoogleCloudContactcenterinsightsV1IssueAssignmentIn": "_contactcenterinsights_84_GoogleCloudContactcenterinsightsV1IssueAssignmentIn",
+        "GoogleCloudContactcenterinsightsV1IssueAssignmentOut": "_contactcenterinsights_85_GoogleCloudContactcenterinsightsV1IssueAssignmentOut",
+        "GoogleCloudContactcenterinsightsV1DeployIssueModelResponseIn": "_contactcenterinsights_86_GoogleCloudContactcenterinsightsV1DeployIssueModelResponseIn",
+        "GoogleCloudContactcenterinsightsV1DeployIssueModelResponseOut": "_contactcenterinsights_87_GoogleCloudContactcenterinsightsV1DeployIssueModelResponseOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceIn": "_contactcenterinsights_88_GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceOut": "_contactcenterinsights_89_GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceOut",
+        "GoogleCloudContactcenterinsightsV1AnswerFeedbackIn": "_contactcenterinsights_90_GoogleCloudContactcenterinsightsV1AnswerFeedbackIn",
+        "GoogleCloudContactcenterinsightsV1AnswerFeedbackOut": "_contactcenterinsights_91_GoogleCloudContactcenterinsightsV1AnswerFeedbackOut",
+        "GoogleCloudContactcenterinsightsV1HoldDataIn": "_contactcenterinsights_92_GoogleCloudContactcenterinsightsV1HoldDataIn",
+        "GoogleCloudContactcenterinsightsV1HoldDataOut": "_contactcenterinsights_93_GoogleCloudContactcenterinsightsV1HoldDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationIn": "_contactcenterinsights_94_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationOut": "_contactcenterinsights_95_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationOut",
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIn": "_contactcenterinsights_96_GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIn",
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesOut": "_contactcenterinsights_97_GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesOut",
+        "GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseIn": "_contactcenterinsights_98_GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseIn",
+        "GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseOut": "_contactcenterinsights_99_GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestIn": "_contactcenterinsights_100_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestOut": "_contactcenterinsights_101_GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestOut",
+        "GoogleCloudContactcenterinsightsV1UploadConversationRequestIn": "_contactcenterinsights_102_GoogleCloudContactcenterinsightsV1UploadConversationRequestIn",
+        "GoogleCloudContactcenterinsightsV1UploadConversationRequestOut": "_contactcenterinsights_103_GoogleCloudContactcenterinsightsV1UploadConversationRequestOut",
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestIn": "_contactcenterinsights_104_GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestOut": "_contactcenterinsights_105_GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestOut",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestIn": "_contactcenterinsights_106_GoogleCloudContactcenterinsightsV1IngestConversationsRequestIn",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestOut": "_contactcenterinsights_107_GoogleCloudContactcenterinsightsV1IngestConversationsRequestOut",
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataIn": "_contactcenterinsights_108_GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataOut": "_contactcenterinsights_109_GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1IssueIn": "_contactcenterinsights_110_GoogleCloudContactcenterinsightsV1IssueIn",
+        "GoogleCloudContactcenterinsightsV1IssueOut": "_contactcenterinsights_111_GoogleCloudContactcenterinsightsV1IssueOut",
+        "GoogleCloudContactcenterinsightsV1RedactionConfigIn": "_contactcenterinsights_112_GoogleCloudContactcenterinsightsV1RedactionConfigIn",
+        "GoogleCloudContactcenterinsightsV1RedactionConfigOut": "_contactcenterinsights_113_GoogleCloudContactcenterinsightsV1RedactionConfigOut",
+        "GoogleCloudContactcenterinsightsV1ConversationParticipantIn": "_contactcenterinsights_114_GoogleCloudContactcenterinsightsV1ConversationParticipantIn",
+        "GoogleCloudContactcenterinsightsV1ConversationParticipantOut": "_contactcenterinsights_115_GoogleCloudContactcenterinsightsV1ConversationParticipantOut",
+        "GoogleCloudContactcenterinsightsV1InterruptionDataIn": "_contactcenterinsights_116_GoogleCloudContactcenterinsightsV1InterruptionDataIn",
+        "GoogleCloudContactcenterinsightsV1InterruptionDataOut": "_contactcenterinsights_117_GoogleCloudContactcenterinsightsV1InterruptionDataOut",
+        "GoogleCloudContactcenterinsightsV1SmartReplyDataIn": "_contactcenterinsights_118_GoogleCloudContactcenterinsightsV1SmartReplyDataIn",
+        "GoogleCloudContactcenterinsightsV1SmartReplyDataOut": "_contactcenterinsights_119_GoogleCloudContactcenterinsightsV1SmartReplyDataOut",
+        "GoogleCloudContactcenterinsightsV1SilenceDataIn": "_contactcenterinsights_120_GoogleCloudContactcenterinsightsV1SilenceDataIn",
+        "GoogleCloudContactcenterinsightsV1SilenceDataOut": "_contactcenterinsights_121_GoogleCloudContactcenterinsightsV1SilenceDataOut",
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestIn": "_contactcenterinsights_122_GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestIn",
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestOut": "_contactcenterinsights_123_GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestOut",
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataIn": "_contactcenterinsights_124_GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataIn",
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataOut": "_contactcenterinsights_125_GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataOut",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchDataIn": "_contactcenterinsights_126_GoogleCloudContactcenterinsightsV1PhraseMatchDataIn",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchDataOut": "_contactcenterinsights_127_GoogleCloudContactcenterinsightsV1PhraseMatchDataOut",
+        "GoogleCloudContactcenterinsightsV1SentimentDataIn": "_contactcenterinsights_128_GoogleCloudContactcenterinsightsV1SentimentDataIn",
+        "GoogleCloudContactcenterinsightsV1SentimentDataOut": "_contactcenterinsights_129_GoogleCloudContactcenterinsightsV1SentimentDataOut",
+        "GoogleCloudContactcenterinsightsV1DeployIssueModelRequestIn": "_contactcenterinsights_130_GoogleCloudContactcenterinsightsV1DeployIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1DeployIssueModelRequestOut": "_contactcenterinsights_131_GoogleCloudContactcenterinsightsV1DeployIssueModelRequestOut",
+        "GoogleCloudContactcenterinsightsV1ViewIn": "_contactcenterinsights_132_GoogleCloudContactcenterinsightsV1ViewIn",
+        "GoogleCloudContactcenterinsightsV1ViewOut": "_contactcenterinsights_133_GoogleCloudContactcenterinsightsV1ViewOut",
+        "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataIn": "_contactcenterinsights_134_GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataIn",
+        "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataOut": "_contactcenterinsights_135_GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataOut",
+        "GoogleCloudContactcenterinsightsV1EntityIn": "_contactcenterinsights_136_GoogleCloudContactcenterinsightsV1EntityIn",
+        "GoogleCloudContactcenterinsightsV1EntityOut": "_contactcenterinsights_137_GoogleCloudContactcenterinsightsV1EntityOut",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentIn": "_contactcenterinsights_138_GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentIn",
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentOut": "_contactcenterinsights_139_GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceIn": "_contactcenterinsights_140_GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceOut": "_contactcenterinsights_141_GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseIn": "_contactcenterinsights_142_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseOut": "_contactcenterinsights_143_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseOut",
+        "GoogleCloudContactcenterinsightsV1PhraseMatcherIn": "_contactcenterinsights_144_GoogleCloudContactcenterinsightsV1PhraseMatcherIn",
+        "GoogleCloudContactcenterinsightsV1PhraseMatcherOut": "_contactcenterinsights_145_GoogleCloudContactcenterinsightsV1PhraseMatcherOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigIn": "_contactcenterinsights_146_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigOut": "_contactcenterinsights_147_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigOut",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseIn": "_contactcenterinsights_148_GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseIn",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseOut": "_contactcenterinsights_149_GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseOut",
+        "GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataIn": "_contactcenterinsights_150_GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataOut": "_contactcenterinsights_151_GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1EntityIn": "_contactcenterinsights_152_GoogleCloudContactcenterinsightsV1alpha1EntityIn",
+        "GoogleCloudContactcenterinsightsV1alpha1EntityOut": "_contactcenterinsights_153_GoogleCloudContactcenterinsightsV1alpha1EntityOut",
+        "GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn": "_contactcenterinsights_154_GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut": "_contactcenterinsights_155_GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut",
+        "GoogleCloudContactcenterinsightsV1CreateIssueModelRequestIn": "_contactcenterinsights_156_GoogleCloudContactcenterinsightsV1CreateIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1CreateIssueModelRequestOut": "_contactcenterinsights_157_GoogleCloudContactcenterinsightsV1CreateIssueModelRequestOut",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigIn": "_contactcenterinsights_158_GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigIn",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigOut": "_contactcenterinsights_159_GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigOut",
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseIn": "_contactcenterinsights_160_GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseIn",
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseOut": "_contactcenterinsights_161_GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseOut",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceIn": "_contactcenterinsights_162_GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceIn",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceOut": "_contactcenterinsights_163_GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceOut",
+        "GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataIn": "_contactcenterinsights_164_GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataOut": "_contactcenterinsights_165_GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackIn": "_contactcenterinsights_166_GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackIn",
+        "GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackOut": "_contactcenterinsights_167_GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataIn": "_contactcenterinsights_168_GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataOut": "_contactcenterinsights_169_GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataOut",
+        "GoogleCloudContactcenterinsightsV1ListIssueModelsResponseIn": "_contactcenterinsights_170_GoogleCloudContactcenterinsightsV1ListIssueModelsResponseIn",
+        "GoogleCloudContactcenterinsightsV1ListIssueModelsResponseOut": "_contactcenterinsights_171_GoogleCloudContactcenterinsightsV1ListIssueModelsResponseOut",
+        "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIn": "_contactcenterinsights_172_GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIn",
+        "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsOut": "_contactcenterinsights_173_GoogleCloudContactcenterinsightsV1IssueModelLabelStatsOut",
+        "GoogleCloudContactcenterinsightsV1EntityMentionDataIn": "_contactcenterinsights_174_GoogleCloudContactcenterinsightsV1EntityMentionDataIn",
+        "GoogleCloudContactcenterinsightsV1EntityMentionDataOut": "_contactcenterinsights_175_GoogleCloudContactcenterinsightsV1EntityMentionDataOut",
+        "GoogleLongrunningOperationIn": "_contactcenterinsights_176_GoogleLongrunningOperationIn",
+        "GoogleLongrunningOperationOut": "_contactcenterinsights_177_GoogleLongrunningOperationOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoIn": "_contactcenterinsights_178_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoOut": "_contactcenterinsights_179_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoOut",
+        "GoogleLongrunningListOperationsResponseIn": "_contactcenterinsights_180_GoogleLongrunningListOperationsResponseIn",
+        "GoogleLongrunningListOperationsResponseOut": "_contactcenterinsights_181_GoogleLongrunningListOperationsResponseOut",
+        "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigIn": "_contactcenterinsights_182_GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigIn",
+        "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigOut": "_contactcenterinsights_183_GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigOut",
+        "GoogleCloudContactcenterinsightsV1IntentIn": "_contactcenterinsights_184_GoogleCloudContactcenterinsightsV1IntentIn",
+        "GoogleCloudContactcenterinsightsV1IntentOut": "_contactcenterinsights_185_GoogleCloudContactcenterinsightsV1IntentOut",
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultIn": "_contactcenterinsights_186_GoogleCloudContactcenterinsightsV1alpha1AnalysisResultIn",
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultOut": "_contactcenterinsights_187_GoogleCloudContactcenterinsightsV1alpha1AnalysisResultOut",
+        "GoogleCloudContactcenterinsightsV1alpha1InterruptionDataIn": "_contactcenterinsights_188_GoogleCloudContactcenterinsightsV1alpha1InterruptionDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1InterruptionDataOut": "_contactcenterinsights_189_GoogleCloudContactcenterinsightsV1alpha1InterruptionDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataIn": "_contactcenterinsights_190_GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataOut": "_contactcenterinsights_191_GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1AnalysisResultIn": "_contactcenterinsights_192_GoogleCloudContactcenterinsightsV1AnalysisResultIn",
+        "GoogleCloudContactcenterinsightsV1AnalysisResultOut": "_contactcenterinsights_193_GoogleCloudContactcenterinsightsV1AnalysisResultOut",
+        "GoogleCloudContactcenterinsightsV1ConversationIn": "_contactcenterinsights_194_GoogleCloudContactcenterinsightsV1ConversationIn",
+        "GoogleCloudContactcenterinsightsV1ConversationOut": "_contactcenterinsights_195_GoogleCloudContactcenterinsightsV1ConversationOut",
+        "GoogleRpcStatusIn": "_contactcenterinsights_196_GoogleRpcStatusIn",
+        "GoogleRpcStatusOut": "_contactcenterinsights_197_GoogleRpcStatusOut",
+        "GoogleCloudContactcenterinsightsV1FaqAnswerDataIn": "_contactcenterinsights_198_GoogleCloudContactcenterinsightsV1FaqAnswerDataIn",
+        "GoogleCloudContactcenterinsightsV1FaqAnswerDataOut": "_contactcenterinsights_199_GoogleCloudContactcenterinsightsV1FaqAnswerDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisIn": "_contactcenterinsights_200_GoogleCloudContactcenterinsightsV1alpha1AnalysisIn",
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisOut": "_contactcenterinsights_201_GoogleCloudContactcenterinsightsV1alpha1AnalysisOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsIn": "_contactcenterinsights_202_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsOut": "_contactcenterinsights_203_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelResultIn": "_contactcenterinsights_204_GoogleCloudContactcenterinsightsV1alpha1IssueModelResultIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelResultOut": "_contactcenterinsights_205_GoogleCloudContactcenterinsightsV1alpha1IssueModelResultOut",
+        "GoogleCloudContactcenterinsightsV1DialogflowIntentIn": "_contactcenterinsights_206_GoogleCloudContactcenterinsightsV1DialogflowIntentIn",
+        "GoogleCloudContactcenterinsightsV1DialogflowIntentOut": "_contactcenterinsights_207_GoogleCloudContactcenterinsightsV1DialogflowIntentOut",
+        "GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseIn": "_contactcenterinsights_208_GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseIn",
+        "GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseOut": "_contactcenterinsights_209_GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataIn": "_contactcenterinsights_210_GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataOut": "_contactcenterinsights_211_GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IntentIn": "_contactcenterinsights_212_GoogleCloudContactcenterinsightsV1alpha1IntentIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IntentOut": "_contactcenterinsights_213_GoogleCloudContactcenterinsightsV1alpha1IntentOut",
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn": "_contactcenterinsights_214_GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn",
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut": "_contactcenterinsights_215_GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsIn": "_contactcenterinsights_216_GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsOut": "_contactcenterinsights_217_GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataIn": "_contactcenterinsights_218_GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataOut": "_contactcenterinsights_219_GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1ConversationCallMetadataIn": "_contactcenterinsights_220_GoogleCloudContactcenterinsightsV1ConversationCallMetadataIn",
+        "GoogleCloudContactcenterinsightsV1ConversationCallMetadataOut": "_contactcenterinsights_221_GoogleCloudContactcenterinsightsV1ConversationCallMetadataOut",
+        "GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestIn": "_contactcenterinsights_222_GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestOut": "_contactcenterinsights_223_GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestOut",
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataIn": "_contactcenterinsights_224_GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataOut": "_contactcenterinsights_225_GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigIn": "_contactcenterinsights_226_GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigIn",
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigOut": "_contactcenterinsights_227_GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigOut",
+        "GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestIn": "_contactcenterinsights_228_GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestOut": "_contactcenterinsights_229_GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestOut",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigIn": "_contactcenterinsights_230_GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigIn",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigOut": "_contactcenterinsights_231_GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigOut",
+        "GoogleCloudContactcenterinsightsV1IntentMatchDataIn": "_contactcenterinsights_232_GoogleCloudContactcenterinsightsV1IntentMatchDataIn",
+        "GoogleCloudContactcenterinsightsV1IntentMatchDataOut": "_contactcenterinsights_233_GoogleCloudContactcenterinsightsV1IntentMatchDataOut",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigIn": "_contactcenterinsights_234_GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigIn",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigOut": "_contactcenterinsights_235_GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn": "_contactcenterinsights_236_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut": "_contactcenterinsights_237_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut",
+        "GoogleCloudContactcenterinsightsV1AnnotatorSelectorIn": "_contactcenterinsights_238_GoogleCloudContactcenterinsightsV1AnnotatorSelectorIn",
+        "GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut": "_contactcenterinsights_239_GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut",
+        "GoogleCloudContactcenterinsightsV1alpha1GcsSourceIn": "_contactcenterinsights_240_GoogleCloudContactcenterinsightsV1alpha1GcsSourceIn",
+        "GoogleCloudContactcenterinsightsV1alpha1GcsSourceOut": "_contactcenterinsights_241_GoogleCloudContactcenterinsightsV1alpha1GcsSourceOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigIn": "_contactcenterinsights_242_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigOut": "_contactcenterinsights_243_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigOut",
+        "GoogleCloudContactcenterinsightsV1ConversationLevelSentimentIn": "_contactcenterinsights_244_GoogleCloudContactcenterinsightsV1ConversationLevelSentimentIn",
+        "GoogleCloudContactcenterinsightsV1ConversationLevelSentimentOut": "_contactcenterinsights_245_GoogleCloudContactcenterinsightsV1ConversationLevelSentimentOut",
+        "GoogleCloudContactcenterinsightsV1ListViewsResponseIn": "_contactcenterinsights_246_GoogleCloudContactcenterinsightsV1ListViewsResponseIn",
+        "GoogleCloudContactcenterinsightsV1ListViewsResponseOut": "_contactcenterinsights_247_GoogleCloudContactcenterinsightsV1ListViewsResponseOut",
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorIn": "_contactcenterinsights_248_GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorIn",
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorOut": "_contactcenterinsights_249_GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorOut",
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataIn": "_contactcenterinsights_250_GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataOut": "_contactcenterinsights_251_GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantIn": "_contactcenterinsights_252_GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantOut": "_contactcenterinsights_253_GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseIn": "_contactcenterinsights_254_GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseOut": "_contactcenterinsights_255_GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseOut",
+        "GoogleCloudContactcenterinsightsV1ConversationDataSourceIn": "_contactcenterinsights_256_GoogleCloudContactcenterinsightsV1ConversationDataSourceIn",
+        "GoogleCloudContactcenterinsightsV1ConversationDataSourceOut": "_contactcenterinsights_257_GoogleCloudContactcenterinsightsV1ConversationDataSourceOut",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataIn": "_contactcenterinsights_258_GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataIn",
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataOut": "_contactcenterinsights_259_GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataOut",
+        "GoogleCloudContactcenterinsightsV1ListConversationsResponseIn": "_contactcenterinsights_260_GoogleCloudContactcenterinsightsV1ListConversationsResponseIn",
+        "GoogleCloudContactcenterinsightsV1ListConversationsResponseOut": "_contactcenterinsights_261_GoogleCloudContactcenterinsightsV1ListConversationsResponseOut",
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseIn": "_contactcenterinsights_262_GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseIn",
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseOut": "_contactcenterinsights_263_GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationIn": "_contactcenterinsights_264_GoogleCloudContactcenterinsightsV1alpha1ConversationIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationOut": "_contactcenterinsights_265_GoogleCloudContactcenterinsightsV1alpha1ConversationOut",
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataIn": "_contactcenterinsights_266_GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataOut": "_contactcenterinsights_267_GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigIn": "_contactcenterinsights_268_GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigOut": "_contactcenterinsights_269_GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIn": "_contactcenterinsights_270_GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsOut": "_contactcenterinsights_271_GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsOut",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchRuleIn": "_contactcenterinsights_272_GoogleCloudContactcenterinsightsV1PhraseMatchRuleIn",
+        "GoogleCloudContactcenterinsightsV1PhraseMatchRuleOut": "_contactcenterinsights_273_GoogleCloudContactcenterinsightsV1PhraseMatchRuleOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataIn": "_contactcenterinsights_274_GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataOut": "_contactcenterinsights_275_GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataOut",
+        "GoogleProtobufEmptyIn": "_contactcenterinsights_276_GoogleProtobufEmptyIn",
+        "GoogleProtobufEmptyOut": "_contactcenterinsights_277_GoogleProtobufEmptyOut",
+        "GoogleCloudContactcenterinsightsV1ListIssuesResponseIn": "_contactcenterinsights_278_GoogleCloudContactcenterinsightsV1ListIssuesResponseIn",
+        "GoogleCloudContactcenterinsightsV1ListIssuesResponseOut": "_contactcenterinsights_279_GoogleCloudContactcenterinsightsV1ListIssuesResponseOut",
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseIn": "_contactcenterinsights_280_GoogleCloudContactcenterinsightsV1CalculateStatsResponseIn",
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseOut": "_contactcenterinsights_281_GoogleCloudContactcenterinsightsV1CalculateStatsResponseOut",
+        "GoogleCloudContactcenterinsightsV1alpha1SilenceDataIn": "_contactcenterinsights_282_GoogleCloudContactcenterinsightsV1alpha1SilenceDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1SilenceDataOut": "_contactcenterinsights_283_GoogleCloudContactcenterinsightsV1alpha1SilenceDataOut",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsResponseIn": "_contactcenterinsights_284_GoogleCloudContactcenterinsightsV1IngestConversationsResponseIn",
+        "GoogleCloudContactcenterinsightsV1IngestConversationsResponseOut": "_contactcenterinsights_285_GoogleCloudContactcenterinsightsV1IngestConversationsResponseOut",
+        "GoogleCloudContactcenterinsightsV1GcsSourceIn": "_contactcenterinsights_286_GoogleCloudContactcenterinsightsV1GcsSourceIn",
+        "GoogleCloudContactcenterinsightsV1GcsSourceOut": "_contactcenterinsights_287_GoogleCloudContactcenterinsightsV1GcsSourceOut",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentIn": "_contactcenterinsights_288_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentIn",
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentOut": "_contactcenterinsights_289_GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceIn": "_contactcenterinsights_290_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceOut": "_contactcenterinsights_291_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceOut",
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalIn": "_contactcenterinsights_292_GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalIn",
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalOut": "_contactcenterinsights_293_GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalOut",
+        "GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataIn": "_contactcenterinsights_294_GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataOut": "_contactcenterinsights_295_GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataOut",
+        "GoogleCloudContactcenterinsightsV1DialogflowInteractionDataIn": "_contactcenterinsights_296_GoogleCloudContactcenterinsightsV1DialogflowInteractionDataIn",
+        "GoogleCloudContactcenterinsightsV1DialogflowInteractionDataOut": "_contactcenterinsights_297_GoogleCloudContactcenterinsightsV1DialogflowInteractionDataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentIn": "_contactcenterinsights_298_GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentOut": "_contactcenterinsights_299_GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIn": "_contactcenterinsights_300_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataOut": "_contactcenterinsights_301_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataOut",
+        "GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseIn": "_contactcenterinsights_302_GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseIn",
+        "GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseOut": "_contactcenterinsights_303_GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseOut",
+        "GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigIn": "_contactcenterinsights_304_GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigIn",
+        "GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigOut": "_contactcenterinsights_305_GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigOut",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestIn": "_contactcenterinsights_306_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestOut": "_contactcenterinsights_307_GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestOut",
+        "GoogleCloudContactcenterinsightsV1alpha1HoldDataIn": "_contactcenterinsights_308_GoogleCloudContactcenterinsightsV1alpha1HoldDataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1HoldDataOut": "_contactcenterinsights_309_GoogleCloudContactcenterinsightsV1alpha1HoldDataOut",
+        "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataIn": "_contactcenterinsights_310_GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataIn",
+        "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataOut": "_contactcenterinsights_311_GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataOut",
+        "GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataIn": "_contactcenterinsights_312_GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataIn",
+        "GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataOut": "_contactcenterinsights_313_GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataOut",
+        "GoogleCloudContactcenterinsightsV1IssueModelResultIn": "_contactcenterinsights_314_GoogleCloudContactcenterinsightsV1IssueModelResultIn",
+        "GoogleCloudContactcenterinsightsV1IssueModelResultOut": "_contactcenterinsights_315_GoogleCloudContactcenterinsightsV1IssueModelResultOut",
+        "GoogleCloudContactcenterinsightsV1ListAnalysesResponseIn": "_contactcenterinsights_316_GoogleCloudContactcenterinsightsV1ListAnalysesResponseIn",
+        "GoogleCloudContactcenterinsightsV1ListAnalysesResponseOut": "_contactcenterinsights_317_GoogleCloudContactcenterinsightsV1ListAnalysesResponseOut",
+        "GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataIn": "_contactcenterinsights_318_GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataOut": "_contactcenterinsights_319_GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1IssueModelIn": "_contactcenterinsights_320_GoogleCloudContactcenterinsightsV1IssueModelIn",
+        "GoogleCloudContactcenterinsightsV1IssueModelOut": "_contactcenterinsights_321_GoogleCloudContactcenterinsightsV1IssueModelOut",
+        "GoogleCloudContactcenterinsightsV1alpha1CallAnnotationIn": "_contactcenterinsights_322_GoogleCloudContactcenterinsightsV1alpha1CallAnnotationIn",
+        "GoogleCloudContactcenterinsightsV1alpha1CallAnnotationOut": "_contactcenterinsights_323_GoogleCloudContactcenterinsightsV1alpha1CallAnnotationOut",
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestIn": "_contactcenterinsights_324_GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestOut": "_contactcenterinsights_325_GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestOut",
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataIn": "_contactcenterinsights_326_GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataOut": "_contactcenterinsights_327_GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataIn": "_contactcenterinsights_328_GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataIn",
+        "GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataOut": "_contactcenterinsights_329_GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataOut",
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestIn": "_contactcenterinsights_330_GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestIn",
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestOut": "_contactcenterinsights_331_GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestOut",
+    }
+
+    types = {}
+    types["ErrorResponse"] = t.struct(
+        {"code": t.integer(), "message": t.string(), "status": t.string()}
+    ).named(renames["ErrorResponse"])
+    types["GoogleCloudContactcenterinsightsV1DialogflowSourceIn"] = t.struct(
+        {"audioUri": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DialogflowSourceIn"])
+    types["GoogleCloudContactcenterinsightsV1DialogflowSourceOut"] = t.struct(
+        {
+            "audioUri": t.string().optional(),
+            "dialogflowConversation": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DialogflowSourceOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataIn"] = t.struct(
+        {
+            "question": t.string().optional(),
+            "source": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "answer": t.string().optional(),
+            "queryRecord": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataOut"] = t.struct(
+        {
+            "question": t.string().optional(),
+            "source": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "answer": t.string().optional(),
+            "queryRecord": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataOut"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigIn"] = t.struct(
+        {"medium": t.string().optional(), "filter": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigIn"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigOut"] = t.struct(
+        {
+            "medium": t.string().optional(),
+            "trainingConversationsCount": t.string().optional(),
+            "filter": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigOut"])
+    types["GoogleCloudContactcenterinsightsV1UploadConversationMetadataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1UploadConversationMetadataIn"])
+    types["GoogleCloudContactcenterinsightsV1UploadConversationMetadataOut"] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1UploadConversationRequestOut"
+                ]
+            ).optional(),
+            "analysisOperation": t.string().optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "appliedRedactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1RedactionConfigOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1UploadConversationMetadataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseOut"
+    ] = t.struct({"error": t.proxy(renames["ErrorResponse"]).optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataResponseOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestIn"] = t.struct(
+        {
+            "writeDisposition": t.string().optional(),
+            "filter": t.string().optional(),
+            "parent": t.string(),
+            "bigQueryDestination": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationIn"
+                ]
+            ).optional(),
+            "kmsKey": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestIn"])
+    types["GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestOut"] = t.struct(
+        {
+            "writeDisposition": t.string().optional(),
+            "filter": t.string().optional(),
+            "parent": t.string(),
+            "bigQueryDestination": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationOut"
+                ]
+            ).optional(),
+            "kmsKey": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestOut"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"] = t.struct(
+        {
+            "phraseMatchRules": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleIn"])
+            ).optional(),
+            "type": t.string(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupOut"] = t.struct(
+        {
+            "phraseMatchRules": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleOut"])
+            ).optional(),
+            "type": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupOut"])
+    types["GoogleCloudContactcenterinsightsV1ExactMatchConfigIn"] = t.struct(
+        {"caseSensitive": t.boolean().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExactMatchConfigIn"])
+    types["GoogleCloudContactcenterinsightsV1ExactMatchConfigOut"] = t.struct(
+        {
+            "caseSensitive": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExactMatchConfigOut"])
+    types["GoogleCloudContactcenterinsightsV1CallAnnotationIn"] = t.struct(
+        {
+            "annotationEndBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn"]
+            ).optional(),
+            "entityMentionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1EntityMentionDataIn"]
+            ).optional(),
+            "annotationStartBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn"]
+            ).optional(),
+            "phraseMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1PhraseMatchDataIn"]
+            ).optional(),
+            "holdData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1HoldDataIn"]
+            ).optional(),
+            "channelTag": t.integer().optional(),
+            "interruptionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1InterruptionDataIn"]
+            ).optional(),
+            "intentMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IntentMatchDataIn"]
+            ).optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataIn"]
+            ).optional(),
+            "silenceData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SilenceDataIn"]
+            ).optional(),
+            "issueMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueMatchDataIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CallAnnotationIn"])
+    types["GoogleCloudContactcenterinsightsV1CallAnnotationOut"] = t.struct(
+        {
+            "annotationEndBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut"]
+            ).optional(),
+            "entityMentionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1EntityMentionDataOut"]
+            ).optional(),
+            "annotationStartBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut"]
+            ).optional(),
+            "phraseMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1PhraseMatchDataOut"]
+            ).optional(),
+            "holdData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1HoldDataOut"]
+            ).optional(),
+            "channelTag": t.integer().optional(),
+            "interruptionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1InterruptionDataOut"]
+            ).optional(),
+            "intentMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IntentMatchDataOut"]
+            ).optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataOut"]
+            ).optional(),
+            "silenceData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SilenceDataOut"]
+            ).optional(),
+            "issueMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueMatchDataOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CallAnnotationOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueModelIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "inputDataConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigIn"
+                ]
+            ).optional(),
+            "displayName": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueModelOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "inputDataConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigOut"
+                ]
+            ).optional(),
+            "state": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "issueCount": t.string().optional(),
+            "trainingStats": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsOut"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationIn"
+    ] = t.struct(
+        {
+            "table": t.string().optional(),
+            "projectId": t.string().optional(),
+            "dataset": t.string(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationOut"
+    ] = t.struct(
+        {
+            "table": t.string().optional(),
+            "projectId": t.string().optional(),
+            "dataset": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1ConversationTranscriptIn"] = t.struct(
+        {
+            "transcriptSegments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentIn"
+                    ]
+                )
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationTranscriptIn"])
+    types["GoogleCloudContactcenterinsightsV1ConversationTranscriptOut"] = t.struct(
+        {
+            "transcriptSegments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentOut"
+                    ]
+                )
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationTranscriptOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsOut"
+    ] = t.struct(
+        {
+            "duplicatesSkippedCount": t.integer().optional(),
+            "failedIngestCount": t.integer().optional(),
+            "processedObjectCount": t.integer().optional(),
+            "successfulIngestCount": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentIn"
+    ] = t.struct(
+        {
+            "channelTag": t.integer().optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn"]
+            ).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentOut"
+    ] = t.struct(
+        {
+            "channelTag": t.integer().optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataOut"
+    ] = t.struct(
+        {
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut"]
+            ).optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "conversation": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1CreateAnalysisOperationMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1SettingsIn"] = t.struct(
+        {
+            "pubsubNotificationSettings": t.struct(
+                {"_": t.string().optional()}
+            ).optional(),
+            "languageCode": t.string().optional(),
+            "analysisConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigIn"]
+            ).optional(),
+            "redactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1RedactionConfigIn"]
+            ).optional(),
+            "conversationTtl": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SettingsIn"])
+    types["GoogleCloudContactcenterinsightsV1SettingsOut"] = t.struct(
+        {
+            "pubsubNotificationSettings": t.struct(
+                {"_": t.string().optional()}
+            ).optional(),
+            "createTime": t.string().optional(),
+            "languageCode": t.string().optional(),
+            "analysisConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigOut"]
+            ).optional(),
+            "redactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1RedactionConfigOut"]
+            ).optional(),
+            "conversationTtl": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SettingsOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseIn"
+    ] = t.struct(
+        {
+            "successfulAnalysisCount": t.integer().optional(),
+            "failedAnalysisCount": t.integer().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseOut"
+    ] = t.struct(
+        {
+            "successfulAnalysisCount": t.integer().optional(),
+            "failedAnalysisCount": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsResponseOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1IssueMatchDataIn"] = t.struct(
+        {
+            "issueAssignment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueAssignmentIn"]
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueMatchDataIn"])
+    types["GoogleCloudContactcenterinsightsV1IssueMatchDataOut"] = t.struct(
+        {
+            "issueAssignment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueAssignmentOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueMatchDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoIn"
+    ] = t.struct(
+        {
+            "confidence": t.number().optional(),
+            "endOffset": t.string().optional(),
+            "startOffset": t.string().optional(),
+            "word": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoOut"
+    ] = t.struct(
+        {
+            "confidence": t.number().optional(),
+            "endOffset": t.string().optional(),
+            "startOffset": t.string().optional(),
+            "word": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataIn"] = t.struct(
+        {
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn"]
+            ).optional(),
+            "type": t.string().optional(),
+            "entityUniqueId": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataOut"] = t.struct(
+        {
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut"]
+            ).optional(),
+            "type": t.string().optional(),
+            "entityUniqueId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataIn"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestIn"
+                ]
+            ).optional(),
+            "partialErrors": t.array(t.proxy(renames["GoogleRpcStatusIn"])).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataOut"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestOut"
+                ]
+            ).optional(),
+            "partialErrors": t.array(t.proxy(renames["GoogleRpcStatusOut"])).optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentIn"] = t.struct(
+        {
+            "issue": t.string().optional(),
+            "score": t.number().optional(),
+            "displayName": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentOut"] = t.struct(
+        {
+            "issue": t.string().optional(),
+            "score": t.number().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1RedactionConfigIn"] = t.struct(
+        {
+            "inspectTemplate": t.string().optional(),
+            "deidentifyTemplate": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1RedactionConfigIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1RedactionConfigOut"] = t.struct(
+        {
+            "inspectTemplate": t.string().optional(),
+            "deidentifyTemplate": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1RedactionConfigOut"])
+    types["GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn"] = t.struct(
+        {"transcriptIndex": t.integer().optional(), "wordIndex": t.integer().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn"])
+    types["GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut"] = t.struct(
+        {
+            "transcriptIndex": t.integer().optional(),
+            "wordIndex": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut"])
+    types["GoogleCloudContactcenterinsightsV1ArticleSuggestionDataIn"] = t.struct(
+        {
+            "confidenceScore": t.number().optional(),
+            "title": t.string().optional(),
+            "uri": t.string().optional(),
+            "source": t.string().optional(),
+            "queryRecord": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ArticleSuggestionDataIn"])
+    types["GoogleCloudContactcenterinsightsV1ArticleSuggestionDataOut"] = t.struct(
+        {
+            "confidenceScore": t.number().optional(),
+            "title": t.string().optional(),
+            "uri": t.string().optional(),
+            "source": t.string().optional(),
+            "queryRecord": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ArticleSuggestionDataOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationIn"] = t.struct(
+        {
+            "startBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn"]
+            ).optional(),
+            "articleSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataIn"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "smartComposeSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataIn"
+                ]
+            ).optional(),
+            "endBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn"]
+            ).optional(),
+            "annotationId": t.string().optional(),
+            "conversationSummarizationSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataIn"
+                ]
+            ).optional(),
+            "answerFeedback": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackIn"]
+            ).optional(),
+            "dialogflowInteraction": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataIn"
+                ]
+            ).optional(),
+            "faqAnswer": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataIn"]
+            ).optional(),
+            "smartReply": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationOut"] = t.struct(
+        {
+            "startBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut"]
+            ).optional(),
+            "articleSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataOut"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "smartComposeSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataOut"
+                ]
+            ).optional(),
+            "endBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut"]
+            ).optional(),
+            "annotationId": t.string().optional(),
+            "conversationSummarizationSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataOut"
+                ]
+            ).optional(),
+            "answerFeedback": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackOut"]
+            ).optional(),
+            "dialogflowInteraction": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataOut"
+                ]
+            ).optional(),
+            "faqAnswer": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1FaqAnswerDataOut"]
+            ).optional(),
+            "smartReply": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestIn"
+    ] = t.struct({"name": t.string()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestOut"
+    ] = t.struct(
+        {"name": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataIn"] = t.struct(
+        {"intentUniqueId": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataOut"] = t.struct(
+        {
+            "intentUniqueId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestIn"
+    ] = t.struct({"name": t.string()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestOut"
+    ] = t.struct(
+        {"name": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIn"])
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataOut"
+    ] = t.struct(
+        {
+            "partialErrors": t.array(t.proxy(renames["GoogleRpcStatusOut"])).optional(),
+            "ingestConversationsStats": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsMetadataIngestConversationsStatsOut"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsRequestOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1IngestConversationsMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataIn"] = t.struct(
+        {
+            "issueAssignment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentIn"]
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataOut"] = t.struct(
+        {
+            "issueAssignment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataOut"])
+    types["GoogleCloudContactcenterinsightsV1RuntimeAnnotationIn"] = t.struct(
+        {
+            "startBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn"]
+            ).optional(),
+            "smartReply": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SmartReplyDataIn"]
+            ).optional(),
+            "faqAnswer": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1FaqAnswerDataIn"]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "conversationSummarizationSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataIn"
+                ]
+            ).optional(),
+            "dialogflowInteraction": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1DialogflowInteractionDataIn"]
+            ).optional(),
+            "smartComposeSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataIn"
+                ]
+            ).optional(),
+            "answerFeedback": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnswerFeedbackIn"]
+            ).optional(),
+            "annotationId": t.string().optional(),
+            "endBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryIn"]
+            ).optional(),
+            "articleSuggestion": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ArticleSuggestionDataIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1RuntimeAnnotationIn"])
+    types["GoogleCloudContactcenterinsightsV1RuntimeAnnotationOut"] = t.struct(
+        {
+            "startBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut"]
+            ).optional(),
+            "smartReply": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SmartReplyDataOut"]
+            ).optional(),
+            "faqAnswer": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1FaqAnswerDataOut"]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "conversationSummarizationSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataOut"
+                ]
+            ).optional(),
+            "dialogflowInteraction": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1DialogflowInteractionDataOut"
+                ]
+            ).optional(),
+            "smartComposeSuggestion": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataOut"
+                ]
+            ).optional(),
+            "answerFeedback": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnswerFeedbackOut"]
+            ).optional(),
+            "annotationId": t.string().optional(),
+            "endBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotationBoundaryOut"]
+            ).optional(),
+            "articleSuggestion": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ArticleSuggestionDataOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1RuntimeAnnotationOut"])
+    types["GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataIn"] = t.struct(
+        {
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestIn"]
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataIn"])
+    types["GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataOut"] = t.struct(
+        {
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestOut"]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeleteIssueModelMetadataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestIn"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorIn"]
+            ).optional(),
+            "filter": t.string(),
+            "analysisPercentage": t.number(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestOut"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorOut"]
+            ).optional(),
+            "filter": t.string(),
+            "analysisPercentage": t.number(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataIn"] = t.struct(
+        {"phraseMatcher": t.string().optional(), "displayName": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataOut"] = t.struct(
+        {
+            "phraseMatcher": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataIn"] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "source": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "title": t.string().optional(),
+            "uri": t.string().optional(),
+            "queryRecord": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataIn"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataOut"
+    ] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "source": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "title": t.string().optional(),
+            "uri": t.string().optional(),
+            "queryRecord": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ArticleSuggestionDataOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsIn"
+    ] = t.struct(
+        {
+            "issue": t.string().optional(),
+            "labeledConversationsCount": t.string().optional(),
+            "displayName": t.string().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsOut"
+    ] = t.struct(
+        {
+            "issue": t.string().optional(),
+            "labeledConversationsCount": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStatsOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataIn"] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "confidenceScore": t.number().optional(),
+            "queryRecord": t.string().optional(),
+            "reply": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataOut"] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "confidenceScore": t.number().optional(),
+            "queryRecord": t.string().optional(),
+            "reply": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1SmartReplyDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptIn"
+    ] = t.struct(
+        {
+            "transcriptSegments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentIn"
+                    ]
+                )
+            ).optional()
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptOut"
+    ] = t.struct(
+        {
+            "transcriptSegments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentOut"
+                    ]
+                )
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn"
+    ] = t.struct({"smartReplyAllowlistCovered": t.boolean().optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut"
+    ] = t.struct(
+        {
+            "smartReplyAllowlistCovered": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1AnalysisIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnalysisIn"])
+    types["GoogleCloudContactcenterinsightsV1AnalysisOut"] = t.struct(
+        {
+            "requestTime": t.string().optional(),
+            "analysisResult": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnalysisResultOut"]
+            ).optional(),
+            "name": t.string().optional(),
+            "createTime": t.string().optional(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnalysisOut"])
+    types["GoogleCloudContactcenterinsightsV1IssueAssignmentIn"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "score": t.number().optional(),
+            "issue": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueAssignmentIn"])
+    types["GoogleCloudContactcenterinsightsV1IssueAssignmentOut"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "score": t.number().optional(),
+            "issue": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueAssignmentOut"])
+    types["GoogleCloudContactcenterinsightsV1DeployIssueModelResponseIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeployIssueModelResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1DeployIssueModelResponseOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeployIssueModelResponseOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceIn"
+    ] = t.struct(
+        {
+            "dialogflowSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceIn"]
+            ).optional(),
+            "gcsSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1GcsSourceIn"]
+            ).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceOut"
+    ] = t.struct(
+        {
+            "dialogflowSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceOut"]
+            ).optional(),
+            "gcsSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1GcsSourceOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1AnswerFeedbackIn"] = t.struct(
+        {
+            "clicked": t.boolean().optional(),
+            "displayed": t.boolean().optional(),
+            "correctnessLevel": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnswerFeedbackIn"])
+    types["GoogleCloudContactcenterinsightsV1AnswerFeedbackOut"] = t.struct(
+        {
+            "clicked": t.boolean().optional(),
+            "displayed": t.boolean().optional(),
+            "correctnessLevel": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnswerFeedbackOut"])
+    types["GoogleCloudContactcenterinsightsV1HoldDataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1HoldDataIn"])
+    types["GoogleCloudContactcenterinsightsV1HoldDataOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1HoldDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationIn"
+    ] = t.struct(
+        {
+            "dataset": t.string(),
+            "projectId": t.string().optional(),
+            "table": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationOut"
+    ] = t.struct(
+        {
+            "dataset": t.string(),
+            "projectId": t.string().optional(),
+            "table": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIn"
+    ] = t.struct(
+        {
+            "intervalDuration": t.string().optional(),
+            "points": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalIn"
+                    ]
+                )
+            ).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesOut"
+    ] = t.struct(
+        {
+            "intervalDuration": t.string().optional(),
+            "points": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalOut"
+                    ]
+                )
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseIn"
+    ] = t.struct(
+        {
+            "currentStats": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIn"]
+            ).optional()
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseOut"
+    ] = t.struct(
+        {
+            "currentStats": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1CalculateIssueModelStatsResponseOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestIn"
+    ] = t.struct(
+        {
+            "filter": t.string().optional(),
+            "writeDisposition": t.string().optional(),
+            "kmsKey": t.string().optional(),
+            "bigQueryDestination": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationIn"
+                ]
+            ).optional(),
+            "parent": t.string(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestOut"
+    ] = t.struct(
+        {
+            "filter": t.string().optional(),
+            "writeDisposition": t.string().optional(),
+            "kmsKey": t.string().optional(),
+            "bigQueryDestination": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestBigQueryDestinationOut"
+                ]
+            ).optional(),
+            "parent": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ExportInsightsDataRequestOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1UploadConversationRequestIn"] = t.struct(
+        {
+            "redactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1RedactionConfigIn"]
+            ).optional(),
+            "conversationId": t.string().optional(),
+            "conversation": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationIn"]
+            ),
+            "parent": t.string(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1UploadConversationRequestIn"])
+    types["GoogleCloudContactcenterinsightsV1UploadConversationRequestOut"] = t.struct(
+        {
+            "redactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1RedactionConfigOut"]
+            ).optional(),
+            "conversationId": t.string().optional(),
+            "conversation": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationOut"]
+            ),
+            "parent": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1UploadConversationRequestOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestIn"
+    ] = t.struct(
+        {
+            "conversation": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1ConversationIn"]
+            ),
+            "parent": t.string(),
+            "redactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1RedactionConfigIn"]
+            ).optional(),
+            "conversationId": t.string().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestOut"
+    ] = t.struct(
+        {
+            "conversation": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1ConversationOut"]
+            ),
+            "parent": t.string(),
+            "redactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1RedactionConfigOut"]
+            ).optional(),
+            "conversationId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1IngestConversationsRequestIn"] = t.struct(
+        {
+            "parent": t.string(),
+            "transcriptObjectConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigIn"
+                ]
+            ).optional(),
+            "gcsSource": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceIn"
+                ]
+            ).optional(),
+            "conversationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigIn"
+                ]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IngestConversationsRequestIn"])
+    types["GoogleCloudContactcenterinsightsV1IngestConversationsRequestOut"] = t.struct(
+        {
+            "parent": t.string(),
+            "transcriptObjectConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigOut"
+                ]
+            ).optional(),
+            "gcsSource": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceOut"
+                ]
+            ).optional(),
+            "conversationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IngestConversationsRequestOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataIn"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestIn"
+                ]
+            ).optional()
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataOut"
+    ] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1IssueIn"] = t.struct(
+        {"displayName": t.string().optional(), "name": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueIn"])
+    types["GoogleCloudContactcenterinsightsV1IssueOut"] = t.struct(
+        {
+            "sampleUtterances": t.array(t.string()).optional(),
+            "displayName": t.string().optional(),
+            "createTime": t.string().optional(),
+            "name": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueOut"])
+    types["GoogleCloudContactcenterinsightsV1RedactionConfigIn"] = t.struct(
+        {
+            "deidentifyTemplate": t.string().optional(),
+            "inspectTemplate": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1RedactionConfigIn"])
+    types["GoogleCloudContactcenterinsightsV1RedactionConfigOut"] = t.struct(
+        {
+            "deidentifyTemplate": t.string().optional(),
+            "inspectTemplate": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1RedactionConfigOut"])
+    types["GoogleCloudContactcenterinsightsV1ConversationParticipantIn"] = t.struct(
+        {
+            "dialogflowParticipantName": t.string().optional(),
+            "obfuscatedExternalUserId": t.string().optional(),
+            "dialogflowParticipant": t.string().optional(),
+            "userId": t.string().optional(),
+            "role": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationParticipantIn"])
+    types["GoogleCloudContactcenterinsightsV1ConversationParticipantOut"] = t.struct(
+        {
+            "dialogflowParticipantName": t.string().optional(),
+            "obfuscatedExternalUserId": t.string().optional(),
+            "dialogflowParticipant": t.string().optional(),
+            "userId": t.string().optional(),
+            "role": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationParticipantOut"])
+    types["GoogleCloudContactcenterinsightsV1InterruptionDataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1InterruptionDataIn"])
+    types["GoogleCloudContactcenterinsightsV1InterruptionDataOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1InterruptionDataOut"])
+    types["GoogleCloudContactcenterinsightsV1SmartReplyDataIn"] = t.struct(
+        {
+            "queryRecord": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "confidenceScore": t.number().optional(),
+            "reply": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SmartReplyDataIn"])
+    types["GoogleCloudContactcenterinsightsV1SmartReplyDataOut"] = t.struct(
+        {
+            "queryRecord": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "confidenceScore": t.number().optional(),
+            "reply": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SmartReplyDataOut"])
+    types["GoogleCloudContactcenterinsightsV1SilenceDataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1SilenceDataIn"])
+    types["GoogleCloudContactcenterinsightsV1SilenceDataOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1SilenceDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestIn"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "filter": t.string(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorIn"]
+            ).optional(),
+            "analysisPercentage": t.number(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestOut"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "filter": t.string(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut"]
+            ).optional(),
+            "analysisPercentage": t.number(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataIn"
+    ] = t.struct(
+        {
+            "completedAnalysesCount": t.integer().optional(),
+            "failedAnalysesCount": t.integer().optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestIn"
+                ]
+            ).optional(),
+            "totalRequestedAnalysesCount": t.integer().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataOut"
+    ] = t.struct(
+        {
+            "completedAnalysesCount": t.integer().optional(),
+            "failedAnalysesCount": t.integer().optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsRequestOut"
+                ]
+            ).optional(),
+            "totalRequestedAnalysesCount": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchDataIn"] = t.struct(
+        {"displayName": t.string().optional(), "phraseMatcher": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchDataIn"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchDataOut"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "phraseMatcher": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchDataOut"])
+    types["GoogleCloudContactcenterinsightsV1SentimentDataIn"] = t.struct(
+        {"score": t.number().optional(), "magnitude": t.number().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1SentimentDataIn"])
+    types["GoogleCloudContactcenterinsightsV1SentimentDataOut"] = t.struct(
+        {
+            "score": t.number().optional(),
+            "magnitude": t.number().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SentimentDataOut"])
+    types["GoogleCloudContactcenterinsightsV1DeployIssueModelRequestIn"] = t.struct(
+        {"name": t.string()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeployIssueModelRequestIn"])
+    types["GoogleCloudContactcenterinsightsV1DeployIssueModelRequestOut"] = t.struct(
+        {"name": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeployIssueModelRequestOut"])
+    types["GoogleCloudContactcenterinsightsV1ViewIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "value": t.string().optional(),
+            "displayName": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ViewIn"])
+    types["GoogleCloudContactcenterinsightsV1ViewOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "value": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ViewOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataIn"
+    ] = t.struct(
+        {
+            "phraseMatchers": t.struct({"_": t.string().optional()}).optional(),
+            "sentiments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1ConversationLevelSentimentIn"
+                    ]
+                )
+            ).optional(),
+            "issueModelResult": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelResultIn"]
+            ).optional(),
+            "annotations": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1CallAnnotationIn"])
+            ).optional(),
+            "intents": t.struct({"_": t.string().optional()}).optional(),
+            "entities": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataOut"
+    ] = t.struct(
+        {
+            "phraseMatchers": t.struct({"_": t.string().optional()}).optional(),
+            "sentiments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1ConversationLevelSentimentOut"
+                    ]
+                )
+            ).optional(),
+            "issueModelResult": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelResultOut"]
+            ).optional(),
+            "annotations": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1CallAnnotationOut"])
+            ).optional(),
+            "intents": t.struct({"_": t.string().optional()}).optional(),
+            "entities": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1EntityIn"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "salience": t.number().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataIn"]
+            ).optional(),
+            "type": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1EntityIn"])
+    types["GoogleCloudContactcenterinsightsV1EntityOut"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "salience": t.number().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataOut"]
+            ).optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1EntityOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentIn"
+    ] = t.struct(
+        {
+            "channelTag": t.integer().optional(),
+            "words": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoIn"
+                    ]
+                )
+            ).optional(),
+            "dialogflowSegmentMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn"
+                ]
+            ).optional(),
+            "languageCode": t.string().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataIn"]
+            ).optional(),
+            "segmentParticipant": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationParticipantIn"]
+            ).optional(),
+            "messageTime": t.string().optional(),
+            "confidence": t.number().optional(),
+            "text": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentOut"
+    ] = t.struct(
+        {
+            "channelTag": t.integer().optional(),
+            "words": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfoOut"
+                    ]
+                )
+            ).optional(),
+            "dialogflowSegmentMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut"
+                ]
+            ).optional(),
+            "languageCode": t.string().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataOut"]
+            ).optional(),
+            "segmentParticipant": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationParticipantOut"]
+            ).optional(),
+            "messageTime": t.string().optional(),
+            "confidence": t.number().optional(),
+            "text": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceIn"] = t.struct(
+        {"audioUri": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceOut"] = t.struct(
+        {
+            "dialogflowConversation": t.string().optional(),
+            "audioUri": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowSourceOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseOut"
+    ] = t.struct({"error": t.proxy(renames["ErrorResponse"]).optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponseOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1PhraseMatcherIn"] = t.struct(
+        {
+            "roleMatch": t.string().optional(),
+            "type": t.string(),
+            "active": t.boolean().optional(),
+            "versionTag": t.string().optional(),
+            "phraseMatchRuleGroups": t.array(
+                t.proxy(
+                    renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"]
+                )
+            ).optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherIn"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"] = t.struct(
+        {
+            "revisionId": t.string().optional(),
+            "roleMatch": t.string().optional(),
+            "activationUpdateTime": t.string().optional(),
+            "type": t.string(),
+            "active": t.boolean().optional(),
+            "versionTag": t.string().optional(),
+            "phraseMatchRuleGroups": t.array(
+                t.proxy(
+                    renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupOut"]
+                )
+            ).optional(),
+            "updateTime": t.string().optional(),
+            "revisionCreateTime": t.string().optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigIn"
+    ] = t.struct({"agentId": t.string().optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigOut"
+    ] = t.struct(
+        {
+            "agentId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExportInsightsDataResponseOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataIn"
+    ] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "suggestion": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "queryRecord": t.string().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataOut"
+    ] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "suggestion": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "queryRecord": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1SmartComposeSuggestionDataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1EntityIn"] = t.struct(
+        {
+            "salience": t.number().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "displayName": t.string().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn"]
+            ).optional(),
+            "type": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1EntityIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1EntityOut"] = t.struct(
+        {
+            "salience": t.number().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "displayName": t.string().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut"]
+            ).optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1EntityOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn"] = t.struct(
+        {"score": t.number().optional(), "magnitude": t.number().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut"] = t.struct(
+        {
+            "score": t.number().optional(),
+            "magnitude": t.number().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut"])
+    types["GoogleCloudContactcenterinsightsV1CreateIssueModelRequestIn"] = t.struct(
+        {
+            "parent": t.string(),
+            "issueModel": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelIn"]
+            ),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CreateIssueModelRequestIn"])
+    types["GoogleCloudContactcenterinsightsV1CreateIssueModelRequestOut"] = t.struct(
+        {
+            "parent": t.string(),
+            "issueModel": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelOut"]
+            ),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CreateIssueModelRequestOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigIn"
+    ] = t.struct({"agentId": t.string().optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigOut"
+    ] = t.struct(
+        {
+            "agentId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsRequestConversationConfigOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseOut"
+    ] = t.struct({"error": t.proxy(renames["ErrorResponse"]).optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelResponseOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceIn"
+    ] = t.struct({"bucketUri": t.string()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceOut"
+    ] = t.struct(
+        {"bucketUri": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSourceOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataIn"] = t.struct(
+        {
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1CreateIssueModelRequestIn"]
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataIn"])
+    types["GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataOut"] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1CreateIssueModelRequestOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CreateIssueModelMetadataOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackIn"] = t.struct(
+        {
+            "clicked": t.boolean().optional(),
+            "correctnessLevel": t.string().optional(),
+            "displayed": t.boolean().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackOut"] = t.struct(
+        {
+            "clicked": t.boolean().optional(),
+            "correctnessLevel": t.string().optional(),
+            "displayed": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnswerFeedbackOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataIn"
+    ] = t.struct(
+        {
+            "answerRecord": t.string().optional(),
+            "text": t.string().optional(),
+            "confidence": t.number().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "textSections": t.struct({"_": t.string().optional()}).optional(),
+            "conversationModel": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataOut"
+    ] = t.struct(
+        {
+            "answerRecord": t.string().optional(),
+            "text": t.string().optional(),
+            "confidence": t.number().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "textSections": t.struct({"_": t.string().optional()}).optional(),
+            "conversationModel": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1ListIssueModelsResponseIn"] = t.struct(
+        {
+            "issueModels": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1IssueModelIn"])
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListIssueModelsResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1ListIssueModelsResponseOut"] = t.struct(
+        {
+            "issueModels": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1IssueModelOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListIssueModelsResponseOut"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIn"] = t.struct(
+        {
+            "issueStats": t.struct({"_": t.string().optional()}).optional(),
+            "analyzedConversationsCount": t.string().optional(),
+            "unclassifiedConversationsCount": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIn"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsOut"] = t.struct(
+        {
+            "issueStats": t.struct({"_": t.string().optional()}).optional(),
+            "analyzedConversationsCount": t.string().optional(),
+            "unclassifiedConversationsCount": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsOut"])
+    types["GoogleCloudContactcenterinsightsV1EntityMentionDataIn"] = t.struct(
+        {
+            "entityUniqueId": t.string().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataIn"]
+            ).optional(),
+            "type": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1EntityMentionDataIn"])
+    types["GoogleCloudContactcenterinsightsV1EntityMentionDataOut"] = t.struct(
+        {
+            "entityUniqueId": t.string().optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataOut"]
+            ).optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1EntityMentionDataOut"])
+    types["GoogleLongrunningOperationIn"] = t.struct(
+        {
+            "done": t.boolean().optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["GoogleRpcStatusIn"]).optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["GoogleLongrunningOperationIn"])
+    types["GoogleLongrunningOperationOut"] = t.struct(
+        {
+            "done": t.boolean().optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["GoogleLongrunningOperationOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoIn"
+    ] = t.struct(
+        {
+            "confidence": t.number().optional(),
+            "startOffset": t.string().optional(),
+            "endOffset": t.string().optional(),
+            "word": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoOut"
+    ] = t.struct(
+        {
+            "confidence": t.number().optional(),
+            "startOffset": t.string().optional(),
+            "endOffset": t.string().optional(),
+            "word": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoOut"
+        ]
+    )
+    types["GoogleLongrunningListOperationsResponseIn"] = t.struct(
+        {
+            "operations": t.array(
+                t.proxy(renames["GoogleLongrunningOperationIn"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["GoogleLongrunningListOperationsResponseIn"])
+    types["GoogleLongrunningListOperationsResponseOut"] = t.struct(
+        {
+            "operations": t.array(
+                t.proxy(renames["GoogleLongrunningOperationOut"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleLongrunningListOperationsResponseOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigIn"
+    ] = t.struct(
+        {
+            "conversationProfile": t.string().optional(),
+            "summarizationModel": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigOut"
+    ] = t.struct(
+        {
+            "conversationProfile": t.string().optional(),
+            "summarizationModel": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1IntentIn"] = t.struct(
+        {"id": t.string().optional(), "displayName": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1IntentIn"])
+    types["GoogleCloudContactcenterinsightsV1IntentOut"] = t.struct(
+        {
+            "id": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IntentOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnalysisResultIn"] = t.struct(
+        {
+            "callAnalysisMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataIn"
+                ]
+            ).optional(),
+            "endTime": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnalysisResultIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnalysisResultOut"] = t.struct(
+        {
+            "callAnalysisMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataOut"
+                ]
+            ).optional(),
+            "endTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnalysisResultOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1InterruptionDataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1InterruptionDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1InterruptionDataOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1InterruptionDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataIn"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestIn"
+                ]
+            ).optional()
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataOut"
+    ] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelRequestOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeleteIssueModelMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1AnalysisResultIn"] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "callAnalysisMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataIn"
+                ]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnalysisResultIn"])
+    types["GoogleCloudContactcenterinsightsV1AnalysisResultOut"] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "callAnalysisMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1AnalysisResultCallAnalysisMetadataOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnalysisResultOut"])
+    types["GoogleCloudContactcenterinsightsV1ConversationIn"] = t.struct(
+        {
+            "medium": t.string().optional(),
+            "ttl": t.string().optional(),
+            "name": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "languageCode": t.string().optional(),
+            "expireTime": t.string().optional(),
+            "callMetadata": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationCallMetadataIn"]
+            ).optional(),
+            "startTime": t.string().optional(),
+            "dataSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationDataSourceIn"]
+            ).optional(),
+            "agentId": t.string().optional(),
+            "obfuscatedUserId": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationIn"])
+    types["GoogleCloudContactcenterinsightsV1ConversationOut"] = t.struct(
+        {
+            "medium": t.string().optional(),
+            "duration": t.string().optional(),
+            "latestSummary": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataOut"
+                ]
+            ).optional(),
+            "dialogflowIntents": t.struct({"_": t.string().optional()}).optional(),
+            "ttl": t.string().optional(),
+            "name": t.string().optional(),
+            "latestAnalysis": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnalysisOut"]
+            ).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "runtimeAnnotations": t.array(
+                t.proxy(
+                    renames["GoogleCloudContactcenterinsightsV1RuntimeAnnotationOut"]
+                )
+            ).optional(),
+            "languageCode": t.string().optional(),
+            "transcript": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationTranscriptOut"]
+            ).optional(),
+            "expireTime": t.string().optional(),
+            "callMetadata": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationCallMetadataOut"]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "startTime": t.string().optional(),
+            "turnCount": t.integer().optional(),
+            "updateTime": t.string().optional(),
+            "dataSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ConversationDataSourceOut"]
+            ).optional(),
+            "agentId": t.string().optional(),
+            "obfuscatedUserId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationOut"])
+    types["GoogleRpcStatusIn"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "message": t.string().optional(),
+            "code": t.integer().optional(),
+        }
+    ).named(renames["GoogleRpcStatusIn"])
+    types["GoogleRpcStatusOut"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "message": t.string().optional(),
+            "code": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleRpcStatusOut"])
+    types["GoogleCloudContactcenterinsightsV1FaqAnswerDataIn"] = t.struct(
+        {
+            "queryRecord": t.string().optional(),
+            "answer": t.string().optional(),
+            "question": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "confidenceScore": t.number().optional(),
+            "source": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1FaqAnswerDataIn"])
+    types["GoogleCloudContactcenterinsightsV1FaqAnswerDataOut"] = t.struct(
+        {
+            "queryRecord": t.string().optional(),
+            "answer": t.string().optional(),
+            "question": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "confidenceScore": t.number().optional(),
+            "source": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1FaqAnswerDataOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnalysisIn"] = t.struct(
+        {
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorIn"]
+            ).optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnalysisIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnalysisOut"] = t.struct(
+        {
+            "requestTime": t.string().optional(),
+            "analysisResult": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnalysisResultOut"]
+            ).optional(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorOut"]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnalysisOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsOut"
+    ] = t.struct(
+        {
+            "processedObjectCount": t.integer().optional(),
+            "successfulIngestCount": t.integer().optional(),
+            "duplicatesSkippedCount": t.integer().optional(),
+            "failedIngestCount": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueModelResultIn"] = t.struct(
+        {
+            "issues": t.array(
+                t.proxy(
+                    renames["GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentIn"]
+                )
+            ).optional(),
+            "issueModel": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelResultIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueModelResultOut"] = t.struct(
+        {
+            "issues": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1IssueAssignmentOut"
+                    ]
+                )
+            ).optional(),
+            "issueModel": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelResultOut"])
+    types["GoogleCloudContactcenterinsightsV1DialogflowIntentIn"] = t.struct(
+        {"displayName": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DialogflowIntentIn"])
+    types["GoogleCloudContactcenterinsightsV1DialogflowIntentOut"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DialogflowIntentOut"])
+    types["GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "phraseMatchers": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherIn"])
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "phraseMatchers": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListPhraseMatchersResponseOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataIn"
+    ] = t.struct(
+        {
+            "customerChannel": t.integer().optional(),
+            "agentChannel": t.integer().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataOut"
+    ] = t.struct(
+        {
+            "customerChannel": t.integer().optional(),
+            "agentChannel": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1IntentIn"] = t.struct(
+        {"id": t.string().optional(), "displayName": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IntentIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IntentOut"] = t.struct(
+        {
+            "id": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IntentOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn"] = t.struct(
+        {"transcriptIndex": t.integer().optional(), "wordIndex": t.integer().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut"] = t.struct(
+        {
+            "transcriptIndex": t.integer().optional(),
+            "wordIndex": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsIn"
+    ] = t.struct(
+        {
+            "issue": t.string().optional(),
+            "labeledConversationsCount": t.string().optional(),
+            "displayName": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsOut"
+    ] = t.struct(
+        {
+            "issue": t.string().optional(),
+            "labeledConversationsCount": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStatsOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataIn"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestIn"
+                ]
+            ).optional()
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataOut"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestOut"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1ConversationCallMetadataIn"] = t.struct(
+        {
+            "customerChannel": t.integer().optional(),
+            "agentChannel": t.integer().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationCallMetadataIn"])
+    types["GoogleCloudContactcenterinsightsV1ConversationCallMetadataOut"] = t.struct(
+        {
+            "customerChannel": t.integer().optional(),
+            "agentChannel": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationCallMetadataOut"])
+    types["GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestIn"] = t.struct(
+        {"name": t.string()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestIn"])
+    types["GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestOut"] = t.struct(
+        {"name": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeleteIssueModelRequestOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataIn"
+    ] = t.struct(
+        {
+            "issueModelResult": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelResultIn"]
+            ).optional(),
+            "intents": t.struct({"_": t.string().optional()}).optional(),
+            "entities": t.struct({"_": t.string().optional()}).optional(),
+            "sentiments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentIn"
+                    ]
+                )
+            ).optional(),
+            "phraseMatchers": t.struct({"_": t.string().optional()}).optional(),
+            "annotations": t.array(
+                t.proxy(
+                    renames["GoogleCloudContactcenterinsightsV1alpha1CallAnnotationIn"]
+                )
+            ).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataOut"
+    ] = t.struct(
+        {
+            "issueModelResult": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelResultOut"]
+            ).optional(),
+            "intents": t.struct({"_": t.string().optional()}).optional(),
+            "entities": t.struct({"_": t.string().optional()}).optional(),
+            "sentiments": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1ConversationLevelSentimentOut"
+                    ]
+                )
+            ).optional(),
+            "phraseMatchers": t.struct({"_": t.string().optional()}).optional(),
+            "annotations": t.array(
+                t.proxy(
+                    renames["GoogleCloudContactcenterinsightsV1alpha1CallAnnotationOut"]
+                )
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1AnalysisResultCallAnalysisMetadataOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigIn"
+    ] = t.struct(
+        {
+            "summarizationModel": t.string().optional(),
+            "conversationProfile": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigOut"
+    ] = t.struct(
+        {
+            "summarizationModel": t.string().optional(),
+            "conversationProfile": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestIn"] = t.struct(
+        {"name": t.string()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestIn"])
+    types["GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestOut"] = t.struct(
+        {"name": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigIn"
+    ] = t.struct({"medium": t.string()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigOut"
+    ] = t.struct(
+        {"medium": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1IngestConversationsRequestTranscriptObjectConfigOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1IntentMatchDataIn"] = t.struct(
+        {"intentUniqueId": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1IntentMatchDataIn"])
+    types["GoogleCloudContactcenterinsightsV1IntentMatchDataOut"] = t.struct(
+        {
+            "intentUniqueId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IntentMatchDataOut"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigIn"] = t.struct(
+        {
+            "exactMatchConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ExactMatchConfigIn"]
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigIn"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigOut"] = t.struct(
+        {
+            "exactMatchConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ExactMatchConfigOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn"
+    ] = t.struct({"smartReplyAllowlistCovered": t.boolean().optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut"
+    ] = t.struct(
+        {
+            "smartReplyAllowlistCovered": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1AnnotatorSelectorIn"] = t.struct(
+        {
+            "runSilenceAnnotator": t.boolean().optional(),
+            "phraseMatchers": t.array(t.string()).optional(),
+            "runSummarizationAnnotator": t.boolean().optional(),
+            "summarizationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigIn"
+                ]
+            ).optional(),
+            "runIssueModelAnnotator": t.boolean().optional(),
+            "runIntentAnnotator": t.boolean().optional(),
+            "issueModels": t.array(t.string()).optional(),
+            "runPhraseMatcherAnnotator": t.boolean().optional(),
+            "runEntityAnnotator": t.boolean().optional(),
+            "runSentimentAnnotator": t.boolean().optional(),
+            "runInterruptionAnnotator": t.boolean().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorIn"])
+    types["GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut"] = t.struct(
+        {
+            "runSilenceAnnotator": t.boolean().optional(),
+            "phraseMatchers": t.array(t.string()).optional(),
+            "runSummarizationAnnotator": t.boolean().optional(),
+            "summarizationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1AnnotatorSelectorSummarizationConfigOut"
+                ]
+            ).optional(),
+            "runIssueModelAnnotator": t.boolean().optional(),
+            "runIntentAnnotator": t.boolean().optional(),
+            "issueModels": t.array(t.string()).optional(),
+            "runPhraseMatcherAnnotator": t.boolean().optional(),
+            "runEntityAnnotator": t.boolean().optional(),
+            "runSentimentAnnotator": t.boolean().optional(),
+            "runInterruptionAnnotator": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1GcsSourceIn"] = t.struct(
+        {"audioUri": t.string().optional(), "transcriptUri": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1GcsSourceIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1GcsSourceOut"] = t.struct(
+        {
+            "audioUri": t.string().optional(),
+            "transcriptUri": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1GcsSourceOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigIn"
+    ] = t.struct({"medium": t.string()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigOut"
+    ] = t.struct(
+        {"medium": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1ConversationLevelSentimentIn"] = t.struct(
+        {
+            "channelTag": t.integer().optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationLevelSentimentIn"])
+    types["GoogleCloudContactcenterinsightsV1ConversationLevelSentimentOut"] = t.struct(
+        {
+            "channelTag": t.integer().optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1SentimentDataOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationLevelSentimentOut"])
+    types["GoogleCloudContactcenterinsightsV1ListViewsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "views": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1ViewIn"])
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListViewsResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1ListViewsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "views": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1ViewOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListViewsResponseOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorIn"] = t.struct(
+        {
+            "phraseMatchers": t.array(t.string()).optional(),
+            "runIssueModelAnnotator": t.boolean().optional(),
+            "runIntentAnnotator": t.boolean().optional(),
+            "issueModels": t.array(t.string()).optional(),
+            "runInterruptionAnnotator": t.boolean().optional(),
+            "runEntityAnnotator": t.boolean().optional(),
+            "runSummarizationAnnotator": t.boolean().optional(),
+            "runPhraseMatcherAnnotator": t.boolean().optional(),
+            "runSentimentAnnotator": t.boolean().optional(),
+            "runSilenceAnnotator": t.boolean().optional(),
+            "summarizationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigIn"
+                ]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorOut"] = t.struct(
+        {
+            "phraseMatchers": t.array(t.string()).optional(),
+            "runIssueModelAnnotator": t.boolean().optional(),
+            "runIntentAnnotator": t.boolean().optional(),
+            "issueModels": t.array(t.string()).optional(),
+            "runInterruptionAnnotator": t.boolean().optional(),
+            "runEntityAnnotator": t.boolean().optional(),
+            "runSummarizationAnnotator": t.boolean().optional(),
+            "runPhraseMatcherAnnotator": t.boolean().optional(),
+            "runSentimentAnnotator": t.boolean().optional(),
+            "runSilenceAnnotator": t.boolean().optional(),
+            "summarizationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorSummarizationConfigOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataIn"
+    ] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "totalRequestedAnalysesCount": t.integer().optional(),
+            "failedAnalysesCount": t.integer().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestIn"
+                ]
+            ).optional(),
+            "completedAnalysesCount": t.integer().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataOut"
+    ] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "totalRequestedAnalysesCount": t.integer().optional(),
+            "failedAnalysesCount": t.integer().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsRequestOut"
+                ]
+            ).optional(),
+            "completedAnalysesCount": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1BulkAnalyzeConversationsMetadataOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantIn"
+    ] = t.struct(
+        {
+            "dialogflowParticipant": t.string().optional(),
+            "role": t.string().optional(),
+            "obfuscatedExternalUserId": t.string().optional(),
+            "dialogflowParticipantName": t.string().optional(),
+            "userId": t.string().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantOut"
+    ] = t.struct(
+        {
+            "dialogflowParticipant": t.string().optional(),
+            "role": t.string().optional(),
+            "obfuscatedExternalUserId": t.string().optional(),
+            "dialogflowParticipantName": t.string().optional(),
+            "userId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseOut"
+    ] = t.struct({"error": t.proxy(renames["ErrorResponse"]).optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelResponseOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1ConversationDataSourceIn"] = t.struct(
+        {
+            "gcsSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1GcsSourceIn"]
+            ).optional(),
+            "dialogflowSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1DialogflowSourceIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationDataSourceIn"])
+    types["GoogleCloudContactcenterinsightsV1ConversationDataSourceOut"] = t.struct(
+        {
+            "gcsSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1GcsSourceOut"]
+            ).optional(),
+            "dialogflowSource": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1DialogflowSourceOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ConversationDataSourceOut"])
+    types["GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataIn"] = t.struct(
+        {
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestIn"]
+            ).optional(),
+            "partialErrors": t.array(t.proxy(renames["GoogleRpcStatusIn"])).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataIn"])
+    types["GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataOut"] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestOut"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "partialErrors": t.array(t.proxy(renames["GoogleRpcStatusOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ExportInsightsDataMetadataOut"])
+    types["GoogleCloudContactcenterinsightsV1ListConversationsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "conversations": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationIn"])
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListConversationsResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1ListConversationsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "conversations": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListConversationsResponseOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseIn"
+    ] = t.struct(
+        {
+            "successfulAnalysisCount": t.integer().optional(),
+            "failedAnalysisCount": t.integer().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseOut"
+    ] = t.struct(
+        {
+            "successfulAnalysisCount": t.integer().optional(),
+            "failedAnalysisCount": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1BulkAnalyzeConversationsResponseOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1ConversationIn"] = t.struct(
+        {
+            "medium": t.string().optional(),
+            "callMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataIn"
+                ]
+            ).optional(),
+            "languageCode": t.string().optional(),
+            "agentId": t.string().optional(),
+            "startTime": t.string().optional(),
+            "obfuscatedUserId": t.string().optional(),
+            "dataSource": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceIn"
+                ]
+            ).optional(),
+            "expireTime": t.string().optional(),
+            "name": t.string().optional(),
+            "ttl": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1ConversationIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1ConversationOut"] = t.struct(
+        {
+            "medium": t.string().optional(),
+            "callMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationCallMetadataOut"
+                ]
+            ).optional(),
+            "languageCode": t.string().optional(),
+            "agentId": t.string().optional(),
+            "transcript": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptOut"
+                ]
+            ).optional(),
+            "startTime": t.string().optional(),
+            "duration": t.string().optional(),
+            "obfuscatedUserId": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "dialogflowIntents": t.struct({"_": t.string().optional()}).optional(),
+            "dataSource": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationDataSourceOut"
+                ]
+            ).optional(),
+            "turnCount": t.integer().optional(),
+            "expireTime": t.string().optional(),
+            "latestAnalysis": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnalysisOut"]
+            ).optional(),
+            "latestSummary": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationSummarizationSuggestionDataOut"
+                ]
+            ).optional(),
+            "runtimeAnnotations": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1RuntimeAnnotationOut"
+                    ]
+                )
+            ).optional(),
+            "name": t.string().optional(),
+            "ttl": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "createTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1ConversationOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataOut"
+    ] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "appliedRedactionConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1RedactionConfigOut"]
+            ).optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1UploadConversationRequestOut"
+                ]
+            ).optional(),
+            "analysisOperation": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UploadConversationMetadataOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigIn"
+    ] = t.struct(
+        {"medium": t.string().optional(), "filter": t.string().optional()}
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigOut"
+    ] = t.struct(
+        {
+            "medium": t.string().optional(),
+            "filter": t.string().optional(),
+            "trainingConversationsCount": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfigOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIn"] = t.struct(
+        {
+            "unclassifiedConversationsCount": t.string().optional(),
+            "issueStats": t.struct({"_": t.string().optional()}).optional(),
+            "analyzedConversationsCount": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsOut"] = t.struct(
+        {
+            "unclassifiedConversationsCount": t.string().optional(),
+            "issueStats": t.struct({"_": t.string().optional()}).optional(),
+            "analyzedConversationsCount": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsOut"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchRuleIn"] = t.struct(
+        {
+            "negated": t.boolean().optional(),
+            "config": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigIn"]
+            ).optional(),
+            "query": t.string(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleIn"])
+    types["GoogleCloudContactcenterinsightsV1PhraseMatchRuleOut"] = t.struct(
+        {
+            "negated": t.boolean().optional(),
+            "config": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleConfigOut"]
+            ).optional(),
+            "query": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1PhraseMatchRuleOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataIn"
+    ] = t.struct(
+        {
+            "dialogflowIntentId": t.string().optional(),
+            "confidence": t.number().optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataOut"
+    ] = t.struct(
+        {
+            "dialogflowIntentId": t.string().optional(),
+            "confidence": t.number().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowInteractionDataOut"]
+    )
+    types["GoogleProtobufEmptyIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleProtobufEmptyIn"]
+    )
+    types["GoogleProtobufEmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleProtobufEmptyOut"])
+    types["GoogleCloudContactcenterinsightsV1ListIssuesResponseIn"] = t.struct(
+        {
+            "issues": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1IssueIn"])
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListIssuesResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1ListIssuesResponseOut"] = t.struct(
+        {
+            "issues": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1IssueOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListIssuesResponseOut"])
+    types["GoogleCloudContactcenterinsightsV1CalculateStatsResponseIn"] = t.struct(
+        {
+            "conversationCountTimeSeries": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIn"
+                ]
+            ).optional(),
+            "conversationCount": t.integer().optional(),
+            "customHighlighterMatches": t.struct(
+                {"_": t.string().optional()}
+            ).optional(),
+            "issueMatchesStats": t.struct({"_": t.string().optional()}).optional(),
+            "issueMatches": t.struct({"_": t.string().optional()}).optional(),
+            "averageDuration": t.string().optional(),
+            "averageTurnCount": t.integer().optional(),
+            "smartHighlighterMatches": t.struct(
+                {"_": t.string().optional()}
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CalculateStatsResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1CalculateStatsResponseOut"] = t.struct(
+        {
+            "conversationCountTimeSeries": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesOut"
+                ]
+            ).optional(),
+            "conversationCount": t.integer().optional(),
+            "customHighlighterMatches": t.struct(
+                {"_": t.string().optional()}
+            ).optional(),
+            "issueMatchesStats": t.struct({"_": t.string().optional()}).optional(),
+            "issueMatches": t.struct({"_": t.string().optional()}).optional(),
+            "averageDuration": t.string().optional(),
+            "averageTurnCount": t.integer().optional(),
+            "smartHighlighterMatches": t.struct(
+                {"_": t.string().optional()}
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1CalculateStatsResponseOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1SilenceDataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1SilenceDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1SilenceDataOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1SilenceDataOut"])
+    types["GoogleCloudContactcenterinsightsV1IngestConversationsResponseIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1IngestConversationsResponseIn"])
+    types[
+        "GoogleCloudContactcenterinsightsV1IngestConversationsResponseOut"
+    ] = t.struct({"error": t.proxy(renames["ErrorResponse"]).optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1IngestConversationsResponseOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1GcsSourceIn"] = t.struct(
+        {"audioUri": t.string().optional(), "transcriptUri": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1GcsSourceIn"])
+    types["GoogleCloudContactcenterinsightsV1GcsSourceOut"] = t.struct(
+        {
+            "audioUri": t.string().optional(),
+            "transcriptUri": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1GcsSourceOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentIn"
+    ] = t.struct(
+        {
+            "text": t.string().optional(),
+            "confidence": t.number().optional(),
+            "segmentParticipant": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantIn"
+                ]
+            ).optional(),
+            "channelTag": t.integer().optional(),
+            "messageTime": t.string().optional(),
+            "words": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoIn"
+                    ]
+                )
+            ).optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn"]
+            ).optional(),
+            "dialogflowSegmentMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataIn"
+                ]
+            ).optional(),
+            "languageCode": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentOut"
+    ] = t.struct(
+        {
+            "text": t.string().optional(),
+            "confidence": t.number().optional(),
+            "segmentParticipant": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationParticipantOut"
+                ]
+            ).optional(),
+            "channelTag": t.integer().optional(),
+            "messageTime": t.string().optional(),
+            "words": t.array(
+                t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentWordInfoOut"
+                    ]
+                )
+            ).optional(),
+            "sentiment": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut"]
+            ).optional(),
+            "dialogflowSegmentMetadata": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadataOut"
+                ]
+            ).optional(),
+            "languageCode": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1ConversationTranscriptTranscriptSegmentOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceIn"
+    ] = t.struct({"bucketUri": t.string()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceOut"
+    ] = t.struct(
+        {"bucketUri": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalIn"
+    ] = t.struct(
+        {
+            "conversationCount": t.integer().optional(),
+            "startTime": t.string().optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalOut"
+    ] = t.struct(
+        {
+            "conversationCount": t.integer().optional(),
+            "startTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1CalculateStatsResponseTimeSeriesIntervalOut"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataOut"
+    ] = t.struct(
+        {
+            "conversation": t.string().optional(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotatorSelectorOut"]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadataOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1DialogflowInteractionDataIn"] = t.struct(
+        {
+            "confidence": t.number().optional(),
+            "dialogflowIntentId": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DialogflowInteractionDataIn"])
+    types["GoogleCloudContactcenterinsightsV1DialogflowInteractionDataOut"] = t.struct(
+        {
+            "confidence": t.number().optional(),
+            "dialogflowIntentId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DialogflowInteractionDataOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentIn"] = t.struct(
+        {"displayName": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentOut"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1DialogflowIntentOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIn"
+    ] = t.struct({"_": t.string().optional()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataOut"
+    ] = t.struct(
+        {
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "partialErrors": t.array(t.proxy(renames["GoogleRpcStatusOut"])).optional(),
+            "ingestConversationsStats": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataIngestConversationsStatsOut"
+                ]
+            ).optional(),
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsMetadataOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1UndeployIssueModelResponseOut"])
+    types["GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigIn"] = t.struct(
+        {
+            "uploadConversationAnalysisPercentage": t.number().optional(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorIn"]
+            ).optional(),
+            "runtimeIntegrationAnalysisPercentage": t.number().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigIn"])
+    types["GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigOut"] = t.struct(
+        {
+            "uploadConversationAnalysisPercentage": t.number().optional(),
+            "annotatorSelector": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1AnnotatorSelectorOut"]
+            ).optional(),
+            "runtimeIntegrationAnalysisPercentage": t.number().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SettingsAnalysisConfigOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestIn"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "conversationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigIn"
+                ]
+            ).optional(),
+            "gcsSource": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceIn"
+                ]
+            ).optional(),
+            "transcriptObjectConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigIn"
+                ]
+            ).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestOut"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "conversationConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestConversationConfigOut"
+                ]
+            ).optional(),
+            "gcsSource": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSourceOut"
+                ]
+            ).optional(),
+            "transcriptObjectConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestTranscriptObjectConfigOut"
+                ]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1alpha1HoldDataIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1HoldDataIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1HoldDataOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1HoldDataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataIn"
+    ] = t.struct(
+        {
+            "textSections": t.struct({"_": t.string().optional()}).optional(),
+            "answerRecord": t.string().optional(),
+            "confidence": t.number().optional(),
+            "conversationModel": t.string().optional(),
+            "text": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataIn"
+        ]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataOut"
+    ] = t.struct(
+        {
+            "textSections": t.struct({"_": t.string().optional()}).optional(),
+            "answerRecord": t.string().optional(),
+            "confidence": t.number().optional(),
+            "conversationModel": t.string().optional(),
+            "text": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames[
+            "GoogleCloudContactcenterinsightsV1ConversationSummarizationSuggestionDataOut"
+        ]
+    )
+    types["GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataIn"] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "queryRecord": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "suggestion": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataIn"])
+    types["GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataOut"] = t.struct(
+        {
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "queryRecord": t.string().optional(),
+            "confidenceScore": t.number().optional(),
+            "suggestion": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1SmartComposeSuggestionDataOut"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelResultIn"] = t.struct(
+        {
+            "issueModel": t.string().optional(),
+            "issues": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1IssueAssignmentIn"])
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelResultIn"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelResultOut"] = t.struct(
+        {
+            "issueModel": t.string().optional(),
+            "issues": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1IssueAssignmentOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelResultOut"])
+    types["GoogleCloudContactcenterinsightsV1ListAnalysesResponseIn"] = t.struct(
+        {
+            "analyses": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1AnalysisIn"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListAnalysesResponseIn"])
+    types["GoogleCloudContactcenterinsightsV1ListAnalysesResponseOut"] = t.struct(
+        {
+            "analyses": t.array(
+                t.proxy(renames["GoogleCloudContactcenterinsightsV1AnalysisOut"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1ListAnalysesResponseOut"])
+    types["GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataIn"] = t.struct(
+        {
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1DeployIssueModelRequestIn"]
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataIn"])
+    types["GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataOut"] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1DeployIssueModelRequestOut"]
+            ).optional(),
+            "endTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1DeployIssueModelMetadataOut"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "inputDataConfig": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigIn"]
+            ).optional(),
+            "displayName": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelIn"])
+    types["GoogleCloudContactcenterinsightsV1IssueModelOut"] = t.struct(
+        {
+            "updateTime": t.string().optional(),
+            "name": t.string().optional(),
+            "issueCount": t.string().optional(),
+            "trainingStats": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1IssueModelLabelStatsOut"]
+            ).optional(),
+            "inputDataConfig": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1IssueModelInputDataConfigOut"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "state": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1IssueModelOut"])
+    types["GoogleCloudContactcenterinsightsV1alpha1CallAnnotationIn"] = t.struct(
+        {
+            "intentMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataIn"]
+            ).optional(),
+            "issueMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataIn"]
+            ).optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataIn"]
+            ).optional(),
+            "interruptionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1InterruptionDataIn"]
+            ).optional(),
+            "annotationEndBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn"]
+            ).optional(),
+            "phraseMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataIn"]
+            ).optional(),
+            "silenceData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SilenceDataIn"]
+            ).optional(),
+            "annotationStartBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryIn"]
+            ).optional(),
+            "holdData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1HoldDataIn"]
+            ).optional(),
+            "channelTag": t.integer().optional(),
+            "entityMentionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1CallAnnotationIn"])
+    types["GoogleCloudContactcenterinsightsV1alpha1CallAnnotationOut"] = t.struct(
+        {
+            "intentMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IntentMatchDataOut"]
+            ).optional(),
+            "issueMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueMatchDataOut"]
+            ).optional(),
+            "sentimentData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SentimentDataOut"]
+            ).optional(),
+            "interruptionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1InterruptionDataOut"]
+            ).optional(),
+            "annotationEndBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut"]
+            ).optional(),
+            "phraseMatchData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1PhraseMatchDataOut"]
+            ).optional(),
+            "silenceData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1SilenceDataOut"]
+            ).optional(),
+            "annotationStartBoundary": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1AnnotationBoundaryOut"]
+            ).optional(),
+            "holdData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1HoldDataOut"]
+            ).optional(),
+            "channelTag": t.integer().optional(),
+            "entityMentionData": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1EntityMentionDataOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1alpha1CallAnnotationOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestIn"
+    ] = t.struct({"name": t.string()}).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestOut"
+    ] = t.struct(
+        {"name": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1DeployIssueModelRequestOut"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataIn"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestIn"
+                ]
+            ).optional()
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataOut"
+    ] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelRequestOut"
+                ]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1UndeployIssueModelMetadataOut"]
+    )
+    types["GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataIn"] = t.struct(
+        {
+            "request": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestIn"]
+            ).optional()
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataIn"])
+    types["GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataOut"] = t.struct(
+        {
+            "request": t.proxy(
+                renames[
+                    "GoogleCloudContactcenterinsightsV1UndeployIssueModelRequestOut"
+                ]
+            ).optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudContactcenterinsightsV1UndeployIssueModelMetadataOut"])
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestIn"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "issueModel": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelIn"]
+            ),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestIn"]
+    )
+    types[
+        "GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestOut"
+    ] = t.struct(
+        {
+            "parent": t.string(),
+            "issueModel": t.proxy(
+                renames["GoogleCloudContactcenterinsightsV1alpha1IssueModelOut"]
+            ),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(
+        renames["GoogleCloudContactcenterinsightsV1alpha1CreateIssueModelRequestOut"]
+    )
+
+    functions = {}
+    functions["projectsLocationsUpdateSettings"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1SettingsOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGetSettings"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1SettingsOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsOperationsList"] = contactcenterinsights.post(
+        "v1/{name}:cancel",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleProtobufEmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsOperationsGet"] = contactcenterinsights.post(
+        "v1/{name}:cancel",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleProtobufEmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsOperationsCancel"] = contactcenterinsights.post(
+        "v1/{name}:cancel",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleProtobufEmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsPatch"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsCreate"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsBulkAnalyze"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsUpload"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "projectsLocationsConversationsCalculateStats"
+    ] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsIngest"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsDelete"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsList"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsGet"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct(
+            {
+                "view": t.string().optional(),
+                "name": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ConversationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsAnalysesList"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1AnalysisOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "projectsLocationsConversationsAnalysesCreate"
+    ] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1AnalysisOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "projectsLocationsConversationsAnalysesDelete"
+    ] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1AnalysisOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConversationsAnalysesGet"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1AnalysisOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsDeploy"] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsCreate"] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "projectsLocationsIssueModelsCalculateIssueModelStats"
+    ] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsList"] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsGet"] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsDelete"] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsPatch"] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsUndeploy"] = contactcenterinsights.post(
+        "v1/{name}:undeploy",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsIssuesGet"] = contactcenterinsights.get(
+        "v1/{parent}/issues",
+        t.struct({"parent": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ListIssuesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsIssuesDelete"] = contactcenterinsights.get(
+        "v1/{parent}/issues",
+        t.struct({"parent": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ListIssuesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsIssuesPatch"] = contactcenterinsights.get(
+        "v1/{parent}/issues",
+        t.struct({"parent": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ListIssuesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsIssueModelsIssuesList"] = contactcenterinsights.get(
+        "v1/{parent}/issues",
+        t.struct({"parent": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ListIssuesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsPhraseMatchersList"] = contactcenterinsights.post(
+        "v1/{parent}/phraseMatchers",
+        t.struct(
+            {
+                "parent": t.string(),
+                "roleMatch": t.string().optional(),
+                "type": t.string(),
+                "active": t.boolean().optional(),
+                "versionTag": t.string().optional(),
+                "phraseMatchRuleGroups": t.array(
+                    t.proxy(
+                        renames[
+                            "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"
+                        ]
+                    )
+                ).optional(),
+                "displayName": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsPhraseMatchersPatch"] = contactcenterinsights.post(
+        "v1/{parent}/phraseMatchers",
+        t.struct(
+            {
+                "parent": t.string(),
+                "roleMatch": t.string().optional(),
+                "type": t.string(),
+                "active": t.boolean().optional(),
+                "versionTag": t.string().optional(),
+                "phraseMatchRuleGroups": t.array(
+                    t.proxy(
+                        renames[
+                            "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"
+                        ]
+                    )
+                ).optional(),
+                "displayName": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsPhraseMatchersDelete"] = contactcenterinsights.post(
+        "v1/{parent}/phraseMatchers",
+        t.struct(
+            {
+                "parent": t.string(),
+                "roleMatch": t.string().optional(),
+                "type": t.string(),
+                "active": t.boolean().optional(),
+                "versionTag": t.string().optional(),
+                "phraseMatchRuleGroups": t.array(
+                    t.proxy(
+                        renames[
+                            "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"
+                        ]
+                    )
+                ).optional(),
+                "displayName": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsPhraseMatchersGet"] = contactcenterinsights.post(
+        "v1/{parent}/phraseMatchers",
+        t.struct(
+            {
+                "parent": t.string(),
+                "roleMatch": t.string().optional(),
+                "type": t.string(),
+                "active": t.boolean().optional(),
+                "versionTag": t.string().optional(),
+                "phraseMatchRuleGroups": t.array(
+                    t.proxy(
+                        renames[
+                            "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"
+                        ]
+                    )
+                ).optional(),
+                "displayName": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsPhraseMatchersCreate"] = contactcenterinsights.post(
+        "v1/{parent}/phraseMatchers",
+        t.struct(
+            {
+                "parent": t.string(),
+                "roleMatch": t.string().optional(),
+                "type": t.string(),
+                "active": t.boolean().optional(),
+                "versionTag": t.string().optional(),
+                "phraseMatchRuleGroups": t.array(
+                    t.proxy(
+                        renames[
+                            "GoogleCloudContactcenterinsightsV1PhraseMatchRuleGroupIn"
+                        ]
+                    )
+                ).optional(),
+                "displayName": t.string().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1PhraseMatcherOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsViewsCreate"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ViewOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsViewsList"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ViewOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsViewsDelete"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ViewOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsViewsPatch"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ViewOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsViewsGet"] = contactcenterinsights.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["GoogleCloudContactcenterinsightsV1ViewOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInsightsdataExport"] = contactcenterinsights.post(
+        "v1/{parent}/insightsdata:export",
+        t.struct(
+            {
+                "parent": t.string(),
+                "writeDisposition": t.string().optional(),
+                "filter": t.string().optional(),
+                "bigQueryDestination": t.proxy(
+                    renames[
+                        "GoogleCloudContactcenterinsightsV1ExportInsightsDataRequestBigQueryDestinationIn"
+                    ]
+                ).optional(),
+                "kmsKey": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleLongrunningOperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+
+    return Import(
+        importer="contactcenterinsights",
+        renames=renames,
+        types=Box(types),
+        functions=Box(functions),
+    )
