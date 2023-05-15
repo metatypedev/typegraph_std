@@ -13,10 +13,8 @@ class Github(GeneratorScript):
         super().__init__("github")
 
     def pre_run(self):
-        # FIX
-        # 'BoxList' object has no attribute 'items'
         title = "ghes"
-        url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/dereferenced/api.github.com.2022-11-28.deref.yaml"
+        url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.0/ghes-3.0.yaml"
         try:
             importer = OpenApiImporter(name=title, url=url)
             self.files += get_files_from_importer(title, importer)
