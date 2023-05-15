@@ -1,8 +1,8 @@
 import httpx
 from typing import Dict
-from generators.generator_script import GeneratorScript, File
+from generators.generator_script import GeneratorScript
 from typegraph.importers.google_discovery import GoogleDiscoveryImporter
-from tools.util import complete_source_from
+from tools.util import get_files_from_importer
 
 
 class Google(GeneratorScript):
@@ -42,14 +42,7 @@ class Google(GeneratorScript):
             # Note: each iteration will do a request
             try:
                 importer = GoogleDiscoveryImporter(name=title, url=url)
-                content, content_hint = complete_source_from(importer)
-                files = [
-                    File(f"{title}.py", content),
-                    File(f"{title}.pyi", content_hint),
-                ]
-                for file in files:
-                    file.flag("black", True)
-                    self.files.append(file)
+                self.files += get_files_from_importer(title, importer)
             except Exception as e:
                 self.error(f"Failed {title}: {url}")
                 self.error(e)
