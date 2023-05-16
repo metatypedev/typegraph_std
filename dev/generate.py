@@ -17,22 +17,12 @@ Run a specific generator
 
 parser = argparse.ArgumentParser(
     description="Script generator",
-    formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter,
 )
 
-parser.add_argument(
-    "-v",
-    "--verbose",
-    action="store_true",
-    help="verbose output"
-)
+parser.add_argument("-v", "--verbose", action="store_true", help="verbose output")
 
-parser.add_argument(
-    "-g",
-    "--generator",
-    type=str,
-    help="specify a generator"
-)
+parser.add_argument("-g", "--generator", type=str, help="specify a generator")
 
 
 cli_args = parser.parse_args()
@@ -40,11 +30,7 @@ cli_args = parser.parse_args()
 GeneratorScript._VERBOSE = cli_args.verbose
 
 # generator list
-generators = [
-    Stripe(),
-    Google(),
-    Github()
-]
+generators = [Stripe(), Google(), Github()]
 
 
 # flag g
@@ -69,4 +55,4 @@ for generator in generators:
         if cli_args.verbose:
             traceback.print_exception(*sys.exc_info())
         else:
-            print(f'{name} generator failed:', e.__str__(), file=sys.stderr)
+            print(f"{name} generator failed:", e.__str__(), file=sys.stderr)
