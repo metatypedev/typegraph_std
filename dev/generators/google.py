@@ -37,14 +37,16 @@ class Google(GeneratorScript):
         #     "mybusiness": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
         # }
 
-        fail_count, total = 0, len(urls)
+        fail_count, counter, total = 0, 0, len(urls)
         for title, url in urls.items():
+            counter += 1
             # Note: each iteration will do a request
             try:
                 importer = GoogleDiscoveryImporter(name=title, url=url)
                 self.files += get_files_from_importer(title, importer)
+                self.log(f"[Ok] {counter}/{total} {title}: {url}")
             except Exception as e:
-                self.error(f"Failed {title}: {url}")
+                self.error(f"[Fail] {title}: {url}")
                 self.error(e)
                 fail_count += 1
         # > Failed to process 28/262 links
