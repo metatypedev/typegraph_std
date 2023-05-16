@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_publicca() -> Import:
@@ -22,8 +22,8 @@ def import_publicca() -> Import:
     )
     types["ExternalAccountKeyOut"] = t.struct(
         {
-            "name": t.string().optional(),
             "keyId": t.string().optional(),
+            "name": t.string().optional(),
             "b64MacKey": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }

@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_sourcerepo() -> Import:
@@ -9,119 +9,52 @@ def import_sourcerepo() -> Import:
 
     renames = {
         "ErrorResponse": "_sourcerepo_1_ErrorResponse",
-        "StatusIn": "_sourcerepo_2_StatusIn",
-        "StatusOut": "_sourcerepo_3_StatusOut",
-        "TestIamPermissionsRequestIn": "_sourcerepo_4_TestIamPermissionsRequestIn",
-        "TestIamPermissionsRequestOut": "_sourcerepo_5_TestIamPermissionsRequestOut",
-        "ExprIn": "_sourcerepo_6_ExprIn",
-        "ExprOut": "_sourcerepo_7_ExprOut",
-        "ListReposResponseIn": "_sourcerepo_8_ListReposResponseIn",
-        "ListReposResponseOut": "_sourcerepo_9_ListReposResponseOut",
-        "UpdateRepoRequestIn": "_sourcerepo_10_UpdateRepoRequestIn",
-        "UpdateRepoRequestOut": "_sourcerepo_11_UpdateRepoRequestOut",
-        "AuditConfigIn": "_sourcerepo_12_AuditConfigIn",
-        "AuditConfigOut": "_sourcerepo_13_AuditConfigOut",
-        "BindingIn": "_sourcerepo_14_BindingIn",
-        "BindingOut": "_sourcerepo_15_BindingOut",
-        "EmptyIn": "_sourcerepo_16_EmptyIn",
-        "EmptyOut": "_sourcerepo_17_EmptyOut",
+        "AuditConfigIn": "_sourcerepo_2_AuditConfigIn",
+        "AuditConfigOut": "_sourcerepo_3_AuditConfigOut",
+        "StatusIn": "_sourcerepo_4_StatusIn",
+        "StatusOut": "_sourcerepo_5_StatusOut",
+        "TestIamPermissionsResponseIn": "_sourcerepo_6_TestIamPermissionsResponseIn",
+        "TestIamPermissionsResponseOut": "_sourcerepo_7_TestIamPermissionsResponseOut",
+        "PubsubConfigIn": "_sourcerepo_8_PubsubConfigIn",
+        "PubsubConfigOut": "_sourcerepo_9_PubsubConfigOut",
+        "SyncRepoMetadataIn": "_sourcerepo_10_SyncRepoMetadataIn",
+        "SyncRepoMetadataOut": "_sourcerepo_11_SyncRepoMetadataOut",
+        "RepoIn": "_sourcerepo_12_RepoIn",
+        "RepoOut": "_sourcerepo_13_RepoOut",
+        "ListReposResponseIn": "_sourcerepo_14_ListReposResponseIn",
+        "ListReposResponseOut": "_sourcerepo_15_ListReposResponseOut",
+        "SyncRepoRequestIn": "_sourcerepo_16_SyncRepoRequestIn",
+        "SyncRepoRequestOut": "_sourcerepo_17_SyncRepoRequestOut",
         "AuditLogConfigIn": "_sourcerepo_18_AuditLogConfigIn",
         "AuditLogConfigOut": "_sourcerepo_19_AuditLogConfigOut",
-        "ProjectConfigIn": "_sourcerepo_20_ProjectConfigIn",
-        "ProjectConfigOut": "_sourcerepo_21_ProjectConfigOut",
-        "PolicyIn": "_sourcerepo_22_PolicyIn",
-        "PolicyOut": "_sourcerepo_23_PolicyOut",
-        "SyncRepoRequestIn": "_sourcerepo_24_SyncRepoRequestIn",
-        "SyncRepoRequestOut": "_sourcerepo_25_SyncRepoRequestOut",
-        "PubsubConfigIn": "_sourcerepo_26_PubsubConfigIn",
-        "PubsubConfigOut": "_sourcerepo_27_PubsubConfigOut",
-        "UpdateProjectConfigRequestIn": "_sourcerepo_28_UpdateProjectConfigRequestIn",
-        "UpdateProjectConfigRequestOut": "_sourcerepo_29_UpdateProjectConfigRequestOut",
-        "TestIamPermissionsResponseIn": "_sourcerepo_30_TestIamPermissionsResponseIn",
-        "TestIamPermissionsResponseOut": "_sourcerepo_31_TestIamPermissionsResponseOut",
-        "OperationIn": "_sourcerepo_32_OperationIn",
-        "OperationOut": "_sourcerepo_33_OperationOut",
-        "SetIamPolicyRequestIn": "_sourcerepo_34_SetIamPolicyRequestIn",
-        "SetIamPolicyRequestOut": "_sourcerepo_35_SetIamPolicyRequestOut",
-        "RepoIn": "_sourcerepo_36_RepoIn",
-        "RepoOut": "_sourcerepo_37_RepoOut",
-        "SyncRepoMetadataIn": "_sourcerepo_38_SyncRepoMetadataIn",
-        "SyncRepoMetadataOut": "_sourcerepo_39_SyncRepoMetadataOut",
-        "MirrorConfigIn": "_sourcerepo_40_MirrorConfigIn",
-        "MirrorConfigOut": "_sourcerepo_41_MirrorConfigOut",
+        "UpdateRepoRequestIn": "_sourcerepo_20_UpdateRepoRequestIn",
+        "UpdateRepoRequestOut": "_sourcerepo_21_UpdateRepoRequestOut",
+        "ProjectConfigIn": "_sourcerepo_22_ProjectConfigIn",
+        "ProjectConfigOut": "_sourcerepo_23_ProjectConfigOut",
+        "ExprIn": "_sourcerepo_24_ExprIn",
+        "ExprOut": "_sourcerepo_25_ExprOut",
+        "PolicyIn": "_sourcerepo_26_PolicyIn",
+        "PolicyOut": "_sourcerepo_27_PolicyOut",
+        "MirrorConfigIn": "_sourcerepo_28_MirrorConfigIn",
+        "MirrorConfigOut": "_sourcerepo_29_MirrorConfigOut",
+        "UpdateProjectConfigRequestIn": "_sourcerepo_30_UpdateProjectConfigRequestIn",
+        "UpdateProjectConfigRequestOut": "_sourcerepo_31_UpdateProjectConfigRequestOut",
+        "TestIamPermissionsRequestIn": "_sourcerepo_32_TestIamPermissionsRequestIn",
+        "TestIamPermissionsRequestOut": "_sourcerepo_33_TestIamPermissionsRequestOut",
+        "OperationIn": "_sourcerepo_34_OperationIn",
+        "OperationOut": "_sourcerepo_35_OperationOut",
+        "BindingIn": "_sourcerepo_36_BindingIn",
+        "BindingOut": "_sourcerepo_37_BindingOut",
+        "SetIamPolicyRequestIn": "_sourcerepo_38_SetIamPolicyRequestIn",
+        "SetIamPolicyRequestOut": "_sourcerepo_39_SetIamPolicyRequestOut",
+        "EmptyIn": "_sourcerepo_40_EmptyIn",
+        "EmptyOut": "_sourcerepo_41_EmptyOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["StatusIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-        }
-    ).named(renames["StatusIn"])
-    types["StatusOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusOut"])
-    types["TestIamPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsRequestIn"])
-    types["TestIamPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsRequestOut"])
-    types["ExprIn"] = t.struct(
-        {
-            "location": t.string().optional(),
-            "title": t.string().optional(),
-            "expression": t.string().optional(),
-            "description": t.string().optional(),
-        }
-    ).named(renames["ExprIn"])
-    types["ExprOut"] = t.struct(
-        {
-            "location": t.string().optional(),
-            "title": t.string().optional(),
-            "expression": t.string().optional(),
-            "description": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExprOut"])
-    types["ListReposResponseIn"] = t.struct(
-        {
-            "repos": t.array(t.proxy(renames["RepoIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListReposResponseIn"])
-    types["ListReposResponseOut"] = t.struct(
-        {
-            "repos": t.array(t.proxy(renames["RepoOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListReposResponseOut"])
-    types["UpdateRepoRequestIn"] = t.struct(
-        {
-            "updateMask": t.string().optional(),
-            "repo": t.proxy(renames["RepoIn"]).optional(),
-        }
-    ).named(renames["UpdateRepoRequestIn"])
-    types["UpdateRepoRequestOut"] = t.struct(
-        {
-            "updateMask": t.string().optional(),
-            "repo": t.proxy(renames["RepoOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UpdateRepoRequestOut"])
     types["AuditConfigIn"] = t.struct(
         {
             "service": t.string().optional(),
@@ -137,91 +70,190 @@ def import_sourcerepo() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AuditConfigOut"])
-    types["BindingIn"] = t.struct(
+    types["StatusIn"] = t.struct(
         {
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprIn"]).optional(),
-            "role": t.string().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
         }
-    ).named(renames["BindingIn"])
-    types["BindingOut"] = t.struct(
+    ).named(renames["StatusIn"])
+    types["StatusOut"] = t.struct(
         {
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprOut"]).optional(),
-            "role": t.string().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["BindingOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["AuditLogConfigIn"] = t.struct(
+    ).named(renames["StatusOut"])
+    types["TestIamPermissionsResponseIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsResponseIn"])
+    types["TestIamPermissionsResponseOut"] = t.struct(
         {
-            "logType": t.string().optional(),
-            "exemptedMembers": t.array(t.string()).optional(),
-        }
-    ).named(renames["AuditLogConfigIn"])
-    types["AuditLogConfigOut"] = t.struct(
-        {
-            "logType": t.string().optional(),
-            "exemptedMembers": t.array(t.string()).optional(),
+            "permissions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AuditLogConfigOut"])
-    types["ProjectConfigIn"] = t.struct(
+    ).named(renames["TestIamPermissionsResponseOut"])
+    types["PubsubConfigIn"] = t.struct(
+        {
+            "topic": t.string().optional(),
+            "messageFormat": t.string().optional(),
+            "serviceAccountEmail": t.string().optional(),
+        }
+    ).named(renames["PubsubConfigIn"])
+    types["PubsubConfigOut"] = t.struct(
+        {
+            "topic": t.string().optional(),
+            "messageFormat": t.string().optional(),
+            "serviceAccountEmail": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PubsubConfigOut"])
+    types["SyncRepoMetadataIn"] = t.struct(
+        {
+            "statusMessage": t.string().optional(),
+            "startTime": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["SyncRepoMetadataIn"])
+    types["SyncRepoMetadataOut"] = t.struct(
+        {
+            "statusMessage": t.string().optional(),
+            "startTime": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SyncRepoMetadataOut"])
+    types["RepoIn"] = t.struct(
         {
             "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
+            "size": t.string().optional(),
+            "url": t.string().optional(),
+            "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
             "name": t.string().optional(),
-            "enablePrivateKeyCheck": t.boolean().optional(),
         }
-    ).named(renames["ProjectConfigIn"])
-    types["ProjectConfigOut"] = t.struct(
+    ).named(renames["RepoIn"])
+    types["RepoOut"] = t.struct(
         {
             "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
+            "size": t.string().optional(),
+            "url": t.string().optional(),
+            "mirrorConfig": t.proxy(renames["MirrorConfigOut"]).optional(),
             "name": t.string().optional(),
-            "enablePrivateKeyCheck": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ProjectConfigOut"])
-    types["PolicyIn"] = t.struct(
+    ).named(renames["RepoOut"])
+    types["ListReposResponseIn"] = t.struct(
         {
-            "etag": t.string().optional(),
-            "version": t.integer().optional(),
-            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "repos": t.array(t.proxy(renames["RepoIn"])).optional(),
         }
-    ).named(renames["PolicyIn"])
-    types["PolicyOut"] = t.struct(
+    ).named(renames["ListReposResponseIn"])
+    types["ListReposResponseOut"] = t.struct(
         {
-            "etag": t.string().optional(),
-            "version": t.integer().optional(),
-            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "repos": t.array(t.proxy(renames["RepoOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PolicyOut"])
+    ).named(renames["ListReposResponseOut"])
     types["SyncRepoRequestIn"] = t.struct({"_": t.string().optional()}).named(
         renames["SyncRepoRequestIn"]
     )
     types["SyncRepoRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["SyncRepoRequestOut"])
-    types["PubsubConfigIn"] = t.struct(
+    types["AuditLogConfigIn"] = t.struct(
         {
-            "messageFormat": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "topic": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
         }
-    ).named(renames["PubsubConfigIn"])
-    types["PubsubConfigOut"] = t.struct(
+    ).named(renames["AuditLogConfigIn"])
+    types["AuditLogConfigOut"] = t.struct(
         {
-            "messageFormat": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "topic": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PubsubConfigOut"])
+    ).named(renames["AuditLogConfigOut"])
+    types["UpdateRepoRequestIn"] = t.struct(
+        {
+            "updateMask": t.string().optional(),
+            "repo": t.proxy(renames["RepoIn"]).optional(),
+        }
+    ).named(renames["UpdateRepoRequestIn"])
+    types["UpdateRepoRequestOut"] = t.struct(
+        {
+            "updateMask": t.string().optional(),
+            "repo": t.proxy(renames["RepoOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UpdateRepoRequestOut"])
+    types["ProjectConfigIn"] = t.struct(
+        {
+            "enablePrivateKeyCheck": t.boolean().optional(),
+            "name": t.string().optional(),
+            "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["ProjectConfigIn"])
+    types["ProjectConfigOut"] = t.struct(
+        {
+            "enablePrivateKeyCheck": t.boolean().optional(),
+            "name": t.string().optional(),
+            "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ProjectConfigOut"])
+    types["ExprIn"] = t.struct(
+        {
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
+        }
+    ).named(renames["ExprIn"])
+    types["ExprOut"] = t.struct(
+        {
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExprOut"])
+    types["PolicyIn"] = t.struct(
+        {
+            "version": t.integer().optional(),
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
+            "etag": t.string().optional(),
+        }
+    ).named(renames["PolicyIn"])
+    types["PolicyOut"] = t.struct(
+        {
+            "version": t.integer().optional(),
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
+            "etag": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PolicyOut"])
+    types["MirrorConfigIn"] = t.struct(
+        {
+            "webhookId": t.string().optional(),
+            "url": t.string().optional(),
+            "deployKeyId": t.string().optional(),
+        }
+    ).named(renames["MirrorConfigIn"])
+    types["MirrorConfigOut"] = t.struct(
+        {
+            "webhookId": t.string().optional(),
+            "url": t.string().optional(),
+            "deployKeyId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MirrorConfigOut"])
     types["UpdateProjectConfigRequestIn"] = t.struct(
         {
             "projectConfig": t.proxy(renames["ProjectConfigIn"]).optional(),
@@ -235,97 +267,65 @@ def import_sourcerepo() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["UpdateProjectConfigRequestOut"])
-    types["TestIamPermissionsResponseIn"] = t.struct(
+    types["TestIamPermissionsRequestIn"] = t.struct(
         {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsResponseIn"])
-    types["TestIamPermissionsResponseOut"] = t.struct(
+    ).named(renames["TestIamPermissionsRequestIn"])
+    types["TestIamPermissionsRequestOut"] = t.struct(
         {
             "permissions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TestIamPermissionsResponseOut"])
+    ).named(renames["TestIamPermissionsRequestOut"])
     types["OperationIn"] = t.struct(
         {
             "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["StatusIn"]).optional(),
-            "name": t.string().optional(),
             "done": t.boolean().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["StatusIn"]).optional(),
             "response": t.struct({"_": t.string().optional()}).optional(),
         }
     ).named(renames["OperationIn"])
     types["OperationOut"] = t.struct(
         {
             "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "name": t.string().optional(),
             "done": t.boolean().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
             "response": t.struct({"_": t.string().optional()}).optional(),
         }
     ).named(renames["OperationOut"])
+    types["BindingIn"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "role": t.string().optional(),
+            "condition": t.proxy(renames["ExprIn"]).optional(),
+        }
+    ).named(renames["BindingIn"])
+    types["BindingOut"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "role": t.string().optional(),
+            "condition": t.proxy(renames["ExprOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BindingOut"])
     types["SetIamPolicyRequestIn"] = t.struct(
         {
-            "policy": t.proxy(renames["PolicyIn"]).optional(),
             "updateMask": t.string().optional(),
+            "policy": t.proxy(renames["PolicyIn"]).optional(),
         }
     ).named(renames["SetIamPolicyRequestIn"])
     types["SetIamPolicyRequestOut"] = t.struct(
         {
-            "policy": t.proxy(renames["PolicyOut"]).optional(),
             "updateMask": t.string().optional(),
+            "policy": t.proxy(renames["PolicyOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SetIamPolicyRequestOut"])
-    types["RepoIn"] = t.struct(
-        {
-            "url": t.string().optional(),
-            "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-            "size": t.string().optional(),
-            "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
-        }
-    ).named(renames["RepoIn"])
-    types["RepoOut"] = t.struct(
-        {
-            "url": t.string().optional(),
-            "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-            "size": t.string().optional(),
-            "mirrorConfig": t.proxy(renames["MirrorConfigOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RepoOut"])
-    types["SyncRepoMetadataIn"] = t.struct(
-        {
-            "updateTime": t.string().optional(),
-            "startTime": t.string().optional(),
-            "name": t.string().optional(),
-            "statusMessage": t.string().optional(),
-        }
-    ).named(renames["SyncRepoMetadataIn"])
-    types["SyncRepoMetadataOut"] = t.struct(
-        {
-            "updateTime": t.string().optional(),
-            "startTime": t.string().optional(),
-            "name": t.string().optional(),
-            "statusMessage": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SyncRepoMetadataOut"])
-    types["MirrorConfigIn"] = t.struct(
-        {
-            "url": t.string().optional(),
-            "deployKeyId": t.string().optional(),
-            "webhookId": t.string().optional(),
-        }
-    ).named(renames["MirrorConfigIn"])
-    types["MirrorConfigOut"] = t.struct(
-        {
-            "url": t.string().optional(),
-            "deployKeyId": t.string().optional(),
-            "webhookId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MirrorConfigOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
 
     functions = {}
     functions["projectsGetConfig"] = sourcerepo.patch(
@@ -356,156 +356,120 @@ def import_sourcerepo() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsReposPatch"] = sourcerepo.post(
-        "v1/{parent}/repos",
-        t.struct(
-            {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RepoOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReposDelete"] = sourcerepo.post(
-        "v1/{parent}/repos",
-        t.struct(
-            {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RepoOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["projectsReposGetIamPolicy"] = sourcerepo.post(
-        "v1/{parent}/repos",
+        "v1/{resource}:testIamPermissions",
         t.struct(
             {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RepoOut"]),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsReposTestIamPermissions"] = sourcerepo.post(
-        "v1/{parent}/repos",
+    functions["projectsReposPatch"] = sourcerepo.post(
+        "v1/{resource}:testIamPermissions",
         t.struct(
             {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RepoOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReposList"] = sourcerepo.post(
-        "v1/{parent}/repos",
-        t.struct(
-            {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RepoOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReposGet"] = sourcerepo.post(
-        "v1/{parent}/repos",
-        t.struct(
-            {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RepoOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsReposSync"] = sourcerepo.post(
-        "v1/{parent}/repos",
-        t.struct(
-            {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RepoOut"]),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsReposSetIamPolicy"] = sourcerepo.post(
-        "v1/{parent}/repos",
+        "v1/{resource}:testIamPermissions",
         t.struct(
             {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RepoOut"]),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReposGet"] = sourcerepo.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReposDelete"] = sourcerepo.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsReposCreate"] = sourcerepo.post(
-        "v1/{parent}/repos",
+        "v1/{resource}:testIamPermissions",
         t.struct(
             {
-                "parent": t.string().optional(),
-                "url": t.string().optional(),
-                "pubsubConfigs": t.struct({"_": t.string().optional()}).optional(),
-                "name": t.string().optional(),
-                "size": t.string().optional(),
-                "mirrorConfig": t.proxy(renames["MirrorConfigIn"]).optional(),
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RepoOut"]),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReposList"] = sourcerepo.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReposSync"] = sourcerepo.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsReposTestIamPermissions"] = sourcerepo.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

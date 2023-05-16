@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_bigqueryconnection() -> Import:
@@ -9,105 +9,53 @@ def import_bigqueryconnection() -> Import:
 
     renames = {
         "ErrorResponse": "_bigqueryconnection_1_ErrorResponse",
-        "ExprIn": "_bigqueryconnection_2_ExprIn",
-        "ExprOut": "_bigqueryconnection_3_ExprOut",
-        "ConnectionIn": "_bigqueryconnection_4_ConnectionIn",
-        "ConnectionOut": "_bigqueryconnection_5_ConnectionOut",
-        "BindingIn": "_bigqueryconnection_6_BindingIn",
-        "BindingOut": "_bigqueryconnection_7_BindingOut",
-        "GetPolicyOptionsIn": "_bigqueryconnection_8_GetPolicyOptionsIn",
-        "GetPolicyOptionsOut": "_bigqueryconnection_9_GetPolicyOptionsOut",
-        "ListConnectionsResponseIn": "_bigqueryconnection_10_ListConnectionsResponseIn",
-        "ListConnectionsResponseOut": "_bigqueryconnection_11_ListConnectionsResponseOut",
-        "AuditConfigIn": "_bigqueryconnection_12_AuditConfigIn",
-        "AuditConfigOut": "_bigqueryconnection_13_AuditConfigOut",
-        "TestIamPermissionsRequestIn": "_bigqueryconnection_14_TestIamPermissionsRequestIn",
-        "TestIamPermissionsRequestOut": "_bigqueryconnection_15_TestIamPermissionsRequestOut",
-        "SetIamPolicyRequestIn": "_bigqueryconnection_16_SetIamPolicyRequestIn",
-        "SetIamPolicyRequestOut": "_bigqueryconnection_17_SetIamPolicyRequestOut",
-        "AuditLogConfigIn": "_bigqueryconnection_18_AuditLogConfigIn",
-        "AuditLogConfigOut": "_bigqueryconnection_19_AuditLogConfigOut",
-        "CloudSqlCredentialIn": "_bigqueryconnection_20_CloudSqlCredentialIn",
-        "CloudSqlCredentialOut": "_bigqueryconnection_21_CloudSqlCredentialOut",
-        "EmptyIn": "_bigqueryconnection_22_EmptyIn",
-        "EmptyOut": "_bigqueryconnection_23_EmptyOut",
-        "CloudSqlPropertiesIn": "_bigqueryconnection_24_CloudSqlPropertiesIn",
-        "CloudSqlPropertiesOut": "_bigqueryconnection_25_CloudSqlPropertiesOut",
-        "PolicyIn": "_bigqueryconnection_26_PolicyIn",
-        "PolicyOut": "_bigqueryconnection_27_PolicyOut",
-        "ConnectionCredentialIn": "_bigqueryconnection_28_ConnectionCredentialIn",
-        "ConnectionCredentialOut": "_bigqueryconnection_29_ConnectionCredentialOut",
+        "TestIamPermissionsRequestIn": "_bigqueryconnection_2_TestIamPermissionsRequestIn",
+        "TestIamPermissionsRequestOut": "_bigqueryconnection_3_TestIamPermissionsRequestOut",
+        "ListConnectionsResponseIn": "_bigqueryconnection_4_ListConnectionsResponseIn",
+        "ListConnectionsResponseOut": "_bigqueryconnection_5_ListConnectionsResponseOut",
+        "GetPolicyOptionsIn": "_bigqueryconnection_6_GetPolicyOptionsIn",
+        "GetPolicyOptionsOut": "_bigqueryconnection_7_GetPolicyOptionsOut",
+        "SetIamPolicyRequestIn": "_bigqueryconnection_8_SetIamPolicyRequestIn",
+        "SetIamPolicyRequestOut": "_bigqueryconnection_9_SetIamPolicyRequestOut",
+        "AuditConfigIn": "_bigqueryconnection_10_AuditConfigIn",
+        "AuditConfigOut": "_bigqueryconnection_11_AuditConfigOut",
+        "GetIamPolicyRequestIn": "_bigqueryconnection_12_GetIamPolicyRequestIn",
+        "GetIamPolicyRequestOut": "_bigqueryconnection_13_GetIamPolicyRequestOut",
+        "BindingIn": "_bigqueryconnection_14_BindingIn",
+        "BindingOut": "_bigqueryconnection_15_BindingOut",
+        "ConnectionIn": "_bigqueryconnection_16_ConnectionIn",
+        "ConnectionOut": "_bigqueryconnection_17_ConnectionOut",
+        "ExprIn": "_bigqueryconnection_18_ExprIn",
+        "ExprOut": "_bigqueryconnection_19_ExprOut",
+        "EmptyIn": "_bigqueryconnection_20_EmptyIn",
+        "EmptyOut": "_bigqueryconnection_21_EmptyOut",
+        "AuditLogConfigIn": "_bigqueryconnection_22_AuditLogConfigIn",
+        "AuditLogConfigOut": "_bigqueryconnection_23_AuditLogConfigOut",
+        "ConnectionCredentialIn": "_bigqueryconnection_24_ConnectionCredentialIn",
+        "ConnectionCredentialOut": "_bigqueryconnection_25_ConnectionCredentialOut",
+        "CloudSqlPropertiesIn": "_bigqueryconnection_26_CloudSqlPropertiesIn",
+        "CloudSqlPropertiesOut": "_bigqueryconnection_27_CloudSqlPropertiesOut",
+        "CloudSqlCredentialIn": "_bigqueryconnection_28_CloudSqlCredentialIn",
+        "CloudSqlCredentialOut": "_bigqueryconnection_29_CloudSqlCredentialOut",
         "TestIamPermissionsResponseIn": "_bigqueryconnection_30_TestIamPermissionsResponseIn",
         "TestIamPermissionsResponseOut": "_bigqueryconnection_31_TestIamPermissionsResponseOut",
-        "GetIamPolicyRequestIn": "_bigqueryconnection_32_GetIamPolicyRequestIn",
-        "GetIamPolicyRequestOut": "_bigqueryconnection_33_GetIamPolicyRequestOut",
+        "PolicyIn": "_bigqueryconnection_32_PolicyIn",
+        "PolicyOut": "_bigqueryconnection_33_PolicyOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["ExprIn"] = t.struct(
+    types["TestIamPermissionsRequestIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsRequestIn"])
+    types["TestIamPermissionsRequestOut"] = t.struct(
         {
-            "location": t.string().optional(),
-            "description": t.string().optional(),
-            "expression": t.string().optional(),
-            "title": t.string().optional(),
-        }
-    ).named(renames["ExprIn"])
-    types["ExprOut"] = t.struct(
-        {
-            "location": t.string().optional(),
-            "description": t.string().optional(),
-            "expression": t.string().optional(),
-            "title": t.string().optional(),
+            "permissions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ExprOut"])
-    types["ConnectionIn"] = t.struct(
-        {
-            "friendlyName": t.string().optional(),
-            "cloudSql": t.proxy(renames["CloudSqlPropertiesIn"]).optional(),
-            "name": t.string().optional(),
-            "description": t.string().optional(),
-        }
-    ).named(renames["ConnectionIn"])
-    types["ConnectionOut"] = t.struct(
-        {
-            "friendlyName": t.string().optional(),
-            "hasCredential": t.boolean().optional(),
-            "cloudSql": t.proxy(renames["CloudSqlPropertiesOut"]).optional(),
-            "creationTime": t.string().optional(),
-            "lastModifiedTime": t.string().optional(),
-            "name": t.string().optional(),
-            "description": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ConnectionOut"])
-    types["BindingIn"] = t.struct(
-        {
-            "role": t.string().optional(),
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprIn"]).optional(),
-        }
-    ).named(renames["BindingIn"])
-    types["BindingOut"] = t.struct(
-        {
-            "role": t.string().optional(),
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BindingOut"])
-    types["GetPolicyOptionsIn"] = t.struct(
-        {"requestedPolicyVersion": t.integer().optional()}
-    ).named(renames["GetPolicyOptionsIn"])
-    types["GetPolicyOptionsOut"] = t.struct(
-        {
-            "requestedPolicyVersion": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GetPolicyOptionsOut"])
+    ).named(renames["TestIamPermissionsRequestOut"])
     types["ListConnectionsResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -121,56 +69,148 @@ def import_bigqueryconnection() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListConnectionsResponseOut"])
-    types["AuditConfigIn"] = t.struct(
+    types["GetPolicyOptionsIn"] = t.struct(
+        {"requestedPolicyVersion": t.integer().optional()}
+    ).named(renames["GetPolicyOptionsIn"])
+    types["GetPolicyOptionsOut"] = t.struct(
         {
-            "service": t.string().optional(),
-            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
-        }
-    ).named(renames["AuditConfigIn"])
-    types["AuditConfigOut"] = t.struct(
-        {
-            "service": t.string().optional(),
-            "auditLogConfigs": t.array(
-                t.proxy(renames["AuditLogConfigOut"])
-            ).optional(),
+            "requestedPolicyVersion": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AuditConfigOut"])
-    types["TestIamPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsRequestIn"])
-    types["TestIamPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsRequestOut"])
+    ).named(renames["GetPolicyOptionsOut"])
     types["SetIamPolicyRequestIn"] = t.struct(
         {
-            "policy": t.proxy(renames["PolicyIn"]).optional(),
             "updateMask": t.string().optional(),
+            "policy": t.proxy(renames["PolicyIn"]).optional(),
         }
     ).named(renames["SetIamPolicyRequestIn"])
     types["SetIamPolicyRequestOut"] = t.struct(
         {
-            "policy": t.proxy(renames["PolicyOut"]).optional(),
             "updateMask": t.string().optional(),
+            "policy": t.proxy(renames["PolicyOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SetIamPolicyRequestOut"])
+    types["AuditConfigIn"] = t.struct(
+        {
+            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
+            "service": t.string().optional(),
+        }
+    ).named(renames["AuditConfigIn"])
+    types["AuditConfigOut"] = t.struct(
+        {
+            "auditLogConfigs": t.array(
+                t.proxy(renames["AuditLogConfigOut"])
+            ).optional(),
+            "service": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AuditConfigOut"])
+    types["GetIamPolicyRequestIn"] = t.struct(
+        {"options": t.proxy(renames["GetPolicyOptionsIn"]).optional()}
+    ).named(renames["GetIamPolicyRequestIn"])
+    types["GetIamPolicyRequestOut"] = t.struct(
+        {
+            "options": t.proxy(renames["GetPolicyOptionsOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetIamPolicyRequestOut"])
+    types["BindingIn"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "condition": t.proxy(renames["ExprIn"]).optional(),
+            "role": t.string().optional(),
+        }
+    ).named(renames["BindingIn"])
+    types["BindingOut"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "condition": t.proxy(renames["ExprOut"]).optional(),
+            "role": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BindingOut"])
+    types["ConnectionIn"] = t.struct(
+        {
+            "friendlyName": t.string().optional(),
+            "cloudSql": t.proxy(renames["CloudSqlPropertiesIn"]).optional(),
+            "description": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["ConnectionIn"])
+    types["ConnectionOut"] = t.struct(
+        {
+            "hasCredential": t.boolean().optional(),
+            "friendlyName": t.string().optional(),
+            "cloudSql": t.proxy(renames["CloudSqlPropertiesOut"]).optional(),
+            "description": t.string().optional(),
+            "lastModifiedTime": t.string().optional(),
+            "creationTime": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ConnectionOut"])
+    types["ExprIn"] = t.struct(
+        {
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
+            "title": t.string().optional(),
+        }
+    ).named(renames["ExprIn"])
+    types["ExprOut"] = t.struct(
+        {
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
+            "title": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExprOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
     types["AuditLogConfigIn"] = t.struct(
         {
-            "logType": t.string().optional(),
             "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
         }
     ).named(renames["AuditLogConfigIn"])
     types["AuditLogConfigOut"] = t.struct(
         {
-            "logType": t.string().optional(),
             "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AuditLogConfigOut"])
+    types["ConnectionCredentialIn"] = t.struct(
+        {"cloudSql": t.proxy(renames["CloudSqlCredentialIn"]).optional()}
+    ).named(renames["ConnectionCredentialIn"])
+    types["ConnectionCredentialOut"] = t.struct(
+        {
+            "cloudSql": t.proxy(renames["CloudSqlCredentialOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ConnectionCredentialOut"])
+    types["CloudSqlPropertiesIn"] = t.struct(
+        {
+            "instanceId": t.string().optional(),
+            "database": t.string().optional(),
+            "type": t.string().optional(),
+            "credential": t.proxy(renames["CloudSqlCredentialIn"]).optional(),
+        }
+    ).named(renames["CloudSqlPropertiesIn"])
+    types["CloudSqlPropertiesOut"] = t.struct(
+        {
+            "instanceId": t.string().optional(),
+            "database": t.string().optional(),
+            "type": t.string().optional(),
+            "serviceAccountId": t.string().optional(),
+            "credential": t.proxy(renames["CloudSqlCredentialOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CloudSqlPropertiesOut"])
     types["CloudSqlCredentialIn"] = t.struct(
         {"username": t.string().optional(), "password": t.string().optional()}
     ).named(renames["CloudSqlCredentialIn"])
@@ -181,54 +221,6 @@ def import_bigqueryconnection() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CloudSqlCredentialOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["CloudSqlPropertiesIn"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "instanceId": t.string().optional(),
-            "database": t.string().optional(),
-            "credential": t.proxy(renames["CloudSqlCredentialIn"]).optional(),
-        }
-    ).named(renames["CloudSqlPropertiesIn"])
-    types["CloudSqlPropertiesOut"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "serviceAccountId": t.string().optional(),
-            "instanceId": t.string().optional(),
-            "database": t.string().optional(),
-            "credential": t.proxy(renames["CloudSqlCredentialOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CloudSqlPropertiesOut"])
-    types["PolicyIn"] = t.struct(
-        {
-            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
-            "version": t.integer().optional(),
-            "etag": t.string().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
-        }
-    ).named(renames["PolicyIn"])
-    types["PolicyOut"] = t.struct(
-        {
-            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
-            "version": t.integer().optional(),
-            "etag": t.string().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PolicyOut"])
-    types["ConnectionCredentialIn"] = t.struct(
-        {"cloudSql": t.proxy(renames["CloudSqlCredentialIn"]).optional()}
-    ).named(renames["ConnectionCredentialIn"])
-    types["ConnectionCredentialOut"] = t.struct(
-        {
-            "cloudSql": t.proxy(renames["CloudSqlCredentialOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ConnectionCredentialOut"])
     types["TestIamPermissionsResponseIn"] = t.struct(
         {"permissions": t.array(t.string()).optional()}
     ).named(renames["TestIamPermissionsResponseIn"])
@@ -238,57 +230,26 @@ def import_bigqueryconnection() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TestIamPermissionsResponseOut"])
-    types["GetIamPolicyRequestIn"] = t.struct(
-        {"options": t.proxy(renames["GetPolicyOptionsIn"]).optional()}
-    ).named(renames["GetIamPolicyRequestIn"])
-    types["GetIamPolicyRequestOut"] = t.struct(
+    types["PolicyIn"] = t.struct(
         {
-            "options": t.proxy(renames["GetPolicyOptionsOut"]).optional(),
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "version": t.integer().optional(),
+            "etag": t.string().optional(),
+            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
+        }
+    ).named(renames["PolicyIn"])
+    types["PolicyOut"] = t.struct(
+        {
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "version": t.integer().optional(),
+            "etag": t.string().optional(),
+            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GetIamPolicyRequestOut"])
+    ).named(renames["PolicyOut"])
 
     functions = {}
-    functions["projectsLocationsConnectionsDelete"] = bigqueryconnection.post(
-        "v1beta1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options": t.proxy(renames["GetPolicyOptionsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsConnectionsGet"] = bigqueryconnection.post(
-        "v1beta1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options": t.proxy(renames["GetPolicyOptionsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["projectsLocationsConnectionsList"] = bigqueryconnection.post(
-        "v1beta1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options": t.proxy(renames["GetPolicyOptionsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsConnectionsPatch"] = bigqueryconnection.post(
         "v1beta1/{resource}:getIamPolicy",
         t.struct(
             {
@@ -316,7 +277,20 @@ def import_bigqueryconnection() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsConnectionsCreate"] = bigqueryconnection.post(
+    functions["projectsLocationsConnectionsGet"] = bigqueryconnection.post(
+        "v1beta1/{resource}:getIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "options": t.proxy(renames["GetPolicyOptionsIn"]).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsPatch"] = bigqueryconnection.post(
         "v1beta1/{resource}:getIamPolicy",
         t.struct(
             {
@@ -342,7 +316,33 @@ def import_bigqueryconnection() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
+    functions["projectsLocationsConnectionsCreate"] = bigqueryconnection.post(
+        "v1beta1/{resource}:getIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "options": t.proxy(renames["GetPolicyOptionsIn"]).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
     functions["projectsLocationsConnectionsUpdateCredential"] = bigqueryconnection.post(
+        "v1beta1/{resource}:getIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "options": t.proxy(renames["GetPolicyOptionsIn"]).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsDelete"] = bigqueryconnection.post(
         "v1beta1/{resource}:getIamPolicy",
         t.struct(
             {

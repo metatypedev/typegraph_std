@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_mybusinessplaceactions() -> Import:
@@ -13,12 +13,12 @@ def import_mybusinessplaceactions() -> Import:
         "ErrorResponse": "_mybusinessplaceactions_1_ErrorResponse",
         "EmptyIn": "_mybusinessplaceactions_2_EmptyIn",
         "EmptyOut": "_mybusinessplaceactions_3_EmptyOut",
-        "ListPlaceActionTypeMetadataResponseIn": "_mybusinessplaceactions_4_ListPlaceActionTypeMetadataResponseIn",
-        "ListPlaceActionTypeMetadataResponseOut": "_mybusinessplaceactions_5_ListPlaceActionTypeMetadataResponseOut",
-        "ListPlaceActionLinksResponseIn": "_mybusinessplaceactions_6_ListPlaceActionLinksResponseIn",
-        "ListPlaceActionLinksResponseOut": "_mybusinessplaceactions_7_ListPlaceActionLinksResponseOut",
-        "PlaceActionTypeMetadataIn": "_mybusinessplaceactions_8_PlaceActionTypeMetadataIn",
-        "PlaceActionTypeMetadataOut": "_mybusinessplaceactions_9_PlaceActionTypeMetadataOut",
+        "ListPlaceActionLinksResponseIn": "_mybusinessplaceactions_4_ListPlaceActionLinksResponseIn",
+        "ListPlaceActionLinksResponseOut": "_mybusinessplaceactions_5_ListPlaceActionLinksResponseOut",
+        "PlaceActionTypeMetadataIn": "_mybusinessplaceactions_6_PlaceActionTypeMetadataIn",
+        "PlaceActionTypeMetadataOut": "_mybusinessplaceactions_7_PlaceActionTypeMetadataOut",
+        "ListPlaceActionTypeMetadataResponseIn": "_mybusinessplaceactions_8_ListPlaceActionTypeMetadataResponseIn",
+        "ListPlaceActionTypeMetadataResponseOut": "_mybusinessplaceactions_9_ListPlaceActionTypeMetadataResponseOut",
         "PlaceActionLinkIn": "_mybusinessplaceactions_10_PlaceActionLinkIn",
         "PlaceActionLinkOut": "_mybusinessplaceactions_11_PlaceActionLinkOut",
     }
@@ -31,6 +31,33 @@ def import_mybusinessplaceactions() -> Import:
     types["EmptyOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["EmptyOut"])
+    types["ListPlaceActionLinksResponseIn"] = t.struct(
+        {
+            "placeActionLinks": t.array(
+                t.proxy(renames["PlaceActionLinkIn"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListPlaceActionLinksResponseIn"])
+    types["ListPlaceActionLinksResponseOut"] = t.struct(
+        {
+            "placeActionLinks": t.array(
+                t.proxy(renames["PlaceActionLinkOut"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListPlaceActionLinksResponseOut"])
+    types["PlaceActionTypeMetadataIn"] = t.struct(
+        {"placeActionType": t.string().optional(), "displayName": t.string().optional()}
+    ).named(renames["PlaceActionTypeMetadataIn"])
+    types["PlaceActionTypeMetadataOut"] = t.struct(
+        {
+            "placeActionType": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PlaceActionTypeMetadataOut"])
     types["ListPlaceActionTypeMetadataResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -48,143 +75,76 @@ def import_mybusinessplaceactions() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListPlaceActionTypeMetadataResponseOut"])
-    types["ListPlaceActionLinksResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "placeActionLinks": t.array(
-                t.proxy(renames["PlaceActionLinkIn"])
-            ).optional(),
-        }
-    ).named(renames["ListPlaceActionLinksResponseIn"])
-    types["ListPlaceActionLinksResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "placeActionLinks": t.array(
-                t.proxy(renames["PlaceActionLinkOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListPlaceActionLinksResponseOut"])
-    types["PlaceActionTypeMetadataIn"] = t.struct(
-        {"placeActionType": t.string().optional(), "displayName": t.string().optional()}
-    ).named(renames["PlaceActionTypeMetadataIn"])
-    types["PlaceActionTypeMetadataOut"] = t.struct(
-        {
-            "placeActionType": t.string().optional(),
-            "displayName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PlaceActionTypeMetadataOut"])
     types["PlaceActionLinkIn"] = t.struct(
         {
+            "isPreferred": t.boolean().optional(),
             "placeActionType": t.string(),
             "uri": t.string(),
-            "isPreferred": t.boolean().optional(),
             "name": t.string().optional(),
         }
     ).named(renames["PlaceActionLinkIn"])
     types["PlaceActionLinkOut"] = t.struct(
         {
+            "isPreferred": t.boolean().optional(),
             "isEditable": t.boolean().optional(),
             "providerType": t.string().optional(),
             "placeActionType": t.string(),
-            "uri": t.string(),
-            "createTime": t.string().optional(),
-            "isPreferred": t.boolean().optional(),
-            "name": t.string().optional(),
             "updateTime": t.string().optional(),
+            "uri": t.string(),
+            "name": t.string().optional(),
+            "createTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["PlaceActionLinkOut"])
 
     functions = {}
-    functions["locationsPlaceActionLinksPatch"] = mybusinessplaceactions.get(
-        "v1/{parent}/placeActionLinks",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "filter": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListPlaceActionLinksResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsPlaceActionLinksGet"] = mybusinessplaceactions.get(
-        "v1/{parent}/placeActionLinks",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "filter": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListPlaceActionLinksResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsPlaceActionLinksDelete"] = mybusinessplaceactions.get(
-        "v1/{parent}/placeActionLinks",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "filter": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListPlaceActionLinksResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsPlaceActionLinksCreate"] = mybusinessplaceactions.get(
-        "v1/{parent}/placeActionLinks",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "filter": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListPlaceActionLinksResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["locationsPlaceActionLinksList"] = mybusinessplaceactions.get(
-        "v1/{parent}/placeActionLinks",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "filter": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListPlaceActionLinksResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["placeActionTypeMetadataList"] = mybusinessplaceactions.get(
         "v1/placeActionTypeMetadata",
         t.struct(
             {
-                "languageCode": t.string().optional(),
                 "pageToken": t.string().optional(),
-                "filter": t.string().optional(),
                 "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "languageCode": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
         t.proxy(renames["ListPlaceActionTypeMetadataResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsPlaceActionLinksList"] = mybusinessplaceactions.delete(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsPlaceActionLinksPatch"] = mybusinessplaceactions.delete(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsPlaceActionLinksCreate"] = mybusinessplaceactions.delete(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsPlaceActionLinksGet"] = mybusinessplaceactions.delete(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["locationsPlaceActionLinksDelete"] = mybusinessplaceactions.delete(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

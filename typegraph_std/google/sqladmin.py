@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_sqladmin() -> Import:
@@ -9,511 +9,331 @@ def import_sqladmin() -> Import:
 
     renames = {
         "ErrorResponse": "_sqladmin_1_ErrorResponse",
-        "AdvancedMachineFeaturesIn": "_sqladmin_2_AdvancedMachineFeaturesIn",
-        "AdvancedMachineFeaturesOut": "_sqladmin_3_AdvancedMachineFeaturesOut",
-        "BinLogCoordinatesIn": "_sqladmin_4_BinLogCoordinatesIn",
-        "BinLogCoordinatesOut": "_sqladmin_5_BinLogCoordinatesOut",
-        "DiskEncryptionConfigurationIn": "_sqladmin_6_DiskEncryptionConfigurationIn",
-        "DiskEncryptionConfigurationOut": "_sqladmin_7_DiskEncryptionConfigurationOut",
-        "SslCertsInsertRequestIn": "_sqladmin_8_SslCertsInsertRequestIn",
-        "SslCertsInsertRequestOut": "_sqladmin_9_SslCertsInsertRequestOut",
-        "PasswordStatusIn": "_sqladmin_10_PasswordStatusIn",
-        "PasswordStatusOut": "_sqladmin_11_PasswordStatusOut",
-        "InstancesRotateServerCaRequestIn": "_sqladmin_12_InstancesRotateServerCaRequestIn",
-        "InstancesRotateServerCaRequestOut": "_sqladmin_13_InstancesRotateServerCaRequestOut",
-        "SslCertsInsertResponseIn": "_sqladmin_14_SslCertsInsertResponseIn",
-        "SslCertsInsertResponseOut": "_sqladmin_15_SslCertsInsertResponseOut",
-        "InstancesListResponseIn": "_sqladmin_16_InstancesListResponseIn",
-        "InstancesListResponseOut": "_sqladmin_17_InstancesListResponseOut",
-        "InstanceReferenceIn": "_sqladmin_18_InstanceReferenceIn",
-        "InstanceReferenceOut": "_sqladmin_19_InstanceReferenceOut",
-        "DiskEncryptionStatusIn": "_sqladmin_20_DiskEncryptionStatusIn",
-        "DiskEncryptionStatusOut": "_sqladmin_21_DiskEncryptionStatusOut",
-        "ReplicaConfigurationIn": "_sqladmin_22_ReplicaConfigurationIn",
-        "ReplicaConfigurationOut": "_sqladmin_23_ReplicaConfigurationOut",
-        "BackupConfigurationIn": "_sqladmin_24_BackupConfigurationIn",
-        "BackupConfigurationOut": "_sqladmin_25_BackupConfigurationOut",
-        "ImportContextIn": "_sqladmin_26_ImportContextIn",
-        "ImportContextOut": "_sqladmin_27_ImportContextOut",
-        "SslCertsListResponseIn": "_sqladmin_28_SslCertsListResponseIn",
-        "SslCertsListResponseOut": "_sqladmin_29_SslCertsListResponseOut",
-        "BackupRunIn": "_sqladmin_30_BackupRunIn",
-        "BackupRunOut": "_sqladmin_31_BackupRunOut",
-        "DemoteMasterMySqlReplicaConfigurationIn": "_sqladmin_32_DemoteMasterMySqlReplicaConfigurationIn",
-        "DemoteMasterMySqlReplicaConfigurationOut": "_sqladmin_33_DemoteMasterMySqlReplicaConfigurationOut",
-        "DemoteMasterConfigurationIn": "_sqladmin_34_DemoteMasterConfigurationIn",
-        "DemoteMasterConfigurationOut": "_sqladmin_35_DemoteMasterConfigurationOut",
-        "UserIn": "_sqladmin_36_UserIn",
-        "UserOut": "_sqladmin_37_UserOut",
-        "TiersListResponseIn": "_sqladmin_38_TiersListResponseIn",
-        "TiersListResponseOut": "_sqladmin_39_TiersListResponseOut",
-        "SqlInstancesVerifyExternalSyncSettingsResponseIn": "_sqladmin_40_SqlInstancesVerifyExternalSyncSettingsResponseIn",
-        "SqlInstancesVerifyExternalSyncSettingsResponseOut": "_sqladmin_41_SqlInstancesVerifyExternalSyncSettingsResponseOut",
-        "MySqlSyncConfigIn": "_sqladmin_42_MySqlSyncConfigIn",
-        "MySqlSyncConfigOut": "_sqladmin_43_MySqlSyncConfigOut",
-        "OnPremisesConfigurationIn": "_sqladmin_44_OnPremisesConfigurationIn",
-        "OnPremisesConfigurationOut": "_sqladmin_45_OnPremisesConfigurationOut",
-        "InstancesDemoteMasterRequestIn": "_sqladmin_46_InstancesDemoteMasterRequestIn",
-        "InstancesDemoteMasterRequestOut": "_sqladmin_47_InstancesDemoteMasterRequestOut",
-        "OperationIn": "_sqladmin_48_OperationIn",
-        "OperationOut": "_sqladmin_49_OperationOut",
-        "PasswordValidationPolicyIn": "_sqladmin_50_PasswordValidationPolicyIn",
-        "PasswordValidationPolicyOut": "_sqladmin_51_PasswordValidationPolicyOut",
-        "OperationMetadataIn": "_sqladmin_52_OperationMetadataIn",
-        "OperationMetadataOut": "_sqladmin_53_OperationMetadataOut",
-        "InstancesImportRequestIn": "_sqladmin_54_InstancesImportRequestIn",
-        "InstancesImportRequestOut": "_sqladmin_55_InstancesImportRequestOut",
-        "PerformDiskShrinkContextIn": "_sqladmin_56_PerformDiskShrinkContextIn",
-        "PerformDiskShrinkContextOut": "_sqladmin_57_PerformDiskShrinkContextOut",
-        "SqlExternalSyncSettingErrorIn": "_sqladmin_58_SqlExternalSyncSettingErrorIn",
-        "SqlExternalSyncSettingErrorOut": "_sqladmin_59_SqlExternalSyncSettingErrorOut",
-        "SslCertsCreateEphemeralRequestIn": "_sqladmin_60_SslCertsCreateEphemeralRequestIn",
-        "SslCertsCreateEphemeralRequestOut": "_sqladmin_61_SslCertsCreateEphemeralRequestOut",
-        "DatabasesListResponseIn": "_sqladmin_62_DatabasesListResponseIn",
-        "DatabasesListResponseOut": "_sqladmin_63_DatabasesListResponseOut",
-        "InstancesCloneRequestIn": "_sqladmin_64_InstancesCloneRequestIn",
-        "InstancesCloneRequestOut": "_sqladmin_65_InstancesCloneRequestOut",
-        "RescheduleIn": "_sqladmin_66_RescheduleIn",
-        "RescheduleOut": "_sqladmin_67_RescheduleOut",
-        "BackupRunsListResponseIn": "_sqladmin_68_BackupRunsListResponseIn",
-        "BackupRunsListResponseOut": "_sqladmin_69_BackupRunsListResponseOut",
-        "DemoteMasterContextIn": "_sqladmin_70_DemoteMasterContextIn",
-        "DemoteMasterContextOut": "_sqladmin_71_DemoteMasterContextOut",
-        "SslCertDetailIn": "_sqladmin_72_SslCertDetailIn",
-        "SslCertDetailOut": "_sqladmin_73_SslCertDetailOut",
-        "InstancesRestoreBackupRequestIn": "_sqladmin_74_InstancesRestoreBackupRequestIn",
-        "InstancesRestoreBackupRequestOut": "_sqladmin_75_InstancesRestoreBackupRequestOut",
-        "GenerateEphemeralCertRequestIn": "_sqladmin_76_GenerateEphemeralCertRequestIn",
-        "GenerateEphemeralCertRequestOut": "_sqladmin_77_GenerateEphemeralCertRequestOut",
-        "TierIn": "_sqladmin_78_TierIn",
-        "TierOut": "_sqladmin_79_TierOut",
-        "FailoverContextIn": "_sqladmin_80_FailoverContextIn",
-        "FailoverContextOut": "_sqladmin_81_FailoverContextOut",
-        "SyncFlagsIn": "_sqladmin_82_SyncFlagsIn",
-        "SyncFlagsOut": "_sqladmin_83_SyncFlagsOut",
-        "FlagIn": "_sqladmin_84_FlagIn",
-        "FlagOut": "_sqladmin_85_FlagOut",
-        "SslCertIn": "_sqladmin_86_SslCertIn",
-        "SslCertOut": "_sqladmin_87_SslCertOut",
-        "OperationErrorsIn": "_sqladmin_88_OperationErrorsIn",
-        "OperationErrorsOut": "_sqladmin_89_OperationErrorsOut",
-        "BackupContextIn": "_sqladmin_90_BackupContextIn",
-        "BackupContextOut": "_sqladmin_91_BackupContextOut",
-        "InstancesListServerCasResponseIn": "_sqladmin_92_InstancesListServerCasResponseIn",
-        "InstancesListServerCasResponseOut": "_sqladmin_93_InstancesListServerCasResponseOut",
-        "InsightsConfigIn": "_sqladmin_94_InsightsConfigIn",
-        "InsightsConfigOut": "_sqladmin_95_InsightsConfigOut",
-        "SqlServerUserDetailsIn": "_sqladmin_96_SqlServerUserDetailsIn",
-        "SqlServerUserDetailsOut": "_sqladmin_97_SqlServerUserDetailsOut",
-        "MaintenanceWindowIn": "_sqladmin_98_MaintenanceWindowIn",
-        "MaintenanceWindowOut": "_sqladmin_99_MaintenanceWindowOut",
-        "DatabaseIn": "_sqladmin_100_DatabaseIn",
-        "DatabaseOut": "_sqladmin_101_DatabaseOut",
-        "IpMappingIn": "_sqladmin_102_IpMappingIn",
-        "IpMappingOut": "_sqladmin_103_IpMappingOut",
-        "UserPasswordValidationPolicyIn": "_sqladmin_104_UserPasswordValidationPolicyIn",
-        "UserPasswordValidationPolicyOut": "_sqladmin_105_UserPasswordValidationPolicyOut",
-        "BackupRetentionSettingsIn": "_sqladmin_106_BackupRetentionSettingsIn",
-        "BackupRetentionSettingsOut": "_sqladmin_107_BackupRetentionSettingsOut",
-        "UsersListResponseIn": "_sqladmin_108_UsersListResponseIn",
-        "UsersListResponseOut": "_sqladmin_109_UsersListResponseOut",
-        "InstancesFailoverRequestIn": "_sqladmin_110_InstancesFailoverRequestIn",
-        "InstancesFailoverRequestOut": "_sqladmin_111_InstancesFailoverRequestOut",
-        "InstancesTruncateLogRequestIn": "_sqladmin_112_InstancesTruncateLogRequestIn",
-        "InstancesTruncateLogRequestOut": "_sqladmin_113_InstancesTruncateLogRequestOut",
-        "DenyMaintenancePeriodIn": "_sqladmin_114_DenyMaintenancePeriodIn",
-        "DenyMaintenancePeriodOut": "_sqladmin_115_DenyMaintenancePeriodOut",
-        "SqlInstancesStartExternalSyncRequestIn": "_sqladmin_116_SqlInstancesStartExternalSyncRequestIn",
-        "SqlInstancesStartExternalSyncRequestOut": "_sqladmin_117_SqlInstancesStartExternalSyncRequestOut",
-        "CloneContextIn": "_sqladmin_118_CloneContextIn",
-        "CloneContextOut": "_sqladmin_119_CloneContextOut",
-        "SqlOutOfDiskReportIn": "_sqladmin_120_SqlOutOfDiskReportIn",
-        "SqlOutOfDiskReportOut": "_sqladmin_121_SqlOutOfDiskReportOut",
-        "MySqlReplicaConfigurationIn": "_sqladmin_122_MySqlReplicaConfigurationIn",
-        "MySqlReplicaConfigurationOut": "_sqladmin_123_MySqlReplicaConfigurationOut",
-        "ConnectSettingsIn": "_sqladmin_124_ConnectSettingsIn",
-        "ConnectSettingsOut": "_sqladmin_125_ConnectSettingsOut",
-        "InstancesExportRequestIn": "_sqladmin_126_InstancesExportRequestIn",
-        "InstancesExportRequestOut": "_sqladmin_127_InstancesExportRequestOut",
-        "ApiWarningIn": "_sqladmin_128_ApiWarningIn",
-        "ApiWarningOut": "_sqladmin_129_ApiWarningOut",
-        "SqlServerDatabaseDetailsIn": "_sqladmin_130_SqlServerDatabaseDetailsIn",
-        "SqlServerDatabaseDetailsOut": "_sqladmin_131_SqlServerDatabaseDetailsOut",
-        "IpConfigurationIn": "_sqladmin_132_IpConfigurationIn",
-        "IpConfigurationOut": "_sqladmin_133_IpConfigurationOut",
-        "SqlInstancesRescheduleMaintenanceRequestBodyIn": "_sqladmin_134_SqlInstancesRescheduleMaintenanceRequestBodyIn",
-        "SqlInstancesRescheduleMaintenanceRequestBodyOut": "_sqladmin_135_SqlInstancesRescheduleMaintenanceRequestBodyOut",
+        "SettingsIn": "_sqladmin_2_SettingsIn",
+        "SettingsOut": "_sqladmin_3_SettingsOut",
+        "SslCertIn": "_sqladmin_4_SslCertIn",
+        "SslCertOut": "_sqladmin_5_SslCertOut",
+        "FlagIn": "_sqladmin_6_FlagIn",
+        "FlagOut": "_sqladmin_7_FlagOut",
+        "DemoteMasterConfigurationIn": "_sqladmin_8_DemoteMasterConfigurationIn",
+        "DemoteMasterConfigurationOut": "_sqladmin_9_DemoteMasterConfigurationOut",
+        "DiskEncryptionStatusIn": "_sqladmin_10_DiskEncryptionStatusIn",
+        "DiskEncryptionStatusOut": "_sqladmin_11_DiskEncryptionStatusOut",
+        "AdvancedMachineFeaturesIn": "_sqladmin_12_AdvancedMachineFeaturesIn",
+        "AdvancedMachineFeaturesOut": "_sqladmin_13_AdvancedMachineFeaturesOut",
+        "ConnectSettingsIn": "_sqladmin_14_ConnectSettingsIn",
+        "ConnectSettingsOut": "_sqladmin_15_ConnectSettingsOut",
+        "CloneContextIn": "_sqladmin_16_CloneContextIn",
+        "CloneContextOut": "_sqladmin_17_CloneContextOut",
+        "InstancesRestoreBackupRequestIn": "_sqladmin_18_InstancesRestoreBackupRequestIn",
+        "InstancesRestoreBackupRequestOut": "_sqladmin_19_InstancesRestoreBackupRequestOut",
+        "SqlInstancesRescheduleMaintenanceRequestBodyIn": "_sqladmin_20_SqlInstancesRescheduleMaintenanceRequestBodyIn",
+        "SqlInstancesRescheduleMaintenanceRequestBodyOut": "_sqladmin_21_SqlInstancesRescheduleMaintenanceRequestBodyOut",
+        "RotateServerCaContextIn": "_sqladmin_22_RotateServerCaContextIn",
+        "RotateServerCaContextOut": "_sqladmin_23_RotateServerCaContextOut",
+        "LocationPreferenceIn": "_sqladmin_24_LocationPreferenceIn",
+        "LocationPreferenceOut": "_sqladmin_25_LocationPreferenceOut",
+        "BackupRetentionSettingsIn": "_sqladmin_26_BackupRetentionSettingsIn",
+        "BackupRetentionSettingsOut": "_sqladmin_27_BackupRetentionSettingsOut",
+        "DatabaseIn": "_sqladmin_28_DatabaseIn",
+        "DatabaseOut": "_sqladmin_29_DatabaseOut",
+        "PasswordStatusIn": "_sqladmin_30_PasswordStatusIn",
+        "PasswordStatusOut": "_sqladmin_31_PasswordStatusOut",
+        "SqlInstancesVerifyExternalSyncSettingsResponseIn": "_sqladmin_32_SqlInstancesVerifyExternalSyncSettingsResponseIn",
+        "SqlInstancesVerifyExternalSyncSettingsResponseOut": "_sqladmin_33_SqlInstancesVerifyExternalSyncSettingsResponseOut",
+        "InstancesRotateServerCaRequestIn": "_sqladmin_34_InstancesRotateServerCaRequestIn",
+        "InstancesRotateServerCaRequestOut": "_sqladmin_35_InstancesRotateServerCaRequestOut",
+        "SyncFlagsIn": "_sqladmin_36_SyncFlagsIn",
+        "SyncFlagsOut": "_sqladmin_37_SyncFlagsOut",
+        "SslCertsInsertResponseIn": "_sqladmin_38_SslCertsInsertResponseIn",
+        "SslCertsInsertResponseOut": "_sqladmin_39_SslCertsInsertResponseOut",
+        "InstanceReferenceIn": "_sqladmin_40_InstanceReferenceIn",
+        "InstanceReferenceOut": "_sqladmin_41_InstanceReferenceOut",
+        "DiskEncryptionConfigurationIn": "_sqladmin_42_DiskEncryptionConfigurationIn",
+        "DiskEncryptionConfigurationOut": "_sqladmin_43_DiskEncryptionConfigurationOut",
+        "BackupRunsListResponseIn": "_sqladmin_44_BackupRunsListResponseIn",
+        "BackupRunsListResponseOut": "_sqladmin_45_BackupRunsListResponseOut",
+        "TierIn": "_sqladmin_46_TierIn",
+        "TierOut": "_sqladmin_47_TierOut",
+        "UserPasswordValidationPolicyIn": "_sqladmin_48_UserPasswordValidationPolicyIn",
+        "UserPasswordValidationPolicyOut": "_sqladmin_49_UserPasswordValidationPolicyOut",
+        "InstancesListServerCasResponseIn": "_sqladmin_50_InstancesListServerCasResponseIn",
+        "InstancesListServerCasResponseOut": "_sqladmin_51_InstancesListServerCasResponseOut",
+        "SslCertsListResponseIn": "_sqladmin_52_SslCertsListResponseIn",
+        "SslCertsListResponseOut": "_sqladmin_53_SslCertsListResponseOut",
+        "DatabasesListResponseIn": "_sqladmin_54_DatabasesListResponseIn",
+        "DatabasesListResponseOut": "_sqladmin_55_DatabasesListResponseOut",
+        "UserIn": "_sqladmin_56_UserIn",
+        "UserOut": "_sqladmin_57_UserOut",
+        "SslCertsCreateEphemeralRequestIn": "_sqladmin_58_SslCertsCreateEphemeralRequestIn",
+        "SslCertsCreateEphemeralRequestOut": "_sqladmin_59_SslCertsCreateEphemeralRequestOut",
+        "BinLogCoordinatesIn": "_sqladmin_60_BinLogCoordinatesIn",
+        "BinLogCoordinatesOut": "_sqladmin_61_BinLogCoordinatesOut",
+        "DemoteMasterMySqlReplicaConfigurationIn": "_sqladmin_62_DemoteMasterMySqlReplicaConfigurationIn",
+        "DemoteMasterMySqlReplicaConfigurationOut": "_sqladmin_63_DemoteMasterMySqlReplicaConfigurationOut",
+        "ReplicaConfigurationIn": "_sqladmin_64_ReplicaConfigurationIn",
+        "ReplicaConfigurationOut": "_sqladmin_65_ReplicaConfigurationOut",
+        "SslCertsInsertRequestIn": "_sqladmin_66_SslCertsInsertRequestIn",
+        "SslCertsInsertRequestOut": "_sqladmin_67_SslCertsInsertRequestOut",
+        "TruncateLogContextIn": "_sqladmin_68_TruncateLogContextIn",
+        "TruncateLogContextOut": "_sqladmin_69_TruncateLogContextOut",
+        "SqlInstancesGetDiskShrinkConfigResponseIn": "_sqladmin_70_SqlInstancesGetDiskShrinkConfigResponseIn",
+        "SqlInstancesGetDiskShrinkConfigResponseOut": "_sqladmin_71_SqlInstancesGetDiskShrinkConfigResponseOut",
+        "MaintenanceWindowIn": "_sqladmin_72_MaintenanceWindowIn",
+        "MaintenanceWindowOut": "_sqladmin_73_MaintenanceWindowOut",
+        "RescheduleIn": "_sqladmin_74_RescheduleIn",
+        "RescheduleOut": "_sqladmin_75_RescheduleOut",
+        "DatabaseInstanceIn": "_sqladmin_76_DatabaseInstanceIn",
+        "DatabaseInstanceOut": "_sqladmin_77_DatabaseInstanceOut",
+        "InstancesDemoteMasterRequestIn": "_sqladmin_78_InstancesDemoteMasterRequestIn",
+        "InstancesDemoteMasterRequestOut": "_sqladmin_79_InstancesDemoteMasterRequestOut",
+        "ExportContextIn": "_sqladmin_80_ExportContextIn",
+        "ExportContextOut": "_sqladmin_81_ExportContextOut",
+        "IpConfigurationIn": "_sqladmin_82_IpConfigurationIn",
+        "IpConfigurationOut": "_sqladmin_83_IpConfigurationOut",
+        "RestoreBackupContextIn": "_sqladmin_84_RestoreBackupContextIn",
+        "RestoreBackupContextOut": "_sqladmin_85_RestoreBackupContextOut",
+        "AclEntryIn": "_sqladmin_86_AclEntryIn",
+        "AclEntryOut": "_sqladmin_87_AclEntryOut",
+        "FlagsListResponseIn": "_sqladmin_88_FlagsListResponseIn",
+        "FlagsListResponseOut": "_sqladmin_89_FlagsListResponseOut",
+        "SqlExternalSyncSettingErrorIn": "_sqladmin_90_SqlExternalSyncSettingErrorIn",
+        "SqlExternalSyncSettingErrorOut": "_sqladmin_91_SqlExternalSyncSettingErrorOut",
+        "OperationErrorIn": "_sqladmin_92_OperationErrorIn",
+        "OperationErrorOut": "_sqladmin_93_OperationErrorOut",
+        "OperationIn": "_sqladmin_94_OperationIn",
+        "OperationOut": "_sqladmin_95_OperationOut",
+        "DemoteMasterContextIn": "_sqladmin_96_DemoteMasterContextIn",
+        "DemoteMasterContextOut": "_sqladmin_97_DemoteMasterContextOut",
+        "FailoverContextIn": "_sqladmin_98_FailoverContextIn",
+        "FailoverContextOut": "_sqladmin_99_FailoverContextOut",
+        "SqlServerUserDetailsIn": "_sqladmin_100_SqlServerUserDetailsIn",
+        "SqlServerUserDetailsOut": "_sqladmin_101_SqlServerUserDetailsOut",
+        "MySqlSyncConfigIn": "_sqladmin_102_MySqlSyncConfigIn",
+        "MySqlSyncConfigOut": "_sqladmin_103_MySqlSyncConfigOut",
+        "OperationsListResponseIn": "_sqladmin_104_OperationsListResponseIn",
+        "OperationsListResponseOut": "_sqladmin_105_OperationsListResponseOut",
+        "PasswordValidationPolicyIn": "_sqladmin_106_PasswordValidationPolicyIn",
+        "PasswordValidationPolicyOut": "_sqladmin_107_PasswordValidationPolicyOut",
+        "OperationErrorsIn": "_sqladmin_108_OperationErrorsIn",
+        "OperationErrorsOut": "_sqladmin_109_OperationErrorsOut",
+        "SqlInstancesStartExternalSyncRequestIn": "_sqladmin_110_SqlInstancesStartExternalSyncRequestIn",
+        "SqlInstancesStartExternalSyncRequestOut": "_sqladmin_111_SqlInstancesStartExternalSyncRequestOut",
+        "OnPremisesConfigurationIn": "_sqladmin_112_OnPremisesConfigurationIn",
+        "OnPremisesConfigurationOut": "_sqladmin_113_OnPremisesConfigurationOut",
+        "InsightsConfigIn": "_sqladmin_114_InsightsConfigIn",
+        "InsightsConfigOut": "_sqladmin_115_InsightsConfigOut",
+        "GenerateEphemeralCertResponseIn": "_sqladmin_116_GenerateEphemeralCertResponseIn",
+        "GenerateEphemeralCertResponseOut": "_sqladmin_117_GenerateEphemeralCertResponseOut",
+        "InstancesListResponseIn": "_sqladmin_118_InstancesListResponseIn",
+        "InstancesListResponseOut": "_sqladmin_119_InstancesListResponseOut",
+        "TiersListResponseIn": "_sqladmin_120_TiersListResponseIn",
+        "TiersListResponseOut": "_sqladmin_121_TiersListResponseOut",
+        "SqlServerDatabaseDetailsIn": "_sqladmin_122_SqlServerDatabaseDetailsIn",
+        "SqlServerDatabaseDetailsOut": "_sqladmin_123_SqlServerDatabaseDetailsOut",
+        "BackupConfigurationIn": "_sqladmin_124_BackupConfigurationIn",
+        "BackupConfigurationOut": "_sqladmin_125_BackupConfigurationOut",
+        "BackupRunIn": "_sqladmin_126_BackupRunIn",
+        "BackupRunOut": "_sqladmin_127_BackupRunOut",
+        "SqlActiveDirectoryConfigIn": "_sqladmin_128_SqlActiveDirectoryConfigIn",
+        "SqlActiveDirectoryConfigOut": "_sqladmin_129_SqlActiveDirectoryConfigOut",
+        "SqlServerAuditConfigIn": "_sqladmin_130_SqlServerAuditConfigIn",
+        "SqlServerAuditConfigOut": "_sqladmin_131_SqlServerAuditConfigOut",
+        "PerformDiskShrinkContextIn": "_sqladmin_132_PerformDiskShrinkContextIn",
+        "PerformDiskShrinkContextOut": "_sqladmin_133_PerformDiskShrinkContextOut",
+        "GenerateEphemeralCertRequestIn": "_sqladmin_134_GenerateEphemeralCertRequestIn",
+        "GenerateEphemeralCertRequestOut": "_sqladmin_135_GenerateEphemeralCertRequestOut",
         "DatabaseFlagsIn": "_sqladmin_136_DatabaseFlagsIn",
         "DatabaseFlagsOut": "_sqladmin_137_DatabaseFlagsOut",
-        "SqlServerAuditConfigIn": "_sqladmin_138_SqlServerAuditConfigIn",
-        "SqlServerAuditConfigOut": "_sqladmin_139_SqlServerAuditConfigOut",
-        "LocationPreferenceIn": "_sqladmin_140_LocationPreferenceIn",
-        "LocationPreferenceOut": "_sqladmin_141_LocationPreferenceOut",
-        "GenerateEphemeralCertResponseIn": "_sqladmin_142_GenerateEphemeralCertResponseIn",
-        "GenerateEphemeralCertResponseOut": "_sqladmin_143_GenerateEphemeralCertResponseOut",
-        "SqlScheduledMaintenanceIn": "_sqladmin_144_SqlScheduledMaintenanceIn",
-        "SqlScheduledMaintenanceOut": "_sqladmin_145_SqlScheduledMaintenanceOut",
-        "RotateServerCaContextIn": "_sqladmin_146_RotateServerCaContextIn",
-        "RotateServerCaContextOut": "_sqladmin_147_RotateServerCaContextOut",
-        "SqlActiveDirectoryConfigIn": "_sqladmin_148_SqlActiveDirectoryConfigIn",
-        "SqlActiveDirectoryConfigOut": "_sqladmin_149_SqlActiveDirectoryConfigOut",
-        "SqlInstancesResetReplicaSizeRequestIn": "_sqladmin_150_SqlInstancesResetReplicaSizeRequestIn",
-        "SqlInstancesResetReplicaSizeRequestOut": "_sqladmin_151_SqlInstancesResetReplicaSizeRequestOut",
-        "RestoreBackupContextIn": "_sqladmin_152_RestoreBackupContextIn",
-        "RestoreBackupContextOut": "_sqladmin_153_RestoreBackupContextOut",
-        "FlagsListResponseIn": "_sqladmin_154_FlagsListResponseIn",
-        "FlagsListResponseOut": "_sqladmin_155_FlagsListResponseOut",
-        "AclEntryIn": "_sqladmin_156_AclEntryIn",
-        "AclEntryOut": "_sqladmin_157_AclEntryOut",
-        "OperationsListResponseIn": "_sqladmin_158_OperationsListResponseIn",
-        "OperationsListResponseOut": "_sqladmin_159_OperationsListResponseOut",
-        "SettingsIn": "_sqladmin_160_SettingsIn",
-        "SettingsOut": "_sqladmin_161_SettingsOut",
-        "SqlInstancesVerifyExternalSyncSettingsRequestIn": "_sqladmin_162_SqlInstancesVerifyExternalSyncSettingsRequestIn",
-        "SqlInstancesVerifyExternalSyncSettingsRequestOut": "_sqladmin_163_SqlInstancesVerifyExternalSyncSettingsRequestOut",
-        "DatabaseInstanceIn": "_sqladmin_164_DatabaseInstanceIn",
-        "DatabaseInstanceOut": "_sqladmin_165_DatabaseInstanceOut",
-        "ExportContextIn": "_sqladmin_166_ExportContextIn",
-        "ExportContextOut": "_sqladmin_167_ExportContextOut",
-        "OperationErrorIn": "_sqladmin_168_OperationErrorIn",
-        "OperationErrorOut": "_sqladmin_169_OperationErrorOut",
-        "TruncateLogContextIn": "_sqladmin_170_TruncateLogContextIn",
-        "TruncateLogContextOut": "_sqladmin_171_TruncateLogContextOut",
-        "SqlInstancesGetDiskShrinkConfigResponseIn": "_sqladmin_172_SqlInstancesGetDiskShrinkConfigResponseIn",
-        "SqlInstancesGetDiskShrinkConfigResponseOut": "_sqladmin_173_SqlInstancesGetDiskShrinkConfigResponseOut",
+        "InstancesImportRequestIn": "_sqladmin_138_InstancesImportRequestIn",
+        "InstancesImportRequestOut": "_sqladmin_139_InstancesImportRequestOut",
+        "SqlOutOfDiskReportIn": "_sqladmin_140_SqlOutOfDiskReportIn",
+        "SqlOutOfDiskReportOut": "_sqladmin_141_SqlOutOfDiskReportOut",
+        "InstancesFailoverRequestIn": "_sqladmin_142_InstancesFailoverRequestIn",
+        "InstancesFailoverRequestOut": "_sqladmin_143_InstancesFailoverRequestOut",
+        "SslCertDetailIn": "_sqladmin_144_SslCertDetailIn",
+        "SslCertDetailOut": "_sqladmin_145_SslCertDetailOut",
+        "SqlInstancesVerifyExternalSyncSettingsRequestIn": "_sqladmin_146_SqlInstancesVerifyExternalSyncSettingsRequestIn",
+        "SqlInstancesVerifyExternalSyncSettingsRequestOut": "_sqladmin_147_SqlInstancesVerifyExternalSyncSettingsRequestOut",
+        "ApiWarningIn": "_sqladmin_148_ApiWarningIn",
+        "ApiWarningOut": "_sqladmin_149_ApiWarningOut",
+        "OperationMetadataIn": "_sqladmin_150_OperationMetadataIn",
+        "OperationMetadataOut": "_sqladmin_151_OperationMetadataOut",
+        "InstancesTruncateLogRequestIn": "_sqladmin_152_InstancesTruncateLogRequestIn",
+        "InstancesTruncateLogRequestOut": "_sqladmin_153_InstancesTruncateLogRequestOut",
+        "IpMappingIn": "_sqladmin_154_IpMappingIn",
+        "IpMappingOut": "_sqladmin_155_IpMappingOut",
+        "DenyMaintenancePeriodIn": "_sqladmin_156_DenyMaintenancePeriodIn",
+        "DenyMaintenancePeriodOut": "_sqladmin_157_DenyMaintenancePeriodOut",
+        "BackupContextIn": "_sqladmin_158_BackupContextIn",
+        "BackupContextOut": "_sqladmin_159_BackupContextOut",
+        "MySqlReplicaConfigurationIn": "_sqladmin_160_MySqlReplicaConfigurationIn",
+        "MySqlReplicaConfigurationOut": "_sqladmin_161_MySqlReplicaConfigurationOut",
+        "ImportContextIn": "_sqladmin_162_ImportContextIn",
+        "ImportContextOut": "_sqladmin_163_ImportContextOut",
+        "SqlInstancesResetReplicaSizeRequestIn": "_sqladmin_164_SqlInstancesResetReplicaSizeRequestIn",
+        "SqlInstancesResetReplicaSizeRequestOut": "_sqladmin_165_SqlInstancesResetReplicaSizeRequestOut",
+        "InstancesExportRequestIn": "_sqladmin_166_InstancesExportRequestIn",
+        "InstancesExportRequestOut": "_sqladmin_167_InstancesExportRequestOut",
+        "UsersListResponseIn": "_sqladmin_168_UsersListResponseIn",
+        "UsersListResponseOut": "_sqladmin_169_UsersListResponseOut",
+        "InstancesCloneRequestIn": "_sqladmin_170_InstancesCloneRequestIn",
+        "InstancesCloneRequestOut": "_sqladmin_171_InstancesCloneRequestOut",
+        "SqlScheduledMaintenanceIn": "_sqladmin_172_SqlScheduledMaintenanceIn",
+        "SqlScheduledMaintenanceOut": "_sqladmin_173_SqlScheduledMaintenanceOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["AdvancedMachineFeaturesIn"] = t.struct(
-        {"threadsPerCore": t.integer().optional()}
-    ).named(renames["AdvancedMachineFeaturesIn"])
-    types["AdvancedMachineFeaturesOut"] = t.struct(
+    types["SettingsIn"] = t.struct(
         {
-            "threadsPerCore": t.integer().optional(),
+            "availabilityType": t.string().optional(),
+            "ipConfiguration": t.proxy(renames["IpConfigurationIn"]).optional(),
+            "authorizedGaeApplications": t.array(t.string()).optional(),
+            "locationPreference": t.proxy(renames["LocationPreferenceIn"]).optional(),
+            "timeZone": t.string().optional(),
+            "settingsVersion": t.string().optional(),
+            "collation": t.string().optional(),
+            "sqlServerAuditConfig": t.proxy(
+                renames["SqlServerAuditConfigIn"]
+            ).optional(),
+            "dataDiskType": t.string().optional(),
+            "kind": t.string().optional(),
+            "databaseFlags": t.array(t.proxy(renames["DatabaseFlagsIn"])).optional(),
+            "replicationType": t.string().optional(),
+            "denyMaintenancePeriods": t.array(
+                t.proxy(renames["DenyMaintenancePeriodIn"])
+            ).optional(),
+            "pricingPlan": t.string().optional(),
+            "advancedMachineFeatures": t.proxy(
+                renames["AdvancedMachineFeaturesIn"]
+            ).optional(),
+            "activationPolicy": t.string().optional(),
+            "storageAutoResize": t.boolean().optional(),
+            "databaseReplicationEnabled": t.boolean().optional(),
+            "backupConfiguration": t.proxy(renames["BackupConfigurationIn"]).optional(),
+            "maintenanceWindow": t.proxy(renames["MaintenanceWindowIn"]).optional(),
+            "userLabels": t.struct({"_": t.string().optional()}).optional(),
+            "deletionProtectionEnabled": t.boolean().optional(),
+            "connectorEnforcement": t.string().optional(),
+            "insightsConfig": t.proxy(renames["InsightsConfigIn"]).optional(),
+            "dataDiskSizeGb": t.string().optional(),
+            "storageAutoResizeLimit": t.string().optional(),
+            "crashSafeReplicationEnabled": t.boolean().optional(),
+            "passwordValidationPolicy": t.proxy(
+                renames["PasswordValidationPolicyIn"]
+            ).optional(),
+            "tier": t.string().optional(),
+            "activeDirectoryConfig": t.proxy(
+                renames["SqlActiveDirectoryConfigIn"]
+            ).optional(),
+        }
+    ).named(renames["SettingsIn"])
+    types["SettingsOut"] = t.struct(
+        {
+            "availabilityType": t.string().optional(),
+            "ipConfiguration": t.proxy(renames["IpConfigurationOut"]).optional(),
+            "authorizedGaeApplications": t.array(t.string()).optional(),
+            "locationPreference": t.proxy(renames["LocationPreferenceOut"]).optional(),
+            "timeZone": t.string().optional(),
+            "settingsVersion": t.string().optional(),
+            "collation": t.string().optional(),
+            "sqlServerAuditConfig": t.proxy(
+                renames["SqlServerAuditConfigOut"]
+            ).optional(),
+            "dataDiskType": t.string().optional(),
+            "kind": t.string().optional(),
+            "databaseFlags": t.array(t.proxy(renames["DatabaseFlagsOut"])).optional(),
+            "replicationType": t.string().optional(),
+            "denyMaintenancePeriods": t.array(
+                t.proxy(renames["DenyMaintenancePeriodOut"])
+            ).optional(),
+            "pricingPlan": t.string().optional(),
+            "advancedMachineFeatures": t.proxy(
+                renames["AdvancedMachineFeaturesOut"]
+            ).optional(),
+            "activationPolicy": t.string().optional(),
+            "storageAutoResize": t.boolean().optional(),
+            "databaseReplicationEnabled": t.boolean().optional(),
+            "backupConfiguration": t.proxy(
+                renames["BackupConfigurationOut"]
+            ).optional(),
+            "maintenanceWindow": t.proxy(renames["MaintenanceWindowOut"]).optional(),
+            "userLabels": t.struct({"_": t.string().optional()}).optional(),
+            "deletionProtectionEnabled": t.boolean().optional(),
+            "connectorEnforcement": t.string().optional(),
+            "insightsConfig": t.proxy(renames["InsightsConfigOut"]).optional(),
+            "dataDiskSizeGb": t.string().optional(),
+            "storageAutoResizeLimit": t.string().optional(),
+            "crashSafeReplicationEnabled": t.boolean().optional(),
+            "passwordValidationPolicy": t.proxy(
+                renames["PasswordValidationPolicyOut"]
+            ).optional(),
+            "tier": t.string().optional(),
+            "activeDirectoryConfig": t.proxy(
+                renames["SqlActiveDirectoryConfigOut"]
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AdvancedMachineFeaturesOut"])
-    types["BinLogCoordinatesIn"] = t.struct(
+    ).named(renames["SettingsOut"])
+    types["SslCertIn"] = t.struct(
         {
-            "binLogFileName": t.string().optional(),
             "kind": t.string().optional(),
-            "binLogPosition": t.string().optional(),
-        }
-    ).named(renames["BinLogCoordinatesIn"])
-    types["BinLogCoordinatesOut"] = t.struct(
-        {
-            "binLogFileName": t.string().optional(),
-            "kind": t.string().optional(),
-            "binLogPosition": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BinLogCoordinatesOut"])
-    types["DiskEncryptionConfigurationIn"] = t.struct(
-        {"kmsKeyName": t.string().optional(), "kind": t.string().optional()}
-    ).named(renames["DiskEncryptionConfigurationIn"])
-    types["DiskEncryptionConfigurationOut"] = t.struct(
-        {
-            "kmsKeyName": t.string().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DiskEncryptionConfigurationOut"])
-    types["SslCertsInsertRequestIn"] = t.struct(
-        {"commonName": t.string().optional()}
-    ).named(renames["SslCertsInsertRequestIn"])
-    types["SslCertsInsertRequestOut"] = t.struct(
-        {
+            "expirationTime": t.string().optional(),
+            "certSerialNumber": t.string().optional(),
+            "cert": t.string().optional(),
             "commonName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SslCertsInsertRequestOut"])
-    types["PasswordStatusIn"] = t.struct(
-        {
-            "passwordExpirationTime": t.string().optional(),
-            "locked": t.boolean().optional(),
-        }
-    ).named(renames["PasswordStatusIn"])
-    types["PasswordStatusOut"] = t.struct(
-        {
-            "passwordExpirationTime": t.string().optional(),
-            "locked": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PasswordStatusOut"])
-    types["InstancesRotateServerCaRequestIn"] = t.struct(
-        {
-            "rotateServerCaContext": t.proxy(
-                renames["RotateServerCaContextIn"]
-            ).optional()
-        }
-    ).named(renames["InstancesRotateServerCaRequestIn"])
-    types["InstancesRotateServerCaRequestOut"] = t.struct(
-        {
-            "rotateServerCaContext": t.proxy(
-                renames["RotateServerCaContextOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesRotateServerCaRequestOut"])
-    types["SslCertsInsertResponseIn"] = t.struct(
-        {
-            "operation": t.proxy(renames["OperationIn"]).optional(),
-            "serverCaCert": t.proxy(renames["SslCertIn"]).optional(),
-            "clientCert": t.proxy(renames["SslCertDetailIn"]).optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["SslCertsInsertResponseIn"])
-    types["SslCertsInsertResponseOut"] = t.struct(
-        {
-            "operation": t.proxy(renames["OperationOut"]).optional(),
-            "serverCaCert": t.proxy(renames["SslCertOut"]).optional(),
-            "clientCert": t.proxy(renames["SslCertDetailOut"]).optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SslCertsInsertResponseOut"])
-    types["InstancesListResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "warnings": t.array(t.proxy(renames["ApiWarningIn"])).optional(),
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["DatabaseInstanceIn"])).optional(),
-        }
-    ).named(renames["InstancesListResponseIn"])
-    types["InstancesListResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "warnings": t.array(t.proxy(renames["ApiWarningOut"])).optional(),
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["DatabaseInstanceOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesListResponseOut"])
-    types["InstanceReferenceIn"] = t.struct(
-        {
-            "region": t.string().optional(),
-            "name": t.string().optional(),
-            "project": t.string().optional(),
-        }
-    ).named(renames["InstanceReferenceIn"])
-    types["InstanceReferenceOut"] = t.struct(
-        {
-            "region": t.string().optional(),
-            "name": t.string().optional(),
-            "project": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstanceReferenceOut"])
-    types["DiskEncryptionStatusIn"] = t.struct(
-        {"kmsKeyVersionName": t.string().optional(), "kind": t.string().optional()}
-    ).named(renames["DiskEncryptionStatusIn"])
-    types["DiskEncryptionStatusOut"] = t.struct(
-        {
-            "kmsKeyVersionName": t.string().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DiskEncryptionStatusOut"])
-    types["ReplicaConfigurationIn"] = t.struct(
-        {
-            "mysqlReplicaConfiguration": t.proxy(
-                renames["MySqlReplicaConfigurationIn"]
-            ).optional(),
-            "failoverTarget": t.boolean().optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["ReplicaConfigurationIn"])
-    types["ReplicaConfigurationOut"] = t.struct(
-        {
-            "mysqlReplicaConfiguration": t.proxy(
-                renames["MySqlReplicaConfigurationOut"]
-            ).optional(),
-            "failoverTarget": t.boolean().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReplicaConfigurationOut"])
-    types["BackupConfigurationIn"] = t.struct(
-        {
-            "replicationLogArchivingEnabled": t.boolean().optional(),
-            "pointInTimeRecoveryEnabled": t.boolean().optional(),
-            "location": t.string().optional(),
-            "kind": t.string().optional(),
-            "enabled": t.boolean().optional(),
-            "backupRetentionSettings": t.proxy(
-                renames["BackupRetentionSettingsIn"]
-            ).optional(),
-            "startTime": t.string().optional(),
-            "binaryLogEnabled": t.boolean().optional(),
-            "transactionLogRetentionDays": t.integer().optional(),
-        }
-    ).named(renames["BackupConfigurationIn"])
-    types["BackupConfigurationOut"] = t.struct(
-        {
-            "replicationLogArchivingEnabled": t.boolean().optional(),
-            "pointInTimeRecoveryEnabled": t.boolean().optional(),
-            "location": t.string().optional(),
-            "kind": t.string().optional(),
-            "enabled": t.boolean().optional(),
-            "backupRetentionSettings": t.proxy(
-                renames["BackupRetentionSettingsOut"]
-            ).optional(),
-            "startTime": t.string().optional(),
-            "binaryLogEnabled": t.boolean().optional(),
-            "transactionLogRetentionDays": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BackupConfigurationOut"])
-    types["ImportContextIn"] = t.struct(
-        {
-            "csvImportOptions": t.struct(
-                {
-                    "fieldsTerminatedBy": t.string().optional(),
-                    "columns": t.array(t.string()).optional(),
-                    "quoteCharacter": t.string().optional(),
-                    "escapeCharacter": t.string().optional(),
-                    "table": t.string().optional(),
-                    "linesTerminatedBy": t.string().optional(),
-                }
-            ).optional(),
-            "fileType": t.string().optional(),
-            "importUser": t.string().optional(),
-            "database": t.string().optional(),
-            "uri": t.string().optional(),
-            "bakImportOptions": t.struct(
-                {
-                    "encryptionOptions": t.struct(
-                        {
-                            "certPath": t.string().optional(),
-                            "pvkPath": t.string().optional(),
-                            "pvkPassword": t.string().optional(),
-                        }
-                    ),
-                    "striped": t.boolean().optional(),
-                }
-            ).optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["ImportContextIn"])
-    types["ImportContextOut"] = t.struct(
-        {
-            "csvImportOptions": t.struct(
-                {
-                    "fieldsTerminatedBy": t.string().optional(),
-                    "columns": t.array(t.string()).optional(),
-                    "quoteCharacter": t.string().optional(),
-                    "escapeCharacter": t.string().optional(),
-                    "table": t.string().optional(),
-                    "linesTerminatedBy": t.string().optional(),
-                }
-            ).optional(),
-            "fileType": t.string().optional(),
-            "importUser": t.string().optional(),
-            "database": t.string().optional(),
-            "uri": t.string().optional(),
-            "bakImportOptions": t.struct(
-                {
-                    "encryptionOptions": t.struct(
-                        {
-                            "certPath": t.string().optional(),
-                            "pvkPath": t.string().optional(),
-                            "pvkPassword": t.string().optional(),
-                        }
-                    ),
-                    "striped": t.boolean().optional(),
-                }
-            ).optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ImportContextOut"])
-    types["SslCertsListResponseIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["SslCertIn"])).optional(),
-        }
-    ).named(renames["SslCertsListResponseIn"])
-    types["SslCertsListResponseOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["SslCertOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SslCertsListResponseOut"])
-    types["BackupRunIn"] = t.struct(
-        {
-            "diskEncryptionStatus": t.proxy(
-                renames["DiskEncryptionStatusIn"]
-            ).optional(),
-            "type": t.string().optional(),
-            "enqueuedTime": t.string().optional(),
-            "location": t.string().optional(),
-            "backupKind": t.string().optional(),
-            "kind": t.string().optional(),
-            "startTime": t.string().optional(),
-            "timeZone": t.string().optional(),
-            "description": t.string().optional(),
-            "windowStartTime": t.string().optional(),
-            "status": t.string().optional(),
-            "error": t.proxy(renames["OperationErrorIn"]).optional(),
-            "endTime": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "diskEncryptionConfiguration": t.proxy(
-                renames["DiskEncryptionConfigurationIn"]
-            ).optional(),
-            "id": t.string().optional(),
+            "sha1Fingerprint": t.string().optional(),
             "instance": t.string().optional(),
-        }
-    ).named(renames["BackupRunIn"])
-    types["BackupRunOut"] = t.struct(
-        {
-            "diskEncryptionStatus": t.proxy(
-                renames["DiskEncryptionStatusOut"]
-            ).optional(),
-            "type": t.string().optional(),
-            "enqueuedTime": t.string().optional(),
-            "location": t.string().optional(),
-            "backupKind": t.string().optional(),
-            "kind": t.string().optional(),
-            "startTime": t.string().optional(),
-            "timeZone": t.string().optional(),
-            "description": t.string().optional(),
-            "windowStartTime": t.string().optional(),
-            "status": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
             "selfLink": t.string().optional(),
-            "diskEncryptionConfiguration": t.proxy(
-                renames["DiskEncryptionConfigurationOut"]
-            ).optional(),
-            "id": t.string().optional(),
+        }
+    ).named(renames["SslCertIn"])
+    types["SslCertOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "expirationTime": t.string().optional(),
+            "certSerialNumber": t.string().optional(),
+            "cert": t.string().optional(),
+            "commonName": t.string().optional(),
+            "sha1Fingerprint": t.string().optional(),
             "instance": t.string().optional(),
-        }
-    ).named(renames["BackupRunOut"])
-    types["DemoteMasterMySqlReplicaConfigurationIn"] = t.struct(
-        {
-            "password": t.string().optional(),
-            "username": t.string().optional(),
-            "kind": t.string().optional(),
-            "caCertificate": t.string().optional(),
-            "clientKey": t.string().optional(),
-            "clientCertificate": t.string().optional(),
-        }
-    ).named(renames["DemoteMasterMySqlReplicaConfigurationIn"])
-    types["DemoteMasterMySqlReplicaConfigurationOut"] = t.struct(
-        {
-            "password": t.string().optional(),
-            "username": t.string().optional(),
-            "kind": t.string().optional(),
-            "caCertificate": t.string().optional(),
-            "clientKey": t.string().optional(),
-            "clientCertificate": t.string().optional(),
+            "createTime": t.string().optional(),
+            "selfLink": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DemoteMasterMySqlReplicaConfigurationOut"])
+    ).named(renames["SslCertOut"])
+    types["FlagIn"] = t.struct(
+        {
+            "allowedIntValues": t.array(t.string()).optional(),
+            "appliesTo": t.array(t.string()).optional(),
+            "allowedStringValues": t.array(t.string()).optional(),
+            "type": t.string().optional(),
+            "requiresRestart": t.boolean().optional(),
+            "name": t.string().optional(),
+            "kind": t.string().optional(),
+            "inBeta": t.boolean().optional(),
+            "minValue": t.string().optional(),
+            "maxValue": t.string().optional(),
+        }
+    ).named(renames["FlagIn"])
+    types["FlagOut"] = t.struct(
+        {
+            "allowedIntValues": t.array(t.string()).optional(),
+            "appliesTo": t.array(t.string()).optional(),
+            "allowedStringValues": t.array(t.string()).optional(),
+            "type": t.string().optional(),
+            "requiresRestart": t.boolean().optional(),
+            "name": t.string().optional(),
+            "kind": t.string().optional(),
+            "inBeta": t.boolean().optional(),
+            "minValue": t.string().optional(),
+            "maxValue": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FlagOut"])
     types["DemoteMasterConfigurationIn"] = t.struct(
         {
             "kind": t.string().optional(),
@@ -531,326 +351,71 @@ def import_sqladmin() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DemoteMasterConfigurationOut"])
-    types["UserIn"] = t.struct(
-        {
-            "project": t.string().optional(),
-            "name": t.string().optional(),
-            "kind": t.string().optional(),
-            "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsIn"]),
-            "etag": t.string().optional(),
-            "host": t.string().optional(),
-            "type": t.string().optional(),
-            "passwordPolicy": t.proxy(
-                renames["UserPasswordValidationPolicyIn"]
-            ).optional(),
-            "password": t.string().optional(),
-            "dualPasswordType": t.string().optional(),
-            "instance": t.string().optional(),
-        }
-    ).named(renames["UserIn"])
-    types["UserOut"] = t.struct(
-        {
-            "project": t.string().optional(),
-            "name": t.string().optional(),
-            "kind": t.string().optional(),
-            "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsOut"]),
-            "etag": t.string().optional(),
-            "host": t.string().optional(),
-            "type": t.string().optional(),
-            "passwordPolicy": t.proxy(
-                renames["UserPasswordValidationPolicyOut"]
-            ).optional(),
-            "password": t.string().optional(),
-            "dualPasswordType": t.string().optional(),
-            "instance": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UserOut"])
-    types["TiersListResponseIn"] = t.struct(
+    types["DiskEncryptionStatusIn"] = t.struct(
+        {"kind": t.string().optional(), "kmsKeyVersionName": t.string().optional()}
+    ).named(renames["DiskEncryptionStatusIn"])
+    types["DiskEncryptionStatusOut"] = t.struct(
         {
             "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["TierIn"])).optional(),
+            "kmsKeyVersionName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TiersListResponseIn"])
-    types["TiersListResponseOut"] = t.struct(
+    ).named(renames["DiskEncryptionStatusOut"])
+    types["AdvancedMachineFeaturesIn"] = t.struct(
+        {"threadsPerCore": t.integer().optional()}
+    ).named(renames["AdvancedMachineFeaturesIn"])
+    types["AdvancedMachineFeaturesOut"] = t.struct(
         {
+            "threadsPerCore": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AdvancedMachineFeaturesOut"])
+    types["ConnectSettingsIn"] = t.struct(
+        {
+            "serverCaCert": t.proxy(renames["SslCertIn"]).optional(),
+            "ipAddresses": t.array(t.proxy(renames["IpMappingIn"])).optional(),
+            "region": t.string().optional(),
+            "databaseVersion": t.string().optional(),
             "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["TierOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "backendType": t.string().optional(),
         }
-    ).named(renames["TiersListResponseOut"])
-    types["SqlInstancesVerifyExternalSyncSettingsResponseIn"] = t.struct(
+    ).named(renames["ConnectSettingsIn"])
+    types["ConnectSettingsOut"] = t.struct(
         {
+            "serverCaCert": t.proxy(renames["SslCertOut"]).optional(),
+            "ipAddresses": t.array(t.proxy(renames["IpMappingOut"])).optional(),
+            "region": t.string().optional(),
+            "databaseVersion": t.string().optional(),
             "kind": t.string().optional(),
-            "warnings": t.array(
-                t.proxy(renames["SqlExternalSyncSettingErrorIn"])
-            ).optional(),
-            "errors": t.array(
-                t.proxy(renames["SqlExternalSyncSettingErrorIn"])
-            ).optional(),
+            "backendType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SqlInstancesVerifyExternalSyncSettingsResponseIn"])
-    types["SqlInstancesVerifyExternalSyncSettingsResponseOut"] = t.struct(
+    ).named(renames["ConnectSettingsOut"])
+    types["CloneContextIn"] = t.struct(
         {
+            "destinationInstanceName": t.string().optional(),
+            "preferredZone": t.string().optional(),
+            "binLogCoordinates": t.proxy(renames["BinLogCoordinatesIn"]).optional(),
+            "databaseNames": t.array(t.string()).optional(),
+            "allocatedIpRange": t.string().optional(),
             "kind": t.string().optional(),
-            "warnings": t.array(
-                t.proxy(renames["SqlExternalSyncSettingErrorOut"])
-            ).optional(),
-            "errors": t.array(
-                t.proxy(renames["SqlExternalSyncSettingErrorOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "pitrTimestampMs": t.string().optional(),
+            "pointInTime": t.string().optional(),
         }
-    ).named(renames["SqlInstancesVerifyExternalSyncSettingsResponseOut"])
-    types["MySqlSyncConfigIn"] = t.struct(
-        {"initialSyncFlags": t.array(t.proxy(renames["SyncFlagsIn"])).optional()}
-    ).named(renames["MySqlSyncConfigIn"])
-    types["MySqlSyncConfigOut"] = t.struct(
+    ).named(renames["CloneContextIn"])
+    types["CloneContextOut"] = t.struct(
         {
-            "initialSyncFlags": t.array(t.proxy(renames["SyncFlagsOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MySqlSyncConfigOut"])
-    types["OnPremisesConfigurationIn"] = t.struct(
-        {
+            "destinationInstanceName": t.string().optional(),
+            "preferredZone": t.string().optional(),
+            "binLogCoordinates": t.proxy(renames["BinLogCoordinatesOut"]).optional(),
+            "databaseNames": t.array(t.string()).optional(),
+            "allocatedIpRange": t.string().optional(),
             "kind": t.string().optional(),
-            "password": t.string().optional(),
-            "username": t.string().optional(),
-            "clientKey": t.string().optional(),
-            "hostPort": t.string().optional(),
-            "sourceInstance": t.proxy(renames["InstanceReferenceIn"]).optional(),
-            "clientCertificate": t.string().optional(),
-            "dumpFilePath": t.string().optional(),
-            "caCertificate": t.string().optional(),
-        }
-    ).named(renames["OnPremisesConfigurationIn"])
-    types["OnPremisesConfigurationOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "password": t.string().optional(),
-            "username": t.string().optional(),
-            "clientKey": t.string().optional(),
-            "hostPort": t.string().optional(),
-            "sourceInstance": t.proxy(renames["InstanceReferenceOut"]).optional(),
-            "clientCertificate": t.string().optional(),
-            "dumpFilePath": t.string().optional(),
-            "caCertificate": t.string().optional(),
+            "pitrTimestampMs": t.string().optional(),
+            "pointInTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["OnPremisesConfigurationOut"])
-    types["InstancesDemoteMasterRequestIn"] = t.struct(
-        {"demoteMasterContext": t.proxy(renames["DemoteMasterContextIn"]).optional()}
-    ).named(renames["InstancesDemoteMasterRequestIn"])
-    types["InstancesDemoteMasterRequestOut"] = t.struct(
-        {
-            "demoteMasterContext": t.proxy(
-                renames["DemoteMasterContextOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesDemoteMasterRequestOut"])
-    types["OperationIn"] = t.struct(
-        {
-            "backupContext": t.proxy(renames["BackupContextIn"]).optional(),
-            "exportContext": t.proxy(renames["ExportContextIn"]).optional(),
-            "importContext": t.proxy(renames["ImportContextIn"]).optional(),
-            "insertTime": t.string().optional(),
-            "targetId": t.string().optional(),
-            "kind": t.string().optional(),
-            "endTime": t.string().optional(),
-            "error": t.proxy(renames["OperationErrorsIn"]).optional(),
-            "name": t.string().optional(),
-            "operationType": t.string().optional(),
-            "startTime": t.string().optional(),
-            "status": t.string().optional(),
-            "targetProject": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "targetLink": t.string(),
-            "user": t.string().optional(),
-        }
-    ).named(renames["OperationIn"])
-    types["OperationOut"] = t.struct(
-        {
-            "backupContext": t.proxy(renames["BackupContextOut"]).optional(),
-            "exportContext": t.proxy(renames["ExportContextOut"]).optional(),
-            "importContext": t.proxy(renames["ImportContextOut"]).optional(),
-            "insertTime": t.string().optional(),
-            "targetId": t.string().optional(),
-            "kind": t.string().optional(),
-            "endTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "name": t.string().optional(),
-            "operationType": t.string().optional(),
-            "startTime": t.string().optional(),
-            "status": t.string().optional(),
-            "targetProject": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "targetLink": t.string(),
-            "user": t.string().optional(),
-        }
-    ).named(renames["OperationOut"])
-    types["PasswordValidationPolicyIn"] = t.struct(
-        {
-            "enablePasswordPolicy": t.boolean().optional(),
-            "reuseInterval": t.integer().optional(),
-            "complexity": t.string().optional(),
-            "minLength": t.integer().optional(),
-            "disallowUsernameSubstring": t.boolean().optional(),
-            "passwordChangeInterval": t.string().optional(),
-        }
-    ).named(renames["PasswordValidationPolicyIn"])
-    types["PasswordValidationPolicyOut"] = t.struct(
-        {
-            "enablePasswordPolicy": t.boolean().optional(),
-            "reuseInterval": t.integer().optional(),
-            "complexity": t.string().optional(),
-            "minLength": t.integer().optional(),
-            "disallowUsernameSubstring": t.boolean().optional(),
-            "passwordChangeInterval": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PasswordValidationPolicyOut"])
-    types["OperationMetadataIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["OperationMetadataIn"]
-    )
-    types["OperationMetadataOut"] = t.struct(
-        {
-            "verb": t.string().optional(),
-            "statusDetail": t.string().optional(),
-            "endTime": t.string().optional(),
-            "createTime": t.string().optional(),
-            "cancelRequested": t.boolean().optional(),
-            "apiVersion": t.string().optional(),
-            "target": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OperationMetadataOut"])
-    types["InstancesImportRequestIn"] = t.struct(
-        {"importContext": t.proxy(renames["ImportContextIn"]).optional()}
-    ).named(renames["InstancesImportRequestIn"])
-    types["InstancesImportRequestOut"] = t.struct(
-        {
-            "importContext": t.proxy(renames["ImportContextOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesImportRequestOut"])
-    types["PerformDiskShrinkContextIn"] = t.struct(
-        {"targetSizeGb": t.string().optional()}
-    ).named(renames["PerformDiskShrinkContextIn"])
-    types["PerformDiskShrinkContextOut"] = t.struct(
-        {
-            "targetSizeGb": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PerformDiskShrinkContextOut"])
-    types["SqlExternalSyncSettingErrorIn"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "detail": t.string().optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["SqlExternalSyncSettingErrorIn"])
-    types["SqlExternalSyncSettingErrorOut"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "detail": t.string().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlExternalSyncSettingErrorOut"])
-    types["SslCertsCreateEphemeralRequestIn"] = t.struct(
-        {"access_token": t.string().optional(), "public_key": t.string().optional()}
-    ).named(renames["SslCertsCreateEphemeralRequestIn"])
-    types["SslCertsCreateEphemeralRequestOut"] = t.struct(
-        {
-            "access_token": t.string().optional(),
-            "public_key": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SslCertsCreateEphemeralRequestOut"])
-    types["DatabasesListResponseIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["DatabaseIn"])).optional(),
-        }
-    ).named(renames["DatabasesListResponseIn"])
-    types["DatabasesListResponseOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["DatabaseOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DatabasesListResponseOut"])
-    types["InstancesCloneRequestIn"] = t.struct(
-        {"cloneContext": t.proxy(renames["CloneContextIn"]).optional()}
-    ).named(renames["InstancesCloneRequestIn"])
-    types["InstancesCloneRequestOut"] = t.struct(
-        {
-            "cloneContext": t.proxy(renames["CloneContextOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesCloneRequestOut"])
-    types["RescheduleIn"] = t.struct(
-        {"scheduleTime": t.string().optional(), "rescheduleType": t.string()}
-    ).named(renames["RescheduleIn"])
-    types["RescheduleOut"] = t.struct(
-        {
-            "scheduleTime": t.string().optional(),
-            "rescheduleType": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RescheduleOut"])
-    types["BackupRunsListResponseIn"] = t.struct(
-        {
-            "items": t.array(t.proxy(renames["BackupRunIn"])).optional(),
-            "kind": t.string().optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["BackupRunsListResponseIn"])
-    types["BackupRunsListResponseOut"] = t.struct(
-        {
-            "items": t.array(t.proxy(renames["BackupRunOut"])).optional(),
-            "kind": t.string().optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BackupRunsListResponseOut"])
-    types["DemoteMasterContextIn"] = t.struct(
-        {
-            "replicaConfiguration": t.proxy(
-                renames["DemoteMasterConfigurationIn"]
-            ).optional(),
-            "kind": t.string().optional(),
-            "verifyGtidConsistency": t.boolean().optional(),
-            "skipReplicationSetup": t.boolean().optional(),
-            "masterInstanceName": t.string().optional(),
-        }
-    ).named(renames["DemoteMasterContextIn"])
-    types["DemoteMasterContextOut"] = t.struct(
-        {
-            "replicaConfiguration": t.proxy(
-                renames["DemoteMasterConfigurationOut"]
-            ).optional(),
-            "kind": t.string().optional(),
-            "verifyGtidConsistency": t.boolean().optional(),
-            "skipReplicationSetup": t.boolean().optional(),
-            "masterInstanceName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DemoteMasterContextOut"])
-    types["SslCertDetailIn"] = t.struct(
-        {
-            "certInfo": t.proxy(renames["SslCertIn"]).optional(),
-            "certPrivateKey": t.string().optional(),
-        }
-    ).named(renames["SslCertDetailIn"])
-    types["SslCertDetailOut"] = t.struct(
-        {
-            "certInfo": t.proxy(renames["SslCertOut"]).optional(),
-            "certPrivateKey": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SslCertDetailOut"])
+    ).named(renames["CloneContextOut"])
     types["InstancesRestoreBackupRequestIn"] = t.struct(
         {"restoreBackupContext": t.proxy(renames["RestoreBackupContextIn"]).optional()}
     ).named(renames["InstancesRestoreBackupRequestIn"])
@@ -862,489 +427,6 @@ def import_sqladmin() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["InstancesRestoreBackupRequestOut"])
-    types["GenerateEphemeralCertRequestIn"] = t.struct(
-        {
-            "access_token": t.string().optional(),
-            "validDuration": t.string().optional(),
-            "public_key": t.string().optional(),
-            "readTime": t.string().optional(),
-        }
-    ).named(renames["GenerateEphemeralCertRequestIn"])
-    types["GenerateEphemeralCertRequestOut"] = t.struct(
-        {
-            "access_token": t.string().optional(),
-            "validDuration": t.string().optional(),
-            "public_key": t.string().optional(),
-            "readTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GenerateEphemeralCertRequestOut"])
-    types["TierIn"] = t.struct(
-        {
-            "tier": t.string().optional(),
-            "region": t.array(t.string()).optional(),
-            "kind": t.string().optional(),
-            "RAM": t.string().optional(),
-            "DiskQuota": t.string().optional(),
-        }
-    ).named(renames["TierIn"])
-    types["TierOut"] = t.struct(
-        {
-            "tier": t.string().optional(),
-            "region": t.array(t.string()).optional(),
-            "kind": t.string().optional(),
-            "RAM": t.string().optional(),
-            "DiskQuota": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TierOut"])
-    types["FailoverContextIn"] = t.struct(
-        {"kind": t.string().optional(), "settingsVersion": t.string().optional()}
-    ).named(renames["FailoverContextIn"])
-    types["FailoverContextOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "settingsVersion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FailoverContextOut"])
-    types["SyncFlagsIn"] = t.struct(
-        {"name": t.string().optional(), "value": t.string().optional()}
-    ).named(renames["SyncFlagsIn"])
-    types["SyncFlagsOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "value": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SyncFlagsOut"])
-    types["FlagIn"] = t.struct(
-        {
-            "appliesTo": t.array(t.string()).optional(),
-            "inBeta": t.boolean().optional(),
-            "maxValue": t.string().optional(),
-            "allowedStringValues": t.array(t.string()).optional(),
-            "kind": t.string().optional(),
-            "allowedIntValues": t.array(t.string()).optional(),
-            "name": t.string().optional(),
-            "type": t.string().optional(),
-            "requiresRestart": t.boolean().optional(),
-            "minValue": t.string().optional(),
-        }
-    ).named(renames["FlagIn"])
-    types["FlagOut"] = t.struct(
-        {
-            "appliesTo": t.array(t.string()).optional(),
-            "inBeta": t.boolean().optional(),
-            "maxValue": t.string().optional(),
-            "allowedStringValues": t.array(t.string()).optional(),
-            "kind": t.string().optional(),
-            "allowedIntValues": t.array(t.string()).optional(),
-            "name": t.string().optional(),
-            "type": t.string().optional(),
-            "requiresRestart": t.boolean().optional(),
-            "minValue": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FlagOut"])
-    types["SslCertIn"] = t.struct(
-        {
-            "commonName": t.string().optional(),
-            "expirationTime": t.string().optional(),
-            "kind": t.string().optional(),
-            "instance": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "certSerialNumber": t.string().optional(),
-            "cert": t.string().optional(),
-            "createTime": t.string().optional(),
-            "sha1Fingerprint": t.string().optional(),
-        }
-    ).named(renames["SslCertIn"])
-    types["SslCertOut"] = t.struct(
-        {
-            "commonName": t.string().optional(),
-            "expirationTime": t.string().optional(),
-            "kind": t.string().optional(),
-            "instance": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "certSerialNumber": t.string().optional(),
-            "cert": t.string().optional(),
-            "createTime": t.string().optional(),
-            "sha1Fingerprint": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SslCertOut"])
-    types["OperationErrorsIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "errors": t.array(t.proxy(renames["OperationErrorIn"])).optional(),
-        }
-    ).named(renames["OperationErrorsIn"])
-    types["OperationErrorsOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "errors": t.array(t.proxy(renames["OperationErrorOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OperationErrorsOut"])
-    types["BackupContextIn"] = t.struct(
-        {"backupId": t.string().optional(), "kind": t.string().optional()}
-    ).named(renames["BackupContextIn"])
-    types["BackupContextOut"] = t.struct(
-        {
-            "backupId": t.string().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BackupContextOut"])
-    types["InstancesListServerCasResponseIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "activeVersion": t.string(),
-            "certs": t.array(t.proxy(renames["SslCertIn"])).optional(),
-        }
-    ).named(renames["InstancesListServerCasResponseIn"])
-    types["InstancesListServerCasResponseOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "activeVersion": t.string(),
-            "certs": t.array(t.proxy(renames["SslCertOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesListServerCasResponseOut"])
-    types["InsightsConfigIn"] = t.struct(
-        {
-            "recordApplicationTags": t.boolean().optional(),
-            "recordClientAddress": t.boolean().optional(),
-            "queryInsightsEnabled": t.boolean().optional(),
-            "queryStringLength": t.integer().optional(),
-            "queryPlansPerMinute": t.integer().optional(),
-        }
-    ).named(renames["InsightsConfigIn"])
-    types["InsightsConfigOut"] = t.struct(
-        {
-            "recordApplicationTags": t.boolean().optional(),
-            "recordClientAddress": t.boolean().optional(),
-            "queryInsightsEnabled": t.boolean().optional(),
-            "queryStringLength": t.integer().optional(),
-            "queryPlansPerMinute": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InsightsConfigOut"])
-    types["SqlServerUserDetailsIn"] = t.struct(
-        {
-            "serverRoles": t.array(t.string()).optional(),
-            "disabled": t.boolean().optional(),
-        }
-    ).named(renames["SqlServerUserDetailsIn"])
-    types["SqlServerUserDetailsOut"] = t.struct(
-        {
-            "serverRoles": t.array(t.string()).optional(),
-            "disabled": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlServerUserDetailsOut"])
-    types["MaintenanceWindowIn"] = t.struct(
-        {
-            "hour": t.integer().optional(),
-            "updateTrack": t.string().optional(),
-            "kind": t.string().optional(),
-            "day": t.integer().optional(),
-        }
-    ).named(renames["MaintenanceWindowIn"])
-    types["MaintenanceWindowOut"] = t.struct(
-        {
-            "hour": t.integer().optional(),
-            "updateTrack": t.string().optional(),
-            "kind": t.string().optional(),
-            "day": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MaintenanceWindowOut"])
-    types["DatabaseIn"] = t.struct(
-        {
-            "instance": t.string().optional(),
-            "charset": t.string().optional(),
-            "etag": t.string().optional(),
-            "project": t.string().optional(),
-            "sqlserverDatabaseDetails": t.proxy(renames["SqlServerDatabaseDetailsIn"]),
-            "kind": t.string().optional(),
-            "name": t.string().optional(),
-            "collation": t.string().optional(),
-            "selfLink": t.string().optional(),
-        }
-    ).named(renames["DatabaseIn"])
-    types["DatabaseOut"] = t.struct(
-        {
-            "instance": t.string().optional(),
-            "charset": t.string().optional(),
-            "etag": t.string().optional(),
-            "project": t.string().optional(),
-            "sqlserverDatabaseDetails": t.proxy(renames["SqlServerDatabaseDetailsOut"]),
-            "kind": t.string().optional(),
-            "name": t.string().optional(),
-            "collation": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DatabaseOut"])
-    types["IpMappingIn"] = t.struct(
-        {
-            "timeToRetire": t.string().optional(),
-            "type": t.string().optional(),
-            "ipAddress": t.string().optional(),
-        }
-    ).named(renames["IpMappingIn"])
-    types["IpMappingOut"] = t.struct(
-        {
-            "timeToRetire": t.string().optional(),
-            "type": t.string().optional(),
-            "ipAddress": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["IpMappingOut"])
-    types["UserPasswordValidationPolicyIn"] = t.struct(
-        {
-            "allowedFailedAttempts": t.integer().optional(),
-            "enableFailedAttemptsCheck": t.boolean().optional(),
-            "passwordExpirationDuration": t.string().optional(),
-            "enablePasswordVerification": t.boolean().optional(),
-        }
-    ).named(renames["UserPasswordValidationPolicyIn"])
-    types["UserPasswordValidationPolicyOut"] = t.struct(
-        {
-            "allowedFailedAttempts": t.integer().optional(),
-            "enableFailedAttemptsCheck": t.boolean().optional(),
-            "status": t.proxy(renames["PasswordStatusOut"]).optional(),
-            "passwordExpirationDuration": t.string().optional(),
-            "enablePasswordVerification": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UserPasswordValidationPolicyOut"])
-    types["BackupRetentionSettingsIn"] = t.struct(
-        {
-            "retainedBackups": t.integer().optional(),
-            "retentionUnit": t.string().optional(),
-        }
-    ).named(renames["BackupRetentionSettingsIn"])
-    types["BackupRetentionSettingsOut"] = t.struct(
-        {
-            "retainedBackups": t.integer().optional(),
-            "retentionUnit": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BackupRetentionSettingsOut"])
-    types["UsersListResponseIn"] = t.struct(
-        {
-            "items": t.array(t.proxy(renames["UserIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["UsersListResponseIn"])
-    types["UsersListResponseOut"] = t.struct(
-        {
-            "items": t.array(t.proxy(renames["UserOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UsersListResponseOut"])
-    types["InstancesFailoverRequestIn"] = t.struct(
-        {"failoverContext": t.proxy(renames["FailoverContextIn"]).optional()}
-    ).named(renames["InstancesFailoverRequestIn"])
-    types["InstancesFailoverRequestOut"] = t.struct(
-        {
-            "failoverContext": t.proxy(renames["FailoverContextOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesFailoverRequestOut"])
-    types["InstancesTruncateLogRequestIn"] = t.struct(
-        {"truncateLogContext": t.proxy(renames["TruncateLogContextIn"]).optional()}
-    ).named(renames["InstancesTruncateLogRequestIn"])
-    types["InstancesTruncateLogRequestOut"] = t.struct(
-        {
-            "truncateLogContext": t.proxy(renames["TruncateLogContextOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesTruncateLogRequestOut"])
-    types["DenyMaintenancePeriodIn"] = t.struct(
-        {
-            "startDate": t.string().optional(),
-            "time": t.string().optional(),
-            "endDate": t.string().optional(),
-        }
-    ).named(renames["DenyMaintenancePeriodIn"])
-    types["DenyMaintenancePeriodOut"] = t.struct(
-        {
-            "startDate": t.string().optional(),
-            "time": t.string().optional(),
-            "endDate": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DenyMaintenancePeriodOut"])
-    types["SqlInstancesStartExternalSyncRequestIn"] = t.struct(
-        {
-            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigIn"]).optional(),
-            "skipVerification": t.boolean().optional(),
-            "syncMode": t.string().optional(),
-        }
-    ).named(renames["SqlInstancesStartExternalSyncRequestIn"])
-    types["SqlInstancesStartExternalSyncRequestOut"] = t.struct(
-        {
-            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigOut"]).optional(),
-            "skipVerification": t.boolean().optional(),
-            "syncMode": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlInstancesStartExternalSyncRequestOut"])
-    types["CloneContextIn"] = t.struct(
-        {
-            "pitrTimestampMs": t.string().optional(),
-            "preferredZone": t.string().optional(),
-            "kind": t.string().optional(),
-            "binLogCoordinates": t.proxy(renames["BinLogCoordinatesIn"]).optional(),
-            "databaseNames": t.array(t.string()).optional(),
-            "allocatedIpRange": t.string().optional(),
-            "pointInTime": t.string().optional(),
-            "destinationInstanceName": t.string().optional(),
-        }
-    ).named(renames["CloneContextIn"])
-    types["CloneContextOut"] = t.struct(
-        {
-            "pitrTimestampMs": t.string().optional(),
-            "preferredZone": t.string().optional(),
-            "kind": t.string().optional(),
-            "binLogCoordinates": t.proxy(renames["BinLogCoordinatesOut"]).optional(),
-            "databaseNames": t.array(t.string()).optional(),
-            "allocatedIpRange": t.string().optional(),
-            "pointInTime": t.string().optional(),
-            "destinationInstanceName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CloneContextOut"])
-    types["SqlOutOfDiskReportIn"] = t.struct(
-        {
-            "sqlMinRecommendedIncreaseSizeGb": t.integer().optional(),
-            "sqlOutOfDiskState": t.string().optional(),
-        }
-    ).named(renames["SqlOutOfDiskReportIn"])
-    types["SqlOutOfDiskReportOut"] = t.struct(
-        {
-            "sqlMinRecommendedIncreaseSizeGb": t.integer().optional(),
-            "sqlOutOfDiskState": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlOutOfDiskReportOut"])
-    types["MySqlReplicaConfigurationIn"] = t.struct(
-        {
-            "verifyServerCertificate": t.boolean().optional(),
-            "masterHeartbeatPeriod": t.string().optional(),
-            "sslCipher": t.string().optional(),
-            "clientKey": t.string().optional(),
-            "password": t.string().optional(),
-            "caCertificate": t.string().optional(),
-            "kind": t.string().optional(),
-            "connectRetryInterval": t.integer().optional(),
-            "dumpFilePath": t.string().optional(),
-            "clientCertificate": t.string().optional(),
-            "username": t.string().optional(),
-        }
-    ).named(renames["MySqlReplicaConfigurationIn"])
-    types["MySqlReplicaConfigurationOut"] = t.struct(
-        {
-            "verifyServerCertificate": t.boolean().optional(),
-            "masterHeartbeatPeriod": t.string().optional(),
-            "sslCipher": t.string().optional(),
-            "clientKey": t.string().optional(),
-            "password": t.string().optional(),
-            "caCertificate": t.string().optional(),
-            "kind": t.string().optional(),
-            "connectRetryInterval": t.integer().optional(),
-            "dumpFilePath": t.string().optional(),
-            "clientCertificate": t.string().optional(),
-            "username": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MySqlReplicaConfigurationOut"])
-    types["ConnectSettingsIn"] = t.struct(
-        {
-            "backendType": t.string().optional(),
-            "serverCaCert": t.proxy(renames["SslCertIn"]).optional(),
-            "region": t.string().optional(),
-            "databaseVersion": t.string().optional(),
-            "ipAddresses": t.array(t.proxy(renames["IpMappingIn"])).optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["ConnectSettingsIn"])
-    types["ConnectSettingsOut"] = t.struct(
-        {
-            "backendType": t.string().optional(),
-            "serverCaCert": t.proxy(renames["SslCertOut"]).optional(),
-            "region": t.string().optional(),
-            "databaseVersion": t.string().optional(),
-            "ipAddresses": t.array(t.proxy(renames["IpMappingOut"])).optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ConnectSettingsOut"])
-    types["InstancesExportRequestIn"] = t.struct(
-        {"exportContext": t.proxy(renames["ExportContextIn"]).optional()}
-    ).named(renames["InstancesExportRequestIn"])
-    types["InstancesExportRequestOut"] = t.struct(
-        {
-            "exportContext": t.proxy(renames["ExportContextOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstancesExportRequestOut"])
-    types["ApiWarningIn"] = t.struct(
-        {
-            "code": t.string().optional(),
-            "message": t.string().optional(),
-            "region": t.string().optional(),
-        }
-    ).named(renames["ApiWarningIn"])
-    types["ApiWarningOut"] = t.struct(
-        {
-            "code": t.string().optional(),
-            "message": t.string().optional(),
-            "region": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ApiWarningOut"])
-    types["SqlServerDatabaseDetailsIn"] = t.struct(
-        {
-            "recoveryModel": t.string().optional(),
-            "compatibilityLevel": t.integer().optional(),
-        }
-    ).named(renames["SqlServerDatabaseDetailsIn"])
-    types["SqlServerDatabaseDetailsOut"] = t.struct(
-        {
-            "recoveryModel": t.string().optional(),
-            "compatibilityLevel": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlServerDatabaseDetailsOut"])
-    types["IpConfigurationIn"] = t.struct(
-        {
-            "requireSsl": t.boolean().optional(),
-            "allocatedIpRange": t.string().optional(),
-            "enablePrivatePathForGoogleCloudServices": t.boolean().optional(),
-            "privateNetwork": t.string().optional(),
-            "authorizedNetworks": t.array(t.proxy(renames["AclEntryIn"])).optional(),
-            "ipv4Enabled": t.boolean().optional(),
-        }
-    ).named(renames["IpConfigurationIn"])
-    types["IpConfigurationOut"] = t.struct(
-        {
-            "requireSsl": t.boolean().optional(),
-            "allocatedIpRange": t.string().optional(),
-            "enablePrivatePathForGoogleCloudServices": t.boolean().optional(),
-            "privateNetwork": t.string().optional(),
-            "authorizedNetworks": t.array(t.proxy(renames["AclEntryOut"])).optional(),
-            "ipv4Enabled": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["IpConfigurationOut"])
     types["SqlInstancesRescheduleMaintenanceRequestBodyIn"] = t.struct(
         {"reschedule": t.proxy(renames["RescheduleIn"])}
     ).named(renames["SqlInstancesRescheduleMaintenanceRequestBodyIn"])
@@ -1354,33 +436,16 @@ def import_sqladmin() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SqlInstancesRescheduleMaintenanceRequestBodyOut"])
-    types["DatabaseFlagsIn"] = t.struct(
-        {"name": t.string().optional(), "value": t.string().optional()}
-    ).named(renames["DatabaseFlagsIn"])
-    types["DatabaseFlagsOut"] = t.struct(
+    types["RotateServerCaContextIn"] = t.struct(
+        {"nextVersion": t.string().optional(), "kind": t.string().optional()}
+    ).named(renames["RotateServerCaContextIn"])
+    types["RotateServerCaContextOut"] = t.struct(
         {
-            "name": t.string().optional(),
-            "value": t.string().optional(),
+            "nextVersion": t.string().optional(),
+            "kind": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DatabaseFlagsOut"])
-    types["SqlServerAuditConfigIn"] = t.struct(
-        {
-            "uploadInterval": t.string().optional(),
-            "bucket": t.string().optional(),
-            "kind": t.string().optional(),
-            "retentionInterval": t.string().optional(),
-        }
-    ).named(renames["SqlServerAuditConfigIn"])
-    types["SqlServerAuditConfigOut"] = t.struct(
-        {
-            "uploadInterval": t.string().optional(),
-            "bucket": t.string().optional(),
-            "kind": t.string().optional(),
-            "retentionInterval": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlServerAuditConfigOut"])
+    ).named(renames["RotateServerCaContextOut"])
     types["LocationPreferenceIn"] = t.struct(
         {
             "followGaeApplication": t.string().optional(),
@@ -1398,75 +463,638 @@ def import_sqladmin() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["LocationPreferenceOut"])
-    types["GenerateEphemeralCertResponseIn"] = t.struct(
-        {"ephemeralCert": t.proxy(renames["SslCertIn"]).optional()}
-    ).named(renames["GenerateEphemeralCertResponseIn"])
-    types["GenerateEphemeralCertResponseOut"] = t.struct(
+    types["BackupRetentionSettingsIn"] = t.struct(
         {
-            "ephemeralCert": t.proxy(renames["SslCertOut"]).optional(),
+            "retainedBackups": t.integer().optional(),
+            "retentionUnit": t.string().optional(),
+        }
+    ).named(renames["BackupRetentionSettingsIn"])
+    types["BackupRetentionSettingsOut"] = t.struct(
+        {
+            "retainedBackups": t.integer().optional(),
+            "retentionUnit": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GenerateEphemeralCertResponseOut"])
-    types["SqlScheduledMaintenanceIn"] = t.struct(
+    ).named(renames["BackupRetentionSettingsOut"])
+    types["DatabaseIn"] = t.struct(
         {
-            "canDefer": t.boolean(),
-            "canReschedule": t.boolean().optional(),
-            "startTime": t.string().optional(),
-            "scheduleDeadlineTime": t.string().optional(),
+            "name": t.string().optional(),
+            "etag": t.string().optional(),
+            "collation": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "project": t.string().optional(),
+            "sqlserverDatabaseDetails": t.proxy(renames["SqlServerDatabaseDetailsIn"]),
+            "instance": t.string().optional(),
+            "charset": t.string().optional(),
+            "kind": t.string().optional(),
         }
-    ).named(renames["SqlScheduledMaintenanceIn"])
-    types["SqlScheduledMaintenanceOut"] = t.struct(
+    ).named(renames["DatabaseIn"])
+    types["DatabaseOut"] = t.struct(
         {
-            "canDefer": t.boolean(),
-            "canReschedule": t.boolean().optional(),
-            "startTime": t.string().optional(),
-            "scheduleDeadlineTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlScheduledMaintenanceOut"])
-    types["RotateServerCaContextIn"] = t.struct(
-        {"nextVersion": t.string().optional(), "kind": t.string().optional()}
-    ).named(renames["RotateServerCaContextIn"])
-    types["RotateServerCaContextOut"] = t.struct(
-        {
-            "nextVersion": t.string().optional(),
+            "name": t.string().optional(),
+            "etag": t.string().optional(),
+            "collation": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "project": t.string().optional(),
+            "sqlserverDatabaseDetails": t.proxy(renames["SqlServerDatabaseDetailsOut"]),
+            "instance": t.string().optional(),
+            "charset": t.string().optional(),
             "kind": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["RotateServerCaContextOut"])
-    types["SqlActiveDirectoryConfigIn"] = t.struct(
-        {"kind": t.string().optional(), "domain": t.string().optional()}
-    ).named(renames["SqlActiveDirectoryConfigIn"])
-    types["SqlActiveDirectoryConfigOut"] = t.struct(
+    ).named(renames["DatabaseOut"])
+    types["PasswordStatusIn"] = t.struct(
         {
-            "kind": t.string().optional(),
-            "domain": t.string().optional(),
+            "locked": t.boolean().optional(),
+            "passwordExpirationTime": t.string().optional(),
+        }
+    ).named(renames["PasswordStatusIn"])
+    types["PasswordStatusOut"] = t.struct(
+        {
+            "locked": t.boolean().optional(),
+            "passwordExpirationTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SqlActiveDirectoryConfigOut"])
-    types["SqlInstancesResetReplicaSizeRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["SqlInstancesResetReplicaSizeRequestIn"])
-    types["SqlInstancesResetReplicaSizeRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["SqlInstancesResetReplicaSizeRequestOut"])
+    ).named(renames["PasswordStatusOut"])
+    types["SqlInstancesVerifyExternalSyncSettingsResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "errors": t.array(
+                t.proxy(renames["SqlExternalSyncSettingErrorIn"])
+            ).optional(),
+            "warnings": t.array(
+                t.proxy(renames["SqlExternalSyncSettingErrorIn"])
+            ).optional(),
+        }
+    ).named(renames["SqlInstancesVerifyExternalSyncSettingsResponseIn"])
+    types["SqlInstancesVerifyExternalSyncSettingsResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "errors": t.array(
+                t.proxy(renames["SqlExternalSyncSettingErrorOut"])
+            ).optional(),
+            "warnings": t.array(
+                t.proxy(renames["SqlExternalSyncSettingErrorOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlInstancesVerifyExternalSyncSettingsResponseOut"])
+    types["InstancesRotateServerCaRequestIn"] = t.struct(
+        {
+            "rotateServerCaContext": t.proxy(
+                renames["RotateServerCaContextIn"]
+            ).optional()
+        }
+    ).named(renames["InstancesRotateServerCaRequestIn"])
+    types["InstancesRotateServerCaRequestOut"] = t.struct(
+        {
+            "rotateServerCaContext": t.proxy(
+                renames["RotateServerCaContextOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesRotateServerCaRequestOut"])
+    types["SyncFlagsIn"] = t.struct(
+        {"value": t.string().optional(), "name": t.string().optional()}
+    ).named(renames["SyncFlagsIn"])
+    types["SyncFlagsOut"] = t.struct(
+        {
+            "value": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SyncFlagsOut"])
+    types["SslCertsInsertResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "serverCaCert": t.proxy(renames["SslCertIn"]).optional(),
+            "operation": t.proxy(renames["OperationIn"]).optional(),
+            "clientCert": t.proxy(renames["SslCertDetailIn"]).optional(),
+        }
+    ).named(renames["SslCertsInsertResponseIn"])
+    types["SslCertsInsertResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "serverCaCert": t.proxy(renames["SslCertOut"]).optional(),
+            "operation": t.proxy(renames["OperationOut"]).optional(),
+            "clientCert": t.proxy(renames["SslCertDetailOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SslCertsInsertResponseOut"])
+    types["InstanceReferenceIn"] = t.struct(
+        {
+            "project": t.string().optional(),
+            "name": t.string().optional(),
+            "region": t.string().optional(),
+        }
+    ).named(renames["InstanceReferenceIn"])
+    types["InstanceReferenceOut"] = t.struct(
+        {
+            "project": t.string().optional(),
+            "name": t.string().optional(),
+            "region": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstanceReferenceOut"])
+    types["DiskEncryptionConfigurationIn"] = t.struct(
+        {"kind": t.string().optional(), "kmsKeyName": t.string().optional()}
+    ).named(renames["DiskEncryptionConfigurationIn"])
+    types["DiskEncryptionConfigurationOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "kmsKeyName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DiskEncryptionConfigurationOut"])
+    types["BackupRunsListResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["BackupRunIn"])).optional(),
+        }
+    ).named(renames["BackupRunsListResponseIn"])
+    types["BackupRunsListResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["BackupRunOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BackupRunsListResponseOut"])
+    types["TierIn"] = t.struct(
+        {
+            "tier": t.string().optional(),
+            "region": t.array(t.string()).optional(),
+            "RAM": t.string().optional(),
+            "kind": t.string().optional(),
+            "DiskQuota": t.string().optional(),
+        }
+    ).named(renames["TierIn"])
+    types["TierOut"] = t.struct(
+        {
+            "tier": t.string().optional(),
+            "region": t.array(t.string()).optional(),
+            "RAM": t.string().optional(),
+            "kind": t.string().optional(),
+            "DiskQuota": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TierOut"])
+    types["UserPasswordValidationPolicyIn"] = t.struct(
+        {
+            "allowedFailedAttempts": t.integer().optional(),
+            "enablePasswordVerification": t.boolean().optional(),
+            "enableFailedAttemptsCheck": t.boolean().optional(),
+            "passwordExpirationDuration": t.string().optional(),
+        }
+    ).named(renames["UserPasswordValidationPolicyIn"])
+    types["UserPasswordValidationPolicyOut"] = t.struct(
+        {
+            "allowedFailedAttempts": t.integer().optional(),
+            "enablePasswordVerification": t.boolean().optional(),
+            "enableFailedAttemptsCheck": t.boolean().optional(),
+            "status": t.proxy(renames["PasswordStatusOut"]).optional(),
+            "passwordExpirationDuration": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UserPasswordValidationPolicyOut"])
+    types["InstancesListServerCasResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "activeVersion": t.string(),
+            "certs": t.array(t.proxy(renames["SslCertIn"])).optional(),
+        }
+    ).named(renames["InstancesListServerCasResponseIn"])
+    types["InstancesListServerCasResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "activeVersion": t.string(),
+            "certs": t.array(t.proxy(renames["SslCertOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesListServerCasResponseOut"])
+    types["SslCertsListResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["SslCertIn"])).optional(),
+        }
+    ).named(renames["SslCertsListResponseIn"])
+    types["SslCertsListResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["SslCertOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SslCertsListResponseOut"])
+    types["DatabasesListResponseIn"] = t.struct(
+        {
+            "items": t.array(t.proxy(renames["DatabaseIn"])).optional(),
+            "kind": t.string().optional(),
+        }
+    ).named(renames["DatabasesListResponseIn"])
+    types["DatabasesListResponseOut"] = t.struct(
+        {
+            "items": t.array(t.proxy(renames["DatabaseOut"])).optional(),
+            "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DatabasesListResponseOut"])
+    types["UserIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "name": t.string().optional(),
+            "etag": t.string().optional(),
+            "project": t.string().optional(),
+            "dualPasswordType": t.string().optional(),
+            "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsIn"]),
+            "instance": t.string().optional(),
+            "passwordPolicy": t.proxy(
+                renames["UserPasswordValidationPolicyIn"]
+            ).optional(),
+            "type": t.string().optional(),
+            "password": t.string().optional(),
+            "host": t.string().optional(),
+        }
+    ).named(renames["UserIn"])
+    types["UserOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "name": t.string().optional(),
+            "etag": t.string().optional(),
+            "project": t.string().optional(),
+            "dualPasswordType": t.string().optional(),
+            "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsOut"]),
+            "instance": t.string().optional(),
+            "passwordPolicy": t.proxy(
+                renames["UserPasswordValidationPolicyOut"]
+            ).optional(),
+            "type": t.string().optional(),
+            "password": t.string().optional(),
+            "host": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UserOut"])
+    types["SslCertsCreateEphemeralRequestIn"] = t.struct(
+        {"public_key": t.string().optional(), "access_token": t.string().optional()}
+    ).named(renames["SslCertsCreateEphemeralRequestIn"])
+    types["SslCertsCreateEphemeralRequestOut"] = t.struct(
+        {
+            "public_key": t.string().optional(),
+            "access_token": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SslCertsCreateEphemeralRequestOut"])
+    types["BinLogCoordinatesIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "binLogFileName": t.string().optional(),
+            "binLogPosition": t.string().optional(),
+        }
+    ).named(renames["BinLogCoordinatesIn"])
+    types["BinLogCoordinatesOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "binLogFileName": t.string().optional(),
+            "binLogPosition": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BinLogCoordinatesOut"])
+    types["DemoteMasterMySqlReplicaConfigurationIn"] = t.struct(
+        {
+            "username": t.string().optional(),
+            "clientKey": t.string().optional(),
+            "caCertificate": t.string().optional(),
+            "clientCertificate": t.string().optional(),
+            "password": t.string().optional(),
+            "kind": t.string().optional(),
+        }
+    ).named(renames["DemoteMasterMySqlReplicaConfigurationIn"])
+    types["DemoteMasterMySqlReplicaConfigurationOut"] = t.struct(
+        {
+            "username": t.string().optional(),
+            "clientKey": t.string().optional(),
+            "caCertificate": t.string().optional(),
+            "clientCertificate": t.string().optional(),
+            "password": t.string().optional(),
+            "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DemoteMasterMySqlReplicaConfigurationOut"])
+    types["ReplicaConfigurationIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "mysqlReplicaConfiguration": t.proxy(
+                renames["MySqlReplicaConfigurationIn"]
+            ).optional(),
+            "failoverTarget": t.boolean().optional(),
+        }
+    ).named(renames["ReplicaConfigurationIn"])
+    types["ReplicaConfigurationOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "mysqlReplicaConfiguration": t.proxy(
+                renames["MySqlReplicaConfigurationOut"]
+            ).optional(),
+            "failoverTarget": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReplicaConfigurationOut"])
+    types["SslCertsInsertRequestIn"] = t.struct(
+        {"commonName": t.string().optional()}
+    ).named(renames["SslCertsInsertRequestIn"])
+    types["SslCertsInsertRequestOut"] = t.struct(
+        {
+            "commonName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SslCertsInsertRequestOut"])
+    types["TruncateLogContextIn"] = t.struct(
+        {"logType": t.string().optional(), "kind": t.string().optional()}
+    ).named(renames["TruncateLogContextIn"])
+    types["TruncateLogContextOut"] = t.struct(
+        {
+            "logType": t.string().optional(),
+            "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TruncateLogContextOut"])
+    types["SqlInstancesGetDiskShrinkConfigResponseIn"] = t.struct(
+        {
+            "message": t.string().optional(),
+            "minimalTargetSizeGb": t.string().optional(),
+            "kind": t.string().optional(),
+        }
+    ).named(renames["SqlInstancesGetDiskShrinkConfigResponseIn"])
+    types["SqlInstancesGetDiskShrinkConfigResponseOut"] = t.struct(
+        {
+            "message": t.string().optional(),
+            "minimalTargetSizeGb": t.string().optional(),
+            "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlInstancesGetDiskShrinkConfigResponseOut"])
+    types["MaintenanceWindowIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "day": t.integer().optional(),
+            "hour": t.integer().optional(),
+            "updateTrack": t.string().optional(),
+        }
+    ).named(renames["MaintenanceWindowIn"])
+    types["MaintenanceWindowOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "day": t.integer().optional(),
+            "hour": t.integer().optional(),
+            "updateTrack": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MaintenanceWindowOut"])
+    types["RescheduleIn"] = t.struct(
+        {"scheduleTime": t.string().optional(), "rescheduleType": t.string()}
+    ).named(renames["RescheduleIn"])
+    types["RescheduleOut"] = t.struct(
+        {
+            "scheduleTime": t.string().optional(),
+            "rescheduleType": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RescheduleOut"])
+    types["DatabaseInstanceIn"] = t.struct(
+        {
+            "serviceAccountEmailAddress": t.string().optional(),
+            "project": t.string().optional(),
+            "onPremisesConfiguration": t.proxy(
+                renames["OnPremisesConfigurationIn"]
+            ).optional(),
+            "kind": t.string().optional(),
+            "diskEncryptionStatus": t.proxy(
+                renames["DiskEncryptionStatusIn"]
+            ).optional(),
+            "currentDiskSize": t.string().optional(),
+            "backendType": t.string().optional(),
+            "ipv6Address": t.string().optional(),
+            "maintenanceVersion": t.string().optional(),
+            "failoverReplica": t.struct(
+                {"available": t.boolean().optional(), "name": t.string().optional()}
+            ).optional(),
+            "diskEncryptionConfiguration": t.proxy(
+                renames["DiskEncryptionConfigurationIn"]
+            ).optional(),
+            "maxDiskSize": t.string().optional(),
+            "region": t.string().optional(),
+            "settings": t.proxy(renames["SettingsIn"]).optional(),
+            "rootPassword": t.string().optional(),
+            "masterInstanceName": t.string().optional(),
+            "etag": t.string().optional(),
+            "ipAddresses": t.array(t.proxy(renames["IpMappingIn"])).optional(),
+            "state": t.string().optional(),
+            "gceZone": t.string().optional(),
+            "serverCaCert": t.proxy(renames["SslCertIn"]).optional(),
+            "instanceType": t.string().optional(),
+            "scheduledMaintenance": t.proxy(
+                renames["SqlScheduledMaintenanceIn"]
+            ).optional(),
+            "selfLink": t.string().optional(),
+            "replicaNames": t.array(t.string()).optional(),
+            "name": t.string().optional(),
+            "secondaryGceZone": t.string().optional(),
+            "replicaConfiguration": t.proxy(
+                renames["ReplicaConfigurationIn"]
+            ).optional(),
+            "connectionName": t.string().optional(),
+            "databaseVersion": t.string().optional(),
+            "suspensionReason": t.array(t.string()).optional(),
+            "satisfiesPzs": t.boolean().optional(),
+            "outOfDiskReport": t.proxy(renames["SqlOutOfDiskReportIn"]).optional(),
+        }
+    ).named(renames["DatabaseInstanceIn"])
+    types["DatabaseInstanceOut"] = t.struct(
+        {
+            "serviceAccountEmailAddress": t.string().optional(),
+            "project": t.string().optional(),
+            "onPremisesConfiguration": t.proxy(
+                renames["OnPremisesConfigurationOut"]
+            ).optional(),
+            "kind": t.string().optional(),
+            "databaseInstalledVersion": t.string().optional(),
+            "diskEncryptionStatus": t.proxy(
+                renames["DiskEncryptionStatusOut"]
+            ).optional(),
+            "currentDiskSize": t.string().optional(),
+            "backendType": t.string().optional(),
+            "ipv6Address": t.string().optional(),
+            "maintenanceVersion": t.string().optional(),
+            "failoverReplica": t.struct(
+                {"available": t.boolean().optional(), "name": t.string().optional()}
+            ).optional(),
+            "availableMaintenanceVersions": t.array(t.string()).optional(),
+            "diskEncryptionConfiguration": t.proxy(
+                renames["DiskEncryptionConfigurationOut"]
+            ).optional(),
+            "maxDiskSize": t.string().optional(),
+            "region": t.string().optional(),
+            "settings": t.proxy(renames["SettingsOut"]).optional(),
+            "rootPassword": t.string().optional(),
+            "masterInstanceName": t.string().optional(),
+            "createTime": t.string().optional(),
+            "etag": t.string().optional(),
+            "ipAddresses": t.array(t.proxy(renames["IpMappingOut"])).optional(),
+            "state": t.string().optional(),
+            "gceZone": t.string().optional(),
+            "serverCaCert": t.proxy(renames["SslCertOut"]).optional(),
+            "instanceType": t.string().optional(),
+            "scheduledMaintenance": t.proxy(
+                renames["SqlScheduledMaintenanceOut"]
+            ).optional(),
+            "selfLink": t.string().optional(),
+            "replicaNames": t.array(t.string()).optional(),
+            "name": t.string().optional(),
+            "secondaryGceZone": t.string().optional(),
+            "replicaConfiguration": t.proxy(
+                renames["ReplicaConfigurationOut"]
+            ).optional(),
+            "connectionName": t.string().optional(),
+            "databaseVersion": t.string().optional(),
+            "suspensionReason": t.array(t.string()).optional(),
+            "satisfiesPzs": t.boolean().optional(),
+            "outOfDiskReport": t.proxy(renames["SqlOutOfDiskReportOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DatabaseInstanceOut"])
+    types["InstancesDemoteMasterRequestIn"] = t.struct(
+        {"demoteMasterContext": t.proxy(renames["DemoteMasterContextIn"]).optional()}
+    ).named(renames["InstancesDemoteMasterRequestIn"])
+    types["InstancesDemoteMasterRequestOut"] = t.struct(
+        {
+            "demoteMasterContext": t.proxy(
+                renames["DemoteMasterContextOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesDemoteMasterRequestOut"])
+    types["ExportContextIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "sqlExportOptions": t.struct(
+                {
+                    "schemaOnly": t.boolean().optional(),
+                    "mysqlExportOptions": t.struct(
+                        {"masterData": t.integer().optional()}
+                    ).optional(),
+                    "tables": t.array(t.string()).optional(),
+                }
+            ).optional(),
+            "databases": t.array(t.string()).optional(),
+            "bakExportOptions": t.struct(
+                {
+                    "striped": t.boolean().optional(),
+                    "stripeCount": t.integer().optional(),
+                }
+            ).optional(),
+            "fileType": t.string().optional(),
+            "uri": t.string().optional(),
+            "csvExportOptions": t.struct(
+                {
+                    "fieldsTerminatedBy": t.string().optional(),
+                    "quoteCharacter": t.string().optional(),
+                    "selectQuery": t.string().optional(),
+                    "escapeCharacter": t.string().optional(),
+                    "linesTerminatedBy": t.string().optional(),
+                }
+            ).optional(),
+            "offload": t.boolean().optional(),
+        }
+    ).named(renames["ExportContextIn"])
+    types["ExportContextOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "sqlExportOptions": t.struct(
+                {
+                    "schemaOnly": t.boolean().optional(),
+                    "mysqlExportOptions": t.struct(
+                        {"masterData": t.integer().optional()}
+                    ).optional(),
+                    "tables": t.array(t.string()).optional(),
+                }
+            ).optional(),
+            "databases": t.array(t.string()).optional(),
+            "bakExportOptions": t.struct(
+                {
+                    "striped": t.boolean().optional(),
+                    "stripeCount": t.integer().optional(),
+                }
+            ).optional(),
+            "fileType": t.string().optional(),
+            "uri": t.string().optional(),
+            "csvExportOptions": t.struct(
+                {
+                    "fieldsTerminatedBy": t.string().optional(),
+                    "quoteCharacter": t.string().optional(),
+                    "selectQuery": t.string().optional(),
+                    "escapeCharacter": t.string().optional(),
+                    "linesTerminatedBy": t.string().optional(),
+                }
+            ).optional(),
+            "offload": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExportContextOut"])
+    types["IpConfigurationIn"] = t.struct(
+        {
+            "requireSsl": t.boolean().optional(),
+            "privateNetwork": t.string().optional(),
+            "authorizedNetworks": t.array(t.proxy(renames["AclEntryIn"])).optional(),
+            "enablePrivatePathForGoogleCloudServices": t.boolean().optional(),
+            "ipv4Enabled": t.boolean().optional(),
+            "allocatedIpRange": t.string().optional(),
+        }
+    ).named(renames["IpConfigurationIn"])
+    types["IpConfigurationOut"] = t.struct(
+        {
+            "requireSsl": t.boolean().optional(),
+            "privateNetwork": t.string().optional(),
+            "authorizedNetworks": t.array(t.proxy(renames["AclEntryOut"])).optional(),
+            "enablePrivatePathForGoogleCloudServices": t.boolean().optional(),
+            "ipv4Enabled": t.boolean().optional(),
+            "allocatedIpRange": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["IpConfigurationOut"])
     types["RestoreBackupContextIn"] = t.struct(
         {
-            "backupRunId": t.string().optional(),
-            "instanceId": t.string().optional(),
-            "kind": t.string().optional(),
             "project": t.string().optional(),
+            "kind": t.string().optional(),
+            "instanceId": t.string().optional(),
+            "backupRunId": t.string().optional(),
         }
     ).named(renames["RestoreBackupContextIn"])
     types["RestoreBackupContextOut"] = t.struct(
         {
-            "backupRunId": t.string().optional(),
-            "instanceId": t.string().optional(),
-            "kind": t.string().optional(),
             "project": t.string().optional(),
+            "kind": t.string().optional(),
+            "instanceId": t.string().optional(),
+            "backupRunId": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["RestoreBackupContextOut"])
+    types["AclEntryIn"] = t.struct(
+        {
+            "expirationTime": t.string().optional(),
+            "kind": t.string().optional(),
+            "value": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["AclEntryIn"])
+    types["AclEntryOut"] = t.struct(
+        {
+            "expirationTime": t.string().optional(),
+            "kind": t.string().optional(),
+            "value": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AclEntryOut"])
     types["FlagsListResponseIn"] = t.struct(
         {
             "items": t.array(t.proxy(renames["FlagIn"])).optional(),
@@ -1480,910 +1108,729 @@ def import_sqladmin() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["FlagsListResponseOut"])
-    types["AclEntryIn"] = t.struct(
+    types["SqlExternalSyncSettingErrorIn"] = t.struct(
         {
+            "detail": t.string().optional(),
             "kind": t.string().optional(),
-            "expirationTime": t.string().optional(),
-            "value": t.string().optional(),
-            "name": t.string().optional(),
+            "type": t.string().optional(),
         }
-    ).named(renames["AclEntryIn"])
-    types["AclEntryOut"] = t.struct(
+    ).named(renames["SqlExternalSyncSettingErrorIn"])
+    types["SqlExternalSyncSettingErrorOut"] = t.struct(
         {
+            "detail": t.string().optional(),
             "kind": t.string().optional(),
-            "expirationTime": t.string().optional(),
-            "value": t.string().optional(),
-            "name": t.string().optional(),
+            "type": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AclEntryOut"])
-    types["OperationsListResponseIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["OperationIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["OperationsListResponseIn"])
-    types["OperationsListResponseOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "items": t.array(t.proxy(renames["OperationOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OperationsListResponseOut"])
-    types["SettingsIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "availabilityType": t.string().optional(),
-            "sqlServerAuditConfig": t.proxy(
-                renames["SqlServerAuditConfigIn"]
-            ).optional(),
-            "backupConfiguration": t.proxy(renames["BackupConfigurationIn"]).optional(),
-            "connectorEnforcement": t.string().optional(),
-            "tier": t.string().optional(),
-            "maintenanceWindow": t.proxy(renames["MaintenanceWindowIn"]).optional(),
-            "userLabels": t.struct({"_": t.string().optional()}).optional(),
-            "settingsVersion": t.string().optional(),
-            "crashSafeReplicationEnabled": t.boolean().optional(),
-            "timeZone": t.string().optional(),
-            "dataDiskSizeGb": t.string().optional(),
-            "passwordValidationPolicy": t.proxy(
-                renames["PasswordValidationPolicyIn"]
-            ).optional(),
-            "insightsConfig": t.proxy(renames["InsightsConfigIn"]).optional(),
-            "databaseFlags": t.array(t.proxy(renames["DatabaseFlagsIn"])).optional(),
-            "activeDirectoryConfig": t.proxy(
-                renames["SqlActiveDirectoryConfigIn"]
-            ).optional(),
-            "deletionProtectionEnabled": t.boolean().optional(),
-            "databaseReplicationEnabled": t.boolean().optional(),
-            "storageAutoResize": t.boolean().optional(),
-            "locationPreference": t.proxy(renames["LocationPreferenceIn"]).optional(),
-            "advancedMachineFeatures": t.proxy(
-                renames["AdvancedMachineFeaturesIn"]
-            ).optional(),
-            "activationPolicy": t.string().optional(),
-            "pricingPlan": t.string().optional(),
-            "storageAutoResizeLimit": t.string().optional(),
-            "replicationType": t.string().optional(),
-            "collation": t.string().optional(),
-            "denyMaintenancePeriods": t.array(
-                t.proxy(renames["DenyMaintenancePeriodIn"])
-            ).optional(),
-            "ipConfiguration": t.proxy(renames["IpConfigurationIn"]).optional(),
-            "dataDiskType": t.string().optional(),
-            "authorizedGaeApplications": t.array(t.string()).optional(),
-        }
-    ).named(renames["SettingsIn"])
-    types["SettingsOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "availabilityType": t.string().optional(),
-            "sqlServerAuditConfig": t.proxy(
-                renames["SqlServerAuditConfigOut"]
-            ).optional(),
-            "backupConfiguration": t.proxy(
-                renames["BackupConfigurationOut"]
-            ).optional(),
-            "connectorEnforcement": t.string().optional(),
-            "tier": t.string().optional(),
-            "maintenanceWindow": t.proxy(renames["MaintenanceWindowOut"]).optional(),
-            "userLabels": t.struct({"_": t.string().optional()}).optional(),
-            "settingsVersion": t.string().optional(),
-            "crashSafeReplicationEnabled": t.boolean().optional(),
-            "timeZone": t.string().optional(),
-            "dataDiskSizeGb": t.string().optional(),
-            "passwordValidationPolicy": t.proxy(
-                renames["PasswordValidationPolicyOut"]
-            ).optional(),
-            "insightsConfig": t.proxy(renames["InsightsConfigOut"]).optional(),
-            "databaseFlags": t.array(t.proxy(renames["DatabaseFlagsOut"])).optional(),
-            "activeDirectoryConfig": t.proxy(
-                renames["SqlActiveDirectoryConfigOut"]
-            ).optional(),
-            "deletionProtectionEnabled": t.boolean().optional(),
-            "databaseReplicationEnabled": t.boolean().optional(),
-            "storageAutoResize": t.boolean().optional(),
-            "locationPreference": t.proxy(renames["LocationPreferenceOut"]).optional(),
-            "advancedMachineFeatures": t.proxy(
-                renames["AdvancedMachineFeaturesOut"]
-            ).optional(),
-            "activationPolicy": t.string().optional(),
-            "pricingPlan": t.string().optional(),
-            "storageAutoResizeLimit": t.string().optional(),
-            "replicationType": t.string().optional(),
-            "collation": t.string().optional(),
-            "denyMaintenancePeriods": t.array(
-                t.proxy(renames["DenyMaintenancePeriodOut"])
-            ).optional(),
-            "ipConfiguration": t.proxy(renames["IpConfigurationOut"]).optional(),
-            "dataDiskType": t.string().optional(),
-            "authorizedGaeApplications": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SettingsOut"])
-    types["SqlInstancesVerifyExternalSyncSettingsRequestIn"] = t.struct(
-        {
-            "verifyConnectionOnly": t.boolean().optional(),
-            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigIn"]).optional(),
-            "verifyReplicationOnly": t.boolean().optional(),
-            "syncMode": t.string().optional(),
-        }
-    ).named(renames["SqlInstancesVerifyExternalSyncSettingsRequestIn"])
-    types["SqlInstancesVerifyExternalSyncSettingsRequestOut"] = t.struct(
-        {
-            "verifyConnectionOnly": t.boolean().optional(),
-            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigOut"]).optional(),
-            "verifyReplicationOnly": t.boolean().optional(),
-            "syncMode": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SqlInstancesVerifyExternalSyncSettingsRequestOut"])
-    types["DatabaseInstanceIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "onPremisesConfiguration": t.proxy(
-                renames["OnPremisesConfigurationIn"]
-            ).optional(),
-            "instanceType": t.string().optional(),
-            "region": t.string().optional(),
-            "kind": t.string().optional(),
-            "masterInstanceName": t.string().optional(),
-            "gceZone": t.string().optional(),
-            "ipv6Address": t.string().optional(),
-            "serverCaCert": t.proxy(renames["SslCertIn"]).optional(),
-            "settings": t.proxy(renames["SettingsIn"]).optional(),
-            "diskEncryptionStatus": t.proxy(
-                renames["DiskEncryptionStatusIn"]
-            ).optional(),
-            "suspensionReason": t.array(t.string()).optional(),
-            "secondaryGceZone": t.string().optional(),
-            "databaseVersion": t.string().optional(),
-            "state": t.string().optional(),
-            "project": t.string().optional(),
-            "ipAddresses": t.array(t.proxy(renames["IpMappingIn"])).optional(),
-            "satisfiesPzs": t.boolean().optional(),
-            "scheduledMaintenance": t.proxy(
-                renames["SqlScheduledMaintenanceIn"]
-            ).optional(),
-            "rootPassword": t.string().optional(),
-            "failoverReplica": t.struct(
-                {"name": t.string().optional(), "available": t.boolean().optional()}
-            ).optional(),
-            "maintenanceVersion": t.string().optional(),
-            "outOfDiskReport": t.proxy(renames["SqlOutOfDiskReportIn"]).optional(),
-            "currentDiskSize": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "diskEncryptionConfiguration": t.proxy(
-                renames["DiskEncryptionConfigurationIn"]
-            ).optional(),
-            "replicaNames": t.array(t.string()).optional(),
-            "serviceAccountEmailAddress": t.string().optional(),
-            "maxDiskSize": t.string().optional(),
-            "connectionName": t.string().optional(),
-            "backendType": t.string().optional(),
-            "replicaConfiguration": t.proxy(
-                renames["ReplicaConfigurationIn"]
-            ).optional(),
-            "etag": t.string().optional(),
-        }
-    ).named(renames["DatabaseInstanceIn"])
-    types["DatabaseInstanceOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "onPremisesConfiguration": t.proxy(
-                renames["OnPremisesConfigurationOut"]
-            ).optional(),
-            "createTime": t.string().optional(),
-            "instanceType": t.string().optional(),
-            "availableMaintenanceVersions": t.array(t.string()).optional(),
-            "region": t.string().optional(),
-            "databaseInstalledVersion": t.string().optional(),
-            "kind": t.string().optional(),
-            "masterInstanceName": t.string().optional(),
-            "gceZone": t.string().optional(),
-            "ipv6Address": t.string().optional(),
-            "serverCaCert": t.proxy(renames["SslCertOut"]).optional(),
-            "settings": t.proxy(renames["SettingsOut"]).optional(),
-            "diskEncryptionStatus": t.proxy(
-                renames["DiskEncryptionStatusOut"]
-            ).optional(),
-            "suspensionReason": t.array(t.string()).optional(),
-            "secondaryGceZone": t.string().optional(),
-            "databaseVersion": t.string().optional(),
-            "state": t.string().optional(),
-            "project": t.string().optional(),
-            "ipAddresses": t.array(t.proxy(renames["IpMappingOut"])).optional(),
-            "satisfiesPzs": t.boolean().optional(),
-            "scheduledMaintenance": t.proxy(
-                renames["SqlScheduledMaintenanceOut"]
-            ).optional(),
-            "rootPassword": t.string().optional(),
-            "failoverReplica": t.struct(
-                {"name": t.string().optional(), "available": t.boolean().optional()}
-            ).optional(),
-            "maintenanceVersion": t.string().optional(),
-            "outOfDiskReport": t.proxy(renames["SqlOutOfDiskReportOut"]).optional(),
-            "currentDiskSize": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "diskEncryptionConfiguration": t.proxy(
-                renames["DiskEncryptionConfigurationOut"]
-            ).optional(),
-            "replicaNames": t.array(t.string()).optional(),
-            "serviceAccountEmailAddress": t.string().optional(),
-            "maxDiskSize": t.string().optional(),
-            "connectionName": t.string().optional(),
-            "backendType": t.string().optional(),
-            "replicaConfiguration": t.proxy(
-                renames["ReplicaConfigurationOut"]
-            ).optional(),
-            "etag": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DatabaseInstanceOut"])
-    types["ExportContextIn"] = t.struct(
-        {
-            "uri": t.string().optional(),
-            "fileType": t.string().optional(),
-            "offload": t.boolean().optional(),
-            "sqlExportOptions": t.struct(
-                {
-                    "tables": t.array(t.string()).optional(),
-                    "mysqlExportOptions": t.struct(
-                        {"masterData": t.integer().optional()}
-                    ).optional(),
-                    "schemaOnly": t.boolean().optional(),
-                }
-            ).optional(),
-            "bakExportOptions": t.struct(
-                {
-                    "stripeCount": t.integer().optional(),
-                    "striped": t.boolean().optional(),
-                }
-            ).optional(),
-            "csvExportOptions": t.struct(
-                {
-                    "fieldsTerminatedBy": t.string().optional(),
-                    "quoteCharacter": t.string().optional(),
-                    "escapeCharacter": t.string().optional(),
-                    "selectQuery": t.string().optional(),
-                    "linesTerminatedBy": t.string().optional(),
-                }
-            ).optional(),
-            "kind": t.string().optional(),
-            "databases": t.array(t.string()).optional(),
-        }
-    ).named(renames["ExportContextIn"])
-    types["ExportContextOut"] = t.struct(
-        {
-            "uri": t.string().optional(),
-            "fileType": t.string().optional(),
-            "offload": t.boolean().optional(),
-            "sqlExportOptions": t.struct(
-                {
-                    "tables": t.array(t.string()).optional(),
-                    "mysqlExportOptions": t.struct(
-                        {"masterData": t.integer().optional()}
-                    ).optional(),
-                    "schemaOnly": t.boolean().optional(),
-                }
-            ).optional(),
-            "bakExportOptions": t.struct(
-                {
-                    "stripeCount": t.integer().optional(),
-                    "striped": t.boolean().optional(),
-                }
-            ).optional(),
-            "csvExportOptions": t.struct(
-                {
-                    "fieldsTerminatedBy": t.string().optional(),
-                    "quoteCharacter": t.string().optional(),
-                    "escapeCharacter": t.string().optional(),
-                    "selectQuery": t.string().optional(),
-                    "linesTerminatedBy": t.string().optional(),
-                }
-            ).optional(),
-            "kind": t.string().optional(),
-            "databases": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExportContextOut"])
+    ).named(renames["SqlExternalSyncSettingErrorOut"])
     types["OperationErrorIn"] = t.struct(
         {
+            "message": t.string().optional(),
             "code": t.string().optional(),
             "kind": t.string().optional(),
-            "message": t.string().optional(),
         }
     ).named(renames["OperationErrorIn"])
     types["OperationErrorOut"] = t.struct(
         {
+            "message": t.string().optional(),
             "code": t.string().optional(),
             "kind": t.string().optional(),
-            "message": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["OperationErrorOut"])
-    types["TruncateLogContextIn"] = t.struct(
-        {"kind": t.string().optional(), "logType": t.string().optional()}
-    ).named(renames["TruncateLogContextIn"])
-    types["TruncateLogContextOut"] = t.struct(
+    types["OperationIn"] = t.struct(
+        {
+            "targetProject": t.string().optional(),
+            "importContext": t.proxy(renames["ImportContextIn"]).optional(),
+            "kind": t.string().optional(),
+            "operationType": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "targetLink": t.string(),
+            "endTime": t.string().optional(),
+            "user": t.string().optional(),
+            "status": t.string().optional(),
+            "name": t.string().optional(),
+            "exportContext": t.proxy(renames["ExportContextIn"]).optional(),
+            "error": t.proxy(renames["OperationErrorsIn"]).optional(),
+            "insertTime": t.string().optional(),
+            "targetId": t.string().optional(),
+            "startTime": t.string().optional(),
+            "backupContext": t.proxy(renames["BackupContextIn"]).optional(),
+        }
+    ).named(renames["OperationIn"])
+    types["OperationOut"] = t.struct(
+        {
+            "targetProject": t.string().optional(),
+            "importContext": t.proxy(renames["ImportContextOut"]).optional(),
+            "kind": t.string().optional(),
+            "operationType": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "targetLink": t.string(),
+            "endTime": t.string().optional(),
+            "user": t.string().optional(),
+            "status": t.string().optional(),
+            "name": t.string().optional(),
+            "exportContext": t.proxy(renames["ExportContextOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "insertTime": t.string().optional(),
+            "targetId": t.string().optional(),
+            "startTime": t.string().optional(),
+            "backupContext": t.proxy(renames["BackupContextOut"]).optional(),
+        }
+    ).named(renames["OperationOut"])
+    types["DemoteMasterContextIn"] = t.struct(
         {
             "kind": t.string().optional(),
-            "logType": t.string().optional(),
+            "verifyGtidConsistency": t.boolean().optional(),
+            "skipReplicationSetup": t.boolean().optional(),
+            "masterInstanceName": t.string().optional(),
+            "replicaConfiguration": t.proxy(
+                renames["DemoteMasterConfigurationIn"]
+            ).optional(),
+        }
+    ).named(renames["DemoteMasterContextIn"])
+    types["DemoteMasterContextOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "verifyGtidConsistency": t.boolean().optional(),
+            "skipReplicationSetup": t.boolean().optional(),
+            "masterInstanceName": t.string().optional(),
+            "replicaConfiguration": t.proxy(
+                renames["DemoteMasterConfigurationOut"]
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TruncateLogContextOut"])
-    types["SqlInstancesGetDiskShrinkConfigResponseIn"] = t.struct(
+    ).named(renames["DemoteMasterContextOut"])
+    types["FailoverContextIn"] = t.struct(
+        {"settingsVersion": t.string().optional(), "kind": t.string().optional()}
+    ).named(renames["FailoverContextIn"])
+    types["FailoverContextOut"] = t.struct(
         {
-            "minimalTargetSizeGb": t.string().optional(),
+            "settingsVersion": t.string().optional(),
             "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FailoverContextOut"])
+    types["SqlServerUserDetailsIn"] = t.struct(
+        {
+            "serverRoles": t.array(t.string()).optional(),
+            "disabled": t.boolean().optional(),
+        }
+    ).named(renames["SqlServerUserDetailsIn"])
+    types["SqlServerUserDetailsOut"] = t.struct(
+        {
+            "serverRoles": t.array(t.string()).optional(),
+            "disabled": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlServerUserDetailsOut"])
+    types["MySqlSyncConfigIn"] = t.struct(
+        {"initialSyncFlags": t.array(t.proxy(renames["SyncFlagsIn"])).optional()}
+    ).named(renames["MySqlSyncConfigIn"])
+    types["MySqlSyncConfigOut"] = t.struct(
+        {
+            "initialSyncFlags": t.array(t.proxy(renames["SyncFlagsOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MySqlSyncConfigOut"])
+    types["OperationsListResponseIn"] = t.struct(
+        {
+            "items": t.array(t.proxy(renames["OperationIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
+        }
+    ).named(renames["OperationsListResponseIn"])
+    types["OperationsListResponseOut"] = t.struct(
+        {
+            "items": t.array(t.proxy(renames["OperationOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationsListResponseOut"])
+    types["PasswordValidationPolicyIn"] = t.struct(
+        {
+            "minLength": t.integer().optional(),
+            "enablePasswordPolicy": t.boolean().optional(),
+            "reuseInterval": t.integer().optional(),
+            "complexity": t.string().optional(),
+            "passwordChangeInterval": t.string().optional(),
+            "disallowUsernameSubstring": t.boolean().optional(),
+        }
+    ).named(renames["PasswordValidationPolicyIn"])
+    types["PasswordValidationPolicyOut"] = t.struct(
+        {
+            "minLength": t.integer().optional(),
+            "enablePasswordPolicy": t.boolean().optional(),
+            "reuseInterval": t.integer().optional(),
+            "complexity": t.string().optional(),
+            "passwordChangeInterval": t.string().optional(),
+            "disallowUsernameSubstring": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PasswordValidationPolicyOut"])
+    types["OperationErrorsIn"] = t.struct(
+        {
+            "errors": t.array(t.proxy(renames["OperationErrorIn"])).optional(),
+            "kind": t.string().optional(),
+        }
+    ).named(renames["OperationErrorsIn"])
+    types["OperationErrorsOut"] = t.struct(
+        {
+            "errors": t.array(t.proxy(renames["OperationErrorOut"])).optional(),
+            "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationErrorsOut"])
+    types["SqlInstancesStartExternalSyncRequestIn"] = t.struct(
+        {
+            "skipVerification": t.boolean().optional(),
+            "syncMode": t.string().optional(),
+            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigIn"]).optional(),
+        }
+    ).named(renames["SqlInstancesStartExternalSyncRequestIn"])
+    types["SqlInstancesStartExternalSyncRequestOut"] = t.struct(
+        {
+            "skipVerification": t.boolean().optional(),
+            "syncMode": t.string().optional(),
+            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlInstancesStartExternalSyncRequestOut"])
+    types["OnPremisesConfigurationIn"] = t.struct(
+        {
+            "clientCertificate": t.string().optional(),
+            "clientKey": t.string().optional(),
+            "kind": t.string().optional(),
+            "username": t.string().optional(),
+            "dumpFilePath": t.string().optional(),
+            "sourceInstance": t.proxy(renames["InstanceReferenceIn"]).optional(),
+            "password": t.string().optional(),
+            "hostPort": t.string().optional(),
+            "caCertificate": t.string().optional(),
+        }
+    ).named(renames["OnPremisesConfigurationIn"])
+    types["OnPremisesConfigurationOut"] = t.struct(
+        {
+            "clientCertificate": t.string().optional(),
+            "clientKey": t.string().optional(),
+            "kind": t.string().optional(),
+            "username": t.string().optional(),
+            "dumpFilePath": t.string().optional(),
+            "sourceInstance": t.proxy(renames["InstanceReferenceOut"]).optional(),
+            "password": t.string().optional(),
+            "hostPort": t.string().optional(),
+            "caCertificate": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OnPremisesConfigurationOut"])
+    types["InsightsConfigIn"] = t.struct(
+        {
+            "queryInsightsEnabled": t.boolean().optional(),
+            "recordApplicationTags": t.boolean().optional(),
+            "queryStringLength": t.integer().optional(),
+            "queryPlansPerMinute": t.integer().optional(),
+            "recordClientAddress": t.boolean().optional(),
+        }
+    ).named(renames["InsightsConfigIn"])
+    types["InsightsConfigOut"] = t.struct(
+        {
+            "queryInsightsEnabled": t.boolean().optional(),
+            "recordApplicationTags": t.boolean().optional(),
+            "queryStringLength": t.integer().optional(),
+            "queryPlansPerMinute": t.integer().optional(),
+            "recordClientAddress": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InsightsConfigOut"])
+    types["GenerateEphemeralCertResponseIn"] = t.struct(
+        {"ephemeralCert": t.proxy(renames["SslCertIn"]).optional()}
+    ).named(renames["GenerateEphemeralCertResponseIn"])
+    types["GenerateEphemeralCertResponseOut"] = t.struct(
+        {
+            "ephemeralCert": t.proxy(renames["SslCertOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GenerateEphemeralCertResponseOut"])
+    types["InstancesListResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "warnings": t.array(t.proxy(renames["ApiWarningIn"])).optional(),
+            "items": t.array(t.proxy(renames["DatabaseInstanceIn"])).optional(),
+        }
+    ).named(renames["InstancesListResponseIn"])
+    types["InstancesListResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "warnings": t.array(t.proxy(renames["ApiWarningOut"])).optional(),
+            "items": t.array(t.proxy(renames["DatabaseInstanceOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesListResponseOut"])
+    types["TiersListResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["TierIn"])).optional(),
+        }
+    ).named(renames["TiersListResponseIn"])
+    types["TiersListResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["TierOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TiersListResponseOut"])
+    types["SqlServerDatabaseDetailsIn"] = t.struct(
+        {
+            "compatibilityLevel": t.integer().optional(),
+            "recoveryModel": t.string().optional(),
+        }
+    ).named(renames["SqlServerDatabaseDetailsIn"])
+    types["SqlServerDatabaseDetailsOut"] = t.struct(
+        {
+            "compatibilityLevel": t.integer().optional(),
+            "recoveryModel": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlServerDatabaseDetailsOut"])
+    types["BackupConfigurationIn"] = t.struct(
+        {
+            "location": t.string().optional(),
+            "replicationLogArchivingEnabled": t.boolean().optional(),
+            "backupRetentionSettings": t.proxy(
+                renames["BackupRetentionSettingsIn"]
+            ).optional(),
+            "transactionLogRetentionDays": t.integer().optional(),
+            "binaryLogEnabled": t.boolean().optional(),
+            "enabled": t.boolean().optional(),
+            "startTime": t.string().optional(),
+            "pointInTimeRecoveryEnabled": t.boolean().optional(),
+            "kind": t.string().optional(),
+        }
+    ).named(renames["BackupConfigurationIn"])
+    types["BackupConfigurationOut"] = t.struct(
+        {
+            "location": t.string().optional(),
+            "replicationLogArchivingEnabled": t.boolean().optional(),
+            "backupRetentionSettings": t.proxy(
+                renames["BackupRetentionSettingsOut"]
+            ).optional(),
+            "transactionLogRetentionDays": t.integer().optional(),
+            "binaryLogEnabled": t.boolean().optional(),
+            "enabled": t.boolean().optional(),
+            "startTime": t.string().optional(),
+            "pointInTimeRecoveryEnabled": t.boolean().optional(),
+            "kind": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BackupConfigurationOut"])
+    types["BackupRunIn"] = t.struct(
+        {
+            "status": t.string().optional(),
+            "endTime": t.string().optional(),
+            "timeZone": t.string().optional(),
+            "kind": t.string().optional(),
+            "diskEncryptionStatus": t.proxy(
+                renames["DiskEncryptionStatusIn"]
+            ).optional(),
+            "selfLink": t.string().optional(),
+            "windowStartTime": t.string().optional(),
+            "type": t.string().optional(),
+            "startTime": t.string().optional(),
+            "instance": t.string().optional(),
+            "diskEncryptionConfiguration": t.proxy(
+                renames["DiskEncryptionConfigurationIn"]
+            ).optional(),
+            "description": t.string().optional(),
+            "error": t.proxy(renames["OperationErrorIn"]).optional(),
+            "backupKind": t.string().optional(),
+            "enqueuedTime": t.string().optional(),
+            "id": t.string().optional(),
+            "location": t.string().optional(),
+        }
+    ).named(renames["BackupRunIn"])
+    types["BackupRunOut"] = t.struct(
+        {
+            "status": t.string().optional(),
+            "endTime": t.string().optional(),
+            "timeZone": t.string().optional(),
+            "kind": t.string().optional(),
+            "diskEncryptionStatus": t.proxy(
+                renames["DiskEncryptionStatusOut"]
+            ).optional(),
+            "selfLink": t.string().optional(),
+            "windowStartTime": t.string().optional(),
+            "type": t.string().optional(),
+            "startTime": t.string().optional(),
+            "instance": t.string().optional(),
+            "diskEncryptionConfiguration": t.proxy(
+                renames["DiskEncryptionConfigurationOut"]
+            ).optional(),
+            "description": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "backupKind": t.string().optional(),
+            "enqueuedTime": t.string().optional(),
+            "id": t.string().optional(),
+            "location": t.string().optional(),
+        }
+    ).named(renames["BackupRunOut"])
+    types["SqlActiveDirectoryConfigIn"] = t.struct(
+        {"kind": t.string().optional(), "domain": t.string().optional()}
+    ).named(renames["SqlActiveDirectoryConfigIn"])
+    types["SqlActiveDirectoryConfigOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "domain": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlActiveDirectoryConfigOut"])
+    types["SqlServerAuditConfigIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "retentionInterval": t.string().optional(),
+            "bucket": t.string().optional(),
+            "uploadInterval": t.string().optional(),
+        }
+    ).named(renames["SqlServerAuditConfigIn"])
+    types["SqlServerAuditConfigOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "retentionInterval": t.string().optional(),
+            "bucket": t.string().optional(),
+            "uploadInterval": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlServerAuditConfigOut"])
+    types["PerformDiskShrinkContextIn"] = t.struct(
+        {"targetSizeGb": t.string().optional()}
+    ).named(renames["PerformDiskShrinkContextIn"])
+    types["PerformDiskShrinkContextOut"] = t.struct(
+        {
+            "targetSizeGb": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PerformDiskShrinkContextOut"])
+    types["GenerateEphemeralCertRequestIn"] = t.struct(
+        {
+            "public_key": t.string().optional(),
+            "readTime": t.string().optional(),
+            "validDuration": t.string().optional(),
+            "access_token": t.string().optional(),
+        }
+    ).named(renames["GenerateEphemeralCertRequestIn"])
+    types["GenerateEphemeralCertRequestOut"] = t.struct(
+        {
+            "public_key": t.string().optional(),
+            "readTime": t.string().optional(),
+            "validDuration": t.string().optional(),
+            "access_token": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GenerateEphemeralCertRequestOut"])
+    types["DatabaseFlagsIn"] = t.struct(
+        {"name": t.string().optional(), "value": t.string().optional()}
+    ).named(renames["DatabaseFlagsIn"])
+    types["DatabaseFlagsOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "value": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DatabaseFlagsOut"])
+    types["InstancesImportRequestIn"] = t.struct(
+        {"importContext": t.proxy(renames["ImportContextIn"]).optional()}
+    ).named(renames["InstancesImportRequestIn"])
+    types["InstancesImportRequestOut"] = t.struct(
+        {
+            "importContext": t.proxy(renames["ImportContextOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesImportRequestOut"])
+    types["SqlOutOfDiskReportIn"] = t.struct(
+        {
+            "sqlMinRecommendedIncreaseSizeGb": t.integer().optional(),
+            "sqlOutOfDiskState": t.string().optional(),
+        }
+    ).named(renames["SqlOutOfDiskReportIn"])
+    types["SqlOutOfDiskReportOut"] = t.struct(
+        {
+            "sqlMinRecommendedIncreaseSizeGb": t.integer().optional(),
+            "sqlOutOfDiskState": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlOutOfDiskReportOut"])
+    types["InstancesFailoverRequestIn"] = t.struct(
+        {"failoverContext": t.proxy(renames["FailoverContextIn"]).optional()}
+    ).named(renames["InstancesFailoverRequestIn"])
+    types["InstancesFailoverRequestOut"] = t.struct(
+        {
+            "failoverContext": t.proxy(renames["FailoverContextOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesFailoverRequestOut"])
+    types["SslCertDetailIn"] = t.struct(
+        {
+            "certPrivateKey": t.string().optional(),
+            "certInfo": t.proxy(renames["SslCertIn"]).optional(),
+        }
+    ).named(renames["SslCertDetailIn"])
+    types["SslCertDetailOut"] = t.struct(
+        {
+            "certPrivateKey": t.string().optional(),
+            "certInfo": t.proxy(renames["SslCertOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SslCertDetailOut"])
+    types["SqlInstancesVerifyExternalSyncSettingsRequestIn"] = t.struct(
+        {
+            "verifyReplicationOnly": t.boolean().optional(),
+            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigIn"]).optional(),
+            "syncMode": t.string().optional(),
+            "verifyConnectionOnly": t.boolean().optional(),
+        }
+    ).named(renames["SqlInstancesVerifyExternalSyncSettingsRequestIn"])
+    types["SqlInstancesVerifyExternalSyncSettingsRequestOut"] = t.struct(
+        {
+            "verifyReplicationOnly": t.boolean().optional(),
+            "mysqlSyncConfig": t.proxy(renames["MySqlSyncConfigOut"]).optional(),
+            "syncMode": t.string().optional(),
+            "verifyConnectionOnly": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlInstancesVerifyExternalSyncSettingsRequestOut"])
+    types["ApiWarningIn"] = t.struct(
+        {
+            "code": t.string().optional(),
+            "region": t.string().optional(),
             "message": t.string().optional(),
         }
-    ).named(renames["SqlInstancesGetDiskShrinkConfigResponseIn"])
-    types["SqlInstancesGetDiskShrinkConfigResponseOut"] = t.struct(
+    ).named(renames["ApiWarningIn"])
+    types["ApiWarningOut"] = t.struct(
         {
-            "minimalTargetSizeGb": t.string().optional(),
-            "kind": t.string().optional(),
+            "code": t.string().optional(),
+            "region": t.string().optional(),
             "message": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SqlInstancesGetDiskShrinkConfigResponseOut"])
+    ).named(renames["ApiWarningOut"])
+    types["OperationMetadataIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["OperationMetadataIn"]
+    )
+    types["OperationMetadataOut"] = t.struct(
+        {
+            "apiVersion": t.string().optional(),
+            "target": t.string().optional(),
+            "createTime": t.string().optional(),
+            "endTime": t.string().optional(),
+            "cancelRequested": t.boolean().optional(),
+            "statusDetail": t.string().optional(),
+            "verb": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationMetadataOut"])
+    types["InstancesTruncateLogRequestIn"] = t.struct(
+        {"truncateLogContext": t.proxy(renames["TruncateLogContextIn"]).optional()}
+    ).named(renames["InstancesTruncateLogRequestIn"])
+    types["InstancesTruncateLogRequestOut"] = t.struct(
+        {
+            "truncateLogContext": t.proxy(renames["TruncateLogContextOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesTruncateLogRequestOut"])
+    types["IpMappingIn"] = t.struct(
+        {
+            "ipAddress": t.string().optional(),
+            "type": t.string().optional(),
+            "timeToRetire": t.string().optional(),
+        }
+    ).named(renames["IpMappingIn"])
+    types["IpMappingOut"] = t.struct(
+        {
+            "ipAddress": t.string().optional(),
+            "type": t.string().optional(),
+            "timeToRetire": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["IpMappingOut"])
+    types["DenyMaintenancePeriodIn"] = t.struct(
+        {
+            "endDate": t.string().optional(),
+            "startDate": t.string().optional(),
+            "time": t.string().optional(),
+        }
+    ).named(renames["DenyMaintenancePeriodIn"])
+    types["DenyMaintenancePeriodOut"] = t.struct(
+        {
+            "endDate": t.string().optional(),
+            "startDate": t.string().optional(),
+            "time": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DenyMaintenancePeriodOut"])
+    types["BackupContextIn"] = t.struct(
+        {"kind": t.string().optional(), "backupId": t.string().optional()}
+    ).named(renames["BackupContextIn"])
+    types["BackupContextOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "backupId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BackupContextOut"])
+    types["MySqlReplicaConfigurationIn"] = t.struct(
+        {
+            "dumpFilePath": t.string().optional(),
+            "sslCipher": t.string().optional(),
+            "caCertificate": t.string().optional(),
+            "verifyServerCertificate": t.boolean().optional(),
+            "masterHeartbeatPeriod": t.string().optional(),
+            "connectRetryInterval": t.integer().optional(),
+            "password": t.string().optional(),
+            "clientCertificate": t.string().optional(),
+            "username": t.string().optional(),
+            "kind": t.string().optional(),
+            "clientKey": t.string().optional(),
+        }
+    ).named(renames["MySqlReplicaConfigurationIn"])
+    types["MySqlReplicaConfigurationOut"] = t.struct(
+        {
+            "dumpFilePath": t.string().optional(),
+            "sslCipher": t.string().optional(),
+            "caCertificate": t.string().optional(),
+            "verifyServerCertificate": t.boolean().optional(),
+            "masterHeartbeatPeriod": t.string().optional(),
+            "connectRetryInterval": t.integer().optional(),
+            "password": t.string().optional(),
+            "clientCertificate": t.string().optional(),
+            "username": t.string().optional(),
+            "kind": t.string().optional(),
+            "clientKey": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MySqlReplicaConfigurationOut"])
+    types["ImportContextIn"] = t.struct(
+        {
+            "uri": t.string().optional(),
+            "csvImportOptions": t.struct(
+                {
+                    "fieldsTerminatedBy": t.string().optional(),
+                    "quoteCharacter": t.string().optional(),
+                    "table": t.string().optional(),
+                    "escapeCharacter": t.string().optional(),
+                    "columns": t.array(t.string()).optional(),
+                    "linesTerminatedBy": t.string().optional(),
+                }
+            ).optional(),
+            "database": t.string().optional(),
+            "importUser": t.string().optional(),
+            "fileType": t.string().optional(),
+            "kind": t.string().optional(),
+            "bakImportOptions": t.struct(
+                {
+                    "striped": t.boolean().optional(),
+                    "encryptionOptions": t.struct(
+                        {
+                            "pvkPassword": t.string().optional(),
+                            "pvkPath": t.string().optional(),
+                            "certPath": t.string().optional(),
+                        }
+                    ),
+                }
+            ).optional(),
+        }
+    ).named(renames["ImportContextIn"])
+    types["ImportContextOut"] = t.struct(
+        {
+            "uri": t.string().optional(),
+            "csvImportOptions": t.struct(
+                {
+                    "fieldsTerminatedBy": t.string().optional(),
+                    "quoteCharacter": t.string().optional(),
+                    "table": t.string().optional(),
+                    "escapeCharacter": t.string().optional(),
+                    "columns": t.array(t.string()).optional(),
+                    "linesTerminatedBy": t.string().optional(),
+                }
+            ).optional(),
+            "database": t.string().optional(),
+            "importUser": t.string().optional(),
+            "fileType": t.string().optional(),
+            "kind": t.string().optional(),
+            "bakImportOptions": t.struct(
+                {
+                    "striped": t.boolean().optional(),
+                    "encryptionOptions": t.struct(
+                        {
+                            "pvkPassword": t.string().optional(),
+                            "pvkPath": t.string().optional(),
+                            "certPath": t.string().optional(),
+                        }
+                    ),
+                }
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ImportContextOut"])
+    types["SqlInstancesResetReplicaSizeRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["SqlInstancesResetReplicaSizeRequestIn"])
+    types["SqlInstancesResetReplicaSizeRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["SqlInstancesResetReplicaSizeRequestOut"])
+    types["InstancesExportRequestIn"] = t.struct(
+        {"exportContext": t.proxy(renames["ExportContextIn"]).optional()}
+    ).named(renames["InstancesExportRequestIn"])
+    types["InstancesExportRequestOut"] = t.struct(
+        {
+            "exportContext": t.proxy(renames["ExportContextOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesExportRequestOut"])
+    types["UsersListResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "items": t.array(t.proxy(renames["UserIn"])).optional(),
+        }
+    ).named(renames["UsersListResponseIn"])
+    types["UsersListResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "items": t.array(t.proxy(renames["UserOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UsersListResponseOut"])
+    types["InstancesCloneRequestIn"] = t.struct(
+        {"cloneContext": t.proxy(renames["CloneContextIn"]).optional()}
+    ).named(renames["InstancesCloneRequestIn"])
+    types["InstancesCloneRequestOut"] = t.struct(
+        {
+            "cloneContext": t.proxy(renames["CloneContextOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InstancesCloneRequestOut"])
+    types["SqlScheduledMaintenanceIn"] = t.struct(
+        {
+            "startTime": t.string().optional(),
+            "scheduleDeadlineTime": t.string().optional(),
+            "canDefer": t.boolean(),
+            "canReschedule": t.boolean().optional(),
+        }
+    ).named(renames["SqlScheduledMaintenanceIn"])
+    types["SqlScheduledMaintenanceOut"] = t.struct(
+        {
+            "startTime": t.string().optional(),
+            "scheduleDeadlineTime": t.string().optional(),
+            "canDefer": t.boolean(),
+            "canReschedule": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SqlScheduledMaintenanceOut"])
 
     functions = {}
-    functions["backupRunsList"] = sqladmin.get(
-        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "id": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["BackupRunOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["backupRunsDelete"] = sqladmin.get(
-        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "id": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["BackupRunOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["backupRunsInsert"] = sqladmin.get(
-        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "id": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["BackupRunOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["backupRunsGet"] = sqladmin.get(
-        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "id": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["BackupRunOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["flagsList"] = sqladmin.get(
-        "v1/flags",
-        t.struct(
-            {"databaseVersion": t.string().optional(), "auth": t.string().optional()}
-        ),
-        t.proxy(renames["FlagsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["databasesDelete"] = sqladmin.patch(
-        "v1/projects/{project}/instances/{instance}/databases/{database}",
-        t.struct(
-            {
-                "database": t.string().optional(),
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "charset": t.string().optional(),
-                "etag": t.string().optional(),
-                "sqlserverDatabaseDetails": t.proxy(
-                    renames["SqlServerDatabaseDetailsIn"]
-                ),
-                "kind": t.string().optional(),
-                "name": t.string().optional(),
-                "collation": t.string().optional(),
-                "selfLink": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["databasesList"] = sqladmin.patch(
-        "v1/projects/{project}/instances/{instance}/databases/{database}",
-        t.struct(
-            {
-                "database": t.string().optional(),
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "charset": t.string().optional(),
-                "etag": t.string().optional(),
-                "sqlserverDatabaseDetails": t.proxy(
-                    renames["SqlServerDatabaseDetailsIn"]
-                ),
-                "kind": t.string().optional(),
-                "name": t.string().optional(),
-                "collation": t.string().optional(),
-                "selfLink": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["databasesUpdate"] = sqladmin.patch(
-        "v1/projects/{project}/instances/{instance}/databases/{database}",
-        t.struct(
-            {
-                "database": t.string().optional(),
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "charset": t.string().optional(),
-                "etag": t.string().optional(),
-                "sqlserverDatabaseDetails": t.proxy(
-                    renames["SqlServerDatabaseDetailsIn"]
-                ),
-                "kind": t.string().optional(),
-                "name": t.string().optional(),
-                "collation": t.string().optional(),
-                "selfLink": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["databasesInsert"] = sqladmin.patch(
-        "v1/projects/{project}/instances/{instance}/databases/{database}",
-        t.struct(
-            {
-                "database": t.string().optional(),
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "charset": t.string().optional(),
-                "etag": t.string().optional(),
-                "sqlserverDatabaseDetails": t.proxy(
-                    renames["SqlServerDatabaseDetailsIn"]
-                ),
-                "kind": t.string().optional(),
-                "name": t.string().optional(),
-                "collation": t.string().optional(),
-                "selfLink": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["databasesGet"] = sqladmin.patch(
-        "v1/projects/{project}/instances/{instance}/databases/{database}",
-        t.struct(
-            {
-                "database": t.string().optional(),
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "charset": t.string().optional(),
-                "etag": t.string().optional(),
-                "sqlserverDatabaseDetails": t.proxy(
-                    renames["SqlServerDatabaseDetailsIn"]
-                ),
-                "kind": t.string().optional(),
-                "name": t.string().optional(),
-                "collation": t.string().optional(),
-                "selfLink": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["databasesPatch"] = sqladmin.patch(
-        "v1/projects/{project}/instances/{instance}/databases/{database}",
-        t.struct(
-            {
-                "database": t.string().optional(),
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "charset": t.string().optional(),
-                "etag": t.string().optional(),
-                "sqlserverDatabaseDetails": t.proxy(
-                    renames["SqlServerDatabaseDetailsIn"]
-                ),
-                "kind": t.string().optional(),
-                "name": t.string().optional(),
-                "collation": t.string().optional(),
-                "selfLink": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["sslCertsInsert"] = sqladmin.delete(
-        "v1/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "sha1Fingerprint": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["sslCertsList"] = sqladmin.delete(
-        "v1/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "sha1Fingerprint": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["sslCertsCreateEphemeral"] = sqladmin.delete(
-        "v1/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "sha1Fingerprint": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["sslCertsGet"] = sqladmin.delete(
-        "v1/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "sha1Fingerprint": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["sslCertsDelete"] = sqladmin.delete(
-        "v1/projects/{project}/instances/{instance}/sslCerts/{sha1Fingerprint}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "instance": t.string().optional(),
-                "sha1Fingerprint": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["tiersList"] = sqladmin.get(
-        "v1/projects/{project}/tiers",
-        t.struct({"project": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["TiersListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesImport"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesDemoteMaster"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesAddServerCa"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesListServerCas"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesRestart"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesInsert"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesRestoreBackup"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesUpdate"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesPatch"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesStartReplica"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesFailover"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesResetSslConfig"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesDelete"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesGet"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesRotateServerCa"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesClone"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesTruncateLog"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesPromoteReplica"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesList"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesExport"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["instancesStopReplica"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}/stopReplica",
-        t.struct(
-            {
-                "instance": t.string().optional(),
-                "project": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["projectsInstancesVerifyExternalSyncSettings"] = sqladmin.post(
         "v1/projects/{project}/instances/{instance}/performDiskShrink",
         t.struct(
@@ -2398,7 +1845,7 @@ def import_sqladmin() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsInstancesStartExternalSync"] = sqladmin.post(
+    functions["projectsInstancesResetReplicaSize"] = sqladmin.post(
         "v1/projects/{project}/instances/{instance}/performDiskShrink",
         t.struct(
             {
@@ -2440,7 +1887,7 @@ def import_sqladmin() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsInstancesResetReplicaSize"] = sqladmin.post(
+    functions["projectsInstancesStartExternalSync"] = sqladmin.post(
         "v1/projects/{project}/instances/{instance}/performDiskShrink",
         t.struct(
             {
@@ -2468,187 +1915,712 @@ def import_sqladmin() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersDelete"] = sqladmin.post(
+    functions["usersUpdate"] = sqladmin.get(
         "v1/projects/{project}/instances/{instance}/users",
         t.struct(
             {
                 "instance": t.string().optional(),
                 "project": t.string().optional(),
-                "name": t.string().optional(),
-                "kind": t.string().optional(),
-                "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsIn"]),
-                "etag": t.string().optional(),
-                "host": t.string().optional(),
-                "type": t.string().optional(),
-                "passwordPolicy": t.proxy(
-                    renames["UserPasswordValidationPolicyIn"]
-                ).optional(),
-                "password": t.string().optional(),
-                "dualPasswordType": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["OperationOut"]),
+        t.proxy(renames["UsersListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersGet"] = sqladmin.post(
+    functions["usersDelete"] = sqladmin.get(
         "v1/projects/{project}/instances/{instance}/users",
         t.struct(
             {
                 "instance": t.string().optional(),
                 "project": t.string().optional(),
-                "name": t.string().optional(),
-                "kind": t.string().optional(),
-                "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsIn"]),
-                "etag": t.string().optional(),
-                "host": t.string().optional(),
-                "type": t.string().optional(),
-                "passwordPolicy": t.proxy(
-                    renames["UserPasswordValidationPolicyIn"]
-                ).optional(),
-                "password": t.string().optional(),
-                "dualPasswordType": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["OperationOut"]),
+        t.proxy(renames["UsersListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersList"] = sqladmin.post(
+    functions["usersInsert"] = sqladmin.get(
         "v1/projects/{project}/instances/{instance}/users",
         t.struct(
             {
                 "instance": t.string().optional(),
                 "project": t.string().optional(),
-                "name": t.string().optional(),
-                "kind": t.string().optional(),
-                "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsIn"]),
-                "etag": t.string().optional(),
-                "host": t.string().optional(),
-                "type": t.string().optional(),
-                "passwordPolicy": t.proxy(
-                    renames["UserPasswordValidationPolicyIn"]
-                ).optional(),
-                "password": t.string().optional(),
-                "dualPasswordType": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["OperationOut"]),
+        t.proxy(renames["UsersListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersUpdate"] = sqladmin.post(
+    functions["usersGet"] = sqladmin.get(
         "v1/projects/{project}/instances/{instance}/users",
         t.struct(
             {
                 "instance": t.string().optional(),
                 "project": t.string().optional(),
-                "name": t.string().optional(),
-                "kind": t.string().optional(),
-                "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsIn"]),
-                "etag": t.string().optional(),
-                "host": t.string().optional(),
-                "type": t.string().optional(),
-                "passwordPolicy": t.proxy(
-                    renames["UserPasswordValidationPolicyIn"]
-                ).optional(),
-                "password": t.string().optional(),
-                "dualPasswordType": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["OperationOut"]),
+        t.proxy(renames["UsersListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["usersInsert"] = sqladmin.post(
+    functions["usersList"] = sqladmin.get(
         "v1/projects/{project}/instances/{instance}/users",
         t.struct(
             {
                 "instance": t.string().optional(),
                 "project": t.string().optional(),
-                "name": t.string().optional(),
-                "kind": t.string().optional(),
-                "sqlserverUserDetails": t.proxy(renames["SqlServerUserDetailsIn"]),
-                "etag": t.string().optional(),
-                "host": t.string().optional(),
-                "type": t.string().optional(),
-                "passwordPolicy": t.proxy(
-                    renames["UserPasswordValidationPolicyIn"]
-                ).optional(),
-                "password": t.string().optional(),
-                "dualPasswordType": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["OperationOut"]),
+        t.proxy(renames["UsersListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["connectGet"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}:generateEphemeralCert",
+    functions["connectGenerateEphemeralCert"] = sqladmin.get(
+        "v1/projects/{project}/instances/{instance}/connectSettings",
         t.struct(
             {
                 "project": t.string().optional(),
                 "instance": t.string().optional(),
-                "access_token": t.string().optional(),
-                "validDuration": t.string().optional(),
-                "public_key": t.string().optional(),
                 "readTime": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GenerateEphemeralCertResponseOut"]),
+        t.proxy(renames["ConnectSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["connectGenerateEphemeralCert"] = sqladmin.post(
-        "v1/projects/{project}/instances/{instance}:generateEphemeralCert",
+    functions["connectGet"] = sqladmin.get(
+        "v1/projects/{project}/instances/{instance}/connectSettings",
         t.struct(
             {
                 "project": t.string().optional(),
                 "instance": t.string().optional(),
-                "access_token": t.string().optional(),
-                "validDuration": t.string().optional(),
-                "public_key": t.string().optional(),
                 "readTime": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GenerateEphemeralCertResponseOut"]),
+        t.proxy(renames["ConnectSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["operationsGet"] = sqladmin.get(
-        "v1/projects/{project}/operations",
+    functions["flagsList"] = sqladmin.get(
+        "v1/flags",
+        t.struct(
+            {"databaseVersion": t.string().optional(), "auth": t.string().optional()}
+        ),
+        t.proxy(renames["FlagsListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["backupRunsList"] = sqladmin.delete(
+        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
         t.struct(
             {
                 "instance": t.string().optional(),
-                "maxResults": t.integer().optional(),
                 "project": t.string().optional(),
-                "pageToken": t.string().optional(),
+                "id": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["OperationsListResponseOut"]),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["backupRunsInsert"] = sqladmin.delete(
+        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
+        t.struct(
+            {
+                "instance": t.string().optional(),
+                "project": t.string().optional(),
+                "id": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["backupRunsGet"] = sqladmin.delete(
+        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
+        t.struct(
+            {
+                "instance": t.string().optional(),
+                "project": t.string().optional(),
+                "id": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["backupRunsDelete"] = sqladmin.delete(
+        "v1/projects/{project}/instances/{instance}/backupRuns/{id}",
+        t.struct(
+            {
+                "instance": t.string().optional(),
+                "project": t.string().optional(),
+                "id": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["sslCertsInsert"] = sqladmin.get(
+        "v1/projects/{project}/instances/{instance}/sslCerts",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SslCertsListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["sslCertsDelete"] = sqladmin.get(
+        "v1/projects/{project}/instances/{instance}/sslCerts",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SslCertsListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["sslCertsCreateEphemeral"] = sqladmin.get(
+        "v1/projects/{project}/instances/{instance}/sslCerts",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SslCertsListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["sslCertsGet"] = sqladmin.get(
+        "v1/projects/{project}/instances/{instance}/sslCerts",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SslCertsListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["sslCertsList"] = sqladmin.get(
+        "v1/projects/{project}/instances/{instance}/sslCerts",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SslCertsListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["operationsList"] = sqladmin.get(
-        "v1/projects/{project}/operations",
+        "v1/projects/{project}/operations/{operation}",
         t.struct(
             {
-                "instance": t.string().optional(),
-                "maxResults": t.integer().optional(),
+                "operation": t.string().optional(),
                 "project": t.string().optional(),
-                "pageToken": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["OperationsListResponseOut"]),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["operationsGet"] = sqladmin.get(
+        "v1/projects/{project}/operations/{operation}",
+        t.struct(
+            {
+                "operation": t.string().optional(),
+                "project": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["tiersList"] = sqladmin.get(
+        "v1/projects/{project}/tiers",
+        t.struct({"project": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["TiersListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["databasesGet"] = sqladmin.put(
+        "v1/projects/{project}/instances/{instance}/databases/{database}",
+        t.struct(
+            {
+                "database": t.string().optional(),
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "name": t.string().optional(),
+                "etag": t.string().optional(),
+                "collation": t.string().optional(),
+                "selfLink": t.string().optional(),
+                "sqlserverDatabaseDetails": t.proxy(
+                    renames["SqlServerDatabaseDetailsIn"]
+                ),
+                "charset": t.string().optional(),
+                "kind": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["databasesDelete"] = sqladmin.put(
+        "v1/projects/{project}/instances/{instance}/databases/{database}",
+        t.struct(
+            {
+                "database": t.string().optional(),
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "name": t.string().optional(),
+                "etag": t.string().optional(),
+                "collation": t.string().optional(),
+                "selfLink": t.string().optional(),
+                "sqlserverDatabaseDetails": t.proxy(
+                    renames["SqlServerDatabaseDetailsIn"]
+                ),
+                "charset": t.string().optional(),
+                "kind": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["databasesList"] = sqladmin.put(
+        "v1/projects/{project}/instances/{instance}/databases/{database}",
+        t.struct(
+            {
+                "database": t.string().optional(),
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "name": t.string().optional(),
+                "etag": t.string().optional(),
+                "collation": t.string().optional(),
+                "selfLink": t.string().optional(),
+                "sqlserverDatabaseDetails": t.proxy(
+                    renames["SqlServerDatabaseDetailsIn"]
+                ),
+                "charset": t.string().optional(),
+                "kind": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["databasesPatch"] = sqladmin.put(
+        "v1/projects/{project}/instances/{instance}/databases/{database}",
+        t.struct(
+            {
+                "database": t.string().optional(),
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "name": t.string().optional(),
+                "etag": t.string().optional(),
+                "collation": t.string().optional(),
+                "selfLink": t.string().optional(),
+                "sqlserverDatabaseDetails": t.proxy(
+                    renames["SqlServerDatabaseDetailsIn"]
+                ),
+                "charset": t.string().optional(),
+                "kind": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["databasesInsert"] = sqladmin.put(
+        "v1/projects/{project}/instances/{instance}/databases/{database}",
+        t.struct(
+            {
+                "database": t.string().optional(),
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "name": t.string().optional(),
+                "etag": t.string().optional(),
+                "collation": t.string().optional(),
+                "selfLink": t.string().optional(),
+                "sqlserverDatabaseDetails": t.proxy(
+                    renames["SqlServerDatabaseDetailsIn"]
+                ),
+                "charset": t.string().optional(),
+                "kind": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["databasesUpdate"] = sqladmin.put(
+        "v1/projects/{project}/instances/{instance}/databases/{database}",
+        t.struct(
+            {
+                "database": t.string().optional(),
+                "project": t.string().optional(),
+                "instance": t.string().optional(),
+                "name": t.string().optional(),
+                "etag": t.string().optional(),
+                "collation": t.string().optional(),
+                "selfLink": t.string().optional(),
+                "sqlserverDatabaseDetails": t.proxy(
+                    renames["SqlServerDatabaseDetailsIn"]
+                ),
+                "charset": t.string().optional(),
+                "kind": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesListServerCas"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesRestart"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesPatch"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesDemoteMaster"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesDelete"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesImport"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesGet"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesTruncateLog"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesStopReplica"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesAddServerCa"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesUpdate"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesFailover"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesInsert"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesExport"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesResetSslConfig"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesClone"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesRestoreBackup"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesStartReplica"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesPromoteReplica"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesRotateServerCa"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["instancesList"] = sqladmin.get(
+        "v1/projects/{project}/instances",
+        t.struct(
+            {
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["InstancesListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

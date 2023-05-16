@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_cloudprofiler() -> Import:
@@ -11,10 +11,10 @@ def import_cloudprofiler() -> Import:
         "ErrorResponse": "_cloudprofiler_1_ErrorResponse",
         "ProfileIn": "_cloudprofiler_2_ProfileIn",
         "ProfileOut": "_cloudprofiler_3_ProfileOut",
-        "DeploymentIn": "_cloudprofiler_4_DeploymentIn",
-        "DeploymentOut": "_cloudprofiler_5_DeploymentOut",
-        "CreateProfileRequestIn": "_cloudprofiler_6_CreateProfileRequestIn",
-        "CreateProfileRequestOut": "_cloudprofiler_7_CreateProfileRequestOut",
+        "CreateProfileRequestIn": "_cloudprofiler_4_CreateProfileRequestIn",
+        "CreateProfileRequestOut": "_cloudprofiler_5_CreateProfileRequestOut",
+        "DeploymentIn": "_cloudprofiler_6_DeploymentIn",
+        "DeploymentOut": "_cloudprofiler_7_DeploymentOut",
     }
 
     types = {}
@@ -24,38 +24,23 @@ def import_cloudprofiler() -> Import:
     types["ProfileIn"] = t.struct(
         {
             "deployment": t.proxy(renames["DeploymentIn"]).optional(),
-            "duration": t.string().optional(),
-            "profileType": t.string().optional(),
             "labels": t.struct({"_": t.string().optional()}).optional(),
+            "profileType": t.string().optional(),
             "profileBytes": t.string().optional(),
+            "duration": t.string().optional(),
         }
     ).named(renames["ProfileIn"])
     types["ProfileOut"] = t.struct(
         {
-            "name": t.string().optional(),
             "deployment": t.proxy(renames["DeploymentOut"]).optional(),
-            "duration": t.string().optional(),
-            "profileType": t.string().optional(),
             "labels": t.struct({"_": t.string().optional()}).optional(),
+            "profileType": t.string().optional(),
             "profileBytes": t.string().optional(),
+            "name": t.string().optional(),
+            "duration": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ProfileOut"])
-    types["DeploymentIn"] = t.struct(
-        {
-            "target": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "projectId": t.string().optional(),
-        }
-    ).named(renames["DeploymentIn"])
-    types["DeploymentOut"] = t.struct(
-        {
-            "target": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "projectId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentOut"])
     types["CreateProfileRequestIn"] = t.struct(
         {
             "deployment": t.proxy(renames["DeploymentIn"]).optional(),
@@ -69,6 +54,21 @@ def import_cloudprofiler() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CreateProfileRequestOut"])
+    types["DeploymentIn"] = t.struct(
+        {
+            "target": t.string().optional(),
+            "projectId": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["DeploymentIn"])
+    types["DeploymentOut"] = t.struct(
+        {
+            "target": t.string().optional(),
+            "projectId": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentOut"])
 
     functions = {}
     functions["projectsProfilesCreateOffline"] = cloudprofiler.post(

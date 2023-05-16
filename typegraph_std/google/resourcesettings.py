@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_resourcesettings() -> Import:
@@ -9,26 +9,51 @@ def import_resourcesettings() -> Import:
 
     renames = {
         "ErrorResponse": "_resourcesettings_1_ErrorResponse",
-        "GoogleCloudResourcesettingsV1ValueStringMapIn": "_resourcesettings_2_GoogleCloudResourcesettingsV1ValueStringMapIn",
-        "GoogleCloudResourcesettingsV1ValueStringMapOut": "_resourcesettings_3_GoogleCloudResourcesettingsV1ValueStringMapOut",
-        "GoogleCloudResourcesettingsV1ValueEnumValueIn": "_resourcesettings_4_GoogleCloudResourcesettingsV1ValueEnumValueIn",
-        "GoogleCloudResourcesettingsV1ValueEnumValueOut": "_resourcesettings_5_GoogleCloudResourcesettingsV1ValueEnumValueOut",
-        "GoogleCloudResourcesettingsV1ListSettingsResponseIn": "_resourcesettings_6_GoogleCloudResourcesettingsV1ListSettingsResponseIn",
-        "GoogleCloudResourcesettingsV1ListSettingsResponseOut": "_resourcesettings_7_GoogleCloudResourcesettingsV1ListSettingsResponseOut",
-        "GoogleCloudResourcesettingsV1ValueStringSetIn": "_resourcesettings_8_GoogleCloudResourcesettingsV1ValueStringSetIn",
-        "GoogleCloudResourcesettingsV1ValueStringSetOut": "_resourcesettings_9_GoogleCloudResourcesettingsV1ValueStringSetOut",
-        "GoogleCloudResourcesettingsV1SettingMetadataIn": "_resourcesettings_10_GoogleCloudResourcesettingsV1SettingMetadataIn",
-        "GoogleCloudResourcesettingsV1SettingMetadataOut": "_resourcesettings_11_GoogleCloudResourcesettingsV1SettingMetadataOut",
-        "GoogleCloudResourcesettingsV1ValueIn": "_resourcesettings_12_GoogleCloudResourcesettingsV1ValueIn",
-        "GoogleCloudResourcesettingsV1ValueOut": "_resourcesettings_13_GoogleCloudResourcesettingsV1ValueOut",
-        "GoogleCloudResourcesettingsV1SettingIn": "_resourcesettings_14_GoogleCloudResourcesettingsV1SettingIn",
-        "GoogleCloudResourcesettingsV1SettingOut": "_resourcesettings_15_GoogleCloudResourcesettingsV1SettingOut",
+        "GoogleCloudResourcesettingsV1SettingIn": "_resourcesettings_2_GoogleCloudResourcesettingsV1SettingIn",
+        "GoogleCloudResourcesettingsV1SettingOut": "_resourcesettings_3_GoogleCloudResourcesettingsV1SettingOut",
+        "GoogleCloudResourcesettingsV1ValueStringMapIn": "_resourcesettings_4_GoogleCloudResourcesettingsV1ValueStringMapIn",
+        "GoogleCloudResourcesettingsV1ValueStringMapOut": "_resourcesettings_5_GoogleCloudResourcesettingsV1ValueStringMapOut",
+        "GoogleCloudResourcesettingsV1ValueIn": "_resourcesettings_6_GoogleCloudResourcesettingsV1ValueIn",
+        "GoogleCloudResourcesettingsV1ValueOut": "_resourcesettings_7_GoogleCloudResourcesettingsV1ValueOut",
+        "GoogleCloudResourcesettingsV1SettingMetadataIn": "_resourcesettings_8_GoogleCloudResourcesettingsV1SettingMetadataIn",
+        "GoogleCloudResourcesettingsV1SettingMetadataOut": "_resourcesettings_9_GoogleCloudResourcesettingsV1SettingMetadataOut",
+        "GoogleCloudResourcesettingsV1ValueEnumValueIn": "_resourcesettings_10_GoogleCloudResourcesettingsV1ValueEnumValueIn",
+        "GoogleCloudResourcesettingsV1ValueEnumValueOut": "_resourcesettings_11_GoogleCloudResourcesettingsV1ValueEnumValueOut",
+        "GoogleCloudResourcesettingsV1ValueStringSetIn": "_resourcesettings_12_GoogleCloudResourcesettingsV1ValueStringSetIn",
+        "GoogleCloudResourcesettingsV1ValueStringSetOut": "_resourcesettings_13_GoogleCloudResourcesettingsV1ValueStringSetOut",
+        "GoogleCloudResourcesettingsV1ListSettingsResponseIn": "_resourcesettings_14_GoogleCloudResourcesettingsV1ListSettingsResponseIn",
+        "GoogleCloudResourcesettingsV1ListSettingsResponseOut": "_resourcesettings_15_GoogleCloudResourcesettingsV1ListSettingsResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
+    types["GoogleCloudResourcesettingsV1SettingIn"] = t.struct(
+        {
+            "etag": t.string().optional(),
+            "name": t.string().optional(),
+            "localValue": t.proxy(
+                renames["GoogleCloudResourcesettingsV1ValueIn"]
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudResourcesettingsV1SettingIn"])
+    types["GoogleCloudResourcesettingsV1SettingOut"] = t.struct(
+        {
+            "etag": t.string().optional(),
+            "name": t.string().optional(),
+            "metadata": t.proxy(
+                renames["GoogleCloudResourcesettingsV1SettingMetadataOut"]
+            ).optional(),
+            "localValue": t.proxy(
+                renames["GoogleCloudResourcesettingsV1ValueOut"]
+            ).optional(),
+            "effectiveValue": t.proxy(
+                renames["GoogleCloudResourcesettingsV1ValueOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudResourcesettingsV1SettingOut"])
     types["GoogleCloudResourcesettingsV1ValueStringMapIn"] = t.struct(
         {"mappings": t.struct({"_": t.string().optional()}).optional()}
     ).named(renames["GoogleCloudResourcesettingsV1ValueStringMapIn"])
@@ -38,72 +63,14 @@ def import_resourcesettings() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleCloudResourcesettingsV1ValueStringMapOut"])
-    types["GoogleCloudResourcesettingsV1ValueEnumValueIn"] = t.struct(
-        {"value": t.string().optional()}
-    ).named(renames["GoogleCloudResourcesettingsV1ValueEnumValueIn"])
-    types["GoogleCloudResourcesettingsV1ValueEnumValueOut"] = t.struct(
-        {
-            "value": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudResourcesettingsV1ValueEnumValueOut"])
-    types["GoogleCloudResourcesettingsV1ListSettingsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "settings": t.array(
-                t.proxy(renames["GoogleCloudResourcesettingsV1SettingIn"])
-            ).optional(),
-        }
-    ).named(renames["GoogleCloudResourcesettingsV1ListSettingsResponseIn"])
-    types["GoogleCloudResourcesettingsV1ListSettingsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "settings": t.array(
-                t.proxy(renames["GoogleCloudResourcesettingsV1SettingOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudResourcesettingsV1ListSettingsResponseOut"])
-    types["GoogleCloudResourcesettingsV1ValueStringSetIn"] = t.struct(
-        {"values": t.array(t.string()).optional()}
-    ).named(renames["GoogleCloudResourcesettingsV1ValueStringSetIn"])
-    types["GoogleCloudResourcesettingsV1ValueStringSetOut"] = t.struct(
-        {
-            "values": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudResourcesettingsV1ValueStringSetOut"])
-    types["GoogleCloudResourcesettingsV1SettingMetadataIn"] = t.struct(
-        {
-            "readOnly": t.boolean().optional(),
-            "defaultValue": t.proxy(
-                renames["GoogleCloudResourcesettingsV1ValueIn"]
-            ).optional(),
-            "description": t.string().optional(),
-            "dataType": t.string().optional(),
-            "displayName": t.string().optional(),
-        }
-    ).named(renames["GoogleCloudResourcesettingsV1SettingMetadataIn"])
-    types["GoogleCloudResourcesettingsV1SettingMetadataOut"] = t.struct(
-        {
-            "readOnly": t.boolean().optional(),
-            "defaultValue": t.proxy(
-                renames["GoogleCloudResourcesettingsV1ValueOut"]
-            ).optional(),
-            "description": t.string().optional(),
-            "dataType": t.string().optional(),
-            "displayName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudResourcesettingsV1SettingMetadataOut"])
     types["GoogleCloudResourcesettingsV1ValueIn"] = t.struct(
         {
             "stringValue": t.string().optional(),
-            "enumValue": t.proxy(
-                renames["GoogleCloudResourcesettingsV1ValueEnumValueIn"]
-            ).optional(),
             "stringMapValue": t.proxy(
                 renames["GoogleCloudResourcesettingsV1ValueStringMapIn"]
+            ).optional(),
+            "enumValue": t.proxy(
+                renames["GoogleCloudResourcesettingsV1ValueEnumValueIn"]
             ).optional(),
             "durationValue": t.string().optional(),
             "stringSetValue": t.proxy(
@@ -115,11 +82,11 @@ def import_resourcesettings() -> Import:
     types["GoogleCloudResourcesettingsV1ValueOut"] = t.struct(
         {
             "stringValue": t.string().optional(),
-            "enumValue": t.proxy(
-                renames["GoogleCloudResourcesettingsV1ValueEnumValueOut"]
-            ).optional(),
             "stringMapValue": t.proxy(
                 renames["GoogleCloudResourcesettingsV1ValueStringMapOut"]
+            ).optional(),
+            "enumValue": t.proxy(
+                renames["GoogleCloudResourcesettingsV1ValueEnumValueOut"]
             ).optional(),
             "durationValue": t.string().optional(),
             "stringSetValue": t.proxy(
@@ -129,79 +96,106 @@ def import_resourcesettings() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleCloudResourcesettingsV1ValueOut"])
-    types["GoogleCloudResourcesettingsV1SettingIn"] = t.struct(
+    types["GoogleCloudResourcesettingsV1SettingMetadataIn"] = t.struct(
         {
-            "etag": t.string().optional(),
-            "localValue": t.proxy(
+            "readOnly": t.boolean().optional(),
+            "defaultValue": t.proxy(
                 renames["GoogleCloudResourcesettingsV1ValueIn"]
             ).optional(),
-            "name": t.string().optional(),
+            "dataType": t.string().optional(),
+            "description": t.string().optional(),
+            "displayName": t.string().optional(),
         }
-    ).named(renames["GoogleCloudResourcesettingsV1SettingIn"])
-    types["GoogleCloudResourcesettingsV1SettingOut"] = t.struct(
+    ).named(renames["GoogleCloudResourcesettingsV1SettingMetadataIn"])
+    types["GoogleCloudResourcesettingsV1SettingMetadataOut"] = t.struct(
         {
-            "etag": t.string().optional(),
-            "localValue": t.proxy(
+            "readOnly": t.boolean().optional(),
+            "defaultValue": t.proxy(
                 renames["GoogleCloudResourcesettingsV1ValueOut"]
             ).optional(),
-            "metadata": t.proxy(
-                renames["GoogleCloudResourcesettingsV1SettingMetadataOut"]
-            ).optional(),
-            "name": t.string().optional(),
-            "effectiveValue": t.proxy(
-                renames["GoogleCloudResourcesettingsV1ValueOut"]
-            ).optional(),
+            "dataType": t.string().optional(),
+            "description": t.string().optional(),
+            "displayName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GoogleCloudResourcesettingsV1SettingOut"])
+    ).named(renames["GoogleCloudResourcesettingsV1SettingMetadataOut"])
+    types["GoogleCloudResourcesettingsV1ValueEnumValueIn"] = t.struct(
+        {"value": t.string().optional()}
+    ).named(renames["GoogleCloudResourcesettingsV1ValueEnumValueIn"])
+    types["GoogleCloudResourcesettingsV1ValueEnumValueOut"] = t.struct(
+        {
+            "value": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudResourcesettingsV1ValueEnumValueOut"])
+    types["GoogleCloudResourcesettingsV1ValueStringSetIn"] = t.struct(
+        {"values": t.array(t.string()).optional()}
+    ).named(renames["GoogleCloudResourcesettingsV1ValueStringSetIn"])
+    types["GoogleCloudResourcesettingsV1ValueStringSetOut"] = t.struct(
+        {
+            "values": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudResourcesettingsV1ValueStringSetOut"])
+    types["GoogleCloudResourcesettingsV1ListSettingsResponseIn"] = t.struct(
+        {
+            "settings": t.array(
+                t.proxy(renames["GoogleCloudResourcesettingsV1SettingIn"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudResourcesettingsV1ListSettingsResponseIn"])
+    types["GoogleCloudResourcesettingsV1ListSettingsResponseOut"] = t.struct(
+        {
+            "settings": t.array(
+                t.proxy(renames["GoogleCloudResourcesettingsV1SettingOut"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudResourcesettingsV1ListSettingsResponseOut"])
 
     functions = {}
-    functions["foldersSettingsPatch"] = resourcesettings.get(
-        "v1/{parent}/settings",
+    functions["organizationsSettingsPatch"] = resourcesettings.get(
+        "v1/{name}",
         t.struct(
             {
-                "pageToken": t.string().optional(),
+                "name": t.string(),
                 "view": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GoogleCloudResourcesettingsV1ListSettingsResponseOut"]),
+        t.proxy(renames["GoogleCloudResourcesettingsV1SettingOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["foldersSettingsGet"] = resourcesettings.get(
-        "v1/{parent}/settings",
+    functions["organizationsSettingsList"] = resourcesettings.get(
+        "v1/{name}",
         t.struct(
             {
-                "pageToken": t.string().optional(),
+                "name": t.string(),
                 "view": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GoogleCloudResourcesettingsV1ListSettingsResponseOut"]),
+        t.proxy(renames["GoogleCloudResourcesettingsV1SettingOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["foldersSettingsList"] = resourcesettings.get(
-        "v1/{parent}/settings",
+    functions["organizationsSettingsGet"] = resourcesettings.get(
+        "v1/{name}",
         t.struct(
             {
-                "pageToken": t.string().optional(),
+                "name": t.string(),
                 "view": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["GoogleCloudResourcesettingsV1ListSettingsResponseOut"]),
+        t.proxy(renames["GoogleCloudResourcesettingsV1SettingOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["organizationsSettingsGet"] = resourcesettings.patch(
+    functions["foldersSettingsGet"] = resourcesettings.patch(
         "v1/{name}",
         t.struct(
             {
@@ -217,7 +211,7 @@ def import_resourcesettings() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["organizationsSettingsList"] = resourcesettings.patch(
+    functions["foldersSettingsList"] = resourcesettings.patch(
         "v1/{name}",
         t.struct(
             {
@@ -233,7 +227,7 @@ def import_resourcesettings() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["organizationsSettingsPatch"] = resourcesettings.patch(
+    functions["foldersSettingsPatch"] = resourcesettings.patch(
         "v1/{name}",
         t.struct(
             {
@@ -253,10 +247,10 @@ def import_resourcesettings() -> Import:
         "v1/{parent}/settings",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
-                "view": t.string().optional(),
                 "parent": t.string(),
                 "pageToken": t.string().optional(),
+                "view": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -268,10 +262,10 @@ def import_resourcesettings() -> Import:
         "v1/{parent}/settings",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
-                "view": t.string().optional(),
                 "parent": t.string(),
                 "pageToken": t.string().optional(),
+                "view": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -283,10 +277,10 @@ def import_resourcesettings() -> Import:
         "v1/{parent}/settings",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
-                "view": t.string().optional(),
                 "parent": t.string(),
                 "pageToken": t.string().optional(),
+                "view": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),

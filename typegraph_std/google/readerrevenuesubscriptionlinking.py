@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_readerrevenuesubscriptionlinking() -> Import:
@@ -11,10 +11,10 @@ def import_readerrevenuesubscriptionlinking() -> Import:
 
     renames = {
         "ErrorResponse": "_readerrevenuesubscriptionlinking_1_ErrorResponse",
-        "EntitlementIn": "_readerrevenuesubscriptionlinking_2_EntitlementIn",
-        "EntitlementOut": "_readerrevenuesubscriptionlinking_3_EntitlementOut",
-        "DeleteReaderResponseIn": "_readerrevenuesubscriptionlinking_4_DeleteReaderResponseIn",
-        "DeleteReaderResponseOut": "_readerrevenuesubscriptionlinking_5_DeleteReaderResponseOut",
+        "DeleteReaderResponseIn": "_readerrevenuesubscriptionlinking_2_DeleteReaderResponseIn",
+        "DeleteReaderResponseOut": "_readerrevenuesubscriptionlinking_3_DeleteReaderResponseOut",
+        "EntitlementIn": "_readerrevenuesubscriptionlinking_4_EntitlementIn",
+        "EntitlementOut": "_readerrevenuesubscriptionlinking_5_EntitlementOut",
         "ReaderIn": "_readerrevenuesubscriptionlinking_6_ReaderIn",
         "ReaderOut": "_readerrevenuesubscriptionlinking_7_ReaderOut",
         "ReaderEntitlementsIn": "_readerrevenuesubscriptionlinking_8_ReaderEntitlementsIn",
@@ -25,29 +25,29 @@ def import_readerrevenuesubscriptionlinking() -> Import:
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["EntitlementIn"] = t.struct(
-        {
-            "expireTime": t.string(),
-            "productId": t.string(),
-            "detail": t.string().optional(),
-            "subscriptionToken": t.string().optional(),
-        }
-    ).named(renames["EntitlementIn"])
-    types["EntitlementOut"] = t.struct(
-        {
-            "expireTime": t.string(),
-            "productId": t.string(),
-            "detail": t.string().optional(),
-            "subscriptionToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EntitlementOut"])
     types["DeleteReaderResponseIn"] = t.struct({"_": t.string().optional()}).named(
         renames["DeleteReaderResponseIn"]
     )
     types["DeleteReaderResponseOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["DeleteReaderResponseOut"])
+    types["EntitlementIn"] = t.struct(
+        {
+            "subscriptionToken": t.string().optional(),
+            "productId": t.string(),
+            "detail": t.string().optional(),
+            "expireTime": t.string(),
+        }
+    ).named(renames["EntitlementIn"])
+    types["EntitlementOut"] = t.struct(
+        {
+            "subscriptionToken": t.string().optional(),
+            "productId": t.string(),
+            "detail": t.string().optional(),
+            "expireTime": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["EntitlementOut"])
     types["ReaderIn"] = t.struct({"_": t.string().optional()}).named(
         renames["ReaderIn"]
     )
@@ -63,66 +63,70 @@ def import_readerrevenuesubscriptionlinking() -> Import:
     ).named(renames["ReaderEntitlementsIn"])
     types["ReaderEntitlementsOut"] = t.struct(
         {
-            "name": t.string().optional(),
             "entitlements": t.array(t.proxy(renames["EntitlementOut"])).optional(),
+            "name": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ReaderEntitlementsOut"])
 
     functions = {}
     functions[
-        "publicationsReadersUpdateEntitlements"
-    ] = readerrevenuesubscriptionlinking.delete(
+        "publicationsReadersGetEntitlements"
+    ] = readerrevenuesubscriptionlinking.patch(
         "v1/{name}",
         t.struct(
             {
-                "name": t.string(),
-                "force": t.boolean().optional(),
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "entitlements": t.array(t.proxy(renames["EntitlementIn"])).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["DeleteReaderResponseOut"]),
+        t.proxy(renames["ReaderEntitlementsOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["publicationsReadersDelete"] = readerrevenuesubscriptionlinking.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "entitlements": t.array(t.proxy(renames["EntitlementIn"])).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReaderEntitlementsOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["publicationsReadersGet"] = readerrevenuesubscriptionlinking.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "entitlements": t.array(t.proxy(renames["EntitlementIn"])).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ReaderEntitlementsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions[
-        "publicationsReadersGetEntitlements"
-    ] = readerrevenuesubscriptionlinking.delete(
+        "publicationsReadersUpdateEntitlements"
+    ] = readerrevenuesubscriptionlinking.patch(
         "v1/{name}",
         t.struct(
             {
-                "name": t.string(),
-                "force": t.boolean().optional(),
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "entitlements": t.array(t.proxy(renames["EntitlementIn"])).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["DeleteReaderResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["publicationsReadersGet"] = readerrevenuesubscriptionlinking.delete(
-        "v1/{name}",
-        t.struct(
-            {
-                "name": t.string(),
-                "force": t.boolean().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeleteReaderResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["publicationsReadersDelete"] = readerrevenuesubscriptionlinking.delete(
-        "v1/{name}",
-        t.struct(
-            {
-                "name": t.string(),
-                "force": t.boolean().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeleteReaderResponseOut"]),
+        t.proxy(renames["ReaderEntitlementsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

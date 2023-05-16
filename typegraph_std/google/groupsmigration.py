@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_groupsmigration() -> Import:
@@ -18,12 +18,12 @@ def import_groupsmigration() -> Import:
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
     types["GroupsIn"] = t.struct(
-        {"kind": t.string().optional(), "responseCode": t.string().optional()}
+        {"responseCode": t.string().optional(), "kind": t.string().optional()}
     ).named(renames["GroupsIn"])
     types["GroupsOut"] = t.struct(
         {
-            "kind": t.string().optional(),
             "responseCode": t.string().optional(),
+            "kind": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GroupsOut"])

@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_deploymentmanager() -> Import:
@@ -9,104 +9,123 @@ def import_deploymentmanager() -> Import:
 
     renames = {
         "ErrorResponse": "_deploymentmanager_1_ErrorResponse",
-        "OperationsListResponseIn": "_deploymentmanager_2_OperationsListResponseIn",
-        "OperationsListResponseOut": "_deploymentmanager_3_OperationsListResponseOut",
-        "ManifestsListResponseIn": "_deploymentmanager_4_ManifestsListResponseIn",
-        "ManifestsListResponseOut": "_deploymentmanager_5_ManifestsListResponseOut",
-        "DeploymentUpdateLabelEntryIn": "_deploymentmanager_6_DeploymentUpdateLabelEntryIn",
-        "DeploymentUpdateLabelEntryOut": "_deploymentmanager_7_DeploymentUpdateLabelEntryOut",
+        "DeploymentIn": "_deploymentmanager_2_DeploymentIn",
+        "DeploymentOut": "_deploymentmanager_3_DeploymentOut",
+        "DeploymentsStopRequestIn": "_deploymentmanager_4_DeploymentsStopRequestIn",
+        "DeploymentsStopRequestOut": "_deploymentmanager_5_DeploymentsStopRequestOut",
+        "ResourcesListResponseIn": "_deploymentmanager_6_ResourcesListResponseIn",
+        "ResourcesListResponseOut": "_deploymentmanager_7_ResourcesListResponseOut",
         "AuditConfigIn": "_deploymentmanager_8_AuditConfigIn",
         "AuditConfigOut": "_deploymentmanager_9_AuditConfigOut",
-        "ExprIn": "_deploymentmanager_10_ExprIn",
-        "ExprOut": "_deploymentmanager_11_ExprOut",
-        "DeploymentIn": "_deploymentmanager_12_DeploymentIn",
-        "DeploymentOut": "_deploymentmanager_13_DeploymentOut",
-        "DeploymentsCancelPreviewRequestIn": "_deploymentmanager_14_DeploymentsCancelPreviewRequestIn",
-        "DeploymentsCancelPreviewRequestOut": "_deploymentmanager_15_DeploymentsCancelPreviewRequestOut",
-        "DeploymentsListResponseIn": "_deploymentmanager_16_DeploymentsListResponseIn",
-        "DeploymentsListResponseOut": "_deploymentmanager_17_DeploymentsListResponseOut",
-        "TypesListResponseIn": "_deploymentmanager_18_TypesListResponseIn",
-        "TypesListResponseOut": "_deploymentmanager_19_TypesListResponseOut",
-        "ManifestIn": "_deploymentmanager_20_ManifestIn",
-        "ManifestOut": "_deploymentmanager_21_ManifestOut",
-        "ResourceAccessControlIn": "_deploymentmanager_22_ResourceAccessControlIn",
-        "ResourceAccessControlOut": "_deploymentmanager_23_ResourceAccessControlOut",
-        "TestPermissionsRequestIn": "_deploymentmanager_24_TestPermissionsRequestIn",
-        "TestPermissionsRequestOut": "_deploymentmanager_25_TestPermissionsRequestOut",
-        "ConfigFileIn": "_deploymentmanager_26_ConfigFileIn",
-        "ConfigFileOut": "_deploymentmanager_27_ConfigFileOut",
-        "TargetConfigurationIn": "_deploymentmanager_28_TargetConfigurationIn",
-        "TargetConfigurationOut": "_deploymentmanager_29_TargetConfigurationOut",
-        "OperationIn": "_deploymentmanager_30_OperationIn",
-        "OperationOut": "_deploymentmanager_31_OperationOut",
-        "TestPermissionsResponseIn": "_deploymentmanager_32_TestPermissionsResponseIn",
-        "TestPermissionsResponseOut": "_deploymentmanager_33_TestPermissionsResponseOut",
-        "DeploymentsStopRequestIn": "_deploymentmanager_34_DeploymentsStopRequestIn",
-        "DeploymentsStopRequestOut": "_deploymentmanager_35_DeploymentsStopRequestOut",
-        "PolicyIn": "_deploymentmanager_36_PolicyIn",
-        "PolicyOut": "_deploymentmanager_37_PolicyOut",
-        "DeploymentUpdateIn": "_deploymentmanager_38_DeploymentUpdateIn",
-        "DeploymentUpdateOut": "_deploymentmanager_39_DeploymentUpdateOut",
-        "ResourcesListResponseIn": "_deploymentmanager_40_ResourcesListResponseIn",
-        "ResourcesListResponseOut": "_deploymentmanager_41_ResourcesListResponseOut",
-        "TypeIn": "_deploymentmanager_42_TypeIn",
-        "TypeOut": "_deploymentmanager_43_TypeOut",
-        "DeploymentLabelEntryIn": "_deploymentmanager_44_DeploymentLabelEntryIn",
-        "DeploymentLabelEntryOut": "_deploymentmanager_45_DeploymentLabelEntryOut",
-        "ImportFileIn": "_deploymentmanager_46_ImportFileIn",
-        "ImportFileOut": "_deploymentmanager_47_ImportFileOut",
-        "ResourceUpdateIn": "_deploymentmanager_48_ResourceUpdateIn",
-        "ResourceUpdateOut": "_deploymentmanager_49_ResourceUpdateOut",
-        "ResourceIn": "_deploymentmanager_50_ResourceIn",
-        "ResourceOut": "_deploymentmanager_51_ResourceOut",
-        "GlobalSetPolicyRequestIn": "_deploymentmanager_52_GlobalSetPolicyRequestIn",
-        "GlobalSetPolicyRequestOut": "_deploymentmanager_53_GlobalSetPolicyRequestOut",
+        "TestPermissionsResponseIn": "_deploymentmanager_10_TestPermissionsResponseIn",
+        "TestPermissionsResponseOut": "_deploymentmanager_11_TestPermissionsResponseOut",
+        "TypeIn": "_deploymentmanager_12_TypeIn",
+        "TypeOut": "_deploymentmanager_13_TypeOut",
+        "DeploymentUpdateIn": "_deploymentmanager_14_DeploymentUpdateIn",
+        "DeploymentUpdateOut": "_deploymentmanager_15_DeploymentUpdateOut",
+        "ImportFileIn": "_deploymentmanager_16_ImportFileIn",
+        "ImportFileOut": "_deploymentmanager_17_ImportFileOut",
+        "ManifestsListResponseIn": "_deploymentmanager_18_ManifestsListResponseIn",
+        "ManifestsListResponseOut": "_deploymentmanager_19_ManifestsListResponseOut",
+        "DeploymentLabelEntryIn": "_deploymentmanager_20_DeploymentLabelEntryIn",
+        "DeploymentLabelEntryOut": "_deploymentmanager_21_DeploymentLabelEntryOut",
+        "OperationIn": "_deploymentmanager_22_OperationIn",
+        "OperationOut": "_deploymentmanager_23_OperationOut",
+        "ExprIn": "_deploymentmanager_24_ExprIn",
+        "ExprOut": "_deploymentmanager_25_ExprOut",
+        "ManifestIn": "_deploymentmanager_26_ManifestIn",
+        "ManifestOut": "_deploymentmanager_27_ManifestOut",
+        "ResourceAccessControlIn": "_deploymentmanager_28_ResourceAccessControlIn",
+        "ResourceAccessControlOut": "_deploymentmanager_29_ResourceAccessControlOut",
+        "ResourceIn": "_deploymentmanager_30_ResourceIn",
+        "ResourceOut": "_deploymentmanager_31_ResourceOut",
+        "GlobalSetPolicyRequestIn": "_deploymentmanager_32_GlobalSetPolicyRequestIn",
+        "GlobalSetPolicyRequestOut": "_deploymentmanager_33_GlobalSetPolicyRequestOut",
+        "ConfigFileIn": "_deploymentmanager_34_ConfigFileIn",
+        "ConfigFileOut": "_deploymentmanager_35_ConfigFileOut",
+        "DeploymentUpdateLabelEntryIn": "_deploymentmanager_36_DeploymentUpdateLabelEntryIn",
+        "DeploymentUpdateLabelEntryOut": "_deploymentmanager_37_DeploymentUpdateLabelEntryOut",
+        "PolicyIn": "_deploymentmanager_38_PolicyIn",
+        "PolicyOut": "_deploymentmanager_39_PolicyOut",
+        "TypesListResponseIn": "_deploymentmanager_40_TypesListResponseIn",
+        "TypesListResponseOut": "_deploymentmanager_41_TypesListResponseOut",
+        "OperationsListResponseIn": "_deploymentmanager_42_OperationsListResponseIn",
+        "OperationsListResponseOut": "_deploymentmanager_43_OperationsListResponseOut",
+        "DeploymentsCancelPreviewRequestIn": "_deploymentmanager_44_DeploymentsCancelPreviewRequestIn",
+        "DeploymentsCancelPreviewRequestOut": "_deploymentmanager_45_DeploymentsCancelPreviewRequestOut",
+        "ResourceUpdateIn": "_deploymentmanager_46_ResourceUpdateIn",
+        "ResourceUpdateOut": "_deploymentmanager_47_ResourceUpdateOut",
+        "BindingIn": "_deploymentmanager_48_BindingIn",
+        "BindingOut": "_deploymentmanager_49_BindingOut",
+        "TargetConfigurationIn": "_deploymentmanager_50_TargetConfigurationIn",
+        "TargetConfigurationOut": "_deploymentmanager_51_TargetConfigurationOut",
+        "TestPermissionsRequestIn": "_deploymentmanager_52_TestPermissionsRequestIn",
+        "TestPermissionsRequestOut": "_deploymentmanager_53_TestPermissionsRequestOut",
         "AuditLogConfigIn": "_deploymentmanager_54_AuditLogConfigIn",
         "AuditLogConfigOut": "_deploymentmanager_55_AuditLogConfigOut",
-        "BindingIn": "_deploymentmanager_56_BindingIn",
-        "BindingOut": "_deploymentmanager_57_BindingOut",
+        "DeploymentsListResponseIn": "_deploymentmanager_56_DeploymentsListResponseIn",
+        "DeploymentsListResponseOut": "_deploymentmanager_57_DeploymentsListResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["OperationsListResponseIn"] = t.struct(
+    types["DeploymentIn"] = t.struct(
         {
-            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
+            "labels": t.array(t.proxy(renames["DeploymentLabelEntryIn"])).optional(),
+            "updateTime": t.string().optional(),
+            "id": t.string(),
+            "operation": t.proxy(renames["OperationIn"]).optional(),
+            "target": t.proxy(renames["TargetConfigurationIn"]).optional(),
+            "fingerprint": t.string().optional(),
+            "update": t.proxy(renames["DeploymentUpdateIn"]).optional(),
+            "insertTime": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "manifest": t.string().optional(),
+            "description": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["DeploymentIn"])
+    types["DeploymentOut"] = t.struct(
+        {
+            "labels": t.array(t.proxy(renames["DeploymentLabelEntryOut"])).optional(),
+            "updateTime": t.string().optional(),
+            "id": t.string(),
+            "operation": t.proxy(renames["OperationOut"]).optional(),
+            "target": t.proxy(renames["TargetConfigurationOut"]).optional(),
+            "fingerprint": t.string().optional(),
+            "update": t.proxy(renames["DeploymentUpdateOut"]).optional(),
+            "insertTime": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "manifest": t.string().optional(),
+            "description": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentOut"])
+    types["DeploymentsStopRequestIn"] = t.struct(
+        {"fingerprint": t.string().optional()}
+    ).named(renames["DeploymentsStopRequestIn"])
+    types["DeploymentsStopRequestOut"] = t.struct(
+        {
+            "fingerprint": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentsStopRequestOut"])
+    types["ResourcesListResponseIn"] = t.struct(
+        {
+            "resources": t.array(t.proxy(renames["ResourceIn"])).optional(),
             "nextPageToken": t.string().optional(),
         }
-    ).named(renames["OperationsListResponseIn"])
-    types["OperationsListResponseOut"] = t.struct(
+    ).named(renames["ResourcesListResponseIn"])
+    types["ResourcesListResponseOut"] = t.struct(
         {
-            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
+            "resources": t.array(t.proxy(renames["ResourceOut"])).optional(),
             "nextPageToken": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["OperationsListResponseOut"])
-    types["ManifestsListResponseIn"] = t.struct(
-        {
-            "manifests": t.array(t.proxy(renames["ManifestIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ManifestsListResponseIn"])
-    types["ManifestsListResponseOut"] = t.struct(
-        {
-            "manifests": t.array(t.proxy(renames["ManifestOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ManifestsListResponseOut"])
-    types["DeploymentUpdateLabelEntryIn"] = t.struct(
-        {"value": t.string().optional(), "key": t.string().optional()}
-    ).named(renames["DeploymentUpdateLabelEntryIn"])
-    types["DeploymentUpdateLabelEntryOut"] = t.struct(
-        {
-            "value": t.string().optional(),
-            "key": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentUpdateLabelEntryOut"])
+    ).named(renames["ResourcesListResponseOut"])
     types["AuditConfigIn"] = t.struct(
         {
             "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
@@ -122,117 +141,227 @@ def import_deploymentmanager() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AuditConfigOut"])
-    types["ExprIn"] = t.struct(
+    types["TestPermissionsResponseIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestPermissionsResponseIn"])
+    types["TestPermissionsResponseOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestPermissionsResponseOut"])
+    types["TypeIn"] = t.struct(
+        {
+            "operation": t.proxy(renames["OperationIn"]).optional(),
+            "id": t.string(),
+            "selfLink": t.string().optional(),
+            "insertTime": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["TypeIn"])
+    types["TypeOut"] = t.struct(
+        {
+            "operation": t.proxy(renames["OperationOut"]).optional(),
+            "id": t.string(),
+            "selfLink": t.string().optional(),
+            "insertTime": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TypeOut"])
+    types["DeploymentUpdateIn"] = t.struct(
         {
             "description": t.string().optional(),
+            "manifest": t.string().optional(),
+            "labels": t.array(
+                t.proxy(renames["DeploymentUpdateLabelEntryIn"])
+            ).optional(),
+        }
+    ).named(renames["DeploymentUpdateIn"])
+    types["DeploymentUpdateOut"] = t.struct(
+        {
+            "description": t.string().optional(),
+            "manifest": t.string().optional(),
+            "labels": t.array(
+                t.proxy(renames["DeploymentUpdateLabelEntryOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentUpdateOut"])
+    types["ImportFileIn"] = t.struct(
+        {"name": t.string().optional(), "content": t.string().optional()}
+    ).named(renames["ImportFileIn"])
+    types["ImportFileOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "content": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ImportFileOut"])
+    types["ManifestsListResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "manifests": t.array(t.proxy(renames["ManifestIn"])).optional(),
+        }
+    ).named(renames["ManifestsListResponseIn"])
+    types["ManifestsListResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "manifests": t.array(t.proxy(renames["ManifestOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ManifestsListResponseOut"])
+    types["DeploymentLabelEntryIn"] = t.struct(
+        {"value": t.string().optional(), "key": t.string().optional()}
+    ).named(renames["DeploymentLabelEntryIn"])
+    types["DeploymentLabelEntryOut"] = t.struct(
+        {
+            "value": t.string().optional(),
+            "key": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentLabelEntryOut"])
+    types["OperationIn"] = t.struct(
+        {
+            "selfLink": t.string().optional(),
+            "startTime": t.string().optional(),
+            "name": t.string().optional(),
+            "progress": t.integer().optional(),
+            "zone": t.string().optional(),
+            "kind": t.string().optional(),
+            "httpErrorMessage": t.string().optional(),
+            "endTime": t.string().optional(),
+            "operationType": t.string().optional(),
+            "description": t.string().optional(),
+            "warnings": t.array(
+                t.struct(
+                    {
+                        "data": t.array(
+                            t.struct(
+                                {
+                                    "key": t.string().optional(),
+                                    "value": t.string().optional(),
+                                }
+                            )
+                        ).optional(),
+                        "code": t.string().optional(),
+                        "message": t.string().optional(),
+                    }
+                )
+            ).optional(),
+            "operationGroupId": t.string().optional(),
+            "creationTimestamp": t.string().optional(),
+            "statusMessage": t.string().optional(),
+            "user": t.string().optional(),
+            "clientOperationId": t.string().optional(),
+            "targetLink": t.string().optional(),
+            "targetId": t.string().optional(),
+            "insertTime": t.string().optional(),
+            "error": t.struct(
+                {
+                    "errors": t.array(
+                        t.struct(
+                            {
+                                "code": t.string().optional(),
+                                "location": t.string().optional(),
+                                "message": t.string().optional(),
+                            }
+                        )
+                    ).optional()
+                }
+            ).optional(),
+            "id": t.string().optional(),
+            "region": t.string().optional(),
+            "status": t.string().optional(),
+            "httpErrorStatusCode": t.integer().optional(),
+        }
+    ).named(renames["OperationIn"])
+    types["OperationOut"] = t.struct(
+        {
+            "selfLink": t.string().optional(),
+            "startTime": t.string().optional(),
+            "name": t.string().optional(),
+            "progress": t.integer().optional(),
+            "zone": t.string().optional(),
+            "kind": t.string().optional(),
+            "httpErrorMessage": t.string().optional(),
+            "endTime": t.string().optional(),
+            "operationType": t.string().optional(),
+            "description": t.string().optional(),
+            "warnings": t.array(
+                t.struct(
+                    {
+                        "data": t.array(
+                            t.struct(
+                                {
+                                    "key": t.string().optional(),
+                                    "value": t.string().optional(),
+                                }
+                            )
+                        ).optional(),
+                        "code": t.string().optional(),
+                        "message": t.string().optional(),
+                    }
+                )
+            ).optional(),
+            "operationGroupId": t.string().optional(),
+            "creationTimestamp": t.string().optional(),
+            "statusMessage": t.string().optional(),
+            "user": t.string().optional(),
+            "clientOperationId": t.string().optional(),
+            "targetLink": t.string().optional(),
+            "targetId": t.string().optional(),
+            "insertTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "id": t.string().optional(),
+            "region": t.string().optional(),
+            "status": t.string().optional(),
+            "httpErrorStatusCode": t.integer().optional(),
+        }
+    ).named(renames["OperationOut"])
+    types["ExprIn"] = t.struct(
+        {
             "title": t.string().optional(),
-            "expression": t.string().optional(),
             "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
         }
     ).named(renames["ExprIn"])
     types["ExprOut"] = t.struct(
         {
-            "description": t.string().optional(),
             "title": t.string().optional(),
-            "expression": t.string().optional(),
             "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ExprOut"])
-    types["DeploymentIn"] = t.struct(
-        {
-            "updateTime": t.string().optional(),
-            "name": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "insertTime": t.string().optional(),
-            "update": t.proxy(renames["DeploymentUpdateIn"]).optional(),
-            "operation": t.proxy(renames["OperationIn"]).optional(),
-            "id": t.string(),
-            "target": t.proxy(renames["TargetConfigurationIn"]).optional(),
-            "fingerprint": t.string().optional(),
-            "description": t.string().optional(),
-            "manifest": t.string().optional(),
-            "labels": t.array(t.proxy(renames["DeploymentLabelEntryIn"])).optional(),
-        }
-    ).named(renames["DeploymentIn"])
-    types["DeploymentOut"] = t.struct(
-        {
-            "updateTime": t.string().optional(),
-            "name": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "insertTime": t.string().optional(),
-            "update": t.proxy(renames["DeploymentUpdateOut"]).optional(),
-            "operation": t.proxy(renames["OperationOut"]).optional(),
-            "id": t.string(),
-            "target": t.proxy(renames["TargetConfigurationOut"]).optional(),
-            "fingerprint": t.string().optional(),
-            "description": t.string().optional(),
-            "manifest": t.string().optional(),
-            "labels": t.array(t.proxy(renames["DeploymentLabelEntryOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentOut"])
-    types["DeploymentsCancelPreviewRequestIn"] = t.struct(
-        {"fingerprint": t.string().optional()}
-    ).named(renames["DeploymentsCancelPreviewRequestIn"])
-    types["DeploymentsCancelPreviewRequestOut"] = t.struct(
-        {
-            "fingerprint": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentsCancelPreviewRequestOut"])
-    types["DeploymentsListResponseIn"] = t.struct(
-        {
-            "deployments": t.array(t.proxy(renames["DeploymentIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["DeploymentsListResponseIn"])
-    types["DeploymentsListResponseOut"] = t.struct(
-        {
-            "deployments": t.array(t.proxy(renames["DeploymentOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentsListResponseOut"])
-    types["TypesListResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "types": t.array(t.proxy(renames["TypeIn"])).optional(),
-        }
-    ).named(renames["TypesListResponseIn"])
-    types["TypesListResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "types": t.array(t.proxy(renames["TypeOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TypesListResponseOut"])
     types["ManifestIn"] = t.struct(
         {
-            "manifestSizeLimitBytes": t.string().optional(),
             "manifestSizeBytes": t.string().optional(),
-            "insertTime": t.string().optional(),
-            "id": t.string(),
             "imports": t.array(t.proxy(renames["ImportFileIn"])).optional(),
-            "config": t.proxy(renames["ConfigFileIn"]).optional(),
-            "name": t.string().optional(),
-            "selfLink": t.string().optional(),
+            "insertTime": t.string().optional(),
             "expandedConfig": t.string().optional(),
+            "selfLink": t.string().optional(),
             "layout": t.string().optional(),
+            "name": t.string().optional(),
+            "config": t.proxy(renames["ConfigFileIn"]).optional(),
+            "id": t.string(),
+            "manifestSizeLimitBytes": t.string().optional(),
         }
     ).named(renames["ManifestIn"])
     types["ManifestOut"] = t.struct(
         {
-            "manifestSizeLimitBytes": t.string().optional(),
             "manifestSizeBytes": t.string().optional(),
-            "insertTime": t.string().optional(),
-            "id": t.string(),
             "imports": t.array(t.proxy(renames["ImportFileOut"])).optional(),
-            "config": t.proxy(renames["ConfigFileOut"]).optional(),
-            "name": t.string().optional(),
-            "selfLink": t.string().optional(),
+            "insertTime": t.string().optional(),
             "expandedConfig": t.string().optional(),
+            "selfLink": t.string().optional(),
             "layout": t.string().optional(),
+            "name": t.string().optional(),
+            "config": t.proxy(renames["ConfigFileOut"]).optional(),
+            "id": t.string(),
+            "manifestSizeLimitBytes": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ManifestOut"])
@@ -245,366 +374,65 @@ def import_deploymentmanager() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ResourceAccessControlOut"])
-    types["TestPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestPermissionsRequestIn"])
-    types["TestPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestPermissionsRequestOut"])
-    types["ConfigFileIn"] = t.struct({"content": t.string().optional()}).named(
-        renames["ConfigFileIn"]
-    )
-    types["ConfigFileOut"] = t.struct(
-        {
-            "content": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ConfigFileOut"])
-    types["TargetConfigurationIn"] = t.struct(
-        {
-            "imports": t.array(t.proxy(renames["ImportFileIn"])).optional(),
-            "config": t.proxy(renames["ConfigFileIn"]).optional(),
-        }
-    ).named(renames["TargetConfigurationIn"])
-    types["TargetConfigurationOut"] = t.struct(
-        {
-            "imports": t.array(t.proxy(renames["ImportFileOut"])).optional(),
-            "config": t.proxy(renames["ConfigFileOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TargetConfigurationOut"])
-    types["OperationIn"] = t.struct(
-        {
-            "id": t.string().optional(),
-            "statusMessage": t.string().optional(),
-            "region": t.string().optional(),
-            "operationType": t.string().optional(),
-            "status": t.string().optional(),
-            "startTime": t.string().optional(),
-            "warnings": t.array(
-                t.struct(
-                    {
-                        "data": t.array(
-                            t.struct(
-                                {
-                                    "key": t.string().optional(),
-                                    "value": t.string().optional(),
-                                }
-                            )
-                        ).optional(),
-                        "message": t.string().optional(),
-                        "code": t.string().optional(),
-                    }
-                )
-            ).optional(),
-            "progress": t.integer().optional(),
-            "kind": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "user": t.string().optional(),
-            "insertTime": t.string().optional(),
-            "zone": t.string().optional(),
-            "operationGroupId": t.string().optional(),
-            "error": t.struct(
-                {
-                    "errors": t.array(
-                        t.struct(
-                            {
-                                "location": t.string().optional(),
-                                "code": t.string().optional(),
-                                "message": t.string().optional(),
-                            }
-                        )
-                    ).optional()
-                }
-            ).optional(),
-            "clientOperationId": t.string().optional(),
-            "targetId": t.string().optional(),
-            "httpErrorMessage": t.string().optional(),
-            "endTime": t.string().optional(),
-            "name": t.string().optional(),
-            "description": t.string().optional(),
-            "targetLink": t.string().optional(),
-            "creationTimestamp": t.string().optional(),
-            "httpErrorStatusCode": t.integer().optional(),
-        }
-    ).named(renames["OperationIn"])
-    types["OperationOut"] = t.struct(
-        {
-            "id": t.string().optional(),
-            "statusMessage": t.string().optional(),
-            "region": t.string().optional(),
-            "operationType": t.string().optional(),
-            "status": t.string().optional(),
-            "startTime": t.string().optional(),
-            "warnings": t.array(
-                t.struct(
-                    {
-                        "data": t.array(
-                            t.struct(
-                                {
-                                    "key": t.string().optional(),
-                                    "value": t.string().optional(),
-                                }
-                            )
-                        ).optional(),
-                        "message": t.string().optional(),
-                        "code": t.string().optional(),
-                    }
-                )
-            ).optional(),
-            "progress": t.integer().optional(),
-            "kind": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "user": t.string().optional(),
-            "insertTime": t.string().optional(),
-            "zone": t.string().optional(),
-            "operationGroupId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "clientOperationId": t.string().optional(),
-            "targetId": t.string().optional(),
-            "httpErrorMessage": t.string().optional(),
-            "endTime": t.string().optional(),
-            "name": t.string().optional(),
-            "description": t.string().optional(),
-            "targetLink": t.string().optional(),
-            "creationTimestamp": t.string().optional(),
-            "httpErrorStatusCode": t.integer().optional(),
-        }
-    ).named(renames["OperationOut"])
-    types["TestPermissionsResponseIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestPermissionsResponseIn"])
-    types["TestPermissionsResponseOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestPermissionsResponseOut"])
-    types["DeploymentsStopRequestIn"] = t.struct(
-        {"fingerprint": t.string().optional()}
-    ).named(renames["DeploymentsStopRequestIn"])
-    types["DeploymentsStopRequestOut"] = t.struct(
-        {
-            "fingerprint": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentsStopRequestOut"])
-    types["PolicyIn"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
-            "version": t.integer().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
-        }
-    ).named(renames["PolicyIn"])
-    types["PolicyOut"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
-            "version": t.integer().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PolicyOut"])
-    types["DeploymentUpdateIn"] = t.struct(
-        {
-            "manifest": t.string().optional(),
-            "labels": t.array(
-                t.proxy(renames["DeploymentUpdateLabelEntryIn"])
-            ).optional(),
-            "description": t.string().optional(),
-        }
-    ).named(renames["DeploymentUpdateIn"])
-    types["DeploymentUpdateOut"] = t.struct(
-        {
-            "manifest": t.string().optional(),
-            "labels": t.array(
-                t.proxy(renames["DeploymentUpdateLabelEntryOut"])
-            ).optional(),
-            "description": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentUpdateOut"])
-    types["ResourcesListResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "resources": t.array(t.proxy(renames["ResourceIn"])).optional(),
-        }
-    ).named(renames["ResourcesListResponseIn"])
-    types["ResourcesListResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "resources": t.array(t.proxy(renames["ResourceOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ResourcesListResponseOut"])
-    types["TypeIn"] = t.struct(
-        {
-            "selfLink": t.string().optional(),
-            "id": t.string(),
-            "name": t.string().optional(),
-            "operation": t.proxy(renames["OperationIn"]).optional(),
-            "insertTime": t.string().optional(),
-        }
-    ).named(renames["TypeIn"])
-    types["TypeOut"] = t.struct(
-        {
-            "selfLink": t.string().optional(),
-            "id": t.string(),
-            "name": t.string().optional(),
-            "operation": t.proxy(renames["OperationOut"]).optional(),
-            "insertTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TypeOut"])
-    types["DeploymentLabelEntryIn"] = t.struct(
-        {"value": t.string().optional(), "key": t.string().optional()}
-    ).named(renames["DeploymentLabelEntryIn"])
-    types["DeploymentLabelEntryOut"] = t.struct(
-        {
-            "value": t.string().optional(),
-            "key": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeploymentLabelEntryOut"])
-    types["ImportFileIn"] = t.struct(
-        {"content": t.string().optional(), "name": t.string().optional()}
-    ).named(renames["ImportFileIn"])
-    types["ImportFileOut"] = t.struct(
-        {
-            "content": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ImportFileOut"])
-    types["ResourceUpdateIn"] = t.struct(
-        {
-            "intent": t.string().optional(),
-            "warnings": t.array(
-                t.struct(
-                    {
-                        "code": t.string().optional(),
-                        "message": t.string().optional(),
-                        "data": t.array(
-                            t.struct(
-                                {
-                                    "key": t.string().optional(),
-                                    "value": t.string().optional(),
-                                }
-                            )
-                        ).optional(),
-                    }
-                )
-            ).optional(),
-            "finalProperties": t.string().optional(),
-            "manifest": t.string().optional(),
-            "error": t.struct(
-                {
-                    "errors": t.array(
-                        t.struct(
-                            {
-                                "message": t.string().optional(),
-                                "location": t.string().optional(),
-                                "code": t.string().optional(),
-                            }
-                        )
-                    ).optional()
-                }
-            ).optional(),
-            "properties": t.string().optional(),
-            "accessControl": t.proxy(renames["ResourceAccessControlIn"]).optional(),
-            "state": t.string().optional(),
-        }
-    ).named(renames["ResourceUpdateIn"])
-    types["ResourceUpdateOut"] = t.struct(
-        {
-            "intent": t.string().optional(),
-            "warnings": t.array(
-                t.struct(
-                    {
-                        "code": t.string().optional(),
-                        "message": t.string().optional(),
-                        "data": t.array(
-                            t.struct(
-                                {
-                                    "key": t.string().optional(),
-                                    "value": t.string().optional(),
-                                }
-                            )
-                        ).optional(),
-                    }
-                )
-            ).optional(),
-            "finalProperties": t.string().optional(),
-            "manifest": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "properties": t.string().optional(),
-            "accessControl": t.proxy(renames["ResourceAccessControlOut"]).optional(),
-            "state": t.string().optional(),
-        }
-    ).named(renames["ResourceUpdateOut"])
     types["ResourceIn"] = t.struct(
         {
+            "finalProperties": t.string().optional(),
+            "insertTime": t.string().optional(),
+            "accessControl": t.proxy(renames["ResourceAccessControlIn"]).optional(),
+            "properties": t.string().optional(),
             "manifest": t.string().optional(),
+            "type": t.string().optional(),
             "warnings": t.array(
                 t.struct(
                     {
+                        "message": t.string().optional(),
                         "code": t.string().optional(),
                         "data": t.array(
                             t.struct(
                                 {
-                                    "value": t.string().optional(),
                                     "key": t.string().optional(),
+                                    "value": t.string().optional(),
                                 }
                             )
                         ).optional(),
-                        "message": t.string().optional(),
                     }
                 )
             ).optional(),
-            "insertTime": t.string().optional(),
-            "type": t.string().optional(),
-            "id": t.string(),
-            "url": t.string().optional(),
-            "update": t.proxy(renames["ResourceUpdateIn"]).optional(),
-            "properties": t.string().optional(),
-            "finalProperties": t.string().optional(),
             "updateTime": t.string().optional(),
-            "accessControl": t.proxy(renames["ResourceAccessControlIn"]).optional(),
+            "url": t.string().optional(),
+            "id": t.string(),
+            "update": t.proxy(renames["ResourceUpdateIn"]).optional(),
             "name": t.string().optional(),
         }
     ).named(renames["ResourceIn"])
     types["ResourceOut"] = t.struct(
         {
+            "finalProperties": t.string().optional(),
+            "insertTime": t.string().optional(),
+            "accessControl": t.proxy(renames["ResourceAccessControlOut"]).optional(),
+            "properties": t.string().optional(),
             "manifest": t.string().optional(),
+            "type": t.string().optional(),
             "warnings": t.array(
                 t.struct(
                     {
+                        "message": t.string().optional(),
                         "code": t.string().optional(),
                         "data": t.array(
                             t.struct(
                                 {
-                                    "value": t.string().optional(),
                                     "key": t.string().optional(),
+                                    "value": t.string().optional(),
                                 }
                             )
                         ).optional(),
-                        "message": t.string().optional(),
                     }
                 )
             ).optional(),
-            "insertTime": t.string().optional(),
-            "type": t.string().optional(),
-            "id": t.string(),
-            "url": t.string().optional(),
-            "update": t.proxy(renames["ResourceUpdateOut"]).optional(),
-            "properties": t.string().optional(),
-            "finalProperties": t.string().optional(),
             "updateTime": t.string().optional(),
-            "accessControl": t.proxy(renames["ResourceAccessControlOut"]).optional(),
+            "url": t.string().optional(),
+            "id": t.string(),
+            "update": t.proxy(renames["ResourceUpdateOut"]).optional(),
             "name": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
@@ -624,70 +452,208 @@ def import_deploymentmanager() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GlobalSetPolicyRequestOut"])
-    types["AuditLogConfigIn"] = t.struct(
+    types["ConfigFileIn"] = t.struct({"content": t.string().optional()}).named(
+        renames["ConfigFileIn"]
+    )
+    types["ConfigFileOut"] = t.struct(
         {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
-        }
-    ).named(renames["AuditLogConfigIn"])
-    types["AuditLogConfigOut"] = t.struct(
-        {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
+            "content": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AuditLogConfigOut"])
+    ).named(renames["ConfigFileOut"])
+    types["DeploymentUpdateLabelEntryIn"] = t.struct(
+        {"value": t.string().optional(), "key": t.string().optional()}
+    ).named(renames["DeploymentUpdateLabelEntryIn"])
+    types["DeploymentUpdateLabelEntryOut"] = t.struct(
+        {
+            "value": t.string().optional(),
+            "key": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentUpdateLabelEntryOut"])
+    types["PolicyIn"] = t.struct(
+        {
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "etag": t.string().optional(),
+            "version": t.integer().optional(),
+            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
+        }
+    ).named(renames["PolicyIn"])
+    types["PolicyOut"] = t.struct(
+        {
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "etag": t.string().optional(),
+            "version": t.integer().optional(),
+            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PolicyOut"])
+    types["TypesListResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "types": t.array(t.proxy(renames["TypeIn"])).optional(),
+        }
+    ).named(renames["TypesListResponseIn"])
+    types["TypesListResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "types": t.array(t.proxy(renames["TypeOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TypesListResponseOut"])
+    types["OperationsListResponseIn"] = t.struct(
+        {
+            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["OperationsListResponseIn"])
+    types["OperationsListResponseOut"] = t.struct(
+        {
+            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationsListResponseOut"])
+    types["DeploymentsCancelPreviewRequestIn"] = t.struct(
+        {"fingerprint": t.string().optional()}
+    ).named(renames["DeploymentsCancelPreviewRequestIn"])
+    types["DeploymentsCancelPreviewRequestOut"] = t.struct(
+        {
+            "fingerprint": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentsCancelPreviewRequestOut"])
+    types["ResourceUpdateIn"] = t.struct(
+        {
+            "accessControl": t.proxy(renames["ResourceAccessControlIn"]).optional(),
+            "intent": t.string().optional(),
+            "properties": t.string().optional(),
+            "state": t.string().optional(),
+            "finalProperties": t.string().optional(),
+            "manifest": t.string().optional(),
+            "error": t.struct(
+                {
+                    "errors": t.array(
+                        t.struct(
+                            {
+                                "message": t.string().optional(),
+                                "code": t.string().optional(),
+                                "location": t.string().optional(),
+                            }
+                        )
+                    ).optional()
+                }
+            ).optional(),
+            "warnings": t.array(
+                t.struct(
+                    {
+                        "code": t.string().optional(),
+                        "message": t.string().optional(),
+                        "data": t.array(
+                            t.struct(
+                                {
+                                    "key": t.string().optional(),
+                                    "value": t.string().optional(),
+                                }
+                            )
+                        ).optional(),
+                    }
+                )
+            ).optional(),
+        }
+    ).named(renames["ResourceUpdateIn"])
+    types["ResourceUpdateOut"] = t.struct(
+        {
+            "accessControl": t.proxy(renames["ResourceAccessControlOut"]).optional(),
+            "intent": t.string().optional(),
+            "properties": t.string().optional(),
+            "state": t.string().optional(),
+            "finalProperties": t.string().optional(),
+            "manifest": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "warnings": t.array(
+                t.struct(
+                    {
+                        "code": t.string().optional(),
+                        "message": t.string().optional(),
+                        "data": t.array(
+                            t.struct(
+                                {
+                                    "key": t.string().optional(),
+                                    "value": t.string().optional(),
+                                }
+                            )
+                        ).optional(),
+                    }
+                )
+            ).optional(),
+        }
+    ).named(renames["ResourceUpdateOut"])
     types["BindingIn"] = t.struct(
         {
+            "condition": t.proxy(renames["ExprIn"]).optional(),
             "role": t.string().optional(),
             "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprIn"]).optional(),
         }
     ).named(renames["BindingIn"])
     types["BindingOut"] = t.struct(
         {
+            "condition": t.proxy(renames["ExprOut"]).optional(),
             "role": t.string().optional(),
             "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["BindingOut"])
+    types["TargetConfigurationIn"] = t.struct(
+        {
+            "config": t.proxy(renames["ConfigFileIn"]).optional(),
+            "imports": t.array(t.proxy(renames["ImportFileIn"])).optional(),
+        }
+    ).named(renames["TargetConfigurationIn"])
+    types["TargetConfigurationOut"] = t.struct(
+        {
+            "config": t.proxy(renames["ConfigFileOut"]).optional(),
+            "imports": t.array(t.proxy(renames["ImportFileOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TargetConfigurationOut"])
+    types["TestPermissionsRequestIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestPermissionsRequestIn"])
+    types["TestPermissionsRequestOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestPermissionsRequestOut"])
+    types["AuditLogConfigIn"] = t.struct(
+        {
+            "logType": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+        }
+    ).named(renames["AuditLogConfigIn"])
+    types["AuditLogConfigOut"] = t.struct(
+        {
+            "logType": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AuditLogConfigOut"])
+    types["DeploymentsListResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "deployments": t.array(t.proxy(renames["DeploymentIn"])).optional(),
+        }
+    ).named(renames["DeploymentsListResponseIn"])
+    types["DeploymentsListResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "deployments": t.array(t.proxy(renames["DeploymentOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeploymentsListResponseOut"])
 
     functions = {}
-    functions["manifestsGet"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "project": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "deployment": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ManifestsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["manifestsList"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "project": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "deployment": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ManifestsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["operationsList"] = deploymentmanager.get(
         "deploymentmanager/v2/projects/{project}/global/operations/{operation}",
         t.struct(
@@ -714,15 +680,203 @@ def import_deploymentmanager() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
+    functions["manifestsGet"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "deployment": t.string().optional(),
+                "orderBy": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ManifestsListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["manifestsList"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "deployment": t.string().optional(),
+                "orderBy": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ManifestsListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsStop"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsCancelPreview"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsList"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsUpdate"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsSetIamPolicy"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsTestIamPermissions"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsDelete"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsGet"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsInsert"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsPatch"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["deploymentsGetIamPolicy"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{resource}/getIamPolicy",
+        t.struct(
+            {
+                "project": t.string().optional(),
+                "resource": t.string().optional(),
+                "optionsRequestedPolicyVersion": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
     functions["typesList"] = deploymentmanager.get(
         "deploymentmanager/v2/projects/{project}/global/types",
         t.struct(
             {
-                "maxResults": t.integer().optional(),
-                "filter": t.string().optional(),
                 "pageToken": t.string().optional(),
-                "orderBy": t.string().optional(),
                 "project": t.string().optional(),
+                "filter": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "orderBy": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -730,207 +884,37 @@ def import_deploymentmanager() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["resourcesList"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources/{resource}",
-        t.struct(
-            {
-                "project": t.string().optional(),
-                "deployment": t.string().optional(),
-                "resource": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ResourceOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["resourcesGet"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources/{resource}",
+        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources",
         t.struct(
             {
-                "project": t.string().optional(),
+                "orderBy": t.string().optional(),
                 "deployment": t.string().optional(),
-                "resource": t.string().optional(),
+                "project": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "filter": t.string().optional(),
+                "maxResults": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ResourceOut"]),
+        t.proxy(renames["ResourcesListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["deploymentsTestIamPermissions"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
+    functions["resourcesList"] = deploymentmanager.get(
+        "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources",
         t.struct(
             {
+                "orderBy": t.string().optional(),
+                "deployment": t.string().optional(),
+                "project": t.string().optional(),
+                "pageToken": t.string().optional(),
                 "filter": t.string().optional(),
                 "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsGet"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsSetIamPolicy"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsGetIamPolicy"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsInsert"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsStop"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsDelete"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsUpdate"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsPatch"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsCancelPreview"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["deploymentsList"] = deploymentmanager.get(
-        "deploymentmanager/v2/projects/{project}/global/deployments",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "pageToken": t.string().optional(),
-                "project": t.string().optional(),
-                "orderBy": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DeploymentsListResponseOut"]),
+        t.proxy(renames["ResourcesListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

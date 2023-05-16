@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_datafusion() -> Import:
@@ -9,326 +9,162 @@ def import_datafusion() -> Import:
 
     renames = {
         "ErrorResponse": "_datafusion_1_ErrorResponse",
-        "VersionIn": "_datafusion_2_VersionIn",
-        "VersionOut": "_datafusion_3_VersionOut",
-        "ListOperationsResponseIn": "_datafusion_4_ListOperationsResponseIn",
-        "ListOperationsResponseOut": "_datafusion_5_ListOperationsResponseOut",
-        "SetIamPolicyRequestIn": "_datafusion_6_SetIamPolicyRequestIn",
-        "SetIamPolicyRequestOut": "_datafusion_7_SetIamPolicyRequestOut",
-        "EventPublishConfigIn": "_datafusion_8_EventPublishConfigIn",
-        "EventPublishConfigOut": "_datafusion_9_EventPublishConfigOut",
-        "TestIamPermissionsResponseIn": "_datafusion_10_TestIamPermissionsResponseIn",
-        "TestIamPermissionsResponseOut": "_datafusion_11_TestIamPermissionsResponseOut",
-        "DnsPeeringIn": "_datafusion_12_DnsPeeringIn",
-        "DnsPeeringOut": "_datafusion_13_DnsPeeringOut",
-        "AuditConfigIn": "_datafusion_14_AuditConfigIn",
-        "AuditConfigOut": "_datafusion_15_AuditConfigOut",
-        "ExprIn": "_datafusion_16_ExprIn",
-        "ExprOut": "_datafusion_17_ExprOut",
-        "RestartInstanceRequestIn": "_datafusion_18_RestartInstanceRequestIn",
-        "RestartInstanceRequestOut": "_datafusion_19_RestartInstanceRequestOut",
-        "StatusIn": "_datafusion_20_StatusIn",
-        "StatusOut": "_datafusion_21_StatusOut",
-        "OperationIn": "_datafusion_22_OperationIn",
-        "OperationOut": "_datafusion_23_OperationOut",
-        "ListInstancesResponseIn": "_datafusion_24_ListInstancesResponseIn",
-        "ListInstancesResponseOut": "_datafusion_25_ListInstancesResponseOut",
-        "CryptoKeyConfigIn": "_datafusion_26_CryptoKeyConfigIn",
-        "CryptoKeyConfigOut": "_datafusion_27_CryptoKeyConfigOut",
-        "ListLocationsResponseIn": "_datafusion_28_ListLocationsResponseIn",
-        "ListLocationsResponseOut": "_datafusion_29_ListLocationsResponseOut",
-        "CancelOperationRequestIn": "_datafusion_30_CancelOperationRequestIn",
-        "CancelOperationRequestOut": "_datafusion_31_CancelOperationRequestOut",
+        "DnsPeeringIn": "_datafusion_2_DnsPeeringIn",
+        "DnsPeeringOut": "_datafusion_3_DnsPeeringOut",
+        "InstanceIn": "_datafusion_4_InstanceIn",
+        "InstanceOut": "_datafusion_5_InstanceOut",
+        "ExprIn": "_datafusion_6_ExprIn",
+        "ExprOut": "_datafusion_7_ExprOut",
+        "EmptyIn": "_datafusion_8_EmptyIn",
+        "EmptyOut": "_datafusion_9_EmptyOut",
+        "ListAvailableVersionsResponseIn": "_datafusion_10_ListAvailableVersionsResponseIn",
+        "ListAvailableVersionsResponseOut": "_datafusion_11_ListAvailableVersionsResponseOut",
+        "ListDnsPeeringsResponseIn": "_datafusion_12_ListDnsPeeringsResponseIn",
+        "ListDnsPeeringsResponseOut": "_datafusion_13_ListDnsPeeringsResponseOut",
+        "BindingIn": "_datafusion_14_BindingIn",
+        "BindingOut": "_datafusion_15_BindingOut",
+        "StatusIn": "_datafusion_16_StatusIn",
+        "StatusOut": "_datafusion_17_StatusOut",
+        "CancelOperationRequestIn": "_datafusion_18_CancelOperationRequestIn",
+        "CancelOperationRequestOut": "_datafusion_19_CancelOperationRequestOut",
+        "VersionIn": "_datafusion_20_VersionIn",
+        "VersionOut": "_datafusion_21_VersionOut",
+        "ListInstancesResponseIn": "_datafusion_22_ListInstancesResponseIn",
+        "ListInstancesResponseOut": "_datafusion_23_ListInstancesResponseOut",
+        "SetIamPolicyRequestIn": "_datafusion_24_SetIamPolicyRequestIn",
+        "SetIamPolicyRequestOut": "_datafusion_25_SetIamPolicyRequestOut",
+        "OperationIn": "_datafusion_26_OperationIn",
+        "OperationOut": "_datafusion_27_OperationOut",
+        "NetworkConfigIn": "_datafusion_28_NetworkConfigIn",
+        "NetworkConfigOut": "_datafusion_29_NetworkConfigOut",
+        "PolicyIn": "_datafusion_30_PolicyIn",
+        "PolicyOut": "_datafusion_31_PolicyOut",
         "TestIamPermissionsRequestIn": "_datafusion_32_TestIamPermissionsRequestIn",
         "TestIamPermissionsRequestOut": "_datafusion_33_TestIamPermissionsRequestOut",
-        "EmptyIn": "_datafusion_34_EmptyIn",
-        "EmptyOut": "_datafusion_35_EmptyOut",
-        "PolicyIn": "_datafusion_36_PolicyIn",
-        "PolicyOut": "_datafusion_37_PolicyOut",
-        "AcceleratorIn": "_datafusion_38_AcceleratorIn",
-        "AcceleratorOut": "_datafusion_39_AcceleratorOut",
-        "OperationMetadataIn": "_datafusion_40_OperationMetadataIn",
-        "OperationMetadataOut": "_datafusion_41_OperationMetadataOut",
-        "ListAvailableVersionsResponseIn": "_datafusion_42_ListAvailableVersionsResponseIn",
-        "ListAvailableVersionsResponseOut": "_datafusion_43_ListAvailableVersionsResponseOut",
-        "LocationIn": "_datafusion_44_LocationIn",
-        "LocationOut": "_datafusion_45_LocationOut",
-        "BindingIn": "_datafusion_46_BindingIn",
-        "BindingOut": "_datafusion_47_BindingOut",
-        "AuditLogConfigIn": "_datafusion_48_AuditLogConfigIn",
-        "AuditLogConfigOut": "_datafusion_49_AuditLogConfigOut",
-        "InstanceIn": "_datafusion_50_InstanceIn",
-        "InstanceOut": "_datafusion_51_InstanceOut",
-        "ListDnsPeeringsResponseIn": "_datafusion_52_ListDnsPeeringsResponseIn",
-        "ListDnsPeeringsResponseOut": "_datafusion_53_ListDnsPeeringsResponseOut",
-        "NetworkConfigIn": "_datafusion_54_NetworkConfigIn",
-        "NetworkConfigOut": "_datafusion_55_NetworkConfigOut",
+        "AuditConfigIn": "_datafusion_34_AuditConfigIn",
+        "AuditConfigOut": "_datafusion_35_AuditConfigOut",
+        "CryptoKeyConfigIn": "_datafusion_36_CryptoKeyConfigIn",
+        "CryptoKeyConfigOut": "_datafusion_37_CryptoKeyConfigOut",
+        "LocationIn": "_datafusion_38_LocationIn",
+        "LocationOut": "_datafusion_39_LocationOut",
+        "AcceleratorIn": "_datafusion_40_AcceleratorIn",
+        "AcceleratorOut": "_datafusion_41_AcceleratorOut",
+        "ListOperationsResponseIn": "_datafusion_42_ListOperationsResponseIn",
+        "ListOperationsResponseOut": "_datafusion_43_ListOperationsResponseOut",
+        "RestartInstanceRequestIn": "_datafusion_44_RestartInstanceRequestIn",
+        "RestartInstanceRequestOut": "_datafusion_45_RestartInstanceRequestOut",
+        "ListLocationsResponseIn": "_datafusion_46_ListLocationsResponseIn",
+        "ListLocationsResponseOut": "_datafusion_47_ListLocationsResponseOut",
+        "OperationMetadataIn": "_datafusion_48_OperationMetadataIn",
+        "OperationMetadataOut": "_datafusion_49_OperationMetadataOut",
+        "AuditLogConfigIn": "_datafusion_50_AuditLogConfigIn",
+        "AuditLogConfigOut": "_datafusion_51_AuditLogConfigOut",
+        "EventPublishConfigIn": "_datafusion_52_EventPublishConfigIn",
+        "EventPublishConfigOut": "_datafusion_53_EventPublishConfigOut",
+        "TestIamPermissionsResponseIn": "_datafusion_54_TestIamPermissionsResponseIn",
+        "TestIamPermissionsResponseOut": "_datafusion_55_TestIamPermissionsResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["VersionIn"] = t.struct(
-        {
-            "availableFeatures": t.array(t.string()).optional(),
-            "defaultVersion": t.boolean().optional(),
-            "type": t.string().optional(),
-            "versionNumber": t.string().optional(),
-        }
-    ).named(renames["VersionIn"])
-    types["VersionOut"] = t.struct(
-        {
-            "availableFeatures": t.array(t.string()).optional(),
-            "defaultVersion": t.boolean().optional(),
-            "type": t.string().optional(),
-            "versionNumber": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["VersionOut"])
-    types["ListOperationsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
-        }
-    ).named(renames["ListOperationsResponseIn"])
-    types["ListOperationsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListOperationsResponseOut"])
-    types["SetIamPolicyRequestIn"] = t.struct(
-        {
-            "updateMask": t.string().optional(),
-            "policy": t.proxy(renames["PolicyIn"]).optional(),
-        }
-    ).named(renames["SetIamPolicyRequestIn"])
-    types["SetIamPolicyRequestOut"] = t.struct(
-        {
-            "updateMask": t.string().optional(),
-            "policy": t.proxy(renames["PolicyOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SetIamPolicyRequestOut"])
-    types["EventPublishConfigIn"] = t.struct(
-        {"topic": t.string(), "enabled": t.boolean()}
-    ).named(renames["EventPublishConfigIn"])
-    types["EventPublishConfigOut"] = t.struct(
-        {
-            "topic": t.string(),
-            "enabled": t.boolean(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EventPublishConfigOut"])
-    types["TestIamPermissionsResponseIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsResponseIn"])
-    types["TestIamPermissionsResponseOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsResponseOut"])
     types["DnsPeeringIn"] = t.struct(
         {
             "targetNetwork": t.string().optional(),
-            "targetProject": t.string().optional(),
-            "name": t.string(),
             "description": t.string().optional(),
             "domain": t.string(),
+            "targetProject": t.string().optional(),
+            "name": t.string(),
         }
     ).named(renames["DnsPeeringIn"])
     types["DnsPeeringOut"] = t.struct(
         {
             "targetNetwork": t.string().optional(),
-            "targetProject": t.string().optional(),
-            "name": t.string(),
             "description": t.string().optional(),
             "domain": t.string(),
+            "targetProject": t.string().optional(),
+            "name": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DnsPeeringOut"])
-    types["AuditConfigIn"] = t.struct(
+    types["InstanceIn"] = t.struct(
         {
-            "service": t.string().optional(),
-            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
+            "description": t.string().optional(),
+            "enableRbac": t.boolean().optional(),
+            "type": t.string(),
+            "enableStackdriverMonitoring": t.boolean().optional(),
+            "version": t.string().optional(),
+            "zone": t.string().optional(),
+            "options": t.struct({"_": t.string().optional()}).optional(),
+            "eventPublishConfig": t.proxy(renames["EventPublishConfigIn"]).optional(),
+            "enableZoneSeparation": t.boolean().optional(),
+            "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+            "dataprocServiceAccount": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "displayName": t.string().optional(),
+            "privateInstance": t.boolean().optional(),
+            "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+            "enableStackdriverLogging": t.boolean().optional(),
         }
-    ).named(renames["AuditConfigIn"])
-    types["AuditConfigOut"] = t.struct(
+    ).named(renames["InstanceIn"])
+    types["InstanceOut"] = t.struct(
         {
-            "service": t.string().optional(),
-            "auditLogConfigs": t.array(
-                t.proxy(renames["AuditLogConfigOut"])
-            ).optional(),
+            "accelerators": t.array(t.proxy(renames["AcceleratorOut"])).optional(),
+            "stateMessage": t.string().optional(),
+            "description": t.string().optional(),
+            "enableRbac": t.boolean().optional(),
+            "type": t.string(),
+            "enableStackdriverMonitoring": t.boolean().optional(),
+            "serviceEndpoint": t.string().optional(),
+            "version": t.string().optional(),
+            "apiEndpoint": t.string().optional(),
+            "zone": t.string().optional(),
+            "options": t.struct({"_": t.string().optional()}).optional(),
+            "updateTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "state": t.string().optional(),
+            "eventPublishConfig": t.proxy(renames["EventPublishConfigOut"]).optional(),
+            "satisfiesPzs": t.boolean().optional(),
+            "disabledReason": t.array(t.string()).optional(),
+            "enableZoneSeparation": t.boolean().optional(),
+            "networkConfig": t.proxy(renames["NetworkConfigOut"]).optional(),
+            "dataprocServiceAccount": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "gcsBucket": t.string().optional(),
+            "tenantProjectId": t.string().optional(),
+            "p4ServiceAccount": t.string().optional(),
+            "availableVersion": t.array(t.proxy(renames["VersionOut"])).optional(),
+            "displayName": t.string().optional(),
+            "serviceAccount": t.string().optional(),
+            "name": t.string().optional(),
+            "privateInstance": t.boolean().optional(),
+            "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigOut"]).optional(),
+            "enableStackdriverLogging": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AuditConfigOut"])
+    ).named(renames["InstanceOut"])
     types["ExprIn"] = t.struct(
         {
             "title": t.string().optional(),
             "description": t.string().optional(),
-            "expression": t.string().optional(),
             "location": t.string().optional(),
+            "expression": t.string().optional(),
         }
     ).named(renames["ExprIn"])
     types["ExprOut"] = t.struct(
         {
             "title": t.string().optional(),
             "description": t.string().optional(),
-            "expression": t.string().optional(),
             "location": t.string().optional(),
+            "expression": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ExprOut"])
-    types["RestartInstanceRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["RestartInstanceRequestIn"]
-    )
-    types["RestartInstanceRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["RestartInstanceRequestOut"])
-    types["StatusIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-        }
-    ).named(renames["StatusIn"])
-    types["StatusOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusOut"])
-    types["OperationIn"] = t.struct(
-        {
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-            "done": t.boolean().optional(),
-            "error": t.proxy(renames["StatusIn"]).optional(),
-        }
-    ).named(renames["OperationIn"])
-    types["OperationOut"] = t.struct(
-        {
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-            "done": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OperationOut"])
-    types["ListInstancesResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "instances": t.array(t.proxy(renames["InstanceIn"])).optional(),
-            "unreachable": t.array(t.string()).optional(),
-        }
-    ).named(renames["ListInstancesResponseIn"])
-    types["ListInstancesResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "instances": t.array(t.proxy(renames["InstanceOut"])).optional(),
-            "unreachable": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListInstancesResponseOut"])
-    types["CryptoKeyConfigIn"] = t.struct(
-        {"keyReference": t.string().optional()}
-    ).named(renames["CryptoKeyConfigIn"])
-    types["CryptoKeyConfigOut"] = t.struct(
-        {
-            "keyReference": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CryptoKeyConfigOut"])
-    types["ListLocationsResponseIn"] = t.struct(
-        {
-            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListLocationsResponseIn"])
-    types["ListLocationsResponseOut"] = t.struct(
-        {
-            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListLocationsResponseOut"])
-    types["CancelOperationRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["CancelOperationRequestIn"]
-    )
-    types["CancelOperationRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["CancelOperationRequestOut"])
-    types["TestIamPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsRequestIn"])
-    types["TestIamPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsRequestOut"])
     types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
     types["EmptyOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["EmptyOut"])
-    types["PolicyIn"] = t.struct(
-        {
-            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
-            "version": t.integer().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
-            "etag": t.string().optional(),
-        }
-    ).named(renames["PolicyIn"])
-    types["PolicyOut"] = t.struct(
-        {
-            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
-            "version": t.integer().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
-            "etag": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PolicyOut"])
-    types["AcceleratorIn"] = t.struct(
-        {"state": t.string().optional(), "acceleratorType": t.string().optional()}
-    ).named(renames["AcceleratorIn"])
-    types["AcceleratorOut"] = t.struct(
-        {
-            "state": t.string().optional(),
-            "acceleratorType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AcceleratorOut"])
-    types["OperationMetadataIn"] = t.struct(
-        {
-            "target": t.string().optional(),
-            "apiVersion": t.string().optional(),
-            "endTime": t.string().optional(),
-            "statusDetail": t.string().optional(),
-            "createTime": t.string().optional(),
-            "additionalStatus": t.struct({"_": t.string().optional()}).optional(),
-            "requestedCancellation": t.boolean().optional(),
-            "verb": t.string().optional(),
-        }
-    ).named(renames["OperationMetadataIn"])
-    types["OperationMetadataOut"] = t.struct(
-        {
-            "target": t.string().optional(),
-            "apiVersion": t.string().optional(),
-            "endTime": t.string().optional(),
-            "statusDetail": t.string().optional(),
-            "createTime": t.string().optional(),
-            "additionalStatus": t.struct({"_": t.string().optional()}).optional(),
-            "requestedCancellation": t.boolean().optional(),
-            "verb": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OperationMetadataOut"])
     types["ListAvailableVersionsResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -342,108 +178,6 @@ def import_datafusion() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListAvailableVersionsResponseOut"])
-    types["LocationIn"] = t.struct(
-        {
-            "displayName": t.string().optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "locationId": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["LocationIn"])
-    types["LocationOut"] = t.struct(
-        {
-            "displayName": t.string().optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "locationId": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["LocationOut"])
-    types["BindingIn"] = t.struct(
-        {
-            "role": t.string().optional(),
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprIn"]).optional(),
-        }
-    ).named(renames["BindingIn"])
-    types["BindingOut"] = t.struct(
-        {
-            "role": t.string().optional(),
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BindingOut"])
-    types["AuditLogConfigIn"] = t.struct(
-        {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
-        }
-    ).named(renames["AuditLogConfigIn"])
-    types["AuditLogConfigOut"] = t.struct(
-        {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AuditLogConfigOut"])
-    types["InstanceIn"] = t.struct(
-        {
-            "enableStackdriverMonitoring": t.boolean().optional(),
-            "enableRbac": t.boolean().optional(),
-            "dataprocServiceAccount": t.string().optional(),
-            "description": t.string().optional(),
-            "displayName": t.string().optional(),
-            "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
-            "eventPublishConfig": t.proxy(renames["EventPublishConfigIn"]).optional(),
-            "zone": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "version": t.string().optional(),
-            "type": t.string(),
-            "enableZoneSeparation": t.boolean().optional(),
-            "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
-            "enableStackdriverLogging": t.boolean().optional(),
-            "options": t.struct({"_": t.string().optional()}).optional(),
-            "privateInstance": t.boolean().optional(),
-        }
-    ).named(renames["InstanceIn"])
-    types["InstanceOut"] = t.struct(
-        {
-            "enableStackdriverMonitoring": t.boolean().optional(),
-            "enableRbac": t.boolean().optional(),
-            "tenantProjectId": t.string().optional(),
-            "dataprocServiceAccount": t.string().optional(),
-            "description": t.string().optional(),
-            "displayName": t.string().optional(),
-            "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigOut"]).optional(),
-            "serviceAccount": t.string().optional(),
-            "apiEndpoint": t.string().optional(),
-            "eventPublishConfig": t.proxy(renames["EventPublishConfigOut"]).optional(),
-            "serviceEndpoint": t.string().optional(),
-            "availableVersion": t.array(t.proxy(renames["VersionOut"])).optional(),
-            "zone": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "state": t.string().optional(),
-            "disabledReason": t.array(t.string()).optional(),
-            "version": t.string().optional(),
-            "type": t.string(),
-            "enableZoneSeparation": t.boolean().optional(),
-            "updateTime": t.string().optional(),
-            "stateMessage": t.string().optional(),
-            "networkConfig": t.proxy(renames["NetworkConfigOut"]).optional(),
-            "p4ServiceAccount": t.string().optional(),
-            "createTime": t.string().optional(),
-            "name": t.string().optional(),
-            "accelerators": t.array(t.proxy(renames["AcceleratorOut"])).optional(),
-            "enableStackdriverLogging": t.boolean().optional(),
-            "options": t.struct({"_": t.string().optional()}).optional(),
-            "gcsBucket": t.string().optional(),
-            "privateInstance": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["InstanceOut"])
     types["ListDnsPeeringsResponseIn"] = t.struct(
         {
             "dnsPeerings": t.array(t.proxy(renames["DnsPeeringIn"])).optional(),
@@ -457,6 +191,105 @@ def import_datafusion() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListDnsPeeringsResponseOut"])
+    types["BindingIn"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "role": t.string().optional(),
+            "condition": t.proxy(renames["ExprIn"]).optional(),
+        }
+    ).named(renames["BindingIn"])
+    types["BindingOut"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "role": t.string().optional(),
+            "condition": t.proxy(renames["ExprOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BindingOut"])
+    types["StatusIn"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
+        }
+    ).named(renames["StatusIn"])
+    types["StatusOut"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StatusOut"])
+    types["CancelOperationRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["CancelOperationRequestIn"]
+    )
+    types["CancelOperationRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["CancelOperationRequestOut"])
+    types["VersionIn"] = t.struct(
+        {
+            "versionNumber": t.string().optional(),
+            "defaultVersion": t.boolean().optional(),
+            "type": t.string().optional(),
+            "availableFeatures": t.array(t.string()).optional(),
+        }
+    ).named(renames["VersionIn"])
+    types["VersionOut"] = t.struct(
+        {
+            "versionNumber": t.string().optional(),
+            "defaultVersion": t.boolean().optional(),
+            "type": t.string().optional(),
+            "availableFeatures": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["VersionOut"])
+    types["ListInstancesResponseIn"] = t.struct(
+        {
+            "instances": t.array(t.proxy(renames["InstanceIn"])).optional(),
+            "unreachable": t.array(t.string()).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListInstancesResponseIn"])
+    types["ListInstancesResponseOut"] = t.struct(
+        {
+            "instances": t.array(t.proxy(renames["InstanceOut"])).optional(),
+            "unreachable": t.array(t.string()).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListInstancesResponseOut"])
+    types["SetIamPolicyRequestIn"] = t.struct(
+        {
+            "policy": t.proxy(renames["PolicyIn"]).optional(),
+            "updateMask": t.string().optional(),
+        }
+    ).named(renames["SetIamPolicyRequestIn"])
+    types["SetIamPolicyRequestOut"] = t.struct(
+        {
+            "policy": t.proxy(renames["PolicyOut"]).optional(),
+            "updateMask": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SetIamPolicyRequestOut"])
+    types["OperationIn"] = t.struct(
+        {
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["StatusIn"]).optional(),
+            "done": t.boolean().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["OperationIn"])
+    types["OperationOut"] = t.struct(
+        {
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "done": t.boolean().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["OperationOut"])
     types["NetworkConfigIn"] = t.struct(
         {"ipAllocation": t.string().optional(), "network": t.string().optional()}
     ).named(renames["NetworkConfigIn"])
@@ -467,6 +300,174 @@ def import_datafusion() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["NetworkConfigOut"])
+    types["PolicyIn"] = t.struct(
+        {
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
+            "version": t.integer().optional(),
+            "etag": t.string().optional(),
+        }
+    ).named(renames["PolicyIn"])
+    types["PolicyOut"] = t.struct(
+        {
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
+            "version": t.integer().optional(),
+            "etag": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PolicyOut"])
+    types["TestIamPermissionsRequestIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsRequestIn"])
+    types["TestIamPermissionsRequestOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestIamPermissionsRequestOut"])
+    types["AuditConfigIn"] = t.struct(
+        {
+            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
+            "service": t.string().optional(),
+        }
+    ).named(renames["AuditConfigIn"])
+    types["AuditConfigOut"] = t.struct(
+        {
+            "auditLogConfigs": t.array(
+                t.proxy(renames["AuditLogConfigOut"])
+            ).optional(),
+            "service": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AuditConfigOut"])
+    types["CryptoKeyConfigIn"] = t.struct(
+        {"keyReference": t.string().optional()}
+    ).named(renames["CryptoKeyConfigIn"])
+    types["CryptoKeyConfigOut"] = t.struct(
+        {
+            "keyReference": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CryptoKeyConfigOut"])
+    types["LocationIn"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "locationId": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["LocationIn"])
+    types["LocationOut"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "locationId": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["LocationOut"])
+    types["AcceleratorIn"] = t.struct(
+        {"acceleratorType": t.string().optional(), "state": t.string().optional()}
+    ).named(renames["AcceleratorIn"])
+    types["AcceleratorOut"] = t.struct(
+        {
+            "acceleratorType": t.string().optional(),
+            "state": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AcceleratorOut"])
+    types["ListOperationsResponseIn"] = t.struct(
+        {
+            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListOperationsResponseIn"])
+    types["ListOperationsResponseOut"] = t.struct(
+        {
+            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListOperationsResponseOut"])
+    types["RestartInstanceRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["RestartInstanceRequestIn"]
+    )
+    types["RestartInstanceRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["RestartInstanceRequestOut"])
+    types["ListLocationsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
+        }
+    ).named(renames["ListLocationsResponseIn"])
+    types["ListLocationsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListLocationsResponseOut"])
+    types["OperationMetadataIn"] = t.struct(
+        {
+            "target": t.string().optional(),
+            "verb": t.string().optional(),
+            "statusDetail": t.string().optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "apiVersion": t.string().optional(),
+            "additionalStatus": t.struct({"_": t.string().optional()}).optional(),
+            "requestedCancellation": t.boolean().optional(),
+        }
+    ).named(renames["OperationMetadataIn"])
+    types["OperationMetadataOut"] = t.struct(
+        {
+            "target": t.string().optional(),
+            "verb": t.string().optional(),
+            "statusDetail": t.string().optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "apiVersion": t.string().optional(),
+            "additionalStatus": t.struct({"_": t.string().optional()}).optional(),
+            "requestedCancellation": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationMetadataOut"])
+    types["AuditLogConfigIn"] = t.struct(
+        {
+            "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
+        }
+    ).named(renames["AuditLogConfigIn"])
+    types["AuditLogConfigOut"] = t.struct(
+        {
+            "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AuditLogConfigOut"])
+    types["EventPublishConfigIn"] = t.struct(
+        {"enabled": t.boolean(), "topic": t.string()}
+    ).named(renames["EventPublishConfigIn"])
+    types["EventPublishConfigOut"] = t.struct(
+        {
+            "enabled": t.boolean(),
+            "topic": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["EventPublishConfigOut"])
+    types["TestIamPermissionsResponseIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsResponseIn"])
+    types["TestIamPermissionsResponseOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestIamPermissionsResponseOut"])
 
     functions = {}
     functions["projectsLocationsList"] = datafusion.get(
@@ -480,13 +481,6 @@ def import_datafusion() -> Import:
         "v1/{name}",
         t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
         t.proxy(renames["LocationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsOperationsCancel"] = datafusion.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -504,6 +498,13 @@ def import_datafusion() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
+    functions["projectsLocationsOperationsCancel"] = datafusion.delete(
+        "v1/{name}",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
     functions["projectsLocationsOperationsDelete"] = datafusion.delete(
         "v1/{name}",
         t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
@@ -515,10 +516,10 @@ def import_datafusion() -> Import:
         "v1/{parent}/versions",
         t.struct(
             {
-                "latestPatchOnly": t.boolean().optional(),
                 "pageSize": t.integer().optional(),
-                "pageToken": t.string().optional(),
                 "parent": t.string(),
+                "latestPatchOnly": t.boolean().optional(),
+                "pageToken": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -526,141 +527,324 @@ def import_datafusion() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesList"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesTestIamPermissions"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesSetIamPolicy"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesRestart"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesPatch"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesGet"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesDelete"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesCreate"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesGetIamPolicy"] = datafusion.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsInstancesDnsPeeringsList"] = datafusion.delete(
+    functions["projectsLocationsInstancesGetIamPolicy"] = datafusion.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesDnsPeeringsCreate"] = datafusion.delete(
+    functions["projectsLocationsInstancesRestart"] = datafusion.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsInstancesDnsPeeringsDelete"] = datafusion.delete(
+    functions["projectsLocationsInstancesCreate"] = datafusion.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesDelete"] = datafusion.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesSetIamPolicy"] = datafusion.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesTestIamPermissions"] = datafusion.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesGet"] = datafusion.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesList"] = datafusion.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesPatch"] = datafusion.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "updateMask": t.string().optional(),
+                "description": t.string().optional(),
+                "enableRbac": t.boolean().optional(),
+                "type": t.string(),
+                "enableStackdriverMonitoring": t.boolean().optional(),
+                "version": t.string().optional(),
+                "zone": t.string().optional(),
+                "options": t.struct({"_": t.string().optional()}).optional(),
+                "eventPublishConfig": t.proxy(
+                    renames["EventPublishConfigIn"]
+                ).optional(),
+                "enableZoneSeparation": t.boolean().optional(),
+                "networkConfig": t.proxy(renames["NetworkConfigIn"]).optional(),
+                "dataprocServiceAccount": t.string().optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "displayName": t.string().optional(),
+                "privateInstance": t.boolean().optional(),
+                "cryptoKeyConfig": t.proxy(renames["CryptoKeyConfigIn"]).optional(),
+                "enableStackdriverLogging": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesDnsPeeringsCreate"] = datafusion.get(
+        "v1/{parent}/dnsPeerings",
+        t.struct(
+            {
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListDnsPeeringsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesDnsPeeringsDelete"] = datafusion.get(
+        "v1/{parent}/dnsPeerings",
+        t.struct(
+            {
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListDnsPeeringsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsInstancesDnsPeeringsList"] = datafusion.get(
+        "v1/{parent}/dnsPeerings",
+        t.struct(
+            {
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListDnsPeeringsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

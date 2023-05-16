@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_analyticsdata() -> Import:
@@ -9,175 +9,440 @@ def import_analyticsdata() -> Import:
 
     renames = {
         "ErrorResponse": "_analyticsdata_1_ErrorResponse",
-        "RunPivotReportRequestIn": "_analyticsdata_2_RunPivotReportRequestIn",
-        "RunPivotReportRequestOut": "_analyticsdata_3_RunPivotReportRequestOut",
-        "CaseExpressionIn": "_analyticsdata_4_CaseExpressionIn",
-        "CaseExpressionOut": "_analyticsdata_5_CaseExpressionOut",
-        "MetadataIn": "_analyticsdata_6_MetadataIn",
-        "MetadataOut": "_analyticsdata_7_MetadataOut",
-        "NumericFilterIn": "_analyticsdata_8_NumericFilterIn",
-        "NumericFilterOut": "_analyticsdata_9_NumericFilterOut",
-        "DimensionValueIn": "_analyticsdata_10_DimensionValueIn",
-        "DimensionValueOut": "_analyticsdata_11_DimensionValueOut",
-        "RunReportRequestIn": "_analyticsdata_12_RunReportRequestIn",
-        "RunReportRequestOut": "_analyticsdata_13_RunReportRequestOut",
-        "FilterExpressionIn": "_analyticsdata_14_FilterExpressionIn",
-        "FilterExpressionOut": "_analyticsdata_15_FilterExpressionOut",
-        "InListFilterIn": "_analyticsdata_16_InListFilterIn",
-        "InListFilterOut": "_analyticsdata_17_InListFilterOut",
-        "OrderByIn": "_analyticsdata_18_OrderByIn",
-        "OrderByOut": "_analyticsdata_19_OrderByOut",
-        "RunReportResponseIn": "_analyticsdata_20_RunReportResponseIn",
-        "RunReportResponseOut": "_analyticsdata_21_RunReportResponseOut",
-        "DimensionCompatibilityIn": "_analyticsdata_22_DimensionCompatibilityIn",
-        "DimensionCompatibilityOut": "_analyticsdata_23_DimensionCompatibilityOut",
-        "DateRangeIn": "_analyticsdata_24_DateRangeIn",
-        "DateRangeOut": "_analyticsdata_25_DateRangeOut",
-        "DimensionHeaderIn": "_analyticsdata_26_DimensionHeaderIn",
-        "DimensionHeaderOut": "_analyticsdata_27_DimensionHeaderOut",
-        "CheckCompatibilityRequestIn": "_analyticsdata_28_CheckCompatibilityRequestIn",
-        "CheckCompatibilityRequestOut": "_analyticsdata_29_CheckCompatibilityRequestOut",
-        "CohortReportSettingsIn": "_analyticsdata_30_CohortReportSettingsIn",
-        "CohortReportSettingsOut": "_analyticsdata_31_CohortReportSettingsOut",
-        "MetricCompatibilityIn": "_analyticsdata_32_MetricCompatibilityIn",
-        "MetricCompatibilityOut": "_analyticsdata_33_MetricCompatibilityOut",
-        "QuotaStatusIn": "_analyticsdata_34_QuotaStatusIn",
-        "QuotaStatusOut": "_analyticsdata_35_QuotaStatusOut",
-        "PivotHeaderIn": "_analyticsdata_36_PivotHeaderIn",
-        "PivotHeaderOut": "_analyticsdata_37_PivotHeaderOut",
-        "NumericValueIn": "_analyticsdata_38_NumericValueIn",
-        "NumericValueOut": "_analyticsdata_39_NumericValueOut",
-        "MinuteRangeIn": "_analyticsdata_40_MinuteRangeIn",
-        "MinuteRangeOut": "_analyticsdata_41_MinuteRangeOut",
-        "MetricValueIn": "_analyticsdata_42_MetricValueIn",
-        "MetricValueOut": "_analyticsdata_43_MetricValueOut",
-        "RunRealtimeReportRequestIn": "_analyticsdata_44_RunRealtimeReportRequestIn",
-        "RunRealtimeReportRequestOut": "_analyticsdata_45_RunRealtimeReportRequestOut",
-        "DimensionOrderByIn": "_analyticsdata_46_DimensionOrderByIn",
-        "DimensionOrderByOut": "_analyticsdata_47_DimensionOrderByOut",
-        "PivotDimensionHeaderIn": "_analyticsdata_48_PivotDimensionHeaderIn",
-        "PivotDimensionHeaderOut": "_analyticsdata_49_PivotDimensionHeaderOut",
-        "MetricIn": "_analyticsdata_50_MetricIn",
-        "MetricOut": "_analyticsdata_51_MetricOut",
-        "CohortSpecIn": "_analyticsdata_52_CohortSpecIn",
-        "CohortSpecOut": "_analyticsdata_53_CohortSpecOut",
-        "FilterExpressionListIn": "_analyticsdata_54_FilterExpressionListIn",
-        "FilterExpressionListOut": "_analyticsdata_55_FilterExpressionListOut",
-        "CheckCompatibilityResponseIn": "_analyticsdata_56_CheckCompatibilityResponseIn",
-        "CheckCompatibilityResponseOut": "_analyticsdata_57_CheckCompatibilityResponseOut",
-        "DimensionIn": "_analyticsdata_58_DimensionIn",
-        "DimensionOut": "_analyticsdata_59_DimensionOut",
-        "ConcatenateExpressionIn": "_analyticsdata_60_ConcatenateExpressionIn",
-        "ConcatenateExpressionOut": "_analyticsdata_61_ConcatenateExpressionOut",
-        "DimensionMetadataIn": "_analyticsdata_62_DimensionMetadataIn",
-        "DimensionMetadataOut": "_analyticsdata_63_DimensionMetadataOut",
-        "PivotOrderByIn": "_analyticsdata_64_PivotOrderByIn",
-        "PivotOrderByOut": "_analyticsdata_65_PivotOrderByOut",
-        "ResponseMetaDataIn": "_analyticsdata_66_ResponseMetaDataIn",
-        "ResponseMetaDataOut": "_analyticsdata_67_ResponseMetaDataOut",
-        "RunPivotReportResponseIn": "_analyticsdata_68_RunPivotReportResponseIn",
-        "RunPivotReportResponseOut": "_analyticsdata_69_RunPivotReportResponseOut",
-        "BatchRunPivotReportsRequestIn": "_analyticsdata_70_BatchRunPivotReportsRequestIn",
-        "BatchRunPivotReportsRequestOut": "_analyticsdata_71_BatchRunPivotReportsRequestOut",
-        "DimensionExpressionIn": "_analyticsdata_72_DimensionExpressionIn",
-        "DimensionExpressionOut": "_analyticsdata_73_DimensionExpressionOut",
-        "CohortsRangeIn": "_analyticsdata_74_CohortsRangeIn",
-        "CohortsRangeOut": "_analyticsdata_75_CohortsRangeOut",
-        "RunRealtimeReportResponseIn": "_analyticsdata_76_RunRealtimeReportResponseIn",
-        "RunRealtimeReportResponseOut": "_analyticsdata_77_RunRealtimeReportResponseOut",
-        "PivotSelectionIn": "_analyticsdata_78_PivotSelectionIn",
-        "PivotSelectionOut": "_analyticsdata_79_PivotSelectionOut",
-        "FilterIn": "_analyticsdata_80_FilterIn",
-        "FilterOut": "_analyticsdata_81_FilterOut",
-        "MetricHeaderIn": "_analyticsdata_82_MetricHeaderIn",
-        "MetricHeaderOut": "_analyticsdata_83_MetricHeaderOut",
-        "BatchRunReportsRequestIn": "_analyticsdata_84_BatchRunReportsRequestIn",
-        "BatchRunReportsRequestOut": "_analyticsdata_85_BatchRunReportsRequestOut",
-        "MetricOrderByIn": "_analyticsdata_86_MetricOrderByIn",
-        "MetricOrderByOut": "_analyticsdata_87_MetricOrderByOut",
-        "CohortIn": "_analyticsdata_88_CohortIn",
-        "CohortOut": "_analyticsdata_89_CohortOut",
-        "SchemaRestrictionResponseIn": "_analyticsdata_90_SchemaRestrictionResponseIn",
-        "SchemaRestrictionResponseOut": "_analyticsdata_91_SchemaRestrictionResponseOut",
-        "PropertyQuotaIn": "_analyticsdata_92_PropertyQuotaIn",
-        "PropertyQuotaOut": "_analyticsdata_93_PropertyQuotaOut",
-        "BatchRunPivotReportsResponseIn": "_analyticsdata_94_BatchRunPivotReportsResponseIn",
-        "BatchRunPivotReportsResponseOut": "_analyticsdata_95_BatchRunPivotReportsResponseOut",
-        "BetweenFilterIn": "_analyticsdata_96_BetweenFilterIn",
-        "BetweenFilterOut": "_analyticsdata_97_BetweenFilterOut",
-        "RowIn": "_analyticsdata_98_RowIn",
-        "RowOut": "_analyticsdata_99_RowOut",
-        "ActiveMetricRestrictionIn": "_analyticsdata_100_ActiveMetricRestrictionIn",
-        "ActiveMetricRestrictionOut": "_analyticsdata_101_ActiveMetricRestrictionOut",
-        "MetricMetadataIn": "_analyticsdata_102_MetricMetadataIn",
-        "MetricMetadataOut": "_analyticsdata_103_MetricMetadataOut",
-        "BatchRunReportsResponseIn": "_analyticsdata_104_BatchRunReportsResponseIn",
-        "BatchRunReportsResponseOut": "_analyticsdata_105_BatchRunReportsResponseOut",
-        "StringFilterIn": "_analyticsdata_106_StringFilterIn",
-        "StringFilterOut": "_analyticsdata_107_StringFilterOut",
-        "PivotIn": "_analyticsdata_108_PivotIn",
-        "PivotOut": "_analyticsdata_109_PivotOut",
+        "DimensionMetadataIn": "_analyticsdata_2_DimensionMetadataIn",
+        "DimensionMetadataOut": "_analyticsdata_3_DimensionMetadataOut",
+        "PivotSelectionIn": "_analyticsdata_4_PivotSelectionIn",
+        "PivotSelectionOut": "_analyticsdata_5_PivotSelectionOut",
+        "PivotDimensionHeaderIn": "_analyticsdata_6_PivotDimensionHeaderIn",
+        "PivotDimensionHeaderOut": "_analyticsdata_7_PivotDimensionHeaderOut",
+        "ConcatenateExpressionIn": "_analyticsdata_8_ConcatenateExpressionIn",
+        "ConcatenateExpressionOut": "_analyticsdata_9_ConcatenateExpressionOut",
+        "CheckCompatibilityResponseIn": "_analyticsdata_10_CheckCompatibilityResponseIn",
+        "CheckCompatibilityResponseOut": "_analyticsdata_11_CheckCompatibilityResponseOut",
+        "DimensionCompatibilityIn": "_analyticsdata_12_DimensionCompatibilityIn",
+        "DimensionCompatibilityOut": "_analyticsdata_13_DimensionCompatibilityOut",
+        "RunRealtimeReportRequestIn": "_analyticsdata_14_RunRealtimeReportRequestIn",
+        "RunRealtimeReportRequestOut": "_analyticsdata_15_RunRealtimeReportRequestOut",
+        "PivotIn": "_analyticsdata_16_PivotIn",
+        "PivotOut": "_analyticsdata_17_PivotOut",
+        "MetricHeaderIn": "_analyticsdata_18_MetricHeaderIn",
+        "MetricHeaderOut": "_analyticsdata_19_MetricHeaderOut",
+        "RunPivotReportRequestIn": "_analyticsdata_20_RunPivotReportRequestIn",
+        "RunPivotReportRequestOut": "_analyticsdata_21_RunPivotReportRequestOut",
+        "DateRangeIn": "_analyticsdata_22_DateRangeIn",
+        "DateRangeOut": "_analyticsdata_23_DateRangeOut",
+        "BatchRunPivotReportsRequestIn": "_analyticsdata_24_BatchRunPivotReportsRequestIn",
+        "BatchRunPivotReportsRequestOut": "_analyticsdata_25_BatchRunPivotReportsRequestOut",
+        "RunRealtimeReportResponseIn": "_analyticsdata_26_RunRealtimeReportResponseIn",
+        "RunRealtimeReportResponseOut": "_analyticsdata_27_RunRealtimeReportResponseOut",
+        "ResponseMetaDataIn": "_analyticsdata_28_ResponseMetaDataIn",
+        "ResponseMetaDataOut": "_analyticsdata_29_ResponseMetaDataOut",
+        "MetricIn": "_analyticsdata_30_MetricIn",
+        "MetricOut": "_analyticsdata_31_MetricOut",
+        "DimensionExpressionIn": "_analyticsdata_32_DimensionExpressionIn",
+        "DimensionExpressionOut": "_analyticsdata_33_DimensionExpressionOut",
+        "PropertyQuotaIn": "_analyticsdata_34_PropertyQuotaIn",
+        "PropertyQuotaOut": "_analyticsdata_35_PropertyQuotaOut",
+        "NumericFilterIn": "_analyticsdata_36_NumericFilterIn",
+        "NumericFilterOut": "_analyticsdata_37_NumericFilterOut",
+        "MetricValueIn": "_analyticsdata_38_MetricValueIn",
+        "MetricValueOut": "_analyticsdata_39_MetricValueOut",
+        "MetricMetadataIn": "_analyticsdata_40_MetricMetadataIn",
+        "MetricMetadataOut": "_analyticsdata_41_MetricMetadataOut",
+        "CohortIn": "_analyticsdata_42_CohortIn",
+        "CohortOut": "_analyticsdata_43_CohortOut",
+        "CohortsRangeIn": "_analyticsdata_44_CohortsRangeIn",
+        "CohortsRangeOut": "_analyticsdata_45_CohortsRangeOut",
+        "SchemaRestrictionResponseIn": "_analyticsdata_46_SchemaRestrictionResponseIn",
+        "SchemaRestrictionResponseOut": "_analyticsdata_47_SchemaRestrictionResponseOut",
+        "MinuteRangeIn": "_analyticsdata_48_MinuteRangeIn",
+        "MinuteRangeOut": "_analyticsdata_49_MinuteRangeOut",
+        "OrderByIn": "_analyticsdata_50_OrderByIn",
+        "OrderByOut": "_analyticsdata_51_OrderByOut",
+        "CaseExpressionIn": "_analyticsdata_52_CaseExpressionIn",
+        "CaseExpressionOut": "_analyticsdata_53_CaseExpressionOut",
+        "PivotHeaderIn": "_analyticsdata_54_PivotHeaderIn",
+        "PivotHeaderOut": "_analyticsdata_55_PivotHeaderOut",
+        "FilterExpressionIn": "_analyticsdata_56_FilterExpressionIn",
+        "FilterExpressionOut": "_analyticsdata_57_FilterExpressionOut",
+        "BatchRunReportsResponseIn": "_analyticsdata_58_BatchRunReportsResponseIn",
+        "BatchRunReportsResponseOut": "_analyticsdata_59_BatchRunReportsResponseOut",
+        "NumericValueIn": "_analyticsdata_60_NumericValueIn",
+        "NumericValueOut": "_analyticsdata_61_NumericValueOut",
+        "InListFilterIn": "_analyticsdata_62_InListFilterIn",
+        "InListFilterOut": "_analyticsdata_63_InListFilterOut",
+        "RunReportResponseIn": "_analyticsdata_64_RunReportResponseIn",
+        "RunReportResponseOut": "_analyticsdata_65_RunReportResponseOut",
+        "FilterIn": "_analyticsdata_66_FilterIn",
+        "FilterOut": "_analyticsdata_67_FilterOut",
+        "FilterExpressionListIn": "_analyticsdata_68_FilterExpressionListIn",
+        "FilterExpressionListOut": "_analyticsdata_69_FilterExpressionListOut",
+        "BetweenFilterIn": "_analyticsdata_70_BetweenFilterIn",
+        "BetweenFilterOut": "_analyticsdata_71_BetweenFilterOut",
+        "MetadataIn": "_analyticsdata_72_MetadataIn",
+        "MetadataOut": "_analyticsdata_73_MetadataOut",
+        "RowIn": "_analyticsdata_74_RowIn",
+        "RowOut": "_analyticsdata_75_RowOut",
+        "DimensionValueIn": "_analyticsdata_76_DimensionValueIn",
+        "DimensionValueOut": "_analyticsdata_77_DimensionValueOut",
+        "BatchRunReportsRequestIn": "_analyticsdata_78_BatchRunReportsRequestIn",
+        "BatchRunReportsRequestOut": "_analyticsdata_79_BatchRunReportsRequestOut",
+        "CohortSpecIn": "_analyticsdata_80_CohortSpecIn",
+        "CohortSpecOut": "_analyticsdata_81_CohortSpecOut",
+        "CohortReportSettingsIn": "_analyticsdata_82_CohortReportSettingsIn",
+        "CohortReportSettingsOut": "_analyticsdata_83_CohortReportSettingsOut",
+        "MetricCompatibilityIn": "_analyticsdata_84_MetricCompatibilityIn",
+        "MetricCompatibilityOut": "_analyticsdata_85_MetricCompatibilityOut",
+        "DimensionOrderByIn": "_analyticsdata_86_DimensionOrderByIn",
+        "DimensionOrderByOut": "_analyticsdata_87_DimensionOrderByOut",
+        "DimensionIn": "_analyticsdata_88_DimensionIn",
+        "DimensionOut": "_analyticsdata_89_DimensionOut",
+        "BatchRunPivotReportsResponseIn": "_analyticsdata_90_BatchRunPivotReportsResponseIn",
+        "BatchRunPivotReportsResponseOut": "_analyticsdata_91_BatchRunPivotReportsResponseOut",
+        "MetricOrderByIn": "_analyticsdata_92_MetricOrderByIn",
+        "MetricOrderByOut": "_analyticsdata_93_MetricOrderByOut",
+        "RunReportRequestIn": "_analyticsdata_94_RunReportRequestIn",
+        "RunReportRequestOut": "_analyticsdata_95_RunReportRequestOut",
+        "QuotaStatusIn": "_analyticsdata_96_QuotaStatusIn",
+        "QuotaStatusOut": "_analyticsdata_97_QuotaStatusOut",
+        "DimensionHeaderIn": "_analyticsdata_98_DimensionHeaderIn",
+        "DimensionHeaderOut": "_analyticsdata_99_DimensionHeaderOut",
+        "CheckCompatibilityRequestIn": "_analyticsdata_100_CheckCompatibilityRequestIn",
+        "CheckCompatibilityRequestOut": "_analyticsdata_101_CheckCompatibilityRequestOut",
+        "StringFilterIn": "_analyticsdata_102_StringFilterIn",
+        "StringFilterOut": "_analyticsdata_103_StringFilterOut",
+        "RunPivotReportResponseIn": "_analyticsdata_104_RunPivotReportResponseIn",
+        "RunPivotReportResponseOut": "_analyticsdata_105_RunPivotReportResponseOut",
+        "PivotOrderByIn": "_analyticsdata_106_PivotOrderByIn",
+        "PivotOrderByOut": "_analyticsdata_107_PivotOrderByOut",
+        "ActiveMetricRestrictionIn": "_analyticsdata_108_ActiveMetricRestrictionIn",
+        "ActiveMetricRestrictionOut": "_analyticsdata_109_ActiveMetricRestrictionOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
+    types["DimensionMetadataIn"] = t.struct(
+        {
+            "category": t.string().optional(),
+            "apiName": t.string().optional(),
+            "deprecatedApiNames": t.array(t.string()).optional(),
+            "uiName": t.string().optional(),
+            "description": t.string().optional(),
+            "customDefinition": t.boolean().optional(),
+        }
+    ).named(renames["DimensionMetadataIn"])
+    types["DimensionMetadataOut"] = t.struct(
+        {
+            "category": t.string().optional(),
+            "apiName": t.string().optional(),
+            "deprecatedApiNames": t.array(t.string()).optional(),
+            "uiName": t.string().optional(),
+            "description": t.string().optional(),
+            "customDefinition": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DimensionMetadataOut"])
+    types["PivotSelectionIn"] = t.struct(
+        {
+            "dimensionValue": t.string().optional(),
+            "dimensionName": t.string().optional(),
+        }
+    ).named(renames["PivotSelectionIn"])
+    types["PivotSelectionOut"] = t.struct(
+        {
+            "dimensionValue": t.string().optional(),
+            "dimensionName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PivotSelectionOut"])
+    types["PivotDimensionHeaderIn"] = t.struct(
+        {"dimensionValues": t.array(t.proxy(renames["DimensionValueIn"])).optional()}
+    ).named(renames["PivotDimensionHeaderIn"])
+    types["PivotDimensionHeaderOut"] = t.struct(
+        {
+            "dimensionValues": t.array(
+                t.proxy(renames["DimensionValueOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PivotDimensionHeaderOut"])
+    types["ConcatenateExpressionIn"] = t.struct(
+        {
+            "dimensionNames": t.array(t.string()).optional(),
+            "delimiter": t.string().optional(),
+        }
+    ).named(renames["ConcatenateExpressionIn"])
+    types["ConcatenateExpressionOut"] = t.struct(
+        {
+            "dimensionNames": t.array(t.string()).optional(),
+            "delimiter": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ConcatenateExpressionOut"])
+    types["CheckCompatibilityResponseIn"] = t.struct(
+        {
+            "metricCompatibilities": t.array(
+                t.proxy(renames["MetricCompatibilityIn"])
+            ).optional(),
+            "dimensionCompatibilities": t.array(
+                t.proxy(renames["DimensionCompatibilityIn"])
+            ).optional(),
+        }
+    ).named(renames["CheckCompatibilityResponseIn"])
+    types["CheckCompatibilityResponseOut"] = t.struct(
+        {
+            "metricCompatibilities": t.array(
+                t.proxy(renames["MetricCompatibilityOut"])
+            ).optional(),
+            "dimensionCompatibilities": t.array(
+                t.proxy(renames["DimensionCompatibilityOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CheckCompatibilityResponseOut"])
+    types["DimensionCompatibilityIn"] = t.struct(
+        {
+            "dimensionMetadata": t.proxy(renames["DimensionMetadataIn"]).optional(),
+            "compatibility": t.string().optional(),
+        }
+    ).named(renames["DimensionCompatibilityIn"])
+    types["DimensionCompatibilityOut"] = t.struct(
+        {
+            "dimensionMetadata": t.proxy(renames["DimensionMetadataOut"]).optional(),
+            "compatibility": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DimensionCompatibilityOut"])
+    types["RunRealtimeReportRequestIn"] = t.struct(
+        {
+            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
+            "metricAggregations": t.array(t.string()).optional(),
+            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
+            "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
+            "returnPropertyQuota": t.boolean().optional(),
+            "limit": t.string().optional(),
+        }
+    ).named(renames["RunRealtimeReportRequestIn"])
+    types["RunRealtimeReportRequestOut"] = t.struct(
+        {
+            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
+            "metricAggregations": t.array(t.string()).optional(),
+            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "minuteRanges": t.array(t.proxy(renames["MinuteRangeOut"])).optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "returnPropertyQuota": t.boolean().optional(),
+            "limit": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RunRealtimeReportRequestOut"])
+    types["PivotIn"] = t.struct(
+        {
+            "limit": t.string().optional(),
+            "offset": t.string().optional(),
+            "fieldNames": t.array(t.string()).optional(),
+            "metricAggregations": t.array(t.string()).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
+        }
+    ).named(renames["PivotIn"])
+    types["PivotOut"] = t.struct(
+        {
+            "limit": t.string().optional(),
+            "offset": t.string().optional(),
+            "fieldNames": t.array(t.string()).optional(),
+            "metricAggregations": t.array(t.string()).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PivotOut"])
+    types["MetricHeaderIn"] = t.struct(
+        {"name": t.string().optional(), "type": t.string().optional()}
+    ).named(renames["MetricHeaderIn"])
+    types["MetricHeaderOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MetricHeaderOut"])
     types["RunPivotReportRequestIn"] = t.struct(
         {
             "dateRanges": t.array(t.proxy(renames["DateRangeIn"])).optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
             "pivots": t.array(t.proxy(renames["PivotIn"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
+            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
             "property": t.string().optional(),
             "returnPropertyQuota": t.boolean().optional(),
-            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
             "cohortSpec": t.proxy(renames["CohortSpecIn"]).optional(),
-            "keepEmptyRows": t.boolean().optional(),
             "currencyCode": t.string().optional(),
-            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
+            "keepEmptyRows": t.boolean().optional(),
         }
     ).named(renames["RunPivotReportRequestIn"])
     types["RunPivotReportRequestOut"] = t.struct(
         {
             "dateRanges": t.array(t.proxy(renames["DateRangeOut"])).optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
             "pivots": t.array(t.proxy(renames["PivotOut"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
             "property": t.string().optional(),
             "returnPropertyQuota": t.boolean().optional(),
-            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
-            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
             "cohortSpec": t.proxy(renames["CohortSpecOut"]).optional(),
-            "keepEmptyRows": t.boolean().optional(),
             "currencyCode": t.string().optional(),
-            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "keepEmptyRows": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["RunPivotReportRequestOut"])
-    types["CaseExpressionIn"] = t.struct(
-        {"dimensionName": t.string().optional()}
-    ).named(renames["CaseExpressionIn"])
-    types["CaseExpressionOut"] = t.struct(
+    types["DateRangeIn"] = t.struct(
         {
-            "dimensionName": t.string().optional(),
+            "endDate": t.string().optional(),
+            "name": t.string().optional(),
+            "startDate": t.string().optional(),
+        }
+    ).named(renames["DateRangeIn"])
+    types["DateRangeOut"] = t.struct(
+        {
+            "endDate": t.string().optional(),
+            "name": t.string().optional(),
+            "startDate": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["CaseExpressionOut"])
-    types["MetadataIn"] = t.struct(
+    ).named(renames["DateRangeOut"])
+    types["BatchRunPivotReportsRequestIn"] = t.struct(
+        {"requests": t.array(t.proxy(renames["RunPivotReportRequestIn"])).optional()}
+    ).named(renames["BatchRunPivotReportsRequestIn"])
+    types["BatchRunPivotReportsRequestOut"] = t.struct(
         {
-            "name": t.string().optional(),
-            "metrics": t.array(t.proxy(renames["MetricMetadataIn"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionMetadataIn"])).optional(),
-        }
-    ).named(renames["MetadataIn"])
-    types["MetadataOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "metrics": t.array(t.proxy(renames["MetricMetadataOut"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionMetadataOut"])).optional(),
+            "requests": t.array(
+                t.proxy(renames["RunPivotReportRequestOut"])
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["MetadataOut"])
+    ).named(renames["BatchRunPivotReportsRequestOut"])
+    types["RunRealtimeReportResponseIn"] = t.struct(
+        {
+            "minimums": t.array(t.proxy(renames["RowIn"])).optional(),
+            "maximums": t.array(t.proxy(renames["RowIn"])).optional(),
+            "totals": t.array(t.proxy(renames["RowIn"])).optional(),
+            "kind": t.string().optional(),
+            "rows": t.array(t.proxy(renames["RowIn"])).optional(),
+            "propertyQuota": t.proxy(renames["PropertyQuotaIn"]).optional(),
+            "dimensionHeaders": t.array(
+                t.proxy(renames["DimensionHeaderIn"])
+            ).optional(),
+            "rowCount": t.integer().optional(),
+            "metricHeaders": t.array(t.proxy(renames["MetricHeaderIn"])).optional(),
+        }
+    ).named(renames["RunRealtimeReportResponseIn"])
+    types["RunRealtimeReportResponseOut"] = t.struct(
+        {
+            "minimums": t.array(t.proxy(renames["RowOut"])).optional(),
+            "maximums": t.array(t.proxy(renames["RowOut"])).optional(),
+            "totals": t.array(t.proxy(renames["RowOut"])).optional(),
+            "kind": t.string().optional(),
+            "rows": t.array(t.proxy(renames["RowOut"])).optional(),
+            "propertyQuota": t.proxy(renames["PropertyQuotaOut"]).optional(),
+            "dimensionHeaders": t.array(
+                t.proxy(renames["DimensionHeaderOut"])
+            ).optional(),
+            "rowCount": t.integer().optional(),
+            "metricHeaders": t.array(t.proxy(renames["MetricHeaderOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RunRealtimeReportResponseOut"])
+    types["ResponseMetaDataIn"] = t.struct(
+        {
+            "schemaRestrictionResponse": t.proxy(
+                renames["SchemaRestrictionResponseIn"]
+            ).optional(),
+            "dataLossFromOtherRow": t.boolean().optional(),
+            "emptyReason": t.string().optional(),
+            "timeZone": t.string().optional(),
+            "currencyCode": t.string().optional(),
+            "subjectToThresholding": t.boolean().optional(),
+        }
+    ).named(renames["ResponseMetaDataIn"])
+    types["ResponseMetaDataOut"] = t.struct(
+        {
+            "schemaRestrictionResponse": t.proxy(
+                renames["SchemaRestrictionResponseOut"]
+            ).optional(),
+            "dataLossFromOtherRow": t.boolean().optional(),
+            "emptyReason": t.string().optional(),
+            "timeZone": t.string().optional(),
+            "currencyCode": t.string().optional(),
+            "subjectToThresholding": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ResponseMetaDataOut"])
+    types["MetricIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "expression": t.string().optional(),
+            "invisible": t.boolean().optional(),
+        }
+    ).named(renames["MetricIn"])
+    types["MetricOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "expression": t.string().optional(),
+            "invisible": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MetricOut"])
+    types["DimensionExpressionIn"] = t.struct(
+        {
+            "lowerCase": t.proxy(renames["CaseExpressionIn"]).optional(),
+            "concatenate": t.proxy(renames["ConcatenateExpressionIn"]).optional(),
+            "upperCase": t.proxy(renames["CaseExpressionIn"]).optional(),
+        }
+    ).named(renames["DimensionExpressionIn"])
+    types["DimensionExpressionOut"] = t.struct(
+        {
+            "lowerCase": t.proxy(renames["CaseExpressionOut"]).optional(),
+            "concatenate": t.proxy(renames["ConcatenateExpressionOut"]).optional(),
+            "upperCase": t.proxy(renames["CaseExpressionOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DimensionExpressionOut"])
+    types["PropertyQuotaIn"] = t.struct(
+        {
+            "potentiallyThresholdedRequestsPerHour": t.proxy(
+                renames["QuotaStatusIn"]
+            ).optional(),
+            "tokensPerProjectPerHour": t.proxy(renames["QuotaStatusIn"]).optional(),
+            "tokensPerDay": t.proxy(renames["QuotaStatusIn"]).optional(),
+            "tokensPerHour": t.proxy(renames["QuotaStatusIn"]).optional(),
+            "concurrentRequests": t.proxy(renames["QuotaStatusIn"]).optional(),
+            "serverErrorsPerProjectPerHour": t.proxy(
+                renames["QuotaStatusIn"]
+            ).optional(),
+        }
+    ).named(renames["PropertyQuotaIn"])
+    types["PropertyQuotaOut"] = t.struct(
+        {
+            "potentiallyThresholdedRequestsPerHour": t.proxy(
+                renames["QuotaStatusOut"]
+            ).optional(),
+            "tokensPerProjectPerHour": t.proxy(renames["QuotaStatusOut"]).optional(),
+            "tokensPerDay": t.proxy(renames["QuotaStatusOut"]).optional(),
+            "tokensPerHour": t.proxy(renames["QuotaStatusOut"]).optional(),
+            "concurrentRequests": t.proxy(renames["QuotaStatusOut"]).optional(),
+            "serverErrorsPerProjectPerHour": t.proxy(
+                renames["QuotaStatusOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PropertyQuotaOut"])
     types["NumericFilterIn"] = t.struct(
         {
             "operation": t.string().optional(),
@@ -191,69 +456,185 @@ def import_analyticsdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["NumericFilterOut"])
-    types["DimensionValueIn"] = t.struct({"value": t.string().optional()}).named(
-        renames["DimensionValueIn"]
+    types["MetricValueIn"] = t.struct({"value": t.string().optional()}).named(
+        renames["MetricValueIn"]
     )
-    types["DimensionValueOut"] = t.struct(
+    types["MetricValueOut"] = t.struct(
         {
             "value": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DimensionValueOut"])
-    types["RunReportRequestIn"] = t.struct(
+    ).named(renames["MetricValueOut"])
+    types["MetricMetadataIn"] = t.struct(
         {
-            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-            "limit": t.string().optional(),
-            "keepEmptyRows": t.boolean().optional(),
-            "returnPropertyQuota": t.boolean().optional(),
-            "dateRanges": t.array(t.proxy(renames["DateRangeIn"])).optional(),
-            "currencyCode": t.string().optional(),
-            "property": t.string().optional(),
-            "metricAggregations": t.array(t.string()).optional(),
-            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-            "offset": t.string().optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-            "cohortSpec": t.proxy(renames["CohortSpecIn"]).optional(),
-            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
+            "uiName": t.string().optional(),
+            "customDefinition": t.boolean().optional(),
+            "blockedReasons": t.array(t.string()).optional(),
+            "expression": t.string().optional(),
+            "deprecatedApiNames": t.array(t.string()).optional(),
+            "description": t.string().optional(),
+            "type": t.string().optional(),
+            "category": t.string().optional(),
+            "apiName": t.string().optional(),
         }
-    ).named(renames["RunReportRequestIn"])
-    types["RunReportRequestOut"] = t.struct(
+    ).named(renames["MetricMetadataIn"])
+    types["MetricMetadataOut"] = t.struct(
         {
-            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
-            "limit": t.string().optional(),
-            "keepEmptyRows": t.boolean().optional(),
-            "returnPropertyQuota": t.boolean().optional(),
-            "dateRanges": t.array(t.proxy(renames["DateRangeOut"])).optional(),
-            "currencyCode": t.string().optional(),
-            "property": t.string().optional(),
-            "metricAggregations": t.array(t.string()).optional(),
-            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
-            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
-            "offset": t.string().optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
-            "cohortSpec": t.proxy(renames["CohortSpecOut"]).optional(),
-            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "uiName": t.string().optional(),
+            "customDefinition": t.boolean().optional(),
+            "blockedReasons": t.array(t.string()).optional(),
+            "expression": t.string().optional(),
+            "deprecatedApiNames": t.array(t.string()).optional(),
+            "description": t.string().optional(),
+            "type": t.string().optional(),
+            "category": t.string().optional(),
+            "apiName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["RunReportRequestOut"])
+    ).named(renames["MetricMetadataOut"])
+    types["CohortIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "dateRange": t.proxy(renames["DateRangeIn"]).optional(),
+            "dimension": t.string().optional(),
+        }
+    ).named(renames["CohortIn"])
+    types["CohortOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "dateRange": t.proxy(renames["DateRangeOut"]).optional(),
+            "dimension": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CohortOut"])
+    types["CohortsRangeIn"] = t.struct(
+        {
+            "startOffset": t.integer().optional(),
+            "endOffset": t.integer(),
+            "granularity": t.string(),
+        }
+    ).named(renames["CohortsRangeIn"])
+    types["CohortsRangeOut"] = t.struct(
+        {
+            "startOffset": t.integer().optional(),
+            "endOffset": t.integer(),
+            "granularity": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CohortsRangeOut"])
+    types["SchemaRestrictionResponseIn"] = t.struct(
+        {
+            "activeMetricRestrictions": t.array(
+                t.proxy(renames["ActiveMetricRestrictionIn"])
+            ).optional()
+        }
+    ).named(renames["SchemaRestrictionResponseIn"])
+    types["SchemaRestrictionResponseOut"] = t.struct(
+        {
+            "activeMetricRestrictions": t.array(
+                t.proxy(renames["ActiveMetricRestrictionOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SchemaRestrictionResponseOut"])
+    types["MinuteRangeIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "startMinutesAgo": t.integer().optional(),
+            "endMinutesAgo": t.integer().optional(),
+        }
+    ).named(renames["MinuteRangeIn"])
+    types["MinuteRangeOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "startMinutesAgo": t.integer().optional(),
+            "endMinutesAgo": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MinuteRangeOut"])
+    types["OrderByIn"] = t.struct(
+        {
+            "desc": t.boolean().optional(),
+            "pivot": t.proxy(renames["PivotOrderByIn"]).optional(),
+            "dimension": t.proxy(renames["DimensionOrderByIn"]).optional(),
+            "metric": t.proxy(renames["MetricOrderByIn"]).optional(),
+        }
+    ).named(renames["OrderByIn"])
+    types["OrderByOut"] = t.struct(
+        {
+            "desc": t.boolean().optional(),
+            "pivot": t.proxy(renames["PivotOrderByOut"]).optional(),
+            "dimension": t.proxy(renames["DimensionOrderByOut"]).optional(),
+            "metric": t.proxy(renames["MetricOrderByOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OrderByOut"])
+    types["CaseExpressionIn"] = t.struct(
+        {"dimensionName": t.string().optional()}
+    ).named(renames["CaseExpressionIn"])
+    types["CaseExpressionOut"] = t.struct(
+        {
+            "dimensionName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CaseExpressionOut"])
+    types["PivotHeaderIn"] = t.struct(
+        {
+            "rowCount": t.integer().optional(),
+            "pivotDimensionHeaders": t.array(
+                t.proxy(renames["PivotDimensionHeaderIn"])
+            ).optional(),
+        }
+    ).named(renames["PivotHeaderIn"])
+    types["PivotHeaderOut"] = t.struct(
+        {
+            "rowCount": t.integer().optional(),
+            "pivotDimensionHeaders": t.array(
+                t.proxy(renames["PivotDimensionHeaderOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PivotHeaderOut"])
     types["FilterExpressionIn"] = t.struct(
         {
-            "filter": t.proxy(renames["FilterIn"]).optional(),
             "notExpression": t.proxy(renames["FilterExpressionIn"]).optional(),
+            "filter": t.proxy(renames["FilterIn"]).optional(),
             "andGroup": t.proxy(renames["FilterExpressionListIn"]).optional(),
             "orGroup": t.proxy(renames["FilterExpressionListIn"]).optional(),
         }
     ).named(renames["FilterExpressionIn"])
     types["FilterExpressionOut"] = t.struct(
         {
-            "filter": t.proxy(renames["FilterOut"]).optional(),
             "notExpression": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "filter": t.proxy(renames["FilterOut"]).optional(),
             "andGroup": t.proxy(renames["FilterExpressionListOut"]).optional(),
             "orGroup": t.proxy(renames["FilterExpressionListOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["FilterExpressionOut"])
+    types["BatchRunReportsResponseIn"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "reports": t.array(t.proxy(renames["RunReportResponseIn"])).optional(),
+        }
+    ).named(renames["BatchRunReportsResponseIn"])
+    types["BatchRunReportsResponseOut"] = t.struct(
+        {
+            "kind": t.string().optional(),
+            "reports": t.array(t.proxy(renames["RunReportResponseOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BatchRunReportsResponseOut"])
+    types["NumericValueIn"] = t.struct(
+        {"doubleValue": t.number().optional(), "int64Value": t.string().optional()}
+    ).named(renames["NumericValueIn"])
+    types["NumericValueOut"] = t.struct(
+        {
+            "doubleValue": t.number().optional(),
+            "int64Value": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["NumericValueOut"])
     types["InListFilterIn"] = t.struct(
         {
             "values": t.array(t.string()).optional(),
@@ -267,112 +648,147 @@ def import_analyticsdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["InListFilterOut"])
-    types["OrderByIn"] = t.struct(
-        {
-            "dimension": t.proxy(renames["DimensionOrderByIn"]).optional(),
-            "desc": t.boolean().optional(),
-            "metric": t.proxy(renames["MetricOrderByIn"]).optional(),
-            "pivot": t.proxy(renames["PivotOrderByIn"]).optional(),
-        }
-    ).named(renames["OrderByIn"])
-    types["OrderByOut"] = t.struct(
-        {
-            "dimension": t.proxy(renames["DimensionOrderByOut"]).optional(),
-            "desc": t.boolean().optional(),
-            "metric": t.proxy(renames["MetricOrderByOut"]).optional(),
-            "pivot": t.proxy(renames["PivotOrderByOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OrderByOut"])
     types["RunReportResponseIn"] = t.struct(
         {
-            "kind": t.string().optional(),
-            "rows": t.array(t.proxy(renames["RowIn"])).optional(),
-            "metricHeaders": t.array(t.proxy(renames["MetricHeaderIn"])).optional(),
-            "propertyQuota": t.proxy(renames["PropertyQuotaIn"]).optional(),
-            "rowCount": t.integer().optional(),
-            "totals": t.array(t.proxy(renames["RowIn"])).optional(),
             "maximums": t.array(t.proxy(renames["RowIn"])).optional(),
-            "minimums": t.array(t.proxy(renames["RowIn"])).optional(),
+            "rowCount": t.integer().optional(),
             "metadata": t.proxy(renames["ResponseMetaDataIn"]).optional(),
+            "propertyQuota": t.proxy(renames["PropertyQuotaIn"]).optional(),
+            "metricHeaders": t.array(t.proxy(renames["MetricHeaderIn"])).optional(),
+            "rows": t.array(t.proxy(renames["RowIn"])).optional(),
             "dimensionHeaders": t.array(
                 t.proxy(renames["DimensionHeaderIn"])
             ).optional(),
+            "kind": t.string().optional(),
+            "totals": t.array(t.proxy(renames["RowIn"])).optional(),
+            "minimums": t.array(t.proxy(renames["RowIn"])).optional(),
         }
     ).named(renames["RunReportResponseIn"])
     types["RunReportResponseOut"] = t.struct(
         {
-            "kind": t.string().optional(),
-            "rows": t.array(t.proxy(renames["RowOut"])).optional(),
-            "metricHeaders": t.array(t.proxy(renames["MetricHeaderOut"])).optional(),
-            "propertyQuota": t.proxy(renames["PropertyQuotaOut"]).optional(),
-            "rowCount": t.integer().optional(),
-            "totals": t.array(t.proxy(renames["RowOut"])).optional(),
             "maximums": t.array(t.proxy(renames["RowOut"])).optional(),
-            "minimums": t.array(t.proxy(renames["RowOut"])).optional(),
+            "rowCount": t.integer().optional(),
             "metadata": t.proxy(renames["ResponseMetaDataOut"]).optional(),
+            "propertyQuota": t.proxy(renames["PropertyQuotaOut"]).optional(),
+            "metricHeaders": t.array(t.proxy(renames["MetricHeaderOut"])).optional(),
+            "rows": t.array(t.proxy(renames["RowOut"])).optional(),
             "dimensionHeaders": t.array(
                 t.proxy(renames["DimensionHeaderOut"])
             ).optional(),
+            "kind": t.string().optional(),
+            "totals": t.array(t.proxy(renames["RowOut"])).optional(),
+            "minimums": t.array(t.proxy(renames["RowOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["RunReportResponseOut"])
-    types["DimensionCompatibilityIn"] = t.struct(
+    types["FilterIn"] = t.struct(
         {
-            "compatibility": t.string().optional(),
-            "dimensionMetadata": t.proxy(renames["DimensionMetadataIn"]).optional(),
+            "numericFilter": t.proxy(renames["NumericFilterIn"]).optional(),
+            "betweenFilter": t.proxy(renames["BetweenFilterIn"]).optional(),
+            "fieldName": t.string().optional(),
+            "inListFilter": t.proxy(renames["InListFilterIn"]).optional(),
+            "stringFilter": t.proxy(renames["StringFilterIn"]).optional(),
         }
-    ).named(renames["DimensionCompatibilityIn"])
-    types["DimensionCompatibilityOut"] = t.struct(
+    ).named(renames["FilterIn"])
+    types["FilterOut"] = t.struct(
         {
-            "compatibility": t.string().optional(),
-            "dimensionMetadata": t.proxy(renames["DimensionMetadataOut"]).optional(),
+            "numericFilter": t.proxy(renames["NumericFilterOut"]).optional(),
+            "betweenFilter": t.proxy(renames["BetweenFilterOut"]).optional(),
+            "fieldName": t.string().optional(),
+            "inListFilter": t.proxy(renames["InListFilterOut"]).optional(),
+            "stringFilter": t.proxy(renames["StringFilterOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DimensionCompatibilityOut"])
-    types["DateRangeIn"] = t.struct(
+    ).named(renames["FilterOut"])
+    types["FilterExpressionListIn"] = t.struct(
+        {"expressions": t.array(t.proxy(renames["FilterExpressionIn"])).optional()}
+    ).named(renames["FilterExpressionListIn"])
+    types["FilterExpressionListOut"] = t.struct(
         {
-            "endDate": t.string().optional(),
-            "startDate": t.string().optional(),
+            "expressions": t.array(t.proxy(renames["FilterExpressionOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FilterExpressionListOut"])
+    types["BetweenFilterIn"] = t.struct(
+        {
+            "toValue": t.proxy(renames["NumericValueIn"]).optional(),
+            "fromValue": t.proxy(renames["NumericValueIn"]).optional(),
+        }
+    ).named(renames["BetweenFilterIn"])
+    types["BetweenFilterOut"] = t.struct(
+        {
+            "toValue": t.proxy(renames["NumericValueOut"]).optional(),
+            "fromValue": t.proxy(renames["NumericValueOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BetweenFilterOut"])
+    types["MetadataIn"] = t.struct(
+        {
+            "dimensions": t.array(t.proxy(renames["DimensionMetadataIn"])).optional(),
+            "metrics": t.array(t.proxy(renames["MetricMetadataIn"])).optional(),
             "name": t.string().optional(),
         }
-    ).named(renames["DateRangeIn"])
-    types["DateRangeOut"] = t.struct(
+    ).named(renames["MetadataIn"])
+    types["MetadataOut"] = t.struct(
         {
-            "endDate": t.string().optional(),
-            "startDate": t.string().optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionMetadataOut"])).optional(),
+            "metrics": t.array(t.proxy(renames["MetricMetadataOut"])).optional(),
             "name": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DateRangeOut"])
-    types["DimensionHeaderIn"] = t.struct({"name": t.string().optional()}).named(
-        renames["DimensionHeaderIn"]
+    ).named(renames["MetadataOut"])
+    types["RowIn"] = t.struct(
+        {
+            "metricValues": t.array(t.proxy(renames["MetricValueIn"])).optional(),
+            "dimensionValues": t.array(t.proxy(renames["DimensionValueIn"])).optional(),
+        }
+    ).named(renames["RowIn"])
+    types["RowOut"] = t.struct(
+        {
+            "metricValues": t.array(t.proxy(renames["MetricValueOut"])).optional(),
+            "dimensionValues": t.array(
+                t.proxy(renames["DimensionValueOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RowOut"])
+    types["DimensionValueIn"] = t.struct({"value": t.string().optional()}).named(
+        renames["DimensionValueIn"]
     )
-    types["DimensionHeaderOut"] = t.struct(
+    types["DimensionValueOut"] = t.struct(
         {
-            "name": t.string().optional(),
+            "value": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DimensionHeaderOut"])
-    types["CheckCompatibilityRequestIn"] = t.struct(
+    ).named(renames["DimensionValueOut"])
+    types["BatchRunReportsRequestIn"] = t.struct(
+        {"requests": t.array(t.proxy(renames["RunReportRequestIn"])).optional()}
+    ).named(renames["BatchRunReportsRequestIn"])
+    types["BatchRunReportsRequestOut"] = t.struct(
         {
-            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-            "compatibilityFilter": t.string().optional(),
-            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-        }
-    ).named(renames["CheckCompatibilityRequestIn"])
-    types["CheckCompatibilityRequestOut"] = t.struct(
-        {
-            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
-            "compatibilityFilter": t.string().optional(),
-            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
-            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "requests": t.array(t.proxy(renames["RunReportRequestOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["CheckCompatibilityRequestOut"])
+    ).named(renames["BatchRunReportsRequestOut"])
+    types["CohortSpecIn"] = t.struct(
+        {
+            "cohortReportSettings": t.proxy(
+                renames["CohortReportSettingsIn"]
+            ).optional(),
+            "cohortsRange": t.proxy(renames["CohortsRangeIn"]).optional(),
+            "cohorts": t.array(t.proxy(renames["CohortIn"])).optional(),
+        }
+    ).named(renames["CohortSpecIn"])
+    types["CohortSpecOut"] = t.struct(
+        {
+            "cohortReportSettings": t.proxy(
+                renames["CohortReportSettingsOut"]
+            ).optional(),
+            "cohortsRange": t.proxy(renames["CohortsRangeOut"]).optional(),
+            "cohorts": t.array(t.proxy(renames["CohortOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CohortSpecOut"])
     types["CohortReportSettingsIn"] = t.struct(
         {"accumulate": t.boolean().optional()}
     ).named(renames["CohortReportSettingsIn"])
@@ -395,94 +811,6 @@ def import_analyticsdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["MetricCompatibilityOut"])
-    types["QuotaStatusIn"] = t.struct(
-        {"consumed": t.integer().optional(), "remaining": t.integer().optional()}
-    ).named(renames["QuotaStatusIn"])
-    types["QuotaStatusOut"] = t.struct(
-        {
-            "consumed": t.integer().optional(),
-            "remaining": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["QuotaStatusOut"])
-    types["PivotHeaderIn"] = t.struct(
-        {
-            "rowCount": t.integer().optional(),
-            "pivotDimensionHeaders": t.array(
-                t.proxy(renames["PivotDimensionHeaderIn"])
-            ).optional(),
-        }
-    ).named(renames["PivotHeaderIn"])
-    types["PivotHeaderOut"] = t.struct(
-        {
-            "rowCount": t.integer().optional(),
-            "pivotDimensionHeaders": t.array(
-                t.proxy(renames["PivotDimensionHeaderOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PivotHeaderOut"])
-    types["NumericValueIn"] = t.struct(
-        {"doubleValue": t.number().optional(), "int64Value": t.string().optional()}
-    ).named(renames["NumericValueIn"])
-    types["NumericValueOut"] = t.struct(
-        {
-            "doubleValue": t.number().optional(),
-            "int64Value": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["NumericValueOut"])
-    types["MinuteRangeIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "endMinutesAgo": t.integer().optional(),
-            "startMinutesAgo": t.integer().optional(),
-        }
-    ).named(renames["MinuteRangeIn"])
-    types["MinuteRangeOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "endMinutesAgo": t.integer().optional(),
-            "startMinutesAgo": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MinuteRangeOut"])
-    types["MetricValueIn"] = t.struct({"value": t.string().optional()}).named(
-        renames["MetricValueIn"]
-    )
-    types["MetricValueOut"] = t.struct(
-        {
-            "value": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricValueOut"])
-    types["RunRealtimeReportRequestIn"] = t.struct(
-        {
-            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-            "limit": t.string().optional(),
-            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-            "metricAggregations": t.array(t.string()).optional(),
-            "returnPropertyQuota": t.boolean().optional(),
-            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-            "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-        }
-    ).named(renames["RunRealtimeReportRequestIn"])
-    types["RunRealtimeReportRequestOut"] = t.struct(
-        {
-            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
-            "limit": t.string().optional(),
-            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
-            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
-            "metricAggregations": t.array(t.string()).optional(),
-            "returnPropertyQuota": t.boolean().optional(),
-            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
-            "minuteRanges": t.array(t.proxy(renames["MinuteRangeOut"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RunRealtimeReportRequestOut"])
     types["DimensionOrderByIn"] = t.struct(
         {"orderType": t.string().optional(), "dimensionName": t.string().optional()}
     ).named(renames["DimensionOrderByIn"])
@@ -493,81 +821,6 @@ def import_analyticsdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DimensionOrderByOut"])
-    types["PivotDimensionHeaderIn"] = t.struct(
-        {"dimensionValues": t.array(t.proxy(renames["DimensionValueIn"])).optional()}
-    ).named(renames["PivotDimensionHeaderIn"])
-    types["PivotDimensionHeaderOut"] = t.struct(
-        {
-            "dimensionValues": t.array(
-                t.proxy(renames["DimensionValueOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PivotDimensionHeaderOut"])
-    types["MetricIn"] = t.struct(
-        {
-            "expression": t.string().optional(),
-            "name": t.string().optional(),
-            "invisible": t.boolean().optional(),
-        }
-    ).named(renames["MetricIn"])
-    types["MetricOut"] = t.struct(
-        {
-            "expression": t.string().optional(),
-            "name": t.string().optional(),
-            "invisible": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricOut"])
-    types["CohortSpecIn"] = t.struct(
-        {
-            "cohorts": t.array(t.proxy(renames["CohortIn"])).optional(),
-            "cohortsRange": t.proxy(renames["CohortsRangeIn"]).optional(),
-            "cohortReportSettings": t.proxy(
-                renames["CohortReportSettingsIn"]
-            ).optional(),
-        }
-    ).named(renames["CohortSpecIn"])
-    types["CohortSpecOut"] = t.struct(
-        {
-            "cohorts": t.array(t.proxy(renames["CohortOut"])).optional(),
-            "cohortsRange": t.proxy(renames["CohortsRangeOut"]).optional(),
-            "cohortReportSettings": t.proxy(
-                renames["CohortReportSettingsOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CohortSpecOut"])
-    types["FilterExpressionListIn"] = t.struct(
-        {"expressions": t.array(t.proxy(renames["FilterExpressionIn"])).optional()}
-    ).named(renames["FilterExpressionListIn"])
-    types["FilterExpressionListOut"] = t.struct(
-        {
-            "expressions": t.array(t.proxy(renames["FilterExpressionOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FilterExpressionListOut"])
-    types["CheckCompatibilityResponseIn"] = t.struct(
-        {
-            "dimensionCompatibilities": t.array(
-                t.proxy(renames["DimensionCompatibilityIn"])
-            ).optional(),
-            "metricCompatibilities": t.array(
-                t.proxy(renames["MetricCompatibilityIn"])
-            ).optional(),
-        }
-    ).named(renames["CheckCompatibilityResponseIn"])
-    types["CheckCompatibilityResponseOut"] = t.struct(
-        {
-            "dimensionCompatibilities": t.array(
-                t.proxy(renames["DimensionCompatibilityOut"])
-            ).optional(),
-            "metricCompatibilities": t.array(
-                t.proxy(renames["MetricCompatibilityOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CheckCompatibilityResponseOut"])
     types["DimensionIn"] = t.struct(
         {
             "name": t.string().optional(),
@@ -583,300 +836,6 @@ def import_analyticsdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DimensionOut"])
-    types["ConcatenateExpressionIn"] = t.struct(
-        {
-            "dimensionNames": t.array(t.string()).optional(),
-            "delimiter": t.string().optional(),
-        }
-    ).named(renames["ConcatenateExpressionIn"])
-    types["ConcatenateExpressionOut"] = t.struct(
-        {
-            "dimensionNames": t.array(t.string()).optional(),
-            "delimiter": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ConcatenateExpressionOut"])
-    types["DimensionMetadataIn"] = t.struct(
-        {
-            "deprecatedApiNames": t.array(t.string()).optional(),
-            "category": t.string().optional(),
-            "apiName": t.string().optional(),
-            "description": t.string().optional(),
-            "uiName": t.string().optional(),
-            "customDefinition": t.boolean().optional(),
-        }
-    ).named(renames["DimensionMetadataIn"])
-    types["DimensionMetadataOut"] = t.struct(
-        {
-            "deprecatedApiNames": t.array(t.string()).optional(),
-            "category": t.string().optional(),
-            "apiName": t.string().optional(),
-            "description": t.string().optional(),
-            "uiName": t.string().optional(),
-            "customDefinition": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DimensionMetadataOut"])
-    types["PivotOrderByIn"] = t.struct(
-        {
-            "metricName": t.string().optional(),
-            "pivotSelections": t.array(t.proxy(renames["PivotSelectionIn"])).optional(),
-        }
-    ).named(renames["PivotOrderByIn"])
-    types["PivotOrderByOut"] = t.struct(
-        {
-            "metricName": t.string().optional(),
-            "pivotSelections": t.array(
-                t.proxy(renames["PivotSelectionOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PivotOrderByOut"])
-    types["ResponseMetaDataIn"] = t.struct(
-        {
-            "emptyReason": t.string().optional(),
-            "schemaRestrictionResponse": t.proxy(
-                renames["SchemaRestrictionResponseIn"]
-            ).optional(),
-            "currencyCode": t.string().optional(),
-            "timeZone": t.string().optional(),
-            "subjectToThresholding": t.boolean().optional(),
-            "dataLossFromOtherRow": t.boolean().optional(),
-        }
-    ).named(renames["ResponseMetaDataIn"])
-    types["ResponseMetaDataOut"] = t.struct(
-        {
-            "emptyReason": t.string().optional(),
-            "schemaRestrictionResponse": t.proxy(
-                renames["SchemaRestrictionResponseOut"]
-            ).optional(),
-            "currencyCode": t.string().optional(),
-            "timeZone": t.string().optional(),
-            "subjectToThresholding": t.boolean().optional(),
-            "dataLossFromOtherRow": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ResponseMetaDataOut"])
-    types["RunPivotReportResponseIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "rows": t.array(t.proxy(renames["RowIn"])).optional(),
-            "propertyQuota": t.proxy(renames["PropertyQuotaIn"]).optional(),
-            "metadata": t.proxy(renames["ResponseMetaDataIn"]).optional(),
-            "aggregates": t.array(t.proxy(renames["RowIn"])).optional(),
-            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderIn"])).optional(),
-            "metricHeaders": t.array(t.proxy(renames["MetricHeaderIn"])).optional(),
-            "dimensionHeaders": t.array(
-                t.proxy(renames["DimensionHeaderIn"])
-            ).optional(),
-        }
-    ).named(renames["RunPivotReportResponseIn"])
-    types["RunPivotReportResponseOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "rows": t.array(t.proxy(renames["RowOut"])).optional(),
-            "propertyQuota": t.proxy(renames["PropertyQuotaOut"]).optional(),
-            "metadata": t.proxy(renames["ResponseMetaDataOut"]).optional(),
-            "aggregates": t.array(t.proxy(renames["RowOut"])).optional(),
-            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderOut"])).optional(),
-            "metricHeaders": t.array(t.proxy(renames["MetricHeaderOut"])).optional(),
-            "dimensionHeaders": t.array(
-                t.proxy(renames["DimensionHeaderOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RunPivotReportResponseOut"])
-    types["BatchRunPivotReportsRequestIn"] = t.struct(
-        {"requests": t.array(t.proxy(renames["RunPivotReportRequestIn"])).optional()}
-    ).named(renames["BatchRunPivotReportsRequestIn"])
-    types["BatchRunPivotReportsRequestOut"] = t.struct(
-        {
-            "requests": t.array(
-                t.proxy(renames["RunPivotReportRequestOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BatchRunPivotReportsRequestOut"])
-    types["DimensionExpressionIn"] = t.struct(
-        {
-            "upperCase": t.proxy(renames["CaseExpressionIn"]).optional(),
-            "lowerCase": t.proxy(renames["CaseExpressionIn"]).optional(),
-            "concatenate": t.proxy(renames["ConcatenateExpressionIn"]).optional(),
-        }
-    ).named(renames["DimensionExpressionIn"])
-    types["DimensionExpressionOut"] = t.struct(
-        {
-            "upperCase": t.proxy(renames["CaseExpressionOut"]).optional(),
-            "lowerCase": t.proxy(renames["CaseExpressionOut"]).optional(),
-            "concatenate": t.proxy(renames["ConcatenateExpressionOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DimensionExpressionOut"])
-    types["CohortsRangeIn"] = t.struct(
-        {
-            "startOffset": t.integer().optional(),
-            "granularity": t.string(),
-            "endOffset": t.integer(),
-        }
-    ).named(renames["CohortsRangeIn"])
-    types["CohortsRangeOut"] = t.struct(
-        {
-            "startOffset": t.integer().optional(),
-            "granularity": t.string(),
-            "endOffset": t.integer(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CohortsRangeOut"])
-    types["RunRealtimeReportResponseIn"] = t.struct(
-        {
-            "maximums": t.array(t.proxy(renames["RowIn"])).optional(),
-            "rows": t.array(t.proxy(renames["RowIn"])).optional(),
-            "rowCount": t.integer().optional(),
-            "dimensionHeaders": t.array(
-                t.proxy(renames["DimensionHeaderIn"])
-            ).optional(),
-            "totals": t.array(t.proxy(renames["RowIn"])).optional(),
-            "propertyQuota": t.proxy(renames["PropertyQuotaIn"]).optional(),
-            "minimums": t.array(t.proxy(renames["RowIn"])).optional(),
-            "metricHeaders": t.array(t.proxy(renames["MetricHeaderIn"])).optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["RunRealtimeReportResponseIn"])
-    types["RunRealtimeReportResponseOut"] = t.struct(
-        {
-            "maximums": t.array(t.proxy(renames["RowOut"])).optional(),
-            "rows": t.array(t.proxy(renames["RowOut"])).optional(),
-            "rowCount": t.integer().optional(),
-            "dimensionHeaders": t.array(
-                t.proxy(renames["DimensionHeaderOut"])
-            ).optional(),
-            "totals": t.array(t.proxy(renames["RowOut"])).optional(),
-            "propertyQuota": t.proxy(renames["PropertyQuotaOut"]).optional(),
-            "minimums": t.array(t.proxy(renames["RowOut"])).optional(),
-            "metricHeaders": t.array(t.proxy(renames["MetricHeaderOut"])).optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RunRealtimeReportResponseOut"])
-    types["PivotSelectionIn"] = t.struct(
-        {
-            "dimensionName": t.string().optional(),
-            "dimensionValue": t.string().optional(),
-        }
-    ).named(renames["PivotSelectionIn"])
-    types["PivotSelectionOut"] = t.struct(
-        {
-            "dimensionName": t.string().optional(),
-            "dimensionValue": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PivotSelectionOut"])
-    types["FilterIn"] = t.struct(
-        {
-            "numericFilter": t.proxy(renames["NumericFilterIn"]).optional(),
-            "stringFilter": t.proxy(renames["StringFilterIn"]).optional(),
-            "betweenFilter": t.proxy(renames["BetweenFilterIn"]).optional(),
-            "inListFilter": t.proxy(renames["InListFilterIn"]).optional(),
-            "fieldName": t.string().optional(),
-        }
-    ).named(renames["FilterIn"])
-    types["FilterOut"] = t.struct(
-        {
-            "numericFilter": t.proxy(renames["NumericFilterOut"]).optional(),
-            "stringFilter": t.proxy(renames["StringFilterOut"]).optional(),
-            "betweenFilter": t.proxy(renames["BetweenFilterOut"]).optional(),
-            "inListFilter": t.proxy(renames["InListFilterOut"]).optional(),
-            "fieldName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FilterOut"])
-    types["MetricHeaderIn"] = t.struct(
-        {"name": t.string().optional(), "type": t.string().optional()}
-    ).named(renames["MetricHeaderIn"])
-    types["MetricHeaderOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "type": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricHeaderOut"])
-    types["BatchRunReportsRequestIn"] = t.struct(
-        {"requests": t.array(t.proxy(renames["RunReportRequestIn"])).optional()}
-    ).named(renames["BatchRunReportsRequestIn"])
-    types["BatchRunReportsRequestOut"] = t.struct(
-        {
-            "requests": t.array(t.proxy(renames["RunReportRequestOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BatchRunReportsRequestOut"])
-    types["MetricOrderByIn"] = t.struct({"metricName": t.string().optional()}).named(
-        renames["MetricOrderByIn"]
-    )
-    types["MetricOrderByOut"] = t.struct(
-        {
-            "metricName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricOrderByOut"])
-    types["CohortIn"] = t.struct(
-        {
-            "dimension": t.string().optional(),
-            "name": t.string().optional(),
-            "dateRange": t.proxy(renames["DateRangeIn"]).optional(),
-        }
-    ).named(renames["CohortIn"])
-    types["CohortOut"] = t.struct(
-        {
-            "dimension": t.string().optional(),
-            "name": t.string().optional(),
-            "dateRange": t.proxy(renames["DateRangeOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CohortOut"])
-    types["SchemaRestrictionResponseIn"] = t.struct(
-        {
-            "activeMetricRestrictions": t.array(
-                t.proxy(renames["ActiveMetricRestrictionIn"])
-            ).optional()
-        }
-    ).named(renames["SchemaRestrictionResponseIn"])
-    types["SchemaRestrictionResponseOut"] = t.struct(
-        {
-            "activeMetricRestrictions": t.array(
-                t.proxy(renames["ActiveMetricRestrictionOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SchemaRestrictionResponseOut"])
-    types["PropertyQuotaIn"] = t.struct(
-        {
-            "potentiallyThresholdedRequestsPerHour": t.proxy(
-                renames["QuotaStatusIn"]
-            ).optional(),
-            "concurrentRequests": t.proxy(renames["QuotaStatusIn"]).optional(),
-            "tokensPerProjectPerHour": t.proxy(renames["QuotaStatusIn"]).optional(),
-            "serverErrorsPerProjectPerHour": t.proxy(
-                renames["QuotaStatusIn"]
-            ).optional(),
-            "tokensPerHour": t.proxy(renames["QuotaStatusIn"]).optional(),
-            "tokensPerDay": t.proxy(renames["QuotaStatusIn"]).optional(),
-        }
-    ).named(renames["PropertyQuotaIn"])
-    types["PropertyQuotaOut"] = t.struct(
-        {
-            "potentiallyThresholdedRequestsPerHour": t.proxy(
-                renames["QuotaStatusOut"]
-            ).optional(),
-            "concurrentRequests": t.proxy(renames["QuotaStatusOut"]).optional(),
-            "tokensPerProjectPerHour": t.proxy(renames["QuotaStatusOut"]).optional(),
-            "serverErrorsPerProjectPerHour": t.proxy(
-                renames["QuotaStatusOut"]
-            ).optional(),
-            "tokensPerHour": t.proxy(renames["QuotaStatusOut"]).optional(),
-            "tokensPerDay": t.proxy(renames["QuotaStatusOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PropertyQuotaOut"])
     types["BatchRunPivotReportsResponseIn"] = t.struct(
         {
             "pivotReports": t.array(
@@ -894,87 +853,90 @@ def import_analyticsdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["BatchRunPivotReportsResponseOut"])
-    types["BetweenFilterIn"] = t.struct(
+    types["MetricOrderByIn"] = t.struct({"metricName": t.string().optional()}).named(
+        renames["MetricOrderByIn"]
+    )
+    types["MetricOrderByOut"] = t.struct(
         {
-            "toValue": t.proxy(renames["NumericValueIn"]).optional(),
-            "fromValue": t.proxy(renames["NumericValueIn"]).optional(),
-        }
-    ).named(renames["BetweenFilterIn"])
-    types["BetweenFilterOut"] = t.struct(
-        {
-            "toValue": t.proxy(renames["NumericValueOut"]).optional(),
-            "fromValue": t.proxy(renames["NumericValueOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BetweenFilterOut"])
-    types["RowIn"] = t.struct(
-        {
-            "metricValues": t.array(t.proxy(renames["MetricValueIn"])).optional(),
-            "dimensionValues": t.array(t.proxy(renames["DimensionValueIn"])).optional(),
-        }
-    ).named(renames["RowIn"])
-    types["RowOut"] = t.struct(
-        {
-            "metricValues": t.array(t.proxy(renames["MetricValueOut"])).optional(),
-            "dimensionValues": t.array(
-                t.proxy(renames["DimensionValueOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RowOut"])
-    types["ActiveMetricRestrictionIn"] = t.struct(
-        {
-            "restrictedMetricTypes": t.array(t.string()).optional(),
-            "metricName": t.string().optional(),
-        }
-    ).named(renames["ActiveMetricRestrictionIn"])
-    types["ActiveMetricRestrictionOut"] = t.struct(
-        {
-            "restrictedMetricTypes": t.array(t.string()).optional(),
             "metricName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ActiveMetricRestrictionOut"])
-    types["MetricMetadataIn"] = t.struct(
+    ).named(renames["MetricOrderByOut"])
+    types["RunReportRequestIn"] = t.struct(
         {
-            "expression": t.string().optional(),
-            "uiName": t.string().optional(),
-            "type": t.string().optional(),
-            "description": t.string().optional(),
-            "category": t.string().optional(),
-            "blockedReasons": t.array(t.string()).optional(),
-            "customDefinition": t.boolean().optional(),
-            "apiName": t.string().optional(),
-            "deprecatedApiNames": t.array(t.string()).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
+            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
+            "currencyCode": t.string().optional(),
+            "keepEmptyRows": t.boolean().optional(),
+            "cohortSpec": t.proxy(renames["CohortSpecIn"]).optional(),
+            "property": t.string().optional(),
+            "returnPropertyQuota": t.boolean().optional(),
+            "dateRanges": t.array(t.proxy(renames["DateRangeIn"])).optional(),
+            "limit": t.string().optional(),
+            "offset": t.string().optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+            "metricAggregations": t.array(t.string()).optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
         }
-    ).named(renames["MetricMetadataIn"])
-    types["MetricMetadataOut"] = t.struct(
+    ).named(renames["RunReportRequestIn"])
+    types["RunReportRequestOut"] = t.struct(
         {
-            "expression": t.string().optional(),
-            "uiName": t.string().optional(),
-            "type": t.string().optional(),
-            "description": t.string().optional(),
-            "category": t.string().optional(),
-            "blockedReasons": t.array(t.string()).optional(),
-            "customDefinition": t.boolean().optional(),
-            "apiName": t.string().optional(),
-            "deprecatedApiNames": t.array(t.string()).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
+            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "currencyCode": t.string().optional(),
+            "keepEmptyRows": t.boolean().optional(),
+            "cohortSpec": t.proxy(renames["CohortSpecOut"]).optional(),
+            "property": t.string().optional(),
+            "returnPropertyQuota": t.boolean().optional(),
+            "dateRanges": t.array(t.proxy(renames["DateRangeOut"])).optional(),
+            "limit": t.string().optional(),
+            "offset": t.string().optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
+            "metricAggregations": t.array(t.string()).optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["MetricMetadataOut"])
-    types["BatchRunReportsResponseIn"] = t.struct(
+    ).named(renames["RunReportRequestOut"])
+    types["QuotaStatusIn"] = t.struct(
+        {"consumed": t.integer().optional(), "remaining": t.integer().optional()}
+    ).named(renames["QuotaStatusIn"])
+    types["QuotaStatusOut"] = t.struct(
         {
-            "kind": t.string().optional(),
-            "reports": t.array(t.proxy(renames["RunReportResponseIn"])).optional(),
-        }
-    ).named(renames["BatchRunReportsResponseIn"])
-    types["BatchRunReportsResponseOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "reports": t.array(t.proxy(renames["RunReportResponseOut"])).optional(),
+            "consumed": t.integer().optional(),
+            "remaining": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["BatchRunReportsResponseOut"])
+    ).named(renames["QuotaStatusOut"])
+    types["DimensionHeaderIn"] = t.struct({"name": t.string().optional()}).named(
+        renames["DimensionHeaderIn"]
+    )
+    types["DimensionHeaderOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DimensionHeaderOut"])
+    types["CheckCompatibilityRequestIn"] = t.struct(
+        {
+            "compatibilityFilter": t.string().optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
+            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
+        }
+    ).named(renames["CheckCompatibilityRequestIn"])
+    types["CheckCompatibilityRequestOut"] = t.struct(
+        {
+            "compatibilityFilter": t.string().optional(),
+            "dimensionFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
+            "metricFilter": t.proxy(renames["FilterExpressionOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CheckCompatibilityRequestOut"])
     types["StringFilterIn"] = t.struct(
         {
             "matchType": t.string().optional(),
@@ -990,171 +952,167 @@ def import_analyticsdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["StringFilterOut"])
-    types["PivotIn"] = t.struct(
+    types["RunPivotReportResponseIn"] = t.struct(
         {
-            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-            "fieldNames": t.array(t.string()).optional(),
-            "offset": t.string().optional(),
-            "metricAggregations": t.array(t.string()).optional(),
-            "limit": t.string().optional(),
+            "rows": t.array(t.proxy(renames["RowIn"])).optional(),
+            "propertyQuota": t.proxy(renames["PropertyQuotaIn"]).optional(),
+            "dimensionHeaders": t.array(
+                t.proxy(renames["DimensionHeaderIn"])
+            ).optional(),
+            "metricHeaders": t.array(t.proxy(renames["MetricHeaderIn"])).optional(),
+            "aggregates": t.array(t.proxy(renames["RowIn"])).optional(),
+            "kind": t.string().optional(),
+            "metadata": t.proxy(renames["ResponseMetaDataIn"]).optional(),
+            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderIn"])).optional(),
         }
-    ).named(renames["PivotIn"])
-    types["PivotOut"] = t.struct(
+    ).named(renames["RunPivotReportResponseIn"])
+    types["RunPivotReportResponseOut"] = t.struct(
         {
-            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
-            "fieldNames": t.array(t.string()).optional(),
-            "offset": t.string().optional(),
-            "metricAggregations": t.array(t.string()).optional(),
-            "limit": t.string().optional(),
+            "rows": t.array(t.proxy(renames["RowOut"])).optional(),
+            "propertyQuota": t.proxy(renames["PropertyQuotaOut"]).optional(),
+            "dimensionHeaders": t.array(
+                t.proxy(renames["DimensionHeaderOut"])
+            ).optional(),
+            "metricHeaders": t.array(t.proxy(renames["MetricHeaderOut"])).optional(),
+            "aggregates": t.array(t.proxy(renames["RowOut"])).optional(),
+            "kind": t.string().optional(),
+            "metadata": t.proxy(renames["ResponseMetaDataOut"]).optional(),
+            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PivotOut"])
+    ).named(renames["RunPivotReportResponseOut"])
+    types["PivotOrderByIn"] = t.struct(
+        {
+            "metricName": t.string().optional(),
+            "pivotSelections": t.array(t.proxy(renames["PivotSelectionIn"])).optional(),
+        }
+    ).named(renames["PivotOrderByIn"])
+    types["PivotOrderByOut"] = t.struct(
+        {
+            "metricName": t.string().optional(),
+            "pivotSelections": t.array(
+                t.proxy(renames["PivotSelectionOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PivotOrderByOut"])
+    types["ActiveMetricRestrictionIn"] = t.struct(
+        {
+            "metricName": t.string().optional(),
+            "restrictedMetricTypes": t.array(t.string()).optional(),
+        }
+    ).named(renames["ActiveMetricRestrictionIn"])
+    types["ActiveMetricRestrictionOut"] = t.struct(
+        {
+            "metricName": t.string().optional(),
+            "restrictedMetricTypes": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ActiveMetricRestrictionOut"])
 
     functions = {}
-    functions["propertiesBatchRunReports"] = analyticsdata.post(
-        "v1beta/{property}:runRealtimeReport",
-        t.struct(
-            {
-                "property": t.string().optional(),
-                "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "limit": t.string().optional(),
-                "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-                "metricAggregations": t.array(t.string()).optional(),
-                "returnPropertyQuota": t.boolean().optional(),
-                "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-                "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-                "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RunRealtimeReportResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["propertiesRunReport"] = analyticsdata.post(
-        "v1beta/{property}:runRealtimeReport",
+        "v1beta/{property}:batchRunPivotReports",
         t.struct(
             {
                 "property": t.string().optional(),
-                "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "limit": t.string().optional(),
-                "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-                "metricAggregations": t.array(t.string()).optional(),
-                "returnPropertyQuota": t.boolean().optional(),
-                "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-                "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-                "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+                "requests": t.array(
+                    t.proxy(renames["RunPivotReportRequestIn"])
+                ).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RunRealtimeReportResponseOut"]),
+        t.proxy(renames["BatchRunPivotReportsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["propertiesBatchRunPivotReports"] = analyticsdata.post(
-        "v1beta/{property}:runRealtimeReport",
+    functions["propertiesBatchRunReports"] = analyticsdata.post(
+        "v1beta/{property}:batchRunPivotReports",
         t.struct(
             {
                 "property": t.string().optional(),
-                "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "limit": t.string().optional(),
-                "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-                "metricAggregations": t.array(t.string()).optional(),
-                "returnPropertyQuota": t.boolean().optional(),
-                "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-                "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-                "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+                "requests": t.array(
+                    t.proxy(renames["RunPivotReportRequestIn"])
+                ).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RunRealtimeReportResponseOut"]),
+        t.proxy(renames["BatchRunPivotReportsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["propertiesCheckCompatibility"] = analyticsdata.post(
-        "v1beta/{property}:runRealtimeReport",
+        "v1beta/{property}:batchRunPivotReports",
         t.struct(
             {
                 "property": t.string().optional(),
-                "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "limit": t.string().optional(),
-                "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-                "metricAggregations": t.array(t.string()).optional(),
-                "returnPropertyQuota": t.boolean().optional(),
-                "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-                "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-                "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+                "requests": t.array(
+                    t.proxy(renames["RunPivotReportRequestIn"])
+                ).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RunRealtimeReportResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["propertiesGetMetadata"] = analyticsdata.post(
-        "v1beta/{property}:runRealtimeReport",
-        t.struct(
-            {
-                "property": t.string().optional(),
-                "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "limit": t.string().optional(),
-                "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-                "metricAggregations": t.array(t.string()).optional(),
-                "returnPropertyQuota": t.boolean().optional(),
-                "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-                "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-                "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RunRealtimeReportResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["propertiesRunPivotReport"] = analyticsdata.post(
-        "v1beta/{property}:runRealtimeReport",
-        t.struct(
-            {
-                "property": t.string().optional(),
-                "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "limit": t.string().optional(),
-                "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-                "metricAggregations": t.array(t.string()).optional(),
-                "returnPropertyQuota": t.boolean().optional(),
-                "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-                "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-                "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["RunRealtimeReportResponseOut"]),
+        t.proxy(renames["BatchRunPivotReportsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["propertiesRunRealtimeReport"] = analyticsdata.post(
-        "v1beta/{property}:runRealtimeReport",
+        "v1beta/{property}:batchRunPivotReports",
         t.struct(
             {
                 "property": t.string().optional(),
-                "metricFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "limit": t.string().optional(),
-                "dimensionFilter": t.proxy(renames["FilterExpressionIn"]).optional(),
-                "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-                "metricAggregations": t.array(t.string()).optional(),
-                "returnPropertyQuota": t.boolean().optional(),
-                "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
-                "minuteRanges": t.array(t.proxy(renames["MinuteRangeIn"])).optional(),
-                "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+                "requests": t.array(
+                    t.proxy(renames["RunPivotReportRequestIn"])
+                ).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["RunRealtimeReportResponseOut"]),
+        t.proxy(renames["BatchRunPivotReportsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["propertiesRunPivotReport"] = analyticsdata.post(
+        "v1beta/{property}:batchRunPivotReports",
+        t.struct(
+            {
+                "property": t.string().optional(),
+                "requests": t.array(
+                    t.proxy(renames["RunPivotReportRequestIn"])
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["BatchRunPivotReportsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["propertiesGetMetadata"] = analyticsdata.post(
+        "v1beta/{property}:batchRunPivotReports",
+        t.struct(
+            {
+                "property": t.string().optional(),
+                "requests": t.array(
+                    t.proxy(renames["RunPivotReportRequestIn"])
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["BatchRunPivotReportsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["propertiesBatchRunPivotReports"] = analyticsdata.post(
+        "v1beta/{property}:batchRunPivotReports",
+        t.struct(
+            {
+                "property": t.string().optional(),
+                "requests": t.array(
+                    t.proxy(renames["RunPivotReportRequestIn"])
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["BatchRunPivotReportsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_youtubereporting() -> Import:
@@ -9,387 +9,79 @@ def import_youtubereporting() -> Import:
 
     renames = {
         "ErrorResponse": "_youtubereporting_1_ErrorResponse",
-        "EmptyIn": "_youtubereporting_2_EmptyIn",
-        "EmptyOut": "_youtubereporting_3_EmptyOut",
-        "GdataObjectIdIn": "_youtubereporting_4_GdataObjectIdIn",
-        "GdataObjectIdOut": "_youtubereporting_5_GdataObjectIdOut",
-        "GdataDiffUploadResponseIn": "_youtubereporting_6_GdataDiffUploadResponseIn",
-        "GdataDiffUploadResponseOut": "_youtubereporting_7_GdataDiffUploadResponseOut",
-        "GdataDiffChecksumsResponseIn": "_youtubereporting_8_GdataDiffChecksumsResponseIn",
-        "GdataDiffChecksumsResponseOut": "_youtubereporting_9_GdataDiffChecksumsResponseOut",
-        "GdataBlobstore2InfoIn": "_youtubereporting_10_GdataBlobstore2InfoIn",
-        "GdataBlobstore2InfoOut": "_youtubereporting_11_GdataBlobstore2InfoOut",
-        "GdataDownloadParametersIn": "_youtubereporting_12_GdataDownloadParametersIn",
-        "GdataDownloadParametersOut": "_youtubereporting_13_GdataDownloadParametersOut",
-        "ListJobsResponseIn": "_youtubereporting_14_ListJobsResponseIn",
-        "ListJobsResponseOut": "_youtubereporting_15_ListJobsResponseOut",
-        "ListReportTypesResponseIn": "_youtubereporting_16_ListReportTypesResponseIn",
-        "ListReportTypesResponseOut": "_youtubereporting_17_ListReportTypesResponseOut",
-        "GdataContentTypeInfoIn": "_youtubereporting_18_GdataContentTypeInfoIn",
-        "GdataContentTypeInfoOut": "_youtubereporting_19_GdataContentTypeInfoOut",
-        "ReportIn": "_youtubereporting_20_ReportIn",
-        "ReportOut": "_youtubereporting_21_ReportOut",
-        "JobIn": "_youtubereporting_22_JobIn",
-        "JobOut": "_youtubereporting_23_JobOut",
-        "GdataDiffDownloadResponseIn": "_youtubereporting_24_GdataDiffDownloadResponseIn",
-        "GdataDiffDownloadResponseOut": "_youtubereporting_25_GdataDiffDownloadResponseOut",
-        "GdataMediaIn": "_youtubereporting_26_GdataMediaIn",
-        "GdataMediaOut": "_youtubereporting_27_GdataMediaOut",
-        "ReportTypeIn": "_youtubereporting_28_ReportTypeIn",
-        "ReportTypeOut": "_youtubereporting_29_ReportTypeOut",
-        "GdataCompositeMediaIn": "_youtubereporting_30_GdataCompositeMediaIn",
-        "GdataCompositeMediaOut": "_youtubereporting_31_GdataCompositeMediaOut",
-        "GdataDiffVersionResponseIn": "_youtubereporting_32_GdataDiffVersionResponseIn",
-        "GdataDiffVersionResponseOut": "_youtubereporting_33_GdataDiffVersionResponseOut",
-        "ListReportsResponseIn": "_youtubereporting_34_ListReportsResponseIn",
-        "ListReportsResponseOut": "_youtubereporting_35_ListReportsResponseOut",
-        "GdataDiffUploadRequestIn": "_youtubereporting_36_GdataDiffUploadRequestIn",
-        "GdataDiffUploadRequestOut": "_youtubereporting_37_GdataDiffUploadRequestOut",
+        "GdataCompositeMediaIn": "_youtubereporting_2_GdataCompositeMediaIn",
+        "GdataCompositeMediaOut": "_youtubereporting_3_GdataCompositeMediaOut",
+        "ListReportsResponseIn": "_youtubereporting_4_ListReportsResponseIn",
+        "ListReportsResponseOut": "_youtubereporting_5_ListReportsResponseOut",
+        "EmptyIn": "_youtubereporting_6_EmptyIn",
+        "EmptyOut": "_youtubereporting_7_EmptyOut",
+        "ReportIn": "_youtubereporting_8_ReportIn",
+        "ReportOut": "_youtubereporting_9_ReportOut",
+        "GdataDownloadParametersIn": "_youtubereporting_10_GdataDownloadParametersIn",
+        "GdataDownloadParametersOut": "_youtubereporting_11_GdataDownloadParametersOut",
+        "GdataContentTypeInfoIn": "_youtubereporting_12_GdataContentTypeInfoIn",
+        "GdataContentTypeInfoOut": "_youtubereporting_13_GdataContentTypeInfoOut",
+        "GdataDiffUploadRequestIn": "_youtubereporting_14_GdataDiffUploadRequestIn",
+        "GdataDiffUploadRequestOut": "_youtubereporting_15_GdataDiffUploadRequestOut",
+        "GdataDiffVersionResponseIn": "_youtubereporting_16_GdataDiffVersionResponseIn",
+        "GdataDiffVersionResponseOut": "_youtubereporting_17_GdataDiffVersionResponseOut",
+        "ReportTypeIn": "_youtubereporting_18_ReportTypeIn",
+        "ReportTypeOut": "_youtubereporting_19_ReportTypeOut",
+        "GdataMediaIn": "_youtubereporting_20_GdataMediaIn",
+        "GdataMediaOut": "_youtubereporting_21_GdataMediaOut",
+        "GdataDiffUploadResponseIn": "_youtubereporting_22_GdataDiffUploadResponseIn",
+        "GdataDiffUploadResponseOut": "_youtubereporting_23_GdataDiffUploadResponseOut",
+        "JobIn": "_youtubereporting_24_JobIn",
+        "JobOut": "_youtubereporting_25_JobOut",
+        "GdataDiffChecksumsResponseIn": "_youtubereporting_26_GdataDiffChecksumsResponseIn",
+        "GdataDiffChecksumsResponseOut": "_youtubereporting_27_GdataDiffChecksumsResponseOut",
+        "GdataDiffDownloadResponseIn": "_youtubereporting_28_GdataDiffDownloadResponseIn",
+        "GdataDiffDownloadResponseOut": "_youtubereporting_29_GdataDiffDownloadResponseOut",
+        "ListReportTypesResponseIn": "_youtubereporting_30_ListReportTypesResponseIn",
+        "ListReportTypesResponseOut": "_youtubereporting_31_ListReportTypesResponseOut",
+        "GdataObjectIdIn": "_youtubereporting_32_GdataObjectIdIn",
+        "GdataObjectIdOut": "_youtubereporting_33_GdataObjectIdOut",
+        "GdataBlobstore2InfoIn": "_youtubereporting_34_GdataBlobstore2InfoIn",
+        "GdataBlobstore2InfoOut": "_youtubereporting_35_GdataBlobstore2InfoOut",
+        "ListJobsResponseIn": "_youtubereporting_36_ListJobsResponseIn",
+        "ListJobsResponseOut": "_youtubereporting_37_ListJobsResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["GdataObjectIdIn"] = t.struct(
-        {
-            "bucketName": t.string().optional(),
-            "objectName": t.string().optional(),
-            "generation": t.string().optional(),
-        }
-    ).named(renames["GdataObjectIdIn"])
-    types["GdataObjectIdOut"] = t.struct(
-        {
-            "bucketName": t.string().optional(),
-            "objectName": t.string().optional(),
-            "generation": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataObjectIdOut"])
-    types["GdataDiffUploadResponseIn"] = t.struct(
-        {
-            "originalObject": t.proxy(renames["GdataCompositeMediaIn"]).optional(),
-            "objectVersion": t.string().optional(),
-        }
-    ).named(renames["GdataDiffUploadResponseIn"])
-    types["GdataDiffUploadResponseOut"] = t.struct(
-        {
-            "originalObject": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
-            "objectVersion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataDiffUploadResponseOut"])
-    types["GdataDiffChecksumsResponseIn"] = t.struct(
-        {
-            "objectLocation": t.proxy(renames["GdataCompositeMediaIn"]).optional(),
-            "chunkSizeBytes": t.string().optional(),
-            "checksumsLocation": t.proxy(renames["GdataCompositeMediaIn"]).optional(),
-            "objectSizeBytes": t.string().optional(),
-            "objectVersion": t.string().optional(),
-        }
-    ).named(renames["GdataDiffChecksumsResponseIn"])
-    types["GdataDiffChecksumsResponseOut"] = t.struct(
-        {
-            "objectLocation": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
-            "chunkSizeBytes": t.string().optional(),
-            "checksumsLocation": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
-            "objectSizeBytes": t.string().optional(),
-            "objectVersion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataDiffChecksumsResponseOut"])
-    types["GdataBlobstore2InfoIn"] = t.struct(
-        {
-            "blobGeneration": t.string().optional(),
-            "blobId": t.string().optional(),
-            "readToken": t.string().optional(),
-            "uploadMetadataContainer": t.string().optional(),
-            "downloadReadHandle": t.string().optional(),
-        }
-    ).named(renames["GdataBlobstore2InfoIn"])
-    types["GdataBlobstore2InfoOut"] = t.struct(
-        {
-            "blobGeneration": t.string().optional(),
-            "blobId": t.string().optional(),
-            "readToken": t.string().optional(),
-            "uploadMetadataContainer": t.string().optional(),
-            "downloadReadHandle": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataBlobstore2InfoOut"])
-    types["GdataDownloadParametersIn"] = t.struct(
-        {
-            "allowGzipCompression": t.boolean().optional(),
-            "ignoreRange": t.boolean().optional(),
-        }
-    ).named(renames["GdataDownloadParametersIn"])
-    types["GdataDownloadParametersOut"] = t.struct(
-        {
-            "allowGzipCompression": t.boolean().optional(),
-            "ignoreRange": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataDownloadParametersOut"])
-    types["ListJobsResponseIn"] = t.struct(
-        {
-            "jobs": t.array(t.proxy(renames["JobIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListJobsResponseIn"])
-    types["ListJobsResponseOut"] = t.struct(
-        {
-            "jobs": t.array(t.proxy(renames["JobOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListJobsResponseOut"])
-    types["ListReportTypesResponseIn"] = t.struct(
-        {
-            "reportTypes": t.array(t.proxy(renames["ReportTypeIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListReportTypesResponseIn"])
-    types["ListReportTypesResponseOut"] = t.struct(
-        {
-            "reportTypes": t.array(t.proxy(renames["ReportTypeOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListReportTypesResponseOut"])
-    types["GdataContentTypeInfoIn"] = t.struct(
-        {
-            "fromFileName": t.string().optional(),
-            "fromUrlPath": t.string().optional(),
-            "bestGuess": t.string().optional(),
-            "fromBytes": t.string().optional(),
-            "fromHeader": t.string().optional(),
-        }
-    ).named(renames["GdataContentTypeInfoIn"])
-    types["GdataContentTypeInfoOut"] = t.struct(
-        {
-            "fromFileName": t.string().optional(),
-            "fromUrlPath": t.string().optional(),
-            "bestGuess": t.string().optional(),
-            "fromBytes": t.string().optional(),
-            "fromHeader": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataContentTypeInfoOut"])
-    types["ReportIn"] = t.struct(
-        {
-            "jobId": t.string().optional(),
-            "createTime": t.string().optional(),
-            "id": t.string().optional(),
-            "startTime": t.string().optional(),
-            "jobExpireTime": t.string().optional(),
-            "downloadUrl": t.string().optional(),
-            "endTime": t.string().optional(),
-        }
-    ).named(renames["ReportIn"])
-    types["ReportOut"] = t.struct(
-        {
-            "jobId": t.string().optional(),
-            "createTime": t.string().optional(),
-            "id": t.string().optional(),
-            "startTime": t.string().optional(),
-            "jobExpireTime": t.string().optional(),
-            "downloadUrl": t.string().optional(),
-            "endTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReportOut"])
-    types["JobIn"] = t.struct(
-        {
-            "id": t.string().optional(),
-            "reportTypeId": t.string().optional(),
-            "name": t.string().optional(),
-            "expireTime": t.string().optional(),
-            "createTime": t.string().optional(),
-            "systemManaged": t.boolean().optional(),
-        }
-    ).named(renames["JobIn"])
-    types["JobOut"] = t.struct(
-        {
-            "id": t.string().optional(),
-            "reportTypeId": t.string().optional(),
-            "name": t.string().optional(),
-            "expireTime": t.string().optional(),
-            "createTime": t.string().optional(),
-            "systemManaged": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["JobOut"])
-    types["GdataDiffDownloadResponseIn"] = t.struct(
-        {"objectLocation": t.proxy(renames["GdataCompositeMediaIn"]).optional()}
-    ).named(renames["GdataDiffDownloadResponseIn"])
-    types["GdataDiffDownloadResponseOut"] = t.struct(
-        {
-            "objectLocation": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataDiffDownloadResponseOut"])
-    types["GdataMediaIn"] = t.struct(
-        {
-            "cosmoBinaryReference": t.string().optional(),
-            "diffUploadRequest": t.proxy(
-                renames["GdataDiffUploadRequestIn"]
-            ).optional(),
-            "length": t.string().optional(),
-            "diffUploadResponse": t.proxy(
-                renames["GdataDiffUploadResponseIn"]
-            ).optional(),
-            "blobRef": t.string().optional(),
-            "objectId": t.proxy(renames["GdataObjectIdIn"]).optional(),
-            "mediaId": t.string().optional(),
-            "isPotentialRetry": t.boolean().optional(),
-            "contentTypeInfo": t.proxy(renames["GdataContentTypeInfoIn"]).optional(),
-            "diffChecksumsResponse": t.proxy(
-                renames["GdataDiffChecksumsResponseIn"]
-            ).optional(),
-            "token": t.string().optional(),
-            "downloadParameters": t.proxy(
-                renames["GdataDownloadParametersIn"]
-            ).optional(),
-            "path": t.string().optional(),
-            "diffVersionResponse": t.proxy(
-                renames["GdataDiffVersionResponseIn"]
-            ).optional(),
-            "timestamp": t.string().optional(),
-            "compositeMedia": t.array(
-                t.proxy(renames["GdataCompositeMediaIn"])
-            ).optional(),
-            "crc32cHash": t.integer().optional(),
-            "contentType": t.string().optional(),
-            "hashVerified": t.boolean().optional(),
-            "filename": t.string().optional(),
-            "sha1Hash": t.string().optional(),
-            "hash": t.string().optional(),
-            "referenceType": t.string().optional(),
-            "diffDownloadResponse": t.proxy(
-                renames["GdataDiffDownloadResponseIn"]
-            ).optional(),
-            "inline": t.string().optional(),
-            "blobstore2Info": t.proxy(renames["GdataBlobstore2InfoIn"]).optional(),
-            "bigstoreObjectRef": t.string().optional(),
-            "sha256Hash": t.string().optional(),
-            "algorithm": t.string().optional(),
-            "md5Hash": t.string().optional(),
-        }
-    ).named(renames["GdataMediaIn"])
-    types["GdataMediaOut"] = t.struct(
-        {
-            "cosmoBinaryReference": t.string().optional(),
-            "diffUploadRequest": t.proxy(
-                renames["GdataDiffUploadRequestOut"]
-            ).optional(),
-            "length": t.string().optional(),
-            "diffUploadResponse": t.proxy(
-                renames["GdataDiffUploadResponseOut"]
-            ).optional(),
-            "blobRef": t.string().optional(),
-            "objectId": t.proxy(renames["GdataObjectIdOut"]).optional(),
-            "mediaId": t.string().optional(),
-            "isPotentialRetry": t.boolean().optional(),
-            "contentTypeInfo": t.proxy(renames["GdataContentTypeInfoOut"]).optional(),
-            "diffChecksumsResponse": t.proxy(
-                renames["GdataDiffChecksumsResponseOut"]
-            ).optional(),
-            "token": t.string().optional(),
-            "downloadParameters": t.proxy(
-                renames["GdataDownloadParametersOut"]
-            ).optional(),
-            "path": t.string().optional(),
-            "diffVersionResponse": t.proxy(
-                renames["GdataDiffVersionResponseOut"]
-            ).optional(),
-            "timestamp": t.string().optional(),
-            "compositeMedia": t.array(
-                t.proxy(renames["GdataCompositeMediaOut"])
-            ).optional(),
-            "crc32cHash": t.integer().optional(),
-            "contentType": t.string().optional(),
-            "hashVerified": t.boolean().optional(),
-            "filename": t.string().optional(),
-            "sha1Hash": t.string().optional(),
-            "hash": t.string().optional(),
-            "referenceType": t.string().optional(),
-            "diffDownloadResponse": t.proxy(
-                renames["GdataDiffDownloadResponseOut"]
-            ).optional(),
-            "inline": t.string().optional(),
-            "blobstore2Info": t.proxy(renames["GdataBlobstore2InfoOut"]).optional(),
-            "bigstoreObjectRef": t.string().optional(),
-            "sha256Hash": t.string().optional(),
-            "algorithm": t.string().optional(),
-            "md5Hash": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataMediaOut"])
-    types["ReportTypeIn"] = t.struct(
-        {
-            "id": t.string().optional(),
-            "systemManaged": t.boolean().optional(),
-            "deprecateTime": t.string().optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["ReportTypeIn"])
-    types["ReportTypeOut"] = t.struct(
-        {
-            "id": t.string().optional(),
-            "systemManaged": t.boolean().optional(),
-            "deprecateTime": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReportTypeOut"])
     types["GdataCompositeMediaIn"] = t.struct(
         {
-            "length": t.string().optional(),
-            "blobRef": t.string().optional(),
-            "objectId": t.proxy(renames["GdataObjectIdIn"]).optional(),
-            "cosmoBinaryReference": t.string().optional(),
-            "referenceType": t.string().optional(),
+            "inline": t.string().optional(),
             "md5Hash": t.string().optional(),
             "crc32cHash": t.integer().optional(),
-            "inline": t.string().optional(),
-            "sha1Hash": t.string().optional(),
             "blobstore2Info": t.proxy(renames["GdataBlobstore2InfoIn"]).optional(),
+            "length": t.string().optional(),
+            "referenceType": t.string().optional(),
+            "cosmoBinaryReference": t.string().optional(),
+            "sha1Hash": t.string().optional(),
+            "objectId": t.proxy(renames["GdataObjectIdIn"]).optional(),
+            "blobRef": t.string().optional(),
             "path": t.string().optional(),
         }
     ).named(renames["GdataCompositeMediaIn"])
     types["GdataCompositeMediaOut"] = t.struct(
         {
-            "length": t.string().optional(),
-            "blobRef": t.string().optional(),
-            "objectId": t.proxy(renames["GdataObjectIdOut"]).optional(),
-            "cosmoBinaryReference": t.string().optional(),
-            "referenceType": t.string().optional(),
+            "inline": t.string().optional(),
             "md5Hash": t.string().optional(),
             "crc32cHash": t.integer().optional(),
-            "inline": t.string().optional(),
-            "sha1Hash": t.string().optional(),
             "blobstore2Info": t.proxy(renames["GdataBlobstore2InfoOut"]).optional(),
+            "length": t.string().optional(),
+            "referenceType": t.string().optional(),
+            "cosmoBinaryReference": t.string().optional(),
+            "sha1Hash": t.string().optional(),
+            "objectId": t.proxy(renames["GdataObjectIdOut"]).optional(),
+            "blobRef": t.string().optional(),
             "path": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GdataCompositeMediaOut"])
-    types["GdataDiffVersionResponseIn"] = t.struct(
-        {
-            "objectVersion": t.string().optional(),
-            "objectSizeBytes": t.string().optional(),
-        }
-    ).named(renames["GdataDiffVersionResponseIn"])
-    types["GdataDiffVersionResponseOut"] = t.struct(
-        {
-            "objectVersion": t.string().optional(),
-            "objectSizeBytes": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GdataDiffVersionResponseOut"])
     types["ListReportsResponseIn"] = t.struct(
         {
             "reports": t.array(t.proxy(renames["ReportIn"])).optional(),
@@ -403,6 +95,65 @@ def import_youtubereporting() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListReportsResponseOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
+    types["ReportIn"] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "jobId": t.string().optional(),
+            "endTime": t.string().optional(),
+            "startTime": t.string().optional(),
+            "jobExpireTime": t.string().optional(),
+            "id": t.string().optional(),
+            "downloadUrl": t.string().optional(),
+        }
+    ).named(renames["ReportIn"])
+    types["ReportOut"] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "jobId": t.string().optional(),
+            "endTime": t.string().optional(),
+            "startTime": t.string().optional(),
+            "jobExpireTime": t.string().optional(),
+            "id": t.string().optional(),
+            "downloadUrl": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReportOut"])
+    types["GdataDownloadParametersIn"] = t.struct(
+        {
+            "allowGzipCompression": t.boolean().optional(),
+            "ignoreRange": t.boolean().optional(),
+        }
+    ).named(renames["GdataDownloadParametersIn"])
+    types["GdataDownloadParametersOut"] = t.struct(
+        {
+            "allowGzipCompression": t.boolean().optional(),
+            "ignoreRange": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataDownloadParametersOut"])
+    types["GdataContentTypeInfoIn"] = t.struct(
+        {
+            "fromUrlPath": t.string().optional(),
+            "fromFileName": t.string().optional(),
+            "fromHeader": t.string().optional(),
+            "bestGuess": t.string().optional(),
+            "fromBytes": t.string().optional(),
+        }
+    ).named(renames["GdataContentTypeInfoIn"])
+    types["GdataContentTypeInfoOut"] = t.struct(
+        {
+            "fromUrlPath": t.string().optional(),
+            "fromFileName": t.string().optional(),
+            "fromHeader": t.string().optional(),
+            "bestGuess": t.string().optional(),
+            "fromBytes": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataContentTypeInfoOut"])
     types["GdataDiffUploadRequestIn"] = t.struct(
         {
             "objectInfo": t.proxy(renames["GdataCompositeMediaIn"]).optional(),
@@ -418,65 +169,306 @@ def import_youtubereporting() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GdataDiffUploadRequestOut"])
+    types["GdataDiffVersionResponseIn"] = t.struct(
+        {
+            "objectVersion": t.string().optional(),
+            "objectSizeBytes": t.string().optional(),
+        }
+    ).named(renames["GdataDiffVersionResponseIn"])
+    types["GdataDiffVersionResponseOut"] = t.struct(
+        {
+            "objectVersion": t.string().optional(),
+            "objectSizeBytes": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataDiffVersionResponseOut"])
+    types["ReportTypeIn"] = t.struct(
+        {
+            "systemManaged": t.boolean().optional(),
+            "id": t.string().optional(),
+            "deprecateTime": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["ReportTypeIn"])
+    types["ReportTypeOut"] = t.struct(
+        {
+            "systemManaged": t.boolean().optional(),
+            "id": t.string().optional(),
+            "deprecateTime": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReportTypeOut"])
+    types["GdataMediaIn"] = t.struct(
+        {
+            "hashVerified": t.boolean().optional(),
+            "md5Hash": t.string().optional(),
+            "hash": t.string().optional(),
+            "diffUploadRequest": t.proxy(
+                renames["GdataDiffUploadRequestIn"]
+            ).optional(),
+            "sha256Hash": t.string().optional(),
+            "objectId": t.proxy(renames["GdataObjectIdIn"]).optional(),
+            "diffVersionResponse": t.proxy(
+                renames["GdataDiffVersionResponseIn"]
+            ).optional(),
+            "diffChecksumsResponse": t.proxy(
+                renames["GdataDiffChecksumsResponseIn"]
+            ).optional(),
+            "sha1Hash": t.string().optional(),
+            "blobstore2Info": t.proxy(renames["GdataBlobstore2InfoIn"]).optional(),
+            "crc32cHash": t.integer().optional(),
+            "diffDownloadResponse": t.proxy(
+                renames["GdataDiffDownloadResponseIn"]
+            ).optional(),
+            "bigstoreObjectRef": t.string().optional(),
+            "algorithm": t.string().optional(),
+            "diffUploadResponse": t.proxy(
+                renames["GdataDiffUploadResponseIn"]
+            ).optional(),
+            "filename": t.string().optional(),
+            "blobRef": t.string().optional(),
+            "contentType": t.string().optional(),
+            "inline": t.string().optional(),
+            "length": t.string().optional(),
+            "isPotentialRetry": t.boolean().optional(),
+            "compositeMedia": t.array(
+                t.proxy(renames["GdataCompositeMediaIn"])
+            ).optional(),
+            "referenceType": t.string().optional(),
+            "path": t.string().optional(),
+            "mediaId": t.string().optional(),
+            "timestamp": t.string().optional(),
+            "cosmoBinaryReference": t.string().optional(),
+            "token": t.string().optional(),
+            "contentTypeInfo": t.proxy(renames["GdataContentTypeInfoIn"]).optional(),
+            "downloadParameters": t.proxy(
+                renames["GdataDownloadParametersIn"]
+            ).optional(),
+        }
+    ).named(renames["GdataMediaIn"])
+    types["GdataMediaOut"] = t.struct(
+        {
+            "hashVerified": t.boolean().optional(),
+            "md5Hash": t.string().optional(),
+            "hash": t.string().optional(),
+            "diffUploadRequest": t.proxy(
+                renames["GdataDiffUploadRequestOut"]
+            ).optional(),
+            "sha256Hash": t.string().optional(),
+            "objectId": t.proxy(renames["GdataObjectIdOut"]).optional(),
+            "diffVersionResponse": t.proxy(
+                renames["GdataDiffVersionResponseOut"]
+            ).optional(),
+            "diffChecksumsResponse": t.proxy(
+                renames["GdataDiffChecksumsResponseOut"]
+            ).optional(),
+            "sha1Hash": t.string().optional(),
+            "blobstore2Info": t.proxy(renames["GdataBlobstore2InfoOut"]).optional(),
+            "crc32cHash": t.integer().optional(),
+            "diffDownloadResponse": t.proxy(
+                renames["GdataDiffDownloadResponseOut"]
+            ).optional(),
+            "bigstoreObjectRef": t.string().optional(),
+            "algorithm": t.string().optional(),
+            "diffUploadResponse": t.proxy(
+                renames["GdataDiffUploadResponseOut"]
+            ).optional(),
+            "filename": t.string().optional(),
+            "blobRef": t.string().optional(),
+            "contentType": t.string().optional(),
+            "inline": t.string().optional(),
+            "length": t.string().optional(),
+            "isPotentialRetry": t.boolean().optional(),
+            "compositeMedia": t.array(
+                t.proxy(renames["GdataCompositeMediaOut"])
+            ).optional(),
+            "referenceType": t.string().optional(),
+            "path": t.string().optional(),
+            "mediaId": t.string().optional(),
+            "timestamp": t.string().optional(),
+            "cosmoBinaryReference": t.string().optional(),
+            "token": t.string().optional(),
+            "contentTypeInfo": t.proxy(renames["GdataContentTypeInfoOut"]).optional(),
+            "downloadParameters": t.proxy(
+                renames["GdataDownloadParametersOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataMediaOut"])
+    types["GdataDiffUploadResponseIn"] = t.struct(
+        {
+            "objectVersion": t.string().optional(),
+            "originalObject": t.proxy(renames["GdataCompositeMediaIn"]).optional(),
+        }
+    ).named(renames["GdataDiffUploadResponseIn"])
+    types["GdataDiffUploadResponseOut"] = t.struct(
+        {
+            "objectVersion": t.string().optional(),
+            "originalObject": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataDiffUploadResponseOut"])
+    types["JobIn"] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "name": t.string().optional(),
+            "systemManaged": t.boolean().optional(),
+            "expireTime": t.string().optional(),
+            "id": t.string().optional(),
+            "reportTypeId": t.string().optional(),
+        }
+    ).named(renames["JobIn"])
+    types["JobOut"] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "name": t.string().optional(),
+            "systemManaged": t.boolean().optional(),
+            "expireTime": t.string().optional(),
+            "id": t.string().optional(),
+            "reportTypeId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["JobOut"])
+    types["GdataDiffChecksumsResponseIn"] = t.struct(
+        {
+            "objectVersion": t.string().optional(),
+            "objectLocation": t.proxy(renames["GdataCompositeMediaIn"]).optional(),
+            "chunkSizeBytes": t.string().optional(),
+            "checksumsLocation": t.proxy(renames["GdataCompositeMediaIn"]).optional(),
+            "objectSizeBytes": t.string().optional(),
+        }
+    ).named(renames["GdataDiffChecksumsResponseIn"])
+    types["GdataDiffChecksumsResponseOut"] = t.struct(
+        {
+            "objectVersion": t.string().optional(),
+            "objectLocation": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
+            "chunkSizeBytes": t.string().optional(),
+            "checksumsLocation": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
+            "objectSizeBytes": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataDiffChecksumsResponseOut"])
+    types["GdataDiffDownloadResponseIn"] = t.struct(
+        {"objectLocation": t.proxy(renames["GdataCompositeMediaIn"]).optional()}
+    ).named(renames["GdataDiffDownloadResponseIn"])
+    types["GdataDiffDownloadResponseOut"] = t.struct(
+        {
+            "objectLocation": t.proxy(renames["GdataCompositeMediaOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataDiffDownloadResponseOut"])
+    types["ListReportTypesResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "reportTypes": t.array(t.proxy(renames["ReportTypeIn"])).optional(),
+        }
+    ).named(renames["ListReportTypesResponseIn"])
+    types["ListReportTypesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "reportTypes": t.array(t.proxy(renames["ReportTypeOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListReportTypesResponseOut"])
+    types["GdataObjectIdIn"] = t.struct(
+        {
+            "objectName": t.string().optional(),
+            "generation": t.string().optional(),
+            "bucketName": t.string().optional(),
+        }
+    ).named(renames["GdataObjectIdIn"])
+    types["GdataObjectIdOut"] = t.struct(
+        {
+            "objectName": t.string().optional(),
+            "generation": t.string().optional(),
+            "bucketName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataObjectIdOut"])
+    types["GdataBlobstore2InfoIn"] = t.struct(
+        {
+            "blobGeneration": t.string().optional(),
+            "downloadReadHandle": t.string().optional(),
+            "uploadMetadataContainer": t.string().optional(),
+            "readToken": t.string().optional(),
+            "blobId": t.string().optional(),
+        }
+    ).named(renames["GdataBlobstore2InfoIn"])
+    types["GdataBlobstore2InfoOut"] = t.struct(
+        {
+            "blobGeneration": t.string().optional(),
+            "downloadReadHandle": t.string().optional(),
+            "uploadMetadataContainer": t.string().optional(),
+            "readToken": t.string().optional(),
+            "blobId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GdataBlobstore2InfoOut"])
+    types["ListJobsResponseIn"] = t.struct(
+        {
+            "jobs": t.array(t.proxy(renames["JobIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListJobsResponseIn"])
+    types["ListJobsResponseOut"] = t.struct(
+        {
+            "jobs": t.array(t.proxy(renames["JobOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListJobsResponseOut"])
 
     functions = {}
     functions["jobsDelete"] = youtubereporting.get(
-        "v1/jobs",
+        "v1/jobs/{jobId}",
         t.struct(
             {
-                "pageToken": t.string().optional(),
+                "jobId": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
-                "includeSystemManaged": t.boolean().optional(),
-                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListJobsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["jobsCreate"] = youtubereporting.get(
-        "v1/jobs",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "onBehalfOfContentOwner": t.string().optional(),
-                "includeSystemManaged": t.boolean().optional(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListJobsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["jobsGet"] = youtubereporting.get(
-        "v1/jobs",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "onBehalfOfContentOwner": t.string().optional(),
-                "includeSystemManaged": t.boolean().optional(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListJobsResponseOut"]),
+        t.proxy(renames["JobOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["jobsList"] = youtubereporting.get(
-        "v1/jobs",
+        "v1/jobs/{jobId}",
         t.struct(
             {
-                "pageToken": t.string().optional(),
+                "jobId": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
-                "includeSystemManaged": t.boolean().optional(),
-                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListJobsResponseOut"]),
+        t.proxy(renames["JobOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["jobsCreate"] = youtubereporting.get(
+        "v1/jobs/{jobId}",
+        t.struct(
+            {
+                "jobId": t.string().optional(),
+                "onBehalfOfContentOwner": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["JobOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["jobsGet"] = youtubereporting.get(
+        "v1/jobs/{jobId}",
+        t.struct(
+            {
+                "jobId": t.string().optional(),
+                "onBehalfOfContentOwner": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["JobOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -484,9 +476,9 @@ def import_youtubereporting() -> Import:
         "v1/jobs/{jobId}/reports/{reportId}",
         t.struct(
             {
+                "jobId": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
                 "reportId": t.string().optional(),
-                "jobId": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -498,9 +490,9 @@ def import_youtubereporting() -> Import:
         "v1/jobs/{jobId}/reports/{reportId}",
         t.struct(
             {
+                "jobId": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
                 "reportId": t.string().optional(),
-                "jobId": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -522,9 +514,9 @@ def import_youtubereporting() -> Import:
         t.struct(
             {
                 "includeSystemManaged": t.boolean().optional(),
+                "pageToken": t.string().optional(),
                 "onBehalfOfContentOwner": t.string().optional(),
                 "pageSize": t.integer().optional(),
-                "pageToken": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
