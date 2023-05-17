@@ -13,8 +13,6 @@ class Stripe(GeneratorScript):
         super().__init__("stripe")
 
     def pre_run(self):
-        # FIX
-        # Unsupported schema: {'anyOf': [{'$ref': '#/components/schemas/account_business_profile'}], ... }
         urls = {
             "spec3": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.yaml",
             "spec3_sdk": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.sdk.yaml",
