@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_mybusinessnotifications() -> Import:
@@ -21,16 +21,16 @@ def import_mybusinessnotifications() -> Import:
     ).named(renames["ErrorResponse"])
     types["NotificationSettingIn"] = t.struct(
         {
-            "name": t.string(),
             "notificationTypes": t.array(t.string()).optional(),
             "pubsubTopic": t.string().optional(),
+            "name": t.string(),
         }
     ).named(renames["NotificationSettingIn"])
     types["NotificationSettingOut"] = t.struct(
         {
-            "name": t.string(),
             "notificationTypes": t.array(t.string()).optional(),
             "pubsubTopic": t.string().optional(),
+            "name": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["NotificationSettingOut"])

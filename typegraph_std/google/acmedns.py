@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_acmedns() -> Import:
@@ -9,29 +9,18 @@ def import_acmedns() -> Import:
 
     renames = {
         "ErrorResponse": "_acmedns_1_ErrorResponse",
-        "AcmeTxtRecordIn": "_acmedns_2_AcmeTxtRecordIn",
-        "AcmeTxtRecordOut": "_acmedns_3_AcmeTxtRecordOut",
-        "AcmeChallengeSetIn": "_acmedns_4_AcmeChallengeSetIn",
-        "AcmeChallengeSetOut": "_acmedns_5_AcmeChallengeSetOut",
-        "RotateChallengesRequestIn": "_acmedns_6_RotateChallengesRequestIn",
-        "RotateChallengesRequestOut": "_acmedns_7_RotateChallengesRequestOut",
+        "AcmeChallengeSetIn": "_acmedns_2_AcmeChallengeSetIn",
+        "AcmeChallengeSetOut": "_acmedns_3_AcmeChallengeSetOut",
+        "RotateChallengesRequestIn": "_acmedns_4_RotateChallengesRequestIn",
+        "RotateChallengesRequestOut": "_acmedns_5_RotateChallengesRequestOut",
+        "AcmeTxtRecordIn": "_acmedns_6_AcmeTxtRecordIn",
+        "AcmeTxtRecordOut": "_acmedns_7_AcmeTxtRecordOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["AcmeTxtRecordIn"] = t.struct(
-        {"fqdn": t.string().optional(), "digest": t.string().optional()}
-    ).named(renames["AcmeTxtRecordIn"])
-    types["AcmeTxtRecordOut"] = t.struct(
-        {
-            "fqdn": t.string().optional(),
-            "updateTime": t.string().optional(),
-            "digest": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AcmeTxtRecordOut"])
     types["AcmeChallengeSetIn"] = t.struct(
         {"record": t.array(t.proxy(renames["AcmeTxtRecordIn"])).optional()}
     ).named(renames["AcmeChallengeSetIn"])
@@ -43,55 +32,44 @@ def import_acmedns() -> Import:
     ).named(renames["AcmeChallengeSetOut"])
     types["RotateChallengesRequestIn"] = t.struct(
         {
+            "keepExpiredRecords": t.boolean().optional(),
+            "recordsToAdd": t.array(t.proxy(renames["AcmeTxtRecordIn"])).optional(),
             "accessToken": t.string(),
             "recordsToRemove": t.array(t.proxy(renames["AcmeTxtRecordIn"])).optional(),
-            "recordsToAdd": t.array(t.proxy(renames["AcmeTxtRecordIn"])).optional(),
-            "keepExpiredRecords": t.boolean().optional(),
         }
     ).named(renames["RotateChallengesRequestIn"])
     types["RotateChallengesRequestOut"] = t.struct(
         {
+            "keepExpiredRecords": t.boolean().optional(),
+            "recordsToAdd": t.array(t.proxy(renames["AcmeTxtRecordOut"])).optional(),
             "accessToken": t.string(),
             "recordsToRemove": t.array(t.proxy(renames["AcmeTxtRecordOut"])).optional(),
-            "recordsToAdd": t.array(t.proxy(renames["AcmeTxtRecordOut"])).optional(),
-            "keepExpiredRecords": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["RotateChallengesRequestOut"])
+    types["AcmeTxtRecordIn"] = t.struct(
+        {"digest": t.string().optional(), "fqdn": t.string().optional()}
+    ).named(renames["AcmeTxtRecordIn"])
+    types["AcmeTxtRecordOut"] = t.struct(
+        {
+            "digest": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "fqdn": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AcmeTxtRecordOut"])
 
     functions = {}
-    functions["acmeChallengeSetsGet"] = acmedns.post(
-        "v1/acmeChallengeSets/{rootDomain}:rotateChallenges",
-        t.struct(
-            {
-                "rootDomain": t.string(),
-                "accessToken": t.string(),
-                "recordsToRemove": t.array(
-                    t.proxy(renames["AcmeTxtRecordIn"])
-                ).optional(),
-                "recordsToAdd": t.array(t.proxy(renames["AcmeTxtRecordIn"])).optional(),
-                "keepExpiredRecords": t.boolean().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["acmeChallengeSetsRotateChallenges"] = acmedns.get(
+        "v1/acmeChallengeSets/{rootDomain}",
+        t.struct({"rootDomain": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["AcmeChallengeSetOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["acmeChallengeSetsRotateChallenges"] = acmedns.post(
-        "v1/acmeChallengeSets/{rootDomain}:rotateChallenges",
-        t.struct(
-            {
-                "rootDomain": t.string(),
-                "accessToken": t.string(),
-                "recordsToRemove": t.array(
-                    t.proxy(renames["AcmeTxtRecordIn"])
-                ).optional(),
-                "recordsToAdd": t.array(t.proxy(renames["AcmeTxtRecordIn"])).optional(),
-                "keepExpiredRecords": t.boolean().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["acmeChallengeSetsGet"] = acmedns.get(
+        "v1/acmeChallengeSets/{rootDomain}",
+        t.struct({"rootDomain": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["AcmeChallengeSetOut"]),
         auth_token_field="auth",
         content_type="application/json",

@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_firebase() -> Import:
@@ -9,220 +9,92 @@ def import_firebase() -> Import:
 
     renames = {
         "ErrorResponse": "_firebase_1_ErrorResponse",
-        "RemoveWebAppRequestIn": "_firebase_2_RemoveWebAppRequestIn",
-        "RemoveWebAppRequestOut": "_firebase_3_RemoveWebAppRequestOut",
-        "AnalyticsDetailsIn": "_firebase_4_AnalyticsDetailsIn",
-        "AnalyticsDetailsOut": "_firebase_5_AnalyticsDetailsOut",
-        "ListFirebaseProjectsResponseIn": "_firebase_6_ListFirebaseProjectsResponseIn",
-        "ListFirebaseProjectsResponseOut": "_firebase_7_ListFirebaseProjectsResponseOut",
-        "ProjectInfoIn": "_firebase_8_ProjectInfoIn",
-        "ProjectInfoOut": "_firebase_9_ProjectInfoOut",
-        "AddFirebaseRequestIn": "_firebase_10_AddFirebaseRequestIn",
-        "AddFirebaseRequestOut": "_firebase_11_AddFirebaseRequestOut",
-        "RemoveIosAppRequestIn": "_firebase_12_RemoveIosAppRequestIn",
-        "RemoveIosAppRequestOut": "_firebase_13_RemoveIosAppRequestOut",
-        "AndroidAppIn": "_firebase_14_AndroidAppIn",
-        "AndroidAppOut": "_firebase_15_AndroidAppOut",
-        "RemoveAndroidAppRequestIn": "_firebase_16_RemoveAndroidAppRequestIn",
-        "RemoveAndroidAppRequestOut": "_firebase_17_RemoveAndroidAppRequestOut",
-        "AddGoogleAnalyticsRequestIn": "_firebase_18_AddGoogleAnalyticsRequestIn",
-        "AddGoogleAnalyticsRequestOut": "_firebase_19_AddGoogleAnalyticsRequestOut",
-        "ListAndroidAppsResponseIn": "_firebase_20_ListAndroidAppsResponseIn",
-        "ListAndroidAppsResponseOut": "_firebase_21_ListAndroidAppsResponseOut",
-        "SearchFirebaseAppsResponseIn": "_firebase_22_SearchFirebaseAppsResponseIn",
-        "SearchFirebaseAppsResponseOut": "_firebase_23_SearchFirebaseAppsResponseOut",
-        "FirebaseAppInfoIn": "_firebase_24_FirebaseAppInfoIn",
-        "FirebaseAppInfoOut": "_firebase_25_FirebaseAppInfoOut",
-        "AndroidAppConfigIn": "_firebase_26_AndroidAppConfigIn",
-        "AndroidAppConfigOut": "_firebase_27_AndroidAppConfigOut",
-        "LocationIn": "_firebase_28_LocationIn",
-        "LocationOut": "_firebase_29_LocationOut",
+        "AddGoogleAnalyticsRequestIn": "_firebase_2_AddGoogleAnalyticsRequestIn",
+        "AddGoogleAnalyticsRequestOut": "_firebase_3_AddGoogleAnalyticsRequestOut",
+        "ListAvailableLocationsResponseIn": "_firebase_4_ListAvailableLocationsResponseIn",
+        "ListAvailableLocationsResponseOut": "_firebase_5_ListAvailableLocationsResponseOut",
+        "RemoveWebAppRequestIn": "_firebase_6_RemoveWebAppRequestIn",
+        "RemoveWebAppRequestOut": "_firebase_7_RemoveWebAppRequestOut",
+        "StreamMappingIn": "_firebase_8_StreamMappingIn",
+        "StreamMappingOut": "_firebase_9_StreamMappingOut",
+        "UndeleteWebAppRequestIn": "_firebase_10_UndeleteWebAppRequestIn",
+        "UndeleteWebAppRequestOut": "_firebase_11_UndeleteWebAppRequestOut",
+        "OperationIn": "_firebase_12_OperationIn",
+        "OperationOut": "_firebase_13_OperationOut",
+        "RemoveIosAppRequestIn": "_firebase_14_RemoveIosAppRequestIn",
+        "RemoveIosAppRequestOut": "_firebase_15_RemoveIosAppRequestOut",
+        "ListAndroidAppsResponseIn": "_firebase_16_ListAndroidAppsResponseIn",
+        "ListAndroidAppsResponseOut": "_firebase_17_ListAndroidAppsResponseOut",
+        "ShaCertificateIn": "_firebase_18_ShaCertificateIn",
+        "ShaCertificateOut": "_firebase_19_ShaCertificateOut",
+        "IosAppIn": "_firebase_20_IosAppIn",
+        "IosAppOut": "_firebase_21_IosAppOut",
+        "UndeleteAndroidAppRequestIn": "_firebase_22_UndeleteAndroidAppRequestIn",
+        "UndeleteAndroidAppRequestOut": "_firebase_23_UndeleteAndroidAppRequestOut",
+        "AnalyticsDetailsIn": "_firebase_24_AnalyticsDetailsIn",
+        "AnalyticsDetailsOut": "_firebase_25_AnalyticsDetailsOut",
+        "ListFirebaseProjectsResponseIn": "_firebase_26_ListFirebaseProjectsResponseIn",
+        "ListFirebaseProjectsResponseOut": "_firebase_27_ListFirebaseProjectsResponseOut",
+        "ListWebAppsResponseIn": "_firebase_28_ListWebAppsResponseIn",
+        "ListWebAppsResponseOut": "_firebase_29_ListWebAppsResponseOut",
         "RemoveAnalyticsRequestIn": "_firebase_30_RemoveAnalyticsRequestIn",
         "RemoveAnalyticsRequestOut": "_firebase_31_RemoveAnalyticsRequestOut",
-        "DefaultResourcesIn": "_firebase_32_DefaultResourcesIn",
-        "DefaultResourcesOut": "_firebase_33_DefaultResourcesOut",
-        "ListAvailableProjectsResponseIn": "_firebase_34_ListAvailableProjectsResponseIn",
-        "ListAvailableProjectsResponseOut": "_firebase_35_ListAvailableProjectsResponseOut",
-        "IosAppIn": "_firebase_36_IosAppIn",
-        "IosAppOut": "_firebase_37_IosAppOut",
-        "WebAppIn": "_firebase_38_WebAppIn",
-        "WebAppOut": "_firebase_39_WebAppOut",
-        "StreamMappingIn": "_firebase_40_StreamMappingIn",
-        "StreamMappingOut": "_firebase_41_StreamMappingOut",
-        "AdminSdkConfigIn": "_firebase_42_AdminSdkConfigIn",
-        "AdminSdkConfigOut": "_firebase_43_AdminSdkConfigOut",
-        "FinalizeDefaultLocationRequestIn": "_firebase_44_FinalizeDefaultLocationRequestIn",
-        "FinalizeDefaultLocationRequestOut": "_firebase_45_FinalizeDefaultLocationRequestOut",
-        "IosAppConfigIn": "_firebase_46_IosAppConfigIn",
-        "IosAppConfigOut": "_firebase_47_IosAppConfigOut",
-        "FirebaseProjectIn": "_firebase_48_FirebaseProjectIn",
-        "FirebaseProjectOut": "_firebase_49_FirebaseProjectOut",
+        "ListIosAppsResponseIn": "_firebase_32_ListIosAppsResponseIn",
+        "ListIosAppsResponseOut": "_firebase_33_ListIosAppsResponseOut",
+        "StatusIn": "_firebase_34_StatusIn",
+        "StatusOut": "_firebase_35_StatusOut",
+        "AdminSdkConfigIn": "_firebase_36_AdminSdkConfigIn",
+        "AdminSdkConfigOut": "_firebase_37_AdminSdkConfigOut",
+        "WebAppConfigIn": "_firebase_38_WebAppConfigIn",
+        "WebAppConfigOut": "_firebase_39_WebAppConfigOut",
+        "AndroidAppIn": "_firebase_40_AndroidAppIn",
+        "AndroidAppOut": "_firebase_41_AndroidAppOut",
+        "StatusProtoIn": "_firebase_42_StatusProtoIn",
+        "StatusProtoOut": "_firebase_43_StatusProtoOut",
+        "EmptyIn": "_firebase_44_EmptyIn",
+        "EmptyOut": "_firebase_45_EmptyOut",
+        "FirebaseAppInfoIn": "_firebase_46_FirebaseAppInfoIn",
+        "FirebaseAppInfoOut": "_firebase_47_FirebaseAppInfoOut",
+        "MessageSetIn": "_firebase_48_MessageSetIn",
+        "MessageSetOut": "_firebase_49_MessageSetOut",
         "AnalyticsPropertyIn": "_firebase_50_AnalyticsPropertyIn",
         "AnalyticsPropertyOut": "_firebase_51_AnalyticsPropertyOut",
-        "UndeleteAndroidAppRequestIn": "_firebase_52_UndeleteAndroidAppRequestIn",
-        "UndeleteAndroidAppRequestOut": "_firebase_53_UndeleteAndroidAppRequestOut",
-        "ListShaCertificatesResponseIn": "_firebase_54_ListShaCertificatesResponseIn",
-        "ListShaCertificatesResponseOut": "_firebase_55_ListShaCertificatesResponseOut",
-        "ListWebAppsResponseIn": "_firebase_56_ListWebAppsResponseIn",
-        "ListWebAppsResponseOut": "_firebase_57_ListWebAppsResponseOut",
-        "ShaCertificateIn": "_firebase_58_ShaCertificateIn",
-        "ShaCertificateOut": "_firebase_59_ShaCertificateOut",
-        "UndeleteWebAppRequestIn": "_firebase_60_UndeleteWebAppRequestIn",
-        "UndeleteWebAppRequestOut": "_firebase_61_UndeleteWebAppRequestOut",
-        "EmptyIn": "_firebase_62_EmptyIn",
-        "EmptyOut": "_firebase_63_EmptyOut",
-        "ListIosAppsResponseIn": "_firebase_64_ListIosAppsResponseIn",
-        "ListIosAppsResponseOut": "_firebase_65_ListIosAppsResponseOut",
-        "ListAvailableLocationsResponseIn": "_firebase_66_ListAvailableLocationsResponseIn",
-        "ListAvailableLocationsResponseOut": "_firebase_67_ListAvailableLocationsResponseOut",
-        "StatusIn": "_firebase_68_StatusIn",
-        "StatusOut": "_firebase_69_StatusOut",
-        "UndeleteIosAppRequestIn": "_firebase_70_UndeleteIosAppRequestIn",
-        "UndeleteIosAppRequestOut": "_firebase_71_UndeleteIosAppRequestOut",
-        "MessageSetIn": "_firebase_72_MessageSetIn",
-        "MessageSetOut": "_firebase_73_MessageSetOut",
-        "ProductMetadataIn": "_firebase_74_ProductMetadataIn",
-        "ProductMetadataOut": "_firebase_75_ProductMetadataOut",
-        "OperationIn": "_firebase_76_OperationIn",
-        "OperationOut": "_firebase_77_OperationOut",
-        "WebAppConfigIn": "_firebase_78_WebAppConfigIn",
-        "WebAppConfigOut": "_firebase_79_WebAppConfigOut",
-        "StatusProtoIn": "_firebase_80_StatusProtoIn",
-        "StatusProtoOut": "_firebase_81_StatusProtoOut",
+        "FinalizeDefaultLocationRequestIn": "_firebase_52_FinalizeDefaultLocationRequestIn",
+        "FinalizeDefaultLocationRequestOut": "_firebase_53_FinalizeDefaultLocationRequestOut",
+        "AddFirebaseRequestIn": "_firebase_54_AddFirebaseRequestIn",
+        "AddFirebaseRequestOut": "_firebase_55_AddFirebaseRequestOut",
+        "ListAvailableProjectsResponseIn": "_firebase_56_ListAvailableProjectsResponseIn",
+        "ListAvailableProjectsResponseOut": "_firebase_57_ListAvailableProjectsResponseOut",
+        "FirebaseProjectIn": "_firebase_58_FirebaseProjectIn",
+        "FirebaseProjectOut": "_firebase_59_FirebaseProjectOut",
+        "AndroidAppConfigIn": "_firebase_60_AndroidAppConfigIn",
+        "AndroidAppConfigOut": "_firebase_61_AndroidAppConfigOut",
+        "UndeleteIosAppRequestIn": "_firebase_62_UndeleteIosAppRequestIn",
+        "UndeleteIosAppRequestOut": "_firebase_63_UndeleteIosAppRequestOut",
+        "SearchFirebaseAppsResponseIn": "_firebase_64_SearchFirebaseAppsResponseIn",
+        "SearchFirebaseAppsResponseOut": "_firebase_65_SearchFirebaseAppsResponseOut",
+        "LocationIn": "_firebase_66_LocationIn",
+        "LocationOut": "_firebase_67_LocationOut",
+        "ListShaCertificatesResponseIn": "_firebase_68_ListShaCertificatesResponseIn",
+        "ListShaCertificatesResponseOut": "_firebase_69_ListShaCertificatesResponseOut",
+        "ProductMetadataIn": "_firebase_70_ProductMetadataIn",
+        "ProductMetadataOut": "_firebase_71_ProductMetadataOut",
+        "RemoveAndroidAppRequestIn": "_firebase_72_RemoveAndroidAppRequestIn",
+        "RemoveAndroidAppRequestOut": "_firebase_73_RemoveAndroidAppRequestOut",
+        "DefaultResourcesIn": "_firebase_74_DefaultResourcesIn",
+        "DefaultResourcesOut": "_firebase_75_DefaultResourcesOut",
+        "WebAppIn": "_firebase_76_WebAppIn",
+        "WebAppOut": "_firebase_77_WebAppOut",
+        "ProjectInfoIn": "_firebase_78_ProjectInfoIn",
+        "ProjectInfoOut": "_firebase_79_ProjectInfoOut",
+        "IosAppConfigIn": "_firebase_80_IosAppConfigIn",
+        "IosAppConfigOut": "_firebase_81_IosAppConfigOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["RemoveWebAppRequestIn"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "validateOnly": t.boolean().optional(),
-            "immediate": t.boolean().optional(),
-            "allowMissing": t.boolean().optional(),
-        }
-    ).named(renames["RemoveWebAppRequestIn"])
-    types["RemoveWebAppRequestOut"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "validateOnly": t.boolean().optional(),
-            "immediate": t.boolean().optional(),
-            "allowMissing": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RemoveWebAppRequestOut"])
-    types["AnalyticsDetailsIn"] = t.struct(
-        {
-            "streamMappings": t.array(t.proxy(renames["StreamMappingIn"])).optional(),
-            "analyticsProperty": t.proxy(renames["AnalyticsPropertyIn"]).optional(),
-        }
-    ).named(renames["AnalyticsDetailsIn"])
-    types["AnalyticsDetailsOut"] = t.struct(
-        {
-            "streamMappings": t.array(t.proxy(renames["StreamMappingOut"])).optional(),
-            "analyticsProperty": t.proxy(renames["AnalyticsPropertyOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AnalyticsDetailsOut"])
-    types["ListFirebaseProjectsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "results": t.array(t.proxy(renames["FirebaseProjectIn"])).optional(),
-        }
-    ).named(renames["ListFirebaseProjectsResponseIn"])
-    types["ListFirebaseProjectsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "results": t.array(t.proxy(renames["FirebaseProjectOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListFirebaseProjectsResponseOut"])
-    types["ProjectInfoIn"] = t.struct(
-        {
-            "locationId": t.string().optional(),
-            "project": t.string().optional(),
-            "displayName": t.string().optional(),
-        }
-    ).named(renames["ProjectInfoIn"])
-    types["ProjectInfoOut"] = t.struct(
-        {
-            "locationId": t.string().optional(),
-            "project": t.string().optional(),
-            "displayName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ProjectInfoOut"])
-    types["AddFirebaseRequestIn"] = t.struct(
-        {"locationId": t.string().optional()}
-    ).named(renames["AddFirebaseRequestIn"])
-    types["AddFirebaseRequestOut"] = t.struct(
-        {
-            "locationId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AddFirebaseRequestOut"])
-    types["RemoveIosAppRequestIn"] = t.struct(
-        {
-            "immediate": t.boolean().optional(),
-            "allowMissing": t.boolean().optional(),
-            "validateOnly": t.boolean().optional(),
-            "etag": t.string().optional(),
-        }
-    ).named(renames["RemoveIosAppRequestIn"])
-    types["RemoveIosAppRequestOut"] = t.struct(
-        {
-            "immediate": t.boolean().optional(),
-            "allowMissing": t.boolean().optional(),
-            "validateOnly": t.boolean().optional(),
-            "etag": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RemoveIosAppRequestOut"])
-    types["AndroidAppIn"] = t.struct(
-        {
-            "apiKeyId": t.string().optional(),
-            "sha256Hashes": t.array(t.string()).optional(),
-            "sha1Hashes": t.array(t.string()).optional(),
-            "packageName": t.string().optional(),
-            "displayName": t.string().optional(),
-            "etag": t.string().optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["AndroidAppIn"])
-    types["AndroidAppOut"] = t.struct(
-        {
-            "apiKeyId": t.string().optional(),
-            "sha256Hashes": t.array(t.string()).optional(),
-            "sha1Hashes": t.array(t.string()).optional(),
-            "packageName": t.string().optional(),
-            "displayName": t.string().optional(),
-            "projectId": t.string().optional(),
-            "appId": t.string().optional(),
-            "etag": t.string().optional(),
-            "expireTime": t.string().optional(),
-            "state": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AndroidAppOut"])
-    types["RemoveAndroidAppRequestIn"] = t.struct(
-        {
-            "validateOnly": t.boolean().optional(),
-            "allowMissing": t.boolean().optional(),
-            "etag": t.string().optional(),
-            "immediate": t.boolean().optional(),
-        }
-    ).named(renames["RemoveAndroidAppRequestIn"])
-    types["RemoveAndroidAppRequestOut"] = t.struct(
-        {
-            "validateOnly": t.boolean().optional(),
-            "allowMissing": t.boolean().optional(),
-            "etag": t.string().optional(),
-            "immediate": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RemoveAndroidAppRequestOut"])
     types["AddGoogleAnalyticsRequestIn"] = t.struct(
         {
             "analyticsPropertyId": t.string().optional(),
@@ -236,6 +108,96 @@ def import_firebase() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AddGoogleAnalyticsRequestOut"])
+    types["ListAvailableLocationsResponseIn"] = t.struct(
+        {
+            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListAvailableLocationsResponseIn"])
+    types["ListAvailableLocationsResponseOut"] = t.struct(
+        {
+            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListAvailableLocationsResponseOut"])
+    types["RemoveWebAppRequestIn"] = t.struct(
+        {
+            "immediate": t.boolean().optional(),
+            "allowMissing": t.boolean().optional(),
+            "validateOnly": t.boolean().optional(),
+            "etag": t.string().optional(),
+        }
+    ).named(renames["RemoveWebAppRequestIn"])
+    types["RemoveWebAppRequestOut"] = t.struct(
+        {
+            "immediate": t.boolean().optional(),
+            "allowMissing": t.boolean().optional(),
+            "validateOnly": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RemoveWebAppRequestOut"])
+    types["StreamMappingIn"] = t.struct(
+        {
+            "streamId": t.string().optional(),
+            "app": t.string().optional(),
+            "measurementId": t.string().optional(),
+        }
+    ).named(renames["StreamMappingIn"])
+    types["StreamMappingOut"] = t.struct(
+        {
+            "streamId": t.string().optional(),
+            "app": t.string().optional(),
+            "measurementId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StreamMappingOut"])
+    types["UndeleteWebAppRequestIn"] = t.struct(
+        {"validateOnly": t.boolean().optional(), "etag": t.string().optional()}
+    ).named(renames["UndeleteWebAppRequestIn"])
+    types["UndeleteWebAppRequestOut"] = t.struct(
+        {
+            "validateOnly": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UndeleteWebAppRequestOut"])
+    types["OperationIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "done": t.boolean().optional(),
+            "error": t.proxy(renames["StatusIn"]).optional(),
+        }
+    ).named(renames["OperationIn"])
+    types["OperationOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "done": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationOut"])
+    types["RemoveIosAppRequestIn"] = t.struct(
+        {
+            "validateOnly": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "allowMissing": t.boolean().optional(),
+            "immediate": t.boolean().optional(),
+        }
+    ).named(renames["RemoveIosAppRequestIn"])
+    types["RemoveIosAppRequestOut"] = t.struct(
+        {
+            "validateOnly": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "allowMissing": t.boolean().optional(),
+            "immediate": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RemoveIosAppRequestOut"])
     types["ListAndroidAppsResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -249,53 +211,354 @@ def import_firebase() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListAndroidAppsResponseOut"])
-    types["SearchFirebaseAppsResponseIn"] = t.struct(
+    types["ShaCertificateIn"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "apps": t.array(t.proxy(renames["FirebaseAppInfoIn"])).optional(),
+            "shaHash": t.string().optional(),
+            "name": t.string().optional(),
+            "certType": t.string().optional(),
         }
-    ).named(renames["SearchFirebaseAppsResponseIn"])
-    types["SearchFirebaseAppsResponseOut"] = t.struct(
+    ).named(renames["ShaCertificateIn"])
+    types["ShaCertificateOut"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "apps": t.array(t.proxy(renames["FirebaseAppInfoOut"])).optional(),
+            "shaHash": t.string().optional(),
+            "name": t.string().optional(),
+            "certType": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SearchFirebaseAppsResponseOut"])
+    ).named(renames["ShaCertificateOut"])
+    types["IosAppIn"] = t.struct(
+        {
+            "bundleId": t.string().optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "appStoreId": t.string().optional(),
+            "apiKeyId": t.string().optional(),
+            "teamId": t.string().optional(),
+            "etag": t.string().optional(),
+        }
+    ).named(renames["IosAppIn"])
+    types["IosAppOut"] = t.struct(
+        {
+            "bundleId": t.string().optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "appStoreId": t.string().optional(),
+            "apiKeyId": t.string().optional(),
+            "projectId": t.string().optional(),
+            "teamId": t.string().optional(),
+            "appId": t.string().optional(),
+            "etag": t.string().optional(),
+            "expireTime": t.string().optional(),
+            "state": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["IosAppOut"])
+    types["UndeleteAndroidAppRequestIn"] = t.struct(
+        {"validateOnly": t.boolean().optional(), "etag": t.string().optional()}
+    ).named(renames["UndeleteAndroidAppRequestIn"])
+    types["UndeleteAndroidAppRequestOut"] = t.struct(
+        {
+            "validateOnly": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UndeleteAndroidAppRequestOut"])
+    types["AnalyticsDetailsIn"] = t.struct(
+        {
+            "analyticsProperty": t.proxy(renames["AnalyticsPropertyIn"]).optional(),
+            "streamMappings": t.array(t.proxy(renames["StreamMappingIn"])).optional(),
+        }
+    ).named(renames["AnalyticsDetailsIn"])
+    types["AnalyticsDetailsOut"] = t.struct(
+        {
+            "analyticsProperty": t.proxy(renames["AnalyticsPropertyOut"]).optional(),
+            "streamMappings": t.array(t.proxy(renames["StreamMappingOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AnalyticsDetailsOut"])
+    types["ListFirebaseProjectsResponseIn"] = t.struct(
+        {
+            "results": t.array(t.proxy(renames["FirebaseProjectIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListFirebaseProjectsResponseIn"])
+    types["ListFirebaseProjectsResponseOut"] = t.struct(
+        {
+            "results": t.array(t.proxy(renames["FirebaseProjectOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListFirebaseProjectsResponseOut"])
+    types["ListWebAppsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "apps": t.array(t.proxy(renames["WebAppIn"])).optional(),
+        }
+    ).named(renames["ListWebAppsResponseIn"])
+    types["ListWebAppsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "apps": t.array(t.proxy(renames["WebAppOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListWebAppsResponseOut"])
+    types["RemoveAnalyticsRequestIn"] = t.struct(
+        {"analyticsPropertyId": t.string().optional()}
+    ).named(renames["RemoveAnalyticsRequestIn"])
+    types["RemoveAnalyticsRequestOut"] = t.struct(
+        {
+            "analyticsPropertyId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RemoveAnalyticsRequestOut"])
+    types["ListIosAppsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "apps": t.array(t.proxy(renames["IosAppIn"])).optional(),
+        }
+    ).named(renames["ListIosAppsResponseIn"])
+    types["ListIosAppsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "apps": t.array(t.proxy(renames["IosAppOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListIosAppsResponseOut"])
+    types["StatusIn"] = t.struct(
+        {
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+        }
+    ).named(renames["StatusIn"])
+    types["StatusOut"] = t.struct(
+        {
+            "code": t.integer().optional(),
+            "message": t.string().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StatusOut"])
+    types["AdminSdkConfigIn"] = t.struct(
+        {
+            "storageBucket": t.string().optional(),
+            "locationId": t.string().optional(),
+            "projectId": t.string().optional(),
+            "databaseURL": t.string().optional(),
+        }
+    ).named(renames["AdminSdkConfigIn"])
+    types["AdminSdkConfigOut"] = t.struct(
+        {
+            "storageBucket": t.string().optional(),
+            "locationId": t.string().optional(),
+            "projectId": t.string().optional(),
+            "databaseURL": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AdminSdkConfigOut"])
+    types["WebAppConfigIn"] = t.struct(
+        {
+            "measurementId": t.string().optional(),
+            "appId": t.string().optional(),
+            "messagingSenderId": t.string().optional(),
+            "storageBucket": t.string().optional(),
+            "projectId": t.string().optional(),
+            "apiKey": t.string().optional(),
+            "locationId": t.string().optional(),
+            "authDomain": t.string().optional(),
+            "databaseURL": t.string().optional(),
+        }
+    ).named(renames["WebAppConfigIn"])
+    types["WebAppConfigOut"] = t.struct(
+        {
+            "measurementId": t.string().optional(),
+            "appId": t.string().optional(),
+            "messagingSenderId": t.string().optional(),
+            "storageBucket": t.string().optional(),
+            "projectId": t.string().optional(),
+            "apiKey": t.string().optional(),
+            "locationId": t.string().optional(),
+            "authDomain": t.string().optional(),
+            "databaseURL": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["WebAppConfigOut"])
+    types["AndroidAppIn"] = t.struct(
+        {
+            "sha1Hashes": t.array(t.string()).optional(),
+            "packageName": t.string().optional(),
+            "etag": t.string().optional(),
+            "displayName": t.string().optional(),
+            "sha256Hashes": t.array(t.string()).optional(),
+            "apiKeyId": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["AndroidAppIn"])
+    types["AndroidAppOut"] = t.struct(
+        {
+            "sha1Hashes": t.array(t.string()).optional(),
+            "packageName": t.string().optional(),
+            "appId": t.string().optional(),
+            "etag": t.string().optional(),
+            "displayName": t.string().optional(),
+            "expireTime": t.string().optional(),
+            "sha256Hashes": t.array(t.string()).optional(),
+            "projectId": t.string().optional(),
+            "state": t.string().optional(),
+            "apiKeyId": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AndroidAppOut"])
+    types["StatusProtoIn"] = t.struct(
+        {
+            "code": t.integer().optional(),
+            "messageSet": t.proxy(renames["MessageSetIn"]).optional(),
+            "canonicalCode": t.integer().optional(),
+            "message": t.string().optional(),
+            "space": t.string().optional(),
+        }
+    ).named(renames["StatusProtoIn"])
+    types["StatusProtoOut"] = t.struct(
+        {
+            "code": t.integer().optional(),
+            "messageSet": t.proxy(renames["MessageSetOut"]).optional(),
+            "canonicalCode": t.integer().optional(),
+            "message": t.string().optional(),
+            "space": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StatusProtoOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
     types["FirebaseAppInfoIn"] = t.struct(
         {
-            "name": t.string().optional(),
-            "displayName": t.string().optional(),
             "platform": t.string().optional(),
+            "displayName": t.string().optional(),
             "apiKeyId": t.string().optional(),
+            "name": t.string().optional(),
         }
     ).named(renames["FirebaseAppInfoIn"])
     types["FirebaseAppInfoOut"] = t.struct(
         {
-            "name": t.string().optional(),
-            "expireTime": t.string().optional(),
-            "displayName": t.string().optional(),
-            "namespace": t.string().optional(),
-            "appId": t.string().optional(),
-            "state": t.string().optional(),
             "platform": t.string().optional(),
+            "displayName": t.string().optional(),
             "apiKeyId": t.string().optional(),
+            "namespace": t.string().optional(),
+            "state": t.string().optional(),
+            "appId": t.string().optional(),
+            "expireTime": t.string().optional(),
+            "name": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["FirebaseAppInfoOut"])
+    types["MessageSetIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["MessageSetIn"]
+    )
+    types["MessageSetOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["MessageSetOut"])
+    types["AnalyticsPropertyIn"] = t.struct(
+        {"id": t.string().optional(), "displayName": t.string().optional()}
+    ).named(renames["AnalyticsPropertyIn"])
+    types["AnalyticsPropertyOut"] = t.struct(
+        {
+            "analyticsAccountId": t.string().optional(),
+            "id": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AnalyticsPropertyOut"])
+    types["FinalizeDefaultLocationRequestIn"] = t.struct(
+        {"locationId": t.string().optional()}
+    ).named(renames["FinalizeDefaultLocationRequestIn"])
+    types["FinalizeDefaultLocationRequestOut"] = t.struct(
+        {
+            "locationId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FinalizeDefaultLocationRequestOut"])
+    types["AddFirebaseRequestIn"] = t.struct(
+        {"locationId": t.string().optional()}
+    ).named(renames["AddFirebaseRequestIn"])
+    types["AddFirebaseRequestOut"] = t.struct(
+        {
+            "locationId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AddFirebaseRequestOut"])
+    types["ListAvailableProjectsResponseIn"] = t.struct(
+        {
+            "projectInfo": t.array(t.proxy(renames["ProjectInfoIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListAvailableProjectsResponseIn"])
+    types["ListAvailableProjectsResponseOut"] = t.struct(
+        {
+            "projectInfo": t.array(t.proxy(renames["ProjectInfoOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListAvailableProjectsResponseOut"])
+    types["FirebaseProjectIn"] = t.struct(
+        {
+            "etag": t.string().optional(),
+            "annotations": t.struct({"_": t.string().optional()}).optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["FirebaseProjectIn"])
+    types["FirebaseProjectOut"] = t.struct(
+        {
+            "resources": t.proxy(renames["DefaultResourcesOut"]).optional(),
+            "etag": t.string().optional(),
+            "annotations": t.struct({"_": t.string().optional()}).optional(),
+            "state": t.string().optional(),
+            "projectId": t.string().optional(),
+            "projectNumber": t.string().optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FirebaseProjectOut"])
     types["AndroidAppConfigIn"] = t.struct(
         {
-            "configFilename": t.string().optional(),
             "configFileContents": t.string().optional(),
+            "configFilename": t.string().optional(),
         }
     ).named(renames["AndroidAppConfigIn"])
     types["AndroidAppConfigOut"] = t.struct(
         {
-            "configFilename": t.string().optional(),
             "configFileContents": t.string().optional(),
+            "configFilename": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AndroidAppConfigOut"])
+    types["UndeleteIosAppRequestIn"] = t.struct(
+        {"etag": t.string().optional(), "validateOnly": t.boolean().optional()}
+    ).named(renames["UndeleteIosAppRequestIn"])
+    types["UndeleteIosAppRequestOut"] = t.struct(
+        {
+            "etag": t.string().optional(),
+            "validateOnly": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UndeleteIosAppRequestOut"])
+    types["SearchFirebaseAppsResponseIn"] = t.struct(
+        {
+            "apps": t.array(t.proxy(renames["FirebaseAppInfoIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["SearchFirebaseAppsResponseIn"])
+    types["SearchFirebaseAppsResponseOut"] = t.struct(
+        {
+            "apps": t.array(t.proxy(renames["FirebaseAppInfoOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SearchFirebaseAppsResponseOut"])
     types["LocationIn"] = t.struct(
         {
             "type": t.string().optional(),
@@ -311,15 +574,41 @@ def import_firebase() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["LocationOut"])
-    types["RemoveAnalyticsRequestIn"] = t.struct(
-        {"analyticsPropertyId": t.string().optional()}
-    ).named(renames["RemoveAnalyticsRequestIn"])
-    types["RemoveAnalyticsRequestOut"] = t.struct(
+    types["ListShaCertificatesResponseIn"] = t.struct(
+        {"certificates": t.array(t.proxy(renames["ShaCertificateIn"])).optional()}
+    ).named(renames["ListShaCertificatesResponseIn"])
+    types["ListShaCertificatesResponseOut"] = t.struct(
         {
-            "analyticsPropertyId": t.string().optional(),
+            "certificates": t.array(t.proxy(renames["ShaCertificateOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["RemoveAnalyticsRequestOut"])
+    ).named(renames["ListShaCertificatesResponseOut"])
+    types["ProductMetadataIn"] = t.struct(
+        {"warningMessages": t.array(t.string()).optional()}
+    ).named(renames["ProductMetadataIn"])
+    types["ProductMetadataOut"] = t.struct(
+        {
+            "warningMessages": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ProductMetadataOut"])
+    types["RemoveAndroidAppRequestIn"] = t.struct(
+        {
+            "validateOnly": t.boolean().optional(),
+            "immediate": t.boolean().optional(),
+            "allowMissing": t.boolean().optional(),
+            "etag": t.string().optional(),
+        }
+    ).named(renames["RemoveAndroidAppRequestIn"])
+    types["RemoveAndroidAppRequestOut"] = t.struct(
+        {
+            "validateOnly": t.boolean().optional(),
+            "immediate": t.boolean().optional(),
+            "allowMissing": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RemoveAndroidAppRequestOut"])
     types["DefaultResourcesIn"] = t.struct({"_": t.string().optional()}).named(
         renames["DefaultResourcesIn"]
     )
@@ -327,116 +616,50 @@ def import_firebase() -> Import:
         {
             "hostingSite": t.string().optional(),
             "storageBucket": t.string().optional(),
-            "realtimeDatabaseInstance": t.string().optional(),
             "locationId": t.string().optional(),
+            "realtimeDatabaseInstance": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DefaultResourcesOut"])
-    types["ListAvailableProjectsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "projectInfo": t.array(t.proxy(renames["ProjectInfoIn"])).optional(),
-        }
-    ).named(renames["ListAvailableProjectsResponseIn"])
-    types["ListAvailableProjectsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "projectInfo": t.array(t.proxy(renames["ProjectInfoOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListAvailableProjectsResponseOut"])
-    types["IosAppIn"] = t.struct(
-        {
-            "apiKeyId": t.string().optional(),
-            "teamId": t.string().optional(),
-            "appStoreId": t.string().optional(),
-            "bundleId": t.string().optional(),
-            "displayName": t.string().optional(),
-            "name": t.string().optional(),
-            "etag": t.string().optional(),
-        }
-    ).named(renames["IosAppIn"])
-    types["IosAppOut"] = t.struct(
-        {
-            "apiKeyId": t.string().optional(),
-            "appId": t.string().optional(),
-            "teamId": t.string().optional(),
-            "appStoreId": t.string().optional(),
-            "bundleId": t.string().optional(),
-            "projectId": t.string().optional(),
-            "state": t.string().optional(),
-            "displayName": t.string().optional(),
-            "name": t.string().optional(),
-            "expireTime": t.string().optional(),
-            "etag": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["IosAppOut"])
     types["WebAppIn"] = t.struct(
         {
-            "etag": t.string().optional(),
-            "name": t.string().optional(),
             "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "etag": t.string().optional(),
             "apiKeyId": t.string().optional(),
             "appUrls": t.array(t.string()).optional(),
         }
     ).named(renames["WebAppIn"])
     types["WebAppOut"] = t.struct(
         {
-            "state": t.string().optional(),
-            "projectId": t.string().optional(),
-            "appId": t.string().optional(),
-            "expireTime": t.string().optional(),
             "webId": t.string().optional(),
-            "etag": t.string().optional(),
-            "name": t.string().optional(),
+            "expireTime": t.string().optional(),
             "displayName": t.string().optional(),
+            "projectId": t.string().optional(),
+            "name": t.string().optional(),
+            "etag": t.string().optional(),
             "apiKeyId": t.string().optional(),
+            "state": t.string().optional(),
             "appUrls": t.array(t.string()).optional(),
+            "appId": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["WebAppOut"])
-    types["StreamMappingIn"] = t.struct(
-        {
-            "app": t.string().optional(),
-            "measurementId": t.string().optional(),
-            "streamId": t.string().optional(),
-        }
-    ).named(renames["StreamMappingIn"])
-    types["StreamMappingOut"] = t.struct(
-        {
-            "app": t.string().optional(),
-            "measurementId": t.string().optional(),
-            "streamId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StreamMappingOut"])
-    types["AdminSdkConfigIn"] = t.struct(
-        {
-            "projectId": t.string().optional(),
-            "storageBucket": t.string().optional(),
-            "databaseURL": t.string().optional(),
-            "locationId": t.string().optional(),
-        }
-    ).named(renames["AdminSdkConfigIn"])
-    types["AdminSdkConfigOut"] = t.struct(
-        {
-            "projectId": t.string().optional(),
-            "storageBucket": t.string().optional(),
-            "databaseURL": t.string().optional(),
-            "locationId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AdminSdkConfigOut"])
-    types["FinalizeDefaultLocationRequestIn"] = t.struct(
-        {"locationId": t.string().optional()}
-    ).named(renames["FinalizeDefaultLocationRequestIn"])
-    types["FinalizeDefaultLocationRequestOut"] = t.struct(
+    types["ProjectInfoIn"] = t.struct(
         {
             "locationId": t.string().optional(),
+            "displayName": t.string().optional(),
+            "project": t.string().optional(),
+        }
+    ).named(renames["ProjectInfoIn"])
+    types["ProjectInfoOut"] = t.struct(
+        {
+            "locationId": t.string().optional(),
+            "displayName": t.string().optional(),
+            "project": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["FinalizeDefaultLocationRequestOut"])
+    ).named(renames["ProjectInfoOut"])
     types["IosAppConfigIn"] = t.struct(
         {
             "configFilename": t.string().optional(),
@@ -450,340 +673,352 @@ def import_firebase() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["IosAppConfigOut"])
-    types["FirebaseProjectIn"] = t.struct(
-        {
-            "annotations": t.struct({"_": t.string().optional()}).optional(),
-            "displayName": t.string().optional(),
-            "name": t.string().optional(),
-            "etag": t.string().optional(),
-        }
-    ).named(renames["FirebaseProjectIn"])
-    types["FirebaseProjectOut"] = t.struct(
-        {
-            "projectNumber": t.string().optional(),
-            "state": t.string().optional(),
-            "annotations": t.struct({"_": t.string().optional()}).optional(),
-            "projectId": t.string().optional(),
-            "displayName": t.string().optional(),
-            "name": t.string().optional(),
-            "etag": t.string().optional(),
-            "resources": t.proxy(renames["DefaultResourcesOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FirebaseProjectOut"])
-    types["AnalyticsPropertyIn"] = t.struct(
-        {"displayName": t.string().optional(), "id": t.string().optional()}
-    ).named(renames["AnalyticsPropertyIn"])
-    types["AnalyticsPropertyOut"] = t.struct(
-        {
-            "displayName": t.string().optional(),
-            "analyticsAccountId": t.string().optional(),
-            "id": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AnalyticsPropertyOut"])
-    types["UndeleteAndroidAppRequestIn"] = t.struct(
-        {"etag": t.string().optional(), "validateOnly": t.boolean().optional()}
-    ).named(renames["UndeleteAndroidAppRequestIn"])
-    types["UndeleteAndroidAppRequestOut"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "validateOnly": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UndeleteAndroidAppRequestOut"])
-    types["ListShaCertificatesResponseIn"] = t.struct(
-        {"certificates": t.array(t.proxy(renames["ShaCertificateIn"])).optional()}
-    ).named(renames["ListShaCertificatesResponseIn"])
-    types["ListShaCertificatesResponseOut"] = t.struct(
-        {
-            "certificates": t.array(t.proxy(renames["ShaCertificateOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListShaCertificatesResponseOut"])
-    types["ListWebAppsResponseIn"] = t.struct(
-        {
-            "apps": t.array(t.proxy(renames["WebAppIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListWebAppsResponseIn"])
-    types["ListWebAppsResponseOut"] = t.struct(
-        {
-            "apps": t.array(t.proxy(renames["WebAppOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListWebAppsResponseOut"])
-    types["ShaCertificateIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "certType": t.string().optional(),
-            "shaHash": t.string().optional(),
-        }
-    ).named(renames["ShaCertificateIn"])
-    types["ShaCertificateOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "certType": t.string().optional(),
-            "shaHash": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ShaCertificateOut"])
-    types["UndeleteWebAppRequestIn"] = t.struct(
-        {"etag": t.string().optional(), "validateOnly": t.boolean().optional()}
-    ).named(renames["UndeleteWebAppRequestIn"])
-    types["UndeleteWebAppRequestOut"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "validateOnly": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UndeleteWebAppRequestOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["ListIosAppsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "apps": t.array(t.proxy(renames["IosAppIn"])).optional(),
-        }
-    ).named(renames["ListIosAppsResponseIn"])
-    types["ListIosAppsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "apps": t.array(t.proxy(renames["IosAppOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListIosAppsResponseOut"])
-    types["ListAvailableLocationsResponseIn"] = t.struct(
-        {
-            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListAvailableLocationsResponseIn"])
-    types["ListAvailableLocationsResponseOut"] = t.struct(
-        {
-            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListAvailableLocationsResponseOut"])
-    types["StatusIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-        }
-    ).named(renames["StatusIn"])
-    types["StatusOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusOut"])
-    types["UndeleteIosAppRequestIn"] = t.struct(
-        {"validateOnly": t.boolean().optional(), "etag": t.string().optional()}
-    ).named(renames["UndeleteIosAppRequestIn"])
-    types["UndeleteIosAppRequestOut"] = t.struct(
-        {
-            "validateOnly": t.boolean().optional(),
-            "etag": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UndeleteIosAppRequestOut"])
-    types["MessageSetIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["MessageSetIn"]
-    )
-    types["MessageSetOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["MessageSetOut"])
-    types["ProductMetadataIn"] = t.struct(
-        {"warningMessages": t.array(t.string()).optional()}
-    ).named(renames["ProductMetadataIn"])
-    types["ProductMetadataOut"] = t.struct(
-        {
-            "warningMessages": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ProductMetadataOut"])
-    types["OperationIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "error": t.proxy(renames["StatusIn"]).optional(),
-            "done": t.boolean().optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["OperationIn"])
-    types["OperationOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "done": t.boolean().optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["OperationOut"])
-    types["WebAppConfigIn"] = t.struct(
-        {
-            "appId": t.string().optional(),
-            "locationId": t.string().optional(),
-            "measurementId": t.string().optional(),
-            "messagingSenderId": t.string().optional(),
-            "projectId": t.string().optional(),
-            "storageBucket": t.string().optional(),
-            "apiKey": t.string().optional(),
-            "databaseURL": t.string().optional(),
-            "authDomain": t.string().optional(),
-        }
-    ).named(renames["WebAppConfigIn"])
-    types["WebAppConfigOut"] = t.struct(
-        {
-            "appId": t.string().optional(),
-            "locationId": t.string().optional(),
-            "measurementId": t.string().optional(),
-            "messagingSenderId": t.string().optional(),
-            "projectId": t.string().optional(),
-            "storageBucket": t.string().optional(),
-            "apiKey": t.string().optional(),
-            "databaseURL": t.string().optional(),
-            "authDomain": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["WebAppConfigOut"])
-    types["StatusProtoIn"] = t.struct(
-        {
-            "space": t.string().optional(),
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "canonicalCode": t.integer().optional(),
-            "messageSet": t.proxy(renames["MessageSetIn"]).optional(),
-        }
-    ).named(renames["StatusProtoIn"])
-    types["StatusProtoOut"] = t.struct(
-        {
-            "space": t.string().optional(),
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "canonicalCode": t.integer().optional(),
-            "messageSet": t.proxy(renames["MessageSetOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusProtoOut"])
 
     functions = {}
-    functions["projectsGetAdminSdkConfig"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
+    functions["projectsGetAnalyticsDetails"] = firebase.get(
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsGet"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsList"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsAddFirebase"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsPatch"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsRemoveAnalytics"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsSearchApps"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
+    functions["projectsAddFirebase"] = firebase.get(
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsGetAdminSdkConfig"] = firebase.get(
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsPatch"] = firebase.get(
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsAddGoogleAnalytics"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsGetAnalyticsDetails"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["AnalyticsDetailsOut"]),
+    functions["projectsList"] = firebase.get(
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsWebAppsPatch"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["WebAppConfigOut"]),
+    functions["projectsSearchApps"] = firebase.get(
+        "v1beta1/{parent}:searchApps",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageSize": t.integer().optional(),
+                "filter": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchFirebaseAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsWebAppsUndelete"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["WebAppConfigOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsWebAppsList"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["WebAppConfigOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsWebAppsCreate"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["WebAppConfigOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsWebAppsGet"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["WebAppConfigOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsWebAppsRemove"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["WebAppConfigOut"]),
+        "v1beta1/{parent}/webApps",
+        t.struct(
+            {
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListWebAppsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsWebAppsGetConfig"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["WebAppConfigOut"]),
+        "v1beta1/{parent}/webApps",
+        t.struct(
+            {
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListWebAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsWebAppsGet"] = firebase.get(
+        "v1beta1/{parent}/webApps",
+        t.struct(
+            {
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListWebAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsWebAppsCreate"] = firebase.get(
+        "v1beta1/{parent}/webApps",
+        t.struct(
+            {
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListWebAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsWebAppsPatch"] = firebase.get(
+        "v1beta1/{parent}/webApps",
+        t.struct(
+            {
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListWebAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsWebAppsRemove"] = firebase.get(
+        "v1beta1/{parent}/webApps",
+        t.struct(
+            {
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListWebAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsWebAppsList"] = firebase.get(
+        "v1beta1/{parent}/webApps",
+        t.struct(
+            {
+                "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "showDeleted": t.boolean().optional(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListWebAppsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIosAppsPatch"] = firebase.post(
+        "v1beta1/{name}:undelete",
+        t.struct(
+            {
+                "name": t.string(),
+                "etag": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIosAppsGet"] = firebase.post(
+        "v1beta1/{name}:undelete",
+        t.struct(
+            {
+                "name": t.string(),
+                "etag": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIosAppsRemove"] = firebase.post(
+        "v1beta1/{name}:undelete",
+        t.struct(
+            {
+                "name": t.string(),
+                "etag": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIosAppsGetConfig"] = firebase.post(
+        "v1beta1/{name}:undelete",
+        t.struct(
+            {
+                "name": t.string(),
+                "etag": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIosAppsList"] = firebase.post(
+        "v1beta1/{name}:undelete",
+        t.struct(
+            {
+                "name": t.string(),
+                "etag": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIosAppsCreate"] = firebase.post(
+        "v1beta1/{name}:undelete",
+        t.struct(
+            {
+                "name": t.string(),
+                "etag": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIosAppsUndelete"] = firebase.post(
+        "v1beta1/{name}:undelete",
+        t.struct(
+            {
+                "name": t.string(),
+                "etag": t.string().optional(),
+                "validateOnly": t.boolean().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -791,9 +1026,9 @@ def import_firebase() -> Import:
         "v1beta1/{parent}/availableLocations",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
                 "pageToken": t.string().optional(),
                 "parent": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -801,157 +1036,136 @@ def import_firebase() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsGetConfig"] = firebase.patch(
-        "v1beta1/{name}",
+    functions["projectsAndroidAppsUndelete"] = firebase.post(
+        "v1beta1/{name}:remove",
         t.struct(
             {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "apiKeyId": t.string().optional(),
-                "sha256Hashes": t.array(t.string()).optional(),
-                "sha1Hashes": t.array(t.string()).optional(),
-                "packageName": t.string().optional(),
-                "displayName": t.string().optional(),
+                "name": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "immediate": t.boolean().optional(),
+                "allowMissing": t.boolean().optional(),
                 "etag": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["AndroidAppOut"]),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsRemove"] = firebase.patch(
-        "v1beta1/{name}",
+    functions["projectsAndroidAppsList"] = firebase.post(
+        "v1beta1/{name}:remove",
         t.struct(
             {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "apiKeyId": t.string().optional(),
-                "sha256Hashes": t.array(t.string()).optional(),
-                "sha1Hashes": t.array(t.string()).optional(),
-                "packageName": t.string().optional(),
-                "displayName": t.string().optional(),
+                "name": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "immediate": t.boolean().optional(),
+                "allowMissing": t.boolean().optional(),
                 "etag": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["AndroidAppOut"]),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsUndelete"] = firebase.patch(
-        "v1beta1/{name}",
+    functions["projectsAndroidAppsGet"] = firebase.post(
+        "v1beta1/{name}:remove",
         t.struct(
             {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "apiKeyId": t.string().optional(),
-                "sha256Hashes": t.array(t.string()).optional(),
-                "sha1Hashes": t.array(t.string()).optional(),
-                "packageName": t.string().optional(),
-                "displayName": t.string().optional(),
+                "name": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "immediate": t.boolean().optional(),
+                "allowMissing": t.boolean().optional(),
                 "etag": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["AndroidAppOut"]),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsGet"] = firebase.patch(
-        "v1beta1/{name}",
+    functions["projectsAndroidAppsPatch"] = firebase.post(
+        "v1beta1/{name}:remove",
         t.struct(
             {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "apiKeyId": t.string().optional(),
-                "sha256Hashes": t.array(t.string()).optional(),
-                "sha1Hashes": t.array(t.string()).optional(),
-                "packageName": t.string().optional(),
-                "displayName": t.string().optional(),
+                "name": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "immediate": t.boolean().optional(),
+                "allowMissing": t.boolean().optional(),
                 "etag": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["AndroidAppOut"]),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsList"] = firebase.patch(
-        "v1beta1/{name}",
+    functions["projectsAndroidAppsCreate"] = firebase.post(
+        "v1beta1/{name}:remove",
         t.struct(
             {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "apiKeyId": t.string().optional(),
-                "sha256Hashes": t.array(t.string()).optional(),
-                "sha1Hashes": t.array(t.string()).optional(),
-                "packageName": t.string().optional(),
-                "displayName": t.string().optional(),
+                "name": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "immediate": t.boolean().optional(),
+                "allowMissing": t.boolean().optional(),
                 "etag": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["AndroidAppOut"]),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsCreate"] = firebase.patch(
-        "v1beta1/{name}",
+    functions["projectsAndroidAppsGetConfig"] = firebase.post(
+        "v1beta1/{name}:remove",
         t.struct(
             {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "apiKeyId": t.string().optional(),
-                "sha256Hashes": t.array(t.string()).optional(),
-                "sha1Hashes": t.array(t.string()).optional(),
-                "packageName": t.string().optional(),
-                "displayName": t.string().optional(),
+                "name": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "immediate": t.boolean().optional(),
+                "allowMissing": t.boolean().optional(),
                 "etag": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["AndroidAppOut"]),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsPatch"] = firebase.patch(
-        "v1beta1/{name}",
+    functions["projectsAndroidAppsRemove"] = firebase.post(
+        "v1beta1/{name}:remove",
         t.struct(
             {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "apiKeyId": t.string().optional(),
-                "sha256Hashes": t.array(t.string()).optional(),
-                "sha1Hashes": t.array(t.string()).optional(),
-                "packageName": t.string().optional(),
-                "displayName": t.string().optional(),
+                "name": t.string(),
+                "validateOnly": t.boolean().optional(),
+                "immediate": t.boolean().optional(),
+                "allowMissing": t.boolean().optional(),
                 "etag": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["AndroidAppOut"]),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsShaCreate"] = firebase.delete(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
+    functions["projectsAndroidAppsShaDelete"] = firebase.get(
+        "v1beta1/{parent}/sha",
+        t.struct({"parent": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["ListShaCertificatesResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsShaList"] = firebase.delete(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
+    functions["projectsAndroidAppsShaCreate"] = firebase.get(
+        "v1beta1/{parent}/sha",
+        t.struct({"parent": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["ListShaCertificatesResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsAndroidAppsShaDelete"] = firebase.delete(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
+    functions["projectsAndroidAppsShaList"] = firebase.get(
+        "v1beta1/{parent}/sha",
+        t.struct({"parent": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["ListShaCertificatesResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -968,108 +1182,10 @@ def import_firebase() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsIosAppsUndelete"] = firebase.get(
-        "v1beta1/{parent}/iosApps",
-        t.struct(
-            {
-                "pageSize": t.integer().optional(),
-                "parent": t.string().optional(),
-                "showDeleted": t.boolean().optional(),
-                "pageToken": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListIosAppsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIosAppsPatch"] = firebase.get(
-        "v1beta1/{parent}/iosApps",
-        t.struct(
-            {
-                "pageSize": t.integer().optional(),
-                "parent": t.string().optional(),
-                "showDeleted": t.boolean().optional(),
-                "pageToken": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListIosAppsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIosAppsCreate"] = firebase.get(
-        "v1beta1/{parent}/iosApps",
-        t.struct(
-            {
-                "pageSize": t.integer().optional(),
-                "parent": t.string().optional(),
-                "showDeleted": t.boolean().optional(),
-                "pageToken": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListIosAppsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIosAppsGet"] = firebase.get(
-        "v1beta1/{parent}/iosApps",
-        t.struct(
-            {
-                "pageSize": t.integer().optional(),
-                "parent": t.string().optional(),
-                "showDeleted": t.boolean().optional(),
-                "pageToken": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListIosAppsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIosAppsGetConfig"] = firebase.get(
-        "v1beta1/{parent}/iosApps",
-        t.struct(
-            {
-                "pageSize": t.integer().optional(),
-                "parent": t.string().optional(),
-                "showDeleted": t.boolean().optional(),
-                "pageToken": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListIosAppsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIosAppsRemove"] = firebase.get(
-        "v1beta1/{parent}/iosApps",
-        t.struct(
-            {
-                "pageSize": t.integer().optional(),
-                "parent": t.string().optional(),
-                "showDeleted": t.boolean().optional(),
-                "pageToken": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListIosAppsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIosAppsList"] = firebase.get(
-        "v1beta1/{parent}/iosApps",
-        t.struct(
-            {
-                "pageSize": t.integer().optional(),
-                "parent": t.string().optional(),
-                "showDeleted": t.boolean().optional(),
-                "pageToken": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListIosAppsResponseOut"]),
+    functions["operationsGet"] = firebase.get(
+        "v1beta1/{name}",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -1083,13 +1199,6 @@ def import_firebase() -> Import:
             }
         ),
         t.proxy(renames["ListAvailableProjectsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["operationsGet"] = firebase.get(
-        "v1beta1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

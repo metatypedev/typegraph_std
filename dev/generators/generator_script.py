@@ -10,29 +10,25 @@ class File:
     content: str
     flags: Dict[str, bool]
 
-    def __init__(
-        self,
-        path: str = None,
-        content: str = None
-    ) -> None:
+    def __init__(self, path: str = None, content: str = None) -> None:
         self.path = path
         self.content = content
         self.flags = {}
 
     def is_enabled(self, flag_name: str) -> bool:
-        """ Check if a given flag is enabled """
+        """Check if a given flag is enabled"""
         status = self.flags.get(flag_name)
         if status is None:
             return False
         return status
 
     def flag(self, name: str, status: bool):
-        """ Set a flag for the current instance """
+        """Set a flag for the current instance"""
         self.flags[name] = status
 
 
 class GeneratorScript:
-    """ Base generator class """
+    """Base generator class"""
 
     base_path: str
     """ Common prefix for all paths """
@@ -51,12 +47,12 @@ class GeneratorScript:
         self.files = []
 
     def get_prefix_path(self):
-        """ `{base_path}/{folder_path}` """
+        """`{base_path}/{folder_path}`"""
         return os.path.join(self.base_path, self.folder_name)
 
     def pre_run(self):
-        """ Override this function to manually populate `self.files: List[File]` """
-        pass
+        """Override this function to manually populate `self.files: List[File]`"""
+        raise Exception("Should be overriden")
 
     def log(self, msg: str):
         print(f"  {msg}", file=sys.stdout)
@@ -71,10 +67,11 @@ class GeneratorScript:
             print(f"  {e}", file=sys.stdout)
 
     def run(self):
+        self.log("Preparing...")
         self.pre_run()
+        self.log("File generation...")
 
         count = 0
-
         for file in self.files:
             path, content = file.path, file.content
             if file.is_enabled("black"):

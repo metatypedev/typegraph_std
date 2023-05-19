@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_libraryagent() -> Import:
@@ -11,12 +11,12 @@ def import_libraryagent() -> Import:
         "ErrorResponse": "_libraryagent_1_ErrorResponse",
         "GoogleExampleLibraryagentV1ListBooksResponseIn": "_libraryagent_2_GoogleExampleLibraryagentV1ListBooksResponseIn",
         "GoogleExampleLibraryagentV1ListBooksResponseOut": "_libraryagent_3_GoogleExampleLibraryagentV1ListBooksResponseOut",
-        "GoogleExampleLibraryagentV1ShelfIn": "_libraryagent_4_GoogleExampleLibraryagentV1ShelfIn",
-        "GoogleExampleLibraryagentV1ShelfOut": "_libraryagent_5_GoogleExampleLibraryagentV1ShelfOut",
-        "GoogleExampleLibraryagentV1ListShelvesResponseIn": "_libraryagent_6_GoogleExampleLibraryagentV1ListShelvesResponseIn",
-        "GoogleExampleLibraryagentV1ListShelvesResponseOut": "_libraryagent_7_GoogleExampleLibraryagentV1ListShelvesResponseOut",
-        "GoogleExampleLibraryagentV1BookIn": "_libraryagent_8_GoogleExampleLibraryagentV1BookIn",
-        "GoogleExampleLibraryagentV1BookOut": "_libraryagent_9_GoogleExampleLibraryagentV1BookOut",
+        "GoogleExampleLibraryagentV1BookIn": "_libraryagent_4_GoogleExampleLibraryagentV1BookIn",
+        "GoogleExampleLibraryagentV1BookOut": "_libraryagent_5_GoogleExampleLibraryagentV1BookOut",
+        "GoogleExampleLibraryagentV1ShelfIn": "_libraryagent_6_GoogleExampleLibraryagentV1ShelfIn",
+        "GoogleExampleLibraryagentV1ShelfOut": "_libraryagent_7_GoogleExampleLibraryagentV1ShelfOut",
+        "GoogleExampleLibraryagentV1ListShelvesResponseIn": "_libraryagent_8_GoogleExampleLibraryagentV1ListShelvesResponseIn",
+        "GoogleExampleLibraryagentV1ListShelvesResponseOut": "_libraryagent_9_GoogleExampleLibraryagentV1ListShelvesResponseOut",
     }
 
     types = {}
@@ -40,6 +40,23 @@ def import_libraryagent() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleExampleLibraryagentV1ListBooksResponseOut"])
+    types["GoogleExampleLibraryagentV1BookIn"] = t.struct(
+        {
+            "author": t.string().optional(),
+            "read": t.boolean().optional(),
+            "name": t.string().optional(),
+            "title": t.string().optional(),
+        }
+    ).named(renames["GoogleExampleLibraryagentV1BookIn"])
+    types["GoogleExampleLibraryagentV1BookOut"] = t.struct(
+        {
+            "author": t.string().optional(),
+            "read": t.boolean().optional(),
+            "name": t.string().optional(),
+            "title": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleExampleLibraryagentV1BookOut"])
     types["GoogleExampleLibraryagentV1ShelfIn"] = t.struct(
         {"theme": t.string().optional(), "name": t.string().optional()}
     ).named(renames["GoogleExampleLibraryagentV1ShelfIn"])
@@ -67,23 +84,6 @@ def import_libraryagent() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleExampleLibraryagentV1ListShelvesResponseOut"])
-    types["GoogleExampleLibraryagentV1BookIn"] = t.struct(
-        {
-            "author": t.string().optional(),
-            "read": t.boolean().optional(),
-            "name": t.string().optional(),
-            "title": t.string().optional(),
-        }
-    ).named(renames["GoogleExampleLibraryagentV1BookIn"])
-    types["GoogleExampleLibraryagentV1BookOut"] = t.struct(
-        {
-            "author": t.string().optional(),
-            "read": t.boolean().optional(),
-            "name": t.string().optional(),
-            "title": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleExampleLibraryagentV1BookOut"])
 
     functions = {}
     functions["shelvesList"] = libraryagent.get(
@@ -100,31 +100,59 @@ def import_libraryagent() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["shelvesBooksList"] = libraryagent.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GoogleExampleLibraryagentV1BookOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["shelvesBooksReturn"] = libraryagent.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GoogleExampleLibraryagentV1BookOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["shelvesBooksBorrow"] = libraryagent.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GoogleExampleLibraryagentV1BookOut"]),
+        "v1/{parent}/books",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleExampleLibraryagentV1ListBooksResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["shelvesBooksGet"] = libraryagent.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GoogleExampleLibraryagentV1BookOut"]),
+        "v1/{parent}/books",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleExampleLibraryagentV1ListBooksResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["shelvesBooksBorrow"] = libraryagent.get(
+        "v1/{parent}/books",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleExampleLibraryagentV1ListBooksResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["shelvesBooksList"] = libraryagent.get(
+        "v1/{parent}/books",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["GoogleExampleLibraryagentV1ListBooksResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

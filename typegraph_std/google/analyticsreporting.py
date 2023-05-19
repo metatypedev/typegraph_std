@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_analyticsreporting() -> Import:
@@ -9,203 +9,220 @@ def import_analyticsreporting() -> Import:
 
     renames = {
         "ErrorResponse": "_analyticsreporting_1_ErrorResponse",
-        "SegmentSequenceStepIn": "_analyticsreporting_2_SegmentSequenceStepIn",
-        "SegmentSequenceStepOut": "_analyticsreporting_3_SegmentSequenceStepOut",
-        "SearchUserActivityResponseIn": "_analyticsreporting_4_SearchUserActivityResponseIn",
-        "SearchUserActivityResponseOut": "_analyticsreporting_5_SearchUserActivityResponseOut",
-        "PivotIn": "_analyticsreporting_6_PivotIn",
-        "PivotOut": "_analyticsreporting_7_PivotOut",
-        "EcommerceDataIn": "_analyticsreporting_8_EcommerceDataIn",
-        "EcommerceDataOut": "_analyticsreporting_9_EcommerceDataOut",
-        "TransactionDataIn": "_analyticsreporting_10_TransactionDataIn",
-        "TransactionDataOut": "_analyticsreporting_11_TransactionDataOut",
-        "SegmentDefinitionIn": "_analyticsreporting_12_SegmentDefinitionIn",
-        "SegmentDefinitionOut": "_analyticsreporting_13_SegmentDefinitionOut",
-        "UserIn": "_analyticsreporting_14_UserIn",
-        "UserOut": "_analyticsreporting_15_UserOut",
-        "DimensionIn": "_analyticsreporting_16_DimensionIn",
-        "DimensionOut": "_analyticsreporting_17_DimensionOut",
-        "UserActivitySessionIn": "_analyticsreporting_18_UserActivitySessionIn",
-        "UserActivitySessionOut": "_analyticsreporting_19_UserActivitySessionOut",
-        "ActivityIn": "_analyticsreporting_20_ActivityIn",
-        "ActivityOut": "_analyticsreporting_21_ActivityOut",
-        "MetricFilterIn": "_analyticsreporting_22_MetricFilterIn",
-        "MetricFilterOut": "_analyticsreporting_23_MetricFilterOut",
-        "PivotValueRegionIn": "_analyticsreporting_24_PivotValueRegionIn",
-        "PivotValueRegionOut": "_analyticsreporting_25_PivotValueRegionOut",
-        "ReportIn": "_analyticsreporting_26_ReportIn",
-        "ReportOut": "_analyticsreporting_27_ReportOut",
-        "GetReportsResponseIn": "_analyticsreporting_28_GetReportsResponseIn",
-        "GetReportsResponseOut": "_analyticsreporting_29_GetReportsResponseOut",
-        "CohortGroupIn": "_analyticsreporting_30_CohortGroupIn",
-        "CohortGroupOut": "_analyticsreporting_31_CohortGroupOut",
-        "PivotHeaderIn": "_analyticsreporting_32_PivotHeaderIn",
-        "PivotHeaderOut": "_analyticsreporting_33_PivotHeaderOut",
-        "GetReportsRequestIn": "_analyticsreporting_34_GetReportsRequestIn",
-        "GetReportsRequestOut": "_analyticsreporting_35_GetReportsRequestOut",
-        "CustomDimensionIn": "_analyticsreporting_36_CustomDimensionIn",
-        "CustomDimensionOut": "_analyticsreporting_37_CustomDimensionOut",
-        "MetricFilterClauseIn": "_analyticsreporting_38_MetricFilterClauseIn",
-        "MetricFilterClauseOut": "_analyticsreporting_39_MetricFilterClauseOut",
-        "ColumnHeaderIn": "_analyticsreporting_40_ColumnHeaderIn",
-        "ColumnHeaderOut": "_analyticsreporting_41_ColumnHeaderOut",
-        "ScreenviewDataIn": "_analyticsreporting_42_ScreenviewDataIn",
-        "ScreenviewDataOut": "_analyticsreporting_43_ScreenviewDataOut",
-        "DateRangeValuesIn": "_analyticsreporting_44_DateRangeValuesIn",
-        "DateRangeValuesOut": "_analyticsreporting_45_DateRangeValuesOut",
+        "PivotHeaderEntryIn": "_analyticsreporting_2_PivotHeaderEntryIn",
+        "PivotHeaderEntryOut": "_analyticsreporting_3_PivotHeaderEntryOut",
+        "TransactionDataIn": "_analyticsreporting_4_TransactionDataIn",
+        "TransactionDataOut": "_analyticsreporting_5_TransactionDataOut",
+        "DynamicSegmentIn": "_analyticsreporting_6_DynamicSegmentIn",
+        "DynamicSegmentOut": "_analyticsreporting_7_DynamicSegmentOut",
+        "MetricHeaderIn": "_analyticsreporting_8_MetricHeaderIn",
+        "MetricHeaderOut": "_analyticsreporting_9_MetricHeaderOut",
+        "SimpleSegmentIn": "_analyticsreporting_10_SimpleSegmentIn",
+        "SimpleSegmentOut": "_analyticsreporting_11_SimpleSegmentOut",
+        "ReportDataIn": "_analyticsreporting_12_ReportDataIn",
+        "ReportDataOut": "_analyticsreporting_13_ReportDataOut",
+        "SegmentDefinitionIn": "_analyticsreporting_14_SegmentDefinitionIn",
+        "SegmentDefinitionOut": "_analyticsreporting_15_SegmentDefinitionOut",
+        "EcommerceDataIn": "_analyticsreporting_16_EcommerceDataIn",
+        "EcommerceDataOut": "_analyticsreporting_17_EcommerceDataOut",
+        "EventDataIn": "_analyticsreporting_18_EventDataIn",
+        "EventDataOut": "_analyticsreporting_19_EventDataOut",
+        "SegmentMetricFilterIn": "_analyticsreporting_20_SegmentMetricFilterIn",
+        "SegmentMetricFilterOut": "_analyticsreporting_21_SegmentMetricFilterOut",
+        "DateRangeIn": "_analyticsreporting_22_DateRangeIn",
+        "DateRangeOut": "_analyticsreporting_23_DateRangeOut",
+        "MetricHeaderEntryIn": "_analyticsreporting_24_MetricHeaderEntryIn",
+        "MetricHeaderEntryOut": "_analyticsreporting_25_MetricHeaderEntryOut",
+        "SegmentDimensionFilterIn": "_analyticsreporting_26_SegmentDimensionFilterIn",
+        "SegmentDimensionFilterOut": "_analyticsreporting_27_SegmentDimensionFilterOut",
+        "DimensionFilterIn": "_analyticsreporting_28_DimensionFilterIn",
+        "DimensionFilterOut": "_analyticsreporting_29_DimensionFilterOut",
+        "GetReportsResponseIn": "_analyticsreporting_30_GetReportsResponseIn",
+        "GetReportsResponseOut": "_analyticsreporting_31_GetReportsResponseOut",
+        "SegmentIn": "_analyticsreporting_32_SegmentIn",
+        "SegmentOut": "_analyticsreporting_33_SegmentOut",
+        "ReportIn": "_analyticsreporting_34_ReportIn",
+        "ReportOut": "_analyticsreporting_35_ReportOut",
+        "MetricFilterIn": "_analyticsreporting_36_MetricFilterIn",
+        "MetricFilterOut": "_analyticsreporting_37_MetricFilterOut",
+        "SegmentSequenceStepIn": "_analyticsreporting_38_SegmentSequenceStepIn",
+        "SegmentSequenceStepOut": "_analyticsreporting_39_SegmentSequenceStepOut",
+        "CohortGroupIn": "_analyticsreporting_40_CohortGroupIn",
+        "CohortGroupOut": "_analyticsreporting_41_CohortGroupOut",
+        "GoalSetDataIn": "_analyticsreporting_42_GoalSetDataIn",
+        "GoalSetDataOut": "_analyticsreporting_43_GoalSetDataOut",
+        "MetricIn": "_analyticsreporting_44_MetricIn",
+        "MetricOut": "_analyticsreporting_45_MetricOut",
         "ReportRowIn": "_analyticsreporting_46_ReportRowIn",
         "ReportRowOut": "_analyticsreporting_47_ReportRowOut",
-        "ProductDataIn": "_analyticsreporting_48_ProductDataIn",
-        "ProductDataOut": "_analyticsreporting_49_ProductDataOut",
-        "SequenceSegmentIn": "_analyticsreporting_50_SequenceSegmentIn",
-        "SequenceSegmentOut": "_analyticsreporting_51_SequenceSegmentOut",
-        "SegmentMetricFilterIn": "_analyticsreporting_52_SegmentMetricFilterIn",
-        "SegmentMetricFilterOut": "_analyticsreporting_53_SegmentMetricFilterOut",
-        "PageviewDataIn": "_analyticsreporting_54_PageviewDataIn",
-        "PageviewDataOut": "_analyticsreporting_55_PageviewDataOut",
-        "CohortIn": "_analyticsreporting_56_CohortIn",
-        "CohortOut": "_analyticsreporting_57_CohortOut",
-        "SimpleSegmentIn": "_analyticsreporting_58_SimpleSegmentIn",
-        "SimpleSegmentOut": "_analyticsreporting_59_SimpleSegmentOut",
-        "ResourceQuotasRemainingIn": "_analyticsreporting_60_ResourceQuotasRemainingIn",
-        "ResourceQuotasRemainingOut": "_analyticsreporting_61_ResourceQuotasRemainingOut",
-        "SearchUserActivityRequestIn": "_analyticsreporting_62_SearchUserActivityRequestIn",
-        "SearchUserActivityRequestOut": "_analyticsreporting_63_SearchUserActivityRequestOut",
-        "MetricHeaderIn": "_analyticsreporting_64_MetricHeaderIn",
-        "MetricHeaderOut": "_analyticsreporting_65_MetricHeaderOut",
-        "OrderByIn": "_analyticsreporting_66_OrderByIn",
-        "OrderByOut": "_analyticsreporting_67_OrderByOut",
-        "DateRangeIn": "_analyticsreporting_68_DateRangeIn",
-        "DateRangeOut": "_analyticsreporting_69_DateRangeOut",
-        "GoalSetDataIn": "_analyticsreporting_70_GoalSetDataIn",
-        "GoalSetDataOut": "_analyticsreporting_71_GoalSetDataOut",
-        "DynamicSegmentIn": "_analyticsreporting_72_DynamicSegmentIn",
-        "DynamicSegmentOut": "_analyticsreporting_73_DynamicSegmentOut",
-        "OrFiltersForSegmentIn": "_analyticsreporting_74_OrFiltersForSegmentIn",
-        "OrFiltersForSegmentOut": "_analyticsreporting_75_OrFiltersForSegmentOut",
-        "SegmentDimensionFilterIn": "_analyticsreporting_76_SegmentDimensionFilterIn",
-        "SegmentDimensionFilterOut": "_analyticsreporting_77_SegmentDimensionFilterOut",
-        "DimensionFilterClauseIn": "_analyticsreporting_78_DimensionFilterClauseIn",
-        "DimensionFilterClauseOut": "_analyticsreporting_79_DimensionFilterClauseOut",
-        "MetricIn": "_analyticsreporting_80_MetricIn",
-        "MetricOut": "_analyticsreporting_81_MetricOut",
-        "SegmentFilterIn": "_analyticsreporting_82_SegmentFilterIn",
-        "SegmentFilterOut": "_analyticsreporting_83_SegmentFilterOut",
-        "ReportDataIn": "_analyticsreporting_84_ReportDataIn",
-        "ReportDataOut": "_analyticsreporting_85_ReportDataOut",
-        "EventDataIn": "_analyticsreporting_86_EventDataIn",
-        "EventDataOut": "_analyticsreporting_87_EventDataOut",
-        "DimensionFilterIn": "_analyticsreporting_88_DimensionFilterIn",
-        "DimensionFilterOut": "_analyticsreporting_89_DimensionFilterOut",
-        "SegmentIn": "_analyticsreporting_90_SegmentIn",
-        "SegmentOut": "_analyticsreporting_91_SegmentOut",
-        "GoalDataIn": "_analyticsreporting_92_GoalDataIn",
-        "GoalDataOut": "_analyticsreporting_93_GoalDataOut",
-        "PivotHeaderEntryIn": "_analyticsreporting_94_PivotHeaderEntryIn",
-        "PivotHeaderEntryOut": "_analyticsreporting_95_PivotHeaderEntryOut",
-        "ReportRequestIn": "_analyticsreporting_96_ReportRequestIn",
-        "ReportRequestOut": "_analyticsreporting_97_ReportRequestOut",
-        "SegmentFilterClauseIn": "_analyticsreporting_98_SegmentFilterClauseIn",
-        "SegmentFilterClauseOut": "_analyticsreporting_99_SegmentFilterClauseOut",
-        "MetricHeaderEntryIn": "_analyticsreporting_100_MetricHeaderEntryIn",
-        "MetricHeaderEntryOut": "_analyticsreporting_101_MetricHeaderEntryOut",
+        "ActivityIn": "_analyticsreporting_48_ActivityIn",
+        "ActivityOut": "_analyticsreporting_49_ActivityOut",
+        "PivotValueRegionIn": "_analyticsreporting_50_PivotValueRegionIn",
+        "PivotValueRegionOut": "_analyticsreporting_51_PivotValueRegionOut",
+        "DimensionIn": "_analyticsreporting_52_DimensionIn",
+        "DimensionOut": "_analyticsreporting_53_DimensionOut",
+        "SearchUserActivityRequestIn": "_analyticsreporting_54_SearchUserActivityRequestIn",
+        "SearchUserActivityRequestOut": "_analyticsreporting_55_SearchUserActivityRequestOut",
+        "SegmentFilterIn": "_analyticsreporting_56_SegmentFilterIn",
+        "SegmentFilterOut": "_analyticsreporting_57_SegmentFilterOut",
+        "MetricFilterClauseIn": "_analyticsreporting_58_MetricFilterClauseIn",
+        "MetricFilterClauseOut": "_analyticsreporting_59_MetricFilterClauseOut",
+        "GetReportsRequestIn": "_analyticsreporting_60_GetReportsRequestIn",
+        "GetReportsRequestOut": "_analyticsreporting_61_GetReportsRequestOut",
+        "SegmentFilterClauseIn": "_analyticsreporting_62_SegmentFilterClauseIn",
+        "SegmentFilterClauseOut": "_analyticsreporting_63_SegmentFilterClauseOut",
+        "PageviewDataIn": "_analyticsreporting_64_PageviewDataIn",
+        "PageviewDataOut": "_analyticsreporting_65_PageviewDataOut",
+        "SearchUserActivityResponseIn": "_analyticsreporting_66_SearchUserActivityResponseIn",
+        "SearchUserActivityResponseOut": "_analyticsreporting_67_SearchUserActivityResponseOut",
+        "CustomDimensionIn": "_analyticsreporting_68_CustomDimensionIn",
+        "CustomDimensionOut": "_analyticsreporting_69_CustomDimensionOut",
+        "PivotHeaderIn": "_analyticsreporting_70_PivotHeaderIn",
+        "PivotHeaderOut": "_analyticsreporting_71_PivotHeaderOut",
+        "ReportRequestIn": "_analyticsreporting_72_ReportRequestIn",
+        "ReportRequestOut": "_analyticsreporting_73_ReportRequestOut",
+        "GoalDataIn": "_analyticsreporting_74_GoalDataIn",
+        "GoalDataOut": "_analyticsreporting_75_GoalDataOut",
+        "DateRangeValuesIn": "_analyticsreporting_76_DateRangeValuesIn",
+        "DateRangeValuesOut": "_analyticsreporting_77_DateRangeValuesOut",
+        "ProductDataIn": "_analyticsreporting_78_ProductDataIn",
+        "ProductDataOut": "_analyticsreporting_79_ProductDataOut",
+        "OrderByIn": "_analyticsreporting_80_OrderByIn",
+        "OrderByOut": "_analyticsreporting_81_OrderByOut",
+        "UserIn": "_analyticsreporting_82_UserIn",
+        "UserOut": "_analyticsreporting_83_UserOut",
+        "ResourceQuotasRemainingIn": "_analyticsreporting_84_ResourceQuotasRemainingIn",
+        "ResourceQuotasRemainingOut": "_analyticsreporting_85_ResourceQuotasRemainingOut",
+        "DimensionFilterClauseIn": "_analyticsreporting_86_DimensionFilterClauseIn",
+        "DimensionFilterClauseOut": "_analyticsreporting_87_DimensionFilterClauseOut",
+        "UserActivitySessionIn": "_analyticsreporting_88_UserActivitySessionIn",
+        "UserActivitySessionOut": "_analyticsreporting_89_UserActivitySessionOut",
+        "OrFiltersForSegmentIn": "_analyticsreporting_90_OrFiltersForSegmentIn",
+        "OrFiltersForSegmentOut": "_analyticsreporting_91_OrFiltersForSegmentOut",
+        "SequenceSegmentIn": "_analyticsreporting_92_SequenceSegmentIn",
+        "SequenceSegmentOut": "_analyticsreporting_93_SequenceSegmentOut",
+        "ColumnHeaderIn": "_analyticsreporting_94_ColumnHeaderIn",
+        "ColumnHeaderOut": "_analyticsreporting_95_ColumnHeaderOut",
+        "CohortIn": "_analyticsreporting_96_CohortIn",
+        "CohortOut": "_analyticsreporting_97_CohortOut",
+        "ScreenviewDataIn": "_analyticsreporting_98_ScreenviewDataIn",
+        "ScreenviewDataOut": "_analyticsreporting_99_ScreenviewDataOut",
+        "PivotIn": "_analyticsreporting_100_PivotIn",
+        "PivotOut": "_analyticsreporting_101_PivotOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["SegmentSequenceStepIn"] = t.struct(
+    types["PivotHeaderEntryIn"] = t.struct(
         {
-            "orFiltersForSegment": t.array(
-                t.proxy(renames["OrFiltersForSegmentIn"])
-            ).optional(),
-            "matchType": t.string().optional(),
+            "metric": t.proxy(renames["MetricHeaderEntryIn"]).optional(),
+            "dimensionNames": t.array(t.string()).optional(),
+            "dimensionValues": t.array(t.string()).optional(),
         }
-    ).named(renames["SegmentSequenceStepIn"])
-    types["SegmentSequenceStepOut"] = t.struct(
+    ).named(renames["PivotHeaderEntryIn"])
+    types["PivotHeaderEntryOut"] = t.struct(
         {
-            "orFiltersForSegment": t.array(
-                t.proxy(renames["OrFiltersForSegmentOut"])
-            ).optional(),
-            "matchType": t.string().optional(),
+            "metric": t.proxy(renames["MetricHeaderEntryOut"]).optional(),
+            "dimensionNames": t.array(t.string()).optional(),
+            "dimensionValues": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SegmentSequenceStepOut"])
-    types["SearchUserActivityResponseIn"] = t.struct(
-        {
-            "sampleRate": t.number().optional(),
-            "nextPageToken": t.string().optional(),
-            "totalRows": t.integer().optional(),
-            "sessions": t.array(t.proxy(renames["UserActivitySessionIn"])).optional(),
-        }
-    ).named(renames["SearchUserActivityResponseIn"])
-    types["SearchUserActivityResponseOut"] = t.struct(
-        {
-            "sampleRate": t.number().optional(),
-            "nextPageToken": t.string().optional(),
-            "totalRows": t.integer().optional(),
-            "sessions": t.array(t.proxy(renames["UserActivitySessionOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SearchUserActivityResponseOut"])
-    types["PivotIn"] = t.struct(
-        {
-            "maxGroupCount": t.integer().optional(),
-            "dimensionFilterClauses": t.array(
-                t.proxy(renames["DimensionFilterClauseIn"])
-            ).optional(),
-            "startGroup": t.integer().optional(),
-            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-        }
-    ).named(renames["PivotIn"])
-    types["PivotOut"] = t.struct(
-        {
-            "maxGroupCount": t.integer().optional(),
-            "dimensionFilterClauses": t.array(
-                t.proxy(renames["DimensionFilterClauseOut"])
-            ).optional(),
-            "startGroup": t.integer().optional(),
-            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PivotOut"])
-    types["EcommerceDataIn"] = t.struct(
-        {
-            "transaction": t.proxy(renames["TransactionDataIn"]).optional(),
-            "ecommerceType": t.string().optional(),
-            "actionType": t.string().optional(),
-            "products": t.array(t.proxy(renames["ProductDataIn"])).optional(),
-        }
-    ).named(renames["EcommerceDataIn"])
-    types["EcommerceDataOut"] = t.struct(
-        {
-            "transaction": t.proxy(renames["TransactionDataOut"]).optional(),
-            "ecommerceType": t.string().optional(),
-            "actionType": t.string().optional(),
-            "products": t.array(t.proxy(renames["ProductDataOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EcommerceDataOut"])
+    ).named(renames["PivotHeaderEntryOut"])
     types["TransactionDataIn"] = t.struct(
         {
-            "transactionRevenue": t.number().optional(),
             "transactionTax": t.number().optional(),
             "transactionId": t.string().optional(),
             "transactionShipping": t.number().optional(),
+            "transactionRevenue": t.number().optional(),
         }
     ).named(renames["TransactionDataIn"])
     types["TransactionDataOut"] = t.struct(
         {
-            "transactionRevenue": t.number().optional(),
             "transactionTax": t.number().optional(),
             "transactionId": t.string().optional(),
             "transactionShipping": t.number().optional(),
+            "transactionRevenue": t.number().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TransactionDataOut"])
+    types["DynamicSegmentIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "sessionSegment": t.proxy(renames["SegmentDefinitionIn"]).optional(),
+            "userSegment": t.proxy(renames["SegmentDefinitionIn"]).optional(),
+        }
+    ).named(renames["DynamicSegmentIn"])
+    types["DynamicSegmentOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "sessionSegment": t.proxy(renames["SegmentDefinitionOut"]).optional(),
+            "userSegment": t.proxy(renames["SegmentDefinitionOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DynamicSegmentOut"])
+    types["MetricHeaderIn"] = t.struct(
+        {
+            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderIn"])).optional(),
+            "metricHeaderEntries": t.array(
+                t.proxy(renames["MetricHeaderEntryIn"])
+            ).optional(),
+        }
+    ).named(renames["MetricHeaderIn"])
+    types["MetricHeaderOut"] = t.struct(
+        {
+            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderOut"])).optional(),
+            "metricHeaderEntries": t.array(
+                t.proxy(renames["MetricHeaderEntryOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MetricHeaderOut"])
+    types["SimpleSegmentIn"] = t.struct(
+        {
+            "orFiltersForSegment": t.array(
+                t.proxy(renames["OrFiltersForSegmentIn"])
+            ).optional()
+        }
+    ).named(renames["SimpleSegmentIn"])
+    types["SimpleSegmentOut"] = t.struct(
+        {
+            "orFiltersForSegment": t.array(
+                t.proxy(renames["OrFiltersForSegmentOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SimpleSegmentOut"])
+    types["ReportDataIn"] = t.struct(
+        {
+            "isDataGolden": t.boolean().optional(),
+            "totals": t.array(t.proxy(renames["DateRangeValuesIn"])).optional(),
+            "dataLastRefreshed": t.string().optional(),
+            "rows": t.array(t.proxy(renames["ReportRowIn"])).optional(),
+            "samplesReadCounts": t.array(t.string()).optional(),
+            "emptyReason": t.string().optional(),
+            "rowCount": t.integer().optional(),
+            "maximums": t.array(t.proxy(renames["DateRangeValuesIn"])).optional(),
+            "samplingSpaceSizes": t.array(t.string()).optional(),
+            "minimums": t.array(t.proxy(renames["DateRangeValuesIn"])).optional(),
+        }
+    ).named(renames["ReportDataIn"])
+    types["ReportDataOut"] = t.struct(
+        {
+            "isDataGolden": t.boolean().optional(),
+            "totals": t.array(t.proxy(renames["DateRangeValuesOut"])).optional(),
+            "dataLastRefreshed": t.string().optional(),
+            "rows": t.array(t.proxy(renames["ReportRowOut"])).optional(),
+            "samplesReadCounts": t.array(t.string()).optional(),
+            "emptyReason": t.string().optional(),
+            "rowCount": t.integer().optional(),
+            "maximums": t.array(t.proxy(renames["DateRangeValuesOut"])).optional(),
+            "samplingSpaceSizes": t.array(t.string()).optional(),
+            "minimums": t.array(t.proxy(renames["DateRangeValuesOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReportDataOut"])
     types["SegmentDefinitionIn"] = t.struct(
         {"segmentFilters": t.array(t.proxy(renames["SegmentFilterIn"])).optional()}
     ).named(renames["SegmentDefinitionIn"])
@@ -215,134 +232,121 @@ def import_analyticsreporting() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SegmentDefinitionOut"])
-    types["UserIn"] = t.struct(
-        {"userId": t.string().optional(), "type": t.string().optional()}
-    ).named(renames["UserIn"])
-    types["UserOut"] = t.struct(
+    types["EcommerceDataIn"] = t.struct(
         {
-            "userId": t.string().optional(),
+            "ecommerceType": t.string().optional(),
+            "products": t.array(t.proxy(renames["ProductDataIn"])).optional(),
+            "transaction": t.proxy(renames["TransactionDataIn"]).optional(),
+            "actionType": t.string().optional(),
+        }
+    ).named(renames["EcommerceDataIn"])
+    types["EcommerceDataOut"] = t.struct(
+        {
+            "ecommerceType": t.string().optional(),
+            "products": t.array(t.proxy(renames["ProductDataOut"])).optional(),
+            "transaction": t.proxy(renames["TransactionDataOut"]).optional(),
+            "actionType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["EcommerceDataOut"])
+    types["EventDataIn"] = t.struct(
+        {
+            "eventAction": t.string().optional(),
+            "eventCount": t.string().optional(),
+            "eventLabel": t.string().optional(),
+            "eventCategory": t.string().optional(),
+            "eventValue": t.string().optional(),
+        }
+    ).named(renames["EventDataIn"])
+    types["EventDataOut"] = t.struct(
+        {
+            "eventAction": t.string().optional(),
+            "eventCount": t.string().optional(),
+            "eventLabel": t.string().optional(),
+            "eventCategory": t.string().optional(),
+            "eventValue": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["EventDataOut"])
+    types["SegmentMetricFilterIn"] = t.struct(
+        {
+            "scope": t.string().optional(),
+            "operator": t.string().optional(),
+            "maxComparisonValue": t.string().optional(),
+            "comparisonValue": t.string().optional(),
+            "metricName": t.string().optional(),
+        }
+    ).named(renames["SegmentMetricFilterIn"])
+    types["SegmentMetricFilterOut"] = t.struct(
+        {
+            "scope": t.string().optional(),
+            "operator": t.string().optional(),
+            "maxComparisonValue": t.string().optional(),
+            "comparisonValue": t.string().optional(),
+            "metricName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SegmentMetricFilterOut"])
+    types["DateRangeIn"] = t.struct(
+        {"startDate": t.string().optional(), "endDate": t.string().optional()}
+    ).named(renames["DateRangeIn"])
+    types["DateRangeOut"] = t.struct(
+        {
+            "startDate": t.string().optional(),
+            "endDate": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DateRangeOut"])
+    types["MetricHeaderEntryIn"] = t.struct(
+        {"name": t.string().optional(), "type": t.string().optional()}
+    ).named(renames["MetricHeaderEntryIn"])
+    types["MetricHeaderEntryOut"] = t.struct(
+        {
+            "name": t.string().optional(),
             "type": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["UserOut"])
-    types["DimensionIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "histogramBuckets": t.array(t.string()).optional(),
-        }
-    ).named(renames["DimensionIn"])
-    types["DimensionOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "histogramBuckets": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DimensionOut"])
-    types["UserActivitySessionIn"] = t.struct(
-        {
-            "activities": t.array(t.proxy(renames["ActivityIn"])).optional(),
-            "sessionDate": t.string().optional(),
-            "sessionId": t.string().optional(),
-            "dataSource": t.string().optional(),
-            "deviceCategory": t.string().optional(),
-            "platform": t.string().optional(),
-        }
-    ).named(renames["UserActivitySessionIn"])
-    types["UserActivitySessionOut"] = t.struct(
-        {
-            "activities": t.array(t.proxy(renames["ActivityOut"])).optional(),
-            "sessionDate": t.string().optional(),
-            "sessionId": t.string().optional(),
-            "dataSource": t.string().optional(),
-            "deviceCategory": t.string().optional(),
-            "platform": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UserActivitySessionOut"])
-    types["ActivityIn"] = t.struct(
-        {
-            "pageview": t.proxy(renames["PageviewDataIn"]).optional(),
-            "appview": t.proxy(renames["ScreenviewDataIn"]).optional(),
-            "medium": t.string().optional(),
-            "source": t.string().optional(),
-            "landingPagePath": t.string().optional(),
-            "activityTime": t.string().optional(),
-            "ecommerce": t.proxy(renames["EcommerceDataIn"]).optional(),
-            "event": t.proxy(renames["EventDataIn"]).optional(),
-            "goals": t.proxy(renames["GoalSetDataIn"]).optional(),
-            "channelGrouping": t.string().optional(),
-            "customDimension": t.array(
-                t.proxy(renames["CustomDimensionIn"])
-            ).optional(),
-            "hostname": t.string().optional(),
-            "keyword": t.string().optional(),
-            "campaign": t.string().optional(),
-            "activityType": t.string().optional(),
-        }
-    ).named(renames["ActivityIn"])
-    types["ActivityOut"] = t.struct(
-        {
-            "pageview": t.proxy(renames["PageviewDataOut"]).optional(),
-            "appview": t.proxy(renames["ScreenviewDataOut"]).optional(),
-            "medium": t.string().optional(),
-            "source": t.string().optional(),
-            "landingPagePath": t.string().optional(),
-            "activityTime": t.string().optional(),
-            "ecommerce": t.proxy(renames["EcommerceDataOut"]).optional(),
-            "event": t.proxy(renames["EventDataOut"]).optional(),
-            "goals": t.proxy(renames["GoalSetDataOut"]).optional(),
-            "channelGrouping": t.string().optional(),
-            "customDimension": t.array(
-                t.proxy(renames["CustomDimensionOut"])
-            ).optional(),
-            "hostname": t.string().optional(),
-            "keyword": t.string().optional(),
-            "campaign": t.string().optional(),
-            "activityType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ActivityOut"])
-    types["MetricFilterIn"] = t.struct(
+    ).named(renames["MetricHeaderEntryOut"])
+    types["SegmentDimensionFilterIn"] = t.struct(
         {
             "operator": t.string().optional(),
-            "not": t.boolean().optional(),
-            "comparisonValue": t.string().optional(),
-            "metricName": t.string().optional(),
+            "caseSensitive": t.boolean().optional(),
+            "expressions": t.array(t.string()).optional(),
+            "maxComparisonValue": t.string().optional(),
+            "minComparisonValue": t.string().optional(),
+            "dimensionName": t.string().optional(),
         }
-    ).named(renames["MetricFilterIn"])
-    types["MetricFilterOut"] = t.struct(
+    ).named(renames["SegmentDimensionFilterIn"])
+    types["SegmentDimensionFilterOut"] = t.struct(
         {
             "operator": t.string().optional(),
+            "caseSensitive": t.boolean().optional(),
+            "expressions": t.array(t.string()).optional(),
+            "maxComparisonValue": t.string().optional(),
+            "minComparisonValue": t.string().optional(),
+            "dimensionName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SegmentDimensionFilterOut"])
+    types["DimensionFilterIn"] = t.struct(
+        {
             "not": t.boolean().optional(),
-            "comparisonValue": t.string().optional(),
-            "metricName": t.string().optional(),
+            "operator": t.string().optional(),
+            "dimensionName": t.string().optional(),
+            "expressions": t.array(t.string()).optional(),
+            "caseSensitive": t.boolean().optional(),
+        }
+    ).named(renames["DimensionFilterIn"])
+    types["DimensionFilterOut"] = t.struct(
+        {
+            "not": t.boolean().optional(),
+            "operator": t.string().optional(),
+            "dimensionName": t.string().optional(),
+            "expressions": t.array(t.string()).optional(),
+            "caseSensitive": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["MetricFilterOut"])
-    types["PivotValueRegionIn"] = t.struct(
-        {"values": t.array(t.string()).optional()}
-    ).named(renames["PivotValueRegionIn"])
-    types["PivotValueRegionOut"] = t.struct(
-        {
-            "values": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PivotValueRegionOut"])
-    types["ReportIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "data": t.proxy(renames["ReportDataIn"]).optional(),
-            "columnHeader": t.proxy(renames["ColumnHeaderIn"]).optional(),
-        }
-    ).named(renames["ReportIn"])
-    types["ReportOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "data": t.proxy(renames["ReportDataOut"]).optional(),
-            "columnHeader": t.proxy(renames["ColumnHeaderOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReportOut"])
+    ).named(renames["DimensionFilterOut"])
     types["GetReportsResponseIn"] = t.struct(
         {
             "resourceQuotasRemaining": t.proxy(
@@ -362,119 +366,105 @@ def import_analyticsreporting() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GetReportsResponseOut"])
+    types["SegmentIn"] = t.struct(
+        {
+            "dynamicSegment": t.proxy(renames["DynamicSegmentIn"]).optional(),
+            "segmentId": t.string().optional(),
+        }
+    ).named(renames["SegmentIn"])
+    types["SegmentOut"] = t.struct(
+        {
+            "dynamicSegment": t.proxy(renames["DynamicSegmentOut"]).optional(),
+            "segmentId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SegmentOut"])
+    types["ReportIn"] = t.struct(
+        {
+            "columnHeader": t.proxy(renames["ColumnHeaderIn"]).optional(),
+            "data": t.proxy(renames["ReportDataIn"]).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ReportIn"])
+    types["ReportOut"] = t.struct(
+        {
+            "columnHeader": t.proxy(renames["ColumnHeaderOut"]).optional(),
+            "data": t.proxy(renames["ReportDataOut"]).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReportOut"])
+    types["MetricFilterIn"] = t.struct(
+        {
+            "metricName": t.string().optional(),
+            "comparisonValue": t.string().optional(),
+            "not": t.boolean().optional(),
+            "operator": t.string().optional(),
+        }
+    ).named(renames["MetricFilterIn"])
+    types["MetricFilterOut"] = t.struct(
+        {
+            "metricName": t.string().optional(),
+            "comparisonValue": t.string().optional(),
+            "not": t.boolean().optional(),
+            "operator": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MetricFilterOut"])
+    types["SegmentSequenceStepIn"] = t.struct(
+        {
+            "orFiltersForSegment": t.array(
+                t.proxy(renames["OrFiltersForSegmentIn"])
+            ).optional(),
+            "matchType": t.string().optional(),
+        }
+    ).named(renames["SegmentSequenceStepIn"])
+    types["SegmentSequenceStepOut"] = t.struct(
+        {
+            "orFiltersForSegment": t.array(
+                t.proxy(renames["OrFiltersForSegmentOut"])
+            ).optional(),
+            "matchType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SegmentSequenceStepOut"])
     types["CohortGroupIn"] = t.struct(
         {
-            "lifetimeValue": t.boolean().optional(),
             "cohorts": t.array(t.proxy(renames["CohortIn"])).optional(),
+            "lifetimeValue": t.boolean().optional(),
         }
     ).named(renames["CohortGroupIn"])
     types["CohortGroupOut"] = t.struct(
         {
-            "lifetimeValue": t.boolean().optional(),
             "cohorts": t.array(t.proxy(renames["CohortOut"])).optional(),
+            "lifetimeValue": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CohortGroupOut"])
-    types["PivotHeaderIn"] = t.struct(
+    types["GoalSetDataIn"] = t.struct(
+        {"goals": t.array(t.proxy(renames["GoalDataIn"])).optional()}
+    ).named(renames["GoalSetDataIn"])
+    types["GoalSetDataOut"] = t.struct(
         {
-            "pivotHeaderEntries": t.array(
-                t.proxy(renames["PivotHeaderEntryIn"])
-            ).optional(),
-            "totalPivotGroupsCount": t.integer().optional(),
-        }
-    ).named(renames["PivotHeaderIn"])
-    types["PivotHeaderOut"] = t.struct(
-        {
-            "pivotHeaderEntries": t.array(
-                t.proxy(renames["PivotHeaderEntryOut"])
-            ).optional(),
-            "totalPivotGroupsCount": t.integer().optional(),
+            "goals": t.array(t.proxy(renames["GoalDataOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PivotHeaderOut"])
-    types["GetReportsRequestIn"] = t.struct(
+    ).named(renames["GoalSetDataOut"])
+    types["MetricIn"] = t.struct(
         {
-            "reportRequests": t.array(t.proxy(renames["ReportRequestIn"])).optional(),
-            "useResourceQuotas": t.boolean().optional(),
+            "alias": t.string().optional(),
+            "expression": t.string().optional(),
+            "formattingType": t.string().optional(),
         }
-    ).named(renames["GetReportsRequestIn"])
-    types["GetReportsRequestOut"] = t.struct(
+    ).named(renames["MetricIn"])
+    types["MetricOut"] = t.struct(
         {
-            "reportRequests": t.array(t.proxy(renames["ReportRequestOut"])).optional(),
-            "useResourceQuotas": t.boolean().optional(),
+            "alias": t.string().optional(),
+            "expression": t.string().optional(),
+            "formattingType": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GetReportsRequestOut"])
-    types["CustomDimensionIn"] = t.struct(
-        {"value": t.string().optional(), "index": t.integer().optional()}
-    ).named(renames["CustomDimensionIn"])
-    types["CustomDimensionOut"] = t.struct(
-        {
-            "value": t.string().optional(),
-            "index": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CustomDimensionOut"])
-    types["MetricFilterClauseIn"] = t.struct(
-        {
-            "filters": t.array(t.proxy(renames["MetricFilterIn"])).optional(),
-            "operator": t.string().optional(),
-        }
-    ).named(renames["MetricFilterClauseIn"])
-    types["MetricFilterClauseOut"] = t.struct(
-        {
-            "filters": t.array(t.proxy(renames["MetricFilterOut"])).optional(),
-            "operator": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricFilterClauseOut"])
-    types["ColumnHeaderIn"] = t.struct(
-        {
-            "metricHeader": t.proxy(renames["MetricHeaderIn"]).optional(),
-            "dimensions": t.array(t.string()).optional(),
-        }
-    ).named(renames["ColumnHeaderIn"])
-    types["ColumnHeaderOut"] = t.struct(
-        {
-            "metricHeader": t.proxy(renames["MetricHeaderOut"]).optional(),
-            "dimensions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ColumnHeaderOut"])
-    types["ScreenviewDataIn"] = t.struct(
-        {
-            "mobileDeviceBranding": t.string().optional(),
-            "screenName": t.string().optional(),
-            "mobileDeviceModel": t.string().optional(),
-            "appName": t.string().optional(),
-        }
-    ).named(renames["ScreenviewDataIn"])
-    types["ScreenviewDataOut"] = t.struct(
-        {
-            "mobileDeviceBranding": t.string().optional(),
-            "screenName": t.string().optional(),
-            "mobileDeviceModel": t.string().optional(),
-            "appName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ScreenviewDataOut"])
-    types["DateRangeValuesIn"] = t.struct(
-        {
-            "pivotValueRegions": t.array(
-                t.proxy(renames["PivotValueRegionIn"])
-            ).optional(),
-            "values": t.array(t.string()).optional(),
-        }
-    ).named(renames["DateRangeValuesIn"])
-    types["DateRangeValuesOut"] = t.struct(
-        {
-            "pivotValueRegions": t.array(
-                t.proxy(renames["PivotValueRegionOut"])
-            ).optional(),
-            "values": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DateRangeValuesOut"])
+    ).named(renames["MetricOut"])
     types["ReportRowIn"] = t.struct(
         {
             "metrics": t.array(t.proxy(renames["DateRangeValuesIn"])).optional(),
@@ -488,23 +478,399 @@ def import_analyticsreporting() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ReportRowOut"])
+    types["ActivityIn"] = t.struct(
+        {
+            "ecommerce": t.proxy(renames["EcommerceDataIn"]).optional(),
+            "channelGrouping": t.string().optional(),
+            "activityType": t.string().optional(),
+            "customDimension": t.array(
+                t.proxy(renames["CustomDimensionIn"])
+            ).optional(),
+            "campaign": t.string().optional(),
+            "appview": t.proxy(renames["ScreenviewDataIn"]).optional(),
+            "landingPagePath": t.string().optional(),
+            "pageview": t.proxy(renames["PageviewDataIn"]).optional(),
+            "hostname": t.string().optional(),
+            "event": t.proxy(renames["EventDataIn"]).optional(),
+            "goals": t.proxy(renames["GoalSetDataIn"]).optional(),
+            "medium": t.string().optional(),
+            "keyword": t.string().optional(),
+            "activityTime": t.string().optional(),
+            "source": t.string().optional(),
+        }
+    ).named(renames["ActivityIn"])
+    types["ActivityOut"] = t.struct(
+        {
+            "ecommerce": t.proxy(renames["EcommerceDataOut"]).optional(),
+            "channelGrouping": t.string().optional(),
+            "activityType": t.string().optional(),
+            "customDimension": t.array(
+                t.proxy(renames["CustomDimensionOut"])
+            ).optional(),
+            "campaign": t.string().optional(),
+            "appview": t.proxy(renames["ScreenviewDataOut"]).optional(),
+            "landingPagePath": t.string().optional(),
+            "pageview": t.proxy(renames["PageviewDataOut"]).optional(),
+            "hostname": t.string().optional(),
+            "event": t.proxy(renames["EventDataOut"]).optional(),
+            "goals": t.proxy(renames["GoalSetDataOut"]).optional(),
+            "medium": t.string().optional(),
+            "keyword": t.string().optional(),
+            "activityTime": t.string().optional(),
+            "source": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ActivityOut"])
+    types["PivotValueRegionIn"] = t.struct(
+        {"values": t.array(t.string()).optional()}
+    ).named(renames["PivotValueRegionIn"])
+    types["PivotValueRegionOut"] = t.struct(
+        {
+            "values": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PivotValueRegionOut"])
+    types["DimensionIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "histogramBuckets": t.array(t.string()).optional(),
+        }
+    ).named(renames["DimensionIn"])
+    types["DimensionOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "histogramBuckets": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DimensionOut"])
+    types["SearchUserActivityRequestIn"] = t.struct(
+        {
+            "pageSize": t.integer().optional(),
+            "viewId": t.string(),
+            "activityTypes": t.array(t.string()).optional(),
+            "pageToken": t.string().optional(),
+            "user": t.proxy(renames["UserIn"]),
+            "dateRange": t.proxy(renames["DateRangeIn"]).optional(),
+        }
+    ).named(renames["SearchUserActivityRequestIn"])
+    types["SearchUserActivityRequestOut"] = t.struct(
+        {
+            "pageSize": t.integer().optional(),
+            "viewId": t.string(),
+            "activityTypes": t.array(t.string()).optional(),
+            "pageToken": t.string().optional(),
+            "user": t.proxy(renames["UserOut"]),
+            "dateRange": t.proxy(renames["DateRangeOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SearchUserActivityRequestOut"])
+    types["SegmentFilterIn"] = t.struct(
+        {
+            "sequenceSegment": t.proxy(renames["SequenceSegmentIn"]).optional(),
+            "simpleSegment": t.proxy(renames["SimpleSegmentIn"]).optional(),
+            "not": t.boolean().optional(),
+        }
+    ).named(renames["SegmentFilterIn"])
+    types["SegmentFilterOut"] = t.struct(
+        {
+            "sequenceSegment": t.proxy(renames["SequenceSegmentOut"]).optional(),
+            "simpleSegment": t.proxy(renames["SimpleSegmentOut"]).optional(),
+            "not": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SegmentFilterOut"])
+    types["MetricFilterClauseIn"] = t.struct(
+        {
+            "filters": t.array(t.proxy(renames["MetricFilterIn"])).optional(),
+            "operator": t.string().optional(),
+        }
+    ).named(renames["MetricFilterClauseIn"])
+    types["MetricFilterClauseOut"] = t.struct(
+        {
+            "filters": t.array(t.proxy(renames["MetricFilterOut"])).optional(),
+            "operator": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MetricFilterClauseOut"])
+    types["GetReportsRequestIn"] = t.struct(
+        {
+            "reportRequests": t.array(t.proxy(renames["ReportRequestIn"])).optional(),
+            "useResourceQuotas": t.boolean().optional(),
+        }
+    ).named(renames["GetReportsRequestIn"])
+    types["GetReportsRequestOut"] = t.struct(
+        {
+            "reportRequests": t.array(t.proxy(renames["ReportRequestOut"])).optional(),
+            "useResourceQuotas": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetReportsRequestOut"])
+    types["SegmentFilterClauseIn"] = t.struct(
+        {
+            "not": t.boolean().optional(),
+            "dimensionFilter": t.proxy(renames["SegmentDimensionFilterIn"]).optional(),
+            "metricFilter": t.proxy(renames["SegmentMetricFilterIn"]).optional(),
+        }
+    ).named(renames["SegmentFilterClauseIn"])
+    types["SegmentFilterClauseOut"] = t.struct(
+        {
+            "not": t.boolean().optional(),
+            "dimensionFilter": t.proxy(renames["SegmentDimensionFilterOut"]).optional(),
+            "metricFilter": t.proxy(renames["SegmentMetricFilterOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SegmentFilterClauseOut"])
+    types["PageviewDataIn"] = t.struct(
+        {"pageTitle": t.string().optional(), "pagePath": t.string().optional()}
+    ).named(renames["PageviewDataIn"])
+    types["PageviewDataOut"] = t.struct(
+        {
+            "pageTitle": t.string().optional(),
+            "pagePath": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PageviewDataOut"])
+    types["SearchUserActivityResponseIn"] = t.struct(
+        {
+            "sessions": t.array(t.proxy(renames["UserActivitySessionIn"])).optional(),
+            "totalRows": t.integer().optional(),
+            "sampleRate": t.number().optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["SearchUserActivityResponseIn"])
+    types["SearchUserActivityResponseOut"] = t.struct(
+        {
+            "sessions": t.array(t.proxy(renames["UserActivitySessionOut"])).optional(),
+            "totalRows": t.integer().optional(),
+            "sampleRate": t.number().optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SearchUserActivityResponseOut"])
+    types["CustomDimensionIn"] = t.struct(
+        {"value": t.string().optional(), "index": t.integer().optional()}
+    ).named(renames["CustomDimensionIn"])
+    types["CustomDimensionOut"] = t.struct(
+        {
+            "value": t.string().optional(),
+            "index": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CustomDimensionOut"])
+    types["PivotHeaderIn"] = t.struct(
+        {
+            "totalPivotGroupsCount": t.integer().optional(),
+            "pivotHeaderEntries": t.array(
+                t.proxy(renames["PivotHeaderEntryIn"])
+            ).optional(),
+        }
+    ).named(renames["PivotHeaderIn"])
+    types["PivotHeaderOut"] = t.struct(
+        {
+            "totalPivotGroupsCount": t.integer().optional(),
+            "pivotHeaderEntries": t.array(
+                t.proxy(renames["PivotHeaderEntryOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PivotHeaderOut"])
+    types["ReportRequestIn"] = t.struct(
+        {
+            "pivots": t.array(t.proxy(renames["PivotIn"])).optional(),
+            "cohortGroup": t.proxy(renames["CohortGroupIn"]).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
+            "dimensionFilterClauses": t.array(
+                t.proxy(renames["DimensionFilterClauseIn"])
+            ).optional(),
+            "hideTotals": t.boolean().optional(),
+            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
+            "segments": t.array(t.proxy(renames["SegmentIn"])).optional(),
+            "viewId": t.string().optional(),
+            "includeEmptyRows": t.boolean().optional(),
+            "metricFilterClauses": t.array(
+                t.proxy(renames["MetricFilterClauseIn"])
+            ).optional(),
+            "dateRanges": t.array(t.proxy(renames["DateRangeIn"])).optional(),
+            "pageSize": t.integer().optional(),
+            "samplingLevel": t.string().optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+            "filtersExpression": t.string().optional(),
+            "pageToken": t.string().optional(),
+            "hideValueRanges": t.boolean().optional(),
+        }
+    ).named(renames["ReportRequestIn"])
+    types["ReportRequestOut"] = t.struct(
+        {
+            "pivots": t.array(t.proxy(renames["PivotOut"])).optional(),
+            "cohortGroup": t.proxy(renames["CohortGroupOut"]).optional(),
+            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
+            "dimensionFilterClauses": t.array(
+                t.proxy(renames["DimensionFilterClauseOut"])
+            ).optional(),
+            "hideTotals": t.boolean().optional(),
+            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "segments": t.array(t.proxy(renames["SegmentOut"])).optional(),
+            "viewId": t.string().optional(),
+            "includeEmptyRows": t.boolean().optional(),
+            "metricFilterClauses": t.array(
+                t.proxy(renames["MetricFilterClauseOut"])
+            ).optional(),
+            "dateRanges": t.array(t.proxy(renames["DateRangeOut"])).optional(),
+            "pageSize": t.integer().optional(),
+            "samplingLevel": t.string().optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
+            "filtersExpression": t.string().optional(),
+            "pageToken": t.string().optional(),
+            "hideValueRanges": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReportRequestOut"])
+    types["GoalDataIn"] = t.struct(
+        {
+            "goalPreviousStep1": t.string().optional(),
+            "goalCompletionLocation": t.string().optional(),
+            "goalName": t.string().optional(),
+            "goalPreviousStep3": t.string().optional(),
+            "goalPreviousStep2": t.string().optional(),
+            "goalValue": t.number().optional(),
+            "goalCompletions": t.string().optional(),
+            "goalIndex": t.integer().optional(),
+        }
+    ).named(renames["GoalDataIn"])
+    types["GoalDataOut"] = t.struct(
+        {
+            "goalPreviousStep1": t.string().optional(),
+            "goalCompletionLocation": t.string().optional(),
+            "goalName": t.string().optional(),
+            "goalPreviousStep3": t.string().optional(),
+            "goalPreviousStep2": t.string().optional(),
+            "goalValue": t.number().optional(),
+            "goalCompletions": t.string().optional(),
+            "goalIndex": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoalDataOut"])
+    types["DateRangeValuesIn"] = t.struct(
+        {
+            "values": t.array(t.string()).optional(),
+            "pivotValueRegions": t.array(
+                t.proxy(renames["PivotValueRegionIn"])
+            ).optional(),
+        }
+    ).named(renames["DateRangeValuesIn"])
+    types["DateRangeValuesOut"] = t.struct(
+        {
+            "values": t.array(t.string()).optional(),
+            "pivotValueRegions": t.array(
+                t.proxy(renames["PivotValueRegionOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DateRangeValuesOut"])
     types["ProductDataIn"] = t.struct(
         {
-            "productQuantity": t.string().optional(),
-            "productName": t.string().optional(),
             "productSku": t.string().optional(),
             "itemRevenue": t.number().optional(),
+            "productQuantity": t.string().optional(),
+            "productName": t.string().optional(),
         }
     ).named(renames["ProductDataIn"])
     types["ProductDataOut"] = t.struct(
         {
-            "productQuantity": t.string().optional(),
-            "productName": t.string().optional(),
             "productSku": t.string().optional(),
             "itemRevenue": t.number().optional(),
+            "productQuantity": t.string().optional(),
+            "productName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ProductDataOut"])
+    types["OrderByIn"] = t.struct(
+        {
+            "fieldName": t.string().optional(),
+            "orderType": t.string().optional(),
+            "sortOrder": t.string().optional(),
+        }
+    ).named(renames["OrderByIn"])
+    types["OrderByOut"] = t.struct(
+        {
+            "fieldName": t.string().optional(),
+            "orderType": t.string().optional(),
+            "sortOrder": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OrderByOut"])
+    types["UserIn"] = t.struct(
+        {"userId": t.string().optional(), "type": t.string().optional()}
+    ).named(renames["UserIn"])
+    types["UserOut"] = t.struct(
+        {
+            "userId": t.string().optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UserOut"])
+    types["ResourceQuotasRemainingIn"] = t.struct(
+        {
+            "dailyQuotaTokensRemaining": t.integer().optional(),
+            "hourlyQuotaTokensRemaining": t.integer().optional(),
+        }
+    ).named(renames["ResourceQuotasRemainingIn"])
+    types["ResourceQuotasRemainingOut"] = t.struct(
+        {
+            "dailyQuotaTokensRemaining": t.integer().optional(),
+            "hourlyQuotaTokensRemaining": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ResourceQuotasRemainingOut"])
+    types["DimensionFilterClauseIn"] = t.struct(
+        {
+            "operator": t.string().optional(),
+            "filters": t.array(t.proxy(renames["DimensionFilterIn"])).optional(),
+        }
+    ).named(renames["DimensionFilterClauseIn"])
+    types["DimensionFilterClauseOut"] = t.struct(
+        {
+            "operator": t.string().optional(),
+            "filters": t.array(t.proxy(renames["DimensionFilterOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DimensionFilterClauseOut"])
+    types["UserActivitySessionIn"] = t.struct(
+        {
+            "activities": t.array(t.proxy(renames["ActivityIn"])).optional(),
+            "platform": t.string().optional(),
+            "deviceCategory": t.string().optional(),
+            "dataSource": t.string().optional(),
+            "sessionDate": t.string().optional(),
+            "sessionId": t.string().optional(),
+        }
+    ).named(renames["UserActivitySessionIn"])
+    types["UserActivitySessionOut"] = t.struct(
+        {
+            "activities": t.array(t.proxy(renames["ActivityOut"])).optional(),
+            "platform": t.string().optional(),
+            "deviceCategory": t.string().optional(),
+            "dataSource": t.string().optional(),
+            "sessionDate": t.string().optional(),
+            "sessionId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UserActivitySessionOut"])
+    types["OrFiltersForSegmentIn"] = t.struct(
+        {
+            "segmentFilterClauses": t.array(
+                t.proxy(renames["SegmentFilterClauseIn"])
+            ).optional()
+        }
+    ).named(renames["OrFiltersForSegmentIn"])
+    types["OrFiltersForSegmentOut"] = t.struct(
+        {
+            "segmentFilterClauses": t.array(
+                t.proxy(renames["SegmentFilterClauseOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OrFiltersForSegmentOut"])
     types["SequenceSegmentIn"] = t.struct(
         {
             "segmentSequenceSteps": t.array(
@@ -522,459 +888,76 @@ def import_analyticsreporting() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SequenceSegmentOut"])
-    types["SegmentMetricFilterIn"] = t.struct(
+    types["ColumnHeaderIn"] = t.struct(
         {
-            "operator": t.string().optional(),
-            "scope": t.string().optional(),
-            "maxComparisonValue": t.string().optional(),
-            "comparisonValue": t.string().optional(),
-            "metricName": t.string().optional(),
+            "metricHeader": t.proxy(renames["MetricHeaderIn"]).optional(),
+            "dimensions": t.array(t.string()).optional(),
         }
-    ).named(renames["SegmentMetricFilterIn"])
-    types["SegmentMetricFilterOut"] = t.struct(
+    ).named(renames["ColumnHeaderIn"])
+    types["ColumnHeaderOut"] = t.struct(
         {
-            "operator": t.string().optional(),
-            "scope": t.string().optional(),
-            "maxComparisonValue": t.string().optional(),
-            "comparisonValue": t.string().optional(),
-            "metricName": t.string().optional(),
+            "metricHeader": t.proxy(renames["MetricHeaderOut"]).optional(),
+            "dimensions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SegmentMetricFilterOut"])
-    types["PageviewDataIn"] = t.struct(
-        {"pagePath": t.string().optional(), "pageTitle": t.string().optional()}
-    ).named(renames["PageviewDataIn"])
-    types["PageviewDataOut"] = t.struct(
-        {
-            "pagePath": t.string().optional(),
-            "pageTitle": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PageviewDataOut"])
+    ).named(renames["ColumnHeaderOut"])
     types["CohortIn"] = t.struct(
         {
+            "name": t.string().optional(),
             "type": t.string().optional(),
             "dateRange": t.proxy(renames["DateRangeIn"]).optional(),
-            "name": t.string().optional(),
         }
     ).named(renames["CohortIn"])
     types["CohortOut"] = t.struct(
         {
+            "name": t.string().optional(),
             "type": t.string().optional(),
             "dateRange": t.proxy(renames["DateRangeOut"]).optional(),
-            "name": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CohortOut"])
-    types["SimpleSegmentIn"] = t.struct(
+    types["ScreenviewDataIn"] = t.struct(
         {
-            "orFiltersForSegment": t.array(
-                t.proxy(renames["OrFiltersForSegmentIn"])
-            ).optional()
+            "screenName": t.string().optional(),
+            "mobileDeviceBranding": t.string().optional(),
+            "mobileDeviceModel": t.string().optional(),
+            "appName": t.string().optional(),
         }
-    ).named(renames["SimpleSegmentIn"])
-    types["SimpleSegmentOut"] = t.struct(
+    ).named(renames["ScreenviewDataIn"])
+    types["ScreenviewDataOut"] = t.struct(
         {
-            "orFiltersForSegment": t.array(
-                t.proxy(renames["OrFiltersForSegmentOut"])
-            ).optional(),
+            "screenName": t.string().optional(),
+            "mobileDeviceBranding": t.string().optional(),
+            "mobileDeviceModel": t.string().optional(),
+            "appName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SimpleSegmentOut"])
-    types["ResourceQuotasRemainingIn"] = t.struct(
+    ).named(renames["ScreenviewDataOut"])
+    types["PivotIn"] = t.struct(
         {
-            "hourlyQuotaTokensRemaining": t.integer().optional(),
-            "dailyQuotaTokensRemaining": t.integer().optional(),
-        }
-    ).named(renames["ResourceQuotasRemainingIn"])
-    types["ResourceQuotasRemainingOut"] = t.struct(
-        {
-            "hourlyQuotaTokensRemaining": t.integer().optional(),
-            "dailyQuotaTokensRemaining": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ResourceQuotasRemainingOut"])
-    types["SearchUserActivityRequestIn"] = t.struct(
-        {
-            "viewId": t.string(),
-            "pageToken": t.string().optional(),
-            "pageSize": t.integer().optional(),
-            "user": t.proxy(renames["UserIn"]),
-            "activityTypes": t.array(t.string()).optional(),
-            "dateRange": t.proxy(renames["DateRangeIn"]).optional(),
-        }
-    ).named(renames["SearchUserActivityRequestIn"])
-    types["SearchUserActivityRequestOut"] = t.struct(
-        {
-            "viewId": t.string(),
-            "pageToken": t.string().optional(),
-            "pageSize": t.integer().optional(),
-            "user": t.proxy(renames["UserOut"]),
-            "activityTypes": t.array(t.string()).optional(),
-            "dateRange": t.proxy(renames["DateRangeOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SearchUserActivityRequestOut"])
-    types["MetricHeaderIn"] = t.struct(
-        {
-            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderIn"])).optional(),
-            "metricHeaderEntries": t.array(
-                t.proxy(renames["MetricHeaderEntryIn"])
-            ).optional(),
-        }
-    ).named(renames["MetricHeaderIn"])
-    types["MetricHeaderOut"] = t.struct(
-        {
-            "pivotHeaders": t.array(t.proxy(renames["PivotHeaderOut"])).optional(),
-            "metricHeaderEntries": t.array(
-                t.proxy(renames["MetricHeaderEntryOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricHeaderOut"])
-    types["OrderByIn"] = t.struct(
-        {
-            "fieldName": t.string().optional(),
-            "orderType": t.string().optional(),
-            "sortOrder": t.string().optional(),
-        }
-    ).named(renames["OrderByIn"])
-    types["OrderByOut"] = t.struct(
-        {
-            "fieldName": t.string().optional(),
-            "orderType": t.string().optional(),
-            "sortOrder": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OrderByOut"])
-    types["DateRangeIn"] = t.struct(
-        {"startDate": t.string().optional(), "endDate": t.string().optional()}
-    ).named(renames["DateRangeIn"])
-    types["DateRangeOut"] = t.struct(
-        {
-            "startDate": t.string().optional(),
-            "endDate": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DateRangeOut"])
-    types["GoalSetDataIn"] = t.struct(
-        {"goals": t.array(t.proxy(renames["GoalDataIn"])).optional()}
-    ).named(renames["GoalSetDataIn"])
-    types["GoalSetDataOut"] = t.struct(
-        {
-            "goals": t.array(t.proxy(renames["GoalDataOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoalSetDataOut"])
-    types["DynamicSegmentIn"] = t.struct(
-        {
-            "sessionSegment": t.proxy(renames["SegmentDefinitionIn"]).optional(),
-            "userSegment": t.proxy(renames["SegmentDefinitionIn"]).optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["DynamicSegmentIn"])
-    types["DynamicSegmentOut"] = t.struct(
-        {
-            "sessionSegment": t.proxy(renames["SegmentDefinitionOut"]).optional(),
-            "userSegment": t.proxy(renames["SegmentDefinitionOut"]).optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DynamicSegmentOut"])
-    types["OrFiltersForSegmentIn"] = t.struct(
-        {
-            "segmentFilterClauses": t.array(
-                t.proxy(renames["SegmentFilterClauseIn"])
-            ).optional()
-        }
-    ).named(renames["OrFiltersForSegmentIn"])
-    types["OrFiltersForSegmentOut"] = t.struct(
-        {
-            "segmentFilterClauses": t.array(
-                t.proxy(renames["SegmentFilterClauseOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OrFiltersForSegmentOut"])
-    types["SegmentDimensionFilterIn"] = t.struct(
-        {
-            "operator": t.string().optional(),
-            "expressions": t.array(t.string()).optional(),
-            "maxComparisonValue": t.string().optional(),
-            "minComparisonValue": t.string().optional(),
-            "caseSensitive": t.boolean().optional(),
-            "dimensionName": t.string().optional(),
-        }
-    ).named(renames["SegmentDimensionFilterIn"])
-    types["SegmentDimensionFilterOut"] = t.struct(
-        {
-            "operator": t.string().optional(),
-            "expressions": t.array(t.string()).optional(),
-            "maxComparisonValue": t.string().optional(),
-            "minComparisonValue": t.string().optional(),
-            "caseSensitive": t.boolean().optional(),
-            "dimensionName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SegmentDimensionFilterOut"])
-    types["DimensionFilterClauseIn"] = t.struct(
-        {
-            "filters": t.array(t.proxy(renames["DimensionFilterIn"])).optional(),
-            "operator": t.string().optional(),
-        }
-    ).named(renames["DimensionFilterClauseIn"])
-    types["DimensionFilterClauseOut"] = t.struct(
-        {
-            "filters": t.array(t.proxy(renames["DimensionFilterOut"])).optional(),
-            "operator": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DimensionFilterClauseOut"])
-    types["MetricIn"] = t.struct(
-        {
-            "formattingType": t.string().optional(),
-            "alias": t.string().optional(),
-            "expression": t.string().optional(),
-        }
-    ).named(renames["MetricIn"])
-    types["MetricOut"] = t.struct(
-        {
-            "formattingType": t.string().optional(),
-            "alias": t.string().optional(),
-            "expression": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricOut"])
-    types["SegmentFilterIn"] = t.struct(
-        {
-            "not": t.boolean().optional(),
-            "sequenceSegment": t.proxy(renames["SequenceSegmentIn"]).optional(),
-            "simpleSegment": t.proxy(renames["SimpleSegmentIn"]).optional(),
-        }
-    ).named(renames["SegmentFilterIn"])
-    types["SegmentFilterOut"] = t.struct(
-        {
-            "not": t.boolean().optional(),
-            "sequenceSegment": t.proxy(renames["SequenceSegmentOut"]).optional(),
-            "simpleSegment": t.proxy(renames["SimpleSegmentOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SegmentFilterOut"])
-    types["ReportDataIn"] = t.struct(
-        {
-            "maximums": t.array(t.proxy(renames["DateRangeValuesIn"])).optional(),
-            "totals": t.array(t.proxy(renames["DateRangeValuesIn"])).optional(),
-            "isDataGolden": t.boolean().optional(),
-            "minimums": t.array(t.proxy(renames["DateRangeValuesIn"])).optional(),
-            "rowCount": t.integer().optional(),
-            "dataLastRefreshed": t.string().optional(),
-            "rows": t.array(t.proxy(renames["ReportRowIn"])).optional(),
-            "emptyReason": t.string().optional(),
-            "samplingSpaceSizes": t.array(t.string()).optional(),
-            "samplesReadCounts": t.array(t.string()).optional(),
-        }
-    ).named(renames["ReportDataIn"])
-    types["ReportDataOut"] = t.struct(
-        {
-            "maximums": t.array(t.proxy(renames["DateRangeValuesOut"])).optional(),
-            "totals": t.array(t.proxy(renames["DateRangeValuesOut"])).optional(),
-            "isDataGolden": t.boolean().optional(),
-            "minimums": t.array(t.proxy(renames["DateRangeValuesOut"])).optional(),
-            "rowCount": t.integer().optional(),
-            "dataLastRefreshed": t.string().optional(),
-            "rows": t.array(t.proxy(renames["ReportRowOut"])).optional(),
-            "emptyReason": t.string().optional(),
-            "samplingSpaceSizes": t.array(t.string()).optional(),
-            "samplesReadCounts": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReportDataOut"])
-    types["EventDataIn"] = t.struct(
-        {
-            "eventCategory": t.string().optional(),
-            "eventAction": t.string().optional(),
-            "eventCount": t.string().optional(),
-            "eventValue": t.string().optional(),
-            "eventLabel": t.string().optional(),
-        }
-    ).named(renames["EventDataIn"])
-    types["EventDataOut"] = t.struct(
-        {
-            "eventCategory": t.string().optional(),
-            "eventAction": t.string().optional(),
-            "eventCount": t.string().optional(),
-            "eventValue": t.string().optional(),
-            "eventLabel": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EventDataOut"])
-    types["DimensionFilterIn"] = t.struct(
-        {
-            "dimensionName": t.string().optional(),
-            "caseSensitive": t.boolean().optional(),
-            "expressions": t.array(t.string()).optional(),
-            "not": t.boolean().optional(),
-            "operator": t.string().optional(),
-        }
-    ).named(renames["DimensionFilterIn"])
-    types["DimensionFilterOut"] = t.struct(
-        {
-            "dimensionName": t.string().optional(),
-            "caseSensitive": t.boolean().optional(),
-            "expressions": t.array(t.string()).optional(),
-            "not": t.boolean().optional(),
-            "operator": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DimensionFilterOut"])
-    types["SegmentIn"] = t.struct(
-        {
-            "segmentId": t.string().optional(),
-            "dynamicSegment": t.proxy(renames["DynamicSegmentIn"]).optional(),
-        }
-    ).named(renames["SegmentIn"])
-    types["SegmentOut"] = t.struct(
-        {
-            "segmentId": t.string().optional(),
-            "dynamicSegment": t.proxy(renames["DynamicSegmentOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SegmentOut"])
-    types["GoalDataIn"] = t.struct(
-        {
-            "goalValue": t.number().optional(),
-            "goalIndex": t.integer().optional(),
-            "goalCompletions": t.string().optional(),
-            "goalPreviousStep1": t.string().optional(),
-            "goalPreviousStep2": t.string().optional(),
-            "goalCompletionLocation": t.string().optional(),
-            "goalPreviousStep3": t.string().optional(),
-            "goalName": t.string().optional(),
-        }
-    ).named(renames["GoalDataIn"])
-    types["GoalDataOut"] = t.struct(
-        {
-            "goalValue": t.number().optional(),
-            "goalIndex": t.integer().optional(),
-            "goalCompletions": t.string().optional(),
-            "goalPreviousStep1": t.string().optional(),
-            "goalPreviousStep2": t.string().optional(),
-            "goalCompletionLocation": t.string().optional(),
-            "goalPreviousStep3": t.string().optional(),
-            "goalName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoalDataOut"])
-    types["PivotHeaderEntryIn"] = t.struct(
-        {
-            "metric": t.proxy(renames["MetricHeaderEntryIn"]).optional(),
-            "dimensionValues": t.array(t.string()).optional(),
-            "dimensionNames": t.array(t.string()).optional(),
-        }
-    ).named(renames["PivotHeaderEntryIn"])
-    types["PivotHeaderEntryOut"] = t.struct(
-        {
-            "metric": t.proxy(renames["MetricHeaderEntryOut"]).optional(),
-            "dimensionValues": t.array(t.string()).optional(),
-            "dimensionNames": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PivotHeaderEntryOut"])
-    types["ReportRequestIn"] = t.struct(
-        {
-            "pivots": t.array(t.proxy(renames["PivotIn"])).optional(),
-            "viewId": t.string().optional(),
-            "hideValueRanges": t.boolean().optional(),
-            "includeEmptyRows": t.boolean().optional(),
-            "samplingLevel": t.string().optional(),
-            "hideTotals": t.boolean().optional(),
-            "metricFilterClauses": t.array(
-                t.proxy(renames["MetricFilterClauseIn"])
-            ).optional(),
-            "pageSize": t.integer().optional(),
-            "filtersExpression": t.string().optional(),
-            "dateRanges": t.array(t.proxy(renames["DateRangeIn"])).optional(),
-            "cohortGroup": t.proxy(renames["CohortGroupIn"]).optional(),
-            "segments": t.array(t.proxy(renames["SegmentIn"])).optional(),
-            "pageToken": t.string().optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
-            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
-            "orderBys": t.array(t.proxy(renames["OrderByIn"])).optional(),
             "dimensionFilterClauses": t.array(
                 t.proxy(renames["DimensionFilterClauseIn"])
             ).optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionIn"])).optional(),
+            "metrics": t.array(t.proxy(renames["MetricIn"])).optional(),
+            "startGroup": t.integer().optional(),
+            "maxGroupCount": t.integer().optional(),
         }
-    ).named(renames["ReportRequestIn"])
-    types["ReportRequestOut"] = t.struct(
+    ).named(renames["PivotIn"])
+    types["PivotOut"] = t.struct(
         {
-            "pivots": t.array(t.proxy(renames["PivotOut"])).optional(),
-            "viewId": t.string().optional(),
-            "hideValueRanges": t.boolean().optional(),
-            "includeEmptyRows": t.boolean().optional(),
-            "samplingLevel": t.string().optional(),
-            "hideTotals": t.boolean().optional(),
-            "metricFilterClauses": t.array(
-                t.proxy(renames["MetricFilterClauseOut"])
-            ).optional(),
-            "pageSize": t.integer().optional(),
-            "filtersExpression": t.string().optional(),
-            "dateRanges": t.array(t.proxy(renames["DateRangeOut"])).optional(),
-            "cohortGroup": t.proxy(renames["CohortGroupOut"]).optional(),
-            "segments": t.array(t.proxy(renames["SegmentOut"])).optional(),
-            "pageToken": t.string().optional(),
-            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
-            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
-            "orderBys": t.array(t.proxy(renames["OrderByOut"])).optional(),
             "dimensionFilterClauses": t.array(
                 t.proxy(renames["DimensionFilterClauseOut"])
             ).optional(),
+            "dimensions": t.array(t.proxy(renames["DimensionOut"])).optional(),
+            "metrics": t.array(t.proxy(renames["MetricOut"])).optional(),
+            "startGroup": t.integer().optional(),
+            "maxGroupCount": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ReportRequestOut"])
-    types["SegmentFilterClauseIn"] = t.struct(
-        {
-            "metricFilter": t.proxy(renames["SegmentMetricFilterIn"]).optional(),
-            "dimensionFilter": t.proxy(renames["SegmentDimensionFilterIn"]).optional(),
-            "not": t.boolean().optional(),
-        }
-    ).named(renames["SegmentFilterClauseIn"])
-    types["SegmentFilterClauseOut"] = t.struct(
-        {
-            "metricFilter": t.proxy(renames["SegmentMetricFilterOut"]).optional(),
-            "dimensionFilter": t.proxy(renames["SegmentDimensionFilterOut"]).optional(),
-            "not": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SegmentFilterClauseOut"])
-    types["MetricHeaderEntryIn"] = t.struct(
-        {"type": t.string().optional(), "name": t.string().optional()}
-    ).named(renames["MetricHeaderEntryIn"])
-    types["MetricHeaderEntryOut"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MetricHeaderEntryOut"])
+    ).named(renames["PivotOut"])
 
     functions = {}
-    functions["userActivitySearch"] = analyticsreporting.post(
-        "v4/userActivity:search",
-        t.struct(
-            {
-                "viewId": t.string(),
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "user": t.proxy(renames["UserIn"]),
-                "activityTypes": t.array(t.string()).optional(),
-                "dateRange": t.proxy(renames["DateRangeIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["SearchUserActivityResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["reportsBatchGet"] = analyticsreporting.post(
         "v4/reports:batchGet",
         t.struct(
@@ -987,6 +970,23 @@ def import_analyticsreporting() -> Import:
             }
         ),
         t.proxy(renames["GetReportsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["userActivitySearch"] = analyticsreporting.post(
+        "v4/userActivity:search",
+        t.struct(
+            {
+                "pageSize": t.integer().optional(),
+                "viewId": t.string(),
+                "activityTypes": t.array(t.string()).optional(),
+                "pageToken": t.string().optional(),
+                "user": t.proxy(renames["UserIn"]),
+                "dateRange": t.proxy(renames["DateRangeIn"]).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SearchUserActivityResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

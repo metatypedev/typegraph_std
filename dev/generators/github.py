@@ -1,6 +1,6 @@
-from generators.generator_script import GeneratorScript, File
+from generators.generator_script import GeneratorScript
 from typegraph.importers.openapi import OpenApiImporter
-from tools.util import complete_source_from
+from tools.util import get_files_from_importer
 
 
 class Github(GeneratorScript):
@@ -13,20 +13,11 @@ class Github(GeneratorScript):
         super().__init__("github")
 
     def pre_run(self):
-        # FIX
-        # 'BoxList' object has no attribute 'items'
         title = "ghes"
-        url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/api.github.com/dereferenced/api.github.com.2022-11-28.deref.yaml"
+        url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.0/ghes-3.0.yaml"
         try:
             importer = OpenApiImporter(name=title, url=url)
-            content, content_hint = complete_source_from(importer)
-            files = [
-                File(f"{title}.py", content),
-                File(f"{title}.pyi", content_hint),
-            ]
-            for file in files:
-                file.flag("black", True)
-                self.files.append(file)
+            self.files += get_files_from_importer(title, importer)
         except Exception as e:
             self.error(f"Failed {title}: {url}")
             self.error(e)

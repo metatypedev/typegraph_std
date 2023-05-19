@@ -1,7 +1,7 @@
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph.importers.base.importer import Import
 from typegraph import t
 from box import Box
+from typegraph.importers.base.importer import Import
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_cloudbilling() -> Import:
@@ -9,67 +9,58 @@ def import_cloudbilling() -> Import:
 
     renames = {
         "ErrorResponse": "_cloudbilling_1_ErrorResponse",
-        "TestIamPermissionsRequestIn": "_cloudbilling_2_TestIamPermissionsRequestIn",
-        "TestIamPermissionsRequestOut": "_cloudbilling_3_TestIamPermissionsRequestOut",
-        "TestIamPermissionsResponseIn": "_cloudbilling_4_TestIamPermissionsResponseIn",
-        "TestIamPermissionsResponseOut": "_cloudbilling_5_TestIamPermissionsResponseOut",
-        "AggregationInfoIn": "_cloudbilling_6_AggregationInfoIn",
-        "AggregationInfoOut": "_cloudbilling_7_AggregationInfoOut",
-        "AuditLogConfigIn": "_cloudbilling_8_AuditLogConfigIn",
-        "AuditLogConfigOut": "_cloudbilling_9_AuditLogConfigOut",
-        "ListProjectBillingInfoResponseIn": "_cloudbilling_10_ListProjectBillingInfoResponseIn",
-        "ListProjectBillingInfoResponseOut": "_cloudbilling_11_ListProjectBillingInfoResponseOut",
-        "MoneyIn": "_cloudbilling_12_MoneyIn",
-        "MoneyOut": "_cloudbilling_13_MoneyOut",
-        "BillingAccountIn": "_cloudbilling_14_BillingAccountIn",
-        "BillingAccountOut": "_cloudbilling_15_BillingAccountOut",
-        "ExprIn": "_cloudbilling_16_ExprIn",
-        "ExprOut": "_cloudbilling_17_ExprOut",
-        "ProjectBillingInfoIn": "_cloudbilling_18_ProjectBillingInfoIn",
-        "ProjectBillingInfoOut": "_cloudbilling_19_ProjectBillingInfoOut",
+        "TestIamPermissionsResponseIn": "_cloudbilling_2_TestIamPermissionsResponseIn",
+        "TestIamPermissionsResponseOut": "_cloudbilling_3_TestIamPermissionsResponseOut",
+        "ExprIn": "_cloudbilling_4_ExprIn",
+        "ExprOut": "_cloudbilling_5_ExprOut",
+        "ListServicesResponseIn": "_cloudbilling_6_ListServicesResponseIn",
+        "ListServicesResponseOut": "_cloudbilling_7_ListServicesResponseOut",
+        "ProjectBillingInfoIn": "_cloudbilling_8_ProjectBillingInfoIn",
+        "ProjectBillingInfoOut": "_cloudbilling_9_ProjectBillingInfoOut",
+        "SkuIn": "_cloudbilling_10_SkuIn",
+        "SkuOut": "_cloudbilling_11_SkuOut",
+        "TestIamPermissionsRequestIn": "_cloudbilling_12_TestIamPermissionsRequestIn",
+        "TestIamPermissionsRequestOut": "_cloudbilling_13_TestIamPermissionsRequestOut",
+        "AggregationInfoIn": "_cloudbilling_14_AggregationInfoIn",
+        "AggregationInfoOut": "_cloudbilling_15_AggregationInfoOut",
+        "SetIamPolicyRequestIn": "_cloudbilling_16_SetIamPolicyRequestIn",
+        "SetIamPolicyRequestOut": "_cloudbilling_17_SetIamPolicyRequestOut",
+        "GeoTaxonomyIn": "_cloudbilling_18_GeoTaxonomyIn",
+        "GeoTaxonomyOut": "_cloudbilling_19_GeoTaxonomyOut",
         "PricingExpressionIn": "_cloudbilling_20_PricingExpressionIn",
         "PricingExpressionOut": "_cloudbilling_21_PricingExpressionOut",
-        "TierRateIn": "_cloudbilling_22_TierRateIn",
-        "TierRateOut": "_cloudbilling_23_TierRateOut",
-        "PolicyIn": "_cloudbilling_24_PolicyIn",
-        "PolicyOut": "_cloudbilling_25_PolicyOut",
-        "ListServicesResponseIn": "_cloudbilling_26_ListServicesResponseIn",
-        "ListServicesResponseOut": "_cloudbilling_27_ListServicesResponseOut",
-        "SetIamPolicyRequestIn": "_cloudbilling_28_SetIamPolicyRequestIn",
-        "SetIamPolicyRequestOut": "_cloudbilling_29_SetIamPolicyRequestOut",
-        "SkuIn": "_cloudbilling_30_SkuIn",
-        "SkuOut": "_cloudbilling_31_SkuOut",
+        "MoneyIn": "_cloudbilling_22_MoneyIn",
+        "MoneyOut": "_cloudbilling_23_MoneyOut",
+        "ListBillingAccountsResponseIn": "_cloudbilling_24_ListBillingAccountsResponseIn",
+        "ListBillingAccountsResponseOut": "_cloudbilling_25_ListBillingAccountsResponseOut",
+        "PricingInfoIn": "_cloudbilling_26_PricingInfoIn",
+        "PricingInfoOut": "_cloudbilling_27_PricingInfoOut",
+        "BindingIn": "_cloudbilling_28_BindingIn",
+        "BindingOut": "_cloudbilling_29_BindingOut",
+        "AuditLogConfigIn": "_cloudbilling_30_AuditLogConfigIn",
+        "AuditLogConfigOut": "_cloudbilling_31_AuditLogConfigOut",
         "ServiceIn": "_cloudbilling_32_ServiceIn",
         "ServiceOut": "_cloudbilling_33_ServiceOut",
-        "BindingIn": "_cloudbilling_34_BindingIn",
-        "BindingOut": "_cloudbilling_35_BindingOut",
-        "AuditConfigIn": "_cloudbilling_36_AuditConfigIn",
-        "AuditConfigOut": "_cloudbilling_37_AuditConfigOut",
-        "CategoryIn": "_cloudbilling_38_CategoryIn",
-        "CategoryOut": "_cloudbilling_39_CategoryOut",
-        "PricingInfoIn": "_cloudbilling_40_PricingInfoIn",
-        "PricingInfoOut": "_cloudbilling_41_PricingInfoOut",
-        "GeoTaxonomyIn": "_cloudbilling_42_GeoTaxonomyIn",
-        "GeoTaxonomyOut": "_cloudbilling_43_GeoTaxonomyOut",
-        "ListSkusResponseIn": "_cloudbilling_44_ListSkusResponseIn",
-        "ListSkusResponseOut": "_cloudbilling_45_ListSkusResponseOut",
-        "ListBillingAccountsResponseIn": "_cloudbilling_46_ListBillingAccountsResponseIn",
-        "ListBillingAccountsResponseOut": "_cloudbilling_47_ListBillingAccountsResponseOut",
+        "ListSkusResponseIn": "_cloudbilling_34_ListSkusResponseIn",
+        "ListSkusResponseOut": "_cloudbilling_35_ListSkusResponseOut",
+        "BillingAccountIn": "_cloudbilling_36_BillingAccountIn",
+        "BillingAccountOut": "_cloudbilling_37_BillingAccountOut",
+        "ListProjectBillingInfoResponseIn": "_cloudbilling_38_ListProjectBillingInfoResponseIn",
+        "ListProjectBillingInfoResponseOut": "_cloudbilling_39_ListProjectBillingInfoResponseOut",
+        "PolicyIn": "_cloudbilling_40_PolicyIn",
+        "PolicyOut": "_cloudbilling_41_PolicyOut",
+        "AuditConfigIn": "_cloudbilling_42_AuditConfigIn",
+        "AuditConfigOut": "_cloudbilling_43_AuditConfigOut",
+        "CategoryIn": "_cloudbilling_44_CategoryIn",
+        "CategoryOut": "_cloudbilling_45_CategoryOut",
+        "TierRateIn": "_cloudbilling_46_TierRateIn",
+        "TierRateOut": "_cloudbilling_47_TierRateOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["TestIamPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsRequestIn"])
-    types["TestIamPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsRequestOut"])
     types["TestIamPermissionsResponseIn"] = t.struct(
         {"permissions": t.array(t.string()).optional()}
     ).named(renames["TestIamPermissionsResponseIn"])
@@ -79,168 +70,23 @@ def import_cloudbilling() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TestIamPermissionsResponseOut"])
-    types["AggregationInfoIn"] = t.struct(
-        {
-            "aggregationCount": t.integer().optional(),
-            "aggregationLevel": t.string(),
-            "aggregationInterval": t.string(),
-        }
-    ).named(renames["AggregationInfoIn"])
-    types["AggregationInfoOut"] = t.struct(
-        {
-            "aggregationCount": t.integer().optional(),
-            "aggregationLevel": t.string(),
-            "aggregationInterval": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AggregationInfoOut"])
-    types["AuditLogConfigIn"] = t.struct(
-        {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
-        }
-    ).named(renames["AuditLogConfigIn"])
-    types["AuditLogConfigOut"] = t.struct(
-        {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AuditLogConfigOut"])
-    types["ListProjectBillingInfoResponseIn"] = t.struct(
-        {
-            "projectBillingInfo": t.array(
-                t.proxy(renames["ProjectBillingInfoIn"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListProjectBillingInfoResponseIn"])
-    types["ListProjectBillingInfoResponseOut"] = t.struct(
-        {
-            "projectBillingInfo": t.array(
-                t.proxy(renames["ProjectBillingInfoOut"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListProjectBillingInfoResponseOut"])
-    types["MoneyIn"] = t.struct(
-        {
-            "nanos": t.integer().optional(),
-            "currencyCode": t.string().optional(),
-            "units": t.string().optional(),
-        }
-    ).named(renames["MoneyIn"])
-    types["MoneyOut"] = t.struct(
-        {
-            "nanos": t.integer().optional(),
-            "currencyCode": t.string().optional(),
-            "units": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MoneyOut"])
-    types["BillingAccountIn"] = t.struct(
-        {
-            "displayName": t.string().optional(),
-            "masterBillingAccount": t.string().optional(),
-        }
-    ).named(renames["BillingAccountIn"])
-    types["BillingAccountOut"] = t.struct(
-        {
-            "open": t.boolean().optional(),
-            "displayName": t.string().optional(),
-            "masterBillingAccount": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BillingAccountOut"])
     types["ExprIn"] = t.struct(
         {
-            "location": t.string().optional(),
             "expression": t.string().optional(),
-            "description": t.string().optional(),
             "title": t.string().optional(),
+            "location": t.string().optional(),
+            "description": t.string().optional(),
         }
     ).named(renames["ExprIn"])
     types["ExprOut"] = t.struct(
         {
-            "location": t.string().optional(),
             "expression": t.string().optional(),
-            "description": t.string().optional(),
             "title": t.string().optional(),
+            "location": t.string().optional(),
+            "description": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ExprOut"])
-    types["ProjectBillingInfoIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "billingEnabled": t.boolean().optional(),
-            "projectId": t.string().optional(),
-            "billingAccountName": t.string().optional(),
-        }
-    ).named(renames["ProjectBillingInfoIn"])
-    types["ProjectBillingInfoOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "billingEnabled": t.boolean().optional(),
-            "projectId": t.string().optional(),
-            "billingAccountName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ProjectBillingInfoOut"])
-    types["PricingExpressionIn"] = t.struct(
-        {
-            "tieredRates": t.array(t.proxy(renames["TierRateIn"])).optional(),
-            "usageUnit": t.string().optional(),
-            "usageUnitDescription": t.string().optional(),
-            "baseUnitDescription": t.string().optional(),
-            "baseUnit": t.string().optional(),
-            "baseUnitConversionFactor": t.number().optional(),
-            "displayQuantity": t.number().optional(),
-        }
-    ).named(renames["PricingExpressionIn"])
-    types["PricingExpressionOut"] = t.struct(
-        {
-            "tieredRates": t.array(t.proxy(renames["TierRateOut"])).optional(),
-            "usageUnit": t.string().optional(),
-            "usageUnitDescription": t.string().optional(),
-            "baseUnitDescription": t.string().optional(),
-            "baseUnit": t.string().optional(),
-            "baseUnitConversionFactor": t.number().optional(),
-            "displayQuantity": t.number().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PricingExpressionOut"])
-    types["TierRateIn"] = t.struct(
-        {
-            "unitPrice": t.proxy(renames["MoneyIn"]).optional(),
-            "startUsageAmount": t.number().optional(),
-        }
-    ).named(renames["TierRateIn"])
-    types["TierRateOut"] = t.struct(
-        {
-            "unitPrice": t.proxy(renames["MoneyOut"]).optional(),
-            "startUsageAmount": t.number().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TierRateOut"])
-    types["PolicyIn"] = t.struct(
-        {
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
-            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
-            "version": t.integer().optional(),
-            "etag": t.string().optional(),
-        }
-    ).named(renames["PolicyIn"])
-    types["PolicyOut"] = t.struct(
-        {
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
-            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
-            "version": t.integer().optional(),
-            "etag": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PolicyOut"])
     types["ListServicesResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -254,6 +100,72 @@ def import_cloudbilling() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListServicesResponseOut"])
+    types["ProjectBillingInfoIn"] = t.struct(
+        {
+            "projectId": t.string().optional(),
+            "billingEnabled": t.boolean().optional(),
+            "billingAccountName": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["ProjectBillingInfoIn"])
+    types["ProjectBillingInfoOut"] = t.struct(
+        {
+            "projectId": t.string().optional(),
+            "billingEnabled": t.boolean().optional(),
+            "billingAccountName": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ProjectBillingInfoOut"])
+    types["SkuIn"] = t.struct(
+        {
+            "skuId": t.string().optional(),
+            "name": t.string().optional(),
+            "geoTaxonomy": t.proxy(renames["GeoTaxonomyIn"]).optional(),
+            "category": t.proxy(renames["CategoryIn"]).optional(),
+            "pricingInfo": t.array(t.proxy(renames["PricingInfoIn"])).optional(),
+            "serviceRegions": t.array(t.string()).optional(),
+            "description": t.string().optional(),
+            "serviceProviderName": t.string().optional(),
+        }
+    ).named(renames["SkuIn"])
+    types["SkuOut"] = t.struct(
+        {
+            "skuId": t.string().optional(),
+            "name": t.string().optional(),
+            "geoTaxonomy": t.proxy(renames["GeoTaxonomyOut"]).optional(),
+            "category": t.proxy(renames["CategoryOut"]).optional(),
+            "pricingInfo": t.array(t.proxy(renames["PricingInfoOut"])).optional(),
+            "serviceRegions": t.array(t.string()).optional(),
+            "description": t.string().optional(),
+            "serviceProviderName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SkuOut"])
+    types["TestIamPermissionsRequestIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsRequestIn"])
+    types["TestIamPermissionsRequestOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestIamPermissionsRequestOut"])
+    types["AggregationInfoIn"] = t.struct(
+        {
+            "aggregationInterval": t.string(),
+            "aggregationCount": t.integer().optional(),
+            "aggregationLevel": t.string(),
+        }
+    ).named(renames["AggregationInfoIn"])
+    types["AggregationInfoOut"] = t.struct(
+        {
+            "aggregationInterval": t.string(),
+            "aggregationCount": t.integer().optional(),
+            "aggregationLevel": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AggregationInfoOut"])
     types["SetIamPolicyRequestIn"] = t.struct(
         {
             "updateMask": t.string().optional(),
@@ -267,31 +179,116 @@ def import_cloudbilling() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SetIamPolicyRequestOut"])
-    types["SkuIn"] = t.struct(
+    types["GeoTaxonomyIn"] = t.struct(
+        {"type": t.string().optional(), "regions": t.array(t.string()).optional()}
+    ).named(renames["GeoTaxonomyIn"])
+    types["GeoTaxonomyOut"] = t.struct(
         {
-            "category": t.proxy(renames["CategoryIn"]).optional(),
-            "name": t.string().optional(),
-            "serviceProviderName": t.string().optional(),
-            "description": t.string().optional(),
-            "serviceRegions": t.array(t.string()).optional(),
-            "skuId": t.string().optional(),
-            "geoTaxonomy": t.proxy(renames["GeoTaxonomyIn"]).optional(),
-            "pricingInfo": t.array(t.proxy(renames["PricingInfoIn"])).optional(),
-        }
-    ).named(renames["SkuIn"])
-    types["SkuOut"] = t.struct(
-        {
-            "category": t.proxy(renames["CategoryOut"]).optional(),
-            "name": t.string().optional(),
-            "serviceProviderName": t.string().optional(),
-            "description": t.string().optional(),
-            "serviceRegions": t.array(t.string()).optional(),
-            "skuId": t.string().optional(),
-            "geoTaxonomy": t.proxy(renames["GeoTaxonomyOut"]).optional(),
-            "pricingInfo": t.array(t.proxy(renames["PricingInfoOut"])).optional(),
+            "type": t.string().optional(),
+            "regions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SkuOut"])
+    ).named(renames["GeoTaxonomyOut"])
+    types["PricingExpressionIn"] = t.struct(
+        {
+            "usageUnit": t.string().optional(),
+            "baseUnit": t.string().optional(),
+            "baseUnitConversionFactor": t.number().optional(),
+            "tieredRates": t.array(t.proxy(renames["TierRateIn"])).optional(),
+            "displayQuantity": t.number().optional(),
+            "usageUnitDescription": t.string().optional(),
+            "baseUnitDescription": t.string().optional(),
+        }
+    ).named(renames["PricingExpressionIn"])
+    types["PricingExpressionOut"] = t.struct(
+        {
+            "usageUnit": t.string().optional(),
+            "baseUnit": t.string().optional(),
+            "baseUnitConversionFactor": t.number().optional(),
+            "tieredRates": t.array(t.proxy(renames["TierRateOut"])).optional(),
+            "displayQuantity": t.number().optional(),
+            "usageUnitDescription": t.string().optional(),
+            "baseUnitDescription": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PricingExpressionOut"])
+    types["MoneyIn"] = t.struct(
+        {
+            "currencyCode": t.string().optional(),
+            "units": t.string().optional(),
+            "nanos": t.integer().optional(),
+        }
+    ).named(renames["MoneyIn"])
+    types["MoneyOut"] = t.struct(
+        {
+            "currencyCode": t.string().optional(),
+            "units": t.string().optional(),
+            "nanos": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MoneyOut"])
+    types["ListBillingAccountsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "billingAccounts": t.array(t.proxy(renames["BillingAccountIn"])).optional(),
+        }
+    ).named(renames["ListBillingAccountsResponseIn"])
+    types["ListBillingAccountsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "billingAccounts": t.array(
+                t.proxy(renames["BillingAccountOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListBillingAccountsResponseOut"])
+    types["PricingInfoIn"] = t.struct(
+        {
+            "currencyConversionRate": t.number().optional(),
+            "effectiveTime": t.string().optional(),
+            "summary": t.string().optional(),
+            "pricingExpression": t.proxy(renames["PricingExpressionIn"]).optional(),
+            "aggregationInfo": t.proxy(renames["AggregationInfoIn"]).optional(),
+        }
+    ).named(renames["PricingInfoIn"])
+    types["PricingInfoOut"] = t.struct(
+        {
+            "currencyConversionRate": t.number().optional(),
+            "effectiveTime": t.string().optional(),
+            "summary": t.string().optional(),
+            "pricingExpression": t.proxy(renames["PricingExpressionOut"]).optional(),
+            "aggregationInfo": t.proxy(renames["AggregationInfoOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PricingInfoOut"])
+    types["BindingIn"] = t.struct(
+        {
+            "role": t.string().optional(),
+            "condition": t.proxy(renames["ExprIn"]).optional(),
+            "members": t.array(t.string()).optional(),
+        }
+    ).named(renames["BindingIn"])
+    types["BindingOut"] = t.struct(
+        {
+            "role": t.string().optional(),
+            "condition": t.proxy(renames["ExprOut"]).optional(),
+            "members": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BindingOut"])
+    types["AuditLogConfigIn"] = t.struct(
+        {
+            "logType": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+        }
+    ).named(renames["AuditLogConfigIn"])
+    types["AuditLogConfigOut"] = t.struct(
+        {
+            "logType": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AuditLogConfigOut"])
     types["ServiceIn"] = t.struct(
         {
             "displayName": t.string().optional(),
@@ -309,82 +306,6 @@ def import_cloudbilling() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ServiceOut"])
-    types["BindingIn"] = t.struct(
-        {
-            "condition": t.proxy(renames["ExprIn"]).optional(),
-            "members": t.array(t.string()).optional(),
-            "role": t.string().optional(),
-        }
-    ).named(renames["BindingIn"])
-    types["BindingOut"] = t.struct(
-        {
-            "condition": t.proxy(renames["ExprOut"]).optional(),
-            "members": t.array(t.string()).optional(),
-            "role": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BindingOut"])
-    types["AuditConfigIn"] = t.struct(
-        {
-            "service": t.string().optional(),
-            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
-        }
-    ).named(renames["AuditConfigIn"])
-    types["AuditConfigOut"] = t.struct(
-        {
-            "service": t.string().optional(),
-            "auditLogConfigs": t.array(
-                t.proxy(renames["AuditLogConfigOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AuditConfigOut"])
-    types["CategoryIn"] = t.struct(
-        {
-            "resourceFamily": t.string().optional(),
-            "resourceGroup": t.string().optional(),
-            "usageType": t.string().optional(),
-            "serviceDisplayName": t.string().optional(),
-        }
-    ).named(renames["CategoryIn"])
-    types["CategoryOut"] = t.struct(
-        {
-            "resourceFamily": t.string().optional(),
-            "resourceGroup": t.string().optional(),
-            "usageType": t.string().optional(),
-            "serviceDisplayName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CategoryOut"])
-    types["PricingInfoIn"] = t.struct(
-        {
-            "effectiveTime": t.string().optional(),
-            "aggregationInfo": t.proxy(renames["AggregationInfoIn"]).optional(),
-            "summary": t.string().optional(),
-            "pricingExpression": t.proxy(renames["PricingExpressionIn"]).optional(),
-            "currencyConversionRate": t.number().optional(),
-        }
-    ).named(renames["PricingInfoIn"])
-    types["PricingInfoOut"] = t.struct(
-        {
-            "effectiveTime": t.string().optional(),
-            "aggregationInfo": t.proxy(renames["AggregationInfoOut"]).optional(),
-            "summary": t.string().optional(),
-            "pricingExpression": t.proxy(renames["PricingExpressionOut"]).optional(),
-            "currencyConversionRate": t.number().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PricingInfoOut"])
-    types["GeoTaxonomyIn"] = t.struct(
-        {"regions": t.array(t.string()).optional(), "type": t.string().optional()}
-    ).named(renames["GeoTaxonomyIn"])
-    types["GeoTaxonomyOut"] = t.struct(
-        {
-            "regions": t.array(t.string()).optional(),
-            "type": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GeoTaxonomyOut"])
     types["ListSkusResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -398,118 +319,148 @@ def import_cloudbilling() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListSkusResponseOut"])
-    types["ListBillingAccountsResponseIn"] = t.struct(
+    types["BillingAccountIn"] = t.struct(
         {
-            "billingAccounts": t.array(t.proxy(renames["BillingAccountIn"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "masterBillingAccount": t.string().optional(),
+            "displayName": t.string().optional(),
         }
-    ).named(renames["ListBillingAccountsResponseIn"])
-    types["ListBillingAccountsResponseOut"] = t.struct(
+    ).named(renames["BillingAccountIn"])
+    types["BillingAccountOut"] = t.struct(
         {
-            "billingAccounts": t.array(
-                t.proxy(renames["BillingAccountOut"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
+            "masterBillingAccount": t.string().optional(),
+            "name": t.string().optional(),
+            "open": t.boolean().optional(),
+            "displayName": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListBillingAccountsResponseOut"])
+    ).named(renames["BillingAccountOut"])
+    types["ListProjectBillingInfoResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "projectBillingInfo": t.array(
+                t.proxy(renames["ProjectBillingInfoIn"])
+            ).optional(),
+        }
+    ).named(renames["ListProjectBillingInfoResponseIn"])
+    types["ListProjectBillingInfoResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "projectBillingInfo": t.array(
+                t.proxy(renames["ProjectBillingInfoOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListProjectBillingInfoResponseOut"])
+    types["PolicyIn"] = t.struct(
+        {
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "version": t.integer().optional(),
+            "etag": t.string().optional(),
+            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
+        }
+    ).named(renames["PolicyIn"])
+    types["PolicyOut"] = t.struct(
+        {
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "version": t.integer().optional(),
+            "etag": t.string().optional(),
+            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PolicyOut"])
+    types["AuditConfigIn"] = t.struct(
+        {
+            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
+            "service": t.string().optional(),
+        }
+    ).named(renames["AuditConfigIn"])
+    types["AuditConfigOut"] = t.struct(
+        {
+            "auditLogConfigs": t.array(
+                t.proxy(renames["AuditLogConfigOut"])
+            ).optional(),
+            "service": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AuditConfigOut"])
+    types["CategoryIn"] = t.struct(
+        {
+            "resourceFamily": t.string().optional(),
+            "usageType": t.string().optional(),
+            "resourceGroup": t.string().optional(),
+            "serviceDisplayName": t.string().optional(),
+        }
+    ).named(renames["CategoryIn"])
+    types["CategoryOut"] = t.struct(
+        {
+            "resourceFamily": t.string().optional(),
+            "usageType": t.string().optional(),
+            "resourceGroup": t.string().optional(),
+            "serviceDisplayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CategoryOut"])
+    types["TierRateIn"] = t.struct(
+        {
+            "unitPrice": t.proxy(renames["MoneyIn"]).optional(),
+            "startUsageAmount": t.number().optional(),
+        }
+    ).named(renames["TierRateIn"])
+    types["TierRateOut"] = t.struct(
+        {
+            "unitPrice": t.proxy(renames["MoneyOut"]).optional(),
+            "startUsageAmount": t.number().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TierRateOut"])
 
     functions = {}
-    functions["billingAccountsTestIamPermissions"] = cloudbilling.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
+    functions["billingAccountsList"] = cloudbilling.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["BillingAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["billingAccountsGetIamPolicy"] = cloudbilling.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
+    functions["billingAccountsGetIamPolicy"] = cloudbilling.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["BillingAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["billingAccountsPatch"] = cloudbilling.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
+    functions["billingAccountsSetIamPolicy"] = cloudbilling.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["BillingAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["billingAccountsCreate"] = cloudbilling.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
+    functions["billingAccountsTestIamPermissions"] = cloudbilling.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["BillingAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["billingAccountsList"] = cloudbilling.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
+    functions["billingAccountsPatch"] = cloudbilling.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["BillingAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["billingAccountsGet"] = cloudbilling.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
+    functions["billingAccountsCreate"] = cloudbilling.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["BillingAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["billingAccountsSetIamPolicy"] = cloudbilling.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
+    functions["billingAccountsGet"] = cloudbilling.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["BillingAccountOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -517,9 +468,9 @@ def import_cloudbilling() -> Import:
         "v1/{name}/projects",
         t.struct(
             {
-                "name": t.string(),
                 "pageToken": t.string().optional(),
                 "pageSize": t.integer().optional(),
+                "name": t.string(),
                 "auth": t.string().optional(),
             }
         ),
@@ -527,16 +478,32 @@ def import_cloudbilling() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsUpdateBillingInfo"] = cloudbilling.get(
+    functions["projectsGetBillingInfo"] = cloudbilling.put(
         "v1/{name}/billingInfo",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "projectId": t.string().optional(),
+                "billingEnabled": t.boolean().optional(),
+                "billingAccountName": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["ProjectBillingInfoOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsGetBillingInfo"] = cloudbilling.get(
+    functions["projectsUpdateBillingInfo"] = cloudbilling.put(
         "v1/{name}/billingInfo",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "projectId": t.string().optional(),
+                "billingEnabled": t.boolean().optional(),
+                "billingAccountName": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
         t.proxy(renames["ProjectBillingInfoOut"]),
         auth_token_field="auth",
         content_type="application/json",
@@ -545,8 +512,8 @@ def import_cloudbilling() -> Import:
         "v1/services",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -558,12 +525,12 @@ def import_cloudbilling() -> Import:
         "v1/{parent}/skus",
         t.struct(
             {
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
-                "endTime": t.string().optional(),
-                "pageToken": t.string().optional(),
                 "currencyCode": t.string().optional(),
                 "startTime": t.string().optional(),
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "endTime": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),

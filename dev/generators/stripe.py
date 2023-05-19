@@ -1,6 +1,6 @@
-from generators.generator_script import GeneratorScript, File
+from generators.generator_script import GeneratorScript
 from typegraph.importers.openapi import OpenApiImporter
-from tools.util import complete_source_from
+from tools.util import get_files_from_importer
 
 
 class Stripe(GeneratorScript):
@@ -13,8 +13,6 @@ class Stripe(GeneratorScript):
         super().__init__("stripe")
 
     def pre_run(self):
-        # FIX
-        # Unsupported schema: {'anyOf': [{'$ref': '#/components/schemas/account_business_profile'}], ... }
         urls = {
             "spec3": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.yaml",
             "spec3_sdk": "https://raw.githubusercontent.com/stripe/openapi/master/openapi/spec3.sdk.yaml",
@@ -22,14 +20,7 @@ class Stripe(GeneratorScript):
         for title, url in urls.items():
             try:
                 importer = OpenApiImporter(name=title, url=url)
-                content, content_hint = complete_source_from(importer)
-                files = [
-                    File(f"{title}.py", content),
-                    File(f"{title}.pyi", content_hint),
-                ]
-                for file in files:
-                    file.flag("black", True)
-                    self.files.append(file)
+                self.files += get_files_from_importer(title, importer)
             except Exception as e:
                 self.error(f"Failed {title}: {url}")
                 self.error(e)
