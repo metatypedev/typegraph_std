@@ -2,12 +2,12 @@ from box import Box
 from typegraph.runtimes.http import HTTPRuntime
 from typegraph import t
 from typegraph.importers.base.importer import Import
+from typegraph.utils.sanitizers import inject_params
 
 
-def import_ghes() -> Import:
-    ghes = HTTPRuntime(
-        "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.0/{protocol}:/{hostname}/api/v3"
-    )
+def import_ghes(params=None):
+    target_url = inject_params("{protocol}://{hostname}/api/v3", params)
+    ghes = HTTPRuntime(target_url)
 
     renames = {
         "global-hook": "_ghes_1_global-hook",

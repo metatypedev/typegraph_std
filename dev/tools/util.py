@@ -9,7 +9,10 @@ def complete_source_from(importer: Importer) -> Tuple[str, str]:
     preambule = ""
     for frm, imp in importer.imports:
         preambule += f"from {frm} import {imp}\n"
-    preambule += f"def import_{importer.name}() -> Import:\n"
+    if importer.enable_params:
+        preambule += f"def import_{importer.name}(params=None):\n"
+    else:
+        preambule += f"def import_{importer.name}():\n"
     source = preambule + body
     source_hint = gen.res_hint
     return source, source_hint

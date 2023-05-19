@@ -1,11 +1,13 @@
+from typegraph.runtimes.http import HTTPRuntime
+from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph import t
-from box import Box
-from typegraph.runtimes.http import HTTPRuntime
+from typegraph.utils.sanitizers import inject_params
 
 
-def import_spec3_sdk() -> Import:
-    spec3_sdk = HTTPRuntime("https://api.stripe.com/")
+def import_spec3_sdk(params=None):
+    target_url = inject_params("https://api.stripe.com/", params)
+    spec3_sdk = HTTPRuntime(target_url)
 
     renames = {
         "account": "_spec3_sdk_1_account",

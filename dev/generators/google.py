@@ -49,6 +49,6 @@ class Google(GeneratorScript):
                 self.error(f"[Fail] {title}: {url}")
                 self.error(e)
                 fail_count += 1
-        # > Failed to process 28/262 links
+
         if fail_count > 0:
             self.error(f"> Failed to process {fail_count}/{total} links")
