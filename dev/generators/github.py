@@ -13,7 +13,7 @@ class Github(GeneratorScript):
         super().__init__("github")
 
     def pre_run(self):
-        title = "ghes"
+        title = "github"
         url = "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.0/ghes-3.0.yaml"
         try:
             importer = OpenApiImporter(name=title, url=url)

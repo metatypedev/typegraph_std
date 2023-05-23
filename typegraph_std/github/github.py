@@ -1,293 +1,293 @@
-from box import Box
-from typegraph.runtimes.http import HTTPRuntime
-from typegraph import t
 from typegraph.importers.base.importer import Import
+from typegraph import t
 from typegraph.utils.sanitizers import inject_params
+from typegraph.runtimes.http import HTTPRuntime
+from box import Box
 
 
-def import_ghes(params=None):
+def import_github(params=None):
     target_url = inject_params("{protocol}://{hostname}/api/v3", params)
-    ghes = HTTPRuntime(target_url)
+    github = HTTPRuntime(target_url)
 
     renames = {
-        "global-hook": "_ghes_1_global-hook",
-        "global-hook-2": "_ghes_2_global-hook-2",
-        "public-key-full": "_ghes_3_public-key-full",
-        "ldap-mapping-team": "_ghes_4_ldap-mapping-team",
-        "ldap-mapping-user": "_ghes_5_ldap-mapping-user",
-        "organization-simple": "_ghes_6_organization-simple",
-        "pre-receive-environment": "_ghes_7_pre-receive-environment",
-        "pre-receive-environment-download-status": "_ghes_8_pre-receive-environment-download-status",
-        "pre-receive-hook": "_ghes_9_pre-receive-hook",
-        "nullable-simple-user": "_ghes_10_nullable-simple-user",
-        "app-permissions": "_ghes_11_app-permissions",
-        "simple-user": "_ghes_12_simple-user",
-        "nullable-scoped-installation": "_ghes_13_nullable-scoped-installation",
-        "authorization": "_ghes_14_authorization",
-        "integration": "_ghes_15_integration",
-        "basic-error": "_ghes_16_basic-error",
-        "validation-error-simple": "_ghes_17_validation-error-simple",
-        "webhook-config-url": "_ghes_18_webhook-config-url",
-        "webhook-config-content-type": "_ghes_19_webhook-config-content-type",
-        "webhook-config-secret": "_ghes_20_webhook-config-secret",
-        "webhook-config-insecure-ssl": "_ghes_21_webhook-config-insecure-ssl",
-        "webhook-config": "_ghes_22_webhook-config",
-        "enterprise": "_ghes_23_enterprise",
-        "installation": "_ghes_24_installation",
-        "nullable-license-simple": "_ghes_25_nullable-license-simple",
-        "repository": "_ghes_26_repository",
-        "installation-token": "_ghes_27_installation-token",
-        "validation-error": "_ghes_28_validation-error",
-        "application-grant": "_ghes_29_application-grant",
-        "nullable-authorization": "_ghes_30_nullable-authorization",
-        "code-of-conduct": "_ghes_31_code-of-conduct",
-        "announcement-message": "_ghes_32_announcement-message",
-        "announcement-expiration": "_ghes_33_announcement-expiration",
-        "announcement": "_ghes_34_announcement",
-        "license-info": "_ghes_35_license-info",
-        "enterprise-repository-overview": "_ghes_36_enterprise-repository-overview",
-        "enterprise-hook-overview": "_ghes_37_enterprise-hook-overview",
-        "enterprise-page-overview": "_ghes_38_enterprise-page-overview",
-        "enterprise-organization-overview": "_ghes_39_enterprise-organization-overview",
-        "enterprise-user-overview": "_ghes_40_enterprise-user-overview",
-        "enterprise-pull-request-overview": "_ghes_41_enterprise-pull-request-overview",
-        "enterprise-issue-overview": "_ghes_42_enterprise-issue-overview",
-        "enterprise-milestone-overview": "_ghes_43_enterprise-milestone-overview",
-        "enterprise-gist-overview": "_ghes_44_enterprise-gist-overview",
-        "enterprise-comment-overview": "_ghes_45_enterprise-comment-overview",
-        "enterprise-overview": "_ghes_46_enterprise-overview",
-        "enabled-organizations": "_ghes_47_enabled-organizations",
-        "allowed-actions": "_ghes_48_allowed-actions",
-        "selected-actions-url": "_ghes_49_selected-actions-url",
-        "actions-enterprise-permissions": "_ghes_50_actions-enterprise-permissions",
-        "selected-actions": "_ghes_51_selected-actions",
-        "runner-groups-enterprise": "_ghes_52_runner-groups-enterprise",
-        "runner-label": "_ghes_53_runner-label",
-        "runner": "_ghes_54_runner",
-        "runner-application": "_ghes_55_runner-application",
-        "authentication-token": "_ghes_56_authentication-token",
-        "actor": "_ghes_57_actor",
-        "nullable-milestone": "_ghes_58_nullable-milestone",
-        "nullable-integration": "_ghes_59_nullable-integration",
-        "author_association": "_ghes_60_author_association",
-        "reaction-rollup": "_ghes_61_reaction-rollup",
-        "issue": "_ghes_62_issue",
-        "issue-comment": "_ghes_63_issue-comment",
-        "event": "_ghes_64_event",
-        "link-with-type": "_ghes_65_link-with-type",
-        "feed": "_ghes_66_feed",
-        "base-gist": "_ghes_67_base-gist",
-        "public-user": "_ghes_68_public-user",
-        "gist-history": "_ghes_69_gist-history",
-        "gist-simple": "_ghes_70_gist-simple",
-        "gist-comment": "_ghes_71_gist-comment",
-        "gist-commit": "_ghes_72_gist-commit",
-        "gitignore-template": "_ghes_73_gitignore-template",
-        "license-simple": "_ghes_74_license-simple",
-        "license": "_ghes_75_license",
-        "api-overview": "_ghes_76_api-overview",
-        "nullable-repository": "_ghes_77_nullable-repository",
-        "minimal-repository": "_ghes_78_minimal-repository",
-        "thread": "_ghes_79_thread",
-        "thread-subscription": "_ghes_80_thread-subscription",
-        "organization-full": "_ghes_81_organization-full",
-        "enabled-repositories": "_ghes_82_enabled-repositories",
-        "actions-organization-permissions": "_ghes_83_actions-organization-permissions",
-        "runner-groups-org": "_ghes_84_runner-groups-org",
-        "organization-actions-secret": "_ghes_85_organization-actions-secret",
-        "actions-public-key": "_ghes_86_actions-public-key",
-        "empty-object": "_ghes_87_empty-object",
-        "org-hook": "_ghes_88_org-hook",
-        "org-membership": "_ghes_89_org-membership",
-        "org-pre-receive-hook": "_ghes_90_org-pre-receive-hook",
-        "project": "_ghes_91_project",
-        "nullable-team-simple": "_ghes_92_nullable-team-simple",
-        "team": "_ghes_93_team",
-        "team-full": "_ghes_94_team-full",
-        "team-discussion": "_ghes_95_team-discussion",
-        "team-discussion-comment": "_ghes_96_team-discussion-comment",
-        "reaction": "_ghes_97_reaction",
-        "team-membership": "_ghes_98_team-membership",
-        "team-project": "_ghes_99_team-project",
-        "team-repository": "_ghes_100_team-repository",
-        "project-card": "_ghes_101_project-card",
-        "project-column": "_ghes_102_project-column",
-        "project-collaborator-permission": "_ghes_103_project-collaborator-permission",
-        "rate-limit": "_ghes_104_rate-limit",
-        "rate-limit-overview": "_ghes_105_rate-limit-overview",
-        "code-of-conduct-simple": "_ghes_106_code-of-conduct-simple",
-        "full-repository": "_ghes_107_full-repository",
-        "artifact": "_ghes_108_artifact",
-        "job": "_ghes_109_job",
-        "actions-enabled": "_ghes_110_actions-enabled",
-        "actions-repository-permissions": "_ghes_111_actions-repository-permissions",
-        "pull-request-minimal": "_ghes_112_pull-request-minimal",
-        "nullable-simple-commit": "_ghes_113_nullable-simple-commit",
-        "workflow-run": "_ghes_114_workflow-run",
-        "actions-secret": "_ghes_115_actions-secret",
-        "workflow": "_ghes_116_workflow",
-        "protected-branch-required-status-check": "_ghes_117_protected-branch-required-status-check",
-        "protected-branch-admin-enforced": "_ghes_118_protected-branch-admin-enforced",
-        "protected-branch-pull-request-review": "_ghes_119_protected-branch-pull-request-review",
-        "branch-restriction-policy": "_ghes_120_branch-restriction-policy",
-        "branch-protection": "_ghes_121_branch-protection",
-        "short-branch": "_ghes_122_short-branch",
-        "nullable-git-user": "_ghes_123_nullable-git-user",
-        "verification": "_ghes_124_verification",
-        "diff-entry": "_ghes_125_diff-entry",
-        "commit": "_ghes_126_commit",
-        "branch-with-protection": "_ghes_127_branch-with-protection",
-        "status-check-policy": "_ghes_128_status-check-policy",
-        "protected-branch": "_ghes_129_protected-branch",
-        "deployment-simple": "_ghes_130_deployment-simple",
-        "check-run": "_ghes_131_check-run",
-        "check-annotation": "_ghes_132_check-annotation",
-        "simple-commit": "_ghes_133_simple-commit",
-        "check-suite": "_ghes_134_check-suite",
-        "check-suite-preference": "_ghes_135_check-suite-preference",
-        "code-scanning-analysis-tool-name": "_ghes_136_code-scanning-analysis-tool-name",
-        "code-scanning-analysis-tool-guid": "_ghes_137_code-scanning-analysis-tool-guid",
-        "code-scanning-ref": "_ghes_138_code-scanning-ref",
-        "code-scanning-alert-state": "_ghes_139_code-scanning-alert-state",
-        "alert-number": "_ghes_140_alert-number",
-        "alert-created-at": "_ghes_141_alert-created-at",
-        "alert-url": "_ghes_142_alert-url",
-        "alert-html-url": "_ghes_143_alert-html-url",
-        "alert-instances-url": "_ghes_144_alert-instances-url",
-        "code-scanning-alert-dismissed-at": "_ghes_145_code-scanning-alert-dismissed-at",
-        "code-scanning-alert-dismissed-reason": "_ghes_146_code-scanning-alert-dismissed-reason",
-        "code-scanning-alert-rule-summary": "_ghes_147_code-scanning-alert-rule-summary",
-        "code-scanning-analysis-tool-version": "_ghes_148_code-scanning-analysis-tool-version",
-        "code-scanning-analysis-tool": "_ghes_149_code-scanning-analysis-tool",
-        "code-scanning-analysis-analysis-key": "_ghes_150_code-scanning-analysis-analysis-key",
-        "code-scanning-alert-environment": "_ghes_151_code-scanning-alert-environment",
-        "code-scanning-analysis-category": "_ghes_152_code-scanning-analysis-category",
-        "code-scanning-alert-location": "_ghes_153_code-scanning-alert-location",
-        "code-scanning-alert-classification": "_ghes_154_code-scanning-alert-classification",
-        "code-scanning-alert-instance": "_ghes_155_code-scanning-alert-instance",
-        "code-scanning-alert-items": "_ghes_156_code-scanning-alert-items",
-        "code-scanning-alert-rule": "_ghes_157_code-scanning-alert-rule",
-        "code-scanning-alert": "_ghes_158_code-scanning-alert",
-        "code-scanning-alert-set-state": "_ghes_159_code-scanning-alert-set-state",
-        "code-scanning-analysis-sarif-id": "_ghes_160_code-scanning-analysis-sarif-id",
-        "code-scanning-analysis-commit-sha": "_ghes_161_code-scanning-analysis-commit-sha",
-        "code-scanning-analysis-environment": "_ghes_162_code-scanning-analysis-environment",
-        "code-scanning-analysis-created-at": "_ghes_163_code-scanning-analysis-created-at",
-        "code-scanning-analysis-url": "_ghes_164_code-scanning-analysis-url",
-        "code-scanning-analysis": "_ghes_165_code-scanning-analysis",
-        "code-scanning-analysis-sarif-file": "_ghes_166_code-scanning-analysis-sarif-file",
-        "code-scanning-sarifs-receipt": "_ghes_167_code-scanning-sarifs-receipt",
-        "collaborator": "_ghes_168_collaborator",
-        "repository-invitation": "_ghes_169_repository-invitation",
-        "nullable-collaborator": "_ghes_170_nullable-collaborator",
-        "repository-collaborator-permission": "_ghes_171_repository-collaborator-permission",
-        "commit-comment": "_ghes_172_commit-comment",
-        "scim-error": "_ghes_173_scim-error",
-        "branch-short": "_ghes_174_branch-short",
-        "link": "_ghes_175_link",
-        "pull-request-simple": "_ghes_176_pull-request-simple",
-        "simple-commit-status": "_ghes_177_simple-commit-status",
-        "combined-commit-status": "_ghes_178_combined-commit-status",
-        "status": "_ghes_179_status",
-        "commit-comparison": "_ghes_180_commit-comparison",
-        "content-reference-attachment": "_ghes_181_content-reference-attachment",
-        "content-tree": "_ghes_182_content-tree",
-        "content-directory": "_ghes_183_content-directory",
-        "content-file": "_ghes_184_content-file",
-        "content-symlink": "_ghes_185_content-symlink",
-        "content-submodule": "_ghes_186_content-submodule",
-        "file-commit": "_ghes_187_file-commit",
-        "contributor": "_ghes_188_contributor",
-        "deployment": "_ghes_189_deployment",
-        "deployment-status": "_ghes_190_deployment-status",
-        "short-blob": "_ghes_191_short-blob",
-        "blob": "_ghes_192_blob",
-        "git-commit": "_ghes_193_git-commit",
-        "git-ref": "_ghes_194_git-ref",
-        "git-tag": "_ghes_195_git-tag",
-        "git-tree": "_ghes_196_git-tree",
-        "hook-response": "_ghes_197_hook-response",
-        "hook": "_ghes_198_hook",
-        "nullable-issue": "_ghes_199_nullable-issue",
-        "issue-event-label": "_ghes_200_issue-event-label",
-        "issue-event-dismissed-review": "_ghes_201_issue-event-dismissed-review",
-        "issue-event-milestone": "_ghes_202_issue-event-milestone",
-        "issue-event-project-card": "_ghes_203_issue-event-project-card",
-        "issue-event-rename": "_ghes_204_issue-event-rename",
-        "issue-event": "_ghes_205_issue-event",
-        "labeled-issue-event": "_ghes_206_labeled-issue-event",
-        "unlabeled-issue-event": "_ghes_207_unlabeled-issue-event",
-        "assigned-issue-event": "_ghes_208_assigned-issue-event",
-        "unassigned-issue-event": "_ghes_209_unassigned-issue-event",
-        "milestoned-issue-event": "_ghes_210_milestoned-issue-event",
-        "demilestoned-issue-event": "_ghes_211_demilestoned-issue-event",
-        "renamed-issue-event": "_ghes_212_renamed-issue-event",
-        "review-requested-issue-event": "_ghes_213_review-requested-issue-event",
-        "review-request-removed-issue-event": "_ghes_214_review-request-removed-issue-event",
-        "review-dismissed-issue-event": "_ghes_215_review-dismissed-issue-event",
-        "locked-issue-event": "_ghes_216_locked-issue-event",
-        "added-to-project-issue-event": "_ghes_217_added-to-project-issue-event",
-        "moved-column-in-project-issue-event": "_ghes_218_moved-column-in-project-issue-event",
-        "removed-from-project-issue-event": "_ghes_219_removed-from-project-issue-event",
-        "converted-note-to-issue-issue-event": "_ghes_220_converted-note-to-issue-issue-event",
-        "issue-event-for-issue": "_ghes_221_issue-event-for-issue",
-        "label": "_ghes_222_label",
-        "timeline-comment-event": "_ghes_223_timeline-comment-event",
-        "timeline-cross-referenced-event": "_ghes_224_timeline-cross-referenced-event",
-        "timeline-committed-event": "_ghes_225_timeline-committed-event",
-        "timeline-reviewed-event": "_ghes_226_timeline-reviewed-event",
-        "pull-request-review-comment": "_ghes_227_pull-request-review-comment",
-        "timeline-line-commented-event": "_ghes_228_timeline-line-commented-event",
-        "timeline-commit-commented-event": "_ghes_229_timeline-commit-commented-event",
-        "timeline-assigned-issue-event": "_ghes_230_timeline-assigned-issue-event",
-        "timeline-unassigned-issue-event": "_ghes_231_timeline-unassigned-issue-event",
-        "state-change-issue-event": "_ghes_232_state-change-issue-event",
-        "timeline-issue-events": "_ghes_233_timeline-issue-events",
-        "deploy-key": "_ghes_234_deploy-key",
-        "language": "_ghes_235_language",
-        "license-content": "_ghes_236_license-content",
-        "milestone": "_ghes_237_milestone",
-        "pages-source-hash": "_ghes_238_pages-source-hash",
-        "pages-https-certificate": "_ghes_239_pages-https-certificate",
-        "page": "_ghes_240_page",
-        "page-build": "_ghes_241_page-build",
-        "page-build-status": "_ghes_242_page-build-status",
-        "repository-pre-receive-hook": "_ghes_243_repository-pre-receive-hook",
-        "team-simple": "_ghes_244_team-simple",
-        "pull-request": "_ghes_245_pull-request",
-        "pull-request-merge-result": "_ghes_246_pull-request-merge-result",
-        "pull-request-review-request": "_ghes_247_pull-request-review-request",
-        "pull-request-review": "_ghes_248_pull-request-review",
-        "review-comment": "_ghes_249_review-comment",
-        "release-asset": "_ghes_250_release-asset",
-        "release": "_ghes_251_release",
-        "stargazer": "_ghes_252_stargazer",
-        "code-frequency-stat": "_ghes_253_code-frequency-stat",
-        "commit-activity": "_ghes_254_commit-activity",
-        "contributor-activity": "_ghes_255_contributor-activity",
-        "participation-stats": "_ghes_256_participation-stats",
-        "repository-subscription": "_ghes_257_repository-subscription",
-        "tag": "_ghes_258_tag",
-        "topic": "_ghes_259_topic",
-        "search-result-text-matches": "_ghes_260_search-result-text-matches",
-        "code-search-result-item": "_ghes_261_code-search-result-item",
-        "commit-search-result-item": "_ghes_262_commit-search-result-item",
-        "issue-search-result-item": "_ghes_263_issue-search-result-item",
-        "label-search-result-item": "_ghes_264_label-search-result-item",
-        "repo-search-result-item": "_ghes_265_repo-search-result-item",
-        "topic-search-result-item": "_ghes_266_topic-search-result-item",
-        "user-search-result-item": "_ghes_267_user-search-result-item",
-        "configuration-status": "_ghes_268_configuration-status",
-        "maintenance-status": "_ghes_269_maintenance-status",
-        "enterprise-settings": "_ghes_270_enterprise-settings",
-        "ssh-key": "_ghes_271_ssh-key",
-        "private-user": "_ghes_272_private-user",
-        "email": "_ghes_273_email",
-        "gpg-key": "_ghes_274_gpg-key",
-        "key": "_ghes_275_key",
-        "starred-repository": "_ghes_276_starred-repository",
-        "hovercard": "_ghes_277_hovercard",
-        "key-simple": "_ghes_278_key-simple",
+        "global-hook": "_github_1_global-hook",
+        "global-hook-2": "_github_2_global-hook-2",
+        "public-key-full": "_github_3_public-key-full",
+        "ldap-mapping-team": "_github_4_ldap-mapping-team",
+        "ldap-mapping-user": "_github_5_ldap-mapping-user",
+        "organization-simple": "_github_6_organization-simple",
+        "pre-receive-environment": "_github_7_pre-receive-environment",
+        "pre-receive-environment-download-status": "_github_8_pre-receive-environment-download-status",
+        "pre-receive-hook": "_github_9_pre-receive-hook",
+        "nullable-simple-user": "_github_10_nullable-simple-user",
+        "app-permissions": "_github_11_app-permissions",
+        "simple-user": "_github_12_simple-user",
+        "nullable-scoped-installation": "_github_13_nullable-scoped-installation",
+        "authorization": "_github_14_authorization",
+        "integration": "_github_15_integration",
+        "basic-error": "_github_16_basic-error",
+        "validation-error-simple": "_github_17_validation-error-simple",
+        "webhook-config-url": "_github_18_webhook-config-url",
+        "webhook-config-content-type": "_github_19_webhook-config-content-type",
+        "webhook-config-secret": "_github_20_webhook-config-secret",
+        "webhook-config-insecure-ssl": "_github_21_webhook-config-insecure-ssl",
+        "webhook-config": "_github_22_webhook-config",
+        "enterprise": "_github_23_enterprise",
+        "installation": "_github_24_installation",
+        "nullable-license-simple": "_github_25_nullable-license-simple",
+        "repository": "_github_26_repository",
+        "installation-token": "_github_27_installation-token",
+        "validation-error": "_github_28_validation-error",
+        "application-grant": "_github_29_application-grant",
+        "nullable-authorization": "_github_30_nullable-authorization",
+        "code-of-conduct": "_github_31_code-of-conduct",
+        "announcement-message": "_github_32_announcement-message",
+        "announcement-expiration": "_github_33_announcement-expiration",
+        "announcement": "_github_34_announcement",
+        "license-info": "_github_35_license-info",
+        "enterprise-repository-overview": "_github_36_enterprise-repository-overview",
+        "enterprise-hook-overview": "_github_37_enterprise-hook-overview",
+        "enterprise-page-overview": "_github_38_enterprise-page-overview",
+        "enterprise-organization-overview": "_github_39_enterprise-organization-overview",
+        "enterprise-user-overview": "_github_40_enterprise-user-overview",
+        "enterprise-pull-request-overview": "_github_41_enterprise-pull-request-overview",
+        "enterprise-issue-overview": "_github_42_enterprise-issue-overview",
+        "enterprise-milestone-overview": "_github_43_enterprise-milestone-overview",
+        "enterprise-gist-overview": "_github_44_enterprise-gist-overview",
+        "enterprise-comment-overview": "_github_45_enterprise-comment-overview",
+        "enterprise-overview": "_github_46_enterprise-overview",
+        "enabled-organizations": "_github_47_enabled-organizations",
+        "allowed-actions": "_github_48_allowed-actions",
+        "selected-actions-url": "_github_49_selected-actions-url",
+        "actions-enterprise-permissions": "_github_50_actions-enterprise-permissions",
+        "selected-actions": "_github_51_selected-actions",
+        "runner-groups-enterprise": "_github_52_runner-groups-enterprise",
+        "runner-label": "_github_53_runner-label",
+        "runner": "_github_54_runner",
+        "runner-application": "_github_55_runner-application",
+        "authentication-token": "_github_56_authentication-token",
+        "actor": "_github_57_actor",
+        "nullable-milestone": "_github_58_nullable-milestone",
+        "nullable-integration": "_github_59_nullable-integration",
+        "author_association": "_github_60_author_association",
+        "reaction-rollup": "_github_61_reaction-rollup",
+        "issue": "_github_62_issue",
+        "issue-comment": "_github_63_issue-comment",
+        "event": "_github_64_event",
+        "link-with-type": "_github_65_link-with-type",
+        "feed": "_github_66_feed",
+        "base-gist": "_github_67_base-gist",
+        "public-user": "_github_68_public-user",
+        "gist-history": "_github_69_gist-history",
+        "gist-simple": "_github_70_gist-simple",
+        "gist-comment": "_github_71_gist-comment",
+        "gist-commit": "_github_72_gist-commit",
+        "gitignore-template": "_github_73_gitignore-template",
+        "license-simple": "_github_74_license-simple",
+        "license": "_github_75_license",
+        "api-overview": "_github_76_api-overview",
+        "nullable-repository": "_github_77_nullable-repository",
+        "minimal-repository": "_github_78_minimal-repository",
+        "thread": "_github_79_thread",
+        "thread-subscription": "_github_80_thread-subscription",
+        "organization-full": "_github_81_organization-full",
+        "enabled-repositories": "_github_82_enabled-repositories",
+        "actions-organization-permissions": "_github_83_actions-organization-permissions",
+        "runner-groups-org": "_github_84_runner-groups-org",
+        "organization-actions-secret": "_github_85_organization-actions-secret",
+        "actions-public-key": "_github_86_actions-public-key",
+        "empty-object": "_github_87_empty-object",
+        "org-hook": "_github_88_org-hook",
+        "org-membership": "_github_89_org-membership",
+        "org-pre-receive-hook": "_github_90_org-pre-receive-hook",
+        "project": "_github_91_project",
+        "nullable-team-simple": "_github_92_nullable-team-simple",
+        "team": "_github_93_team",
+        "team-full": "_github_94_team-full",
+        "team-discussion": "_github_95_team-discussion",
+        "team-discussion-comment": "_github_96_team-discussion-comment",
+        "reaction": "_github_97_reaction",
+        "team-membership": "_github_98_team-membership",
+        "team-project": "_github_99_team-project",
+        "team-repository": "_github_100_team-repository",
+        "project-card": "_github_101_project-card",
+        "project-column": "_github_102_project-column",
+        "project-collaborator-permission": "_github_103_project-collaborator-permission",
+        "rate-limit": "_github_104_rate-limit",
+        "rate-limit-overview": "_github_105_rate-limit-overview",
+        "code-of-conduct-simple": "_github_106_code-of-conduct-simple",
+        "full-repository": "_github_107_full-repository",
+        "artifact": "_github_108_artifact",
+        "job": "_github_109_job",
+        "actions-enabled": "_github_110_actions-enabled",
+        "actions-repository-permissions": "_github_111_actions-repository-permissions",
+        "pull-request-minimal": "_github_112_pull-request-minimal",
+        "nullable-simple-commit": "_github_113_nullable-simple-commit",
+        "workflow-run": "_github_114_workflow-run",
+        "actions-secret": "_github_115_actions-secret",
+        "workflow": "_github_116_workflow",
+        "protected-branch-required-status-check": "_github_117_protected-branch-required-status-check",
+        "protected-branch-admin-enforced": "_github_118_protected-branch-admin-enforced",
+        "protected-branch-pull-request-review": "_github_119_protected-branch-pull-request-review",
+        "branch-restriction-policy": "_github_120_branch-restriction-policy",
+        "branch-protection": "_github_121_branch-protection",
+        "short-branch": "_github_122_short-branch",
+        "nullable-git-user": "_github_123_nullable-git-user",
+        "verification": "_github_124_verification",
+        "diff-entry": "_github_125_diff-entry",
+        "commit": "_github_126_commit",
+        "branch-with-protection": "_github_127_branch-with-protection",
+        "status-check-policy": "_github_128_status-check-policy",
+        "protected-branch": "_github_129_protected-branch",
+        "deployment-simple": "_github_130_deployment-simple",
+        "check-run": "_github_131_check-run",
+        "check-annotation": "_github_132_check-annotation",
+        "simple-commit": "_github_133_simple-commit",
+        "check-suite": "_github_134_check-suite",
+        "check-suite-preference": "_github_135_check-suite-preference",
+        "code-scanning-analysis-tool-name": "_github_136_code-scanning-analysis-tool-name",
+        "code-scanning-analysis-tool-guid": "_github_137_code-scanning-analysis-tool-guid",
+        "code-scanning-ref": "_github_138_code-scanning-ref",
+        "code-scanning-alert-state": "_github_139_code-scanning-alert-state",
+        "alert-number": "_github_140_alert-number",
+        "alert-created-at": "_github_141_alert-created-at",
+        "alert-url": "_github_142_alert-url",
+        "alert-html-url": "_github_143_alert-html-url",
+        "alert-instances-url": "_github_144_alert-instances-url",
+        "code-scanning-alert-dismissed-at": "_github_145_code-scanning-alert-dismissed-at",
+        "code-scanning-alert-dismissed-reason": "_github_146_code-scanning-alert-dismissed-reason",
+        "code-scanning-alert-rule-summary": "_github_147_code-scanning-alert-rule-summary",
+        "code-scanning-analysis-tool-version": "_github_148_code-scanning-analysis-tool-version",
+        "code-scanning-analysis-tool": "_github_149_code-scanning-analysis-tool",
+        "code-scanning-analysis-analysis-key": "_github_150_code-scanning-analysis-analysis-key",
+        "code-scanning-alert-environment": "_github_151_code-scanning-alert-environment",
+        "code-scanning-analysis-category": "_github_152_code-scanning-analysis-category",
+        "code-scanning-alert-location": "_github_153_code-scanning-alert-location",
+        "code-scanning-alert-classification": "_github_154_code-scanning-alert-classification",
+        "code-scanning-alert-instance": "_github_155_code-scanning-alert-instance",
+        "code-scanning-alert-items": "_github_156_code-scanning-alert-items",
+        "code-scanning-alert-rule": "_github_157_code-scanning-alert-rule",
+        "code-scanning-alert": "_github_158_code-scanning-alert",
+        "code-scanning-alert-set-state": "_github_159_code-scanning-alert-set-state",
+        "code-scanning-analysis-sarif-id": "_github_160_code-scanning-analysis-sarif-id",
+        "code-scanning-analysis-commit-sha": "_github_161_code-scanning-analysis-commit-sha",
+        "code-scanning-analysis-environment": "_github_162_code-scanning-analysis-environment",
+        "code-scanning-analysis-created-at": "_github_163_code-scanning-analysis-created-at",
+        "code-scanning-analysis-url": "_github_164_code-scanning-analysis-url",
+        "code-scanning-analysis": "_github_165_code-scanning-analysis",
+        "code-scanning-analysis-sarif-file": "_github_166_code-scanning-analysis-sarif-file",
+        "code-scanning-sarifs-receipt": "_github_167_code-scanning-sarifs-receipt",
+        "collaborator": "_github_168_collaborator",
+        "repository-invitation": "_github_169_repository-invitation",
+        "nullable-collaborator": "_github_170_nullable-collaborator",
+        "repository-collaborator-permission": "_github_171_repository-collaborator-permission",
+        "commit-comment": "_github_172_commit-comment",
+        "scim-error": "_github_173_scim-error",
+        "branch-short": "_github_174_branch-short",
+        "link": "_github_175_link",
+        "pull-request-simple": "_github_176_pull-request-simple",
+        "simple-commit-status": "_github_177_simple-commit-status",
+        "combined-commit-status": "_github_178_combined-commit-status",
+        "status": "_github_179_status",
+        "commit-comparison": "_github_180_commit-comparison",
+        "content-reference-attachment": "_github_181_content-reference-attachment",
+        "content-tree": "_github_182_content-tree",
+        "content-directory": "_github_183_content-directory",
+        "content-file": "_github_184_content-file",
+        "content-symlink": "_github_185_content-symlink",
+        "content-submodule": "_github_186_content-submodule",
+        "file-commit": "_github_187_file-commit",
+        "contributor": "_github_188_contributor",
+        "deployment": "_github_189_deployment",
+        "deployment-status": "_github_190_deployment-status",
+        "short-blob": "_github_191_short-blob",
+        "blob": "_github_192_blob",
+        "git-commit": "_github_193_git-commit",
+        "git-ref": "_github_194_git-ref",
+        "git-tag": "_github_195_git-tag",
+        "git-tree": "_github_196_git-tree",
+        "hook-response": "_github_197_hook-response",
+        "hook": "_github_198_hook",
+        "nullable-issue": "_github_199_nullable-issue",
+        "issue-event-label": "_github_200_issue-event-label",
+        "issue-event-dismissed-review": "_github_201_issue-event-dismissed-review",
+        "issue-event-milestone": "_github_202_issue-event-milestone",
+        "issue-event-project-card": "_github_203_issue-event-project-card",
+        "issue-event-rename": "_github_204_issue-event-rename",
+        "issue-event": "_github_205_issue-event",
+        "labeled-issue-event": "_github_206_labeled-issue-event",
+        "unlabeled-issue-event": "_github_207_unlabeled-issue-event",
+        "assigned-issue-event": "_github_208_assigned-issue-event",
+        "unassigned-issue-event": "_github_209_unassigned-issue-event",
+        "milestoned-issue-event": "_github_210_milestoned-issue-event",
+        "demilestoned-issue-event": "_github_211_demilestoned-issue-event",
+        "renamed-issue-event": "_github_212_renamed-issue-event",
+        "review-requested-issue-event": "_github_213_review-requested-issue-event",
+        "review-request-removed-issue-event": "_github_214_review-request-removed-issue-event",
+        "review-dismissed-issue-event": "_github_215_review-dismissed-issue-event",
+        "locked-issue-event": "_github_216_locked-issue-event",
+        "added-to-project-issue-event": "_github_217_added-to-project-issue-event",
+        "moved-column-in-project-issue-event": "_github_218_moved-column-in-project-issue-event",
+        "removed-from-project-issue-event": "_github_219_removed-from-project-issue-event",
+        "converted-note-to-issue-issue-event": "_github_220_converted-note-to-issue-issue-event",
+        "issue-event-for-issue": "_github_221_issue-event-for-issue",
+        "label": "_github_222_label",
+        "timeline-comment-event": "_github_223_timeline-comment-event",
+        "timeline-cross-referenced-event": "_github_224_timeline-cross-referenced-event",
+        "timeline-committed-event": "_github_225_timeline-committed-event",
+        "timeline-reviewed-event": "_github_226_timeline-reviewed-event",
+        "pull-request-review-comment": "_github_227_pull-request-review-comment",
+        "timeline-line-commented-event": "_github_228_timeline-line-commented-event",
+        "timeline-commit-commented-event": "_github_229_timeline-commit-commented-event",
+        "timeline-assigned-issue-event": "_github_230_timeline-assigned-issue-event",
+        "timeline-unassigned-issue-event": "_github_231_timeline-unassigned-issue-event",
+        "state-change-issue-event": "_github_232_state-change-issue-event",
+        "timeline-issue-events": "_github_233_timeline-issue-events",
+        "deploy-key": "_github_234_deploy-key",
+        "language": "_github_235_language",
+        "license-content": "_github_236_license-content",
+        "milestone": "_github_237_milestone",
+        "pages-source-hash": "_github_238_pages-source-hash",
+        "pages-https-certificate": "_github_239_pages-https-certificate",
+        "page": "_github_240_page",
+        "page-build": "_github_241_page-build",
+        "page-build-status": "_github_242_page-build-status",
+        "repository-pre-receive-hook": "_github_243_repository-pre-receive-hook",
+        "team-simple": "_github_244_team-simple",
+        "pull-request": "_github_245_pull-request",
+        "pull-request-merge-result": "_github_246_pull-request-merge-result",
+        "pull-request-review-request": "_github_247_pull-request-review-request",
+        "pull-request-review": "_github_248_pull-request-review",
+        "review-comment": "_github_249_review-comment",
+        "release-asset": "_github_250_release-asset",
+        "release": "_github_251_release",
+        "stargazer": "_github_252_stargazer",
+        "code-frequency-stat": "_github_253_code-frequency-stat",
+        "commit-activity": "_github_254_commit-activity",
+        "contributor-activity": "_github_255_contributor-activity",
+        "participation-stats": "_github_256_participation-stats",
+        "repository-subscription": "_github_257_repository-subscription",
+        "tag": "_github_258_tag",
+        "topic": "_github_259_topic",
+        "search-result-text-matches": "_github_260_search-result-text-matches",
+        "code-search-result-item": "_github_261_code-search-result-item",
+        "commit-search-result-item": "_github_262_commit-search-result-item",
+        "issue-search-result-item": "_github_263_issue-search-result-item",
+        "label-search-result-item": "_github_264_label-search-result-item",
+        "repo-search-result-item": "_github_265_repo-search-result-item",
+        "topic-search-result-item": "_github_266_topic-search-result-item",
+        "user-search-result-item": "_github_267_user-search-result-item",
+        "configuration-status": "_github_268_configuration-status",
+        "maintenance-status": "_github_269_maintenance-status",
+        "enterprise-settings": "_github_270_enterprise-settings",
+        "ssh-key": "_github_271_ssh-key",
+        "private-user": "_github_272_private-user",
+        "email": "_github_273_email",
+        "gpg-key": "_github_274_gpg-key",
+        "key": "_github_275_key",
+        "starred-repository": "_github_276_starred-repository",
+        "hovercard": "_github_277_hovercard",
+        "key-simple": "_github_278_key-simple",
     }
 
     types = {}
@@ -5885,7 +5885,7 @@ def import_ghes(params=None):
     )
 
     functions = {}
-    functions["meta/root"] = ghes.get(
+    functions["meta/root"] = github.get(
         "/",
         t.struct({}),
         t.struct(
@@ -5926,12 +5926,12 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["enterprise-admin/list-global-webhooks"] = ghes.get(
+    functions["enterprise-admin/list-global-webhooks"] = github.get(
         "/admin/hooks",
         t.struct({"accept": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["global-hook"])),
     )
-    functions["enterprise-admin/create-global-webhook"] = ghes.post(
+    functions["enterprise-admin/create-global-webhook"] = github.post(
         "/admin/hooks",
         t.struct(
             {
@@ -5953,12 +5953,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "config", "events", "active"),
     )
-    functions["enterprise-admin/get-global-webhook"] = ghes.get(
+    functions["enterprise-admin/get-global-webhook"] = github.get(
         "/admin/hooks/{hook_id}",
         t.struct({"accept": t.string(), "hook_id": t.integer()}),
         t.proxy(renames["global-hook"]),
     )
-    functions["enterprise-admin/update-global-webhook"] = ghes.patch(
+    functions["enterprise-admin/update-global-webhook"] = github.patch(
         "/admin/hooks/{hook_id}",
         t.struct(
             {
@@ -5980,17 +5980,17 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("config", "events", "active"),
     )
-    functions["enterprise-admin/delete-global-webhook"] = ghes.delete(
+    functions["enterprise-admin/delete-global-webhook"] = github.delete(
         "/admin/hooks/{hook_id}",
         t.struct({"accept": t.string(), "hook_id": t.integer()}),
         t.boolean(),
     )
-    functions["enterprise-admin/ping-global-webhook"] = ghes.post(
+    functions["enterprise-admin/ping-global-webhook"] = github.post(
         "/admin/hooks/{hook_id}/pings",
         t.struct({"accept": t.string(), "hook_id": t.integer()}),
         t.boolean(),
     )
-    functions["enterprise-admin/list-public-keys"] = ghes.get(
+    functions["enterprise-admin/list-public-keys"] = github.get(
         "/admin/keys",
         t.struct(
             {
@@ -6003,36 +6003,36 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["public-key-full"])),
     )
-    functions["enterprise-admin/delete-public-key"] = ghes.delete(
+    functions["enterprise-admin/delete-public-key"] = github.delete(
         "/admin/keys/{key_ids}",
         t.struct({"key_ids": t.string()}),
         t.boolean(),
     )
-    functions["enterprise-admin/update-ldap-mapping-for-team"] = ghes.patch(
+    functions["enterprise-admin/update-ldap-mapping-for-team"] = github.patch(
         "/admin/ldap/teams/{team_id}/mapping",
         t.struct({"team_id": t.integer(), "ldap_dn": t.string()}),
         t.proxy(renames["ldap-mapping-team"]),
         content_type="application/json",
         body_fields=("ldap_dn",),
     )
-    functions["enterprise-admin/sync-ldap-mapping-for-team"] = ghes.post(
+    functions["enterprise-admin/sync-ldap-mapping-for-team"] = github.post(
         "/admin/ldap/teams/{team_id}/sync",
         t.struct({"team_id": t.integer()}),
         t.struct({"status": t.string().optional()}),
     )
-    functions["enterprise-admin/update-ldap-mapping-for-user"] = ghes.patch(
+    functions["enterprise-admin/update-ldap-mapping-for-user"] = github.patch(
         "/admin/ldap/users/{username}/mapping",
         t.struct({"username": t.string(), "ldap_dn": t.string()}),
         t.proxy(renames["ldap-mapping-user"]),
         content_type="application/json",
         body_fields=("ldap_dn",),
     )
-    functions["enterprise-admin/sync-ldap-mapping-for-user"] = ghes.post(
+    functions["enterprise-admin/sync-ldap-mapping-for-user"] = github.post(
         "/admin/ldap/users/{username}/sync",
         t.struct({"username": t.string()}),
         t.struct({"status": t.string().optional()}),
     )
-    functions["enterprise-admin/create-org"] = ghes.post(
+    functions["enterprise-admin/create-org"] = github.post(
         "/admin/organizations",
         t.struct(
             {
@@ -6045,14 +6045,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("login", "admin", "profile_name"),
     )
-    functions["enterprise-admin/update-org-name"] = ghes.patch(
+    functions["enterprise-admin/update-org-name"] = github.patch(
         "/admin/organizations/{org}",
         t.struct({"org": t.string(), "login": t.string()}),
         t.struct({"message": t.string().optional(), "url": t.string().optional()}),
         content_type="application/json",
         body_fields=("login",),
     )
-    functions["enterprise-admin/list-pre-receive-environments"] = ghes.get(
+    functions["enterprise-admin/list-pre-receive-environments"] = github.get(
         "/admin/pre-receive-environments",
         t.struct(
             {
@@ -6064,19 +6064,19 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["pre-receive-environment"])),
     )
-    functions["enterprise-admin/create-pre-receive-environment"] = ghes.post(
+    functions["enterprise-admin/create-pre-receive-environment"] = github.post(
         "/admin/pre-receive-environments",
         t.struct({"name": t.string(), "image_url": t.string()}),
         t.proxy(renames["pre-receive-environment"]),
         content_type="application/json",
         body_fields=("name", "image_url"),
     )
-    functions["enterprise-admin/get-pre-receive-environment"] = ghes.get(
+    functions["enterprise-admin/get-pre-receive-environment"] = github.get(
         "/admin/pre-receive-environments/{pre_receive_environment_id}",
         t.struct({"pre_receive_environment_id": t.integer()}),
         t.proxy(renames["pre-receive-environment"]),
     )
-    functions["enterprise-admin/update-pre-receive-environment"] = ghes.patch(
+    functions["enterprise-admin/update-pre-receive-environment"] = github.patch(
         "/admin/pre-receive-environments/{pre_receive_environment_id}",
         t.struct(
             {
@@ -6089,24 +6089,24 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "image_url"),
     )
-    functions["enterprise-admin/delete-pre-receive-environment"] = ghes.delete(
+    functions["enterprise-admin/delete-pre-receive-environment"] = github.delete(
         "/admin/pre-receive-environments/{pre_receive_environment_id}",
         t.struct({"pre_receive_environment_id": t.integer()}),
         t.boolean(),
     )
-    functions["enterprise-admin/start-pre-receive-environment-download"] = ghes.post(
+    functions["enterprise-admin/start-pre-receive-environment-download"] = github.post(
         "/admin/pre-receive-environments/{pre_receive_environment_id}/downloads",
         t.struct({"pre_receive_environment_id": t.integer()}),
         t.proxy(renames["pre-receive-environment-download-status"]),
     )
     functions[
         "enterprise-admin/get-download-status-for-pre-receive-environment"
-    ] = ghes.get(
+    ] = github.get(
         "/admin/pre-receive-environments/{pre_receive_environment_id}/downloads/latest",
         t.struct({"pre_receive_environment_id": t.integer()}),
         t.proxy(renames["pre-receive-environment-download-status"]),
     )
-    functions["enterprise-admin/list-pre-receive-hooks"] = ghes.get(
+    functions["enterprise-admin/list-pre-receive-hooks"] = github.get(
         "/admin/pre-receive-hooks",
         t.struct(
             {
@@ -6118,7 +6118,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["pre-receive-hook"])),
     )
-    functions["enterprise-admin/create-pre-receive-hook"] = ghes.post(
+    functions["enterprise-admin/create-pre-receive-hook"] = github.post(
         "/admin/pre-receive-hooks",
         t.struct(
             {
@@ -6141,12 +6141,12 @@ def import_ghes(params=None):
             "allow_downstream_configuration",
         ),
     )
-    functions["enterprise-admin/get-pre-receive-hook"] = ghes.get(
+    functions["enterprise-admin/get-pre-receive-hook"] = github.get(
         "/admin/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct({"pre_receive_hook_id": t.integer()}),
         t.proxy(renames["pre-receive-hook"]),
     )
-    functions["enterprise-admin/update-pre-receive-hook"] = ghes.patch(
+    functions["enterprise-admin/update-pre-receive-hook"] = github.patch(
         "/admin/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct(
             {
@@ -6170,63 +6170,63 @@ def import_ghes(params=None):
             "allow_downstream_configuration",
         ),
     )
-    functions["enterprise-admin/delete-pre-receive-hook"] = ghes.delete(
+    functions["enterprise-admin/delete-pre-receive-hook"] = github.delete(
         "/admin/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct({"pre_receive_hook_id": t.integer()}),
         t.boolean(),
     )
-    functions["enterprise-admin/list-personal-access-tokens"] = ghes.get(
+    functions["enterprise-admin/list-personal-access-tokens"] = github.get(
         "/admin/tokens",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["authorization"])),
     )
-    functions["enterprise-admin/delete-personal-access-token"] = ghes.delete(
+    functions["enterprise-admin/delete-personal-access-token"] = github.delete(
         "/admin/tokens/{token_id}",
         t.struct({"token_id": t.integer()}),
         t.boolean(),
     )
-    functions["enterprise-admin/create-user"] = ghes.post(
+    functions["enterprise-admin/create-user"] = github.post(
         "/admin/users",
         t.struct({"login": t.string(), "email": t.string().optional()}),
         t.proxy(renames["simple-user"]),
         content_type="application/json",
         body_fields=("login", "email"),
     )
-    functions["enterprise-admin/update-username-for-user"] = ghes.patch(
+    functions["enterprise-admin/update-username-for-user"] = github.patch(
         "/admin/users/{username}",
         t.struct({"username": t.string(), "login": t.string()}),
         t.struct({"message": t.string().optional(), "url": t.string().optional()}),
         content_type="application/json",
         body_fields=("login",),
     )
-    functions["enterprise-admin/delete-user"] = ghes.delete(
+    functions["enterprise-admin/delete-user"] = github.delete(
         "/admin/users/{username}",
         t.struct({"username": t.string()}),
         t.boolean(),
     )
-    functions["enterprise-admin/create-impersonation-o-auth-token"] = ghes.post(
+    functions["enterprise-admin/create-impersonation-o-auth-token"] = github.post(
         "/admin/users/{username}/authorizations",
         t.struct({"username": t.string(), "scopes": t.array(t.string()).optional()}),
         t.proxy(renames["authorization"]),
         content_type="application/json",
         body_fields=("scopes",),
     )
-    functions["enterprise-admin/delete-impersonation-o-auth-token"] = ghes.delete(
+    functions["enterprise-admin/delete-impersonation-o-auth-token"] = github.delete(
         "/admin/users/{username}/authorizations",
         t.struct({"username": t.string()}),
         t.boolean(),
     )
-    functions["apps/get-authenticated"] = ghes.get(
+    functions["apps/get-authenticated"] = github.get(
         "/app",
         t.struct({}),
         t.proxy(renames["integration"]),
     )
-    functions["apps/get-webhook-config-for-app"] = ghes.get(
+    functions["apps/get-webhook-config-for-app"] = github.get(
         "/app/hook/config",
         t.struct({}),
         t.proxy(renames["webhook-config"]),
     )
-    functions["apps/update-webhook-config-for-app"] = ghes.patch(
+    functions["apps/update-webhook-config-for-app"] = github.patch(
         "/app/hook/config",
         t.struct(
             {
@@ -6244,7 +6244,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("url", "content_type", "secret", "insecure_ssl"),
     )
-    functions["apps/list-installations"] = ghes.get(
+    functions["apps/list-installations"] = github.get(
         "/app/installations",
         t.struct(
             {
@@ -6256,17 +6256,17 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["installation"])),
     )
-    functions["apps/get-installation"] = ghes.get(
+    functions["apps/get-installation"] = github.get(
         "/app/installations/{installation_id}",
         t.struct({"installation_id": t.integer()}),
         t.proxy(renames["installation"]).optional(),
     )
-    functions["apps/delete-installation"] = ghes.delete(
+    functions["apps/delete-installation"] = github.delete(
         "/app/installations/{installation_id}",
         t.struct({"installation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/create-installation-access-token"] = ghes.post(
+    functions["apps/create-installation-access-token"] = github.post(
         "/app/installations/{installation_id}/access_tokens",
         t.struct(
             {
@@ -6280,67 +6280,67 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("repositories", "repository_ids", "permissions"),
     )
-    functions["apps/suspend-installation"] = ghes.put(
+    functions["apps/suspend-installation"] = github.put(
         "/app/installations/{installation_id}/suspended",
         t.struct({"installation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/unsuspend-installation"] = ghes.delete(
+    functions["apps/unsuspend-installation"] = github.delete(
         "/app/installations/{installation_id}/suspended",
         t.struct({"installation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["oauth-authorizations/list-grants"] = ghes.get(
+    functions["oauth-authorizations/list-grants"] = github.get(
         "/applications/grants",
         t.struct(
             {"per_page": t.integer(), "page": t.integer(), "client_id": t.string()}
         ),
         t.array(t.proxy(renames["application-grant"])).optional(),
     )
-    functions["oauth-authorizations/get-grant"] = ghes.get(
+    functions["oauth-authorizations/get-grant"] = github.get(
         "/applications/grants/{grant_id}",
         t.struct({"grant_id": t.integer()}),
         t.proxy(renames["application-grant"]),
     )
-    functions["oauth-authorizations/delete-grant"] = ghes.delete(
+    functions["oauth-authorizations/delete-grant"] = github.delete(
         "/applications/grants/{grant_id}",
         t.struct({"grant_id": t.integer()}),
         t.boolean(),
     )
-    functions["apps/delete-authorization"] = ghes.delete(
+    functions["apps/delete-authorization"] = github.delete(
         "/applications/{client_id}/grant",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.boolean(),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/revoke-grant-for-application"] = ghes.delete(
+    functions["apps/revoke-grant-for-application"] = github.delete(
         "/applications/{client_id}/grants/{access_token}",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.boolean(),
     )
-    functions["apps/check-token"] = ghes.post(
+    functions["apps/check-token"] = github.post(
         "/applications/{client_id}/token",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.proxy(renames["authorization"]).optional(),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/reset-token"] = ghes.patch(
+    functions["apps/reset-token"] = github.patch(
         "/applications/{client_id}/token",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.proxy(renames["authorization"]),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/delete-token"] = ghes.delete(
+    functions["apps/delete-token"] = github.delete(
         "/applications/{client_id}/token",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.boolean(),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/scope-token"] = ghes.post(
+    functions["apps/scope-token"] = github.post(
         "/applications/{client_id}/token/scoped",
         t.struct(
             {
@@ -6364,34 +6364,34 @@ def import_ghes(params=None):
             "permissions",
         ),
     )
-    functions["apps/check-authorization"] = ghes.get(
+    functions["apps/check-authorization"] = github.get(
         "/applications/{client_id}/tokens/{access_token}",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.proxy(renames["nullable-authorization"]).optional(),
     )
-    functions["apps/reset-authorization"] = ghes.post(
+    functions["apps/reset-authorization"] = github.post(
         "/applications/{client_id}/tokens/{access_token}",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.proxy(renames["authorization"]),
     )
-    functions["apps/revoke-authorization-for-application"] = ghes.delete(
+    functions["apps/revoke-authorization-for-application"] = github.delete(
         "/applications/{client_id}/tokens/{access_token}",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.boolean(),
     )
-    functions["apps/get-by-slug"] = ghes.get(
+    functions["apps/get-by-slug"] = github.get(
         "/apps/{app_slug}",
         t.struct({"app_slug": t.string()}),
         t.proxy(renames["integration"]).optional(),
     )
-    functions["oauth-authorizations/list-authorizations"] = ghes.get(
+    functions["oauth-authorizations/list-authorizations"] = github.get(
         "/authorizations",
         t.struct(
             {"per_page": t.integer(), "page": t.integer(), "client_id": t.string()}
         ),
         t.array(t.proxy(renames["authorization"])).optional(),
     )
-    functions["oauth-authorizations/create-authorization"] = ghes.post(
+    functions["oauth-authorizations/create-authorization"] = github.post(
         "/authorizations",
         t.struct(
             {
@@ -6414,7 +6414,7 @@ def import_ghes(params=None):
             "fingerprint",
         ),
     )
-    functions["oauth-authorizations/get-or-create-authorization-for-app"] = ghes.put(
+    functions["oauth-authorizations/get-or-create-authorization-for-app"] = github.put(
         "/authorizations/clients/{client_id}",
         t.struct(
             {
@@ -6432,7 +6432,7 @@ def import_ghes(params=None):
     )
     functions[
         "oauth-authorizations/get-or-create-authorization-for-app-and-fingerprint"
-    ] = ghes.put(
+    ] = github.put(
         "/authorizations/clients/{client_id}/{fingerprint}",
         t.struct(
             {
@@ -6448,12 +6448,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("client_secret", "scopes", "note", "note_url"),
     )
-    functions["oauth-authorizations/get-authorization"] = ghes.get(
+    functions["oauth-authorizations/get-authorization"] = github.get(
         "/authorizations/{authorization_id}",
         t.struct({"authorization_id": t.integer()}),
         t.proxy(renames["authorization"]),
     )
-    functions["oauth-authorizations/update-authorization"] = ghes.patch(
+    functions["oauth-authorizations/update-authorization"] = github.patch(
         "/authorizations/{authorization_id}",
         t.struct(
             {
@@ -6477,32 +6477,32 @@ def import_ghes(params=None):
             "fingerprint",
         ),
     )
-    functions["oauth-authorizations/delete-authorization"] = ghes.delete(
+    functions["oauth-authorizations/delete-authorization"] = github.delete(
         "/authorizations/{authorization_id}",
         t.struct({"authorization_id": t.integer()}),
         t.boolean(),
     )
-    functions["codes-of-conduct/get-all-codes-of-conduct"] = ghes.get(
+    functions["codes-of-conduct/get-all-codes-of-conduct"] = github.get(
         "/codes_of_conduct",
         t.struct({}),
         t.array(t.proxy(renames["code-of-conduct"])),
     )
-    functions["codes-of-conduct/get-conduct-code"] = ghes.get(
+    functions["codes-of-conduct/get-conduct-code"] = github.get(
         "/codes_of_conduct/{key}",
         t.struct({"key": t.string()}),
         t.proxy(renames["code-of-conduct"]).optional(),
     )
-    functions["emojis/get"] = ghes.get(
+    functions["emojis/get"] = github.get(
         "/emojis",
         t.struct({}),
         t.struct({}),
     )
-    functions["enterprise-admin/get-announcement"] = ghes.get(
+    functions["enterprise-admin/get-announcement"] = github.get(
         "/enterprise/announcement",
         t.struct({}),
         t.proxy(renames["announcement"]),
     )
-    functions["enterprise-admin/set-announcement"] = ghes.patch(
+    functions["enterprise-admin/set-announcement"] = github.patch(
         "/enterprise/announcement",
         t.struct(
             {
@@ -6514,77 +6514,81 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("announcement", "expires_at"),
     )
-    functions["enterprise-admin/remove-announcement"] = ghes.delete(
+    functions["enterprise-admin/remove-announcement"] = github.delete(
         "/enterprise/announcement",
         t.struct({}),
         t.boolean(),
     )
-    functions["enterprise-admin/get-license-information"] = ghes.get(
+    functions["enterprise-admin/get-license-information"] = github.get(
         "/enterprise/settings/license",
         t.struct({}),
         t.proxy(renames["license-info"]),
     )
-    functions["enterprise-admin/get-all-stats"] = ghes.get(
+    functions["enterprise-admin/get-all-stats"] = github.get(
         "/enterprise/stats/all",
         t.struct({}),
         t.proxy(renames["enterprise-overview"]),
     )
-    functions["enterprise-admin/get-comment-stats"] = ghes.get(
+    functions["enterprise-admin/get-comment-stats"] = github.get(
         "/enterprise/stats/comments",
         t.struct({}),
         t.proxy(renames["enterprise-comment-overview"]),
     )
-    functions["enterprise-admin/get-gist-stats"] = ghes.get(
+    functions["enterprise-admin/get-gist-stats"] = github.get(
         "/enterprise/stats/gists",
         t.struct({}),
         t.proxy(renames["enterprise-gist-overview"]),
     )
-    functions["enterprise-admin/get-hooks-stats"] = ghes.get(
+    functions["enterprise-admin/get-hooks-stats"] = github.get(
         "/enterprise/stats/hooks",
         t.struct({}),
         t.proxy(renames["enterprise-hook-overview"]),
     )
-    functions["enterprise-admin/get-issue-stats"] = ghes.get(
+    functions["enterprise-admin/get-issue-stats"] = github.get(
         "/enterprise/stats/issues",
         t.struct({}),
         t.proxy(renames["enterprise-issue-overview"]),
     )
-    functions["enterprise-admin/get-milestone-stats"] = ghes.get(
+    functions["enterprise-admin/get-milestone-stats"] = github.get(
         "/enterprise/stats/milestones",
         t.struct({}),
         t.proxy(renames["enterprise-milestone-overview"]),
     )
-    functions["enterprise-admin/get-org-stats"] = ghes.get(
+    functions["enterprise-admin/get-org-stats"] = github.get(
         "/enterprise/stats/orgs",
         t.struct({}),
         t.proxy(renames["enterprise-organization-overview"]),
     )
-    functions["enterprise-admin/get-pages-stats"] = ghes.get(
+    functions["enterprise-admin/get-pages-stats"] = github.get(
         "/enterprise/stats/pages",
         t.struct({}),
         t.proxy(renames["enterprise-page-overview"]),
     )
-    functions["enterprise-admin/get-pull-request-stats"] = ghes.get(
+    functions["enterprise-admin/get-pull-request-stats"] = github.get(
         "/enterprise/stats/pulls",
         t.struct({}),
         t.proxy(renames["enterprise-pull-request-overview"]),
     )
-    functions["enterprise-admin/get-repo-stats"] = ghes.get(
+    functions["enterprise-admin/get-repo-stats"] = github.get(
         "/enterprise/stats/repos",
         t.struct({}),
         t.proxy(renames["enterprise-repository-overview"]),
     )
-    functions["enterprise-admin/get-user-stats"] = ghes.get(
+    functions["enterprise-admin/get-user-stats"] = github.get(
         "/enterprise/stats/users",
         t.struct({}),
         t.proxy(renames["enterprise-user-overview"]),
     )
-    functions["enterprise-admin/get-github-actions-permissions-enterprise"] = ghes.get(
+    functions[
+        "enterprise-admin/get-github-actions-permissions-enterprise"
+    ] = github.get(
         "/enterprises/{enterprise}/actions/permissions",
         t.struct({"enterprise": t.string()}),
         t.proxy(renames["actions-enterprise-permissions"]),
     )
-    functions["enterprise-admin/set-github-actions-permissions-enterprise"] = ghes.put(
+    functions[
+        "enterprise-admin/set-github-actions-permissions-enterprise"
+    ] = github.put(
         "/enterprises/{enterprise}/actions/permissions",
         t.struct(
             {
@@ -6599,7 +6603,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/list-selected-organizations-enabled-github-actions-enterprise"
-    ] = ghes.get(
+    ] = github.get(
         "/enterprises/{enterprise}/actions/permissions/organizations",
         t.struct(
             {"enterprise": t.string(), "per_page": t.integer(), "page": t.integer()}
@@ -6613,7 +6617,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/set-selected-organizations-enabled-github-actions-enterprise"
-    ] = ghes.put(
+    ] = github.put(
         "/enterprises/{enterprise}/actions/permissions/organizations",
         t.struct(
             {
@@ -6627,24 +6631,24 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/enable-selected-organization-github-actions-enterprise"
-    ] = ghes.put(
+    ] = github.put(
         "/enterprises/{enterprise}/actions/permissions/organizations/{org_id}",
         t.struct({"enterprise": t.string(), "org_id": t.integer()}),
         t.boolean(),
     )
     functions[
         "enterprise-admin/disable-selected-organization-github-actions-enterprise"
-    ] = ghes.delete(
+    ] = github.delete(
         "/enterprises/{enterprise}/actions/permissions/organizations/{org_id}",
         t.struct({"enterprise": t.string(), "org_id": t.integer()}),
         t.boolean(),
     )
-    functions["enterprise-admin/get-allowed-actions-enterprise"] = ghes.get(
+    functions["enterprise-admin/get-allowed-actions-enterprise"] = github.get(
         "/enterprises/{enterprise}/actions/permissions/selected-actions",
         t.struct({"enterprise": t.string()}),
         t.proxy(renames["selected-actions"]),
     )
-    functions["enterprise-admin/set-allowed-actions-enterprise"] = ghes.put(
+    functions["enterprise-admin/set-allowed-actions-enterprise"] = github.put(
         "/enterprises/{enterprise}/actions/permissions/selected-actions",
         t.struct(
             {
@@ -6659,7 +6663,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/list-self-hosted-runner-groups-for-enterprise"
-    ] = ghes.get(
+    ] = github.get(
         "/enterprises/{enterprise}/actions/runner-groups",
         t.struct(
             {"enterprise": t.string(), "per_page": t.integer(), "page": t.integer()}
@@ -6673,7 +6677,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/create-self-hosted-runner-group-for-enterprise"
-    ] = ghes.post(
+    ] = github.post(
         "/enterprises/{enterprise}/actions/runner-groups",
         t.struct(
             {
@@ -6697,14 +6701,14 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/get-self-hosted-runner-group-for-enterprise"
-    ] = ghes.get(
+    ] = github.get(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
         t.struct({"enterprise": t.string(), "runner_group_id": t.integer()}),
         t.proxy(renames["runner-groups-enterprise"]),
     )
     functions[
         "enterprise-admin/update-self-hosted-runner-group-for-enterprise"
-    ] = ghes.patch(
+    ] = github.patch(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
         t.struct(
             {
@@ -6721,14 +6725,14 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/delete-self-hosted-runner-group-from-enterprise"
-    ] = ghes.delete(
+    ] = github.delete(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}",
         t.struct({"enterprise": t.string(), "runner_group_id": t.integer()}),
         t.boolean(),
     )
     functions[
         "enterprise-admin/list-org-access-to-self-hosted-runner-group-in-enterprise"
-    ] = ghes.get(
+    ] = github.get(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
         t.struct(
             {
@@ -6747,7 +6751,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/set-org-access-to-self-hosted-runner-group-in-enterprise"
-    ] = ghes.put(
+    ] = github.put(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations",
         t.struct(
             {
@@ -6762,7 +6766,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/add-org-access-to-self-hosted-runner-group-in-enterprise"
-    ] = ghes.put(
+    ] = github.put(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
         t.struct(
             {
@@ -6775,7 +6779,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/remove-org-access-to-self-hosted-runner-group-in-enterprise"
-    ] = ghes.delete(
+    ] = github.delete(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/organizations/{org_id}",
         t.struct(
             {
@@ -6788,7 +6792,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/list-self-hosted-runners-in-group-for-enterprise"
-    ] = ghes.get(
+    ] = github.get(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
         t.struct(
             {
@@ -6804,7 +6808,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/set-self-hosted-runners-in-group-for-enterprise"
-    ] = ghes.put(
+    ] = github.put(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners",
         t.struct(
             {
@@ -6819,7 +6823,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/add-self-hosted-runner-to-group-for-enterprise"
-    ] = ghes.put(
+    ] = github.put(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
         t.struct(
             {
@@ -6832,7 +6836,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/remove-self-hosted-runner-from-group-for-enterprise"
-    ] = ghes.delete(
+    ] = github.delete(
         "/enterprises/{enterprise}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
         t.struct(
             {
@@ -6843,7 +6847,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["enterprise-admin/list-self-hosted-runners-for-enterprise"] = ghes.get(
+    functions["enterprise-admin/list-self-hosted-runners-for-enterprise"] = github.get(
         "/enterprises/{enterprise}/actions/runners",
         t.struct(
             {"enterprise": t.string(), "per_page": t.integer(), "page": t.integer()}
@@ -6855,49 +6859,51 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["enterprise-admin/list-runner-applications-for-enterprise"] = ghes.get(
+    functions["enterprise-admin/list-runner-applications-for-enterprise"] = github.get(
         "/enterprises/{enterprise}/actions/runners/downloads",
         t.struct({"enterprise": t.string()}),
         t.array(t.proxy(renames["runner-application"])),
     )
-    functions["enterprise-admin/create-registration-token-for-enterprise"] = ghes.post(
+    functions[
+        "enterprise-admin/create-registration-token-for-enterprise"
+    ] = github.post(
         "/enterprises/{enterprise}/actions/runners/registration-token",
         t.struct({"enterprise": t.string()}),
         t.proxy(renames["authentication-token"]),
     )
-    functions["enterprise-admin/create-remove-token-for-enterprise"] = ghes.post(
+    functions["enterprise-admin/create-remove-token-for-enterprise"] = github.post(
         "/enterprises/{enterprise}/actions/runners/remove-token",
         t.struct({"enterprise": t.string()}),
         t.proxy(renames["authentication-token"]),
     )
-    functions["enterprise-admin/get-self-hosted-runner-for-enterprise"] = ghes.get(
+    functions["enterprise-admin/get-self-hosted-runner-for-enterprise"] = github.get(
         "/enterprises/{enterprise}/actions/runners/{runner_id}",
         t.struct({"enterprise": t.string(), "runner_id": t.integer()}),
         t.proxy(renames["runner"]),
     )
     functions[
         "enterprise-admin/delete-self-hosted-runner-from-enterprise"
-    ] = ghes.delete(
+    ] = github.delete(
         "/enterprises/{enterprise}/actions/runners/{runner_id}",
         t.struct({"enterprise": t.string(), "runner_id": t.integer()}),
         t.boolean(),
     )
-    functions["activity/list-public-events"] = ghes.get(
+    functions["activity/list-public-events"] = github.get(
         "/events",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/get-feeds"] = ghes.get(
+    functions["activity/get-feeds"] = github.get(
         "/feeds",
         t.struct({}),
         t.proxy(renames["feed"]),
     )
-    functions["gists/list"] = ghes.get(
+    functions["gists/list"] = github.get(
         "/gists",
         t.struct({"since": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["base-gist"])),
     )
-    functions["gists/create"] = ghes.post(
+    functions["gists/create"] = github.post(
         "/gists",
         t.struct(
             {
@@ -6910,44 +6916,44 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("description", "files", "public"),
     )
-    functions["gists/list-public"] = ghes.get(
+    functions["gists/list-public"] = github.get(
         "/gists/public",
         t.struct({"since": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["base-gist"])),
     )
-    functions["gists/list-starred"] = ghes.get(
+    functions["gists/list-starred"] = github.get(
         "/gists/starred",
         t.struct({"since": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["base-gist"])),
     )
-    functions["gists/get"] = ghes.get(
+    functions["gists/get"] = github.get(
         "/gists/{gist_id}",
         t.struct({"gist_id": t.string()}),
         t.proxy(renames["gist-simple"]).optional(),
     )
-    functions["gists/delete"] = ghes.delete(
+    functions["gists/delete"] = github.delete(
         "/gists/{gist_id}",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/list-comments"] = ghes.get(
+    functions["gists/list-comments"] = github.get(
         "/gists/{gist_id}/comments",
         t.struct({"gist_id": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["gist-comment"])).optional(),
     )
-    functions["gists/create-comment"] = ghes.post(
+    functions["gists/create-comment"] = github.post(
         "/gists/{gist_id}/comments",
         t.struct({"gist_id": t.string(), "body": t.string()}),
         t.proxy(renames["gist-comment"]).optional(),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["gists/get-comment"] = ghes.get(
+    functions["gists/get-comment"] = github.get(
         "/gists/{gist_id}/comments/{comment_id}",
         t.struct({"gist_id": t.string(), "comment_id": t.integer()}),
         t.proxy(renames["gist-comment"]).optional(),
     )
-    functions["gists/update-comment"] = ghes.patch(
+    functions["gists/update-comment"] = github.patch(
         "/gists/{gist_id}/comments/{comment_id}",
         t.struct(
             {"gist_id": t.string(), "comment_id": t.integer(), "body": t.string()}
@@ -6956,57 +6962,57 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["gists/delete-comment"] = ghes.delete(
+    functions["gists/delete-comment"] = github.delete(
         "/gists/{gist_id}/comments/{comment_id}",
         t.struct({"gist_id": t.string(), "comment_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["gists/list-commits"] = ghes.get(
+    functions["gists/list-commits"] = github.get(
         "/gists/{gist_id}/commits",
         t.struct({"gist_id": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["gist-commit"])).optional(),
     )
-    functions["gists/list-forks"] = ghes.get(
+    functions["gists/list-forks"] = github.get(
         "/gists/{gist_id}/forks",
         t.struct({"gist_id": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["gist-simple"])).optional(),
     )
-    functions["gists/fork"] = ghes.post(
+    functions["gists/fork"] = github.post(
         "/gists/{gist_id}/forks",
         t.struct({"gist_id": t.string()}),
         t.proxy(renames["base-gist"]).optional(),
     )
-    functions["gists/check-is-starred"] = ghes.get(
+    functions["gists/check-is-starred"] = github.get(
         "/gists/{gist_id}/star",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/star"] = ghes.put(
+    functions["gists/star"] = github.put(
         "/gists/{gist_id}/star",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/unstar"] = ghes.delete(
+    functions["gists/unstar"] = github.delete(
         "/gists/{gist_id}/star",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/get-revision"] = ghes.get(
+    functions["gists/get-revision"] = github.get(
         "/gists/{gist_id}/{sha}",
         t.struct({"gist_id": t.string(), "sha": t.string()}),
         t.proxy(renames["gist-simple"]).optional(),
     )
-    functions["gitignore/get-all-templates"] = ghes.get(
+    functions["gitignore/get-all-templates"] = github.get(
         "/gitignore/templates",
         t.struct({}),
         t.array(t.string()),
     )
-    functions["gitignore/get-template"] = ghes.get(
+    functions["gitignore/get-template"] = github.get(
         "/gitignore/templates/{name}",
         t.struct({"name": t.string()}),
         t.proxy(renames["gitignore-template"]),
     )
-    functions["apps/list-repos-accessible-to-installation"] = ghes.get(
+    functions["apps/list-repos-accessible-to-installation"] = github.get(
         "/installation/repositories",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -7017,12 +7023,12 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["apps/revoke-installation-access-token"] = ghes.delete(
+    functions["apps/revoke-installation-access-token"] = github.delete(
         "/installation/token",
         t.struct({}),
         t.boolean(),
     )
-    functions["issues/list"] = ghes.get(
+    functions["issues/list"] = github.get(
         "/issues",
         t.struct(
             {
@@ -7042,24 +7048,24 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["licenses/get-all-commonly-used"] = ghes.get(
+    functions["licenses/get-all-commonly-used"] = github.get(
         "/licenses",
         t.struct(
             {"featured": t.boolean(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["license-simple"])),
     )
-    functions["licenses/get"] = ghes.get(
+    functions["licenses/get"] = github.get(
         "/licenses/{license}",
         t.struct({"license": t.string()}),
         t.proxy(renames["license"]).optional(),
     )
-    functions["meta/get"] = ghes.get(
+    functions["meta/get"] = github.get(
         "/meta",
         t.struct({}),
         t.proxy(renames["api-overview"]),
     )
-    functions["activity/list-public-events-for-repo-network"] = ghes.get(
+    functions["activity/list-public-events-for-repo-network"] = github.get(
         "/networks/{owner}/{repo}/events",
         t.struct(
             {
@@ -7071,7 +7077,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["event"])).optional(),
     )
-    functions["activity/list-notifications-for-authenticated-user"] = ghes.get(
+    functions["activity/list-notifications-for-authenticated-user"] = github.get(
         "/notifications",
         t.struct(
             {
@@ -7085,7 +7091,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["thread"])),
     )
-    functions["activity/mark-notifications-as-read"] = ghes.put(
+    functions["activity/mark-notifications-as-read"] = github.put(
         "/notifications",
         t.struct(
             {"last_read_at": t.string().optional(), "read": t.boolean().optional()}
@@ -7094,44 +7100,44 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("last_read_at", "read"),
     )
-    functions["activity/get-thread"] = ghes.get(
+    functions["activity/get-thread"] = github.get(
         "/notifications/threads/{thread_id}",
         t.struct({"thread_id": t.integer()}),
         t.proxy(renames["thread"]),
     )
-    functions["activity/mark-thread-as-read"] = ghes.patch(
+    functions["activity/mark-thread-as-read"] = github.patch(
         "/notifications/threads/{thread_id}",
         t.struct({"thread_id": t.integer()}),
         t.struct({}),
     )
-    functions["activity/get-thread-subscription-for-authenticated-user"] = ghes.get(
+    functions["activity/get-thread-subscription-for-authenticated-user"] = github.get(
         "/notifications/threads/{thread_id}/subscription",
         t.struct({"thread_id": t.integer()}),
         t.proxy(renames["thread-subscription"]),
     )
-    functions["activity/set-thread-subscription"] = ghes.put(
+    functions["activity/set-thread-subscription"] = github.put(
         "/notifications/threads/{thread_id}/subscription",
         t.struct({"thread_id": t.integer(), "ignored": t.boolean().optional()}),
         t.proxy(renames["thread-subscription"]),
         content_type="application/json",
         body_fields=("ignored",),
     )
-    functions["activity/delete-thread-subscription"] = ghes.delete(
+    functions["activity/delete-thread-subscription"] = github.delete(
         "/notifications/threads/{thread_id}/subscription",
         t.struct({"thread_id": t.integer()}),
         t.boolean(),
     )
-    functions["orgs/list"] = ghes.get(
+    functions["orgs/list"] = github.get(
         "/organizations",
         t.struct({"since": t.integer(), "per_page": t.integer()}),
         t.array(t.proxy(renames["organization-simple"])),
     )
-    functions["orgs/get"] = ghes.get(
+    functions["orgs/get"] = github.get(
         "/orgs/{org}",
         t.struct({"org": t.string()}),
         t.proxy(renames["organization-full"]).optional(),
     )
-    functions["orgs/update"] = ghes.patch(
+    functions["orgs/update"] = github.patch(
         "/orgs/{org}",
         t.struct(
             {
@@ -7179,12 +7185,12 @@ def import_ghes(params=None):
             "blog",
         ),
     )
-    functions["actions/get-github-actions-permissions-organization"] = ghes.get(
+    functions["actions/get-github-actions-permissions-organization"] = github.get(
         "/orgs/{org}/actions/permissions",
         t.struct({"org": t.string()}),
         t.proxy(renames["actions-organization-permissions"]),
     )
-    functions["actions/set-github-actions-permissions-organization"] = ghes.put(
+    functions["actions/set-github-actions-permissions-organization"] = github.put(
         "/orgs/{org}/actions/permissions",
         t.struct(
             {
@@ -7199,7 +7205,7 @@ def import_ghes(params=None):
     )
     functions[
         "actions/list-selected-repositories-enabled-github-actions-organization"
-    ] = ghes.get(
+    ] = github.get(
         "/orgs/{org}/actions/permissions/repositories",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -7211,7 +7217,7 @@ def import_ghes(params=None):
     )
     functions[
         "actions/set-selected-repositories-enabled-github-actions-organization"
-    ] = ghes.put(
+    ] = github.put(
         "/orgs/{org}/actions/permissions/repositories",
         t.struct({"org": t.string(), "selected_repository_ids": t.array(t.integer())}),
         t.boolean(),
@@ -7220,24 +7226,24 @@ def import_ghes(params=None):
     )
     functions[
         "actions/enable-selected-repository-github-actions-organization"
-    ] = ghes.put(
+    ] = github.put(
         "/orgs/{org}/actions/permissions/repositories/{repository_id}",
         t.struct({"org": t.string(), "repository_id": t.integer()}),
         t.boolean(),
     )
     functions[
         "actions/disable-selected-repository-github-actions-organization"
-    ] = ghes.delete(
+    ] = github.delete(
         "/orgs/{org}/actions/permissions/repositories/{repository_id}",
         t.struct({"org": t.string(), "repository_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/get-allowed-actions-organization"] = ghes.get(
+    functions["actions/get-allowed-actions-organization"] = github.get(
         "/orgs/{org}/actions/permissions/selected-actions",
         t.struct({"org": t.string()}),
         t.proxy(renames["selected-actions"]),
     )
-    functions["actions/set-allowed-actions-organization"] = ghes.put(
+    functions["actions/set-allowed-actions-organization"] = github.put(
         "/orgs/{org}/actions/permissions/selected-actions",
         t.struct(
             {
@@ -7250,7 +7256,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("github_owned_allowed", "patterns_allowed"),
     )
-    functions["actions/list-self-hosted-runner-groups-for-org"] = ghes.get(
+    functions["actions/list-self-hosted-runner-groups-for-org"] = github.get(
         "/orgs/{org}/actions/runner-groups",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -7260,7 +7266,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/create-self-hosted-runner-group-for-org"] = ghes.post(
+    functions["actions/create-self-hosted-runner-group-for-org"] = github.post(
         "/orgs/{org}/actions/runner-groups",
         t.struct(
             {
@@ -7282,12 +7288,12 @@ def import_ghes(params=None):
             "allows_public_repositories",
         ),
     )
-    functions["actions/get-self-hosted-runner-group-for-org"] = ghes.get(
+    functions["actions/get-self-hosted-runner-group-for-org"] = github.get(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}",
         t.struct({"org": t.string(), "runner_group_id": t.integer()}),
         t.proxy(renames["runner-groups-org"]),
     )
-    functions["actions/update-self-hosted-runner-group-for-org"] = ghes.patch(
+    functions["actions/update-self-hosted-runner-group-for-org"] = github.patch(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}",
         t.struct(
             {
@@ -7302,12 +7308,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "visibility", "allows_public_repositories"),
     )
-    functions["actions/delete-self-hosted-runner-group-from-org"] = ghes.delete(
+    functions["actions/delete-self-hosted-runner-group-from-org"] = github.delete(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}",
         t.struct({"org": t.string(), "runner_group_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/list-repo-access-to-self-hosted-runner-group-in-org"] = ghes.get(
+    functions[
+        "actions/list-repo-access-to-self-hosted-runner-group-in-org"
+    ] = github.get(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories",
         t.struct(
             {
@@ -7324,7 +7332,9 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/set-repo-access-to-self-hosted-runner-group-in-org"] = ghes.put(
+    functions[
+        "actions/set-repo-access-to-self-hosted-runner-group-in-org"
+    ] = github.put(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories",
         t.struct(
             {
@@ -7337,7 +7347,9 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("selected_repository_ids",),
     )
-    functions["actions/add-repo-access-to-self-hosted-runner-group-in-org"] = ghes.put(
+    functions[
+        "actions/add-repo-access-to-self-hosted-runner-group-in-org"
+    ] = github.put(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
         t.struct(
             {
@@ -7350,7 +7362,7 @@ def import_ghes(params=None):
     )
     functions[
         "actions/remove-repo-access-to-self-hosted-runner-group-in-org"
-    ] = ghes.delete(
+    ] = github.delete(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/repositories/{repository_id}",
         t.struct(
             {
@@ -7361,7 +7373,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/list-self-hosted-runners-in-group-for-org"] = ghes.get(
+    functions["actions/list-self-hosted-runners-in-group-for-org"] = github.get(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners",
         t.struct(
             {
@@ -7375,7 +7387,7 @@ def import_ghes(params=None):
             {"total_count": t.number(), "runners": t.array(t.proxy(renames["runner"]))}
         ),
     )
-    functions["actions/set-self-hosted-runners-in-group-for-org"] = ghes.put(
+    functions["actions/set-self-hosted-runners-in-group-for-org"] = github.put(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners",
         t.struct(
             {
@@ -7388,7 +7400,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("runners",),
     )
-    functions["actions/add-self-hosted-runner-to-group-for-org"] = ghes.put(
+    functions["actions/add-self-hosted-runner-to-group-for-org"] = github.put(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
         t.struct(
             {
@@ -7399,7 +7411,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/remove-self-hosted-runner-from-group-for-org"] = ghes.delete(
+    functions["actions/remove-self-hosted-runner-from-group-for-org"] = github.delete(
         "/orgs/{org}/actions/runner-groups/{runner_group_id}/runners/{runner_id}",
         t.struct(
             {
@@ -7410,39 +7422,39 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/list-self-hosted-runners-for-org"] = ghes.get(
+    functions["actions/list-self-hosted-runners-for-org"] = github.get(
         "/orgs/{org}/actions/runners",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {"total_count": t.integer(), "runners": t.array(t.proxy(renames["runner"]))}
         ),
     )
-    functions["actions/list-runner-applications-for-org"] = ghes.get(
+    functions["actions/list-runner-applications-for-org"] = github.get(
         "/orgs/{org}/actions/runners/downloads",
         t.struct({"org": t.string()}),
         t.array(t.proxy(renames["runner-application"])),
     )
-    functions["actions/create-registration-token-for-org"] = ghes.post(
+    functions["actions/create-registration-token-for-org"] = github.post(
         "/orgs/{org}/actions/runners/registration-token",
         t.struct({"org": t.string()}),
         t.proxy(renames["authentication-token"]),
     )
-    functions["actions/create-remove-token-for-org"] = ghes.post(
+    functions["actions/create-remove-token-for-org"] = github.post(
         "/orgs/{org}/actions/runners/remove-token",
         t.struct({"org": t.string()}),
         t.proxy(renames["authentication-token"]),
     )
-    functions["actions/get-self-hosted-runner-for-org"] = ghes.get(
+    functions["actions/get-self-hosted-runner-for-org"] = github.get(
         "/orgs/{org}/actions/runners/{runner_id}",
         t.struct({"org": t.string(), "runner_id": t.integer()}),
         t.proxy(renames["runner"]),
     )
-    functions["actions/delete-self-hosted-runner-from-org"] = ghes.delete(
+    functions["actions/delete-self-hosted-runner-from-org"] = github.delete(
         "/orgs/{org}/actions/runners/{runner_id}",
         t.struct({"org": t.string(), "runner_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/list-org-secrets"] = ghes.get(
+    functions["actions/list-org-secrets"] = github.get(
         "/orgs/{org}/actions/secrets",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -7452,17 +7464,17 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/get-org-public-key"] = ghes.get(
+    functions["actions/get-org-public-key"] = github.get(
         "/orgs/{org}/actions/secrets/public-key",
         t.struct({"org": t.string()}),
         t.proxy(renames["actions-public-key"]),
     )
-    functions["actions/get-org-secret"] = ghes.get(
+    functions["actions/get-org-secret"] = github.get(
         "/orgs/{org}/actions/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
         t.proxy(renames["organization-actions-secret"]),
     )
-    functions["actions/create-or-update-org-secret"] = ghes.put(
+    functions["actions/create-or-update-org-secret"] = github.put(
         "/orgs/{org}/actions/secrets/{secret_name}",
         t.struct(
             {
@@ -7483,12 +7495,12 @@ def import_ghes(params=None):
             "selected_repository_ids",
         ),
     )
-    functions["actions/delete-org-secret"] = ghes.delete(
+    functions["actions/delete-org-secret"] = github.delete(
         "/orgs/{org}/actions/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
         t.boolean(),
     )
-    functions["actions/list-selected-repos-for-org-secret"] = ghes.get(
+    functions["actions/list-selected-repos-for-org-secret"] = github.get(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -7505,7 +7517,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/set-selected-repos-for-org-secret"] = ghes.put(
+    functions["actions/set-selected-repos-for-org-secret"] = github.put(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -7518,31 +7530,31 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("selected_repository_ids",),
     )
-    functions["actions/add-selected-repo-to-org-secret"] = ghes.put(
+    functions["actions/add-selected-repo-to-org-secret"] = github.put(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["actions/remove-selected-repo-from-org-secret"] = ghes.delete(
+    functions["actions/remove-selected-repo-from-org-secret"] = github.delete(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["activity/list-public-org-events"] = ghes.get(
+    functions["activity/list-public-org-events"] = github.get(
         "/orgs/{org}/events",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["event"])),
     )
-    functions["orgs/list-webhooks"] = ghes.get(
+    functions["orgs/list-webhooks"] = github.get(
         "/orgs/{org}/hooks",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["org-hook"])).optional(),
     )
-    functions["orgs/create-webhook"] = ghes.post(
+    functions["orgs/create-webhook"] = github.post(
         "/orgs/{org}/hooks",
         t.struct(
             {
@@ -7570,12 +7582,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "config", "events", "active"),
     )
-    functions["orgs/get-webhook"] = ghes.get(
+    functions["orgs/get-webhook"] = github.get(
         "/orgs/{org}/hooks/{hook_id}",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
         t.proxy(renames["org-hook"]).optional(),
     )
-    functions["orgs/update-webhook"] = ghes.patch(
+    functions["orgs/update-webhook"] = github.patch(
         "/orgs/{org}/hooks/{hook_id}",
         t.struct(
             {
@@ -7602,17 +7614,17 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("config", "events", "active", "name"),
     )
-    functions["orgs/delete-webhook"] = ghes.delete(
+    functions["orgs/delete-webhook"] = github.delete(
         "/orgs/{org}/hooks/{hook_id}",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["orgs/get-webhook-config-for-org"] = ghes.get(
+    functions["orgs/get-webhook-config-for-org"] = github.get(
         "/orgs/{org}/hooks/{hook_id}/config",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
         t.proxy(renames["webhook-config"]),
     )
-    functions["orgs/update-webhook-config-for-org"] = ghes.patch(
+    functions["orgs/update-webhook-config-for-org"] = github.patch(
         "/orgs/{org}/hooks/{hook_id}/config",
         t.struct(
             {
@@ -7632,17 +7644,17 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("url", "content_type", "secret", "insecure_ssl"),
     )
-    functions["orgs/ping-webhook"] = ghes.post(
+    functions["orgs/ping-webhook"] = github.post(
         "/orgs/{org}/hooks/{hook_id}/pings",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/get-org-installation"] = ghes.get(
+    functions["apps/get-org-installation"] = github.get(
         "/orgs/{org}/installation",
         t.struct({"org": t.string()}),
         t.proxy(renames["installation"]),
     )
-    functions["orgs/list-app-installations"] = ghes.get(
+    functions["orgs/list-app-installations"] = github.get(
         "/orgs/{org}/installations",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -7652,7 +7664,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["issues/list-for-org"] = ghes.get(
+    functions["issues/list-for-org"] = github.get(
         "/orgs/{org}/issues",
         t.struct(
             {
@@ -7669,7 +7681,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["orgs/list-members"] = ghes.get(
+    functions["orgs/list-members"] = github.get(
         "/orgs/{org}/members",
         t.struct(
             {
@@ -7682,22 +7694,22 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["orgs/check-membership-for-user"] = ghes.get(
+    functions["orgs/check-membership-for-user"] = github.get(
         "/orgs/{org}/members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["orgs/remove-member"] = ghes.delete(
+    functions["orgs/remove-member"] = github.delete(
         "/orgs/{org}/members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["orgs/get-membership-for-user"] = ghes.get(
+    functions["orgs/get-membership-for-user"] = github.get(
         "/orgs/{org}/memberships/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.proxy(renames["org-membership"]).optional(),
     )
-    functions["orgs/set-membership-for-user"] = ghes.put(
+    functions["orgs/set-membership-for-user"] = github.put(
         "/orgs/{org}/memberships/{username}",
         t.struct(
             {"org": t.string(), "username": t.string(), "role": t.string().optional()}
@@ -7706,12 +7718,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("role",),
     )
-    functions["orgs/remove-membership-for-user"] = ghes.delete(
+    functions["orgs/remove-membership-for-user"] = github.delete(
         "/orgs/{org}/memberships/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["orgs/list-outside-collaborators"] = ghes.get(
+    functions["orgs/list-outside-collaborators"] = github.get(
         "/orgs/{org}/outside_collaborators",
         t.struct(
             {
@@ -7723,17 +7735,17 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["orgs/convert-member-to-outside-collaborator"] = ghes.put(
+    functions["orgs/convert-member-to-outside-collaborator"] = github.put(
         "/orgs/{org}/outside_collaborators/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.struct({}).optional(),
     )
-    functions["orgs/remove-outside-collaborator"] = ghes.delete(
+    functions["orgs/remove-outside-collaborator"] = github.delete(
         "/orgs/{org}/outside_collaborators/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["enterprise-admin/list-pre-receive-hooks-for-org"] = ghes.get(
+    functions["enterprise-admin/list-pre-receive-hooks-for-org"] = github.get(
         "/orgs/{org}/pre-receive-hooks",
         t.struct(
             {
@@ -7746,14 +7758,14 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["org-pre-receive-hook"])),
     )
-    functions["enterprise-admin/get-pre-receive-hook-for-org"] = ghes.get(
+    functions["enterprise-admin/get-pre-receive-hook-for-org"] = github.get(
         "/orgs/{org}/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct({"org": t.string(), "pre_receive_hook_id": t.integer()}),
         t.proxy(renames["org-pre-receive-hook"]),
     )
     functions[
         "enterprise-admin/update-pre-receive-hook-enforcement-for-org"
-    ] = ghes.patch(
+    ] = github.patch(
         "/orgs/{org}/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct(
             {
@@ -7769,12 +7781,12 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/remove-pre-receive-hook-enforcement-for-org"
-    ] = ghes.delete(
+    ] = github.delete(
         "/orgs/{org}/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct({"org": t.string(), "pre_receive_hook_id": t.integer()}),
         t.proxy(renames["org-pre-receive-hook"]),
     )
-    functions["projects/list-for-org"] = ghes.get(
+    functions["projects/list-for-org"] = github.get(
         "/orgs/{org}/projects",
         t.struct(
             {
@@ -7786,7 +7798,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["project"])),
     )
-    functions["projects/create-for-org"] = ghes.post(
+    functions["projects/create-for-org"] = github.post(
         "/orgs/{org}/projects",
         t.struct(
             {"org": t.string(), "name": t.string(), "body": t.string().optional()}
@@ -7795,27 +7807,27 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "body"),
     )
-    functions["orgs/list-public-members"] = ghes.get(
+    functions["orgs/list-public-members"] = github.get(
         "/orgs/{org}/public_members",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["orgs/check-public-membership-for-user"] = ghes.get(
+    functions["orgs/check-public-membership-for-user"] = github.get(
         "/orgs/{org}/public_members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["orgs/set-public-membership-for-authenticated-user"] = ghes.put(
+    functions["orgs/set-public-membership-for-authenticated-user"] = github.put(
         "/orgs/{org}/public_members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["orgs/remove-public-membership-for-authenticated-user"] = ghes.delete(
+    functions["orgs/remove-public-membership-for-authenticated-user"] = github.delete(
         "/orgs/{org}/public_members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-for-org"] = ghes.get(
+    functions["repos/list-for-org"] = github.get(
         "/orgs/{org}/repos",
         t.struct(
             {
@@ -7829,7 +7841,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["minimal-repository"])),
     )
-    functions["repos/create-in-org"] = ghes.post(
+    functions["repos/create-in-org"] = github.post(
         "/orgs/{org}/repos",
         t.struct(
             {
@@ -7875,12 +7887,12 @@ def import_ghes(params=None):
             "delete_branch_on_merge",
         ),
     )
-    functions["teams/list"] = ghes.get(
+    functions["teams/list"] = github.get(
         "/orgs/{org}/teams",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["team"])),
     )
-    functions["teams/create"] = ghes.post(
+    functions["teams/create"] = github.post(
         "/orgs/{org}/teams",
         t.struct(
             {
@@ -7908,12 +7920,12 @@ def import_ghes(params=None):
             "ldap_dn",
         ),
     )
-    functions["teams/get-by-name"] = ghes.get(
+    functions["teams/get-by-name"] = github.get(
         "/orgs/{org}/teams/{team_slug}",
         t.struct({"org": t.string(), "team_slug": t.string()}),
         t.proxy(renames["team-full"]).optional(),
     )
-    functions["teams/update-in-org"] = ghes.patch(
+    functions["teams/update-in-org"] = github.patch(
         "/orgs/{org}/teams/{team_slug}",
         t.struct(
             {
@@ -7930,12 +7942,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "description", "privacy", "permission", "parent_team_id"),
     )
-    functions["teams/delete-in-org"] = ghes.delete(
+    functions["teams/delete-in-org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}",
         t.struct({"org": t.string(), "team_slug": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-discussions-in-org"] = ghes.get(
+    functions["teams/list-discussions-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions",
         t.struct(
             {
@@ -7949,7 +7961,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["team-discussion"])),
     )
-    functions["teams/create-discussion-in-org"] = ghes.post(
+    functions["teams/create-discussion-in-org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions",
         t.struct(
             {
@@ -7964,7 +7976,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "body", "private"),
     )
-    functions["teams/get-discussion-in-org"] = ghes.get(
+    functions["teams/get-discussion-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
         t.struct(
             {
@@ -7975,7 +7987,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["team-discussion"]),
     )
-    functions["teams/update-discussion-in-org"] = ghes.patch(
+    functions["teams/update-discussion-in-org"] = github.patch(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
         t.struct(
             {
@@ -7990,7 +8002,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "body"),
     )
-    functions["teams/delete-discussion-in-org"] = ghes.delete(
+    functions["teams/delete-discussion-in-org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
         t.struct(
             {
@@ -8001,7 +8013,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["teams/list-discussion-comments-in-org"] = ghes.get(
+    functions["teams/list-discussion-comments-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -8015,7 +8027,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["team-discussion-comment"])),
     )
-    functions["teams/create-discussion-comment-in-org"] = ghes.post(
+    functions["teams/create-discussion-comment-in-org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -8029,7 +8041,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/get-discussion-comment-in-org"] = ghes.get(
+    functions["teams/get-discussion-comment-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -8041,7 +8053,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["team-discussion-comment"]),
     )
-    functions["teams/update-discussion-comment-in-org"] = ghes.patch(
+    functions["teams/update-discussion-comment-in-org"] = github.patch(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -8056,7 +8068,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/delete-discussion-comment-in-org"] = ghes.delete(
+    functions["teams/delete-discussion-comment-in-org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -8068,7 +8080,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["reactions/list-for-team-discussion-comment-in-org"] = ghes.get(
+    functions["reactions/list-for-team-discussion-comment-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -8083,7 +8095,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-comment-in-org"] = ghes.post(
+    functions["reactions/create-for-team-discussion-comment-in-org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -8098,7 +8110,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-team-discussion-comment"] = ghes.delete(
+    functions["reactions/delete-for-team-discussion-comment"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions/{reaction_id}",
         t.struct(
             {
@@ -8111,7 +8123,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["reactions/list-for-team-discussion-in-org"] = ghes.get(
+    functions["reactions/list-for-team-discussion-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -8125,7 +8137,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-in-org"] = ghes.post(
+    functions["reactions/create-for-team-discussion-in-org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -8139,7 +8151,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-team-discussion"] = ghes.delete(
+    functions["reactions/delete-for-team-discussion"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions/{reaction_id}",
         t.struct(
             {
@@ -8151,7 +8163,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["teams/list-members-in-org"] = ghes.get(
+    functions["teams/list-members-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/members",
         t.struct(
             {
@@ -8164,12 +8176,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["teams/get-membership-for-user-in-org"] = ghes.get(
+    functions["teams/get-membership-for-user-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/memberships/{username}",
         t.struct({"org": t.string(), "team_slug": t.string(), "username": t.string()}),
         t.proxy(renames["team-membership"]).optional(),
     )
-    functions["teams/add-or-update-membership-for-user-in-org"] = ghes.put(
+    functions["teams/add-or-update-membership-for-user-in-org"] = github.put(
         "/orgs/{org}/teams/{team_slug}/memberships/{username}",
         t.struct(
             {
@@ -8183,12 +8195,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("role",),
     )
-    functions["teams/remove-membership-for-user-in-org"] = ghes.delete(
+    functions["teams/remove-membership-for-user-in-org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/memberships/{username}",
         t.struct({"org": t.string(), "team_slug": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-projects-in-org"] = ghes.get(
+    functions["teams/list-projects-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/projects",
         t.struct(
             {
@@ -8200,14 +8212,14 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["team-project"])),
     )
-    functions["teams/check-permissions-for-project-in-org"] = ghes.get(
+    functions["teams/check-permissions-for-project-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
         t.struct(
             {"org": t.string(), "team_slug": t.string(), "project_id": t.integer()}
         ),
         t.proxy(renames["team-project"]).optional(),
     )
-    functions["teams/add-or-update-project-permissions-in-org"] = ghes.put(
+    functions["teams/add-or-update-project-permissions-in-org"] = github.put(
         "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
         t.struct(
             {
@@ -8221,14 +8233,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-project-in-org"] = ghes.delete(
+    functions["teams/remove-project-in-org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
         t.struct(
             {"org": t.string(), "team_slug": t.string(), "project_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["teams/list-repos-in-org"] = ghes.get(
+    functions["teams/list-repos-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/repos",
         t.struct(
             {
@@ -8240,7 +8252,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["minimal-repository"])),
     )
-    functions["teams/check-permissions-for-repo-in-org"] = ghes.get(
+    functions["teams/check-permissions-for-repo-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -8252,7 +8264,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["team-repository"]).optional(),
     )
-    functions["teams/add-or-update-repo-permissions-in-org"] = ghes.put(
+    functions["teams/add-or-update-repo-permissions-in-org"] = github.put(
         "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -8267,7 +8279,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-repo-in-org"] = ghes.delete(
+    functions["teams/remove-repo-in-org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -8279,7 +8291,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["teams/list-child-in-org"] = ghes.get(
+    functions["teams/list-child-in-org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/teams",
         t.struct(
             {
@@ -8291,12 +8303,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["team"])),
     )
-    functions["projects/get-card"] = ghes.get(
+    functions["projects/get-card"] = github.get(
         "/projects/columns/cards/{card_id}",
         t.struct({"card_id": t.integer()}),
         t.proxy(renames["project-card"]).optional(),
     )
-    functions["projects/update-card"] = ghes.patch(
+    functions["projects/update-card"] = github.patch(
         "/projects/columns/cards/{card_id}",
         t.struct(
             {
@@ -8309,12 +8321,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("note", "archived"),
     )
-    functions["projects/delete-card"] = ghes.delete(
+    functions["projects/delete-card"] = github.delete(
         "/projects/columns/cards/{card_id}",
         t.struct({"card_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["projects/move-card"] = ghes.post(
+    functions["projects/move-card"] = github.post(
         "/projects/columns/cards/{card_id}/moves",
         t.struct(
             {
@@ -8327,24 +8339,24 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("position", "column_id"),
     )
-    functions["projects/get-column"] = ghes.get(
+    functions["projects/get-column"] = github.get(
         "/projects/columns/{column_id}",
         t.struct({"column_id": t.integer()}),
         t.proxy(renames["project-column"]).optional(),
     )
-    functions["projects/update-column"] = ghes.patch(
+    functions["projects/update-column"] = github.patch(
         "/projects/columns/{column_id}",
         t.struct({"column_id": t.integer(), "name": t.string()}),
         t.proxy(renames["project-column"]),
         content_type="application/json",
         body_fields=("name",),
     )
-    functions["projects/delete-column"] = ghes.delete(
+    functions["projects/delete-column"] = github.delete(
         "/projects/columns/{column_id}",
         t.struct({"column_id": t.integer()}),
         t.boolean(),
     )
-    functions["projects/list-cards"] = ghes.get(
+    functions["projects/list-cards"] = github.get(
         "/projects/columns/{column_id}/cards",
         t.struct(
             {
@@ -8356,19 +8368,19 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["project-card"])),
     )
-    functions["projects/move-column"] = ghes.post(
+    functions["projects/move-column"] = github.post(
         "/projects/columns/{column_id}/moves",
         t.struct({"column_id": t.integer(), "position": t.string()}),
         t.struct({}),
         content_type="application/json",
         body_fields=("position",),
     )
-    functions["projects/get"] = ghes.get(
+    functions["projects/get"] = github.get(
         "/projects/{project_id}",
         t.struct({"project_id": t.integer()}),
         t.proxy(renames["project"]),
     )
-    functions["projects/update"] = ghes.patch(
+    functions["projects/update"] = github.patch(
         "/projects/{project_id}",
         t.struct(
             {
@@ -8384,12 +8396,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "body", "state", "organization_permission", "private"),
     )
-    functions["projects/delete"] = ghes.delete(
+    functions["projects/delete"] = github.delete(
         "/projects/{project_id}",
         t.struct({"project_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["projects/list-collaborators"] = ghes.get(
+    functions["projects/list-collaborators"] = github.get(
         "/projects/{project_id}/collaborators",
         t.struct(
             {
@@ -8401,7 +8413,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["simple-user"])).optional(),
     )
-    functions["projects/add-collaborator"] = ghes.put(
+    functions["projects/add-collaborator"] = github.put(
         "/projects/{project_id}/collaborators/{username}",
         t.struct(
             {
@@ -8414,46 +8426,46 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["projects/remove-collaborator"] = ghes.delete(
+    functions["projects/remove-collaborator"] = github.delete(
         "/projects/{project_id}/collaborators/{username}",
         t.struct({"project_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["projects/get-permission-for-user"] = ghes.get(
+    functions["projects/get-permission-for-user"] = github.get(
         "/projects/{project_id}/collaborators/{username}/permission",
         t.struct({"project_id": t.integer(), "username": t.string()}),
         t.proxy(renames["project-collaborator-permission"]).optional(),
     )
-    functions["projects/list-columns"] = ghes.get(
+    functions["projects/list-columns"] = github.get(
         "/projects/{project_id}/columns",
         t.struct(
             {"project_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["project-column"])),
     )
-    functions["projects/create-column"] = ghes.post(
+    functions["projects/create-column"] = github.post(
         "/projects/{project_id}/columns",
         t.struct({"project_id": t.integer(), "name": t.string()}),
         t.proxy(renames["project-column"]),
         content_type="application/json",
         body_fields=("name",),
     )
-    functions["rate-limit/get"] = ghes.get(
+    functions["rate-limit/get"] = github.get(
         "/rate_limit",
         t.struct({}),
         t.proxy(renames["rate-limit-overview"]).optional(),
     )
-    functions["reactions/delete-legacy"] = ghes.delete(
+    functions["reactions/delete-legacy"] = github.delete(
         "/reactions/{reaction_id}",
         t.struct({"reaction_id": t.integer()}),
         t.boolean(),
     )
-    functions["repos/get"] = ghes.get(
+    functions["repos/get"] = github.get(
         "/repos/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["full-repository"]).optional(),
     )
-    functions["repos/update"] = ghes.patch(
+    functions["repos/update"] = github.patch(
         "/repos/{owner}/{repo}",
         t.struct(
             {
@@ -8498,12 +8510,12 @@ def import_ghes(params=None):
             "allow_forking",
         ),
     )
-    functions["repos/delete"] = ghes.delete(
+    functions["repos/delete"] = github.delete(
         "/repos/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["actions/list-artifacts-for-repo"] = ghes.get(
+    functions["actions/list-artifacts-for-repo"] = github.get(
         "/repos/{owner}/{repo}/actions/artifacts",
         t.struct(
             {
@@ -8520,17 +8532,17 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/get-artifact"] = ghes.get(
+    functions["actions/get-artifact"] = github.get(
         "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "artifact_id": t.integer()}),
         t.proxy(renames["artifact"]),
     )
-    functions["actions/delete-artifact"] = ghes.delete(
+    functions["actions/delete-artifact"] = github.delete(
         "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "artifact_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/download-artifact"] = ghes.get(
+    functions["actions/download-artifact"] = github.get(
         "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}/{archive_format}",
         t.struct(
             {
@@ -8542,22 +8554,22 @@ def import_ghes(params=None):
         ),
         t.struct({}),
     )
-    functions["actions/get-job-for-workflow-run"] = ghes.get(
+    functions["actions/get-job-for-workflow-run"] = github.get(
         "/repos/{owner}/{repo}/actions/jobs/{job_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "job_id": t.integer()}),
         t.proxy(renames["job"]),
     )
-    functions["actions/download-job-logs-for-workflow-run"] = ghes.get(
+    functions["actions/download-job-logs-for-workflow-run"] = github.get(
         "/repos/{owner}/{repo}/actions/jobs/{job_id}/logs",
         t.struct({"owner": t.string(), "repo": t.string(), "job_id": t.integer()}),
         t.struct({}),
     )
-    functions["actions/get-github-actions-permissions-repository"] = ghes.get(
+    functions["actions/get-github-actions-permissions-repository"] = github.get(
         "/repos/{owner}/{repo}/actions/permissions",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["actions-repository-permissions"]),
     )
-    functions["actions/set-github-actions-permissions-repository"] = ghes.put(
+    functions["actions/set-github-actions-permissions-repository"] = github.put(
         "/repos/{owner}/{repo}/actions/permissions",
         t.struct(
             {
@@ -8571,12 +8583,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("enabled", "allowed_actions"),
     )
-    functions["actions/get-allowed-actions-repository"] = ghes.get(
+    functions["actions/get-allowed-actions-repository"] = github.get(
         "/repos/{owner}/{repo}/actions/permissions/selected-actions",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["selected-actions"]),
     )
-    functions["actions/set-allowed-actions-repository"] = ghes.put(
+    functions["actions/set-allowed-actions-repository"] = github.put(
         "/repos/{owner}/{repo}/actions/permissions/selected-actions",
         t.struct(
             {
@@ -8590,7 +8602,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("github_owned_allowed", "patterns_allowed"),
     )
-    functions["actions/list-self-hosted-runners-for-repo"] = ghes.get(
+    functions["actions/list-self-hosted-runners-for-repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners",
         t.struct(
             {
@@ -8604,32 +8616,32 @@ def import_ghes(params=None):
             {"total_count": t.integer(), "runners": t.array(t.proxy(renames["runner"]))}
         ),
     )
-    functions["actions/list-runner-applications-for-repo"] = ghes.get(
+    functions["actions/list-runner-applications-for-repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners/downloads",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.array(t.proxy(renames["runner-application"])),
     )
-    functions["actions/create-registration-token-for-repo"] = ghes.post(
+    functions["actions/create-registration-token-for-repo"] = github.post(
         "/repos/{owner}/{repo}/actions/runners/registration-token",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["authentication-token"]),
     )
-    functions["actions/create-remove-token-for-repo"] = ghes.post(
+    functions["actions/create-remove-token-for-repo"] = github.post(
         "/repos/{owner}/{repo}/actions/runners/remove-token",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["authentication-token"]),
     )
-    functions["actions/get-self-hosted-runner-for-repo"] = ghes.get(
+    functions["actions/get-self-hosted-runner-for-repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "runner_id": t.integer()}),
         t.proxy(renames["runner"]),
     )
-    functions["actions/delete-self-hosted-runner-from-repo"] = ghes.delete(
+    functions["actions/delete-self-hosted-runner-from-repo"] = github.delete(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "runner_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/list-workflow-runs-for-repo"] = ghes.get(
+    functions["actions/list-workflow-runs-for-repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runs",
         t.struct(
             {
@@ -8652,7 +8664,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/get-workflow-run"] = ghes.get(
+    functions["actions/get-workflow-run"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}",
         t.struct(
             {
@@ -8664,12 +8676,12 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["workflow-run"]),
     )
-    functions["actions/delete-workflow-run"] = ghes.delete(
+    functions["actions/delete-workflow-run"] = github.delete(
         "/repos/{owner}/{repo}/actions/runs/{run_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/list-workflow-run-artifacts"] = ghes.get(
+    functions["actions/list-workflow-run-artifacts"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/artifacts",
         t.struct(
             {
@@ -8687,12 +8699,12 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/cancel-workflow-run"] = ghes.post(
+    functions["actions/cancel-workflow-run"] = github.post(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/cancel",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.struct({}),
     )
-    functions["actions/list-jobs-for-workflow-run"] = ghes.get(
+    functions["actions/list-jobs-for-workflow-run"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/jobs",
         t.struct(
             {
@@ -8708,22 +8720,22 @@ def import_ghes(params=None):
             {"total_count": t.integer(), "jobs": t.array(t.proxy(renames["job"]))}
         ),
     )
-    functions["actions/download-workflow-run-logs"] = ghes.get(
+    functions["actions/download-workflow-run-logs"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/logs",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.struct({}),
     )
-    functions["actions/delete-workflow-run-logs"] = ghes.delete(
+    functions["actions/delete-workflow-run-logs"] = github.delete(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/logs",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/re-run-workflow"] = ghes.post(
+    functions["actions/re-run-workflow"] = github.post(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/rerun",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.struct({}),
     )
-    functions["actions/list-repo-secrets"] = ghes.get(
+    functions["actions/list-repo-secrets"] = github.get(
         "/repos/{owner}/{repo}/actions/secrets",
         t.struct(
             {
@@ -8740,17 +8752,17 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/get-repo-public-key"] = ghes.get(
+    functions["actions/get-repo-public-key"] = github.get(
         "/repos/{owner}/{repo}/actions/secrets/public-key",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["actions-public-key"]),
     )
-    functions["actions/get-repo-secret"] = ghes.get(
+    functions["actions/get-repo-secret"] = github.get(
         "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
         t.proxy(renames["actions-secret"]),
     )
-    functions["actions/create-or-update-repo-secret"] = ghes.put(
+    functions["actions/create-or-update-repo-secret"] = github.put(
         "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
         t.struct(
             {
@@ -8765,12 +8777,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("encrypted_value", "key_id"),
     )
-    functions["actions/delete-repo-secret"] = ghes.delete(
+    functions["actions/delete-repo-secret"] = github.delete(
         "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
         t.boolean(),
     )
-    functions["actions/list-repo-workflows"] = ghes.get(
+    functions["actions/list-repo-workflows"] = github.get(
         "/repos/{owner}/{repo}/actions/workflows",
         t.struct(
             {
@@ -8787,7 +8799,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["actions/get-workflow"] = ghes.get(
+    functions["actions/get-workflow"] = github.get(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}",
         t.struct(
             {
@@ -8798,7 +8810,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["workflow"]),
     )
-    functions["actions/disable-workflow"] = ghes.put(
+    functions["actions/disable-workflow"] = github.put(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/disable",
         t.struct(
             {
@@ -8809,7 +8821,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/create-workflow-dispatch"] = ghes.post(
+    functions["actions/create-workflow-dispatch"] = github.post(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches",
         t.struct(
             {
@@ -8824,7 +8836,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("ref", "inputs"),
     )
-    functions["actions/enable-workflow"] = ghes.put(
+    functions["actions/enable-workflow"] = github.put(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/enable",
         t.struct(
             {
@@ -8835,7 +8847,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/list-workflow-runs"] = ghes.get(
+    functions["actions/list-workflow-runs"] = github.get(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/runs",
         t.struct(
             {
@@ -8859,7 +8871,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["issues/list-assignees"] = ghes.get(
+    functions["issues/list-assignees"] = github.get(
         "/repos/{owner}/{repo}/assignees",
         t.struct(
             {
@@ -8871,12 +8883,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["simple-user"])).optional(),
     )
-    functions["issues/check-user-can-be-assigned"] = ghes.get(
+    functions["issues/check-user-can-be-assigned"] = github.get(
         "/repos/{owner}/{repo}/assignees/{assignee}",
         t.struct({"owner": t.string(), "repo": t.string(), "assignee": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/list-branches"] = ghes.get(
+    functions["repos/list-branches"] = github.get(
         "/repos/{owner}/{repo}/branches",
         t.struct(
             {
@@ -8889,17 +8901,17 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["short-branch"])).optional(),
     )
-    functions["repos/get-branch"] = ghes.get(
+    functions["repos/get-branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["branch-with-protection"]).optional(),
     )
-    functions["repos/get-branch-protection"] = ghes.get(
+    functions["repos/get-branch-protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["branch-protection"]).optional(),
     )
-    functions["repos/update-branch-protection"] = ghes.put(
+    functions["repos/update-branch-protection"] = github.put(
         "/repos/{owner}/{repo}/branches/{branch}/protection",
         t.struct(
             {
@@ -8962,32 +8974,32 @@ def import_ghes(params=None):
             "contexts",
         ),
     )
-    functions["repos/delete-branch-protection"] = ghes.delete(
+    functions["repos/delete-branch-protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-admin-branch-protection"] = ghes.get(
+    functions["repos/get-admin-branch-protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["protected-branch-admin-enforced"]),
     )
-    functions["repos/set-admin-branch-protection"] = ghes.post(
+    functions["repos/set-admin-branch-protection"] = github.post(
         "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["protected-branch-admin-enforced"]),
     )
-    functions["repos/delete-admin-branch-protection"] = ghes.delete(
+    functions["repos/delete-admin-branch-protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/get-pull-request-review-protection"] = ghes.get(
+    functions["repos/get-pull-request-review-protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["protected-branch-pull-request-review"]),
     )
-    functions["repos/update-pull-request-review-protection"] = ghes.patch(
+    functions["repos/update-pull-request-review-protection"] = github.patch(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
         t.struct(
             {
@@ -9014,32 +9026,32 @@ def import_ghes(params=None):
             "required_approving_review_count",
         ),
     )
-    functions["repos/delete-pull-request-review-protection"] = ghes.delete(
+    functions["repos/delete-pull-request-review-protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/get-commit-signature-protection"] = ghes.get(
+    functions["repos/get-commit-signature-protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["protected-branch-admin-enforced"]).optional(),
     )
-    functions["repos/create-commit-signature-protection"] = ghes.post(
+    functions["repos/create-commit-signature-protection"] = github.post(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["protected-branch-admin-enforced"]).optional(),
     )
-    functions["repos/delete-commit-signature-protection"] = ghes.delete(
+    functions["repos/delete-commit-signature-protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/get-status-checks-protection"] = ghes.get(
+    functions["repos/get-status-checks-protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["status-check-policy"]).optional(),
     )
-    functions["repos/update-status-check-protection"] = ghes.patch(
+    functions["repos/update-status-check-protection"] = github.patch(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
         t.struct(
             {
@@ -9054,49 +9066,49 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("strict", "contexts"),
     )
-    functions["repos/remove-status-check-protection"] = ghes.delete(
+    functions["repos/remove-status-check-protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-all-status-check-contexts"] = ghes.get(
+    functions["repos/get-all-status-check-contexts"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.array(t.string()).optional(),
     )
-    functions["repos/get-access-restrictions"] = ghes.get(
+    functions["repos/get-access-restrictions"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.proxy(renames["branch-restriction-policy"]).optional(),
     )
-    functions["repos/delete-access-restrictions"] = ghes.delete(
+    functions["repos/delete-access-restrictions"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-apps-with-access-to-protected-branch"] = ghes.get(
+    functions["repos/get-apps-with-access-to-protected-branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.array(t.proxy(renames["integration"])).optional(),
     )
-    functions["repos/get-teams-with-access-to-protected-branch"] = ghes.get(
+    functions["repos/get-teams-with-access-to-protected-branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.array(t.proxy(renames["team"])).optional(),
     )
-    functions["repos/get-users-with-access-to-protected-branch"] = ghes.get(
+    functions["repos/get-users-with-access-to-protected-branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/users",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.array(t.proxy(renames["simple-user"])).optional(),
     )
-    functions["checks/get"] = ghes.get(
+    functions["checks/get"] = github.get(
         "/repos/{owner}/{repo}/check-runs/{check_run_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "check_run_id": t.integer()}
         ),
         t.proxy(renames["check-run"]),
     )
-    functions["checks/list-annotations"] = ghes.get(
+    functions["checks/list-annotations"] = github.get(
         "/repos/{owner}/{repo}/check-runs/{check_run_id}/annotations",
         t.struct(
             {
@@ -9109,14 +9121,14 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["check-annotation"])),
     )
-    functions["checks/create-suite"] = ghes.post(
+    functions["checks/create-suite"] = github.post(
         "/repos/{owner}/{repo}/check-suites",
         t.struct({"owner": t.string(), "repo": t.string(), "head_sha": t.string()}),
         t.proxy(renames["check-suite"]),
         content_type="application/json",
         body_fields=("head_sha",),
     )
-    functions["checks/set-suites-preferences"] = ghes.patch(
+    functions["checks/set-suites-preferences"] = github.patch(
         "/repos/{owner}/{repo}/check-suites/preferences",
         t.struct(
             {
@@ -9131,14 +9143,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("auto_trigger_checks",),
     )
-    functions["checks/get-suite"] = ghes.get(
+    functions["checks/get-suite"] = github.get(
         "/repos/{owner}/{repo}/check-suites/{check_suite_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "check_suite_id": t.integer()}
         ),
         t.proxy(renames["check-suite"]),
     )
-    functions["checks/list-for-suite"] = ghes.get(
+    functions["checks/list-for-suite"] = github.get(
         "/repos/{owner}/{repo}/check-suites/{check_suite_id}/check-runs",
         t.struct(
             {
@@ -9159,14 +9171,14 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["checks/rerequest-suite"] = ghes.post(
+    functions["checks/rerequest-suite"] = github.post(
         "/repos/{owner}/{repo}/check-suites/{check_suite_id}/rerequest",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "check_suite_id": t.integer()}
         ),
         t.struct({}),
     )
-    functions["code-scanning/list-alerts-for-repo"] = ghes.get(
+    functions["code-scanning/list-alerts-for-repo"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/alerts",
         t.struct(
             {
@@ -9182,7 +9194,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["code-scanning-alert-items"])).optional(),
     )
-    functions["code-scanning/get-alert"] = ghes.get(
+    functions["code-scanning/get-alert"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}",
         t.struct(
             {
@@ -9193,7 +9205,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["code-scanning-alert"]).optional(),
     )
-    functions["code-scanning/update-alert"] = ghes.patch(
+    functions["code-scanning/update-alert"] = github.patch(
         "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}",
         t.struct(
             {
@@ -9210,7 +9222,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("state", "dismissed_reason"),
     )
-    functions["code-scanning/list-recent-analyses"] = ghes.get(
+    functions["code-scanning/list-recent-analyses"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/analyses",
         t.struct(
             {
@@ -9226,7 +9238,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["code-scanning-analysis"])).optional(),
     )
-    functions["code-scanning/upload-sarif"] = ghes.post(
+    functions["code-scanning/upload-sarif"] = github.post(
         "/repos/{owner}/{repo}/code-scanning/sarifs",
         t.struct(
             {
@@ -9251,7 +9263,7 @@ def import_ghes(params=None):
             "tool_name",
         ),
     )
-    functions["repos/list-collaborators"] = ghes.get(
+    functions["repos/list-collaborators"] = github.get(
         "/repos/{owner}/{repo}/collaborators",
         t.struct(
             {
@@ -9264,12 +9276,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["collaborator"])).optional(),
     )
-    functions["repos/check-collaborator"] = ghes.get(
+    functions["repos/check-collaborator"] = github.get(
         "/repos/{owner}/{repo}/collaborators/{username}",
         t.struct({"owner": t.string(), "repo": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/add-collaborator"] = ghes.put(
+    functions["repos/add-collaborator"] = github.put(
         "/repos/{owner}/{repo}/collaborators/{username}",
         t.struct(
             {
@@ -9284,17 +9296,17 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("permission", "permissions"),
     )
-    functions["repos/remove-collaborator"] = ghes.delete(
+    functions["repos/remove-collaborator"] = github.delete(
         "/repos/{owner}/{repo}/collaborators/{username}",
         t.struct({"owner": t.string(), "repo": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-collaborator-permission-level"] = ghes.get(
+    functions["repos/get-collaborator-permission-level"] = github.get(
         "/repos/{owner}/{repo}/collaborators/{username}/permission",
         t.struct({"owner": t.string(), "repo": t.string(), "username": t.string()}),
         t.proxy(renames["repository-collaborator-permission"]).optional(),
     )
-    functions["repos/list-commit-comments-for-repo"] = ghes.get(
+    functions["repos/list-commit-comments-for-repo"] = github.get(
         "/repos/{owner}/{repo}/comments",
         t.struct(
             {
@@ -9306,12 +9318,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["commit-comment"])),
     )
-    functions["repos/get-commit-comment"] = ghes.get(
+    functions["repos/get-commit-comment"] = github.get(
         "/repos/{owner}/{repo}/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.proxy(renames["commit-comment"]).optional(),
     )
-    functions["repos/update-commit-comment"] = ghes.patch(
+    functions["repos/update-commit-comment"] = github.patch(
         "/repos/{owner}/{repo}/comments/{comment_id}",
         t.struct(
             {
@@ -9325,12 +9337,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["repos/delete-commit-comment"] = ghes.delete(
+    functions["repos/delete-commit-comment"] = github.delete(
         "/repos/{owner}/{repo}/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["reactions/list-for-commit-comment"] = ghes.get(
+    functions["reactions/list-for-commit-comment"] = github.get(
         "/repos/{owner}/{repo}/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -9344,7 +9356,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-commit-comment"] = ghes.post(
+    functions["reactions/create-for-commit-comment"] = github.post(
         "/repos/{owner}/{repo}/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -9358,7 +9370,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-commit-comment"] = ghes.delete(
+    functions["reactions/delete-for-commit-comment"] = github.delete(
         "/repos/{owner}/{repo}/comments/{comment_id}/reactions/{reaction_id}",
         t.struct(
             {
@@ -9370,7 +9382,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["repos/list-commits"] = ghes.get(
+    functions["repos/list-commits"] = github.get(
         "/repos/{owner}/{repo}/commits",
         t.struct(
             {
@@ -9387,12 +9399,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["commit"])).optional(),
     )
-    functions["repos/list-branches-for-head-commit"] = ghes.get(
+    functions["repos/list-branches-for-head-commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{commit_sha}/branches-where-head",
         t.struct({"owner": t.string(), "repo": t.string(), "commit_sha": t.string()}),
         t.array(t.proxy(renames["branch-short"])),
     )
-    functions["repos/list-comments-for-commit"] = ghes.get(
+    functions["repos/list-comments-for-commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{commit_sha}/comments",
         t.struct(
             {
@@ -9405,7 +9417,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["commit-comment"])),
     )
-    functions["repos/create-commit-comment"] = ghes.post(
+    functions["repos/create-commit-comment"] = github.post(
         "/repos/{owner}/{repo}/commits/{commit_sha}/comments",
         t.struct(
             {
@@ -9422,7 +9434,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body", "path", "position", "line"),
     )
-    functions["repos/list-pull-requests-associated-with-commit"] = ghes.get(
+    functions["repos/list-pull-requests-associated-with-commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{commit_sha}/pulls",
         t.struct(
             {
@@ -9435,7 +9447,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["pull-request-simple"])),
     )
-    functions["repos/get-commit"] = ghes.get(
+    functions["repos/get-commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}",
         t.struct(
             {
@@ -9448,7 +9460,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["commit"]).optional(),
     )
-    functions["checks/list-for-ref"] = ghes.get(
+    functions["checks/list-for-ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/check-runs",
         t.struct(
             {
@@ -9470,7 +9482,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["checks/list-suites-for-ref"] = ghes.get(
+    functions["checks/list-suites-for-ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/check-suites",
         t.struct(
             {
@@ -9490,7 +9502,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["repos/get-combined-status-for-ref"] = ghes.get(
+    functions["repos/get-combined-status-for-ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/status",
         t.struct(
             {
@@ -9503,7 +9515,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["combined-commit-status"]).optional(),
     )
-    functions["repos/list-commit-statuses-for-ref"] = ghes.get(
+    functions["repos/list-commit-statuses-for-ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/statuses",
         t.struct(
             {
@@ -9516,12 +9528,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["status"])),
     )
-    functions["repos/compare-commits"] = ghes.get(
+    functions["repos/compare-commits"] = github.get(
         "/repos/{owner}/{repo}/compare/{basehead}",
         t.struct({"owner": t.string(), "repo": t.string(), "basehead": t.string()}),
         t.proxy(renames["commit-comparison"]).optional(),
     )
-    functions["apps/create-content-attachment"] = ghes.post(
+    functions["apps/create-content-attachment"] = github.post(
         "/repos/{owner}/{repo}/content_references/{content_reference_id}/attachments",
         t.struct(
             {
@@ -9536,7 +9548,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "body"),
     )
-    functions["repos/get-content"] = ghes.get(
+    functions["repos/get-content"] = github.get(
         "/repos/{owner}/{repo}/contents/{path}",
         t.struct(
             {
@@ -9555,7 +9567,7 @@ def import_ghes(params=None):
             ]
         ).optional(),
     )
-    functions["repos/create-or-update-file-contents"] = ghes.put(
+    functions["repos/create-or-update-file-contents"] = github.put(
         "/repos/{owner}/{repo}/contents/{path}",
         t.struct(
             {
@@ -9586,7 +9598,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("message", "content", "sha", "branch", "committer", "author"),
     )
-    functions["repos/delete-file"] = ghes.delete(
+    functions["repos/delete-file"] = github.delete(
         "/repos/{owner}/{repo}/contents/{path}",
         t.struct(
             {
@@ -9608,7 +9620,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("message", "sha", "branch", "committer", "author"),
     )
-    functions["repos/list-contributors"] = ghes.get(
+    functions["repos/list-contributors"] = github.get(
         "/repos/{owner}/{repo}/contributors",
         t.struct(
             {
@@ -9621,7 +9633,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["contributor"])).optional(),
     )
-    functions["repos/list-deployments"] = ghes.get(
+    functions["repos/list-deployments"] = github.get(
         "/repos/{owner}/{repo}/deployments",
         t.struct(
             {
@@ -9637,7 +9649,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["deployment"])),
     )
-    functions["repos/create-deployment"] = ghes.post(
+    functions["repos/create-deployment"] = github.post(
         "/repos/{owner}/{repo}/deployments",
         t.struct(
             {
@@ -9668,21 +9680,21 @@ def import_ghes(params=None):
             "production_environment",
         ),
     )
-    functions["repos/get-deployment"] = ghes.get(
+    functions["repos/get-deployment"] = github.get(
         "/repos/{owner}/{repo}/deployments/{deployment_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "deployment_id": t.integer()}
         ),
         t.proxy(renames["deployment"]).optional(),
     )
-    functions["repos/delete-deployment"] = ghes.delete(
+    functions["repos/delete-deployment"] = github.delete(
         "/repos/{owner}/{repo}/deployments/{deployment_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "deployment_id": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["repos/list-deployment-statuses"] = ghes.get(
+    functions["repos/list-deployment-statuses"] = github.get(
         "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
         t.struct(
             {
@@ -9695,7 +9707,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["deployment-status"])).optional(),
     )
-    functions["repos/create-deployment-status"] = ghes.post(
+    functions["repos/create-deployment-status"] = github.post(
         "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
         t.struct(
             {
@@ -9723,7 +9735,7 @@ def import_ghes(params=None):
             "auto_inactive",
         ),
     )
-    functions["repos/get-deployment-status"] = ghes.get(
+    functions["repos/get-deployment-status"] = github.get(
         "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses/{status_id}",
         t.struct(
             {
@@ -9735,7 +9747,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["deployment-status"]).optional(),
     )
-    functions["repos/create-dispatch-event"] = ghes.post(
+    functions["repos/create-dispatch-event"] = github.post(
         "/repos/{owner}/{repo}/dispatches",
         t.struct(
             {
@@ -9749,7 +9761,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("event_type", "client_payload"),
     )
-    functions["activity/list-repo-events"] = ghes.get(
+    functions["activity/list-repo-events"] = github.get(
         "/repos/{owner}/{repo}/events",
         t.struct(
             {
@@ -9761,7 +9773,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["repos/list-forks"] = ghes.get(
+    functions["repos/list-forks"] = github.get(
         "/repos/{owner}/{repo}/forks",
         t.struct(
             {
@@ -9774,7 +9786,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["minimal-repository"])),
     )
-    functions["repos/create-fork"] = ghes.post(
+    functions["repos/create-fork"] = github.post(
         "/repos/{owner}/{repo}/forks",
         t.struct(
             {
@@ -9787,7 +9799,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("organization",),
     )
-    functions["git/create-blob"] = ghes.post(
+    functions["git/create-blob"] = github.post(
         "/repos/{owner}/{repo}/git/blobs",
         t.struct(
             {
@@ -9801,12 +9813,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content", "encoding"),
     )
-    functions["git/get-blob"] = ghes.get(
+    functions["git/get-blob"] = github.get(
         "/repos/{owner}/{repo}/git/blobs/{file_sha}",
         t.struct({"owner": t.string(), "repo": t.string(), "file_sha": t.string()}),
         t.proxy(renames["blob"]).optional(),
     )
-    functions["git/create-commit"] = ghes.post(
+    functions["git/create-commit"] = github.post(
         "/repos/{owner}/{repo}/git/commits",
         t.struct(
             {
@@ -9836,12 +9848,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("message", "tree", "parents", "author", "committer", "signature"),
     )
-    functions["git/get-commit"] = ghes.get(
+    functions["git/get-commit"] = github.get(
         "/repos/{owner}/{repo}/git/commits/{commit_sha}",
         t.struct({"owner": t.string(), "repo": t.string(), "commit_sha": t.string()}),
         t.proxy(renames["git-commit"]).optional(),
     )
-    functions["git/list-matching-refs"] = ghes.get(
+    functions["git/list-matching-refs"] = github.get(
         "/repos/{owner}/{repo}/git/matching-refs/{ref}",
         t.struct(
             {
@@ -9854,12 +9866,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["git-ref"])),
     )
-    functions["git/get-ref"] = ghes.get(
+    functions["git/get-ref"] = github.get(
         "/repos/{owner}/{repo}/git/ref/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.proxy(renames["git-ref"]).optional(),
     )
-    functions["git/create-ref"] = ghes.post(
+    functions["git/create-ref"] = github.post(
         "/repos/{owner}/{repo}/git/refs",
         t.struct(
             {
@@ -9874,7 +9886,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("ref", "sha", "key"),
     )
-    functions["git/update-ref"] = ghes.patch(
+    functions["git/update-ref"] = github.patch(
         "/repos/{owner}/{repo}/git/refs/{ref}",
         t.struct(
             {
@@ -9889,12 +9901,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("sha", "force"),
     )
-    functions["git/delete-ref"] = ghes.delete(
+    functions["git/delete-ref"] = github.delete(
         "/repos/{owner}/{repo}/git/refs/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.boolean(),
     )
-    functions["git/create-tag"] = ghes.post(
+    functions["git/create-tag"] = github.post(
         "/repos/{owner}/{repo}/git/tags",
         t.struct(
             {
@@ -9917,12 +9929,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("tag", "message", "object", "type", "tagger"),
     )
-    functions["git/get-tag"] = ghes.get(
+    functions["git/get-tag"] = github.get(
         "/repos/{owner}/{repo}/git/tags/{tag_sha}",
         t.struct({"owner": t.string(), "repo": t.string(), "tag_sha": t.string()}),
         t.proxy(renames["git-tag"]).optional(),
     )
-    functions["git/create-tree"] = ghes.post(
+    functions["git/create-tree"] = github.post(
         "/repos/{owner}/{repo}/git/trees",
         t.struct(
             {
@@ -9946,7 +9958,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("tree", "base_tree"),
     )
-    functions["git/get-tree"] = ghes.get(
+    functions["git/get-tree"] = github.get(
         "/repos/{owner}/{repo}/git/trees/{tree_sha}",
         t.struct(
             {
@@ -9958,7 +9970,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["git-tree"]).optional(),
     )
-    functions["repos/list-webhooks"] = ghes.get(
+    functions["repos/list-webhooks"] = github.get(
         "/repos/{owner}/{repo}/hooks",
         t.struct(
             {
@@ -9970,7 +9982,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["hook"])).optional(),
     )
-    functions["repos/create-webhook"] = ghes.post(
+    functions["repos/create-webhook"] = github.post(
         "/repos/{owner}/{repo}/hooks",
         t.struct(
             {
@@ -9999,12 +10011,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "config", "events", "active"),
     )
-    functions["repos/get-webhook"] = ghes.get(
+    functions["repos/get-webhook"] = github.get(
         "/repos/{owner}/{repo}/hooks/{hook_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.proxy(renames["hook"]).optional(),
     )
-    functions["repos/update-webhook"] = ghes.patch(
+    functions["repos/update-webhook"] = github.patch(
         "/repos/{owner}/{repo}/hooks/{hook_id}",
         t.struct(
             {
@@ -10035,17 +10047,17 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("config", "events", "add_events", "remove_events", "active"),
     )
-    functions["repos/delete-webhook"] = ghes.delete(
+    functions["repos/delete-webhook"] = github.delete(
         "/repos/{owner}/{repo}/hooks/{hook_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["repos/get-webhook-config-for-repo"] = ghes.get(
+    functions["repos/get-webhook-config-for-repo"] = github.get(
         "/repos/{owner}/{repo}/hooks/{hook_id}/config",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.proxy(renames["webhook-config"]),
     )
-    functions["repos/update-webhook-config-for-repo"] = ghes.patch(
+    functions["repos/update-webhook-config-for-repo"] = github.patch(
         "/repos/{owner}/{repo}/hooks/{hook_id}/config",
         t.struct(
             {
@@ -10066,22 +10078,22 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("url", "content_type", "secret", "insecure_ssl"),
     )
-    functions["repos/ping-webhook"] = ghes.post(
+    functions["repos/ping-webhook"] = github.post(
         "/repos/{owner}/{repo}/hooks/{hook_id}/pings",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["repos/test-push-webhook"] = ghes.post(
+    functions["repos/test-push-webhook"] = github.post(
         "/repos/{owner}/{repo}/hooks/{hook_id}/tests",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/get-repo-installation"] = ghes.get(
+    functions["apps/get-repo-installation"] = github.get(
         "/repos/{owner}/{repo}/installation",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["installation"]).optional(),
     )
-    functions["repos/list-invitations"] = ghes.get(
+    functions["repos/list-invitations"] = github.get(
         "/repos/{owner}/{repo}/invitations",
         t.struct(
             {
@@ -10093,7 +10105,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["repository-invitation"])),
     )
-    functions["repos/update-invitation"] = ghes.patch(
+    functions["repos/update-invitation"] = github.patch(
         "/repos/{owner}/{repo}/invitations/{invitation_id}",
         t.struct(
             {
@@ -10107,14 +10119,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("permissions",),
     )
-    functions["repos/delete-invitation"] = ghes.delete(
+    functions["repos/delete-invitation"] = github.delete(
         "/repos/{owner}/{repo}/invitations/{invitation_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "invitation_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["issues/list-for-repo"] = ghes.get(
+    functions["issues/list-for-repo"] = github.get(
         "/repos/{owner}/{repo}/issues",
         t.struct(
             {
@@ -10135,7 +10147,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["issues/create"] = ghes.post(
+    functions["issues/create"] = github.post(
         "/repos/{owner}/{repo}/issues",
         t.struct(
             {
@@ -10167,7 +10179,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "body", "assignee", "milestone", "labels", "assignees"),
     )
-    functions["issues/list-comments-for-repo"] = ghes.get(
+    functions["issues/list-comments-for-repo"] = github.get(
         "/repos/{owner}/{repo}/issues/comments",
         t.struct(
             {
@@ -10182,12 +10194,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue-comment"])).optional(),
     )
-    functions["issues/get-comment"] = ghes.get(
+    functions["issues/get-comment"] = github.get(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.proxy(renames["issue-comment"]).optional(),
     )
-    functions["issues/update-comment"] = ghes.patch(
+    functions["issues/update-comment"] = github.patch(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}",
         t.struct(
             {
@@ -10201,12 +10213,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["issues/delete-comment"] = ghes.delete(
+    functions["issues/delete-comment"] = github.delete(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.boolean(),
     )
-    functions["reactions/list-for-issue-comment"] = ghes.get(
+    functions["reactions/list-for-issue-comment"] = github.get(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -10220,7 +10232,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-issue-comment"] = ghes.post(
+    functions["reactions/create-for-issue-comment"] = github.post(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -10234,7 +10246,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-issue-comment"] = ghes.delete(
+    functions["reactions/delete-for-issue-comment"] = github.delete(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions/{reaction_id}",
         t.struct(
             {
@@ -10246,7 +10258,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["issues/list-events-for-repo"] = ghes.get(
+    functions["issues/list-events-for-repo"] = github.get(
         "/repos/{owner}/{repo}/issues/events",
         t.struct(
             {
@@ -10258,19 +10270,19 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue-event"])),
     )
-    functions["issues/get-event"] = ghes.get(
+    functions["issues/get-event"] = github.get(
         "/repos/{owner}/{repo}/issues/events/{event_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "event_id": t.integer()}),
         t.proxy(renames["issue-event"]).optional(),
     )
-    functions["issues/get"] = ghes.get(
+    functions["issues/get"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "issue_number": t.integer()}
         ),
         t.proxy(renames["issue"]).optional(),
     )
-    functions["issues/update"] = ghes.patch(
+    functions["issues/update"] = github.patch(
         "/repos/{owner}/{repo}/issues/{issue_number}",
         t.struct(
             {
@@ -10312,7 +10324,7 @@ def import_ghes(params=None):
             "assignees",
         ),
     )
-    functions["issues/add-assignees"] = ghes.post(
+    functions["issues/add-assignees"] = github.post(
         "/repos/{owner}/{repo}/issues/{issue_number}/assignees",
         t.struct(
             {
@@ -10326,7 +10338,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("assignees",),
     )
-    functions["issues/remove-assignees"] = ghes.delete(
+    functions["issues/remove-assignees"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/assignees",
         t.struct(
             {
@@ -10340,7 +10352,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("assignees",),
     )
-    functions["issues/list-comments"] = ghes.get(
+    functions["issues/list-comments"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/comments",
         t.struct(
             {
@@ -10354,7 +10366,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue-comment"])).optional(),
     )
-    functions["issues/create-comment"] = ghes.post(
+    functions["issues/create-comment"] = github.post(
         "/repos/{owner}/{repo}/issues/{issue_number}/comments",
         t.struct(
             {
@@ -10368,7 +10380,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["issues/list-events"] = ghes.get(
+    functions["issues/list-events"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/events",
         t.struct(
             {
@@ -10381,7 +10393,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue-event-for-issue"])),
     )
-    functions["issues/list-labels-on-issue"] = ghes.get(
+    functions["issues/list-labels-on-issue"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/labels",
         t.struct(
             {
@@ -10394,14 +10406,14 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["label"])),
     )
-    functions["issues/remove-all-labels"] = ghes.delete(
+    functions["issues/remove-all-labels"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/labels",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "issue_number": t.integer()}
         ),
         t.boolean(),
     )
-    functions["issues/remove-label"] = ghes.delete(
+    functions["issues/remove-label"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/labels/{name}",
         t.struct(
             {
@@ -10413,7 +10425,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["label"])).optional(),
     )
-    functions["issues/lock"] = ghes.put(
+    functions["issues/lock"] = github.put(
         "/repos/{owner}/{repo}/issues/{issue_number}/lock",
         t.struct(
             {
@@ -10427,14 +10439,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("lock_reason",),
     )
-    functions["issues/unlock"] = ghes.delete(
+    functions["issues/unlock"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/lock",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "issue_number": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["reactions/list-for-issue"] = ghes.get(
+    functions["reactions/list-for-issue"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/reactions",
         t.struct(
             {
@@ -10448,7 +10460,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-issue"] = ghes.post(
+    functions["reactions/create-for-issue"] = github.post(
         "/repos/{owner}/{repo}/issues/{issue_number}/reactions",
         t.struct(
             {
@@ -10462,7 +10474,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-issue"] = ghes.delete(
+    functions["reactions/delete-for-issue"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/reactions/{reaction_id}",
         t.struct(
             {
@@ -10474,7 +10486,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["issues/list-events-for-timeline"] = ghes.get(
+    functions["issues/list-events-for-timeline"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/timeline",
         t.struct(
             {
@@ -10487,7 +10499,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["timeline-issue-events"])).optional(),
     )
-    functions["repos/list-deploy-keys"] = ghes.get(
+    functions["repos/list-deploy-keys"] = github.get(
         "/repos/{owner}/{repo}/keys",
         t.struct(
             {
@@ -10499,7 +10511,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["deploy-key"])),
     )
-    functions["repos/create-deploy-key"] = ghes.post(
+    functions["repos/create-deploy-key"] = github.post(
         "/repos/{owner}/{repo}/keys",
         t.struct(
             {
@@ -10514,17 +10526,17 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "key", "read_only"),
     )
-    functions["repos/get-deploy-key"] = ghes.get(
+    functions["repos/get-deploy-key"] = github.get(
         "/repos/{owner}/{repo}/keys/{key_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "key_id": t.integer()}),
         t.proxy(renames["deploy-key"]).optional(),
     )
-    functions["repos/delete-deploy-key"] = ghes.delete(
+    functions["repos/delete-deploy-key"] = github.delete(
         "/repos/{owner}/{repo}/keys/{key_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "key_id": t.integer()}),
         t.boolean(),
     )
-    functions["issues/list-labels-for-repo"] = ghes.get(
+    functions["issues/list-labels-for-repo"] = github.get(
         "/repos/{owner}/{repo}/labels",
         t.struct(
             {
@@ -10536,7 +10548,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["label"])).optional(),
     )
-    functions["issues/create-label"] = ghes.post(
+    functions["issues/create-label"] = github.post(
         "/repos/{owner}/{repo}/labels",
         t.struct(
             {
@@ -10551,12 +10563,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "color", "description"),
     )
-    functions["issues/get-label"] = ghes.get(
+    functions["issues/get-label"] = github.get(
         "/repos/{owner}/{repo}/labels/{name}",
         t.struct({"owner": t.string(), "repo": t.string(), "name": t.string()}),
         t.proxy(renames["label"]).optional(),
     )
-    functions["issues/update-label"] = ghes.patch(
+    functions["issues/update-label"] = github.patch(
         "/repos/{owner}/{repo}/labels/{name}",
         t.struct(
             {
@@ -10572,22 +10584,22 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("new_name", "color", "description"),
     )
-    functions["issues/delete-label"] = ghes.delete(
+    functions["issues/delete-label"] = github.delete(
         "/repos/{owner}/{repo}/labels/{name}",
         t.struct({"owner": t.string(), "repo": t.string(), "name": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-languages"] = ghes.get(
+    functions["repos/list-languages"] = github.get(
         "/repos/{owner}/{repo}/languages",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["language"]),
     )
-    functions["licenses/get-for-repo"] = ghes.get(
+    functions["licenses/get-for-repo"] = github.get(
         "/repos/{owner}/{repo}/license",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["license-content"]),
     )
-    functions["repos/merge"] = ghes.post(
+    functions["repos/merge"] = github.post(
         "/repos/{owner}/{repo}/merges",
         t.struct(
             {
@@ -10602,7 +10614,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("base", "head", "commit_message"),
     )
-    functions["issues/list-milestones"] = ghes.get(
+    functions["issues/list-milestones"] = github.get(
         "/repos/{owner}/{repo}/milestones",
         t.struct(
             {
@@ -10617,7 +10629,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["milestone"])).optional(),
     )
-    functions["issues/create-milestone"] = ghes.post(
+    functions["issues/create-milestone"] = github.post(
         "/repos/{owner}/{repo}/milestones",
         t.struct(
             {
@@ -10633,14 +10645,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "state", "description", "due_on"),
     )
-    functions["issues/get-milestone"] = ghes.get(
+    functions["issues/get-milestone"] = github.get(
         "/repos/{owner}/{repo}/milestones/{milestone_number}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "milestone_number": t.integer()}
         ),
         t.proxy(renames["milestone"]).optional(),
     )
-    functions["issues/update-milestone"] = ghes.patch(
+    functions["issues/update-milestone"] = github.patch(
         "/repos/{owner}/{repo}/milestones/{milestone_number}",
         t.struct(
             {
@@ -10657,14 +10669,14 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "state", "description", "due_on"),
     )
-    functions["issues/delete-milestone"] = ghes.delete(
+    functions["issues/delete-milestone"] = github.delete(
         "/repos/{owner}/{repo}/milestones/{milestone_number}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "milestone_number": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["issues/list-labels-for-milestone"] = ghes.get(
+    functions["issues/list-labels-for-milestone"] = github.get(
         "/repos/{owner}/{repo}/milestones/{milestone_number}/labels",
         t.struct(
             {
@@ -10677,7 +10689,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["label"])),
     )
-    functions["activity/list-repo-notifications-for-authenticated-user"] = ghes.get(
+    functions["activity/list-repo-notifications-for-authenticated-user"] = github.get(
         "/repos/{owner}/{repo}/notifications",
         t.struct(
             {
@@ -10693,7 +10705,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["thread"])),
     )
-    functions["activity/mark-repo-notifications-as-read"] = ghes.put(
+    functions["activity/mark-repo-notifications-as-read"] = github.put(
         "/repos/{owner}/{repo}/notifications",
         t.struct(
             {
@@ -10706,12 +10718,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("last_read_at",),
     )
-    functions["repos/get-pages"] = ghes.get(
+    functions["repos/get-pages"] = github.get(
         "/repos/{owner}/{repo}/pages",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["page"]).optional(),
     )
-    functions["repos/create-pages-site"] = ghes.post(
+    functions["repos/create-pages-site"] = github.post(
         "/repos/{owner}/{repo}/pages",
         t.struct(
             {
@@ -10726,12 +10738,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("source",),
     )
-    functions["repos/delete-pages-site"] = ghes.delete(
+    functions["repos/delete-pages-site"] = github.delete(
         "/repos/{owner}/{repo}/pages",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/list-pages-builds"] = ghes.get(
+    functions["repos/list-pages-builds"] = github.get(
         "/repos/{owner}/{repo}/pages/builds",
         t.struct(
             {
@@ -10743,22 +10755,22 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["page-build"])),
     )
-    functions["repos/request-pages-build"] = ghes.post(
+    functions["repos/request-pages-build"] = github.post(
         "/repos/{owner}/{repo}/pages/builds",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["page-build-status"]),
     )
-    functions["repos/get-latest-pages-build"] = ghes.get(
+    functions["repos/get-latest-pages-build"] = github.get(
         "/repos/{owner}/{repo}/pages/builds/latest",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["page-build"]),
     )
-    functions["repos/get-pages-build"] = ghes.get(
+    functions["repos/get-pages-build"] = github.get(
         "/repos/{owner}/{repo}/pages/builds/{build_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "build_id": t.integer()}),
         t.proxy(renames["page-build"]),
     )
-    functions["enterprise-admin/list-pre-receive-hooks-for-repo"] = ghes.get(
+    functions["enterprise-admin/list-pre-receive-hooks-for-repo"] = github.get(
         "/repos/{owner}/{repo}/pre-receive-hooks",
         t.struct(
             {
@@ -10772,7 +10784,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["repository-pre-receive-hook"])),
     )
-    functions["enterprise-admin/get-pre-receive-hook-for-repo"] = ghes.get(
+    functions["enterprise-admin/get-pre-receive-hook-for-repo"] = github.get(
         "/repos/{owner}/{repo}/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct(
             {
@@ -10785,7 +10797,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/update-pre-receive-hook-enforcement-for-repo"
-    ] = ghes.patch(
+    ] = github.patch(
         "/repos/{owner}/{repo}/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct(
             {
@@ -10801,7 +10813,7 @@ def import_ghes(params=None):
     )
     functions[
         "enterprise-admin/remove-pre-receive-hook-enforcement-for-repo"
-    ] = ghes.delete(
+    ] = github.delete(
         "/repos/{owner}/{repo}/pre-receive-hooks/{pre_receive_hook_id}",
         t.struct(
             {
@@ -10812,7 +10824,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["repository-pre-receive-hook"]),
     )
-    functions["projects/list-for-repo"] = ghes.get(
+    functions["projects/list-for-repo"] = github.get(
         "/repos/{owner}/{repo}/projects",
         t.struct(
             {
@@ -10825,7 +10837,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["project"])).optional(),
     )
-    functions["projects/create-for-repo"] = ghes.post(
+    functions["projects/create-for-repo"] = github.post(
         "/repos/{owner}/{repo}/projects",
         t.struct(
             {
@@ -10839,7 +10851,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "body"),
     )
-    functions["pulls/list"] = ghes.get(
+    functions["pulls/list"] = github.get(
         "/repos/{owner}/{repo}/pulls",
         t.struct(
             {
@@ -10856,7 +10868,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["pull-request-simple"])),
     )
-    functions["pulls/create"] = ghes.post(
+    functions["pulls/create"] = github.post(
         "/repos/{owner}/{repo}/pulls",
         t.struct(
             {
@@ -10883,7 +10895,7 @@ def import_ghes(params=None):
             "issue",
         ),
     )
-    functions["pulls/list-review-comments-for-repo"] = ghes.get(
+    functions["pulls/list-review-comments-for-repo"] = github.get(
         "/repos/{owner}/{repo}/pulls/comments",
         t.struct(
             {
@@ -10898,12 +10910,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["pull-request-review-comment"])),
     )
-    functions["pulls/get-review-comment"] = ghes.get(
+    functions["pulls/get-review-comment"] = github.get(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.proxy(renames["pull-request-review-comment"]).optional(),
     )
-    functions["pulls/update-review-comment"] = ghes.patch(
+    functions["pulls/update-review-comment"] = github.patch(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
         t.struct(
             {
@@ -10917,12 +10929,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["pulls/delete-review-comment"] = ghes.delete(
+    functions["pulls/delete-review-comment"] = github.delete(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["reactions/list-for-pull-request-review-comment"] = ghes.get(
+    functions["reactions/list-for-pull-request-review-comment"] = github.get(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -10936,7 +10948,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-pull-request-review-comment"] = ghes.post(
+    functions["reactions/create-for-pull-request-review-comment"] = github.post(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -10950,7 +10962,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-pull-request-comment"] = ghes.delete(
+    functions["reactions/delete-for-pull-request-comment"] = github.delete(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions/{reaction_id}",
         t.struct(
             {
@@ -10962,12 +10974,12 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["pulls/get"] = ghes.get(
+    functions["pulls/get"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}",
         t.struct({"owner": t.string(), "repo": t.string(), "pull_number": t.integer()}),
         t.proxy(renames["pull-request"]).optional(),
     )
-    functions["pulls/update"] = ghes.patch(
+    functions["pulls/update"] = github.patch(
         "/repos/{owner}/{repo}/pulls/{pull_number}",
         t.struct(
             {
@@ -10985,7 +10997,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "body", "state", "base", "maintainer_can_modify"),
     )
-    functions["pulls/list-review-comments"] = ghes.get(
+    functions["pulls/list-review-comments"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
         t.struct(
             {
@@ -11001,7 +11013,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["pull-request-review-comment"])),
     )
-    functions["pulls/create-review-comment"] = ghes.post(
+    functions["pulls/create-review-comment"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
         t.struct(
             {
@@ -11033,7 +11045,7 @@ def import_ghes(params=None):
             "in_reply_to",
         ),
     )
-    functions["pulls/create-reply-for-review-comment"] = ghes.post(
+    functions["pulls/create-reply-for-review-comment"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/comments/{comment_id}/replies",
         t.struct(
             {
@@ -11048,7 +11060,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["pulls/list-commits"] = ghes.get(
+    functions["pulls/list-commits"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/commits",
         t.struct(
             {
@@ -11061,7 +11073,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["commit"])),
     )
-    functions["pulls/list-files"] = ghes.get(
+    functions["pulls/list-files"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/files",
         t.struct(
             {
@@ -11074,12 +11086,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["diff-entry"])),
     )
-    functions["pulls/check-if-merged"] = ghes.get(
+    functions["pulls/check-if-merged"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/merge",
         t.struct({"owner": t.string(), "repo": t.string(), "pull_number": t.integer()}),
         t.boolean().optional(),
     )
-    functions["pulls/merge"] = ghes.put(
+    functions["pulls/merge"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/merge",
         t.struct(
             {
@@ -11096,7 +11108,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("commit_title", "commit_message", "sha", "merge_method"),
     )
-    functions["pulls/list-requested-reviewers"] = ghes.get(
+    functions["pulls/list-requested-reviewers"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
         t.struct(
             {
@@ -11109,7 +11121,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["pull-request-review-request"]),
     )
-    functions["pulls/remove-requested-reviewers"] = ghes.delete(
+    functions["pulls/remove-requested-reviewers"] = github.delete(
         "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
         t.struct(
             {
@@ -11124,7 +11136,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("reviewers", "team_reviewers"),
     )
-    functions["pulls/list-reviews"] = ghes.get(
+    functions["pulls/list-reviews"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews",
         t.struct(
             {
@@ -11137,7 +11149,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["pull-request-review"])),
     )
-    functions["pulls/create-review"] = ghes.post(
+    functions["pulls/create-review"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews",
         t.struct(
             {
@@ -11166,7 +11178,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("commit_id", "body", "event", "comments"),
     )
-    functions["pulls/get-review"] = ghes.get(
+    functions["pulls/get-review"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
         t.struct(
             {
@@ -11178,7 +11190,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["pull-request-review"]).optional(),
     )
-    functions["pulls/update-review"] = ghes.put(
+    functions["pulls/update-review"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
         t.struct(
             {
@@ -11193,7 +11205,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["pulls/delete-pending-review"] = ghes.delete(
+    functions["pulls/delete-pending-review"] = github.delete(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
         t.struct(
             {
@@ -11205,7 +11217,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["pull-request-review"]).optional(),
     )
-    functions["pulls/list-comments-for-review"] = ghes.get(
+    functions["pulls/list-comments-for-review"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/comments",
         t.struct(
             {
@@ -11219,7 +11231,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["review-comment"])).optional(),
     )
-    functions["pulls/dismiss-review"] = ghes.put(
+    functions["pulls/dismiss-review"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/dismissals",
         t.struct(
             {
@@ -11235,7 +11247,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("message", "event"),
     )
-    functions["pulls/submit-review"] = ghes.post(
+    functions["pulls/submit-review"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
         t.struct(
             {
@@ -11251,7 +11263,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body", "event"),
     )
-    functions["pulls/update-branch"] = ghes.put(
+    functions["pulls/update-branch"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/update-branch",
         t.struct(
             {
@@ -11265,12 +11277,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("expected_head_sha",),
     )
-    functions["repos/get-readme"] = ghes.get(
+    functions["repos/get-readme"] = github.get(
         "/repos/{owner}/{repo}/readme",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.proxy(renames["content-file"]).optional(),
     )
-    functions["repos/get-readme-in-directory"] = ghes.get(
+    functions["repos/get-readme-in-directory"] = github.get(
         "/repos/{owner}/{repo}/readme/{dir}",
         t.struct(
             {
@@ -11282,7 +11294,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["content-file"]).optional(),
     )
-    functions["repos/list-releases"] = ghes.get(
+    functions["repos/list-releases"] = github.get(
         "/repos/{owner}/{repo}/releases",
         t.struct(
             {
@@ -11294,7 +11306,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["release"])).optional(),
     )
-    functions["repos/create-release"] = ghes.post(
+    functions["repos/create-release"] = github.post(
         "/repos/{owner}/{repo}/releases",
         t.struct(
             {
@@ -11319,12 +11331,12 @@ def import_ghes(params=None):
             "prerelease",
         ),
     )
-    functions["repos/get-release-asset"] = ghes.get(
+    functions["repos/get-release-asset"] = github.get(
         "/repos/{owner}/{repo}/releases/assets/{asset_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "asset_id": t.integer()}),
         t.proxy(renames["release-asset"]).optional(),
     )
-    functions["repos/update-release-asset"] = ghes.patch(
+    functions["repos/update-release-asset"] = github.patch(
         "/repos/{owner}/{repo}/releases/assets/{asset_id}",
         t.struct(
             {
@@ -11340,27 +11352,27 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "label", "state"),
     )
-    functions["repos/delete-release-asset"] = ghes.delete(
+    functions["repos/delete-release-asset"] = github.delete(
         "/repos/{owner}/{repo}/releases/assets/{asset_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "asset_id": t.integer()}),
         t.boolean(),
     )
-    functions["repos/get-latest-release"] = ghes.get(
+    functions["repos/get-latest-release"] = github.get(
         "/repos/{owner}/{repo}/releases/latest",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["release"]),
     )
-    functions["repos/get-release-by-tag"] = ghes.get(
+    functions["repos/get-release-by-tag"] = github.get(
         "/repos/{owner}/{repo}/releases/tags/{tag}",
         t.struct({"owner": t.string(), "repo": t.string(), "tag": t.string()}),
         t.proxy(renames["release"]).optional(),
     )
-    functions["repos/get-release"] = ghes.get(
+    functions["repos/get-release"] = github.get(
         "/repos/{owner}/{repo}/releases/{release_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "release_id": t.integer()}),
         t.proxy(renames["release"]).optional(),
     )
-    functions["repos/update-release"] = ghes.patch(
+    functions["repos/update-release"] = github.patch(
         "/repos/{owner}/{repo}/releases/{release_id}",
         t.struct(
             {
@@ -11386,12 +11398,12 @@ def import_ghes(params=None):
             "prerelease",
         ),
     )
-    functions["repos/delete-release"] = ghes.delete(
+    functions["repos/delete-release"] = github.delete(
         "/repos/{owner}/{repo}/releases/{release_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "release_id": t.integer()}),
         t.boolean(),
     )
-    functions["repos/list-release-assets"] = ghes.get(
+    functions["repos/list-release-assets"] = github.get(
         "/repos/{owner}/{repo}/releases/{release_id}/assets",
         t.struct(
             {
@@ -11404,7 +11416,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["release-asset"])),
     )
-    functions["activity/list-stargazers-for-repo"] = ghes.get(
+    functions["activity/list-stargazers-for-repo"] = github.get(
         "/repos/{owner}/{repo}/stargazers",
         t.struct(
             {
@@ -11421,32 +11433,32 @@ def import_ghes(params=None):
             ]
         ),
     )
-    functions["repos/get-code-frequency-stats"] = ghes.get(
+    functions["repos/get-code-frequency-stats"] = github.get(
         "/repos/{owner}/{repo}/stats/code_frequency",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.array(t.proxy(renames["code-frequency-stat"])),
     )
-    functions["repos/get-commit-activity-stats"] = ghes.get(
+    functions["repos/get-commit-activity-stats"] = github.get(
         "/repos/{owner}/{repo}/stats/commit_activity",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.array(t.proxy(renames["commit-activity"])),
     )
-    functions["repos/get-contributors-stats"] = ghes.get(
+    functions["repos/get-contributors-stats"] = github.get(
         "/repos/{owner}/{repo}/stats/contributors",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.array(t.proxy(renames["contributor-activity"])),
     )
-    functions["repos/get-participation-stats"] = ghes.get(
+    functions["repos/get-participation-stats"] = github.get(
         "/repos/{owner}/{repo}/stats/participation",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["participation-stats"]).optional(),
     )
-    functions["repos/get-punch-card-stats"] = ghes.get(
+    functions["repos/get-punch-card-stats"] = github.get(
         "/repos/{owner}/{repo}/stats/punch_card",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.array(t.proxy(renames["code-frequency-stat"])),
     )
-    functions["repos/create-commit-status"] = ghes.post(
+    functions["repos/create-commit-status"] = github.post(
         "/repos/{owner}/{repo}/statuses/{sha}",
         t.struct(
             {
@@ -11463,7 +11475,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("state", "target_url", "description", "context"),
     )
-    functions["activity/list-watchers-for-repo"] = ghes.get(
+    functions["activity/list-watchers-for-repo"] = github.get(
         "/repos/{owner}/{repo}/subscribers",
         t.struct(
             {
@@ -11475,12 +11487,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["activity/get-repo-subscription"] = ghes.get(
+    functions["activity/get-repo-subscription"] = github.get(
         "/repos/{owner}/{repo}/subscription",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["repository-subscription"]).optional(),
     )
-    functions["activity/set-repo-subscription"] = ghes.put(
+    functions["activity/set-repo-subscription"] = github.put(
         "/repos/{owner}/{repo}/subscription",
         t.struct(
             {
@@ -11494,12 +11506,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("subscribed", "ignored"),
     )
-    functions["activity/delete-repo-subscription"] = ghes.delete(
+    functions["activity/delete-repo-subscription"] = github.delete(
         "/repos/{owner}/{repo}/subscription",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-tags"] = ghes.get(
+    functions["repos/list-tags"] = github.get(
         "/repos/{owner}/{repo}/tags",
         t.struct(
             {
@@ -11511,12 +11523,12 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["tag"])),
     )
-    functions["repos/download-tarball-archive"] = ghes.get(
+    functions["repos/download-tarball-archive"] = github.get(
         "/repos/{owner}/{repo}/tarball/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.struct({}),
     )
-    functions["repos/list-teams"] = ghes.get(
+    functions["repos/list-teams"] = github.get(
         "/repos/{owner}/{repo}/teams",
         t.struct(
             {
@@ -11528,7 +11540,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["team"])),
     )
-    functions["repos/get-all-topics"] = ghes.get(
+    functions["repos/get-all-topics"] = github.get(
         "/repos/{owner}/{repo}/topics",
         t.struct(
             {
@@ -11540,7 +11552,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["topic"]).optional(),
     )
-    functions["repos/replace-all-topics"] = ghes.put(
+    functions["repos/replace-all-topics"] = github.put(
         "/repos/{owner}/{repo}/topics",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "names": t.array(t.string())}
@@ -11549,7 +11561,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("names",),
     )
-    functions["repos/transfer"] = ghes.post(
+    functions["repos/transfer"] = github.post(
         "/repos/{owner}/{repo}/transfer",
         t.struct(
             {
@@ -11563,12 +11575,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("new_owner", "team_ids"),
     )
-    functions["repos/download-zipball-archive"] = ghes.get(
+    functions["repos/download-zipball-archive"] = github.get(
         "/repos/{owner}/{repo}/zipball/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.struct({}),
     )
-    functions["repos/create-using-template"] = ghes.post(
+    functions["repos/create-using-template"] = github.post(
         "/repos/{template_owner}/{template_repo}/generate",
         t.struct(
             {
@@ -11585,12 +11597,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("owner", "name", "description", "include_all_branches", "private"),
     )
-    functions["repos/list-public"] = ghes.get(
+    functions["repos/list-public"] = github.get(
         "/repositories",
         t.struct({"since": t.integer(), "visibility": t.string()}),
         t.array(t.proxy(renames["minimal-repository"])),
     )
-    functions["search/code"] = ghes.get(
+    functions["search/code"] = github.get(
         "/search/code",
         t.struct(
             {
@@ -11609,7 +11621,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["search/commits"] = ghes.get(
+    functions["search/commits"] = github.get(
         "/search/commits",
         t.struct(
             {
@@ -11628,7 +11640,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["search/issues-and-pull-requests"] = ghes.get(
+    functions["search/issues-and-pull-requests"] = github.get(
         "/search/issues",
         t.struct(
             {
@@ -11647,7 +11659,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["search/labels"] = ghes.get(
+    functions["search/labels"] = github.get(
         "/search/labels",
         t.struct(
             {
@@ -11667,7 +11679,7 @@ def import_ghes(params=None):
             }
         ).optional(),
     )
-    functions["search/repos"] = ghes.get(
+    functions["search/repos"] = github.get(
         "/search/repositories",
         t.struct(
             {
@@ -11686,7 +11698,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["search/topics"] = ghes.get(
+    functions["search/topics"] = github.get(
         "/search/topics",
         t.struct({"q": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -11697,7 +11709,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["search/users"] = ghes.get(
+    functions["search/users"] = github.get(
         "/search/users",
         t.struct(
             {
@@ -11716,60 +11728,60 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["enterprise-admin/get-configuration-status"] = ghes.get(
+    functions["enterprise-admin/get-configuration-status"] = github.get(
         "/setup/api/configcheck",
         t.struct({}),
         t.proxy(renames["configuration-status"]),
     )
-    functions["enterprise-admin/start-configuration-process"] = ghes.post(
+    functions["enterprise-admin/start-configuration-process"] = github.post(
         "/setup/api/configure",
         t.struct({}),
         t.struct({}),
     )
-    functions["enterprise-admin/get-maintenance-status"] = ghes.get(
+    functions["enterprise-admin/get-maintenance-status"] = github.get(
         "/setup/api/maintenance",
         t.struct({}),
         t.proxy(renames["maintenance-status"]),
     )
-    functions["enterprise-admin/enable-or-disable-maintenance-mode"] = ghes.post(
+    functions["enterprise-admin/enable-or-disable-maintenance-mode"] = github.post(
         "/setup/api/maintenance",
         t.struct({"maintenance": t.string()}),
         t.proxy(renames["maintenance-status"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("maintenance",),
     )
-    functions["enterprise-admin/get-settings"] = ghes.get(
+    functions["enterprise-admin/get-settings"] = github.get(
         "/setup/api/settings",
         t.struct({}),
         t.proxy(renames["enterprise-settings"]),
     )
-    functions["enterprise-admin/set-settings"] = ghes.put(
+    functions["enterprise-admin/set-settings"] = github.put(
         "/setup/api/settings",
         t.struct({"settings": t.string()}),
         t.boolean(),
         content_type="application/x-www-form-urlencoded",
         body_fields=("settings",),
     )
-    functions["enterprise-admin/get-all-authorized-ssh-keys"] = ghes.get(
+    functions["enterprise-admin/get-all-authorized-ssh-keys"] = github.get(
         "/setup/api/settings/authorized-keys",
         t.struct({}),
         t.array(t.proxy(renames["ssh-key"])),
     )
-    functions["enterprise-admin/add-authorized-ssh-key"] = ghes.post(
+    functions["enterprise-admin/add-authorized-ssh-key"] = github.post(
         "/setup/api/settings/authorized-keys",
         t.struct({"authorized_key": t.string()}),
         t.array(t.proxy(renames["ssh-key"])),
         content_type="application/x-www-form-urlencoded",
         body_fields=("authorized_key",),
     )
-    functions["enterprise-admin/remove-authorized-ssh-key"] = ghes.delete(
+    functions["enterprise-admin/remove-authorized-ssh-key"] = github.delete(
         "/setup/api/settings/authorized-keys",
         t.struct({"authorized_key": t.string()}),
         t.array(t.proxy(renames["ssh-key"])),
         content_type="application/x-www-form-urlencoded",
         body_fields=("authorized_key",),
     )
-    functions["enterprise-admin/create-enterprise-server-license"] = ghes.post(
+    functions["enterprise-admin/create-enterprise-server-license"] = github.post(
         "/setup/api/start",
         t.struct(
             {
@@ -11782,19 +11794,19 @@ def import_ghes(params=None):
         content_type="application/x-www-form-urlencoded",
         body_fields=("license", "password", "settings"),
     )
-    functions["enterprise-admin/upgrade-license"] = ghes.post(
+    functions["enterprise-admin/upgrade-license"] = github.post(
         "/setup/api/upgrade",
         t.struct({"license": t.string().optional()}),
         t.struct({}),
         content_type="application/x-www-form-urlencoded",
         body_fields=("license",),
     )
-    functions["teams/get-legacy"] = ghes.get(
+    functions["teams/get-legacy"] = github.get(
         "/teams/{team_id}",
         t.struct({"team_id": t.integer()}),
         t.proxy(renames["team-full"]).optional(),
     )
-    functions["teams/update-legacy"] = ghes.patch(
+    functions["teams/update-legacy"] = github.patch(
         "/teams/{team_id}",
         t.struct(
             {
@@ -11810,12 +11822,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("name", "description", "privacy", "permission", "parent_team_id"),
     )
-    functions["teams/delete-legacy"] = ghes.delete(
+    functions["teams/delete-legacy"] = github.delete(
         "/teams/{team_id}",
         t.struct({"team_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["teams/list-discussions-legacy"] = ghes.get(
+    functions["teams/list-discussions-legacy"] = github.get(
         "/teams/{team_id}/discussions",
         t.struct(
             {
@@ -11827,7 +11839,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["team-discussion"])),
     )
-    functions["teams/create-discussion-legacy"] = ghes.post(
+    functions["teams/create-discussion-legacy"] = github.post(
         "/teams/{team_id}/discussions",
         t.struct(
             {
@@ -11841,12 +11853,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "body", "private"),
     )
-    functions["teams/get-discussion-legacy"] = ghes.get(
+    functions["teams/get-discussion-legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}",
         t.struct({"team_id": t.integer(), "discussion_number": t.integer()}),
         t.proxy(renames["team-discussion"]),
     )
-    functions["teams/update-discussion-legacy"] = ghes.patch(
+    functions["teams/update-discussion-legacy"] = github.patch(
         "/teams/{team_id}/discussions/{discussion_number}",
         t.struct(
             {
@@ -11860,12 +11872,12 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("title", "body"),
     )
-    functions["teams/delete-discussion-legacy"] = ghes.delete(
+    functions["teams/delete-discussion-legacy"] = github.delete(
         "/teams/{team_id}/discussions/{discussion_number}",
         t.struct({"team_id": t.integer(), "discussion_number": t.integer()}),
         t.boolean(),
     )
-    functions["teams/list-discussion-comments-legacy"] = ghes.get(
+    functions["teams/list-discussion-comments-legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -11878,7 +11890,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["team-discussion-comment"])),
     )
-    functions["teams/create-discussion-comment-legacy"] = ghes.post(
+    functions["teams/create-discussion-comment-legacy"] = github.post(
         "/teams/{team_id}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -11891,7 +11903,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/get-discussion-comment-legacy"] = ghes.get(
+    functions["teams/get-discussion-comment-legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -11902,7 +11914,7 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["team-discussion-comment"]),
     )
-    functions["teams/update-discussion-comment-legacy"] = ghes.patch(
+    functions["teams/update-discussion-comment-legacy"] = github.patch(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -11916,7 +11928,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/delete-discussion-comment-legacy"] = ghes.delete(
+    functions["teams/delete-discussion-comment-legacy"] = github.delete(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -11927,7 +11939,7 @@ def import_ghes(params=None):
         ),
         t.boolean(),
     )
-    functions["reactions/list-for-team-discussion-comment-legacy"] = ghes.get(
+    functions["reactions/list-for-team-discussion-comment-legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -11941,7 +11953,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-comment-legacy"] = ghes.post(
+    functions["reactions/create-for-team-discussion-comment-legacy"] = github.post(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -11955,7 +11967,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/list-for-team-discussion-legacy"] = ghes.get(
+    functions["reactions/list-for-team-discussion-legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -11968,7 +11980,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-legacy"] = ghes.post(
+    functions["reactions/create-for-team-discussion-legacy"] = github.post(
         "/teams/{team_id}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -11981,7 +11993,7 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["teams/list-members-legacy"] = ghes.get(
+    functions["teams/list-members-legacy"] = github.get(
         "/teams/{team_id}/members",
         t.struct(
             {
@@ -11993,27 +12005,27 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["simple-user"])).optional(),
     )
-    functions["teams/get-member-legacy"] = ghes.get(
+    functions["teams/get-member-legacy"] = github.get(
         "/teams/{team_id}/members/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["teams/add-member-legacy"] = ghes.put(
+    functions["teams/add-member-legacy"] = github.put(
         "/teams/{team_id}/members/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["teams/remove-member-legacy"] = ghes.delete(
+    functions["teams/remove-member-legacy"] = github.delete(
         "/teams/{team_id}/members/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["teams/get-membership-for-user-legacy"] = ghes.get(
+    functions["teams/get-membership-for-user-legacy"] = github.get(
         "/teams/{team_id}/memberships/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.proxy(renames["team-membership"]).optional(),
     )
-    functions["teams/add-or-update-membership-for-user-legacy"] = ghes.put(
+    functions["teams/add-or-update-membership-for-user-legacy"] = github.put(
         "/teams/{team_id}/memberships/{username}",
         t.struct(
             {
@@ -12026,24 +12038,24 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("role",),
     )
-    functions["teams/remove-membership-for-user-legacy"] = ghes.delete(
+    functions["teams/remove-membership-for-user-legacy"] = github.delete(
         "/teams/{team_id}/memberships/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-projects-legacy"] = ghes.get(
+    functions["teams/list-projects-legacy"] = github.get(
         "/teams/{team_id}/projects",
         t.struct(
             {"team_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["team-project"])).optional(),
     )
-    functions["teams/check-permissions-for-project-legacy"] = ghes.get(
+    functions["teams/check-permissions-for-project-legacy"] = github.get(
         "/teams/{team_id}/projects/{project_id}",
         t.struct({"team_id": t.integer(), "project_id": t.integer()}),
         t.proxy(renames["team-project"]).optional(),
     )
-    functions["teams/add-or-update-project-permissions-legacy"] = ghes.put(
+    functions["teams/add-or-update-project-permissions-legacy"] = github.put(
         "/teams/{team_id}/projects/{project_id}",
         t.struct(
             {
@@ -12056,24 +12068,24 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-project-legacy"] = ghes.delete(
+    functions["teams/remove-project-legacy"] = github.delete(
         "/teams/{team_id}/projects/{project_id}",
         t.struct({"team_id": t.integer(), "project_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["teams/list-repos-legacy"] = ghes.get(
+    functions["teams/list-repos-legacy"] = github.get(
         "/teams/{team_id}/repos",
         t.struct(
             {"team_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["minimal-repository"])).optional(),
     )
-    functions["teams/check-permissions-for-repo-legacy"] = ghes.get(
+    functions["teams/check-permissions-for-repo-legacy"] = github.get(
         "/teams/{team_id}/repos/{owner}/{repo}",
         t.struct({"team_id": t.integer(), "owner": t.string(), "repo": t.string()}),
         t.proxy(renames["team-repository"]).optional(),
     )
-    functions["teams/add-or-update-repo-permissions-legacy"] = ghes.put(
+    functions["teams/add-or-update-repo-permissions-legacy"] = github.put(
         "/teams/{team_id}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -12087,24 +12099,24 @@ def import_ghes(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-repo-legacy"] = ghes.delete(
+    functions["teams/remove-repo-legacy"] = github.delete(
         "/teams/{team_id}/repos/{owner}/{repo}",
         t.struct({"team_id": t.integer(), "owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-child-legacy"] = ghes.get(
+    functions["teams/list-child-legacy"] = github.get(
         "/teams/{team_id}/teams",
         t.struct(
             {"team_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["team"])).optional(),
     )
-    functions["users/get-authenticated"] = ghes.get(
+    functions["users/get-authenticated"] = github.get(
         "/user",
         t.struct({}),
         t.either([t.proxy(renames["private-user"]), t.proxy(renames["public-user"])]),
     )
-    functions["users/update-authenticated"] = ghes.patch(
+    functions["users/update-authenticated"] = github.patch(
         "/user",
         t.struct(
             {
@@ -12131,59 +12143,59 @@ def import_ghes(params=None):
             "bio",
         ),
     )
-    functions["users/list-emails-for-authenticated-user"] = ghes.get(
+    functions["users/list-emails-for-authenticated-user"] = github.get(
         "/user/emails",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["email"])).optional(),
     )
-    functions["users/list-followers-for-authenticated-user"] = ghes.get(
+    functions["users/list-followers-for-authenticated-user"] = github.get(
         "/user/followers",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["users/list-followed-by-authenticated-user"] = ghes.get(
+    functions["users/list-followed-by-authenticated-user"] = github.get(
         "/user/following",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["users/check-person-is-followed-by-authenticated"] = ghes.get(
+    functions["users/check-person-is-followed-by-authenticated"] = github.get(
         "/user/following/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/follow"] = ghes.put(
+    functions["users/follow"] = github.put(
         "/user/following/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/unfollow"] = ghes.delete(
+    functions["users/unfollow"] = github.delete(
         "/user/following/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/list-gpg-keys-for-authenticated-user"] = ghes.get(
+    functions["users/list-gpg-keys-for-authenticated-user"] = github.get(
         "/user/gpg_keys",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["gpg-key"])).optional(),
     )
-    functions["users/create-gpg-key-for-authenticated-user"] = ghes.post(
+    functions["users/create-gpg-key-for-authenticated-user"] = github.post(
         "/user/gpg_keys",
         t.struct({"armored_public_key": t.string()}),
         t.proxy(renames["gpg-key"]).optional(),
         content_type="application/json",
         body_fields=("armored_public_key",),
     )
-    functions["users/get-gpg-key-for-authenticated-user"] = ghes.get(
+    functions["users/get-gpg-key-for-authenticated-user"] = github.get(
         "/user/gpg_keys/{gpg_key_id}",
         t.struct({"gpg_key_id": t.integer()}),
         t.proxy(renames["gpg-key"]).optional(),
     )
-    functions["users/delete-gpg-key-for-authenticated-user"] = ghes.delete(
+    functions["users/delete-gpg-key-for-authenticated-user"] = github.delete(
         "/user/gpg_keys/{gpg_key_id}",
         t.struct({"gpg_key_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/list-installations-for-authenticated-user"] = ghes.get(
+    functions["apps/list-installations-for-authenticated-user"] = github.get(
         "/user/installations",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -12193,7 +12205,7 @@ def import_ghes(params=None):
             }
         ),
     )
-    functions["apps/list-installation-repos-for-authenticated-user"] = ghes.get(
+    functions["apps/list-installation-repos-for-authenticated-user"] = github.get(
         "/user/installations/{installation_id}/repositories",
         t.struct(
             {
@@ -12210,19 +12222,19 @@ def import_ghes(params=None):
             }
         ).optional(),
     )
-    functions["apps/add-repo-to-installation-for-authenticated-user"] = ghes.put(
+    functions["apps/add-repo-to-installation-for-authenticated-user"] = github.put(
         "/user/installations/{installation_id}/repositories/{repository_id}",
         t.struct({"installation_id": t.integer(), "repository_id": t.integer()}),
         t.boolean().optional(),
     )
     functions[
         "apps/remove-repo-from-installation-for-authenticated-user"
-    ] = ghes.delete(
+    ] = github.delete(
         "/user/installations/{installation_id}/repositories/{repository_id}",
         t.struct({"installation_id": t.integer(), "repository_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["issues/list-for-authenticated-user"] = ghes.get(
+    functions["issues/list-for-authenticated-user"] = github.get(
         "/user/issues",
         t.struct(
             {
@@ -12238,63 +12250,63 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["users/list-public-ssh-keys-for-authenticated-user"] = ghes.get(
+    functions["users/list-public-ssh-keys-for-authenticated-user"] = github.get(
         "/user/keys",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["key"])).optional(),
     )
-    functions["users/create-public-ssh-key-for-authenticated-user"] = ghes.post(
+    functions["users/create-public-ssh-key-for-authenticated-user"] = github.post(
         "/user/keys",
         t.struct({"title": t.string().optional(), "key": t.string()}),
         t.proxy(renames["key"]).optional(),
         content_type="application/json",
         body_fields=("title", "key"),
     )
-    functions["users/get-public-ssh-key-for-authenticated-user"] = ghes.get(
+    functions["users/get-public-ssh-key-for-authenticated-user"] = github.get(
         "/user/keys/{key_id}",
         t.struct({"key_id": t.integer()}),
         t.proxy(renames["key"]).optional(),
     )
-    functions["users/delete-public-ssh-key-for-authenticated-user"] = ghes.delete(
+    functions["users/delete-public-ssh-key-for-authenticated-user"] = github.delete(
         "/user/keys/{key_id}",
         t.struct({"key_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["orgs/list-memberships-for-authenticated-user"] = ghes.get(
+    functions["orgs/list-memberships-for-authenticated-user"] = github.get(
         "/user/memberships/orgs",
         t.struct({"state": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["org-membership"])),
     )
-    functions["orgs/get-membership-for-authenticated-user"] = ghes.get(
+    functions["orgs/get-membership-for-authenticated-user"] = github.get(
         "/user/memberships/orgs/{org}",
         t.struct({"org": t.string()}),
         t.proxy(renames["org-membership"]).optional(),
     )
-    functions["orgs/update-membership-for-authenticated-user"] = ghes.patch(
+    functions["orgs/update-membership-for-authenticated-user"] = github.patch(
         "/user/memberships/orgs/{org}",
         t.struct({"org": t.string(), "state": t.string()}),
         t.proxy(renames["org-membership"]).optional(),
         content_type="application/json",
         body_fields=("state",),
     )
-    functions["orgs/list-for-authenticated-user"] = ghes.get(
+    functions["orgs/list-for-authenticated-user"] = github.get(
         "/user/orgs",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["organization-simple"])),
     )
-    functions["projects/create-for-authenticated-user"] = ghes.post(
+    functions["projects/create-for-authenticated-user"] = github.post(
         "/user/projects",
         t.struct({"name": t.string(), "body": t.string().optional()}),
         t.proxy(renames["project"]),
         content_type="application/json",
         body_fields=("name", "body"),
     )
-    functions["users/list-public-emails-for-authenticated-user"] = ghes.get(
+    functions["users/list-public-emails-for-authenticated-user"] = github.get(
         "/user/public_emails",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["email"])).optional(),
     )
-    functions["repos/list-for-authenticated-user"] = ghes.get(
+    functions["repos/list-for-authenticated-user"] = github.get(
         "/user/repos",
         t.struct(
             {
@@ -12311,7 +12323,7 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["repository"])),
     )
-    functions["repos/create-for-authenticated-user"] = ghes.post(
+    functions["repos/create-for-authenticated-user"] = github.post(
         "/user/repos",
         t.struct(
             {
@@ -12356,22 +12368,22 @@ def import_ghes(params=None):
             "is_template",
         ),
     )
-    functions["repos/list-invitations-for-authenticated-user"] = ghes.get(
+    functions["repos/list-invitations-for-authenticated-user"] = github.get(
         "/user/repository_invitations",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["repository-invitation"])).optional(),
     )
-    functions["repos/accept-invitation-for-authenticated-user"] = ghes.patch(
+    functions["repos/accept-invitation-for-authenticated-user"] = github.patch(
         "/user/repository_invitations/{invitation_id}",
         t.struct({"invitation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["repos/decline-invitation-for-authenticated-user"] = ghes.delete(
+    functions["repos/decline-invitation-for-authenticated-user"] = github.delete(
         "/user/repository_invitations/{invitation_id}",
         t.struct({"invitation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["activity/list-repos-starred-by-authenticated-user"] = ghes.get(
+    functions["activity/list-repos-starred-by-authenticated-user"] = github.get(
         "/user/starred",
         t.struct(
             {
@@ -12383,51 +12395,51 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["repository"])),
     )
-    functions["activity/check-repo-is-starred-by-authenticated-user"] = ghes.get(
+    functions["activity/check-repo-is-starred-by-authenticated-user"] = github.get(
         "/user/starred/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["activity/star-repo-for-authenticated-user"] = ghes.put(
+    functions["activity/star-repo-for-authenticated-user"] = github.put(
         "/user/starred/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["activity/unstar-repo-for-authenticated-user"] = ghes.delete(
+    functions["activity/unstar-repo-for-authenticated-user"] = github.delete(
         "/user/starred/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["activity/list-watched-repos-for-authenticated-user"] = ghes.get(
+    functions["activity/list-watched-repos-for-authenticated-user"] = github.get(
         "/user/subscriptions",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["minimal-repository"])),
     )
-    functions["teams/list-for-authenticated-user"] = ghes.get(
+    functions["teams/list-for-authenticated-user"] = github.get(
         "/user/teams",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["team-full"])).optional(),
     )
-    functions["users/list"] = ghes.get(
+    functions["users/list"] = github.get(
         "/users",
         t.struct({"since": t.integer(), "per_page": t.integer()}),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["users/get-by-username"] = ghes.get(
+    functions["users/get-by-username"] = github.get(
         "/users/{username}",
         t.struct({"username": t.string()}),
         t.either(
             [t.proxy(renames["private-user"]), t.proxy(renames["public-user"])]
         ).optional(),
     )
-    functions["activity/list-events-for-authenticated-user"] = ghes.get(
+    functions["activity/list-events-for-authenticated-user"] = github.get(
         "/users/{username}/events",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/list-org-events-for-authenticated-user"] = ghes.get(
+    functions["activity/list-org-events-for-authenticated-user"] = github.get(
         "/users/{username}/events/orgs/{org}",
         t.struct(
             {
@@ -12439,33 +12451,33 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/list-public-events-for-user"] = ghes.get(
+    functions["activity/list-public-events-for-user"] = github.get(
         "/users/{username}/events/public",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["users/list-followers-for-user"] = ghes.get(
+    functions["users/list-followers-for-user"] = github.get(
         "/users/{username}/followers",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["users/list-following-for-user"] = ghes.get(
+    functions["users/list-following-for-user"] = github.get(
         "/users/{username}/following",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["simple-user"])),
     )
-    functions["users/check-following-for-user"] = ghes.get(
+    functions["users/check-following-for-user"] = github.get(
         "/users/{username}/following/{target_user}",
         t.struct({"username": t.string(), "target_user": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/list-for-user"] = ghes.get(
+    functions["gists/list-for-user"] = github.get(
         "/users/{username}/gists",
         t.struct(
             {
@@ -12477,14 +12489,14 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["base-gist"])),
     )
-    functions["users/list-gpg-keys-for-user"] = ghes.get(
+    functions["users/list-gpg-keys-for-user"] = github.get(
         "/users/{username}/gpg_keys",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["gpg-key"])),
     )
-    functions["users/get-context-for-user"] = ghes.get(
+    functions["users/get-context-for-user"] = github.get(
         "/users/{username}/hovercard",
         t.struct(
             {
@@ -12495,26 +12507,26 @@ def import_ghes(params=None):
         ),
         t.proxy(renames["hovercard"]).optional(),
     )
-    functions["apps/get-user-installation"] = ghes.get(
+    functions["apps/get-user-installation"] = github.get(
         "/users/{username}/installation",
         t.struct({"username": t.string()}),
         t.proxy(renames["installation"]),
     )
-    functions["users/list-public-keys-for-user"] = ghes.get(
+    functions["users/list-public-keys-for-user"] = github.get(
         "/users/{username}/keys",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["key-simple"])),
     )
-    functions["orgs/list-for-user"] = ghes.get(
+    functions["orgs/list-for-user"] = github.get(
         "/users/{username}/orgs",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["organization-simple"])),
     )
-    functions["projects/list-for-user"] = ghes.get(
+    functions["projects/list-for-user"] = github.get(
         "/users/{username}/projects",
         t.struct(
             {
@@ -12526,21 +12538,21 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["project"])),
     )
-    functions["activity/list-received-events-for-user"] = ghes.get(
+    functions["activity/list-received-events-for-user"] = github.get(
         "/users/{username}/received_events",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/list-received-public-events-for-user"] = ghes.get(
+    functions["activity/list-received-public-events-for-user"] = github.get(
         "/users/{username}/received_events/public",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["repos/list-for-user"] = ghes.get(
+    functions["repos/list-for-user"] = github.get(
         "/users/{username}/repos",
         t.struct(
             {
@@ -12554,17 +12566,17 @@ def import_ghes(params=None):
         ),
         t.array(t.proxy(renames["minimal-repository"])),
     )
-    functions["enterprise-admin/promote-user-to-be-site-administrator"] = ghes.put(
+    functions["enterprise-admin/promote-user-to-be-site-administrator"] = github.put(
         "/users/{username}/site_admin",
         t.struct({"username": t.string()}),
         t.boolean(),
     )
-    functions["enterprise-admin/demote-site-administrator"] = ghes.delete(
+    functions["enterprise-admin/demote-site-administrator"] = github.delete(
         "/users/{username}/site_admin",
         t.struct({"username": t.string()}),
         t.boolean(),
     )
-    functions["activity/list-repos-starred-by-user"] = ghes.get(
+    functions["activity/list-repos-starred-by-user"] = github.get(
         "/users/{username}/starred",
         t.struct(
             {
@@ -12582,21 +12594,21 @@ def import_ghes(params=None):
             ]
         ),
     )
-    functions["activity/list-repos-watched-by-user"] = ghes.get(
+    functions["activity/list-repos-watched-by-user"] = github.get(
         "/users/{username}/subscriptions",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["minimal-repository"])),
     )
-    functions["enterprise-admin/suspend-user"] = ghes.put(
+    functions["enterprise-admin/suspend-user"] = github.put(
         "/users/{username}/suspended",
         t.struct({"username": t.string(), "reason": t.string().optional()}),
         t.boolean(),
         content_type="application/json",
         body_fields=("reason",),
     )
-    functions["enterprise-admin/unsuspend-user"] = ghes.delete(
+    functions["enterprise-admin/unsuspend-user"] = github.delete(
         "/users/{username}/suspended",
         t.struct({"username": t.string(), "reason": t.string().optional()}),
         t.boolean(),
@@ -12605,5 +12617,5 @@ def import_ghes(params=None):
     )
 
     return Import(
-        importer="ghes", renames=renames, types=Box(types), functions=Box(functions)
+        importer="github", renames=renames, types=Box(types), functions=Box(functions)
     )
