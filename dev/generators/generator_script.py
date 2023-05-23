@@ -90,7 +90,7 @@ class GeneratorScript:
         self.update_init_py()
 
     def update_init_py(self):
-        # read the filesfiles
+        # read the files
         files: List[File] = []
         list_paths = glob(os.path.join(self.get_prefix_path(), "*.py"))
         for path in list_paths:
