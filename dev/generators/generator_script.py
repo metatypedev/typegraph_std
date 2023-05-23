@@ -102,11 +102,10 @@ class GeneratorScript:
         # process the content
         code = ""
         for file in files:
-            if file.path.endswith(".py") and file:
-                fnames = re.findall(r"def\s+([A-Za-z0-9_]+)", file.content)
-                for fname in fnames:
-                    py_file = re.findall(r"(\w+)\.py", file.path).pop()
-                    code += f"from .{py_file} import {fname}  # noqa\n"
+            fnames = re.findall(r"def\s+([A-Za-z0-9_]+)", file.content)
+            for fname in fnames:
+                py_file = re.findall(r"(\w+)\.py", file.path).pop()
+                code += f"from .{py_file} import {fname}  # noqa\n"
 
         complete_path = os.path.join(self.get_prefix_path(), "__init__.py")
         os.makedirs(os.path.dirname(complete_path), exist_ok=True)
