@@ -1,6 +1,7 @@
 import sys
 import black
 import os
+import re
 import traceback
 from typing import List, Dict, Union
 
@@ -83,5 +84,21 @@ class GeneratorScript:
                 f.write(content)
                 self.log(f"Generated file {complete_path}")
             count += 1
-
         self.log(f"Total generated {count}")
+
+        self.update_init_py()
+
+    def update_init_py(self):
+        code = ""
+        for file in self.files:
+            if file.path.endswith(".py"):
+                fnames = re.findall(r"def\s+([A-Za-z0-9_]+)", file.content)
+                for fname in fnames:
+                    py_file = file.path.removesuffix(".py")
+                    code += f"from .{py_file} import {fname}\n"
+
+        complete_path = os.path.join(self.get_prefix_path(), "__init__.py")
+        with open(complete_path, mode="w") as f:
+            f.write(code)
+
+        self.log(f"Updated {complete_path}")
