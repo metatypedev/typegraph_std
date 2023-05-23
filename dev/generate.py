@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser(
 )
 
 parser.add_argument("-v", "--verbose", action="store_true", help="verbose output")
-
+parser.add_argument("-i", "--init", action="store_true", help="update __init__.py only")
 parser.add_argument("-g", "--generator", type=str, help="specify a generator")
 
 
@@ -49,7 +49,10 @@ for generator in generators:
     try:
         print(f"[{count}/{total}] Running {name}")
         count += 1
-        generator.run()
+        if cli_args.init:
+            generator.update_init_py()
+        else:
+            generator.run()
         print()
     except Exception as e:
         if cli_args.verbose:
