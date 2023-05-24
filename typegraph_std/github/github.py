@@ -1,8 +1,8 @@
-from box import Box
-from typegraph import t
-from typegraph.utils.sanitizers import inject_params
-from typegraph.runtimes.http import HTTPRuntime
 from typegraph.importers.base.importer import Import
+from typegraph.utils.sanitizers import inject_params
+from typegraph import t
+from box import Box
+from typegraph.runtimes.http import HTTPRuntime
 
 
 def import_github(params=None):
@@ -11,646 +11,646 @@ def import_github(params=None):
 
     renames = {
         "root": "_github_1_root",
-        "nullable-simple-user": "_github_2_nullable-simple-user",
+        "nullable_simple_user": "_github_2_nullable_simple_user",
         "integration": "_github_3_integration",
-        "basic-error": "_github_4_basic-error",
-        "validation-error-simple": "_github_5_validation-error-simple",
-        "webhook-config-url": "_github_6_webhook-config-url",
-        "webhook-config-content-type": "_github_7_webhook-config-content-type",
-        "webhook-config-secret": "_github_8_webhook-config-secret",
-        "webhook-config-insecure-ssl": "_github_9_webhook-config-insecure-ssl",
-        "webhook-config": "_github_10_webhook-config",
-        "hook-delivery-item": "_github_11_hook-delivery-item",
-        "scim-error": "_github_12_scim-error",
-        "validation-error": "_github_13_validation-error",
-        "hook-delivery": "_github_14_hook-delivery",
-        "simple-user": "_github_15_simple-user",
+        "basic_error": "_github_4_basic_error",
+        "validation_error_simple": "_github_5_validation_error_simple",
+        "webhook_config_url": "_github_6_webhook_config_url",
+        "webhook_config_content_type": "_github_7_webhook_config_content_type",
+        "webhook_config_secret": "_github_8_webhook_config_secret",
+        "webhook_config_insecure_ssl": "_github_9_webhook_config_insecure_ssl",
+        "webhook_config": "_github_10_webhook_config",
+        "hook_delivery_item": "_github_11_hook_delivery_item",
+        "scim_error": "_github_12_scim_error",
+        "validation_error": "_github_13_validation_error",
+        "hook_delivery": "_github_14_hook_delivery",
+        "simple_user": "_github_15_simple_user",
         "enterprise": "_github_16_enterprise",
-        "integration-installation-request": "_github_17_integration-installation-request",
-        "app-permissions": "_github_18_app-permissions",
+        "integration_installation_request": "_github_17_integration_installation_request",
+        "app_permissions": "_github_18_app_permissions",
         "installation": "_github_19_installation",
-        "nullable-license-simple": "_github_20_nullable-license-simple",
+        "nullable_license_simple": "_github_20_nullable_license_simple",
         "repository": "_github_21_repository",
-        "installation-token": "_github_22_installation-token",
-        "nullable-scoped-installation": "_github_23_nullable-scoped-installation",
+        "installation_token": "_github_22_installation_token",
+        "nullable_scoped_installation": "_github_23_nullable_scoped_installation",
         "authorization": "_github_24_authorization",
-        "code-of-conduct": "_github_25_code-of-conduct",
-        "alert-number": "_github_26_alert-number",
-        "dependabot-alert-package": "_github_27_dependabot-alert-package",
-        "dependabot-alert-security-vulnerability": "_github_28_dependabot-alert-security-vulnerability",
-        "dependabot-alert-security-advisory": "_github_29_dependabot-alert-security-advisory",
-        "alert-url": "_github_30_alert-url",
-        "alert-html-url": "_github_31_alert-html-url",
-        "alert-created-at": "_github_32_alert-created-at",
-        "alert-updated-at": "_github_33_alert-updated-at",
-        "alert-dismissed-at": "_github_34_alert-dismissed-at",
-        "alert-fixed-at": "_github_35_alert-fixed-at",
-        "alert-auto-dismissed-at": "_github_36_alert-auto-dismissed-at",
-        "simple-repository": "_github_37_simple-repository",
-        "dependabot-alert-with-repository": "_github_38_dependabot-alert-with-repository",
-        "nullable-alert-updated-at": "_github_39_nullable-alert-updated-at",
-        "secret-scanning-alert-state": "_github_40_secret-scanning-alert-state",
-        "secret-scanning-alert-resolution": "_github_41_secret-scanning-alert-resolution",
-        "organization-secret-scanning-alert": "_github_42_organization-secret-scanning-alert",
+        "code_of_conduct": "_github_25_code_of_conduct",
+        "alert_number": "_github_26_alert_number",
+        "dependabot_alert_package": "_github_27_dependabot_alert_package",
+        "dependabot_alert_security_vulnerability": "_github_28_dependabot_alert_security_vulnerability",
+        "dependabot_alert_security_advisory": "_github_29_dependabot_alert_security_advisory",
+        "alert_url": "_github_30_alert_url",
+        "alert_html_url": "_github_31_alert_html_url",
+        "alert_created_at": "_github_32_alert_created_at",
+        "alert_updated_at": "_github_33_alert_updated_at",
+        "alert_dismissed_at": "_github_34_alert_dismissed_at",
+        "alert_fixed_at": "_github_35_alert_fixed_at",
+        "alert_auto_dismissed_at": "_github_36_alert_auto_dismissed_at",
+        "simple_repository": "_github_37_simple_repository",
+        "dependabot_alert_with_repository": "_github_38_dependabot_alert_with_repository",
+        "nullable_alert_updated_at": "_github_39_nullable_alert_updated_at",
+        "secret_scanning_alert_state": "_github_40_secret_scanning_alert_state",
+        "secret_scanning_alert_resolution": "_github_41_secret_scanning_alert_resolution",
+        "organization_secret_scanning_alert": "_github_42_organization_secret_scanning_alert",
         "actor": "_github_43_actor",
-        "nullable-milestone": "_github_44_nullable-milestone",
-        "nullable-integration": "_github_45_nullable-integration",
-        "author-association": "_github_46_author-association",
-        "reaction-rollup": "_github_47_reaction-rollup",
+        "nullable_milestone": "_github_44_nullable_milestone",
+        "nullable_integration": "_github_45_nullable_integration",
+        "author_association": "_github_46_author_association",
+        "reaction_rollup": "_github_47_reaction_rollup",
         "issue": "_github_48_issue",
-        "issue-comment": "_github_49_issue-comment",
+        "issue_comment": "_github_49_issue_comment",
         "event": "_github_50_event",
-        "link-with-type": "_github_51_link-with-type",
+        "link_with_type": "_github_51_link_with_type",
         "feed": "_github_52_feed",
-        "base-gist": "_github_53_base-gist",
-        "public-user": "_github_54_public-user",
-        "gist-history": "_github_55_gist-history",
-        "gist-simple": "_github_56_gist-simple",
-        "gist-comment": "_github_57_gist-comment",
-        "gist-commit": "_github_58_gist-commit",
-        "gitignore-template": "_github_59_gitignore-template",
-        "license-simple": "_github_60_license-simple",
+        "base_gist": "_github_53_base_gist",
+        "public_user": "_github_54_public_user",
+        "gist_history": "_github_55_gist_history",
+        "gist_simple": "_github_56_gist_simple",
+        "gist_comment": "_github_57_gist_comment",
+        "gist_commit": "_github_58_gist_commit",
+        "gitignore_template": "_github_59_gitignore_template",
+        "license_simple": "_github_60_license_simple",
         "license": "_github_61_license",
-        "marketplace-listing-plan": "_github_62_marketplace-listing-plan",
-        "marketplace-purchase": "_github_63_marketplace-purchase",
-        "api-overview": "_github_64_api-overview",
-        "security-and-analysis": "_github_65_security-and-analysis",
-        "minimal-repository": "_github_66_minimal-repository",
+        "marketplace_listing_plan": "_github_62_marketplace_listing_plan",
+        "marketplace_purchase": "_github_63_marketplace_purchase",
+        "api_overview": "_github_64_api_overview",
+        "security_and_analysis": "_github_65_security_and_analysis",
+        "minimal_repository": "_github_66_minimal_repository",
         "thread": "_github_67_thread",
-        "thread-subscription": "_github_68_thread-subscription",
-        "organization-simple": "_github_69_organization-simple",
-        "organization-programmatic-access-grant-request": "_github_70_organization-programmatic-access-grant-request",
-        "organization-programmatic-access-grant": "_github_71_organization-programmatic-access-grant",
-        "organization-full": "_github_72_organization-full",
-        "actions-cache-usage-org-enterprise": "_github_73_actions-cache-usage-org-enterprise",
-        "actions-cache-usage-by-repository": "_github_74_actions-cache-usage-by-repository",
-        "oidc-custom-sub": "_github_75_oidc-custom-sub",
-        "empty-object": "_github_76_empty-object",
-        "enabled-repositories": "_github_77_enabled-repositories",
-        "allowed-actions": "_github_78_allowed-actions",
-        "selected-actions-url": "_github_79_selected-actions-url",
-        "actions-organization-permissions": "_github_80_actions-organization-permissions",
-        "selected-actions": "_github_81_selected-actions",
-        "actions-default-workflow-permissions": "_github_82_actions-default-workflow-permissions",
-        "actions-can-approve-pull-request-reviews": "_github_83_actions-can-approve-pull-request-reviews",
-        "actions-get-default-workflow-permissions": "_github_84_actions-get-default-workflow-permissions",
-        "actions-set-default-workflow-permissions": "_github_85_actions-set-default-workflow-permissions",
-        "required-workflow": "_github_86_required-workflow",
-        "runner-label": "_github_87_runner-label",
+        "thread_subscription": "_github_68_thread_subscription",
+        "organization_simple": "_github_69_organization_simple",
+        "organization_programmatic_access_grant_request": "_github_70_organization_programmatic_access_grant_request",
+        "organization_programmatic_access_grant": "_github_71_organization_programmatic_access_grant",
+        "organization_full": "_github_72_organization_full",
+        "actions_cache_usage_org_enterprise": "_github_73_actions_cache_usage_org_enterprise",
+        "actions_cache_usage_by_repository": "_github_74_actions_cache_usage_by_repository",
+        "oidc_custom_sub": "_github_75_oidc_custom_sub",
+        "empty_object": "_github_76_empty_object",
+        "enabled_repositories": "_github_77_enabled_repositories",
+        "allowed_actions": "_github_78_allowed_actions",
+        "selected_actions_url": "_github_79_selected_actions_url",
+        "actions_organization_permissions": "_github_80_actions_organization_permissions",
+        "selected_actions": "_github_81_selected_actions",
+        "actions_default_workflow_permissions": "_github_82_actions_default_workflow_permissions",
+        "actions_can_approve_pull_request_reviews": "_github_83_actions_can_approve_pull_request_reviews",
+        "actions_get_default_workflow_permissions": "_github_84_actions_get_default_workflow_permissions",
+        "actions_set_default_workflow_permissions": "_github_85_actions_set_default_workflow_permissions",
+        "required_workflow": "_github_86_required_workflow",
+        "runner_label": "_github_87_runner_label",
         "runner": "_github_88_runner",
-        "runner-application": "_github_89_runner-application",
-        "authentication-token": "_github_90_authentication-token",
-        "organization-actions-secret": "_github_91_organization-actions-secret",
-        "actions-public-key": "_github_92_actions-public-key",
-        "organization-actions-variable": "_github_93_organization-actions-variable",
-        "code-scanning-analysis-tool-name": "_github_94_code-scanning-analysis-tool-name",
-        "code-scanning-analysis-tool-guid": "_github_95_code-scanning-analysis-tool-guid",
-        "code-scanning-alert-state": "_github_96_code-scanning-alert-state",
-        "code-scanning-alert-severity": "_github_97_code-scanning-alert-severity",
-        "alert-instances-url": "_github_98_alert-instances-url",
-        "code-scanning-alert-dismissed-reason": "_github_99_code-scanning-alert-dismissed-reason",
-        "code-scanning-alert-dismissed-comment": "_github_100_code-scanning-alert-dismissed-comment",
-        "code-scanning-alert-rule": "_github_101_code-scanning-alert-rule",
-        "code-scanning-analysis-tool-version": "_github_102_code-scanning-analysis-tool-version",
-        "code-scanning-analysis-tool": "_github_103_code-scanning-analysis-tool",
-        "code-scanning-ref": "_github_104_code-scanning-ref",
-        "code-scanning-analysis-analysis-key": "_github_105_code-scanning-analysis-analysis-key",
-        "code-scanning-alert-environment": "_github_106_code-scanning-alert-environment",
-        "code-scanning-analysis-category": "_github_107_code-scanning-analysis-category",
-        "code-scanning-alert-location": "_github_108_code-scanning-alert-location",
-        "code-scanning-alert-classification": "_github_109_code-scanning-alert-classification",
-        "code-scanning-alert-instance": "_github_110_code-scanning-alert-instance",
-        "code-scanning-organization-alert-items": "_github_111_code-scanning-organization-alert-items",
-        "nullable-codespace-machine": "_github_112_nullable-codespace-machine",
+        "runner_application": "_github_89_runner_application",
+        "authentication_token": "_github_90_authentication_token",
+        "organization_actions_secret": "_github_91_organization_actions_secret",
+        "actions_public_key": "_github_92_actions_public_key",
+        "organization_actions_variable": "_github_93_organization_actions_variable",
+        "code_scanning_analysis_tool_name": "_github_94_code_scanning_analysis_tool_name",
+        "code_scanning_analysis_tool_guid": "_github_95_code_scanning_analysis_tool_guid",
+        "code_scanning_alert_state": "_github_96_code_scanning_alert_state",
+        "code_scanning_alert_severity": "_github_97_code_scanning_alert_severity",
+        "alert_instances_url": "_github_98_alert_instances_url",
+        "code_scanning_alert_dismissed_reason": "_github_99_code_scanning_alert_dismissed_reason",
+        "code_scanning_alert_dismissed_comment": "_github_100_code_scanning_alert_dismissed_comment",
+        "code_scanning_alert_rule": "_github_101_code_scanning_alert_rule",
+        "code_scanning_analysis_tool_version": "_github_102_code_scanning_analysis_tool_version",
+        "code_scanning_analysis_tool": "_github_103_code_scanning_analysis_tool",
+        "code_scanning_ref": "_github_104_code_scanning_ref",
+        "code_scanning_analysis_analysis_key": "_github_105_code_scanning_analysis_analysis_key",
+        "code_scanning_alert_environment": "_github_106_code_scanning_alert_environment",
+        "code_scanning_analysis_category": "_github_107_code_scanning_analysis_category",
+        "code_scanning_alert_location": "_github_108_code_scanning_alert_location",
+        "code_scanning_alert_classification": "_github_109_code_scanning_alert_classification",
+        "code_scanning_alert_instance": "_github_110_code_scanning_alert_instance",
+        "code_scanning_organization_alert_items": "_github_111_code_scanning_organization_alert_items",
+        "nullable_codespace_machine": "_github_112_nullable_codespace_machine",
         "codespace": "_github_113_codespace",
-        "codespaces-org-secret": "_github_114_codespaces-org-secret",
-        "codespaces-public-key": "_github_115_codespaces-public-key",
-        "organization-dependabot-secret": "_github_116_organization-dependabot-secret",
-        "dependabot-public-key": "_github_117_dependabot-public-key",
-        "nullable-minimal-repository": "_github_118_nullable-minimal-repository",
+        "codespaces_org_secret": "_github_114_codespaces_org_secret",
+        "codespaces_public_key": "_github_115_codespaces_public_key",
+        "organization_dependabot_secret": "_github_116_organization_dependabot_secret",
+        "dependabot_public_key": "_github_117_dependabot_public_key",
+        "nullable_minimal_repository": "_github_118_nullable_minimal_repository",
         "package": "_github_119_package",
-        "organization-invitation": "_github_120_organization-invitation",
-        "org-hook": "_github_121_org-hook",
-        "interaction-group": "_github_122_interaction-group",
-        "interaction-limit-response": "_github_123_interaction-limit-response",
-        "interaction-expiry": "_github_124_interaction-expiry",
-        "interaction-limit": "_github_125_interaction-limit",
-        "nullable-team-simple": "_github_126_nullable-team-simple",
+        "organization_invitation": "_github_120_organization_invitation",
+        "org_hook": "_github_121_org_hook",
+        "interaction_group": "_github_122_interaction_group",
+        "interaction_limit_response": "_github_123_interaction_limit_response",
+        "interaction_expiry": "_github_124_interaction_expiry",
+        "interaction_limit": "_github_125_interaction_limit",
+        "nullable_team_simple": "_github_126_nullable_team_simple",
         "team": "_github_127_team",
-        "org-membership": "_github_128_org-membership",
+        "org_membership": "_github_128_org_membership",
         "migration": "_github_129_migration",
-        "package-version": "_github_130_package-version",
+        "package_version": "_github_130_package_version",
         "project": "_github_131_project",
-        "repository-rule-enforcement": "_github_132_repository-rule-enforcement",
-        "repository-ruleset-bypass-actor": "_github_133_repository-ruleset-bypass-actor",
-        "repository-ruleset-conditions": "_github_134_repository-ruleset-conditions",
-        "repository-ruleset-conditions-repository-name-target": "_github_135_repository-ruleset-conditions-repository-name-target",
-        "org-ruleset-conditions": "_github_136_org-ruleset-conditions",
-        "repository-rule-creation": "_github_137_repository-rule-creation",
-        "repository-rule-update": "_github_138_repository-rule-update",
-        "repository-rule-deletion": "_github_139_repository-rule-deletion",
-        "repository-rule-required-linear-history": "_github_140_repository-rule-required-linear-history",
-        "repository-rule-required-deployments": "_github_141_repository-rule-required-deployments",
-        "repository-rule-required-signatures": "_github_142_repository-rule-required-signatures",
-        "repository-rule-pull-request": "_github_143_repository-rule-pull-request",
-        "repository-rule-params-status-check-configuration": "_github_144_repository-rule-params-status-check-configuration",
-        "repository-rule-required-status-checks": "_github_145_repository-rule-required-status-checks",
-        "repository-rule-non-fast-forward": "_github_146_repository-rule-non-fast-forward",
-        "repository-rule-commit-message-pattern": "_github_147_repository-rule-commit-message-pattern",
-        "repository-rule-commit-author-email-pattern": "_github_148_repository-rule-commit-author-email-pattern",
-        "repository-rule-committer-email-pattern": "_github_149_repository-rule-committer-email-pattern",
-        "repository-rule-branch-name-pattern": "_github_150_repository-rule-branch-name-pattern",
-        "repository-rule-tag-name-pattern": "_github_151_repository-rule-tag-name-pattern",
-        "repository-rule": "_github_152_repository-rule",
-        "repository-ruleset": "_github_153_repository-ruleset",
-        "team-simple": "_github_154_team-simple",
-        "actions-billing-usage": "_github_155_actions-billing-usage",
-        "packages-billing-usage": "_github_156_packages-billing-usage",
-        "combined-billing-usage": "_github_157_combined-billing-usage",
-        "team-organization": "_github_158_team-organization",
-        "team-full": "_github_159_team-full",
-        "team-discussion": "_github_160_team-discussion",
-        "team-discussion-comment": "_github_161_team-discussion-comment",
+        "repository_rule_enforcement": "_github_132_repository_rule_enforcement",
+        "repository_ruleset_bypass_actor": "_github_133_repository_ruleset_bypass_actor",
+        "repository_ruleset_conditions": "_github_134_repository_ruleset_conditions",
+        "repository_ruleset_conditions_repository_name_target": "_github_135_repository_ruleset_conditions_repository_name_target",
+        "org_ruleset_conditions": "_github_136_org_ruleset_conditions",
+        "repository_rule_creation": "_github_137_repository_rule_creation",
+        "repository_rule_update": "_github_138_repository_rule_update",
+        "repository_rule_deletion": "_github_139_repository_rule_deletion",
+        "repository_rule_required_linear_history": "_github_140_repository_rule_required_linear_history",
+        "repository_rule_required_deployments": "_github_141_repository_rule_required_deployments",
+        "repository_rule_required_signatures": "_github_142_repository_rule_required_signatures",
+        "repository_rule_pull_request": "_github_143_repository_rule_pull_request",
+        "repository_rule_params_status_check_configuration": "_github_144_repository_rule_params_status_check_configuration",
+        "repository_rule_required_status_checks": "_github_145_repository_rule_required_status_checks",
+        "repository_rule_non_fast_forward": "_github_146_repository_rule_non_fast_forward",
+        "repository_rule_commit_message_pattern": "_github_147_repository_rule_commit_message_pattern",
+        "repository_rule_commit_author_email_pattern": "_github_148_repository_rule_commit_author_email_pattern",
+        "repository_rule_committer_email_pattern": "_github_149_repository_rule_committer_email_pattern",
+        "repository_rule_branch_name_pattern": "_github_150_repository_rule_branch_name_pattern",
+        "repository_rule_tag_name_pattern": "_github_151_repository_rule_tag_name_pattern",
+        "repository_rule": "_github_152_repository_rule",
+        "repository_ruleset": "_github_153_repository_ruleset",
+        "team_simple": "_github_154_team_simple",
+        "actions_billing_usage": "_github_155_actions_billing_usage",
+        "packages_billing_usage": "_github_156_packages_billing_usage",
+        "combined_billing_usage": "_github_157_combined_billing_usage",
+        "team_organization": "_github_158_team_organization",
+        "team_full": "_github_159_team_full",
+        "team_discussion": "_github_160_team_discussion",
+        "team_discussion_comment": "_github_161_team_discussion_comment",
         "reaction": "_github_162_reaction",
-        "team-membership": "_github_163_team-membership",
-        "team-project": "_github_164_team-project",
-        "nullable-repository": "_github_165_nullable-repository",
-        "team-repository": "_github_166_team-repository",
-        "project-card": "_github_167_project-card",
-        "project-column": "_github_168_project-column",
-        "project-collaborator-permission": "_github_169_project-collaborator-permission",
-        "rate-limit": "_github_170_rate-limit",
-        "rate-limit-overview": "_github_171_rate-limit-overview",
-        "repo-required-workflow": "_github_172_repo-required-workflow",
-        "workflow-usage": "_github_173_workflow-usage",
-        "code-of-conduct-simple": "_github_174_code-of-conduct-simple",
-        "full-repository": "_github_175_full-repository",
+        "team_membership": "_github_163_team_membership",
+        "team_project": "_github_164_team_project",
+        "nullable_repository": "_github_165_nullable_repository",
+        "team_repository": "_github_166_team_repository",
+        "project_card": "_github_167_project_card",
+        "project_column": "_github_168_project_column",
+        "project_collaborator_permission": "_github_169_project_collaborator_permission",
+        "rate_limit": "_github_170_rate_limit",
+        "rate_limit_overview": "_github_171_rate_limit_overview",
+        "repo_required_workflow": "_github_172_repo_required_workflow",
+        "workflow_usage": "_github_173_workflow_usage",
+        "code_of_conduct_simple": "_github_174_code_of_conduct_simple",
+        "full_repository": "_github_175_full_repository",
         "artifact": "_github_176_artifact",
-        "actions-cache-list": "_github_177_actions-cache-list",
+        "actions_cache_list": "_github_177_actions_cache_list",
         "job": "_github_178_job",
-        "oidc-custom-sub-repo": "_github_179_oidc-custom-sub-repo",
-        "actions-secret": "_github_180_actions-secret",
-        "actions-variable": "_github_181_actions-variable",
-        "actions-enabled": "_github_182_actions-enabled",
-        "actions-repository-permissions": "_github_183_actions-repository-permissions",
-        "actions-workflow-access-to-repository": "_github_184_actions-workflow-access-to-repository",
-        "referenced-workflow": "_github_185_referenced-workflow",
-        "pull-request-minimal": "_github_186_pull-request-minimal",
-        "nullable-simple-commit": "_github_187_nullable-simple-commit",
-        "workflow-run": "_github_188_workflow-run",
-        "environment-approvals": "_github_189_environment-approvals",
-        "review-custom-gates-comment-required": "_github_190_review-custom-gates-comment-required",
-        "review-custom-gates-state-required": "_github_191_review-custom-gates-state-required",
-        "deployment-reviewer-type": "_github_192_deployment-reviewer-type",
-        "pending-deployment": "_github_193_pending-deployment",
+        "oidc_custom_sub_repo": "_github_179_oidc_custom_sub_repo",
+        "actions_secret": "_github_180_actions_secret",
+        "actions_variable": "_github_181_actions_variable",
+        "actions_enabled": "_github_182_actions_enabled",
+        "actions_repository_permissions": "_github_183_actions_repository_permissions",
+        "actions_workflow_access_to_repository": "_github_184_actions_workflow_access_to_repository",
+        "referenced_workflow": "_github_185_referenced_workflow",
+        "pull_request_minimal": "_github_186_pull_request_minimal",
+        "nullable_simple_commit": "_github_187_nullable_simple_commit",
+        "workflow_run": "_github_188_workflow_run",
+        "environment_approvals": "_github_189_environment_approvals",
+        "review_custom_gates_comment_required": "_github_190_review_custom_gates_comment_required",
+        "review_custom_gates_state_required": "_github_191_review_custom_gates_state_required",
+        "deployment_reviewer_type": "_github_192_deployment_reviewer_type",
+        "pending_deployment": "_github_193_pending_deployment",
         "deployment": "_github_194_deployment",
-        "workflow-run-usage": "_github_195_workflow-run-usage",
+        "workflow_run_usage": "_github_195_workflow_run_usage",
         "workflow": "_github_196_workflow",
         "autolink": "_github_197_autolink",
-        "protected-branch-required-status-check": "_github_198_protected-branch-required-status-check",
-        "protected-branch-admin-enforced": "_github_199_protected-branch-admin-enforced",
-        "protected-branch-pull-request-review": "_github_200_protected-branch-pull-request-review",
-        "branch-restriction-policy": "_github_201_branch-restriction-policy",
-        "branch-protection": "_github_202_branch-protection",
-        "short-branch": "_github_203_short-branch",
-        "nullable-git-user": "_github_204_nullable-git-user",
+        "protected_branch_required_status_check": "_github_198_protected_branch_required_status_check",
+        "protected_branch_admin_enforced": "_github_199_protected_branch_admin_enforced",
+        "protected_branch_pull_request_review": "_github_200_protected_branch_pull_request_review",
+        "branch_restriction_policy": "_github_201_branch_restriction_policy",
+        "branch_protection": "_github_202_branch_protection",
+        "short_branch": "_github_203_short_branch",
+        "nullable_git_user": "_github_204_nullable_git_user",
         "verification": "_github_205_verification",
-        "diff-entry": "_github_206_diff-entry",
+        "diff_entry": "_github_206_diff_entry",
         "commit": "_github_207_commit",
-        "branch-with-protection": "_github_208_branch-with-protection",
-        "status-check-policy": "_github_209_status-check-policy",
-        "protected-branch": "_github_210_protected-branch",
-        "deployment-simple": "_github_211_deployment-simple",
-        "check-run": "_github_212_check-run",
-        "check-annotation": "_github_213_check-annotation",
-        "simple-commit": "_github_214_simple-commit",
-        "check-suite": "_github_215_check-suite",
-        "check-suite-preference": "_github_216_check-suite-preference",
-        "code-scanning-alert-rule-summary": "_github_217_code-scanning-alert-rule-summary",
-        "code-scanning-alert-items": "_github_218_code-scanning-alert-items",
-        "code-scanning-alert": "_github_219_code-scanning-alert",
-        "code-scanning-alert-set-state": "_github_220_code-scanning-alert-set-state",
-        "code-scanning-analysis-sarif-id": "_github_221_code-scanning-analysis-sarif-id",
-        "code-scanning-analysis-commit-sha": "_github_222_code-scanning-analysis-commit-sha",
-        "code-scanning-analysis-environment": "_github_223_code-scanning-analysis-environment",
-        "code-scanning-analysis-created-at": "_github_224_code-scanning-analysis-created-at",
-        "code-scanning-analysis-url": "_github_225_code-scanning-analysis-url",
-        "code-scanning-analysis": "_github_226_code-scanning-analysis",
-        "code-scanning-analysis-deletion": "_github_227_code-scanning-analysis-deletion",
-        "code-scanning-codeql-database": "_github_228_code-scanning-codeql-database",
-        "code-scanning-default-setup": "_github_229_code-scanning-default-setup",
-        "code-scanning-default-setup-update": "_github_230_code-scanning-default-setup-update",
-        "code-scanning-default-setup-update-response": "_github_231_code-scanning-default-setup-update-response",
-        "code-scanning-analysis-sarif-file": "_github_232_code-scanning-analysis-sarif-file",
-        "code-scanning-sarifs-receipt": "_github_233_code-scanning-sarifs-receipt",
-        "code-scanning-sarifs-status": "_github_234_code-scanning-sarifs-status",
-        "codeowners-errors": "_github_235_codeowners-errors",
-        "codespace-machine": "_github_236_codespace-machine",
-        "repo-codespaces-secret": "_github_237_repo-codespaces-secret",
+        "branch_with_protection": "_github_208_branch_with_protection",
+        "status_check_policy": "_github_209_status_check_policy",
+        "protected_branch": "_github_210_protected_branch",
+        "deployment_simple": "_github_211_deployment_simple",
+        "check_run": "_github_212_check_run",
+        "check_annotation": "_github_213_check_annotation",
+        "simple_commit": "_github_214_simple_commit",
+        "check_suite": "_github_215_check_suite",
+        "check_suite_preference": "_github_216_check_suite_preference",
+        "code_scanning_alert_rule_summary": "_github_217_code_scanning_alert_rule_summary",
+        "code_scanning_alert_items": "_github_218_code_scanning_alert_items",
+        "code_scanning_alert": "_github_219_code_scanning_alert",
+        "code_scanning_alert_set_state": "_github_220_code_scanning_alert_set_state",
+        "code_scanning_analysis_sarif_id": "_github_221_code_scanning_analysis_sarif_id",
+        "code_scanning_analysis_commit_sha": "_github_222_code_scanning_analysis_commit_sha",
+        "code_scanning_analysis_environment": "_github_223_code_scanning_analysis_environment",
+        "code_scanning_analysis_created_at": "_github_224_code_scanning_analysis_created_at",
+        "code_scanning_analysis_url": "_github_225_code_scanning_analysis_url",
+        "code_scanning_analysis": "_github_226_code_scanning_analysis",
+        "code_scanning_analysis_deletion": "_github_227_code_scanning_analysis_deletion",
+        "code_scanning_codeql_database": "_github_228_code_scanning_codeql_database",
+        "code_scanning_default_setup": "_github_229_code_scanning_default_setup",
+        "code_scanning_default_setup_update": "_github_230_code_scanning_default_setup_update",
+        "code_scanning_default_setup_update_response": "_github_231_code_scanning_default_setup_update_response",
+        "code_scanning_analysis_sarif_file": "_github_232_code_scanning_analysis_sarif_file",
+        "code_scanning_sarifs_receipt": "_github_233_code_scanning_sarifs_receipt",
+        "code_scanning_sarifs_status": "_github_234_code_scanning_sarifs_status",
+        "codeowners_errors": "_github_235_codeowners_errors",
+        "codespace_machine": "_github_236_codespace_machine",
+        "repo_codespaces_secret": "_github_237_repo_codespaces_secret",
         "collaborator": "_github_238_collaborator",
-        "repository-invitation": "_github_239_repository-invitation",
-        "nullable-collaborator": "_github_240_nullable-collaborator",
-        "repository-collaborator-permission": "_github_241_repository-collaborator-permission",
-        "commit-comment": "_github_242_commit-comment",
-        "branch-short": "_github_243_branch-short",
+        "repository_invitation": "_github_239_repository_invitation",
+        "nullable_collaborator": "_github_240_nullable_collaborator",
+        "repository_collaborator_permission": "_github_241_repository_collaborator_permission",
+        "commit_comment": "_github_242_commit_comment",
+        "branch_short": "_github_243_branch_short",
         "link": "_github_244_link",
-        "auto-merge": "_github_245_auto-merge",
-        "pull-request-simple": "_github_246_pull-request-simple",
-        "simple-commit-status": "_github_247_simple-commit-status",
-        "combined-commit-status": "_github_248_combined-commit-status",
+        "auto_merge": "_github_245_auto_merge",
+        "pull_request_simple": "_github_246_pull_request_simple",
+        "simple_commit_status": "_github_247_simple_commit_status",
+        "combined_commit_status": "_github_248_combined_commit_status",
         "status": "_github_249_status",
-        "nullable-code-of-conduct-simple": "_github_250_nullable-code-of-conduct-simple",
-        "nullable-community-health-file": "_github_251_nullable-community-health-file",
-        "community-profile": "_github_252_community-profile",
-        "commit-comparison": "_github_253_commit-comparison",
-        "content-tree": "_github_254_content-tree",
-        "content-directory": "_github_255_content-directory",
-        "content-file": "_github_256_content-file",
-        "content-symlink": "_github_257_content-symlink",
-        "content-submodule": "_github_258_content-submodule",
-        "file-commit": "_github_259_file-commit",
+        "nullable_code_of_conduct_simple": "_github_250_nullable_code_of_conduct_simple",
+        "nullable_community_health_file": "_github_251_nullable_community_health_file",
+        "community_profile": "_github_252_community_profile",
+        "commit_comparison": "_github_253_commit_comparison",
+        "content_tree": "_github_254_content_tree",
+        "content_directory": "_github_255_content_directory",
+        "content_file": "_github_256_content_file",
+        "content_symlink": "_github_257_content_symlink",
+        "content_submodule": "_github_258_content_submodule",
+        "file_commit": "_github_259_file_commit",
         "contributor": "_github_260_contributor",
-        "dependabot-alert": "_github_261_dependabot-alert",
-        "dependabot-secret": "_github_262_dependabot-secret",
-        "dependency-graph-diff": "_github_263_dependency-graph-diff",
-        "dependency-graph-spdx-sbom": "_github_264_dependency-graph-spdx-sbom",
+        "dependabot_alert": "_github_261_dependabot_alert",
+        "dependabot_secret": "_github_262_dependabot_secret",
+        "dependency_graph_diff": "_github_263_dependency_graph_diff",
+        "dependency_graph_spdx_sbom": "_github_264_dependency_graph_spdx_sbom",
         "metadata": "_github_265_metadata",
         "dependency": "_github_266_dependency",
         "manifest": "_github_267_manifest",
         "snapshot": "_github_268_snapshot",
-        "deployment-status": "_github_269_deployment-status",
-        "wait-timer": "_github_270_wait-timer",
-        "deployment-branch-policy-settings": "_github_271_deployment-branch-policy-settings",
+        "deployment_status": "_github_269_deployment_status",
+        "wait_timer": "_github_270_wait_timer",
+        "deployment_branch_policy_settings": "_github_271_deployment_branch_policy_settings",
         "environment": "_github_272_environment",
-        "deployment-branch-policy": "_github_273_deployment-branch-policy",
-        "deployment-branch-policy-name-pattern": "_github_274_deployment-branch-policy-name-pattern",
-        "custom-deployment-rule-app": "_github_275_custom-deployment-rule-app",
-        "deployment-protection-rule": "_github_276_deployment-protection-rule",
-        "short-blob": "_github_277_short-blob",
+        "deployment_branch_policy": "_github_273_deployment_branch_policy",
+        "deployment_branch_policy_name_pattern": "_github_274_deployment_branch_policy_name_pattern",
+        "custom_deployment_rule_app": "_github_275_custom_deployment_rule_app",
+        "deployment_protection_rule": "_github_276_deployment_protection_rule",
+        "short_blob": "_github_277_short_blob",
         "blob": "_github_278_blob",
-        "git-commit": "_github_279_git-commit",
-        "git-ref": "_github_280_git-ref",
-        "git-tag": "_github_281_git-tag",
-        "git-tree": "_github_282_git-tree",
-        "hook-response": "_github_283_hook-response",
+        "git_commit": "_github_279_git_commit",
+        "git_ref": "_github_280_git_ref",
+        "git_tag": "_github_281_git_tag",
+        "git_tree": "_github_282_git_tree",
+        "hook_response": "_github_283_hook_response",
         "hook": "_github_284_hook",
-        "import": "_github_285_import",
-        "porter-author": "_github_286_porter-author",
-        "porter-large-file": "_github_287_porter-large-file",
-        "nullable-issue": "_github_288_nullable-issue",
-        "issue-event-label": "_github_289_issue-event-label",
-        "issue-event-dismissed-review": "_github_290_issue-event-dismissed-review",
-        "issue-event-milestone": "_github_291_issue-event-milestone",
-        "issue-event-project-card": "_github_292_issue-event-project-card",
-        "issue-event-rename": "_github_293_issue-event-rename",
-        "issue-event": "_github_294_issue-event",
-        "labeled-issue-event": "_github_295_labeled-issue-event",
-        "unlabeled-issue-event": "_github_296_unlabeled-issue-event",
-        "assigned-issue-event": "_github_297_assigned-issue-event",
-        "unassigned-issue-event": "_github_298_unassigned-issue-event",
-        "milestoned-issue-event": "_github_299_milestoned-issue-event",
-        "demilestoned-issue-event": "_github_300_demilestoned-issue-event",
-        "renamed-issue-event": "_github_301_renamed-issue-event",
-        "review-requested-issue-event": "_github_302_review-requested-issue-event",
-        "review-request-removed-issue-event": "_github_303_review-request-removed-issue-event",
-        "review-dismissed-issue-event": "_github_304_review-dismissed-issue-event",
-        "locked-issue-event": "_github_305_locked-issue-event",
-        "added-to-project-issue-event": "_github_306_added-to-project-issue-event",
-        "moved-column-in-project-issue-event": "_github_307_moved-column-in-project-issue-event",
-        "removed-from-project-issue-event": "_github_308_removed-from-project-issue-event",
-        "converted-note-to-issue-issue-event": "_github_309_converted-note-to-issue-issue-event",
-        "issue-event-for-issue": "_github_310_issue-event-for-issue",
+        "ximport": "_github_285_ximport",
+        "porter_author": "_github_286_porter_author",
+        "porter_large_file": "_github_287_porter_large_file",
+        "nullable_issue": "_github_288_nullable_issue",
+        "issue_event_label": "_github_289_issue_event_label",
+        "issue_event_dismissed_review": "_github_290_issue_event_dismissed_review",
+        "issue_event_milestone": "_github_291_issue_event_milestone",
+        "issue_event_project_card": "_github_292_issue_event_project_card",
+        "issue_event_rename": "_github_293_issue_event_rename",
+        "issue_event": "_github_294_issue_event",
+        "labeled_issue_event": "_github_295_labeled_issue_event",
+        "unlabeled_issue_event": "_github_296_unlabeled_issue_event",
+        "assigned_issue_event": "_github_297_assigned_issue_event",
+        "unassigned_issue_event": "_github_298_unassigned_issue_event",
+        "milestoned_issue_event": "_github_299_milestoned_issue_event",
+        "demilestoned_issue_event": "_github_300_demilestoned_issue_event",
+        "renamed_issue_event": "_github_301_renamed_issue_event",
+        "review_requested_issue_event": "_github_302_review_requested_issue_event",
+        "review_request_removed_issue_event": "_github_303_review_request_removed_issue_event",
+        "review_dismissed_issue_event": "_github_304_review_dismissed_issue_event",
+        "locked_issue_event": "_github_305_locked_issue_event",
+        "added_to_project_issue_event": "_github_306_added_to_project_issue_event",
+        "moved_column_in_project_issue_event": "_github_307_moved_column_in_project_issue_event",
+        "removed_from_project_issue_event": "_github_308_removed_from_project_issue_event",
+        "converted_note_to_issue_issue_event": "_github_309_converted_note_to_issue_issue_event",
+        "issue_event_for_issue": "_github_310_issue_event_for_issue",
         "label": "_github_311_label",
-        "timeline-comment-event": "_github_312_timeline-comment-event",
-        "timeline-cross-referenced-event": "_github_313_timeline-cross-referenced-event",
-        "timeline-committed-event": "_github_314_timeline-committed-event",
-        "timeline-reviewed-event": "_github_315_timeline-reviewed-event",
-        "pull-request-review-comment": "_github_316_pull-request-review-comment",
-        "timeline-line-commented-event": "_github_317_timeline-line-commented-event",
-        "timeline-commit-commented-event": "_github_318_timeline-commit-commented-event",
-        "timeline-assigned-issue-event": "_github_319_timeline-assigned-issue-event",
-        "timeline-unassigned-issue-event": "_github_320_timeline-unassigned-issue-event",
-        "state-change-issue-event": "_github_321_state-change-issue-event",
-        "timeline-issue-events": "_github_322_timeline-issue-events",
-        "deploy-key": "_github_323_deploy-key",
+        "timeline_comment_event": "_github_312_timeline_comment_event",
+        "timeline_cross_referenced_event": "_github_313_timeline_cross_referenced_event",
+        "timeline_committed_event": "_github_314_timeline_committed_event",
+        "timeline_reviewed_event": "_github_315_timeline_reviewed_event",
+        "pull_request_review_comment": "_github_316_pull_request_review_comment",
+        "timeline_line_commented_event": "_github_317_timeline_line_commented_event",
+        "timeline_commit_commented_event": "_github_318_timeline_commit_commented_event",
+        "timeline_assigned_issue_event": "_github_319_timeline_assigned_issue_event",
+        "timeline_unassigned_issue_event": "_github_320_timeline_unassigned_issue_event",
+        "state_change_issue_event": "_github_321_state_change_issue_event",
+        "timeline_issue_events": "_github_322_timeline_issue_events",
+        "deploy_key": "_github_323_deploy_key",
         "language": "_github_324_language",
-        "license-content": "_github_325_license-content",
-        "merged-upstream": "_github_326_merged-upstream",
+        "license_content": "_github_325_license_content",
+        "merged_upstream": "_github_326_merged_upstream",
         "milestone": "_github_327_milestone",
-        "pages-source-hash": "_github_328_pages-source-hash",
-        "pages-https-certificate": "_github_329_pages-https-certificate",
+        "pages_source_hash": "_github_328_pages_source_hash",
+        "pages_https_certificate": "_github_329_pages_https_certificate",
         "page": "_github_330_page",
-        "page-build": "_github_331_page-build",
-        "page-build-status": "_github_332_page-build-status",
-        "page-deployment": "_github_333_page-deployment",
-        "pages-health-check": "_github_334_pages-health-check",
-        "pull-request": "_github_335_pull-request",
-        "pull-request-merge-result": "_github_336_pull-request-merge-result",
-        "pull-request-review-request": "_github_337_pull-request-review-request",
-        "pull-request-review": "_github_338_pull-request-review",
-        "review-comment": "_github_339_review-comment",
-        "release-asset": "_github_340_release-asset",
+        "page_build": "_github_331_page_build",
+        "page_build_status": "_github_332_page_build_status",
+        "page_deployment": "_github_333_page_deployment",
+        "pages_health_check": "_github_334_pages_health_check",
+        "pull_request": "_github_335_pull_request",
+        "pull_request_merge_result": "_github_336_pull_request_merge_result",
+        "pull_request_review_request": "_github_337_pull_request_review_request",
+        "pull_request_review": "_github_338_pull_request_review",
+        "review_comment": "_github_339_review_comment",
+        "release_asset": "_github_340_release_asset",
         "release": "_github_341_release",
-        "release-notes-content": "_github_342_release-notes-content",
-        "secret-scanning-alert": "_github_343_secret-scanning-alert",
-        "secret-scanning-alert-resolution-comment": "_github_344_secret-scanning-alert-resolution-comment",
-        "secret-scanning-location-commit": "_github_345_secret-scanning-location-commit",
-        "secret-scanning-location-issue-title": "_github_346_secret-scanning-location-issue-title",
-        "secret-scanning-location-issue-body": "_github_347_secret-scanning-location-issue-body",
-        "secret-scanning-location-issue-comment": "_github_348_secret-scanning-location-issue-comment",
-        "secret-scanning-location": "_github_349_secret-scanning-location",
-        "security-advisory-ecosystems": "_github_350_security-advisory-ecosystems",
-        "repository-advisory-vulnerability": "_github_351_repository-advisory-vulnerability",
-        "security-advisory-credit-types": "_github_352_security-advisory-credit-types",
-        "repository-advisory-credit": "_github_353_repository-advisory-credit",
-        "repository-advisory": "_github_354_repository-advisory",
-        "repository-advisory-create": "_github_355_repository-advisory-create",
-        "private-vulnerability-report-create": "_github_356_private-vulnerability-report-create",
-        "repository-advisory-update": "_github_357_repository-advisory-update",
+        "release_notes_content": "_github_342_release_notes_content",
+        "secret_scanning_alert": "_github_343_secret_scanning_alert",
+        "secret_scanning_alert_resolution_comment": "_github_344_secret_scanning_alert_resolution_comment",
+        "secret_scanning_location_commit": "_github_345_secret_scanning_location_commit",
+        "secret_scanning_location_issue_title": "_github_346_secret_scanning_location_issue_title",
+        "secret_scanning_location_issue_body": "_github_347_secret_scanning_location_issue_body",
+        "secret_scanning_location_issue_comment": "_github_348_secret_scanning_location_issue_comment",
+        "secret_scanning_location": "_github_349_secret_scanning_location",
+        "security_advisory_ecosystems": "_github_350_security_advisory_ecosystems",
+        "repository_advisory_vulnerability": "_github_351_repository_advisory_vulnerability",
+        "security_advisory_credit_types": "_github_352_security_advisory_credit_types",
+        "repository_advisory_credit": "_github_353_repository_advisory_credit",
+        "repository_advisory": "_github_354_repository_advisory",
+        "repository_advisory_create": "_github_355_repository_advisory_create",
+        "private_vulnerability_report_create": "_github_356_private_vulnerability_report_create",
+        "repository_advisory_update": "_github_357_repository_advisory_update",
         "stargazer": "_github_358_stargazer",
-        "code-frequency-stat": "_github_359_code-frequency-stat",
-        "commit-activity": "_github_360_commit-activity",
-        "contributor-activity": "_github_361_contributor-activity",
-        "participation-stats": "_github_362_participation-stats",
-        "repository-subscription": "_github_363_repository-subscription",
+        "code_frequency_stat": "_github_359_code_frequency_stat",
+        "commit_activity": "_github_360_commit_activity",
+        "contributor_activity": "_github_361_contributor_activity",
+        "participation_stats": "_github_362_participation_stats",
+        "repository_subscription": "_github_363_repository_subscription",
         "tag": "_github_364_tag",
-        "tag-protection": "_github_365_tag-protection",
+        "tag_protection": "_github_365_tag_protection",
         "topic": "_github_366_topic",
         "traffic": "_github_367_traffic",
-        "clone-traffic": "_github_368_clone-traffic",
-        "content-traffic": "_github_369_content-traffic",
-        "referrer-traffic": "_github_370_referrer-traffic",
-        "view-traffic": "_github_371_view-traffic",
-        "search-result-text-matches": "_github_372_search-result-text-matches",
-        "code-search-result-item": "_github_373_code-search-result-item",
-        "commit-search-result-item": "_github_374_commit-search-result-item",
-        "issue-search-result-item": "_github_375_issue-search-result-item",
-        "label-search-result-item": "_github_376_label-search-result-item",
-        "repo-search-result-item": "_github_377_repo-search-result-item",
-        "topic-search-result-item": "_github_378_topic-search-result-item",
-        "user-search-result-item": "_github_379_user-search-result-item",
-        "private-user": "_github_380_private-user",
-        "codespaces-secret": "_github_381_codespaces-secret",
-        "codespaces-user-public-key": "_github_382_codespaces-user-public-key",
-        "codespace-export-details": "_github_383_codespace-export-details",
-        "codespace-with-full-repository": "_github_384_codespace-with-full-repository",
+        "clone_traffic": "_github_368_clone_traffic",
+        "content_traffic": "_github_369_content_traffic",
+        "referrer_traffic": "_github_370_referrer_traffic",
+        "view_traffic": "_github_371_view_traffic",
+        "search_result_text_matches": "_github_372_search_result_text_matches",
+        "code_search_result_item": "_github_373_code_search_result_item",
+        "commit_search_result_item": "_github_374_commit_search_result_item",
+        "issue_search_result_item": "_github_375_issue_search_result_item",
+        "label_search_result_item": "_github_376_label_search_result_item",
+        "repo_search_result_item": "_github_377_repo_search_result_item",
+        "topic_search_result_item": "_github_378_topic_search_result_item",
+        "user_search_result_item": "_github_379_user_search_result_item",
+        "private_user": "_github_380_private_user",
+        "codespaces_secret": "_github_381_codespaces_secret",
+        "codespaces_user_public_key": "_github_382_codespaces_user_public_key",
+        "codespace_export_details": "_github_383_codespace_export_details",
+        "codespace_with_full_repository": "_github_384_codespace_with_full_repository",
         "email": "_github_385_email",
-        "gpg-key": "_github_386_gpg-key",
+        "gpg_key": "_github_386_gpg_key",
         "key": "_github_387_key",
-        "marketplace-account": "_github_388_marketplace-account",
-        "user-marketplace-purchase": "_github_389_user-marketplace-purchase",
-        "social-account": "_github_390_social-account",
-        "ssh-signing-key": "_github_391_ssh-signing-key",
-        "starred-repository": "_github_392_starred-repository",
+        "marketplace_account": "_github_388_marketplace_account",
+        "user_marketplace_purchase": "_github_389_user_marketplace_purchase",
+        "social_account": "_github_390_social_account",
+        "ssh_signing_key": "_github_391_ssh_signing_key",
+        "starred_repository": "_github_392_starred_repository",
         "hovercard": "_github_393_hovercard",
-        "key-simple": "_github_394_key-simple",
-        "simple-installation": "_github_395_simple-installation",
-        "simple-check-suite": "_github_396_simple-check-suite",
-        "check-run-with-simple-check-suite": "_github_397_check-run-with-simple-check-suite",
+        "key_simple": "_github_394_key_simple",
+        "simple_installation": "_github_395_simple_installation",
+        "simple_check_suite": "_github_396_simple_check_suite",
+        "check_run_with_simple_check_suite": "_github_397_check_run_with_simple_check_suite",
         "discussion": "_github_398_discussion",
-        "merge-group": "_github_399_merge-group",
-        "personal-access-token-request": "_github_400_personal-access-token-request",
-        "projects-v2": "_github_401_projects-v2",
-        "projects-v2-item-content-type": "_github_402_projects-v2-item-content-type",
-        "projects-v2-item": "_github_403_projects-v2-item",
-        "webhook-branch-protection-rule-created": "_github_404_webhook-branch-protection-rule-created",
-        "webhook-branch-protection-rule-deleted": "_github_405_webhook-branch-protection-rule-deleted",
-        "webhook-branch-protection-rule-edited": "_github_406_webhook-branch-protection-rule-edited",
-        "webhook-check-run-completed": "_github_407_webhook-check-run-completed",
-        "webhook-check-run-completed-form-encoded": "_github_408_webhook-check-run-completed-form-encoded",
-        "webhook-check-run-created": "_github_409_webhook-check-run-created",
-        "webhook-check-run-created-form-encoded": "_github_410_webhook-check-run-created-form-encoded",
-        "webhook-check-run-requested-action": "_github_411_webhook-check-run-requested-action",
-        "webhook-check-run-requested-action-form-encoded": "_github_412_webhook-check-run-requested-action-form-encoded",
-        "webhook-check-run-rerequested": "_github_413_webhook-check-run-rerequested",
-        "webhook-check-run-rerequested-form-encoded": "_github_414_webhook-check-run-rerequested-form-encoded",
-        "webhook-check-suite-completed": "_github_415_webhook-check-suite-completed",
-        "webhook-check-suite-requested": "_github_416_webhook-check-suite-requested",
-        "webhook-check-suite-rerequested": "_github_417_webhook-check-suite-rerequested",
-        "webhook-code-scanning-alert-appeared-in-branch": "_github_418_webhook-code-scanning-alert-appeared-in-branch",
-        "webhook-code-scanning-alert-closed-by-user": "_github_419_webhook-code-scanning-alert-closed-by-user",
-        "webhook-code-scanning-alert-created": "_github_420_webhook-code-scanning-alert-created",
-        "webhook-code-scanning-alert-fixed": "_github_421_webhook-code-scanning-alert-fixed",
-        "webhook-code-scanning-alert-reopened": "_github_422_webhook-code-scanning-alert-reopened",
-        "webhook-code-scanning-alert-reopened-by-user": "_github_423_webhook-code-scanning-alert-reopened-by-user",
-        "webhook-commit-comment-created": "_github_424_webhook-commit-comment-created",
-        "webhook-create": "_github_425_webhook-create",
-        "webhook-delete": "_github_426_webhook-delete",
-        "webhook-dependabot-alert-auto-dismissed": "_github_427_webhook-dependabot-alert-auto-dismissed",
-        "webhook-dependabot-alert-auto-reopened": "_github_428_webhook-dependabot-alert-auto-reopened",
-        "webhook-dependabot-alert-created": "_github_429_webhook-dependabot-alert-created",
-        "webhook-dependabot-alert-dismissed": "_github_430_webhook-dependabot-alert-dismissed",
-        "webhook-dependabot-alert-fixed": "_github_431_webhook-dependabot-alert-fixed",
-        "webhook-dependabot-alert-reintroduced": "_github_432_webhook-dependabot-alert-reintroduced",
-        "webhook-dependabot-alert-reopened": "_github_433_webhook-dependabot-alert-reopened",
-        "webhook-deploy-key-created": "_github_434_webhook-deploy-key-created",
-        "webhook-deploy-key-deleted": "_github_435_webhook-deploy-key-deleted",
-        "webhook-deployment-created": "_github_436_webhook-deployment-created",
-        "webhook-deployment-protection-rule-requested": "_github_437_webhook-deployment-protection-rule-requested",
-        "webhook-deployment-status-created": "_github_438_webhook-deployment-status-created",
-        "webhook-discussion-answered": "_github_439_webhook-discussion-answered",
-        "webhook-discussion-category-changed": "_github_440_webhook-discussion-category-changed",
-        "webhook-discussion-closed": "_github_441_webhook-discussion-closed",
-        "webhook-discussion-comment-created": "_github_442_webhook-discussion-comment-created",
-        "webhook-discussion-comment-deleted": "_github_443_webhook-discussion-comment-deleted",
-        "webhook-discussion-comment-edited": "_github_444_webhook-discussion-comment-edited",
-        "webhook-discussion-created": "_github_445_webhook-discussion-created",
-        "webhook-discussion-deleted": "_github_446_webhook-discussion-deleted",
-        "webhook-discussion-edited": "_github_447_webhook-discussion-edited",
-        "webhook-discussion-labeled": "_github_448_webhook-discussion-labeled",
-        "webhook-discussion-locked": "_github_449_webhook-discussion-locked",
-        "webhook-discussion-pinned": "_github_450_webhook-discussion-pinned",
-        "webhook-discussion-reopened": "_github_451_webhook-discussion-reopened",
-        "webhook-discussion-transferred": "_github_452_webhook-discussion-transferred",
-        "webhook-discussion-unanswered": "_github_453_webhook-discussion-unanswered",
-        "webhook-discussion-unlabeled": "_github_454_webhook-discussion-unlabeled",
-        "webhook-discussion-unlocked": "_github_455_webhook-discussion-unlocked",
-        "webhook-discussion-unpinned": "_github_456_webhook-discussion-unpinned",
-        "webhook-fork": "_github_457_webhook-fork",
-        "webhook-github-app-authorization-revoked": "_github_458_webhook-github-app-authorization-revoked",
-        "webhook-gollum": "_github_459_webhook-gollum",
-        "webhook-installation-created": "_github_460_webhook-installation-created",
-        "webhook-installation-deleted": "_github_461_webhook-installation-deleted",
-        "webhook-installation-new-permissions-accepted": "_github_462_webhook-installation-new-permissions-accepted",
-        "webhook-installation-repositories-added": "_github_463_webhook-installation-repositories-added",
-        "webhook-installation-repositories-removed": "_github_464_webhook-installation-repositories-removed",
-        "webhook-installation-suspend": "_github_465_webhook-installation-suspend",
-        "webhook-installation-target-renamed": "_github_466_webhook-installation-target-renamed",
-        "webhook-installation-unsuspend": "_github_467_webhook-installation-unsuspend",
-        "webhook-issue-comment-created": "_github_468_webhook-issue-comment-created",
-        "webhook-issue-comment-deleted": "_github_469_webhook-issue-comment-deleted",
-        "webhook-issue-comment-edited": "_github_470_webhook-issue-comment-edited",
-        "webhook-issues-assigned": "_github_471_webhook-issues-assigned",
-        "webhook-issues-closed": "_github_472_webhook-issues-closed",
-        "webhook-issues-deleted": "_github_473_webhook-issues-deleted",
-        "webhook-issues-demilestoned": "_github_474_webhook-issues-demilestoned",
-        "webhook-issues-edited": "_github_475_webhook-issues-edited",
-        "webhook-issues-labeled": "_github_476_webhook-issues-labeled",
-        "webhook-issues-locked": "_github_477_webhook-issues-locked",
-        "webhook-issues-milestoned": "_github_478_webhook-issues-milestoned",
-        "webhook-issues-opened": "_github_479_webhook-issues-opened",
-        "webhook-issues-pinned": "_github_480_webhook-issues-pinned",
-        "webhook-issues-reopened": "_github_481_webhook-issues-reopened",
-        "webhook-issues-transferred": "_github_482_webhook-issues-transferred",
-        "webhook-issues-unassigned": "_github_483_webhook-issues-unassigned",
-        "webhook-issues-unlabeled": "_github_484_webhook-issues-unlabeled",
-        "webhook-issues-unlocked": "_github_485_webhook-issues-unlocked",
-        "webhook-issues-unpinned": "_github_486_webhook-issues-unpinned",
-        "webhook-label-created": "_github_487_webhook-label-created",
-        "webhook-label-deleted": "_github_488_webhook-label-deleted",
-        "webhook-label-edited": "_github_489_webhook-label-edited",
-        "webhook-marketplace-purchase-cancelled": "_github_490_webhook-marketplace-purchase-cancelled",
-        "webhook-marketplace-purchase-changed": "_github_491_webhook-marketplace-purchase-changed",
-        "webhook-marketplace-purchase-pending-change": "_github_492_webhook-marketplace-purchase-pending-change",
-        "webhook-marketplace-purchase-pending-change-cancelled": "_github_493_webhook-marketplace-purchase-pending-change-cancelled",
-        "webhook-marketplace-purchase-purchased": "_github_494_webhook-marketplace-purchase-purchased",
-        "webhook-member-added": "_github_495_webhook-member-added",
-        "webhook-member-edited": "_github_496_webhook-member-edited",
-        "webhook-member-removed": "_github_497_webhook-member-removed",
-        "webhook-membership-added": "_github_498_webhook-membership-added",
-        "webhook-membership-removed": "_github_499_webhook-membership-removed",
-        "webhook-merge-group-checks-requested": "_github_500_webhook-merge-group-checks-requested",
-        "webhook-merge-group-destroyed": "_github_501_webhook-merge-group-destroyed",
-        "webhook-meta-deleted": "_github_502_webhook-meta-deleted",
-        "webhook-milestone-closed": "_github_503_webhook-milestone-closed",
-        "webhook-milestone-created": "_github_504_webhook-milestone-created",
-        "webhook-milestone-deleted": "_github_505_webhook-milestone-deleted",
-        "webhook-milestone-edited": "_github_506_webhook-milestone-edited",
-        "webhook-milestone-opened": "_github_507_webhook-milestone-opened",
-        "webhook-org-block-blocked": "_github_508_webhook-org-block-blocked",
-        "webhook-org-block-unblocked": "_github_509_webhook-org-block-unblocked",
-        "webhook-organization-deleted": "_github_510_webhook-organization-deleted",
-        "webhook-organization-member-added": "_github_511_webhook-organization-member-added",
-        "webhook-organization-member-invited": "_github_512_webhook-organization-member-invited",
-        "webhook-organization-member-removed": "_github_513_webhook-organization-member-removed",
-        "webhook-organization-renamed": "_github_514_webhook-organization-renamed",
-        "webhook-rubygems-metadata": "_github_515_webhook-rubygems-metadata",
-        "webhook-package-published": "_github_516_webhook-package-published",
-        "webhook-package-updated": "_github_517_webhook-package-updated",
-        "webhook-page-build": "_github_518_webhook-page-build",
-        "webhook-personal-access-token-request-approved": "_github_519_webhook-personal-access-token-request-approved",
-        "webhook-personal-access-token-request-cancelled": "_github_520_webhook-personal-access-token-request-cancelled",
-        "webhook-personal-access-token-request-created": "_github_521_webhook-personal-access-token-request-created",
-        "webhook-personal-access-token-request-denied": "_github_522_webhook-personal-access-token-request-denied",
-        "webhook-ping": "_github_523_webhook-ping",
-        "webhook-ping-form-encoded": "_github_524_webhook-ping-form-encoded",
-        "webhook-project-card-converted": "_github_525_webhook-project-card-converted",
-        "webhook-project-card-created": "_github_526_webhook-project-card-created",
-        "webhook-project-card-deleted": "_github_527_webhook-project-card-deleted",
-        "webhook-project-card-edited": "_github_528_webhook-project-card-edited",
-        "webhook-project-card-moved": "_github_529_webhook-project-card-moved",
-        "webhook-project-closed": "_github_530_webhook-project-closed",
-        "webhook-project-column-created": "_github_531_webhook-project-column-created",
-        "webhook-project-column-deleted": "_github_532_webhook-project-column-deleted",
-        "webhook-project-column-edited": "_github_533_webhook-project-column-edited",
-        "webhook-project-column-moved": "_github_534_webhook-project-column-moved",
-        "webhook-project-created": "_github_535_webhook-project-created",
-        "webhook-project-deleted": "_github_536_webhook-project-deleted",
-        "webhook-project-edited": "_github_537_webhook-project-edited",
-        "webhook-project-reopened": "_github_538_webhook-project-reopened",
-        "webhook-projects-v2-project-closed": "_github_539_webhook-projects-v2-project-closed",
-        "webhook-projects-v2-project-created": "_github_540_webhook-projects-v2-project-created",
-        "webhook-projects-v2-project-deleted": "_github_541_webhook-projects-v2-project-deleted",
-        "webhook-projects-v2-project-edited": "_github_542_webhook-projects-v2-project-edited",
-        "webhook-projects-v2-item-archived": "_github_543_webhook-projects-v2-item-archived",
-        "webhook-projects-v2-item-converted": "_github_544_webhook-projects-v2-item-converted",
-        "webhook-projects-v2-item-created": "_github_545_webhook-projects-v2-item-created",
-        "webhook-projects-v2-item-deleted": "_github_546_webhook-projects-v2-item-deleted",
-        "webhook-projects-v2-item-edited": "_github_547_webhook-projects-v2-item-edited",
-        "webhook-projects-v2-item-reordered": "_github_548_webhook-projects-v2-item-reordered",
-        "webhook-projects-v2-item-restored": "_github_549_webhook-projects-v2-item-restored",
-        "webhook-projects-v2-project-reopened": "_github_550_webhook-projects-v2-project-reopened",
-        "webhook-public": "_github_551_webhook-public",
-        "webhook-pull-request-assigned": "_github_552_webhook-pull-request-assigned",
-        "webhook-pull-request-auto-merge-disabled": "_github_553_webhook-pull-request-auto-merge-disabled",
-        "webhook-pull-request-auto-merge-enabled": "_github_554_webhook-pull-request-auto-merge-enabled",
-        "webhook-pull-request-closed": "_github_555_webhook-pull-request-closed",
-        "webhook-pull-request-converted-to-draft": "_github_556_webhook-pull-request-converted-to-draft",
-        "webhook-pull-request-demilestoned": "_github_557_webhook-pull-request-demilestoned",
-        "webhook-pull-request-dequeued": "_github_558_webhook-pull-request-dequeued",
-        "webhook-pull-request-edited": "_github_559_webhook-pull-request-edited",
-        "webhook-pull-request-enqueued": "_github_560_webhook-pull-request-enqueued",
-        "webhook-pull-request-labeled": "_github_561_webhook-pull-request-labeled",
-        "webhook-pull-request-locked": "_github_562_webhook-pull-request-locked",
-        "webhook-pull-request-milestoned": "_github_563_webhook-pull-request-milestoned",
-        "webhook-pull-request-opened": "_github_564_webhook-pull-request-opened",
-        "webhook-pull-request-ready-for-review": "_github_565_webhook-pull-request-ready-for-review",
-        "webhook-pull-request-reopened": "_github_566_webhook-pull-request-reopened",
-        "webhook-pull-request-review-comment-created": "_github_567_webhook-pull-request-review-comment-created",
-        "webhook-pull-request-review-comment-deleted": "_github_568_webhook-pull-request-review-comment-deleted",
-        "webhook-pull-request-review-comment-edited": "_github_569_webhook-pull-request-review-comment-edited",
-        "webhook-pull-request-review-dismissed": "_github_570_webhook-pull-request-review-dismissed",
-        "webhook-pull-request-review-edited": "_github_571_webhook-pull-request-review-edited",
-        "webhook-pull-request-review-request-removed": "_github_572_webhook-pull-request-review-request-removed",
-        "webhook-pull-request-review-requested": "_github_573_webhook-pull-request-review-requested",
-        "webhook-pull-request-review-submitted": "_github_574_webhook-pull-request-review-submitted",
-        "webhook-pull-request-review-thread-resolved": "_github_575_webhook-pull-request-review-thread-resolved",
-        "webhook-pull-request-review-thread-unresolved": "_github_576_webhook-pull-request-review-thread-unresolved",
-        "webhook-pull-request-synchronize": "_github_577_webhook-pull-request-synchronize",
-        "webhook-pull-request-unassigned": "_github_578_webhook-pull-request-unassigned",
-        "webhook-pull-request-unlabeled": "_github_579_webhook-pull-request-unlabeled",
-        "webhook-pull-request-unlocked": "_github_580_webhook-pull-request-unlocked",
-        "webhook-push": "_github_581_webhook-push",
-        "webhook-registry-package-published": "_github_582_webhook-registry-package-published",
-        "webhook-registry-package-updated": "_github_583_webhook-registry-package-updated",
-        "webhook-release-created": "_github_584_webhook-release-created",
-        "webhook-release-deleted": "_github_585_webhook-release-deleted",
-        "webhook-release-edited": "_github_586_webhook-release-edited",
-        "webhook-release-prereleased": "_github_587_webhook-release-prereleased",
-        "webhook-release-published": "_github_588_webhook-release-published",
-        "webhook-release-released": "_github_589_webhook-release-released",
-        "webhook-release-unpublished": "_github_590_webhook-release-unpublished",
-        "webhook-repository-advisory-published": "_github_591_webhook-repository-advisory-published",
-        "webhook-repository-advisory-reported": "_github_592_webhook-repository-advisory-reported",
-        "webhook-repository-archived": "_github_593_webhook-repository-archived",
-        "webhook-repository-created": "_github_594_webhook-repository-created",
-        "webhook-repository-deleted": "_github_595_webhook-repository-deleted",
-        "webhook-repository-dispatch-sample": "_github_596_webhook-repository-dispatch-sample",
-        "webhook-repository-edited": "_github_597_webhook-repository-edited",
-        "webhook-repository-import": "_github_598_webhook-repository-import",
-        "webhook-repository-privatized": "_github_599_webhook-repository-privatized",
-        "webhook-repository-publicized": "_github_600_webhook-repository-publicized",
-        "webhook-repository-renamed": "_github_601_webhook-repository-renamed",
-        "webhook-repository-transferred": "_github_602_webhook-repository-transferred",
-        "webhook-repository-unarchived": "_github_603_webhook-repository-unarchived",
-        "webhook-repository-vulnerability-alert-create": "_github_604_webhook-repository-vulnerability-alert-create",
-        "webhook-repository-vulnerability-alert-dismiss": "_github_605_webhook-repository-vulnerability-alert-dismiss",
-        "webhook-repository-vulnerability-alert-reopen": "_github_606_webhook-repository-vulnerability-alert-reopen",
-        "webhook-repository-vulnerability-alert-resolve": "_github_607_webhook-repository-vulnerability-alert-resolve",
-        "webhook-secret-scanning-alert-created": "_github_608_webhook-secret-scanning-alert-created",
-        "webhook-secret-scanning-alert-location-created": "_github_609_webhook-secret-scanning-alert-location-created",
-        "webhook-secret-scanning-alert-location-created-form-encoded": "_github_610_webhook-secret-scanning-alert-location-created-form-encoded",
-        "webhook-secret-scanning-alert-reopened": "_github_611_webhook-secret-scanning-alert-reopened",
-        "webhook-secret-scanning-alert-resolved": "_github_612_webhook-secret-scanning-alert-resolved",
-        "webhook-secret-scanning-alert-revoked": "_github_613_webhook-secret-scanning-alert-revoked",
-        "webhook-security-advisory-published": "_github_614_webhook-security-advisory-published",
-        "webhook-security-advisory-updated": "_github_615_webhook-security-advisory-updated",
-        "webhook-security-advisory-withdrawn": "_github_616_webhook-security-advisory-withdrawn",
-        "webhook-security-and-analysis": "_github_617_webhook-security-and-analysis",
-        "webhook-sponsorship-cancelled": "_github_618_webhook-sponsorship-cancelled",
-        "webhook-sponsorship-created": "_github_619_webhook-sponsorship-created",
-        "webhook-sponsorship-edited": "_github_620_webhook-sponsorship-edited",
-        "webhook-sponsorship-pending-cancellation": "_github_621_webhook-sponsorship-pending-cancellation",
-        "webhook-sponsorship-pending-tier-change": "_github_622_webhook-sponsorship-pending-tier-change",
-        "webhook-sponsorship-tier-changed": "_github_623_webhook-sponsorship-tier-changed",
-        "webhook-star-created": "_github_624_webhook-star-created",
-        "webhook-star-deleted": "_github_625_webhook-star-deleted",
-        "webhook-status": "_github_626_webhook-status",
-        "webhook-team-add": "_github_627_webhook-team-add",
-        "webhook-team-added-to-repository": "_github_628_webhook-team-added-to-repository",
-        "webhook-team-created": "_github_629_webhook-team-created",
-        "webhook-team-deleted": "_github_630_webhook-team-deleted",
-        "webhook-team-edited": "_github_631_webhook-team-edited",
-        "webhook-team-removed-from-repository": "_github_632_webhook-team-removed-from-repository",
-        "webhook-watch-started": "_github_633_webhook-watch-started",
-        "webhook-workflow-dispatch": "_github_634_webhook-workflow-dispatch",
-        "webhook-workflow-job-completed": "_github_635_webhook-workflow-job-completed",
-        "webhook-workflow-job-in-progress": "_github_636_webhook-workflow-job-in-progress",
-        "webhook-workflow-job-queued": "_github_637_webhook-workflow-job-queued",
-        "webhook-workflow-job-waiting": "_github_638_webhook-workflow-job-waiting",
-        "webhook-workflow-run-completed": "_github_639_webhook-workflow-run-completed",
-        "webhook-workflow-run-in-progress": "_github_640_webhook-workflow-run-in-progress",
-        "webhook-workflow-run-requested": "_github_641_webhook-workflow-run-requested",
+        "merge_group": "_github_399_merge_group",
+        "personal_access_token_request": "_github_400_personal_access_token_request",
+        "projects_v2": "_github_401_projects_v2",
+        "projects_v2_item_content_type": "_github_402_projects_v2_item_content_type",
+        "projects_v2_item": "_github_403_projects_v2_item",
+        "webhook_branch_protection_rule_created": "_github_404_webhook_branch_protection_rule_created",
+        "webhook_branch_protection_rule_deleted": "_github_405_webhook_branch_protection_rule_deleted",
+        "webhook_branch_protection_rule_edited": "_github_406_webhook_branch_protection_rule_edited",
+        "webhook_check_run_completed": "_github_407_webhook_check_run_completed",
+        "webhook_check_run_completed_form_encoded": "_github_408_webhook_check_run_completed_form_encoded",
+        "webhook_check_run_created": "_github_409_webhook_check_run_created",
+        "webhook_check_run_created_form_encoded": "_github_410_webhook_check_run_created_form_encoded",
+        "webhook_check_run_requested_action": "_github_411_webhook_check_run_requested_action",
+        "webhook_check_run_requested_action_form_encoded": "_github_412_webhook_check_run_requested_action_form_encoded",
+        "webhook_check_run_rerequested": "_github_413_webhook_check_run_rerequested",
+        "webhook_check_run_rerequested_form_encoded": "_github_414_webhook_check_run_rerequested_form_encoded",
+        "webhook_check_suite_completed": "_github_415_webhook_check_suite_completed",
+        "webhook_check_suite_requested": "_github_416_webhook_check_suite_requested",
+        "webhook_check_suite_rerequested": "_github_417_webhook_check_suite_rerequested",
+        "webhook_code_scanning_alert_appeared_in_branch": "_github_418_webhook_code_scanning_alert_appeared_in_branch",
+        "webhook_code_scanning_alert_closed_by_user": "_github_419_webhook_code_scanning_alert_closed_by_user",
+        "webhook_code_scanning_alert_created": "_github_420_webhook_code_scanning_alert_created",
+        "webhook_code_scanning_alert_fixed": "_github_421_webhook_code_scanning_alert_fixed",
+        "webhook_code_scanning_alert_reopened": "_github_422_webhook_code_scanning_alert_reopened",
+        "webhook_code_scanning_alert_reopened_by_user": "_github_423_webhook_code_scanning_alert_reopened_by_user",
+        "webhook_commit_comment_created": "_github_424_webhook_commit_comment_created",
+        "webhook_create": "_github_425_webhook_create",
+        "webhook_delete": "_github_426_webhook_delete",
+        "webhook_dependabot_alert_auto_dismissed": "_github_427_webhook_dependabot_alert_auto_dismissed",
+        "webhook_dependabot_alert_auto_reopened": "_github_428_webhook_dependabot_alert_auto_reopened",
+        "webhook_dependabot_alert_created": "_github_429_webhook_dependabot_alert_created",
+        "webhook_dependabot_alert_dismissed": "_github_430_webhook_dependabot_alert_dismissed",
+        "webhook_dependabot_alert_fixed": "_github_431_webhook_dependabot_alert_fixed",
+        "webhook_dependabot_alert_reintroduced": "_github_432_webhook_dependabot_alert_reintroduced",
+        "webhook_dependabot_alert_reopened": "_github_433_webhook_dependabot_alert_reopened",
+        "webhook_deploy_key_created": "_github_434_webhook_deploy_key_created",
+        "webhook_deploy_key_deleted": "_github_435_webhook_deploy_key_deleted",
+        "webhook_deployment_created": "_github_436_webhook_deployment_created",
+        "webhook_deployment_protection_rule_requested": "_github_437_webhook_deployment_protection_rule_requested",
+        "webhook_deployment_status_created": "_github_438_webhook_deployment_status_created",
+        "webhook_discussion_answered": "_github_439_webhook_discussion_answered",
+        "webhook_discussion_category_changed": "_github_440_webhook_discussion_category_changed",
+        "webhook_discussion_closed": "_github_441_webhook_discussion_closed",
+        "webhook_discussion_comment_created": "_github_442_webhook_discussion_comment_created",
+        "webhook_discussion_comment_deleted": "_github_443_webhook_discussion_comment_deleted",
+        "webhook_discussion_comment_edited": "_github_444_webhook_discussion_comment_edited",
+        "webhook_discussion_created": "_github_445_webhook_discussion_created",
+        "webhook_discussion_deleted": "_github_446_webhook_discussion_deleted",
+        "webhook_discussion_edited": "_github_447_webhook_discussion_edited",
+        "webhook_discussion_labeled": "_github_448_webhook_discussion_labeled",
+        "webhook_discussion_locked": "_github_449_webhook_discussion_locked",
+        "webhook_discussion_pinned": "_github_450_webhook_discussion_pinned",
+        "webhook_discussion_reopened": "_github_451_webhook_discussion_reopened",
+        "webhook_discussion_transferred": "_github_452_webhook_discussion_transferred",
+        "webhook_discussion_unanswered": "_github_453_webhook_discussion_unanswered",
+        "webhook_discussion_unlabeled": "_github_454_webhook_discussion_unlabeled",
+        "webhook_discussion_unlocked": "_github_455_webhook_discussion_unlocked",
+        "webhook_discussion_unpinned": "_github_456_webhook_discussion_unpinned",
+        "webhook_fork": "_github_457_webhook_fork",
+        "webhook_github_app_authorization_revoked": "_github_458_webhook_github_app_authorization_revoked",
+        "webhook_gollum": "_github_459_webhook_gollum",
+        "webhook_installation_created": "_github_460_webhook_installation_created",
+        "webhook_installation_deleted": "_github_461_webhook_installation_deleted",
+        "webhook_installation_new_permissions_accepted": "_github_462_webhook_installation_new_permissions_accepted",
+        "webhook_installation_repositories_added": "_github_463_webhook_installation_repositories_added",
+        "webhook_installation_repositories_removed": "_github_464_webhook_installation_repositories_removed",
+        "webhook_installation_suspend": "_github_465_webhook_installation_suspend",
+        "webhook_installation_target_renamed": "_github_466_webhook_installation_target_renamed",
+        "webhook_installation_unsuspend": "_github_467_webhook_installation_unsuspend",
+        "webhook_issue_comment_created": "_github_468_webhook_issue_comment_created",
+        "webhook_issue_comment_deleted": "_github_469_webhook_issue_comment_deleted",
+        "webhook_issue_comment_edited": "_github_470_webhook_issue_comment_edited",
+        "webhook_issues_assigned": "_github_471_webhook_issues_assigned",
+        "webhook_issues_closed": "_github_472_webhook_issues_closed",
+        "webhook_issues_deleted": "_github_473_webhook_issues_deleted",
+        "webhook_issues_demilestoned": "_github_474_webhook_issues_demilestoned",
+        "webhook_issues_edited": "_github_475_webhook_issues_edited",
+        "webhook_issues_labeled": "_github_476_webhook_issues_labeled",
+        "webhook_issues_locked": "_github_477_webhook_issues_locked",
+        "webhook_issues_milestoned": "_github_478_webhook_issues_milestoned",
+        "webhook_issues_opened": "_github_479_webhook_issues_opened",
+        "webhook_issues_pinned": "_github_480_webhook_issues_pinned",
+        "webhook_issues_reopened": "_github_481_webhook_issues_reopened",
+        "webhook_issues_transferred": "_github_482_webhook_issues_transferred",
+        "webhook_issues_unassigned": "_github_483_webhook_issues_unassigned",
+        "webhook_issues_unlabeled": "_github_484_webhook_issues_unlabeled",
+        "webhook_issues_unlocked": "_github_485_webhook_issues_unlocked",
+        "webhook_issues_unpinned": "_github_486_webhook_issues_unpinned",
+        "webhook_label_created": "_github_487_webhook_label_created",
+        "webhook_label_deleted": "_github_488_webhook_label_deleted",
+        "webhook_label_edited": "_github_489_webhook_label_edited",
+        "webhook_marketplace_purchase_cancelled": "_github_490_webhook_marketplace_purchase_cancelled",
+        "webhook_marketplace_purchase_changed": "_github_491_webhook_marketplace_purchase_changed",
+        "webhook_marketplace_purchase_pending_change": "_github_492_webhook_marketplace_purchase_pending_change",
+        "webhook_marketplace_purchase_pending_change_cancelled": "_github_493_webhook_marketplace_purchase_pending_change_cancelled",
+        "webhook_marketplace_purchase_purchased": "_github_494_webhook_marketplace_purchase_purchased",
+        "webhook_member_added": "_github_495_webhook_member_added",
+        "webhook_member_edited": "_github_496_webhook_member_edited",
+        "webhook_member_removed": "_github_497_webhook_member_removed",
+        "webhook_membership_added": "_github_498_webhook_membership_added",
+        "webhook_membership_removed": "_github_499_webhook_membership_removed",
+        "webhook_merge_group_checks_requested": "_github_500_webhook_merge_group_checks_requested",
+        "webhook_merge_group_destroyed": "_github_501_webhook_merge_group_destroyed",
+        "webhook_meta_deleted": "_github_502_webhook_meta_deleted",
+        "webhook_milestone_closed": "_github_503_webhook_milestone_closed",
+        "webhook_milestone_created": "_github_504_webhook_milestone_created",
+        "webhook_milestone_deleted": "_github_505_webhook_milestone_deleted",
+        "webhook_milestone_edited": "_github_506_webhook_milestone_edited",
+        "webhook_milestone_opened": "_github_507_webhook_milestone_opened",
+        "webhook_org_block_blocked": "_github_508_webhook_org_block_blocked",
+        "webhook_org_block_unblocked": "_github_509_webhook_org_block_unblocked",
+        "webhook_organization_deleted": "_github_510_webhook_organization_deleted",
+        "webhook_organization_member_added": "_github_511_webhook_organization_member_added",
+        "webhook_organization_member_invited": "_github_512_webhook_organization_member_invited",
+        "webhook_organization_member_removed": "_github_513_webhook_organization_member_removed",
+        "webhook_organization_renamed": "_github_514_webhook_organization_renamed",
+        "webhook_rubygems_metadata": "_github_515_webhook_rubygems_metadata",
+        "webhook_package_published": "_github_516_webhook_package_published",
+        "webhook_package_updated": "_github_517_webhook_package_updated",
+        "webhook_page_build": "_github_518_webhook_page_build",
+        "webhook_personal_access_token_request_approved": "_github_519_webhook_personal_access_token_request_approved",
+        "webhook_personal_access_token_request_cancelled": "_github_520_webhook_personal_access_token_request_cancelled",
+        "webhook_personal_access_token_request_created": "_github_521_webhook_personal_access_token_request_created",
+        "webhook_personal_access_token_request_denied": "_github_522_webhook_personal_access_token_request_denied",
+        "webhook_ping": "_github_523_webhook_ping",
+        "webhook_ping_form_encoded": "_github_524_webhook_ping_form_encoded",
+        "webhook_project_card_converted": "_github_525_webhook_project_card_converted",
+        "webhook_project_card_created": "_github_526_webhook_project_card_created",
+        "webhook_project_card_deleted": "_github_527_webhook_project_card_deleted",
+        "webhook_project_card_edited": "_github_528_webhook_project_card_edited",
+        "webhook_project_card_moved": "_github_529_webhook_project_card_moved",
+        "webhook_project_closed": "_github_530_webhook_project_closed",
+        "webhook_project_column_created": "_github_531_webhook_project_column_created",
+        "webhook_project_column_deleted": "_github_532_webhook_project_column_deleted",
+        "webhook_project_column_edited": "_github_533_webhook_project_column_edited",
+        "webhook_project_column_moved": "_github_534_webhook_project_column_moved",
+        "webhook_project_created": "_github_535_webhook_project_created",
+        "webhook_project_deleted": "_github_536_webhook_project_deleted",
+        "webhook_project_edited": "_github_537_webhook_project_edited",
+        "webhook_project_reopened": "_github_538_webhook_project_reopened",
+        "webhook_projects_v2_project_closed": "_github_539_webhook_projects_v2_project_closed",
+        "webhook_projects_v2_project_created": "_github_540_webhook_projects_v2_project_created",
+        "webhook_projects_v2_project_deleted": "_github_541_webhook_projects_v2_project_deleted",
+        "webhook_projects_v2_project_edited": "_github_542_webhook_projects_v2_project_edited",
+        "webhook_projects_v2_item_archived": "_github_543_webhook_projects_v2_item_archived",
+        "webhook_projects_v2_item_converted": "_github_544_webhook_projects_v2_item_converted",
+        "webhook_projects_v2_item_created": "_github_545_webhook_projects_v2_item_created",
+        "webhook_projects_v2_item_deleted": "_github_546_webhook_projects_v2_item_deleted",
+        "webhook_projects_v2_item_edited": "_github_547_webhook_projects_v2_item_edited",
+        "webhook_projects_v2_item_reordered": "_github_548_webhook_projects_v2_item_reordered",
+        "webhook_projects_v2_item_restored": "_github_549_webhook_projects_v2_item_restored",
+        "webhook_projects_v2_project_reopened": "_github_550_webhook_projects_v2_project_reopened",
+        "webhook_public": "_github_551_webhook_public",
+        "webhook_pull_request_assigned": "_github_552_webhook_pull_request_assigned",
+        "webhook_pull_request_auto_merge_disabled": "_github_553_webhook_pull_request_auto_merge_disabled",
+        "webhook_pull_request_auto_merge_enabled": "_github_554_webhook_pull_request_auto_merge_enabled",
+        "webhook_pull_request_closed": "_github_555_webhook_pull_request_closed",
+        "webhook_pull_request_converted_to_draft": "_github_556_webhook_pull_request_converted_to_draft",
+        "webhook_pull_request_demilestoned": "_github_557_webhook_pull_request_demilestoned",
+        "webhook_pull_request_dequeued": "_github_558_webhook_pull_request_dequeued",
+        "webhook_pull_request_edited": "_github_559_webhook_pull_request_edited",
+        "webhook_pull_request_enqueued": "_github_560_webhook_pull_request_enqueued",
+        "webhook_pull_request_labeled": "_github_561_webhook_pull_request_labeled",
+        "webhook_pull_request_locked": "_github_562_webhook_pull_request_locked",
+        "webhook_pull_request_milestoned": "_github_563_webhook_pull_request_milestoned",
+        "webhook_pull_request_opened": "_github_564_webhook_pull_request_opened",
+        "webhook_pull_request_ready_for_review": "_github_565_webhook_pull_request_ready_for_review",
+        "webhook_pull_request_reopened": "_github_566_webhook_pull_request_reopened",
+        "webhook_pull_request_review_comment_created": "_github_567_webhook_pull_request_review_comment_created",
+        "webhook_pull_request_review_comment_deleted": "_github_568_webhook_pull_request_review_comment_deleted",
+        "webhook_pull_request_review_comment_edited": "_github_569_webhook_pull_request_review_comment_edited",
+        "webhook_pull_request_review_dismissed": "_github_570_webhook_pull_request_review_dismissed",
+        "webhook_pull_request_review_edited": "_github_571_webhook_pull_request_review_edited",
+        "webhook_pull_request_review_request_removed": "_github_572_webhook_pull_request_review_request_removed",
+        "webhook_pull_request_review_requested": "_github_573_webhook_pull_request_review_requested",
+        "webhook_pull_request_review_submitted": "_github_574_webhook_pull_request_review_submitted",
+        "webhook_pull_request_review_thread_resolved": "_github_575_webhook_pull_request_review_thread_resolved",
+        "webhook_pull_request_review_thread_unresolved": "_github_576_webhook_pull_request_review_thread_unresolved",
+        "webhook_pull_request_synchronize": "_github_577_webhook_pull_request_synchronize",
+        "webhook_pull_request_unassigned": "_github_578_webhook_pull_request_unassigned",
+        "webhook_pull_request_unlabeled": "_github_579_webhook_pull_request_unlabeled",
+        "webhook_pull_request_unlocked": "_github_580_webhook_pull_request_unlocked",
+        "webhook_push": "_github_581_webhook_push",
+        "webhook_registry_package_published": "_github_582_webhook_registry_package_published",
+        "webhook_registry_package_updated": "_github_583_webhook_registry_package_updated",
+        "webhook_release_created": "_github_584_webhook_release_created",
+        "webhook_release_deleted": "_github_585_webhook_release_deleted",
+        "webhook_release_edited": "_github_586_webhook_release_edited",
+        "webhook_release_prereleased": "_github_587_webhook_release_prereleased",
+        "webhook_release_published": "_github_588_webhook_release_published",
+        "webhook_release_released": "_github_589_webhook_release_released",
+        "webhook_release_unpublished": "_github_590_webhook_release_unpublished",
+        "webhook_repository_advisory_published": "_github_591_webhook_repository_advisory_published",
+        "webhook_repository_advisory_reported": "_github_592_webhook_repository_advisory_reported",
+        "webhook_repository_archived": "_github_593_webhook_repository_archived",
+        "webhook_repository_created": "_github_594_webhook_repository_created",
+        "webhook_repository_deleted": "_github_595_webhook_repository_deleted",
+        "webhook_repository_dispatch_sample": "_github_596_webhook_repository_dispatch_sample",
+        "webhook_repository_edited": "_github_597_webhook_repository_edited",
+        "webhook_repository_import": "_github_598_webhook_repository_import",
+        "webhook_repository_privatized": "_github_599_webhook_repository_privatized",
+        "webhook_repository_publicized": "_github_600_webhook_repository_publicized",
+        "webhook_repository_renamed": "_github_601_webhook_repository_renamed",
+        "webhook_repository_transferred": "_github_602_webhook_repository_transferred",
+        "webhook_repository_unarchived": "_github_603_webhook_repository_unarchived",
+        "webhook_repository_vulnerability_alert_create": "_github_604_webhook_repository_vulnerability_alert_create",
+        "webhook_repository_vulnerability_alert_dismiss": "_github_605_webhook_repository_vulnerability_alert_dismiss",
+        "webhook_repository_vulnerability_alert_reopen": "_github_606_webhook_repository_vulnerability_alert_reopen",
+        "webhook_repository_vulnerability_alert_resolve": "_github_607_webhook_repository_vulnerability_alert_resolve",
+        "webhook_secret_scanning_alert_created": "_github_608_webhook_secret_scanning_alert_created",
+        "webhook_secret_scanning_alert_location_created": "_github_609_webhook_secret_scanning_alert_location_created",
+        "webhook_secret_scanning_alert_location_created_form_encoded": "_github_610_webhook_secret_scanning_alert_location_created_form_encoded",
+        "webhook_secret_scanning_alert_reopened": "_github_611_webhook_secret_scanning_alert_reopened",
+        "webhook_secret_scanning_alert_resolved": "_github_612_webhook_secret_scanning_alert_resolved",
+        "webhook_secret_scanning_alert_revoked": "_github_613_webhook_secret_scanning_alert_revoked",
+        "webhook_security_advisory_published": "_github_614_webhook_security_advisory_published",
+        "webhook_security_advisory_updated": "_github_615_webhook_security_advisory_updated",
+        "webhook_security_advisory_withdrawn": "_github_616_webhook_security_advisory_withdrawn",
+        "webhook_security_and_analysis": "_github_617_webhook_security_and_analysis",
+        "webhook_sponsorship_cancelled": "_github_618_webhook_sponsorship_cancelled",
+        "webhook_sponsorship_created": "_github_619_webhook_sponsorship_created",
+        "webhook_sponsorship_edited": "_github_620_webhook_sponsorship_edited",
+        "webhook_sponsorship_pending_cancellation": "_github_621_webhook_sponsorship_pending_cancellation",
+        "webhook_sponsorship_pending_tier_change": "_github_622_webhook_sponsorship_pending_tier_change",
+        "webhook_sponsorship_tier_changed": "_github_623_webhook_sponsorship_tier_changed",
+        "webhook_star_created": "_github_624_webhook_star_created",
+        "webhook_star_deleted": "_github_625_webhook_star_deleted",
+        "webhook_status": "_github_626_webhook_status",
+        "webhook_team_add": "_github_627_webhook_team_add",
+        "webhook_team_added_to_repository": "_github_628_webhook_team_added_to_repository",
+        "webhook_team_created": "_github_629_webhook_team_created",
+        "webhook_team_deleted": "_github_630_webhook_team_deleted",
+        "webhook_team_edited": "_github_631_webhook_team_edited",
+        "webhook_team_removed_from_repository": "_github_632_webhook_team_removed_from_repository",
+        "webhook_watch_started": "_github_633_webhook_watch_started",
+        "webhook_workflow_dispatch": "_github_634_webhook_workflow_dispatch",
+        "webhook_workflow_job_completed": "_github_635_webhook_workflow_job_completed",
+        "webhook_workflow_job_in_progress": "_github_636_webhook_workflow_job_in_progress",
+        "webhook_workflow_job_queued": "_github_637_webhook_workflow_job_queued",
+        "webhook_workflow_job_waiting": "_github_638_webhook_workflow_job_waiting",
+        "webhook_workflow_run_completed": "_github_639_webhook_workflow_run_completed",
+        "webhook_workflow_run_in_progress": "_github_640_webhook_workflow_run_in_progress",
+        "webhook_workflow_run_requested": "_github_641_webhook_workflow_run_requested",
     }
 
     types = {}
@@ -691,7 +691,7 @@ def import_github(params=None):
             "user_search_url": t.string(),
         }
     ).named(renames["root"])
-    types["nullable-simple-user"] = (
+    types["nullable_simple_user"] = (
         t.struct(
             {
                 "name": t.string().optional(),
@@ -718,14 +718,14 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-simple-user"])
+        .named(renames["nullable_simple_user"])
     )
     types["integration"] = t.struct(
         {
             "id": t.integer(),
             "slug": t.string().optional(),
             "node_id": t.string(),
-            "owner": t.proxy(renames["nullable-simple-user"]),
+            "owner": t.proxy(renames["nullable_simple_user"]),
             "name": t.string(),
             "description": t.string().optional(),
             "external_url": t.string(),
@@ -749,38 +749,38 @@ def import_github(params=None):
             "pem": t.string().optional(),
         }
     ).named(renames["integration"])
-    types["basic-error"] = t.struct(
+    types["basic_error"] = t.struct(
         {
             "message": t.string().optional(),
             "documentation_url": t.string().optional(),
             "url": t.string().optional(),
             "status": t.string().optional(),
         }
-    ).named(renames["basic-error"])
-    types["validation-error-simple"] = t.struct(
+    ).named(renames["basic_error"])
+    types["validation_error_simple"] = t.struct(
         {
             "message": t.string(),
             "documentation_url": t.string(),
             "errors": t.array(t.string()).optional(),
         }
-    ).named(renames["validation-error-simple"])
-    types["webhook-config-url"] = t.string().named(renames["webhook-config-url"])
-    types["webhook-config-content-type"] = t.string().named(
-        renames["webhook-config-content-type"]
+    ).named(renames["validation_error_simple"])
+    types["webhook_config_url"] = t.string().named(renames["webhook_config_url"])
+    types["webhook_config_content_type"] = t.string().named(
+        renames["webhook_config_content_type"]
     )
-    types["webhook-config-secret"] = t.string().named(renames["webhook-config-secret"])
-    types["webhook-config-insecure-ssl"] = t.either([t.string(), t.number()]).named(
-        renames["webhook-config-insecure-ssl"]
+    types["webhook_config_secret"] = t.string().named(renames["webhook_config_secret"])
+    types["webhook_config_insecure_ssl"] = t.either([t.string(), t.number()]).named(
+        renames["webhook_config_insecure_ssl"]
     )
-    types["webhook-config"] = t.struct(
+    types["webhook_config"] = t.struct(
         {
-            "url": t.proxy(renames["webhook-config-url"]).optional(),
-            "content_type": t.proxy(renames["webhook-config-content-type"]).optional(),
-            "secret": t.proxy(renames["webhook-config-secret"]).optional(),
-            "insecure_ssl": t.proxy(renames["webhook-config-insecure-ssl"]).optional(),
+            "url": t.proxy(renames["webhook_config_url"]).optional(),
+            "content_type": t.proxy(renames["webhook_config_content_type"]).optional(),
+            "secret": t.proxy(renames["webhook_config_secret"]).optional(),
+            "insecure_ssl": t.proxy(renames["webhook_config_insecure_ssl"]).optional(),
         }
-    ).named(renames["webhook-config"])
-    types["hook-delivery-item"] = t.struct(
+    ).named(renames["webhook_config"])
+    types["hook_delivery_item"] = t.struct(
         {
             "id": t.integer(),
             "guid": t.string(),
@@ -794,8 +794,8 @@ def import_github(params=None):
             "installation_id": t.integer().optional(),
             "repository_id": t.integer().optional(),
         }
-    ).named(renames["hook-delivery-item"])
-    types["scim-error"] = t.struct(
+    ).named(renames["hook_delivery_item"])
+    types["scim_error"] = t.struct(
         {
             "message": t.string().optional(),
             "documentation_url": t.string().optional(),
@@ -804,8 +804,8 @@ def import_github(params=None):
             "scimType": t.string().optional(),
             "schemas": t.array(t.string()).optional(),
         }
-    ).named(renames["scim-error"])
-    types["validation-error"] = t.struct(
+    ).named(renames["scim_error"])
+    types["validation_error"] = t.struct(
         {
             "message": t.string(),
             "documentation_url": t.string(),
@@ -828,8 +828,8 @@ def import_github(params=None):
                 )
             ).optional(),
         }
-    ).named(renames["validation-error"])
-    types["hook-delivery"] = t.struct(
+    ).named(renames["validation_error"])
+    types["hook_delivery"] = t.struct(
         {
             "id": t.integer(),
             "guid": t.string(),
@@ -850,8 +850,8 @@ def import_github(params=None):
                 {"headers": t.struct({}).optional(), "payload": t.string().optional()}
             ),
         }
-    ).named(renames["hook-delivery"])
-    types["simple-user"] = t.struct(
+    ).named(renames["hook_delivery"])
+    types["simple_user"] = t.struct(
         {
             "name": t.string().optional(),
             "email": t.string().optional(),
@@ -875,7 +875,7 @@ def import_github(params=None):
             "site_admin": t.boolean(),
             "starred_at": t.string().optional(),
         }
-    ).named(renames["simple-user"])
+    ).named(renames["simple_user"])
     types["enterprise"] = t.struct(
         {
             "description": t.string().optional(),
@@ -890,18 +890,18 @@ def import_github(params=None):
             "avatar_url": t.string(),
         }
     ).named(renames["enterprise"])
-    types["integration-installation-request"] = t.struct(
+    types["integration_installation_request"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string().optional(),
             "account": t.union(
-                [t.proxy(renames["simple-user"]), t.proxy(renames["enterprise"])]
+                [t.proxy(renames["simple_user"]), t.proxy(renames["enterprise"])]
             ),
-            "requester": t.proxy(renames["simple-user"]),
+            "requester": t.proxy(renames["simple_user"]),
             "created_at": t.string(),
         }
-    ).named(renames["integration-installation-request"])
-    types["app-permissions"] = t.struct(
+    ).named(renames["integration_installation_request"])
+    types["app_permissions"] = t.struct(
         {
             "actions": t.string().optional(),
             "administration": t.string().optional(),
@@ -938,12 +938,12 @@ def import_github(params=None):
             "organization_user_blocking": t.string().optional(),
             "team_discussions": t.string().optional(),
         }
-    ).named(renames["app-permissions"])
+    ).named(renames["app_permissions"])
     types["installation"] = t.struct(
         {
             "id": t.integer(),
             "account": t.union(
-                [t.proxy(renames["simple-user"]), t.proxy(renames["enterprise"])]
+                [t.proxy(renames["simple_user"]), t.proxy(renames["enterprise"])]
             ).optional(),
             "repository_selection": t.string(),
             "access_tokens_url": t.string(),
@@ -952,7 +952,7 @@ def import_github(params=None):
             "app_id": t.integer(),
             "target_id": t.integer(),
             "target_type": t.string(),
-            "permissions": t.proxy(renames["app-permissions"]),
+            "permissions": t.proxy(renames["app_permissions"]),
             "events": t.array(t.string()),
             "created_at": t.string(),
             "updated_at": t.string(),
@@ -960,12 +960,12 @@ def import_github(params=None):
             "has_multiple_single_files": t.boolean().optional(),
             "single_file_paths": t.array(t.string()).optional(),
             "app_slug": t.string(),
-            "suspended_by": t.proxy(renames["nullable-simple-user"]),
+            "suspended_by": t.proxy(renames["nullable_simple_user"]),
             "suspended_at": t.string().optional(),
             "contact_email": t.string().optional(),
         }
     ).named(renames["installation"])
-    types["nullable-license-simple"] = (
+    types["nullable_license_simple"] = (
         t.struct(
             {
                 "key": t.string(),
@@ -977,7 +977,7 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-license-simple"])
+        .named(renames["nullable_license_simple"])
     )
     types["repository"] = t.struct(
         {
@@ -985,8 +985,8 @@ def import_github(params=None):
             "node_id": t.string(),
             "name": t.string(),
             "full_name": t.string(),
-            "license": t.proxy(renames["nullable-license-simple"]),
-            "organization": t.proxy(renames["nullable-simple-user"]).optional(),
+            "license": t.proxy(renames["nullable_license_simple"]),
+            "organization": t.proxy(renames["nullable_simple_user"]).optional(),
             "forks": t.integer(),
             "permissions": t.struct(
                 {
@@ -997,7 +997,7 @@ def import_github(params=None):
                     "maintain": t.boolean().optional(),
                 }
             ).optional(),
-            "owner": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
             "private": t.boolean(),
             "html_url": t.string(),
             "description": t.string().optional(),
@@ -1209,32 +1209,32 @@ def import_github(params=None):
             "anonymous_access_enabled": t.boolean().optional(),
         }
     ).named(renames["repository"])
-    types["installation-token"] = t.struct(
+    types["installation_token"] = t.struct(
         {
             "token": t.string(),
             "expires_at": t.string(),
-            "permissions": t.proxy(renames["app-permissions"]).optional(),
+            "permissions": t.proxy(renames["app_permissions"]).optional(),
             "repository_selection": t.string().optional(),
             "repositories": t.array(t.proxy(renames["repository"])).optional(),
             "single_file": t.string().optional(),
             "has_multiple_single_files": t.boolean().optional(),
             "single_file_paths": t.array(t.string()).optional(),
         }
-    ).named(renames["installation-token"])
-    types["nullable-scoped-installation"] = (
+    ).named(renames["installation_token"])
+    types["nullable_scoped_installation"] = (
         t.struct(
             {
-                "permissions": t.proxy(renames["app-permissions"]),
+                "permissions": t.proxy(renames["app_permissions"]),
                 "repository_selection": t.string(),
                 "single_file_name": t.string().optional(),
                 "has_multiple_single_files": t.boolean().optional(),
                 "single_file_paths": t.array(t.string()).optional(),
                 "repositories_url": t.string(),
-                "account": t.proxy(renames["simple-user"]),
+                "account": t.proxy(renames["simple_user"]),
             }
         )
         .optional()
-        .named(renames["nullable-scoped-installation"])
+        .named(renames["nullable_scoped_installation"])
     )
     types["authorization"] = t.struct(
         {
@@ -1252,12 +1252,12 @@ def import_github(params=None):
             "updated_at": t.string(),
             "created_at": t.string(),
             "fingerprint": t.string().optional(),
-            "user": t.proxy(renames["nullable-simple-user"]).optional(),
-            "installation": t.proxy(renames["nullable-scoped-installation"]).optional(),
+            "user": t.proxy(renames["nullable_simple_user"]).optional(),
+            "installation": t.proxy(renames["nullable_scoped_installation"]).optional(),
             "expires_at": t.string().optional(),
         }
     ).named(renames["authorization"])
-    types["code-of-conduct"] = t.struct(
+    types["code_of_conduct"] = t.struct(
         {
             "key": t.string(),
             "name": t.string(),
@@ -1265,27 +1265,27 @@ def import_github(params=None):
             "body": t.string().optional(),
             "html_url": t.string().optional(),
         }
-    ).named(renames["code-of-conduct"])
-    types["alert-number"] = t.integer().named(renames["alert-number"])
-    types["dependabot-alert-package"] = t.struct(
+    ).named(renames["code_of_conduct"])
+    types["alert_number"] = t.integer().named(renames["alert_number"])
+    types["dependabot_alert_package"] = t.struct(
         {"ecosystem": t.string(), "name": t.string()}
-    ).named(renames["dependabot-alert-package"])
-    types["dependabot-alert-security-vulnerability"] = t.struct(
+    ).named(renames["dependabot_alert_package"])
+    types["dependabot_alert_security_vulnerability"] = t.struct(
         {
-            "package": t.proxy(renames["dependabot-alert-package"]),
+            "package": t.proxy(renames["dependabot_alert_package"]),
             "severity": t.string(),
             "vulnerable_version_range": t.string(),
             "first_patched_version": t.struct({"identifier": t.string()}).optional(),
         }
-    ).named(renames["dependabot-alert-security-vulnerability"])
-    types["dependabot-alert-security-advisory"] = t.struct(
+    ).named(renames["dependabot_alert_security_vulnerability"])
+    types["dependabot_alert_security_advisory"] = t.struct(
         {
             "ghsa_id": t.string(),
             "cve_id": t.string().optional(),
             "summary": t.string(),
             "description": t.string(),
             "vulnerabilities": t.array(
-                t.proxy(renames["dependabot-alert-security-vulnerability"])
+                t.proxy(renames["dependabot_alert_security_vulnerability"])
             ),
             "severity": t.string(),
             "cvss": t.struct(
@@ -1298,25 +1298,25 @@ def import_github(params=None):
             "updated_at": t.string(),
             "withdrawn_at": t.string().optional(),
         }
-    ).named(renames["dependabot-alert-security-advisory"])
-    types["alert-url"] = t.string().named(renames["alert-url"])
-    types["alert-html-url"] = t.string().named(renames["alert-html-url"])
-    types["alert-created-at"] = t.string().named(renames["alert-created-at"])
-    types["alert-updated-at"] = t.string().named(renames["alert-updated-at"])
-    types["alert-dismissed-at"] = (
-        t.string().optional().named(renames["alert-dismissed-at"])
+    ).named(renames["dependabot_alert_security_advisory"])
+    types["alert_url"] = t.string().named(renames["alert_url"])
+    types["alert_html_url"] = t.string().named(renames["alert_html_url"])
+    types["alert_created_at"] = t.string().named(renames["alert_created_at"])
+    types["alert_updated_at"] = t.string().named(renames["alert_updated_at"])
+    types["alert_dismissed_at"] = (
+        t.string().optional().named(renames["alert_dismissed_at"])
     )
-    types["alert-fixed-at"] = t.string().optional().named(renames["alert-fixed-at"])
-    types["alert-auto-dismissed-at"] = (
-        t.string().optional().named(renames["alert-auto-dismissed-at"])
+    types["alert_fixed_at"] = t.string().optional().named(renames["alert_fixed_at"])
+    types["alert_auto_dismissed_at"] = (
+        t.string().optional().named(renames["alert_auto_dismissed_at"])
     )
-    types["simple-repository"] = t.struct(
+    types["simple_repository"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "name": t.string(),
             "full_name": t.string(),
-            "owner": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
             "private": t.boolean(),
             "html_url": t.string(),
             "description": t.string().optional(),
@@ -1359,70 +1359,70 @@ def import_github(params=None):
             "trees_url": t.string(),
             "hooks_url": t.string(),
         }
-    ).named(renames["simple-repository"])
-    types["dependabot-alert-with-repository"] = t.struct(
+    ).named(renames["simple_repository"])
+    types["dependabot_alert_with_repository"] = t.struct(
         {
-            "number": t.proxy(renames["alert-number"]),
+            "number": t.proxy(renames["alert_number"]),
             "state": t.string(),
             "dependency": t.struct(
                 {
-                    "package": t.proxy(renames["dependabot-alert-package"]).optional(),
+                    "package": t.proxy(renames["dependabot_alert_package"]).optional(),
                     "manifest_path": t.string().optional(),
                     "scope": t.string().optional(),
                 }
             ),
-            "security_advisory": t.proxy(renames["dependabot-alert-security-advisory"]),
+            "security_advisory": t.proxy(renames["dependabot_alert_security_advisory"]),
             "security_vulnerability": t.proxy(
-                renames["dependabot-alert-security-vulnerability"]
+                renames["dependabot_alert_security_vulnerability"]
             ),
-            "url": t.proxy(renames["alert-url"]),
-            "html_url": t.proxy(renames["alert-html-url"]),
-            "created_at": t.proxy(renames["alert-created-at"]),
-            "updated_at": t.proxy(renames["alert-updated-at"]),
-            "dismissed_at": t.proxy(renames["alert-dismissed-at"]),
-            "dismissed_by": t.proxy(renames["nullable-simple-user"]),
+            "url": t.proxy(renames["alert_url"]),
+            "html_url": t.proxy(renames["alert_html_url"]),
+            "created_at": t.proxy(renames["alert_created_at"]),
+            "updated_at": t.proxy(renames["alert_updated_at"]),
+            "dismissed_at": t.proxy(renames["alert_dismissed_at"]),
+            "dismissed_by": t.proxy(renames["nullable_simple_user"]),
             "dismissed_reason": t.string().optional(),
             "dismissed_comment": t.string().optional(),
-            "fixed_at": t.proxy(renames["alert-fixed-at"]),
-            "auto_dismissed_at": t.proxy(renames["alert-auto-dismissed-at"]).optional(),
-            "repository": t.proxy(renames["simple-repository"]),
+            "fixed_at": t.proxy(renames["alert_fixed_at"]),
+            "auto_dismissed_at": t.proxy(renames["alert_auto_dismissed_at"]).optional(),
+            "repository": t.proxy(renames["simple_repository"]),
         }
-    ).named(renames["dependabot-alert-with-repository"])
-    types["nullable-alert-updated-at"] = (
-        t.string().optional().named(renames["nullable-alert-updated-at"])
+    ).named(renames["dependabot_alert_with_repository"])
+    types["nullable_alert_updated_at"] = (
+        t.string().optional().named(renames["nullable_alert_updated_at"])
     )
-    types["secret-scanning-alert-state"] = t.string().named(
-        renames["secret-scanning-alert-state"]
+    types["secret_scanning_alert_state"] = t.string().named(
+        renames["secret_scanning_alert_state"]
     )
-    types["secret-scanning-alert-resolution"] = (
-        t.string().optional().named(renames["secret-scanning-alert-resolution"])
+    types["secret_scanning_alert_resolution"] = (
+        t.string().optional().named(renames["secret_scanning_alert_resolution"])
     )
-    types["organization-secret-scanning-alert"] = t.struct(
+    types["organization_secret_scanning_alert"] = t.struct(
         {
-            "number": t.proxy(renames["alert-number"]).optional(),
-            "created_at": t.proxy(renames["alert-created-at"]).optional(),
-            "updated_at": t.proxy(renames["nullable-alert-updated-at"]).optional(),
-            "url": t.proxy(renames["alert-url"]).optional(),
-            "html_url": t.proxy(renames["alert-html-url"]).optional(),
+            "number": t.proxy(renames["alert_number"]).optional(),
+            "created_at": t.proxy(renames["alert_created_at"]).optional(),
+            "updated_at": t.proxy(renames["nullable_alert_updated_at"]).optional(),
+            "url": t.proxy(renames["alert_url"]).optional(),
+            "html_url": t.proxy(renames["alert_html_url"]).optional(),
             "locations_url": t.string().optional(),
-            "state": t.proxy(renames["secret-scanning-alert-state"]).optional(),
+            "state": t.proxy(renames["secret_scanning_alert_state"]).optional(),
             "resolution": t.proxy(
-                renames["secret-scanning-alert-resolution"]
+                renames["secret_scanning_alert_resolution"]
             ).optional(),
             "resolved_at": t.string().optional(),
-            "resolved_by": t.proxy(renames["nullable-simple-user"]).optional(),
+            "resolved_by": t.proxy(renames["nullable_simple_user"]).optional(),
             "secret_type": t.string().optional(),
             "secret_type_display_name": t.string().optional(),
             "secret": t.string().optional(),
-            "repository": t.proxy(renames["simple-repository"]).optional(),
+            "repository": t.proxy(renames["simple_repository"]).optional(),
             "push_protection_bypassed": t.boolean().optional(),
             "push_protection_bypassed_by": t.proxy(
-                renames["nullable-simple-user"]
+                renames["nullable_simple_user"]
             ).optional(),
             "push_protection_bypassed_at": t.string().optional(),
             "resolution_comment": t.string().optional(),
         }
-    ).named(renames["organization-secret-scanning-alert"])
+    ).named(renames["organization_secret_scanning_alert"])
     types["actor"] = t.struct(
         {
             "id": t.integer(),
@@ -1433,7 +1433,7 @@ def import_github(params=None):
             "avatar_url": t.string(),
         }
     ).named(renames["actor"])
-    types["nullable-milestone"] = (
+    types["nullable_milestone"] = (
         t.struct(
             {
                 "url": t.string(),
@@ -1445,7 +1445,7 @@ def import_github(params=None):
                 "state": t.string(),
                 "title": t.string(),
                 "description": t.string().optional(),
-                "creator": t.proxy(renames["nullable-simple-user"]),
+                "creator": t.proxy(renames["nullable_simple_user"]),
                 "open_issues": t.integer(),
                 "closed_issues": t.integer(),
                 "created_at": t.string(),
@@ -1455,15 +1455,15 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-milestone"])
+        .named(renames["nullable_milestone"])
     )
-    types["nullable-integration"] = (
+    types["nullable_integration"] = (
         t.struct(
             {
                 "id": t.integer(),
                 "slug": t.string().optional(),
                 "node_id": t.string(),
-                "owner": t.proxy(renames["nullable-simple-user"]),
+                "owner": t.proxy(renames["nullable_simple_user"]),
                 "name": t.string(),
                 "description": t.string().optional(),
                 "external_url": t.string(),
@@ -1488,10 +1488,10 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-integration"])
+        .named(renames["nullable_integration"])
     )
-    types["author-association"] = t.string().named(renames["author-association"])
-    types["reaction-rollup"] = t.struct(
+    types["author_association"] = t.string().named(renames["author_association"])
+    types["reaction_rollup"] = t.struct(
         {
             "url": t.string(),
             "total_count": t.integer(),
@@ -1504,7 +1504,7 @@ def import_github(params=None):
             "eyes": t.integer(),
             "rocket": t.integer(),
         }
-    ).named(renames["reaction-rollup"])
+    ).named(renames["reaction_rollup"])
     types["issue"] = t.struct(
         {
             "id": t.integer(),
@@ -1520,7 +1520,7 @@ def import_github(params=None):
             "state_reason": t.string().optional(),
             "title": t.string(),
             "body": t.string().optional(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "labels": t.array(
                 t.either(
                     [
@@ -1539,9 +1539,9 @@ def import_github(params=None):
                     ]
                 )
             ),
-            "assignee": t.proxy(renames["nullable-simple-user"]),
-            "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
-            "milestone": t.proxy(renames["nullable-milestone"]),
+            "assignee": t.proxy(renames["nullable_simple_user"]),
+            "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
+            "milestone": t.proxy(renames["nullable_milestone"]),
             "locked": t.boolean(),
             "active_lock_reason": t.string().optional(),
             "comments": t.integer(),
@@ -1558,19 +1558,19 @@ def import_github(params=None):
             "created_at": t.string(),
             "updated_at": t.string(),
             "draft": t.boolean().optional(),
-            "closed_by": t.proxy(renames["nullable-simple-user"]).optional(),
+            "closed_by": t.proxy(renames["nullable_simple_user"]).optional(),
             "body_html": t.string().optional(),
             "body_text": t.string().optional(),
             "timeline_url": t.string().optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
-            "author_association": t.proxy(renames["author-association"]),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "author_association": t.proxy(renames["author_association"]),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
     ).named(renames["issue"])
-    types["issue-comment"] = t.struct(
+    types["issue_comment"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
@@ -1579,17 +1579,17 @@ def import_github(params=None):
             "body_text": t.string().optional(),
             "body_html": t.string().optional(),
             "html_url": t.string(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
             "issue_url": t.string(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
-    ).named(renames["issue-comment"])
+    ).named(renames["issue_comment"])
     types["event"] = t.struct(
         {
             "id": t.string(),
@@ -1603,7 +1603,7 @@ def import_github(params=None):
                 {
                     "action": t.string().optional(),
                     "issue": t.proxy(renames["issue"]).optional(),
-                    "comment": t.proxy(renames["issue-comment"]).optional(),
+                    "comment": t.proxy(renames["issue_comment"]).optional(),
                     "pages": t.array(
                         t.struct(
                             {
@@ -1622,8 +1622,8 @@ def import_github(params=None):
             "created_at": t.string().optional(),
         }
     ).named(renames["event"])
-    types["link-with-type"] = t.struct({"href": t.string(), "type": t.string()}).named(
-        renames["link-with-type"]
+    types["link_with_type"] = t.struct({"href": t.string(), "type": t.string()}).named(
+        renames["link_with_type"]
     )
     types["feed"] = t.struct(
         {
@@ -1639,33 +1639,33 @@ def import_github(params=None):
             "repository_discussions_category_url": t.string().optional(),
             "_links": t.struct(
                 {
-                    "timeline": t.proxy(renames["link-with-type"]),
-                    "user": t.proxy(renames["link-with-type"]),
+                    "timeline": t.proxy(renames["link_with_type"]),
+                    "user": t.proxy(renames["link_with_type"]),
                     "security_advisories": t.proxy(
-                        renames["link-with-type"]
+                        renames["link_with_type"]
                     ).optional(),
-                    "current_user": t.proxy(renames["link-with-type"]).optional(),
+                    "current_user": t.proxy(renames["link_with_type"]).optional(),
                     "current_user_public": t.proxy(
-                        renames["link-with-type"]
+                        renames["link_with_type"]
                     ).optional(),
-                    "current_user_actor": t.proxy(renames["link-with-type"]).optional(),
+                    "current_user_actor": t.proxy(renames["link_with_type"]).optional(),
                     "current_user_organization": t.proxy(
-                        renames["link-with-type"]
+                        renames["link_with_type"]
                     ).optional(),
                     "current_user_organizations": t.array(
-                        t.proxy(renames["link-with-type"])
+                        t.proxy(renames["link_with_type"])
                     ).optional(),
                     "repository_discussions": t.proxy(
-                        renames["link-with-type"]
+                        renames["link_with_type"]
                     ).optional(),
                     "repository_discussions_category": t.proxy(
-                        renames["link-with-type"]
+                        renames["link_with_type"]
                     ).optional(),
                 }
             ),
         }
     ).named(renames["feed"])
-    types["base-gist"] = t.struct(
+    types["base_gist"] = t.struct(
         {
             "url": t.string(),
             "forks_url": t.string(),
@@ -1681,15 +1681,15 @@ def import_github(params=None):
             "updated_at": t.string(),
             "description": t.string().optional(),
             "comments": t.integer(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "comments_url": t.string(),
-            "owner": t.proxy(renames["simple-user"]).optional(),
+            "owner": t.proxy(renames["simple_user"]).optional(),
             "truncated": t.boolean().optional(),
             "forks": t.array(t.struct({"_": t.string().optional()})).optional(),
             "history": t.array(t.struct({"_": t.string().optional()})).optional(),
         }
-    ).named(renames["base-gist"])
-    types["public-user"] = t.struct(
+    ).named(renames["base_gist"])
+    types["public_user"] = t.struct(
         {
             "login": t.string(),
             "id": t.integer(),
@@ -1738,10 +1738,10 @@ def import_github(params=None):
             "disk_usage": t.integer().optional(),
             "collaborators": t.integer().optional(),
         }
-    ).named(renames["public-user"])
-    types["gist-history"] = t.struct(
+    ).named(renames["public_user"])
+    types["gist_history"] = t.struct(
         {
-            "user": t.proxy(renames["nullable-simple-user"]).optional(),
+            "user": t.proxy(renames["nullable_simple_user"]).optional(),
             "version": t.string().optional(),
             "committed_at": t.string().optional(),
             "change_status": t.struct(
@@ -1753,21 +1753,21 @@ def import_github(params=None):
             ).optional(),
             "url": t.string().optional(),
         }
-    ).named(renames["gist-history"])
-    types["gist-simple"] = t.struct(
+    ).named(renames["gist_history"])
+    types["gist_simple"] = t.struct(
         {
             "forks": t.array(
                 t.struct(
                     {
                         "id": t.string().optional(),
                         "url": t.string().optional(),
-                        "user": t.proxy(renames["public-user"]).optional(),
+                        "user": t.proxy(renames["public_user"]).optional(),
                         "created_at": t.string().optional(),
                         "updated_at": t.string().optional(),
                     }
                 )
             ).optional(),
-            "history": t.array(t.proxy(renames["gist-history"])).optional(),
+            "history": t.array(t.proxy(renames["gist_history"])).optional(),
             "fork_of": t.struct(
                 {
                     "url": t.string(),
@@ -1784,9 +1784,9 @@ def import_github(params=None):
                     "updated_at": t.string(),
                     "description": t.string().optional(),
                     "comments": t.integer(),
-                    "user": t.proxy(renames["nullable-simple-user"]),
+                    "user": t.proxy(renames["nullable_simple_user"]),
                     "comments_url": t.string(),
-                    "owner": t.proxy(renames["nullable-simple-user"]).optional(),
+                    "owner": t.proxy(renames["nullable_simple_user"]).optional(),
                     "truncated": t.boolean().optional(),
                     "forks": t.array(t.struct({"_": t.string().optional()})).optional(),
                     "history": t.array(
@@ -1810,27 +1810,27 @@ def import_github(params=None):
             "comments": t.integer().optional(),
             "user": t.string().optional(),
             "comments_url": t.string().optional(),
-            "owner": t.proxy(renames["simple-user"]).optional(),
+            "owner": t.proxy(renames["simple_user"]).optional(),
             "truncated": t.boolean().optional(),
         }
-    ).named(renames["gist-simple"])
-    types["gist-comment"] = t.struct(
+    ).named(renames["gist_simple"])
+    types["gist_comment"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
             "body": t.string(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
         }
-    ).named(renames["gist-comment"])
-    types["gist-commit"] = t.struct(
+    ).named(renames["gist_comment"])
+    types["gist_commit"] = t.struct(
         {
             "url": t.string(),
             "version": t.string(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "change_status": t.struct(
                 {
                     "total": t.integer().optional(),
@@ -1840,11 +1840,11 @@ def import_github(params=None):
             ),
             "committed_at": t.string(),
         }
-    ).named(renames["gist-commit"])
-    types["gitignore-template"] = t.struct(
+    ).named(renames["gist_commit"])
+    types["gitignore_template"] = t.struct(
         {"name": t.string(), "source": t.string()}
-    ).named(renames["gitignore-template"])
-    types["license-simple"] = t.struct(
+    ).named(renames["gitignore_template"])
+    types["license_simple"] = t.struct(
         {
             "key": t.string(),
             "name": t.string(),
@@ -1853,7 +1853,7 @@ def import_github(params=None):
             "node_id": t.string(),
             "html_url": t.string().optional(),
         }
-    ).named(renames["license-simple"])
+    ).named(renames["license_simple"])
     types["license"] = t.struct(
         {
             "key": t.string(),
@@ -1871,7 +1871,7 @@ def import_github(params=None):
             "featured": t.boolean(),
         }
     ).named(renames["license"])
-    types["marketplace-listing-plan"] = t.struct(
+    types["marketplace_listing_plan"] = t.struct(
         {
             "url": t.string(),
             "accounts_url": t.string(),
@@ -1887,8 +1887,8 @@ def import_github(params=None):
             "state": t.string(),
             "bullets": t.array(t.string()),
         }
-    ).named(renames["marketplace-listing-plan"])
-    types["marketplace-purchase"] = t.struct(
+    ).named(renames["marketplace_listing_plan"])
+    types["marketplace_purchase"] = t.struct(
         {
             "url": t.string(),
             "type": t.string(),
@@ -1902,7 +1902,7 @@ def import_github(params=None):
                     "effective_date": t.string().optional(),
                     "unit_count": t.integer().optional(),
                     "id": t.integer().optional(),
-                    "plan": t.proxy(renames["marketplace-listing-plan"]).optional(),
+                    "plan": t.proxy(renames["marketplace_listing_plan"]).optional(),
                 }
             ).optional(),
             "marketplace_purchase": t.struct(
@@ -1914,12 +1914,12 @@ def import_github(params=None):
                     "on_free_trial": t.boolean().optional(),
                     "free_trial_ends_on": t.string().optional(),
                     "updated_at": t.string().optional(),
-                    "plan": t.proxy(renames["marketplace-listing-plan"]).optional(),
+                    "plan": t.proxy(renames["marketplace_listing_plan"]).optional(),
                 }
             ),
         }
-    ).named(renames["marketplace-purchase"])
-    types["api-overview"] = t.struct(
+    ).named(renames["marketplace_purchase"])
+    types["api_overview"] = t.struct(
         {
             "verifiable_password_authentication": t.boolean(),
             "ssh_key_fingerprints": t.struct(
@@ -1941,8 +1941,8 @@ def import_github(params=None):
             "actions": t.array(t.string()).optional(),
             "dependabot": t.array(t.string()).optional(),
         }
-    ).named(renames["api-overview"])
-    types["security-and-analysis"] = (
+    ).named(renames["api_overview"])
+    types["security_and_analysis"] = (
         t.struct(
             {
                 "advanced_security": t.struct(
@@ -1957,15 +1957,15 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["security-and-analysis"])
+        .named(renames["security_and_analysis"])
     )
-    types["minimal-repository"] = t.struct(
+    types["minimal_repository"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "name": t.string(),
             "full_name": t.string(),
-            "owner": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
             "private": t.boolean(),
             "html_url": t.string(),
             "description": t.string().optional(),
@@ -2048,7 +2048,7 @@ def import_github(params=None):
             "delete_branch_on_merge": t.boolean().optional(),
             "subscribers_count": t.integer().optional(),
             "network_count": t.integer().optional(),
-            "code_of_conduct": t.proxy(renames["code-of-conduct"]).optional(),
+            "code_of_conduct": t.proxy(renames["code_of_conduct"]).optional(),
             "license": t.struct(
                 {
                     "key": t.string().optional(),
@@ -2064,14 +2064,14 @@ def import_github(params=None):
             "allow_forking": t.boolean().optional(),
             "web_commit_signoff_required": t.boolean().optional(),
             "security_and_analysis": t.proxy(
-                renames["security-and-analysis"]
+                renames["security_and_analysis"]
             ).optional(),
         }
-    ).named(renames["minimal-repository"])
+    ).named(renames["minimal_repository"])
     types["thread"] = t.struct(
         {
             "id": t.string(),
-            "repository": t.proxy(renames["minimal-repository"]),
+            "repository": t.proxy(renames["minimal_repository"]),
             "subject": t.struct(
                 {
                     "title": t.string(),
@@ -2088,7 +2088,7 @@ def import_github(params=None):
             "subscription_url": t.string(),
         }
     ).named(renames["thread"])
-    types["thread-subscription"] = t.struct(
+    types["thread_subscription"] = t.struct(
         {
             "subscribed": t.boolean(),
             "ignored": t.boolean(),
@@ -2098,8 +2098,8 @@ def import_github(params=None):
             "thread_url": t.string().optional(),
             "repository_url": t.string().optional(),
         }
-    ).named(renames["thread-subscription"])
-    types["organization-simple"] = t.struct(
+    ).named(renames["thread_subscription"])
+    types["organization_simple"] = t.struct(
         {
             "login": t.string(),
             "id": t.integer(),
@@ -2114,12 +2114,12 @@ def import_github(params=None):
             "avatar_url": t.string(),
             "description": t.string().optional(),
         }
-    ).named(renames["organization-simple"])
-    types["organization-programmatic-access-grant-request"] = t.struct(
+    ).named(renames["organization_simple"])
+    types["organization_programmatic_access_grant_request"] = t.struct(
         {
             "id": t.integer(),
             "reason": t.string().optional(),
-            "owner": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
             "repository_selection": t.string(),
             "repositories_url": t.string(),
             "permissions": t.struct(
@@ -2134,11 +2134,11 @@ def import_github(params=None):
             "token_expires_at": t.string().optional(),
             "token_last_used_at": t.string().optional(),
         }
-    ).named(renames["organization-programmatic-access-grant-request"])
-    types["organization-programmatic-access-grant"] = t.struct(
+    ).named(renames["organization_programmatic_access_grant_request"])
+    types["organization_programmatic_access_grant"] = t.struct(
         {
             "id": t.integer(),
-            "owner": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
             "repository_selection": t.string(),
             "repositories_url": t.string(),
             "permissions": t.struct(
@@ -2153,8 +2153,8 @@ def import_github(params=None):
             "token_expires_at": t.string().optional(),
             "token_last_used_at": t.string().optional(),
         }
-    ).named(renames["organization-programmatic-access-grant"])
-    types["organization-full"] = t.struct(
+    ).named(renames["organization_programmatic_access_grant"])
+    types["organization_full"] = t.struct(
         {
             "login": t.string(),
             "id": t.integer(),
@@ -2221,69 +2221,69 @@ def import_github(params=None):
             "secret_scanning_push_protection_custom_link_enabled": t.boolean().optional(),
             "secret_scanning_push_protection_custom_link": t.string().optional(),
         }
-    ).named(renames["organization-full"])
-    types["actions-cache-usage-org-enterprise"] = t.struct(
+    ).named(renames["organization_full"])
+    types["actions_cache_usage_org_enterprise"] = t.struct(
         {
             "total_active_caches_count": t.integer(),
             "total_active_caches_size_in_bytes": t.integer(),
         }
-    ).named(renames["actions-cache-usage-org-enterprise"])
-    types["actions-cache-usage-by-repository"] = t.struct(
+    ).named(renames["actions_cache_usage_org_enterprise"])
+    types["actions_cache_usage_by_repository"] = t.struct(
         {
             "full_name": t.string(),
             "active_caches_size_in_bytes": t.integer(),
             "active_caches_count": t.integer(),
         }
-    ).named(renames["actions-cache-usage-by-repository"])
-    types["oidc-custom-sub"] = t.struct(
+    ).named(renames["actions_cache_usage_by_repository"])
+    types["oidc_custom_sub"] = t.struct(
         {"include_claim_keys": t.array(t.string())}
-    ).named(renames["oidc-custom-sub"])
-    types["empty-object"] = t.struct({}).named(renames["empty-object"])
-    types["enabled-repositories"] = t.string().named(renames["enabled-repositories"])
-    types["allowed-actions"] = t.string().named(renames["allowed-actions"])
-    types["selected-actions-url"] = t.string().named(renames["selected-actions-url"])
-    types["actions-organization-permissions"] = t.struct(
+    ).named(renames["oidc_custom_sub"])
+    types["empty_object"] = t.struct({}).named(renames["empty_object"])
+    types["enabled_repositories"] = t.string().named(renames["enabled_repositories"])
+    types["allowed_actions"] = t.string().named(renames["allowed_actions"])
+    types["selected_actions_url"] = t.string().named(renames["selected_actions_url"])
+    types["actions_organization_permissions"] = t.struct(
         {
-            "enabled_repositories": t.proxy(renames["enabled-repositories"]),
+            "enabled_repositories": t.proxy(renames["enabled_repositories"]),
             "selected_repositories_url": t.string().optional(),
-            "allowed_actions": t.proxy(renames["allowed-actions"]).optional(),
-            "selected_actions_url": t.proxy(renames["selected-actions-url"]).optional(),
+            "allowed_actions": t.proxy(renames["allowed_actions"]).optional(),
+            "selected_actions_url": t.proxy(renames["selected_actions_url"]).optional(),
         }
-    ).named(renames["actions-organization-permissions"])
-    types["selected-actions"] = t.struct(
+    ).named(renames["actions_organization_permissions"])
+    types["selected_actions"] = t.struct(
         {
             "github_owned_allowed": t.boolean().optional(),
             "verified_allowed": t.boolean().optional(),
             "patterns_allowed": t.array(t.string()).optional(),
         }
-    ).named(renames["selected-actions"])
-    types["actions-default-workflow-permissions"] = t.string().named(
-        renames["actions-default-workflow-permissions"]
+    ).named(renames["selected_actions"])
+    types["actions_default_workflow_permissions"] = t.string().named(
+        renames["actions_default_workflow_permissions"]
     )
-    types["actions-can-approve-pull-request-reviews"] = t.boolean().named(
-        renames["actions-can-approve-pull-request-reviews"]
+    types["actions_can_approve_pull_request_reviews"] = t.boolean().named(
+        renames["actions_can_approve_pull_request_reviews"]
     )
-    types["actions-get-default-workflow-permissions"] = t.struct(
+    types["actions_get_default_workflow_permissions"] = t.struct(
         {
             "default_workflow_permissions": t.proxy(
-                renames["actions-default-workflow-permissions"]
+                renames["actions_default_workflow_permissions"]
             ),
             "can_approve_pull_request_reviews": t.proxy(
-                renames["actions-can-approve-pull-request-reviews"]
+                renames["actions_can_approve_pull_request_reviews"]
             ),
         }
-    ).named(renames["actions-get-default-workflow-permissions"])
-    types["actions-set-default-workflow-permissions"] = t.struct(
+    ).named(renames["actions_get_default_workflow_permissions"])
+    types["actions_set_default_workflow_permissions"] = t.struct(
         {
             "default_workflow_permissions": t.proxy(
-                renames["actions-default-workflow-permissions"]
+                renames["actions_default_workflow_permissions"]
             ).optional(),
             "can_approve_pull_request_reviews": t.proxy(
-                renames["actions-can-approve-pull-request-reviews"]
+                renames["actions_can_approve_pull_request_reviews"]
             ).optional(),
         }
-    ).named(renames["actions-set-default-workflow-permissions"])
-    types["required-workflow"] = t.struct(
+    ).named(renames["actions_set_default_workflow_permissions"])
+    types["required_workflow"] = t.struct(
         {
             "id": t.number(),
             "name": t.string(),
@@ -2294,16 +2294,16 @@ def import_github(params=None):
             "selected_repositories_url": t.string().optional(),
             "created_at": t.string(),
             "updated_at": t.string(),
-            "repository": t.proxy(renames["minimal-repository"]),
+            "repository": t.proxy(renames["minimal_repository"]),
         }
-    ).named(renames["required-workflow"])
-    types["runner-label"] = t.struct(
+    ).named(renames["required_workflow"])
+    types["runner_label"] = t.struct(
         {
             "id": t.integer().optional(),
             "name": t.string(),
             "type": t.string().optional(),
         }
-    ).named(renames["runner-label"])
+    ).named(renames["runner_label"])
     types["runner"] = t.struct(
         {
             "id": t.integer(),
@@ -2312,10 +2312,10 @@ def import_github(params=None):
             "os": t.string(),
             "status": t.string(),
             "busy": t.boolean(),
-            "labels": t.array(t.proxy(renames["runner-label"])),
+            "labels": t.array(t.proxy(renames["runner_label"])),
         }
     ).named(renames["runner"])
-    types["runner-application"] = t.struct(
+    types["runner_application"] = t.struct(
         {
             "os": t.string(),
             "architecture": t.string(),
@@ -2324,8 +2324,8 @@ def import_github(params=None):
             "temp_download_token": t.string().optional(),
             "sha256_checksum": t.string().optional(),
         }
-    ).named(renames["runner-application"])
-    types["authentication-token"] = t.struct(
+    ).named(renames["runner_application"])
+    types["authentication_token"] = t.struct(
         {
             "token": t.string(),
             "expires_at": t.string(),
@@ -2334,8 +2334,8 @@ def import_github(params=None):
             "single_file": t.string().optional(),
             "repository_selection": t.string().optional(),
         }
-    ).named(renames["authentication-token"])
-    types["organization-actions-secret"] = t.struct(
+    ).named(renames["authentication_token"])
+    types["organization_actions_secret"] = t.struct(
         {
             "name": t.string(),
             "created_at": t.string(),
@@ -2343,8 +2343,8 @@ def import_github(params=None):
             "visibility": t.string(),
             "selected_repositories_url": t.string().optional(),
         }
-    ).named(renames["organization-actions-secret"])
-    types["actions-public-key"] = t.struct(
+    ).named(renames["organization_actions_secret"])
+    types["actions_public_key"] = t.struct(
         {
             "key_id": t.string(),
             "key": t.string(),
@@ -2353,8 +2353,8 @@ def import_github(params=None):
             "title": t.string().optional(),
             "created_at": t.string().optional(),
         }
-    ).named(renames["actions-public-key"])
-    types["organization-actions-variable"] = t.struct(
+    ).named(renames["actions_public_key"])
+    types["organization_actions_variable"] = t.struct(
         {
             "name": t.string(),
             "value": t.string(),
@@ -2363,27 +2363,27 @@ def import_github(params=None):
             "visibility": t.string(),
             "selected_repositories_url": t.string().optional(),
         }
-    ).named(renames["organization-actions-variable"])
-    types["code-scanning-analysis-tool-name"] = t.string().named(
-        renames["code-scanning-analysis-tool-name"]
+    ).named(renames["organization_actions_variable"])
+    types["code_scanning_analysis_tool_name"] = t.string().named(
+        renames["code_scanning_analysis_tool_name"]
     )
-    types["code-scanning-analysis-tool-guid"] = (
-        t.string().optional().named(renames["code-scanning-analysis-tool-guid"])
+    types["code_scanning_analysis_tool_guid"] = (
+        t.string().optional().named(renames["code_scanning_analysis_tool_guid"])
     )
-    types["code-scanning-alert-state"] = t.string().named(
-        renames["code-scanning-alert-state"]
+    types["code_scanning_alert_state"] = t.string().named(
+        renames["code_scanning_alert_state"]
     )
-    types["code-scanning-alert-severity"] = t.string().named(
-        renames["code-scanning-alert-severity"]
+    types["code_scanning_alert_severity"] = t.string().named(
+        renames["code_scanning_alert_severity"]
     )
-    types["alert-instances-url"] = t.string().named(renames["alert-instances-url"])
-    types["code-scanning-alert-dismissed-reason"] = (
-        t.string().optional().named(renames["code-scanning-alert-dismissed-reason"])
+    types["alert_instances_url"] = t.string().named(renames["alert_instances_url"])
+    types["code_scanning_alert_dismissed_reason"] = (
+        t.string().optional().named(renames["code_scanning_alert_dismissed_reason"])
     )
-    types["code-scanning-alert-dismissed-comment"] = (
-        t.string().optional().named(renames["code-scanning-alert-dismissed-comment"])
+    types["code_scanning_alert_dismissed_comment"] = (
+        t.string().optional().named(renames["code_scanning_alert_dismissed_comment"])
     )
-    types["code-scanning-alert-rule"] = t.struct(
+    types["code_scanning_alert_rule"] = t.struct(
         {
             "id": t.string().optional(),
             "name": t.string().optional(),
@@ -2395,30 +2395,30 @@ def import_github(params=None):
             "help": t.string().optional(),
             "help_uri": t.string().optional(),
         }
-    ).named(renames["code-scanning-alert-rule"])
-    types["code-scanning-analysis-tool-version"] = (
-        t.string().optional().named(renames["code-scanning-analysis-tool-version"])
+    ).named(renames["code_scanning_alert_rule"])
+    types["code_scanning_analysis_tool_version"] = (
+        t.string().optional().named(renames["code_scanning_analysis_tool_version"])
     )
-    types["code-scanning-analysis-tool"] = t.struct(
+    types["code_scanning_analysis_tool"] = t.struct(
         {
-            "name": t.proxy(renames["code-scanning-analysis-tool-name"]).optional(),
+            "name": t.proxy(renames["code_scanning_analysis_tool_name"]).optional(),
             "version": t.proxy(
-                renames["code-scanning-analysis-tool-version"]
+                renames["code_scanning_analysis_tool_version"]
             ).optional(),
-            "guid": t.proxy(renames["code-scanning-analysis-tool-guid"]).optional(),
+            "guid": t.proxy(renames["code_scanning_analysis_tool_guid"]).optional(),
         }
-    ).named(renames["code-scanning-analysis-tool"])
-    types["code-scanning-ref"] = t.string().named(renames["code-scanning-ref"])
-    types["code-scanning-analysis-analysis-key"] = t.string().named(
-        renames["code-scanning-analysis-analysis-key"]
+    ).named(renames["code_scanning_analysis_tool"])
+    types["code_scanning_ref"] = t.string().named(renames["code_scanning_ref"])
+    types["code_scanning_analysis_analysis_key"] = t.string().named(
+        renames["code_scanning_analysis_analysis_key"]
     )
-    types["code-scanning-alert-environment"] = t.string().named(
-        renames["code-scanning-alert-environment"]
+    types["code_scanning_alert_environment"] = t.string().named(
+        renames["code_scanning_alert_environment"]
     )
-    types["code-scanning-analysis-category"] = t.string().named(
-        renames["code-scanning-analysis-category"]
+    types["code_scanning_analysis_category"] = t.string().named(
+        renames["code_scanning_analysis_category"]
     )
-    types["code-scanning-alert-location"] = t.struct(
+    types["code_scanning_alert_location"] = t.struct(
         {
             "path": t.string().optional(),
             "start_line": t.integer().optional(),
@@ -2426,55 +2426,55 @@ def import_github(params=None):
             "start_column": t.integer().optional(),
             "end_column": t.integer().optional(),
         }
-    ).named(renames["code-scanning-alert-location"])
-    types["code-scanning-alert-classification"] = (
-        t.string().optional().named(renames["code-scanning-alert-classification"])
+    ).named(renames["code_scanning_alert_location"])
+    types["code_scanning_alert_classification"] = (
+        t.string().optional().named(renames["code_scanning_alert_classification"])
     )
-    types["code-scanning-alert-instance"] = t.struct(
+    types["code_scanning_alert_instance"] = t.struct(
         {
-            "ref": t.proxy(renames["code-scanning-ref"]).optional(),
+            "ref": t.proxy(renames["code_scanning_ref"]).optional(),
             "analysis_key": t.proxy(
-                renames["code-scanning-analysis-analysis-key"]
+                renames["code_scanning_analysis_analysis_key"]
             ).optional(),
             "environment": t.proxy(
-                renames["code-scanning-alert-environment"]
+                renames["code_scanning_alert_environment"]
             ).optional(),
-            "category": t.proxy(renames["code-scanning-analysis-category"]).optional(),
-            "state": t.proxy(renames["code-scanning-alert-state"]).optional(),
+            "category": t.proxy(renames["code_scanning_analysis_category"]).optional(),
+            "state": t.proxy(renames["code_scanning_alert_state"]).optional(),
             "commit_sha": t.string().optional(),
             "message": t.struct({"text": t.string().optional()}).optional(),
-            "location": t.proxy(renames["code-scanning-alert-location"]).optional(),
+            "location": t.proxy(renames["code_scanning_alert_location"]).optional(),
             "html_url": t.string().optional(),
             "classifications": t.array(
-                t.proxy(renames["code-scanning-alert-classification"])
+                t.proxy(renames["code_scanning_alert_classification"])
             ).optional(),
         }
-    ).named(renames["code-scanning-alert-instance"])
-    types["code-scanning-organization-alert-items"] = t.struct(
+    ).named(renames["code_scanning_alert_instance"])
+    types["code_scanning_organization_alert_items"] = t.struct(
         {
-            "number": t.proxy(renames["alert-number"]),
-            "created_at": t.proxy(renames["alert-created-at"]),
-            "updated_at": t.proxy(renames["alert-updated-at"]).optional(),
-            "url": t.proxy(renames["alert-url"]),
-            "html_url": t.proxy(renames["alert-html-url"]),
-            "instances_url": t.proxy(renames["alert-instances-url"]),
-            "state": t.proxy(renames["code-scanning-alert-state"]),
-            "fixed_at": t.proxy(renames["alert-fixed-at"]).optional(),
-            "dismissed_by": t.proxy(renames["nullable-simple-user"]),
-            "dismissed_at": t.proxy(renames["alert-dismissed-at"]),
+            "number": t.proxy(renames["alert_number"]),
+            "created_at": t.proxy(renames["alert_created_at"]),
+            "updated_at": t.proxy(renames["alert_updated_at"]).optional(),
+            "url": t.proxy(renames["alert_url"]),
+            "html_url": t.proxy(renames["alert_html_url"]),
+            "instances_url": t.proxy(renames["alert_instances_url"]),
+            "state": t.proxy(renames["code_scanning_alert_state"]),
+            "fixed_at": t.proxy(renames["alert_fixed_at"]).optional(),
+            "dismissed_by": t.proxy(renames["nullable_simple_user"]),
+            "dismissed_at": t.proxy(renames["alert_dismissed_at"]),
             "dismissed_reason": t.proxy(
-                renames["code-scanning-alert-dismissed-reason"]
+                renames["code_scanning_alert_dismissed_reason"]
             ),
             "dismissed_comment": t.proxy(
-                renames["code-scanning-alert-dismissed-comment"]
+                renames["code_scanning_alert_dismissed_comment"]
             ).optional(),
-            "rule": t.proxy(renames["code-scanning-alert-rule"]),
-            "tool": t.proxy(renames["code-scanning-analysis-tool"]),
-            "most_recent_instance": t.proxy(renames["code-scanning-alert-instance"]),
-            "repository": t.proxy(renames["simple-repository"]),
+            "rule": t.proxy(renames["code_scanning_alert_rule"]),
+            "tool": t.proxy(renames["code_scanning_analysis_tool"]),
+            "most_recent_instance": t.proxy(renames["code_scanning_alert_instance"]),
+            "repository": t.proxy(renames["simple_repository"]),
         }
-    ).named(renames["code-scanning-organization-alert-items"])
-    types["nullable-codespace-machine"] = (
+    ).named(renames["code_scanning_organization_alert_items"])
+    types["nullable_codespace_machine"] = (
         t.struct(
             {
                 "name": t.string(),
@@ -2487,7 +2487,7 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-codespace-machine"])
+        .named(renames["nullable_codespace_machine"])
     )
     types["codespace"] = t.struct(
         {
@@ -2495,10 +2495,10 @@ def import_github(params=None):
             "name": t.string(),
             "display_name": t.string().optional(),
             "environment_id": t.string().optional(),
-            "owner": t.proxy(renames["simple-user"]),
-            "billable_owner": t.proxy(renames["simple-user"]),
-            "repository": t.proxy(renames["minimal-repository"]),
-            "machine": t.proxy(renames["nullable-codespace-machine"]),
+            "owner": t.proxy(renames["simple_user"]),
+            "billable_owner": t.proxy(renames["simple_user"]),
+            "repository": t.proxy(renames["minimal_repository"]),
+            "machine": t.proxy(renames["nullable_codespace_machine"]),
             "devcontainer_path": t.string().optional(),
             "prebuild": t.boolean().optional(),
             "created_at": t.string(),
@@ -2535,7 +2535,7 @@ def import_github(params=None):
             "last_known_stop_notice": t.string().optional(),
         }
     ).named(renames["codespace"])
-    types["codespaces-org-secret"] = t.struct(
+    types["codespaces_org_secret"] = t.struct(
         {
             "name": t.string(),
             "created_at": t.string(),
@@ -2543,8 +2543,8 @@ def import_github(params=None):
             "visibility": t.string(),
             "selected_repositories_url": t.string().optional(),
         }
-    ).named(renames["codespaces-org-secret"])
-    types["codespaces-public-key"] = t.struct(
+    ).named(renames["codespaces_org_secret"])
+    types["codespaces_public_key"] = t.struct(
         {
             "key_id": t.string(),
             "key": t.string(),
@@ -2553,8 +2553,8 @@ def import_github(params=None):
             "title": t.string().optional(),
             "created_at": t.string().optional(),
         }
-    ).named(renames["codespaces-public-key"])
-    types["organization-dependabot-secret"] = t.struct(
+    ).named(renames["codespaces_public_key"])
+    types["organization_dependabot_secret"] = t.struct(
         {
             "name": t.string(),
             "created_at": t.string(),
@@ -2562,18 +2562,18 @@ def import_github(params=None):
             "visibility": t.string(),
             "selected_repositories_url": t.string().optional(),
         }
-    ).named(renames["organization-dependabot-secret"])
-    types["dependabot-public-key"] = t.struct(
+    ).named(renames["organization_dependabot_secret"])
+    types["dependabot_public_key"] = t.struct(
         {"key_id": t.string(), "key": t.string()}
-    ).named(renames["dependabot-public-key"])
-    types["nullable-minimal-repository"] = (
+    ).named(renames["dependabot_public_key"])
+    types["nullable_minimal_repository"] = (
         t.struct(
             {
                 "id": t.integer(),
                 "node_id": t.string(),
                 "name": t.string(),
                 "full_name": t.string(),
-                "owner": t.proxy(renames["simple-user"]),
+                "owner": t.proxy(renames["simple_user"]),
                 "private": t.boolean(),
                 "html_url": t.string(),
                 "description": t.string().optional(),
@@ -2656,7 +2656,7 @@ def import_github(params=None):
                 "delete_branch_on_merge": t.boolean().optional(),
                 "subscribers_count": t.integer().optional(),
                 "network_count": t.integer().optional(),
-                "code_of_conduct": t.proxy(renames["code-of-conduct"]).optional(),
+                "code_of_conduct": t.proxy(renames["code_of_conduct"]).optional(),
                 "license": t.struct(
                     {
                         "key": t.string().optional(),
@@ -2672,12 +2672,12 @@ def import_github(params=None):
                 "allow_forking": t.boolean().optional(),
                 "web_commit_signoff_required": t.boolean().optional(),
                 "security_and_analysis": t.proxy(
-                    renames["security-and-analysis"]
+                    renames["security_and_analysis"]
                 ).optional(),
             }
         )
         .optional()
-        .named(renames["nullable-minimal-repository"])
+        .named(renames["nullable_minimal_repository"])
     )
     types["package"] = t.struct(
         {
@@ -2688,13 +2688,13 @@ def import_github(params=None):
             "html_url": t.string(),
             "version_count": t.integer(),
             "visibility": t.string(),
-            "owner": t.proxy(renames["nullable-simple-user"]).optional(),
-            "repository": t.proxy(renames["nullable-minimal-repository"]).optional(),
+            "owner": t.proxy(renames["nullable_simple_user"]).optional(),
+            "repository": t.proxy(renames["nullable_minimal_repository"]).optional(),
             "created_at": t.string(),
             "updated_at": t.string(),
         }
     ).named(renames["package"])
-    types["organization-invitation"] = t.struct(
+    types["organization_invitation"] = t.struct(
         {
             "id": t.integer(),
             "login": t.string().optional(),
@@ -2703,14 +2703,14 @@ def import_github(params=None):
             "created_at": t.string(),
             "failed_at": t.string().optional(),
             "failed_reason": t.string().optional(),
-            "inviter": t.proxy(renames["simple-user"]),
+            "inviter": t.proxy(renames["simple_user"]),
             "team_count": t.integer(),
             "node_id": t.string(),
             "invitation_teams_url": t.string(),
             "invitation_source": t.string().optional(),
         }
-    ).named(renames["organization-invitation"])
-    types["org-hook"] = t.struct(
+    ).named(renames["organization_invitation"])
+    types["org_hook"] = t.struct(
         {
             "id": t.integer(),
             "url": t.string(),
@@ -2731,23 +2731,23 @@ def import_github(params=None):
             "created_at": t.string(),
             "type": t.string(),
         }
-    ).named(renames["org-hook"])
-    types["interaction-group"] = t.string().named(renames["interaction-group"])
-    types["interaction-limit-response"] = t.struct(
+    ).named(renames["org_hook"])
+    types["interaction_group"] = t.string().named(renames["interaction_group"])
+    types["interaction_limit_response"] = t.struct(
         {
-            "limit": t.proxy(renames["interaction-group"]),
+            "limit": t.proxy(renames["interaction_group"]),
             "origin": t.string(),
             "expires_at": t.string(),
         }
-    ).named(renames["interaction-limit-response"])
-    types["interaction-expiry"] = t.string().named(renames["interaction-expiry"])
-    types["interaction-limit"] = t.struct(
+    ).named(renames["interaction_limit_response"])
+    types["interaction_expiry"] = t.string().named(renames["interaction_expiry"])
+    types["interaction_limit"] = t.struct(
         {
-            "limit": t.proxy(renames["interaction-group"]),
-            "expiry": t.proxy(renames["interaction-expiry"]).optional(),
+            "limit": t.proxy(renames["interaction_group"]),
+            "expiry": t.proxy(renames["interaction_expiry"]).optional(),
         }
-    ).named(renames["interaction-limit"])
-    types["nullable-team-simple"] = (
+    ).named(renames["interaction_limit"])
+    types["nullable_team_simple"] = (
         t.struct(
             {
                 "id": t.integer(),
@@ -2766,7 +2766,7 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-team-simple"])
+        .named(renames["nullable_team_simple"])
     )
     types["team"] = t.struct(
         {
@@ -2791,24 +2791,24 @@ def import_github(params=None):
             "html_url": t.string(),
             "members_url": t.string(),
             "repositories_url": t.string(),
-            "parent": t.proxy(renames["nullable-team-simple"]),
+            "parent": t.proxy(renames["nullable_team_simple"]),
         }
     ).named(renames["team"])
-    types["org-membership"] = t.struct(
+    types["org_membership"] = t.struct(
         {
             "url": t.string(),
             "state": t.string(),
             "role": t.string(),
             "organization_url": t.string(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "permissions": t.struct({"can_create_repository": t.boolean()}).optional(),
         }
-    ).named(renames["org-membership"])
+    ).named(renames["org_membership"])
     types["migration"] = t.struct(
         {
             "id": t.integer(),
-            "owner": t.proxy(renames["nullable-simple-user"]),
+            "owner": t.proxy(renames["nullable_simple_user"]),
             "guid": t.string(),
             "state": t.string(),
             "lock_repositories": t.boolean(),
@@ -2827,7 +2827,7 @@ def import_github(params=None):
             "exclude": t.array(t.string()).optional(),
         }
     ).named(renames["migration"])
-    types["package-version"] = t.struct(
+    types["package_version"] = t.struct(
         {
             "id": t.integer(),
             "name": t.string(),
@@ -2849,7 +2849,7 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["package-version"])
+    ).named(renames["package_version"])
     types["project"] = t.struct(
         {
             "owner_url": t.string(),
@@ -2862,20 +2862,20 @@ def import_github(params=None):
             "body": t.string().optional(),
             "number": t.integer(),
             "state": t.string(),
-            "creator": t.proxy(renames["nullable-simple-user"]),
+            "creator": t.proxy(renames["nullable_simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
             "organization_permission": t.string().optional(),
             "private": t.boolean().optional(),
         }
     ).named(renames["project"])
-    types["repository-rule-enforcement"] = t.string().named(
-        renames["repository-rule-enforcement"]
+    types["repository_rule_enforcement"] = t.string().named(
+        renames["repository_rule_enforcement"]
     )
-    types["repository-ruleset-bypass-actor"] = t.struct(
+    types["repository_ruleset_bypass_actor"] = t.struct(
         {"actor_id": t.integer().optional(), "actor_type": t.string().optional()}
-    ).named(renames["repository-ruleset-bypass-actor"])
-    types["repository-ruleset-conditions"] = t.struct(
+    ).named(renames["repository_ruleset_bypass_actor"])
+    types["repository_ruleset_conditions"] = t.struct(
         {
             "ref_name": t.struct(
                 {
@@ -2884,8 +2884,8 @@ def import_github(params=None):
                 }
             ).optional()
         }
-    ).named(renames["repository-ruleset-conditions"])
-    types["repository-ruleset-conditions-repository-name-target"] = t.struct(
+    ).named(renames["repository_ruleset_conditions"])
+    types["repository_ruleset_conditions_repository_name_target"] = t.struct(
         {
             "repository_name": t.struct(
                 {
@@ -2895,8 +2895,8 @@ def import_github(params=None):
                 }
             ).optional()
         }
-    ).named(renames["repository-ruleset-conditions-repository-name-target"])
-    types["org-ruleset-conditions"] = t.struct(
+    ).named(renames["repository_ruleset_conditions_repository_name_target"])
+    types["org_ruleset_conditions"] = t.struct(
         {
             "ref_name": t.struct(
                 {
@@ -2912,36 +2912,36 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["org-ruleset-conditions"])
-    types["repository-rule-creation"] = t.struct({"type": t.string()}).named(
-        renames["repository-rule-creation"]
+    ).named(renames["org_ruleset_conditions"])
+    types["repository_rule_creation"] = t.struct({"type": t.string()}).named(
+        renames["repository_rule_creation"]
     )
-    types["repository-rule-update"] = t.struct(
+    types["repository_rule_update"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
                 {"update_allows_fetch_and_merge": t.boolean()}
             ).optional(),
         }
-    ).named(renames["repository-rule-update"])
-    types["repository-rule-deletion"] = t.struct({"type": t.string()}).named(
-        renames["repository-rule-deletion"]
+    ).named(renames["repository_rule_update"])
+    types["repository_rule_deletion"] = t.struct({"type": t.string()}).named(
+        renames["repository_rule_deletion"]
     )
-    types["repository-rule-required-linear-history"] = t.struct(
+    types["repository_rule_required_linear_history"] = t.struct(
         {"type": t.string()}
-    ).named(renames["repository-rule-required-linear-history"])
-    types["repository-rule-required-deployments"] = t.struct(
+    ).named(renames["repository_rule_required_linear_history"])
+    types["repository_rule_required_deployments"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
                 {"required_deployment_environments": t.array(t.string())}
             ).optional(),
         }
-    ).named(renames["repository-rule-required-deployments"])
-    types["repository-rule-required-signatures"] = t.struct({"type": t.string()}).named(
-        renames["repository-rule-required-signatures"]
+    ).named(renames["repository_rule_required_deployments"])
+    types["repository_rule_required_signatures"] = t.struct({"type": t.string()}).named(
+        renames["repository_rule_required_signatures"]
     )
-    types["repository-rule-pull-request"] = t.struct(
+    types["repository_rule_pull_request"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
@@ -2954,29 +2954,29 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["repository-rule-pull-request"])
-    types["repository-rule-params-status-check-configuration"] = t.struct(
+    ).named(renames["repository_rule_pull_request"])
+    types["repository_rule_params_status_check_configuration"] = t.struct(
         {"context": t.string(), "integration_id": t.integer().optional()}
-    ).named(renames["repository-rule-params-status-check-configuration"])
-    types["repository-rule-required-status-checks"] = t.struct(
+    ).named(renames["repository_rule_params_status_check_configuration"])
+    types["repository_rule_required_status_checks"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
                 {
                     "required_status_checks": t.array(
                         t.proxy(
-                            renames["repository-rule-params-status-check-configuration"]
+                            renames["repository_rule_params_status_check_configuration"]
                         )
                     ),
                     "strict_required_status_checks_policy": t.boolean(),
                 }
             ).optional(),
         }
-    ).named(renames["repository-rule-required-status-checks"])
-    types["repository-rule-non-fast-forward"] = t.struct({"type": t.string()}).named(
-        renames["repository-rule-non-fast-forward"]
+    ).named(renames["repository_rule_required_status_checks"])
+    types["repository_rule_non_fast_forward"] = t.struct({"type": t.string()}).named(
+        renames["repository_rule_non_fast_forward"]
     )
-    types["repository-rule-commit-message-pattern"] = t.struct(
+    types["repository_rule_commit_message_pattern"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
@@ -2988,8 +2988,8 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["repository-rule-commit-message-pattern"])
-    types["repository-rule-commit-author-email-pattern"] = t.struct(
+    ).named(renames["repository_rule_commit_message_pattern"])
+    types["repository_rule_commit_author_email_pattern"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
@@ -3001,8 +3001,8 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["repository-rule-commit-author-email-pattern"])
-    types["repository-rule-committer-email-pattern"] = t.struct(
+    ).named(renames["repository_rule_commit_author_email_pattern"])
+    types["repository_rule_committer_email_pattern"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
@@ -3014,8 +3014,8 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["repository-rule-committer-email-pattern"])
-    types["repository-rule-branch-name-pattern"] = t.struct(
+    ).named(renames["repository_rule_committer_email_pattern"])
+    types["repository_rule_branch_name_pattern"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
@@ -3027,8 +3027,8 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["repository-rule-branch-name-pattern"])
-    types["repository-rule-tag-name-pattern"] = t.struct(
+    ).named(renames["repository_rule_branch_name_pattern"])
+    types["repository_rule_tag_name_pattern"] = t.struct(
         {
             "type": t.string(),
             "parameters": t.struct(
@@ -3040,36 +3040,36 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["repository-rule-tag-name-pattern"])
-    types["repository-rule"] = t.either(
+    ).named(renames["repository_rule_tag_name_pattern"])
+    types["repository_rule"] = t.either(
         [
-            t.proxy(renames["repository-rule-creation"]),
-            t.proxy(renames["repository-rule-update"]),
-            t.proxy(renames["repository-rule-deletion"]),
-            t.proxy(renames["repository-rule-required-linear-history"]),
-            t.proxy(renames["repository-rule-required-deployments"]),
-            t.proxy(renames["repository-rule-required-signatures"]),
-            t.proxy(renames["repository-rule-pull-request"]),
-            t.proxy(renames["repository-rule-required-status-checks"]),
-            t.proxy(renames["repository-rule-non-fast-forward"]),
-            t.proxy(renames["repository-rule-commit-message-pattern"]),
-            t.proxy(renames["repository-rule-commit-author-email-pattern"]),
-            t.proxy(renames["repository-rule-committer-email-pattern"]),
-            t.proxy(renames["repository-rule-branch-name-pattern"]),
-            t.proxy(renames["repository-rule-tag-name-pattern"]),
+            t.proxy(renames["repository_rule_creation"]),
+            t.proxy(renames["repository_rule_update"]),
+            t.proxy(renames["repository_rule_deletion"]),
+            t.proxy(renames["repository_rule_required_linear_history"]),
+            t.proxy(renames["repository_rule_required_deployments"]),
+            t.proxy(renames["repository_rule_required_signatures"]),
+            t.proxy(renames["repository_rule_pull_request"]),
+            t.proxy(renames["repository_rule_required_status_checks"]),
+            t.proxy(renames["repository_rule_non_fast_forward"]),
+            t.proxy(renames["repository_rule_commit_message_pattern"]),
+            t.proxy(renames["repository_rule_commit_author_email_pattern"]),
+            t.proxy(renames["repository_rule_committer_email_pattern"]),
+            t.proxy(renames["repository_rule_branch_name_pattern"]),
+            t.proxy(renames["repository_rule_tag_name_pattern"]),
         ]
-    ).named(renames["repository-rule"])
-    types["repository-ruleset"] = t.struct(
+    ).named(renames["repository_rule"])
+    types["repository_ruleset"] = t.struct(
         {
             "id": t.integer(),
             "name": t.string(),
             "target": t.string().optional(),
             "source_type": t.string().optional(),
             "source": t.string(),
-            "enforcement": t.proxy(renames["repository-rule-enforcement"]),
+            "enforcement": t.proxy(renames["repository_rule_enforcement"]),
             "bypass_mode": t.string().optional(),
             "bypass_actors": t.array(
-                t.proxy(renames["repository-ruleset-bypass-actor"])
+                t.proxy(renames["repository_ruleset_bypass_actor"])
             ).optional(),
             "node_id": t.string().optional(),
             "_links": t.struct(
@@ -3077,14 +3077,14 @@ def import_github(params=None):
             ).optional(),
             "conditions": t.union(
                 [
-                    t.proxy(renames["repository-ruleset-conditions"]),
-                    t.proxy(renames["org-ruleset-conditions"]),
+                    t.proxy(renames["repository_ruleset_conditions"]),
+                    t.proxy(renames["org_ruleset_conditions"]),
                 ]
             ).optional(),
-            "rules": t.array(t.proxy(renames["repository-rule"])).optional(),
+            "rules": t.array(t.proxy(renames["repository_rule"])).optional(),
         }
-    ).named(renames["repository-ruleset"])
-    types["team-simple"] = t.struct(
+    ).named(renames["repository_ruleset"])
+    types["team_simple"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
@@ -3100,8 +3100,8 @@ def import_github(params=None):
             "slug": t.string(),
             "ldap_dn": t.string().optional(),
         }
-    ).named(renames["team-simple"])
-    types["actions-billing-usage"] = t.struct(
+    ).named(renames["team_simple"])
+    types["actions_billing_usage"] = t.struct(
         {
             "total_minutes_used": t.integer(),
             "total_paid_minutes_used": t.integer(),
@@ -3126,22 +3126,22 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["actions-billing-usage"])
-    types["packages-billing-usage"] = t.struct(
+    ).named(renames["actions_billing_usage"])
+    types["packages_billing_usage"] = t.struct(
         {
             "total_gigabytes_bandwidth_used": t.integer(),
             "total_paid_gigabytes_bandwidth_used": t.integer(),
             "included_gigabytes_bandwidth": t.integer(),
         }
-    ).named(renames["packages-billing-usage"])
-    types["combined-billing-usage"] = t.struct(
+    ).named(renames["packages_billing_usage"])
+    types["combined_billing_usage"] = t.struct(
         {
             "days_left_in_billing_cycle": t.integer(),
             "estimated_paid_storage_for_month": t.integer(),
             "estimated_storage_for_month": t.integer(),
         }
-    ).named(renames["combined-billing-usage"])
-    types["team-organization"] = t.struct(
+    ).named(renames["combined_billing_usage"])
+    types["team_organization"] = t.struct(
         {
             "login": t.string(),
             "id": t.integer(),
@@ -3200,8 +3200,8 @@ def import_github(params=None):
             "web_commit_signoff_required": t.boolean().optional(),
             "updated_at": t.string(),
         }
-    ).named(renames["team-organization"])
-    types["team-full"] = t.struct(
+    ).named(renames["team_organization"])
+    types["team_full"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
@@ -3215,18 +3215,18 @@ def import_github(params=None):
             "permission": t.string(),
             "members_url": t.string(),
             "repositories_url": t.string(),
-            "parent": t.proxy(renames["nullable-team-simple"]).optional(),
+            "parent": t.proxy(renames["nullable_team_simple"]).optional(),
             "members_count": t.integer(),
             "repos_count": t.integer(),
             "created_at": t.string(),
             "updated_at": t.string(),
-            "organization": t.proxy(renames["team-organization"]),
+            "organization": t.proxy(renames["team_organization"]),
             "ldap_dn": t.string().optional(),
         }
-    ).named(renames["team-full"])
-    types["team-discussion"] = t.struct(
+    ).named(renames["team_full"])
+    types["team_discussion"] = t.struct(
         {
-            "author": t.proxy(renames["nullable-simple-user"]),
+            "author": t.proxy(renames["nullable_simple_user"]),
             "body": t.string(),
             "body_html": t.string(),
             "body_version": t.string(),
@@ -3243,12 +3243,12 @@ def import_github(params=None):
             "title": t.string(),
             "updated_at": t.string(),
             "url": t.string(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
-    ).named(renames["team-discussion"])
-    types["team-discussion-comment"] = t.struct(
+    ).named(renames["team_discussion"])
+    types["team_discussion_comment"] = t.struct(
         {
-            "author": t.proxy(renames["nullable-simple-user"]),
+            "author": t.proxy(renames["nullable_simple_user"]),
             "body": t.string(),
             "body_html": t.string(),
             "body_version": t.string(),
@@ -3260,22 +3260,22 @@ def import_github(params=None):
             "number": t.integer(),
             "updated_at": t.string(),
             "url": t.string(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
-    ).named(renames["team-discussion-comment"])
+    ).named(renames["team_discussion_comment"])
     types["reaction"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "content": t.string(),
             "created_at": t.string(),
         }
     ).named(renames["reaction"])
-    types["team-membership"] = t.struct(
+    types["team_membership"] = t.struct(
         {"url": t.string(), "role": t.string(), "state": t.string()}
-    ).named(renames["team-membership"])
-    types["team-project"] = t.struct(
+    ).named(renames["team_membership"])
+    types["team_project"] = t.struct(
         {
             "owner_url": t.string(),
             "url": t.string(),
@@ -3287,7 +3287,7 @@ def import_github(params=None):
             "body": t.string().optional(),
             "number": t.integer(),
             "state": t.string(),
-            "creator": t.proxy(renames["simple-user"]),
+            "creator": t.proxy(renames["simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
             "organization_permission": t.string().optional(),
@@ -3296,16 +3296,16 @@ def import_github(params=None):
                 {"read": t.boolean(), "write": t.boolean(), "admin": t.boolean()}
             ),
         }
-    ).named(renames["team-project"])
-    types["nullable-repository"] = (
+    ).named(renames["team_project"])
+    types["nullable_repository"] = (
         t.struct(
             {
                 "id": t.integer(),
                 "node_id": t.string(),
                 "name": t.string(),
                 "full_name": t.string(),
-                "license": t.proxy(renames["nullable-license-simple"]),
-                "organization": t.proxy(renames["nullable-simple-user"]).optional(),
+                "license": t.proxy(renames["nullable_license_simple"]),
+                "organization": t.proxy(renames["nullable_simple_user"]).optional(),
                 "forks": t.integer(),
                 "permissions": t.struct(
                     {
@@ -3316,7 +3316,7 @@ def import_github(params=None):
                         "maintain": t.boolean().optional(),
                     }
                 ).optional(),
-                "owner": t.proxy(renames["simple-user"]),
+                "owner": t.proxy(renames["simple_user"]),
                 "private": t.boolean(),
                 "html_url": t.string(),
                 "description": t.string().optional(),
@@ -3529,15 +3529,15 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-repository"])
+        .named(renames["nullable_repository"])
     )
-    types["team-repository"] = t.struct(
+    types["team_repository"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "name": t.string(),
             "full_name": t.string(),
-            "license": t.proxy(renames["nullable-license-simple"]),
+            "license": t.proxy(renames["nullable_license_simple"]),
             "forks": t.integer(),
             "permissions": t.struct(
                 {
@@ -3549,7 +3549,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "role_name": t.string().optional(),
-            "owner": t.proxy(renames["nullable-simple-user"]),
+            "owner": t.proxy(renames["nullable_simple_user"]),
             "private": t.boolean(),
             "html_url": t.string(),
             "description": t.string().optional(),
@@ -3618,7 +3618,7 @@ def import_github(params=None):
             "created_at": t.string().optional(),
             "updated_at": t.string().optional(),
             "allow_rebase_merge": t.boolean().optional(),
-            "template_repository": t.proxy(renames["nullable-repository"]).optional(),
+            "template_repository": t.proxy(renames["nullable_repository"]).optional(),
             "temp_clone_token": t.string().optional(),
             "allow_squash_merge": t.boolean().optional(),
             "allow_auto_merge": t.boolean().optional(),
@@ -3632,14 +3632,14 @@ def import_github(params=None):
             "watchers": t.integer(),
             "master_branch": t.string().optional(),
         }
-    ).named(renames["team-repository"])
-    types["project-card"] = t.struct(
+    ).named(renames["team_repository"])
+    types["project_card"] = t.struct(
         {
             "url": t.string(),
             "id": t.integer(),
             "node_id": t.string(),
             "note": t.string().optional(),
-            "creator": t.proxy(renames["nullable-simple-user"]),
+            "creator": t.proxy(renames["nullable_simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
             "archived": t.boolean().optional(),
@@ -3649,8 +3649,8 @@ def import_github(params=None):
             "content_url": t.string().optional(),
             "project_url": t.string(),
         }
-    ).named(renames["project-card"])
-    types["project-column"] = t.struct(
+    ).named(renames["project_card"])
+    types["project_column"] = t.struct(
         {
             "url": t.string(),
             "project_url": t.string(),
@@ -3661,54 +3661,54 @@ def import_github(params=None):
             "created_at": t.string(),
             "updated_at": t.string(),
         }
-    ).named(renames["project-column"])
-    types["project-collaborator-permission"] = t.struct(
-        {"permission": t.string(), "user": t.proxy(renames["nullable-simple-user"])}
-    ).named(renames["project-collaborator-permission"])
-    types["rate-limit"] = t.struct(
+    ).named(renames["project_column"])
+    types["project_collaborator_permission"] = t.struct(
+        {"permission": t.string(), "user": t.proxy(renames["nullable_simple_user"])}
+    ).named(renames["project_collaborator_permission"])
+    types["rate_limit"] = t.struct(
         {
             "limit": t.integer(),
             "remaining": t.integer(),
             "reset": t.integer(),
             "used": t.integer(),
         }
-    ).named(renames["rate-limit"])
-    types["rate-limit-overview"] = t.struct(
+    ).named(renames["rate_limit"])
+    types["rate_limit_overview"] = t.struct(
         {
             "resources": t.struct(
                 {
-                    "core": t.proxy(renames["rate-limit"]),
-                    "graphql": t.proxy(renames["rate-limit"]).optional(),
-                    "search": t.proxy(renames["rate-limit"]),
-                    "source_import": t.proxy(renames["rate-limit"]).optional(),
-                    "integration_manifest": t.proxy(renames["rate-limit"]).optional(),
-                    "code_scanning_upload": t.proxy(renames["rate-limit"]).optional(),
+                    "core": t.proxy(renames["rate_limit"]),
+                    "graphql": t.proxy(renames["rate_limit"]).optional(),
+                    "search": t.proxy(renames["rate_limit"]),
+                    "source_import": t.proxy(renames["rate_limit"]).optional(),
+                    "integration_manifest": t.proxy(renames["rate_limit"]).optional(),
+                    "code_scanning_upload": t.proxy(renames["rate_limit"]).optional(),
                     "actions_runner_registration": t.proxy(
-                        renames["rate-limit"]
+                        renames["rate_limit"]
                     ).optional(),
-                    "scim": t.proxy(renames["rate-limit"]).optional(),
-                    "dependency_snapshots": t.proxy(renames["rate-limit"]).optional(),
+                    "scim": t.proxy(renames["rate_limit"]).optional(),
+                    "dependency_snapshots": t.proxy(renames["rate_limit"]).optional(),
                 }
             ),
-            "rate": t.proxy(renames["rate-limit"]),
+            "rate": t.proxy(renames["rate_limit"]),
         }
-    ).named(renames["rate-limit-overview"])
-    types["repo-required-workflow"] = t.struct(
+    ).named(renames["rate_limit_overview"])
+    types["repo_required_workflow"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "name": t.string(),
             "path": t.string(),
             "state": t.string(),
-            "source_repository": t.proxy(renames["minimal-repository"]),
+            "source_repository": t.proxy(renames["minimal_repository"]),
             "created_at": t.string(),
             "updated_at": t.string(),
             "url": t.string(),
             "html_url": t.string(),
             "badge_url": t.string(),
         }
-    ).named(renames["repo-required-workflow"])
-    types["workflow-usage"] = t.struct(
+    ).named(renames["repo_required_workflow"])
+    types["workflow_usage"] = t.struct(
         {
             "billable": t.struct(
                 {
@@ -3720,22 +3720,22 @@ def import_github(params=None):
                 }
             )
         }
-    ).named(renames["workflow-usage"])
-    types["code-of-conduct-simple"] = t.struct(
+    ).named(renames["workflow_usage"])
+    types["code_of_conduct_simple"] = t.struct(
         {
             "url": t.string(),
             "key": t.string(),
             "name": t.string(),
             "html_url": t.string().optional(),
         }
-    ).named(renames["code-of-conduct-simple"])
-    types["full-repository"] = t.struct(
+    ).named(renames["code_of_conduct_simple"])
+    types["full_repository"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "name": t.string(),
             "full_name": t.string(),
-            "owner": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
             "private": t.boolean(),
             "html_url": t.string(),
             "description": t.string().optional(),
@@ -3814,7 +3814,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "allow_rebase_merge": t.boolean().optional(),
-            "template_repository": t.proxy(renames["nullable-repository"]).optional(),
+            "template_repository": t.proxy(renames["nullable_repository"]).optional(),
             "temp_clone_token": t.string().optional(),
             "allow_squash_merge": t.boolean().optional(),
             "allow_auto_merge": t.boolean().optional(),
@@ -3830,8 +3830,8 @@ def import_github(params=None):
             "web_commit_signoff_required": t.boolean().optional(),
             "subscribers_count": t.integer(),
             "network_count": t.integer(),
-            "license": t.proxy(renames["nullable-license-simple"]),
-            "organization": t.proxy(renames["nullable-simple-user"]).optional(),
+            "license": t.proxy(renames["nullable_license_simple"]),
+            "organization": t.proxy(renames["nullable_simple_user"]).optional(),
             "parent": t.proxy(renames["repository"]).optional(),
             "source": t.proxy(renames["repository"]).optional(),
             "forks": t.integer(),
@@ -3839,12 +3839,12 @@ def import_github(params=None):
             "open_issues": t.integer(),
             "watchers": t.integer(),
             "anonymous_access_enabled": t.boolean().optional(),
-            "code_of_conduct": t.proxy(renames["code-of-conduct-simple"]).optional(),
+            "code_of_conduct": t.proxy(renames["code_of_conduct_simple"]).optional(),
             "security_and_analysis": t.proxy(
-                renames["security-and-analysis"]
+                renames["security_and_analysis"]
             ).optional(),
         }
-    ).named(renames["full-repository"])
+    ).named(renames["full_repository"])
     types["artifact"] = t.struct(
         {
             "id": t.integer(),
@@ -3868,7 +3868,7 @@ def import_github(params=None):
             ).optional(),
         }
     ).named(renames["artifact"])
-    types["actions-cache-list"] = t.struct(
+    types["actions_cache_list"] = t.struct(
         {
             "total_count": t.integer(),
             "actions_caches": t.array(
@@ -3885,7 +3885,7 @@ def import_github(params=None):
                 )
             ),
         }
-    ).named(renames["actions-cache-list"])
+    ).named(renames["actions_cache_list"])
     types["job"] = t.struct(
         {
             "id": t.integer(),
@@ -3924,38 +3924,38 @@ def import_github(params=None):
             "head_branch": t.string().optional(),
         }
     ).named(renames["job"])
-    types["oidc-custom-sub-repo"] = t.struct(
+    types["oidc_custom_sub_repo"] = t.struct(
         {
             "use_default": t.boolean(),
             "include_claim_keys": t.array(t.string()).optional(),
         }
-    ).named(renames["oidc-custom-sub-repo"])
-    types["actions-secret"] = t.struct(
+    ).named(renames["oidc_custom_sub_repo"])
+    types["actions_secret"] = t.struct(
         {"name": t.string(), "created_at": t.string(), "updated_at": t.string()}
-    ).named(renames["actions-secret"])
-    types["actions-variable"] = t.struct(
+    ).named(renames["actions_secret"])
+    types["actions_variable"] = t.struct(
         {
             "name": t.string(),
             "value": t.string(),
             "created_at": t.string(),
             "updated_at": t.string(),
         }
-    ).named(renames["actions-variable"])
-    types["actions-enabled"] = t.boolean().named(renames["actions-enabled"])
-    types["actions-repository-permissions"] = t.struct(
+    ).named(renames["actions_variable"])
+    types["actions_enabled"] = t.boolean().named(renames["actions_enabled"])
+    types["actions_repository_permissions"] = t.struct(
         {
-            "enabled": t.proxy(renames["actions-enabled"]),
-            "allowed_actions": t.proxy(renames["allowed-actions"]).optional(),
-            "selected_actions_url": t.proxy(renames["selected-actions-url"]).optional(),
+            "enabled": t.proxy(renames["actions_enabled"]),
+            "allowed_actions": t.proxy(renames["allowed_actions"]).optional(),
+            "selected_actions_url": t.proxy(renames["selected_actions_url"]).optional(),
         }
-    ).named(renames["actions-repository-permissions"])
-    types["actions-workflow-access-to-repository"] = t.struct(
+    ).named(renames["actions_repository_permissions"])
+    types["actions_workflow_access_to_repository"] = t.struct(
         {"access_level": t.string()}
-    ).named(renames["actions-workflow-access-to-repository"])
-    types["referenced-workflow"] = t.struct(
+    ).named(renames["actions_workflow_access_to_repository"])
+    types["referenced_workflow"] = t.struct(
         {"path": t.string(), "sha": t.string(), "ref": t.string().optional()}
-    ).named(renames["referenced-workflow"])
-    types["pull-request-minimal"] = t.struct(
+    ).named(renames["referenced_workflow"])
+    types["pull_request_minimal"] = t.struct(
         {
             "id": t.integer(),
             "number": t.integer(),
@@ -3979,8 +3979,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["pull-request-minimal"])
-    types["nullable-simple-commit"] = (
+    ).named(renames["pull_request_minimal"])
+    types["nullable_simple_commit"] = (
         t.struct(
             {
                 "id": t.string(),
@@ -3996,9 +3996,9 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-simple-commit"])
+        .named(renames["nullable_simple_commit"])
     )
-    types["workflow-run"] = t.struct(
+    types["workflow_run"] = t.struct(
         {
             "id": t.integer(),
             "name": t.string().optional(),
@@ -4011,7 +4011,7 @@ def import_github(params=None):
             "run_number": t.integer(),
             "run_attempt": t.integer().optional(),
             "referenced_workflows": t.array(
-                t.proxy(renames["referenced-workflow"])
+                t.proxy(renames["referenced_workflow"])
             ).optional(),
             "event": t.string(),
             "status": t.string().optional(),
@@ -4020,12 +4020,12 @@ def import_github(params=None):
             "url": t.string(),
             "html_url": t.string(),
             "pull_requests": t.array(
-                t.proxy(renames["pull-request-minimal"])
+                t.proxy(renames["pull_request_minimal"])
             ).optional(),
             "created_at": t.string(),
             "updated_at": t.string(),
-            "actor": t.proxy(renames["simple-user"]).optional(),
-            "triggering_actor": t.proxy(renames["simple-user"]).optional(),
+            "actor": t.proxy(renames["simple_user"]).optional(),
+            "triggering_actor": t.proxy(renames["simple_user"]).optional(),
             "run_started_at": t.string().optional(),
             "jobs_url": t.string(),
             "logs_url": t.string(),
@@ -4035,14 +4035,14 @@ def import_github(params=None):
             "rerun_url": t.string(),
             "previous_attempt_url": t.string().optional(),
             "workflow_url": t.string(),
-            "head_commit": t.proxy(renames["nullable-simple-commit"]),
-            "repository": t.proxy(renames["minimal-repository"]),
-            "head_repository": t.proxy(renames["minimal-repository"]),
+            "head_commit": t.proxy(renames["nullable_simple_commit"]),
+            "repository": t.proxy(renames["minimal_repository"]),
+            "head_repository": t.proxy(renames["minimal_repository"]),
             "head_repository_id": t.integer().optional(),
             "display_title": t.string(),
         }
-    ).named(renames["workflow-run"])
-    types["environment-approvals"] = t.struct(
+    ).named(renames["workflow_run"])
+    types["environment_approvals"] = t.struct(
         {
             "environments": t.array(
                 t.struct(
@@ -4058,24 +4058,24 @@ def import_github(params=None):
                 )
             ),
             "state": t.string(),
-            "user": t.proxy(renames["simple-user"]),
+            "user": t.proxy(renames["simple_user"]),
             "comment": t.string(),
         }
-    ).named(renames["environment-approvals"])
-    types["review-custom-gates-comment-required"] = t.struct(
+    ).named(renames["environment_approvals"])
+    types["review_custom_gates_comment_required"] = t.struct(
         {"environment_name": t.string(), "comment": t.string()}
-    ).named(renames["review-custom-gates-comment-required"])
-    types["review-custom-gates-state-required"] = t.struct(
+    ).named(renames["review_custom_gates_comment_required"])
+    types["review_custom_gates_state_required"] = t.struct(
         {
             "environment_name": t.string(),
             "state": t.string(),
             "comment": t.string().optional(),
         }
-    ).named(renames["review-custom-gates-state-required"])
-    types["deployment-reviewer-type"] = t.string().named(
-        renames["deployment-reviewer-type"]
+    ).named(renames["review_custom_gates_state_required"])
+    types["deployment_reviewer_type"] = t.string().named(
+        renames["deployment_reviewer_type"]
     )
-    types["pending-deployment"] = t.struct(
+    types["pending_deployment"] = t.struct(
         {
             "environment": t.struct(
                 {
@@ -4092,15 +4092,15 @@ def import_github(params=None):
             "reviewers": t.array(
                 t.struct(
                     {
-                        "type": t.proxy(renames["deployment-reviewer-type"]).optional(),
+                        "type": t.proxy(renames["deployment_reviewer_type"]).optional(),
                         "reviewer": t.union(
-                            [t.proxy(renames["simple-user"]), t.proxy(renames["team"])]
+                            [t.proxy(renames["simple_user"]), t.proxy(renames["team"])]
                         ).optional(),
                     }
                 )
             ),
         }
-    ).named(renames["pending-deployment"])
+    ).named(renames["pending_deployment"])
     types["deployment"] = t.struct(
         {
             "url": t.string(),
@@ -4113,7 +4113,7 @@ def import_github(params=None):
             "original_environment": t.string().optional(),
             "environment": t.string(),
             "description": t.string().optional(),
-            "creator": t.proxy(renames["nullable-simple-user"]),
+            "creator": t.proxy(renames["nullable_simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
             "statuses_url": t.string(),
@@ -4121,11 +4121,11 @@ def import_github(params=None):
             "transient_environment": t.boolean().optional(),
             "production_environment": t.boolean().optional(),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
         }
     ).named(renames["deployment"])
-    types["workflow-run-usage"] = t.struct(
+    types["workflow_run_usage"] = t.struct(
         {
             "billable": t.struct(
                 {
@@ -4166,7 +4166,7 @@ def import_github(params=None):
             ),
             "run_duration_ms": t.integer().optional(),
         }
-    ).named(renames["workflow-run-usage"])
+    ).named(renames["workflow_run_usage"])
     types["workflow"] = t.struct(
         {
             "id": t.integer(),
@@ -4190,7 +4190,7 @@ def import_github(params=None):
             "is_alphanumeric": t.boolean(),
         }
     ).named(renames["autolink"])
-    types["protected-branch-required-status-check"] = t.struct(
+    types["protected_branch_required_status_check"] = t.struct(
         {
             "url": t.string().optional(),
             "enforcement_level": t.string().optional(),
@@ -4201,16 +4201,16 @@ def import_github(params=None):
             "contexts_url": t.string().optional(),
             "strict": t.boolean().optional(),
         }
-    ).named(renames["protected-branch-required-status-check"])
-    types["protected-branch-admin-enforced"] = t.struct(
+    ).named(renames["protected_branch_required_status_check"])
+    types["protected_branch_admin_enforced"] = t.struct(
         {"url": t.string(), "enabled": t.boolean()}
-    ).named(renames["protected-branch-admin-enforced"])
-    types["protected-branch-pull-request-review"] = t.struct(
+    ).named(renames["protected_branch_admin_enforced"])
+    types["protected_branch_pull_request_review"] = t.struct(
         {
             "url": t.string().optional(),
             "dismissal_restrictions": t.struct(
                 {
-                    "users": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "users": t.array(t.proxy(renames["simple_user"])).optional(),
                     "teams": t.array(t.proxy(renames["team"])).optional(),
                     "apps": t.array(t.proxy(renames["integration"])).optional(),
                     "url": t.string().optional(),
@@ -4220,7 +4220,7 @@ def import_github(params=None):
             ).optional(),
             "bypass_pull_request_allowances": t.struct(
                 {
-                    "users": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "users": t.array(t.proxy(renames["simple_user"])).optional(),
                     "teams": t.array(t.proxy(renames["team"])).optional(),
                     "apps": t.array(t.proxy(renames["integration"])).optional(),
                 }
@@ -4230,8 +4230,8 @@ def import_github(params=None):
             "required_approving_review_count": t.integer().optional(),
             "require_last_push_approval": t.boolean().optional(),
         }
-    ).named(renames["protected-branch-pull-request-review"])
-    types["branch-restriction-policy"] = t.struct(
+    ).named(renames["protected_branch_pull_request_review"])
+    types["branch_restriction_policy"] = t.struct(
         {
             "url": t.string(),
             "users_url": t.string(),
@@ -4332,21 +4332,21 @@ def import_github(params=None):
                 )
             ),
         }
-    ).named(renames["branch-restriction-policy"])
-    types["branch-protection"] = t.struct(
+    ).named(renames["branch_restriction_policy"])
+    types["branch_protection"] = t.struct(
         {
             "url": t.string().optional(),
             "enabled": t.boolean().optional(),
             "required_status_checks": t.proxy(
-                renames["protected-branch-required-status-check"]
+                renames["protected_branch_required_status_check"]
             ).optional(),
             "enforce_admins": t.proxy(
-                renames["protected-branch-admin-enforced"]
+                renames["protected_branch_admin_enforced"]
             ).optional(),
             "required_pull_request_reviews": t.proxy(
-                renames["protected-branch-pull-request-review"]
+                renames["protected_branch_pull_request_review"]
             ).optional(),
-            "restrictions": t.proxy(renames["branch-restriction-policy"]).optional(),
+            "restrictions": t.proxy(renames["branch_restriction_policy"]).optional(),
             "required_linear_history": t.struct(
                 {"enabled": t.boolean().optional()}
             ).optional(),
@@ -4368,17 +4368,17 @@ def import_github(params=None):
                 {"enabled": t.boolean().optional()}
             ).optional(),
         }
-    ).named(renames["branch-protection"])
-    types["short-branch"] = t.struct(
+    ).named(renames["branch_protection"])
+    types["short_branch"] = t.struct(
         {
             "name": t.string(),
             "commit": t.struct({"sha": t.string(), "url": t.string()}),
             "protected": t.boolean(),
-            "protection": t.proxy(renames["branch-protection"]).optional(),
+            "protection": t.proxy(renames["branch_protection"]).optional(),
             "protection_url": t.string().optional(),
         }
-    ).named(renames["short-branch"])
-    types["nullable-git-user"] = (
+    ).named(renames["short_branch"])
+    types["nullable_git_user"] = (
         t.struct(
             {
                 "name": t.string().optional(),
@@ -4387,7 +4387,7 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-git-user"])
+        .named(renames["nullable_git_user"])
     )
     types["verification"] = t.struct(
         {
@@ -4397,7 +4397,7 @@ def import_github(params=None):
             "signature": t.string().optional(),
         }
     ).named(renames["verification"])
-    types["diff-entry"] = t.struct(
+    types["diff_entry"] = t.struct(
         {
             "sha": t.string(),
             "filename": t.string(),
@@ -4411,7 +4411,7 @@ def import_github(params=None):
             "patch": t.string().optional(),
             "previous_filename": t.string().optional(),
         }
-    ).named(renames["diff-entry"])
+    ).named(renames["diff_entry"])
     types["commit"] = t.struct(
         {
             "url": t.string(),
@@ -4422,16 +4422,16 @@ def import_github(params=None):
             "commit": t.struct(
                 {
                     "url": t.string(),
-                    "author": t.proxy(renames["nullable-git-user"]),
-                    "committer": t.proxy(renames["nullable-git-user"]),
+                    "author": t.proxy(renames["nullable_git_user"]),
+                    "committer": t.proxy(renames["nullable_git_user"]),
                     "message": t.string(),
                     "comment_count": t.integer(),
                     "tree": t.struct({"sha": t.string(), "url": t.string()}),
                     "verification": t.proxy(renames["verification"]).optional(),
                 }
             ),
-            "author": t.proxy(renames["nullable-simple-user"]),
-            "committer": t.proxy(renames["nullable-simple-user"]),
+            "author": t.proxy(renames["nullable_simple_user"]),
+            "committer": t.proxy(renames["nullable_simple_user"]),
             "parents": t.array(
                 t.struct(
                     {
@@ -4448,22 +4448,22 @@ def import_github(params=None):
                     "total": t.integer().optional(),
                 }
             ).optional(),
-            "files": t.array(t.proxy(renames["diff-entry"])).optional(),
+            "files": t.array(t.proxy(renames["diff_entry"])).optional(),
         }
     ).named(renames["commit"])
-    types["branch-with-protection"] = t.struct(
+    types["branch_with_protection"] = t.struct(
         {
             "name": t.string(),
             "commit": t.proxy(renames["commit"]),
             "_links": t.struct({"html": t.string(), "self": t.string()}),
             "protected": t.boolean(),
-            "protection": t.proxy(renames["branch-protection"]),
+            "protection": t.proxy(renames["branch_protection"]),
             "protection_url": t.string(),
             "pattern": t.string().optional(),
             "required_approving_review_count": t.integer().optional(),
         }
-    ).named(renames["branch-with-protection"])
-    types["status-check-policy"] = t.struct(
+    ).named(renames["branch_with_protection"])
+    types["status_check_policy"] = t.struct(
         {
             "url": t.string(),
             "strict": t.boolean(),
@@ -4473,12 +4473,12 @@ def import_github(params=None):
             ),
             "contexts_url": t.string(),
         }
-    ).named(renames["status-check-policy"])
-    types["protected-branch"] = t.struct(
+    ).named(renames["status_check_policy"])
+    types["protected_branch"] = t.struct(
         {
             "url": t.string(),
             "required_status_checks": t.proxy(
-                renames["status-check-policy"]
+                renames["status_check_policy"]
             ).optional(),
             "required_pull_request_reviews": t.struct(
                 {
@@ -4492,14 +4492,14 @@ def import_github(params=None):
                             "url": t.string(),
                             "users_url": t.string(),
                             "teams_url": t.string(),
-                            "users": t.array(t.proxy(renames["simple-user"])),
+                            "users": t.array(t.proxy(renames["simple_user"])),
                             "teams": t.array(t.proxy(renames["team"])),
                             "apps": t.array(t.proxy(renames["integration"])).optional(),
                         }
                     ).optional(),
                     "bypass_pull_request_allowances": t.struct(
                         {
-                            "users": t.array(t.proxy(renames["simple-user"])),
+                            "users": t.array(t.proxy(renames["simple_user"])),
                             "teams": t.array(t.proxy(renames["team"])),
                             "apps": t.array(t.proxy(renames["integration"])).optional(),
                         }
@@ -4515,7 +4515,7 @@ def import_github(params=None):
             "required_linear_history": t.struct({"enabled": t.boolean()}).optional(),
             "allow_force_pushes": t.struct({"enabled": t.boolean()}).optional(),
             "allow_deletions": t.struct({"enabled": t.boolean()}).optional(),
-            "restrictions": t.proxy(renames["branch-restriction-policy"]).optional(),
+            "restrictions": t.proxy(renames["branch_restriction_policy"]).optional(),
             "required_conversation_resolution": t.struct(
                 {"enabled": t.boolean().optional()}
             ).optional(),
@@ -4525,8 +4525,8 @@ def import_github(params=None):
                 {"enabled": t.boolean().optional()}
             ).optional(),
         }
-    ).named(renames["protected-branch"])
-    types["deployment-simple"] = t.struct(
+    ).named(renames["protected_branch"])
+    types["deployment_simple"] = t.struct(
         {
             "url": t.string(),
             "id": t.integer(),
@@ -4542,11 +4542,11 @@ def import_github(params=None):
             "transient_environment": t.boolean().optional(),
             "production_environment": t.boolean().optional(),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
         }
-    ).named(renames["deployment-simple"])
-    types["check-run"] = t.struct(
+    ).named(renames["deployment_simple"])
+    types["check_run"] = t.struct(
         {
             "id": t.integer(),
             "head_sha": t.string(),
@@ -4570,12 +4570,12 @@ def import_github(params=None):
             ),
             "name": t.string(),
             "check_suite": t.struct({"id": t.integer()}).optional(),
-            "app": t.proxy(renames["nullable-integration"]),
-            "pull_requests": t.array(t.proxy(renames["pull-request-minimal"])),
-            "deployment": t.proxy(renames["deployment-simple"]).optional(),
+            "app": t.proxy(renames["nullable_integration"]),
+            "pull_requests": t.array(t.proxy(renames["pull_request_minimal"])),
+            "deployment": t.proxy(renames["deployment_simple"]).optional(),
         }
-    ).named(renames["check-run"])
-    types["check-annotation"] = t.struct(
+    ).named(renames["check_run"])
+    types["check_annotation"] = t.struct(
         {
             "path": t.string(),
             "start_line": t.integer(),
@@ -4588,8 +4588,8 @@ def import_github(params=None):
             "raw_details": t.string().optional(),
             "blob_href": t.string(),
         }
-    ).named(renames["check-annotation"])
-    types["simple-commit"] = t.struct(
+    ).named(renames["check_annotation"])
+    types["simple_commit"] = t.struct(
         {
             "id": t.string(),
             "tree_id": t.string(),
@@ -4598,8 +4598,8 @@ def import_github(params=None):
             "author": t.struct({"name": t.string(), "email": t.string()}).optional(),
             "committer": t.struct({"name": t.string(), "email": t.string()}).optional(),
         }
-    ).named(renames["simple-commit"])
-    types["check-suite"] = t.struct(
+    ).named(renames["simple_commit"])
+    types["check_suite"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
@@ -4611,20 +4611,20 @@ def import_github(params=None):
             "before": t.string().optional(),
             "after": t.string().optional(),
             "pull_requests": t.array(
-                t.proxy(renames["pull-request-minimal"])
+                t.proxy(renames["pull_request_minimal"])
             ).optional(),
-            "app": t.proxy(renames["nullable-integration"]),
-            "repository": t.proxy(renames["minimal-repository"]),
+            "app": t.proxy(renames["nullable_integration"]),
+            "repository": t.proxy(renames["minimal_repository"]),
             "created_at": t.string().optional(),
             "updated_at": t.string().optional(),
-            "head_commit": t.proxy(renames["simple-commit"]),
+            "head_commit": t.proxy(renames["simple_commit"]),
             "latest_check_runs_count": t.integer(),
             "check_runs_url": t.string(),
             "rerequestable": t.boolean().optional(),
             "runs_rerequestable": t.boolean().optional(),
         }
-    ).named(renames["check-suite"])
-    types["check-suite-preference"] = t.struct(
+    ).named(renames["check_suite"])
+    types["check_suite_preference"] = t.struct(
         {
             "preferences": t.struct(
                 {
@@ -4633,10 +4633,10 @@ def import_github(params=None):
                     ).optional()
                 }
             ),
-            "repository": t.proxy(renames["minimal-repository"]),
+            "repository": t.proxy(renames["minimal_repository"]),
         }
-    ).named(renames["check-suite-preference"])
-    types["code-scanning-alert-rule-summary"] = t.struct(
+    ).named(renames["check_suite_preference"])
+    types["code_scanning_alert_rule_summary"] = t.struct(
         {
             "id": t.string().optional(),
             "name": t.string().optional(),
@@ -4644,140 +4644,140 @@ def import_github(params=None):
             "severity": t.string().optional(),
             "description": t.string().optional(),
         }
-    ).named(renames["code-scanning-alert-rule-summary"])
-    types["code-scanning-alert-items"] = t.struct(
+    ).named(renames["code_scanning_alert_rule_summary"])
+    types["code_scanning_alert_items"] = t.struct(
         {
-            "number": t.proxy(renames["alert-number"]),
-            "created_at": t.proxy(renames["alert-created-at"]),
-            "updated_at": t.proxy(renames["alert-updated-at"]).optional(),
-            "url": t.proxy(renames["alert-url"]),
-            "html_url": t.proxy(renames["alert-html-url"]),
-            "instances_url": t.proxy(renames["alert-instances-url"]),
-            "state": t.proxy(renames["code-scanning-alert-state"]),
-            "fixed_at": t.proxy(renames["alert-fixed-at"]).optional(),
-            "dismissed_by": t.proxy(renames["nullable-simple-user"]),
-            "dismissed_at": t.proxy(renames["alert-dismissed-at"]),
+            "number": t.proxy(renames["alert_number"]),
+            "created_at": t.proxy(renames["alert_created_at"]),
+            "updated_at": t.proxy(renames["alert_updated_at"]).optional(),
+            "url": t.proxy(renames["alert_url"]),
+            "html_url": t.proxy(renames["alert_html_url"]),
+            "instances_url": t.proxy(renames["alert_instances_url"]),
+            "state": t.proxy(renames["code_scanning_alert_state"]),
+            "fixed_at": t.proxy(renames["alert_fixed_at"]).optional(),
+            "dismissed_by": t.proxy(renames["nullable_simple_user"]),
+            "dismissed_at": t.proxy(renames["alert_dismissed_at"]),
             "dismissed_reason": t.proxy(
-                renames["code-scanning-alert-dismissed-reason"]
+                renames["code_scanning_alert_dismissed_reason"]
             ),
             "dismissed_comment": t.proxy(
-                renames["code-scanning-alert-dismissed-comment"]
+                renames["code_scanning_alert_dismissed_comment"]
             ).optional(),
-            "rule": t.proxy(renames["code-scanning-alert-rule-summary"]),
-            "tool": t.proxy(renames["code-scanning-analysis-tool"]),
-            "most_recent_instance": t.proxy(renames["code-scanning-alert-instance"]),
+            "rule": t.proxy(renames["code_scanning_alert_rule_summary"]),
+            "tool": t.proxy(renames["code_scanning_analysis_tool"]),
+            "most_recent_instance": t.proxy(renames["code_scanning_alert_instance"]),
         }
-    ).named(renames["code-scanning-alert-items"])
-    types["code-scanning-alert"] = t.struct(
+    ).named(renames["code_scanning_alert_items"])
+    types["code_scanning_alert"] = t.struct(
         {
-            "number": t.proxy(renames["alert-number"]),
-            "created_at": t.proxy(renames["alert-created-at"]),
-            "updated_at": t.proxy(renames["alert-updated-at"]).optional(),
-            "url": t.proxy(renames["alert-url"]),
-            "html_url": t.proxy(renames["alert-html-url"]),
-            "instances_url": t.proxy(renames["alert-instances-url"]),
-            "state": t.proxy(renames["code-scanning-alert-state"]),
-            "fixed_at": t.proxy(renames["alert-fixed-at"]).optional(),
-            "dismissed_by": t.proxy(renames["nullable-simple-user"]),
-            "dismissed_at": t.proxy(renames["alert-dismissed-at"]),
+            "number": t.proxy(renames["alert_number"]),
+            "created_at": t.proxy(renames["alert_created_at"]),
+            "updated_at": t.proxy(renames["alert_updated_at"]).optional(),
+            "url": t.proxy(renames["alert_url"]),
+            "html_url": t.proxy(renames["alert_html_url"]),
+            "instances_url": t.proxy(renames["alert_instances_url"]),
+            "state": t.proxy(renames["code_scanning_alert_state"]),
+            "fixed_at": t.proxy(renames["alert_fixed_at"]).optional(),
+            "dismissed_by": t.proxy(renames["nullable_simple_user"]),
+            "dismissed_at": t.proxy(renames["alert_dismissed_at"]),
             "dismissed_reason": t.proxy(
-                renames["code-scanning-alert-dismissed-reason"]
+                renames["code_scanning_alert_dismissed_reason"]
             ),
             "dismissed_comment": t.proxy(
-                renames["code-scanning-alert-dismissed-comment"]
+                renames["code_scanning_alert_dismissed_comment"]
             ).optional(),
-            "rule": t.proxy(renames["code-scanning-alert-rule"]),
-            "tool": t.proxy(renames["code-scanning-analysis-tool"]),
-            "most_recent_instance": t.proxy(renames["code-scanning-alert-instance"]),
+            "rule": t.proxy(renames["code_scanning_alert_rule"]),
+            "tool": t.proxy(renames["code_scanning_analysis_tool"]),
+            "most_recent_instance": t.proxy(renames["code_scanning_alert_instance"]),
         }
-    ).named(renames["code-scanning-alert"])
-    types["code-scanning-alert-set-state"] = t.string().named(
-        renames["code-scanning-alert-set-state"]
+    ).named(renames["code_scanning_alert"])
+    types["code_scanning_alert_set_state"] = t.string().named(
+        renames["code_scanning_alert_set_state"]
     )
-    types["code-scanning-analysis-sarif-id"] = t.string().named(
-        renames["code-scanning-analysis-sarif-id"]
+    types["code_scanning_analysis_sarif_id"] = t.string().named(
+        renames["code_scanning_analysis_sarif_id"]
     )
-    types["code-scanning-analysis-commit-sha"] = t.string().named(
-        renames["code-scanning-analysis-commit-sha"]
+    types["code_scanning_analysis_commit_sha"] = t.string().named(
+        renames["code_scanning_analysis_commit_sha"]
     )
-    types["code-scanning-analysis-environment"] = t.string().named(
-        renames["code-scanning-analysis-environment"]
+    types["code_scanning_analysis_environment"] = t.string().named(
+        renames["code_scanning_analysis_environment"]
     )
-    types["code-scanning-analysis-created-at"] = t.string().named(
-        renames["code-scanning-analysis-created-at"]
+    types["code_scanning_analysis_created_at"] = t.string().named(
+        renames["code_scanning_analysis_created_at"]
     )
-    types["code-scanning-analysis-url"] = t.string().named(
-        renames["code-scanning-analysis-url"]
+    types["code_scanning_analysis_url"] = t.string().named(
+        renames["code_scanning_analysis_url"]
     )
-    types["code-scanning-analysis"] = t.struct(
+    types["code_scanning_analysis"] = t.struct(
         {
-            "ref": t.proxy(renames["code-scanning-ref"]),
-            "commit_sha": t.proxy(renames["code-scanning-analysis-commit-sha"]),
-            "analysis_key": t.proxy(renames["code-scanning-analysis-analysis-key"]),
-            "environment": t.proxy(renames["code-scanning-analysis-environment"]),
-            "category": t.proxy(renames["code-scanning-analysis-category"]).optional(),
+            "ref": t.proxy(renames["code_scanning_ref"]),
+            "commit_sha": t.proxy(renames["code_scanning_analysis_commit_sha"]),
+            "analysis_key": t.proxy(renames["code_scanning_analysis_analysis_key"]),
+            "environment": t.proxy(renames["code_scanning_analysis_environment"]),
+            "category": t.proxy(renames["code_scanning_analysis_category"]).optional(),
             "error": t.string(),
-            "created_at": t.proxy(renames["code-scanning-analysis-created-at"]),
+            "created_at": t.proxy(renames["code_scanning_analysis_created_at"]),
             "results_count": t.integer(),
             "rules_count": t.integer(),
             "id": t.integer(),
-            "url": t.proxy(renames["code-scanning-analysis-url"]),
-            "sarif_id": t.proxy(renames["code-scanning-analysis-sarif-id"]),
-            "tool": t.proxy(renames["code-scanning-analysis-tool"]),
+            "url": t.proxy(renames["code_scanning_analysis_url"]),
+            "sarif_id": t.proxy(renames["code_scanning_analysis_sarif_id"]),
+            "tool": t.proxy(renames["code_scanning_analysis_tool"]),
             "deletable": t.boolean(),
             "warning": t.string(),
         }
-    ).named(renames["code-scanning-analysis"])
-    types["code-scanning-analysis-deletion"] = t.struct(
+    ).named(renames["code_scanning_analysis"])
+    types["code_scanning_analysis_deletion"] = t.struct(
         {
             "next_analysis_url": t.string().optional(),
             "confirm_delete_url": t.string().optional(),
         }
-    ).named(renames["code-scanning-analysis-deletion"])
-    types["code-scanning-codeql-database"] = t.struct(
+    ).named(renames["code_scanning_analysis_deletion"])
+    types["code_scanning_codeql_database"] = t.struct(
         {
             "id": t.integer(),
             "name": t.string(),
             "language": t.string(),
-            "uploader": t.proxy(renames["simple-user"]),
+            "uploader": t.proxy(renames["simple_user"]),
             "content_type": t.string(),
             "size": t.integer(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "url": t.string(),
         }
-    ).named(renames["code-scanning-codeql-database"])
-    types["code-scanning-default-setup"] = t.struct(
+    ).named(renames["code_scanning_codeql_database"])
+    types["code_scanning_default_setup"] = t.struct(
         {
             "state": t.string().optional(),
             "languages": t.array(t.string()).optional(),
             "query_suite": t.string().optional(),
             "updated_at": t.string().optional(),
         }
-    ).named(renames["code-scanning-default-setup"])
-    types["code-scanning-default-setup-update"] = t.struct(
+    ).named(renames["code_scanning_default_setup"])
+    types["code_scanning_default_setup_update"] = t.struct(
         {"state": t.string(), "query_suite": t.string().optional()}
-    ).named(renames["code-scanning-default-setup-update"])
-    types["code-scanning-default-setup-update-response"] = t.struct(
+    ).named(renames["code_scanning_default_setup_update"])
+    types["code_scanning_default_setup_update_response"] = t.struct(
         {"run_id": t.integer().optional(), "run_url": t.string().optional()}
-    ).named(renames["code-scanning-default-setup-update-response"])
-    types["code-scanning-analysis-sarif-file"] = t.string().named(
-        renames["code-scanning-analysis-sarif-file"]
+    ).named(renames["code_scanning_default_setup_update_response"])
+    types["code_scanning_analysis_sarif_file"] = t.string().named(
+        renames["code_scanning_analysis_sarif_file"]
     )
-    types["code-scanning-sarifs-receipt"] = t.struct(
+    types["code_scanning_sarifs_receipt"] = t.struct(
         {
-            "id": t.proxy(renames["code-scanning-analysis-sarif-id"]).optional(),
+            "id": t.proxy(renames["code_scanning_analysis_sarif_id"]).optional(),
             "url": t.string().optional(),
         }
-    ).named(renames["code-scanning-sarifs-receipt"])
-    types["code-scanning-sarifs-status"] = t.struct(
+    ).named(renames["code_scanning_sarifs_receipt"])
+    types["code_scanning_sarifs_status"] = t.struct(
         {
             "processing_status": t.string().optional(),
             "analyses_url": t.string().optional(),
             "errors": t.array(t.string()).optional(),
         }
-    ).named(renames["code-scanning-sarifs-status"])
-    types["codeowners-errors"] = t.struct(
+    ).named(renames["code_scanning_sarifs_status"])
+    types["codeowners_errors"] = t.struct(
         {
             "errors": t.array(
                 t.struct(
@@ -4793,8 +4793,8 @@ def import_github(params=None):
                 )
             )
         }
-    ).named(renames["codeowners-errors"])
-    types["codespace-machine"] = t.struct(
+    ).named(renames["codeowners_errors"])
+    types["codespace_machine"] = t.struct(
         {
             "name": t.string(),
             "display_name": t.string(),
@@ -4804,10 +4804,10 @@ def import_github(params=None):
             "cpus": t.integer(),
             "prebuild_availability": t.string().optional(),
         }
-    ).named(renames["codespace-machine"])
-    types["repo-codespaces-secret"] = t.struct(
+    ).named(renames["codespace_machine"])
+    types["repo_codespaces_secret"] = t.struct(
         {"name": t.string(), "created_at": t.string(), "updated_at": t.string()}
-    ).named(renames["repo-codespaces-secret"])
+    ).named(renames["repo_codespaces_secret"])
     types["collaborator"] = t.struct(
         {
             "login": t.string(),
@@ -4842,12 +4842,12 @@ def import_github(params=None):
             "role_name": t.string(),
         }
     ).named(renames["collaborator"])
-    types["repository-invitation"] = t.struct(
+    types["repository_invitation"] = t.struct(
         {
             "id": t.integer(),
-            "repository": t.proxy(renames["minimal-repository"]),
-            "invitee": t.proxy(renames["nullable-simple-user"]),
-            "inviter": t.proxy(renames["nullable-simple-user"]),
+            "repository": t.proxy(renames["minimal_repository"]),
+            "invitee": t.proxy(renames["nullable_simple_user"]),
+            "inviter": t.proxy(renames["nullable_simple_user"]),
             "permissions": t.string(),
             "created_at": t.string(),
             "expired": t.boolean().optional(),
@@ -4855,8 +4855,8 @@ def import_github(params=None):
             "html_url": t.string(),
             "node_id": t.string(),
         }
-    ).named(renames["repository-invitation"])
-    types["nullable-collaborator"] = (
+    ).named(renames["repository_invitation"])
+    types["nullable_collaborator"] = (
         t.struct(
             {
                 "login": t.string(),
@@ -4892,16 +4892,16 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-collaborator"])
+        .named(renames["nullable_collaborator"])
     )
-    types["repository-collaborator-permission"] = t.struct(
+    types["repository_collaborator_permission"] = t.struct(
         {
             "permission": t.string(),
             "role_name": t.string(),
-            "user": t.proxy(renames["nullable-collaborator"]),
+            "user": t.proxy(renames["nullable_collaborator"]),
         }
-    ).named(renames["repository-collaborator-permission"])
-    types["commit-comment"] = t.struct(
+    ).named(renames["repository_collaborator_permission"])
+    types["commit_comment"] = t.struct(
         {
             "html_url": t.string(),
             "url": t.string(),
@@ -4912,34 +4912,34 @@ def import_github(params=None):
             "position": t.integer().optional(),
             "line": t.integer().optional(),
             "commit_id": t.string(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
-            "author_association": t.proxy(renames["author-association"]),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "author_association": t.proxy(renames["author_association"]),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
-    ).named(renames["commit-comment"])
-    types["branch-short"] = t.struct(
+    ).named(renames["commit_comment"])
+    types["branch_short"] = t.struct(
         {
             "name": t.string(),
             "commit": t.struct({"sha": t.string(), "url": t.string()}),
             "protected": t.boolean(),
         }
-    ).named(renames["branch-short"])
+    ).named(renames["branch_short"])
     types["link"] = t.struct({"href": t.string()}).named(renames["link"])
-    types["auto-merge"] = (
+    types["auto_merge"] = (
         t.struct(
             {
-                "enabled_by": t.proxy(renames["simple-user"]),
+                "enabled_by": t.proxy(renames["simple_user"]),
                 "merge_method": t.string(),
                 "commit_title": t.string(),
                 "commit_message": t.string(),
             }
         )
         .optional()
-        .named(renames["auto-merge"])
+        .named(renames["auto_merge"])
     )
-    types["pull-request-simple"] = t.struct(
+    types["pull_request_simple"] = t.struct(
         {
             "url": t.string(),
             "id": t.integer(),
@@ -4957,7 +4957,7 @@ def import_github(params=None):
             "state": t.string(),
             "locked": t.boolean(),
             "title": t.string(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "body": t.string().optional(),
             "labels": t.array(
                 t.struct(
@@ -4972,16 +4972,16 @@ def import_github(params=None):
                     }
                 )
             ),
-            "milestone": t.proxy(renames["nullable-milestone"]),
+            "milestone": t.proxy(renames["nullable_milestone"]),
             "active_lock_reason": t.string().optional(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "closed_at": t.string().optional(),
             "merged_at": t.string().optional(),
             "merge_commit_sha": t.string().optional(),
-            "assignee": t.proxy(renames["nullable-simple-user"]),
-            "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
-            "requested_reviewers": t.array(t.proxy(renames["simple-user"])).optional(),
+            "assignee": t.proxy(renames["nullable_simple_user"]),
+            "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
+            "requested_reviewers": t.array(t.proxy(renames["simple_user"])).optional(),
             "requested_teams": t.array(t.proxy(renames["team"])).optional(),
             "head": t.struct(
                 {
@@ -4989,7 +4989,7 @@ def import_github(params=None):
                     "ref": t.string(),
                     "repo": t.proxy(renames["repository"]),
                     "sha": t.string(),
-                    "user": t.proxy(renames["nullable-simple-user"]),
+                    "user": t.proxy(renames["nullable_simple_user"]),
                 }
             ),
             "base": t.struct(
@@ -4998,7 +4998,7 @@ def import_github(params=None):
                     "ref": t.string(),
                     "repo": t.proxy(renames["repository"]),
                     "sha": t.string(),
-                    "user": t.proxy(renames["nullable-simple-user"]),
+                    "user": t.proxy(renames["nullable_simple_user"]),
                 }
             ),
             "_links": t.struct(
@@ -5013,12 +5013,12 @@ def import_github(params=None):
                     "self": t.proxy(renames["link"]),
                 }
             ),
-            "author_association": t.proxy(renames["author-association"]),
-            "auto_merge": t.proxy(renames["auto-merge"]),
+            "author_association": t.proxy(renames["author_association"]),
+            "auto_merge": t.proxy(renames["auto_merge"]),
             "draft": t.boolean().optional(),
         }
-    ).named(renames["pull-request-simple"])
-    types["simple-commit-status"] = t.struct(
+    ).named(renames["pull_request_simple"])
+    types["simple_commit_status"] = t.struct(
         {
             "description": t.string().optional(),
             "id": t.integer(),
@@ -5032,18 +5032,18 @@ def import_github(params=None):
             "created_at": t.string(),
             "updated_at": t.string(),
         }
-    ).named(renames["simple-commit-status"])
-    types["combined-commit-status"] = t.struct(
+    ).named(renames["simple_commit_status"])
+    types["combined_commit_status"] = t.struct(
         {
             "state": t.string(),
-            "statuses": t.array(t.proxy(renames["simple-commit-status"])),
+            "statuses": t.array(t.proxy(renames["simple_commit_status"])),
             "sha": t.string(),
             "total_count": t.integer(),
-            "repository": t.proxy(renames["minimal-repository"]),
+            "repository": t.proxy(renames["minimal_repository"]),
             "commit_url": t.string(),
             "url": t.string(),
         }
-    ).named(renames["combined-commit-status"])
+    ).named(renames["combined_commit_status"])
     types["status"] = t.struct(
         {
             "url": t.string(),
@@ -5056,10 +5056,10 @@ def import_github(params=None):
             "context": t.string(),
             "created_at": t.string(),
             "updated_at": t.string(),
-            "creator": t.proxy(renames["nullable-simple-user"]),
+            "creator": t.proxy(renames["nullable_simple_user"]),
         }
     ).named(renames["status"])
-    types["nullable-code-of-conduct-simple"] = (
+    types["nullable_code_of_conduct_simple"] = (
         t.struct(
             {
                 "url": t.string(),
@@ -5069,14 +5069,14 @@ def import_github(params=None):
             }
         )
         .optional()
-        .named(renames["nullable-code-of-conduct-simple"])
+        .named(renames["nullable_code_of_conduct_simple"])
     )
-    types["nullable-community-health-file"] = (
+    types["nullable_community_health_file"] = (
         t.struct({"url": t.string(), "html_url": t.string()})
         .optional()
-        .named(renames["nullable-community-health-file"])
+        .named(renames["nullable_community_health_file"])
     )
-    types["community-profile"] = t.struct(
+    types["community_profile"] = t.struct(
         {
             "health_percentage": t.integer(),
             "description": t.string().optional(),
@@ -5084,27 +5084,27 @@ def import_github(params=None):
             "files": t.struct(
                 {
                     "code_of_conduct": t.proxy(
-                        renames["nullable-code-of-conduct-simple"]
+                        renames["nullable_code_of_conduct_simple"]
                     ),
                     "code_of_conduct_file": t.proxy(
-                        renames["nullable-community-health-file"]
+                        renames["nullable_community_health_file"]
                     ),
-                    "license": t.proxy(renames["nullable-license-simple"]),
-                    "contributing": t.proxy(renames["nullable-community-health-file"]),
-                    "readme": t.proxy(renames["nullable-community-health-file"]),
+                    "license": t.proxy(renames["nullable_license_simple"]),
+                    "contributing": t.proxy(renames["nullable_community_health_file"]),
+                    "readme": t.proxy(renames["nullable_community_health_file"]),
                     "issue_template": t.proxy(
-                        renames["nullable-community-health-file"]
+                        renames["nullable_community_health_file"]
                     ),
                     "pull_request_template": t.proxy(
-                        renames["nullable-community-health-file"]
+                        renames["nullable_community_health_file"]
                     ),
                 }
             ),
             "updated_at": t.string().optional(),
             "content_reports_enabled": t.boolean().optional(),
         }
-    ).named(renames["community-profile"])
-    types["commit-comparison"] = t.struct(
+    ).named(renames["community_profile"])
+    types["commit_comparison"] = t.struct(
         {
             "url": t.string(),
             "html_url": t.string(),
@@ -5118,10 +5118,10 @@ def import_github(params=None):
             "behind_by": t.integer(),
             "total_commits": t.integer(),
             "commits": t.array(t.proxy(renames["commit"])),
-            "files": t.array(t.proxy(renames["diff-entry"])).optional(),
+            "files": t.array(t.proxy(renames["diff_entry"])).optional(),
         }
-    ).named(renames["commit-comparison"])
-    types["content-tree"] = t.struct(
+    ).named(renames["commit_comparison"])
+    types["content_tree"] = t.struct(
         {
             "type": t.string(),
             "size": t.integer(),
@@ -5163,8 +5163,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["content-tree"])
-    types["content-directory"] = t.array(
+    ).named(renames["content_tree"])
+    types["content_directory"] = t.array(
         t.struct(
             {
                 "type": t.string(),
@@ -5186,8 +5186,8 @@ def import_github(params=None):
                 ),
             }
         )
-    ).named(renames["content-directory"])
-    types["content-file"] = t.struct(
+    ).named(renames["content_directory"])
+    types["content_file"] = t.struct(
         {
             "type": t.string(),
             "encoding": t.string(),
@@ -5210,8 +5210,8 @@ def import_github(params=None):
             "target": t.string().optional(),
             "submodule_git_url": t.string().optional(),
         }
-    ).named(renames["content-file"])
-    types["content-symlink"] = t.struct(
+    ).named(renames["content_file"])
+    types["content_symlink"] = t.struct(
         {
             "type": t.string(),
             "target": t.string(),
@@ -5231,8 +5231,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["content-symlink"])
-    types["content-submodule"] = t.struct(
+    ).named(renames["content_symlink"])
+    types["content_submodule"] = t.struct(
         {
             "type": t.string(),
             "submodule_git_url": t.string(),
@@ -5252,8 +5252,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["content-submodule"])
-    types["file-commit"] = t.struct(
+    ).named(renames["content_submodule"])
+    types["file_commit"] = t.struct(
         {
             "content": t.struct(
                 {
@@ -5319,7 +5319,7 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["file-commit"])
+    ).named(renames["file_commit"])
     types["contributor"] = t.struct(
         {
             "login": t.string().optional(),
@@ -5345,37 +5345,37 @@ def import_github(params=None):
             "name": t.string().optional(),
         }
     ).named(renames["contributor"])
-    types["dependabot-alert"] = t.struct(
+    types["dependabot_alert"] = t.struct(
         {
-            "number": t.proxy(renames["alert-number"]),
+            "number": t.proxy(renames["alert_number"]),
             "state": t.string(),
             "dependency": t.struct(
                 {
-                    "package": t.proxy(renames["dependabot-alert-package"]).optional(),
+                    "package": t.proxy(renames["dependabot_alert_package"]).optional(),
                     "manifest_path": t.string().optional(),
                     "scope": t.string().optional(),
                 }
             ),
-            "security_advisory": t.proxy(renames["dependabot-alert-security-advisory"]),
+            "security_advisory": t.proxy(renames["dependabot_alert_security_advisory"]),
             "security_vulnerability": t.proxy(
-                renames["dependabot-alert-security-vulnerability"]
+                renames["dependabot_alert_security_vulnerability"]
             ),
-            "url": t.proxy(renames["alert-url"]),
-            "html_url": t.proxy(renames["alert-html-url"]),
-            "created_at": t.proxy(renames["alert-created-at"]),
-            "updated_at": t.proxy(renames["alert-updated-at"]),
-            "dismissed_at": t.proxy(renames["alert-dismissed-at"]),
-            "dismissed_by": t.proxy(renames["nullable-simple-user"]),
+            "url": t.proxy(renames["alert_url"]),
+            "html_url": t.proxy(renames["alert_html_url"]),
+            "created_at": t.proxy(renames["alert_created_at"]),
+            "updated_at": t.proxy(renames["alert_updated_at"]),
+            "dismissed_at": t.proxy(renames["alert_dismissed_at"]),
+            "dismissed_by": t.proxy(renames["nullable_simple_user"]),
             "dismissed_reason": t.string().optional(),
             "dismissed_comment": t.string().optional(),
-            "fixed_at": t.proxy(renames["alert-fixed-at"]),
-            "auto_dismissed_at": t.proxy(renames["alert-auto-dismissed-at"]).optional(),
+            "fixed_at": t.proxy(renames["alert_fixed_at"]),
+            "auto_dismissed_at": t.proxy(renames["alert_auto_dismissed_at"]).optional(),
         }
-    ).named(renames["dependabot-alert"])
-    types["dependabot-secret"] = t.struct(
+    ).named(renames["dependabot_alert"])
+    types["dependabot_secret"] = t.struct(
         {"name": t.string(), "created_at": t.string(), "updated_at": t.string()}
-    ).named(renames["dependabot-secret"])
-    types["dependency-graph-diff"] = t.array(
+    ).named(renames["dependabot_secret"])
+    types["dependency_graph_diff"] = t.array(
         t.struct(
             {
                 "change_type": t.string(),
@@ -5399,8 +5399,8 @@ def import_github(params=None):
                 "scope": t.string(),
             }
         )
-    ).named(renames["dependency-graph-diff"])
-    types["dependency-graph-spdx-sbom"] = t.struct(
+    ).named(renames["dependency_graph_diff"])
+    types["dependency_graph_spdx_sbom"] = t.struct(
         {
             "sbom": t.struct(
                 {
@@ -5439,7 +5439,7 @@ def import_github(params=None):
                 }
             )
         }
-    ).named(renames["dependency-graph-spdx-sbom"])
+    ).named(renames["dependency_graph_spdx_sbom"])
     types["metadata"] = t.struct({}).named(renames["metadata"])
     types["dependency"] = t.struct(
         {
@@ -5478,13 +5478,13 @@ def import_github(params=None):
             "scanned": t.string(),
         }
     ).named(renames["snapshot"])
-    types["deployment-status"] = t.struct(
+    types["deployment_status"] = t.struct(
         {
             "url": t.string(),
             "id": t.integer(),
             "node_id": t.string(),
             "state": t.string(),
-            "creator": t.proxy(renames["nullable-simple-user"]),
+            "creator": t.proxy(renames["nullable_simple_user"]),
             "description": t.string(),
             "environment": t.string().optional(),
             "target_url": t.string(),
@@ -5495,17 +5495,17 @@ def import_github(params=None):
             "environment_url": t.string().optional(),
             "log_url": t.string().optional(),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
         }
-    ).named(renames["deployment-status"])
-    types["wait-timer"] = t.integer().named(renames["wait-timer"])
-    types["deployment-branch-policy-settings"] = (
+    ).named(renames["deployment_status"])
+    types["wait_timer"] = t.integer().named(renames["wait_timer"])
+    types["deployment_branch_policy_settings"] = (
         t.struct(
             {"protected_branches": t.boolean(), "custom_branch_policies": t.boolean()}
         )
         .optional()
-        .named(renames["deployment-branch-policy-settings"])
+        .named(renames["deployment_branch_policy_settings"])
     )
     types["environment"] = t.struct(
         {
@@ -5524,7 +5524,7 @@ def import_github(params=None):
                                 "id": t.integer(),
                                 "node_id": t.string(),
                                 "type": t.string(),
-                                "wait_timer": t.proxy(renames["wait-timer"]).optional(),
+                                "wait_timer": t.proxy(renames["wait_timer"]).optional(),
                             }
                         ),
                         t.struct(
@@ -5536,11 +5536,11 @@ def import_github(params=None):
                                     t.struct(
                                         {
                                             "type": t.proxy(
-                                                renames["deployment-reviewer-type"]
+                                                renames["deployment_reviewer_type"]
                                             ).optional(),
                                             "reviewer": t.union(
                                                 [
-                                                    t.proxy(renames["simple-user"]),
+                                                    t.proxy(renames["simple_user"]),
                                                     t.proxy(renames["team"]),
                                                 ]
                                             ).optional(),
@@ -5560,38 +5560,38 @@ def import_github(params=None):
                 )
             ).optional(),
             "deployment_branch_policy": t.proxy(
-                renames["deployment-branch-policy-settings"]
+                renames["deployment_branch_policy_settings"]
             ).optional(),
         }
     ).named(renames["environment"])
-    types["deployment-branch-policy"] = t.struct(
+    types["deployment_branch_policy"] = t.struct(
         {
             "id": t.integer().optional(),
             "node_id": t.string().optional(),
             "name": t.string().optional(),
         }
-    ).named(renames["deployment-branch-policy"])
-    types["deployment-branch-policy-name-pattern"] = t.struct(
+    ).named(renames["deployment_branch_policy"])
+    types["deployment_branch_policy_name_pattern"] = t.struct(
         {"name": t.string()}
-    ).named(renames["deployment-branch-policy-name-pattern"])
-    types["custom-deployment-rule-app"] = t.struct(
+    ).named(renames["deployment_branch_policy_name_pattern"])
+    types["custom_deployment_rule_app"] = t.struct(
         {
             "id": t.integer(),
             "slug": t.string(),
             "integration_url": t.string(),
             "node_id": t.string(),
         }
-    ).named(renames["custom-deployment-rule-app"])
-    types["deployment-protection-rule"] = t.struct(
+    ).named(renames["custom_deployment_rule_app"])
+    types["deployment_protection_rule"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "enabled": t.boolean(),
-            "app": t.proxy(renames["custom-deployment-rule-app"]),
+            "app": t.proxy(renames["custom_deployment_rule_app"]),
         }
-    ).named(renames["deployment-protection-rule"])
-    types["short-blob"] = t.struct({"url": t.string(), "sha": t.string()}).named(
-        renames["short-blob"]
+    ).named(renames["deployment_protection_rule"])
+    types["short_blob"] = t.struct({"url": t.string(), "sha": t.string()}).named(
+        renames["short_blob"]
     )
     types["blob"] = t.struct(
         {
@@ -5604,7 +5604,7 @@ def import_github(params=None):
             "highlighted_content": t.string().optional(),
         }
     ).named(renames["blob"])
-    types["git-commit"] = t.struct(
+    types["git_commit"] = t.struct(
         {
             "sha": t.string(),
             "node_id": t.string(),
@@ -5630,8 +5630,8 @@ def import_github(params=None):
             ),
             "html_url": t.string(),
         }
-    ).named(renames["git-commit"])
-    types["git-ref"] = t.struct(
+    ).named(renames["git_commit"])
+    types["git_ref"] = t.struct(
         {
             "ref": t.string(),
             "node_id": t.string(),
@@ -5640,8 +5640,8 @@ def import_github(params=None):
                 {"type": t.string(), "sha": t.string(), "url": t.string()}
             ),
         }
-    ).named(renames["git-ref"])
-    types["git-tag"] = t.struct(
+    ).named(renames["git_ref"])
+    types["git_tag"] = t.struct(
         {
             "node_id": t.string(),
             "tag": t.string(),
@@ -5656,8 +5656,8 @@ def import_github(params=None):
             ),
             "verification": t.proxy(renames["verification"]).optional(),
         }
-    ).named(renames["git-tag"])
-    types["git-tree"] = t.struct(
+    ).named(renames["git_tag"])
+    types["git_tree"] = t.struct(
         {
             "sha": t.string(),
             "url": t.string(),
@@ -5675,14 +5675,14 @@ def import_github(params=None):
                 )
             ),
         }
-    ).named(renames["git-tree"])
-    types["hook-response"] = t.struct(
+    ).named(renames["git_tree"])
+    types["hook_response"] = t.struct(
         {
             "code": t.integer().optional(),
             "status": t.string().optional(),
             "message": t.string().optional(),
         }
-    ).named(renames["hook-response"])
+    ).named(renames["hook_response"])
     types["hook"] = t.struct(
         {
             "type": t.string(),
@@ -5696,15 +5696,15 @@ def import_github(params=None):
                     "password": t.string().optional(),
                     "room": t.string().optional(),
                     "subdomain": t.string().optional(),
-                    "url": t.proxy(renames["webhook-config-url"]).optional(),
+                    "url": t.proxy(renames["webhook_config_url"]).optional(),
                     "insecure_ssl": t.proxy(
-                        renames["webhook-config-insecure-ssl"]
+                        renames["webhook_config_insecure_ssl"]
                     ).optional(),
                     "content_type": t.proxy(
-                        renames["webhook-config-content-type"]
+                        renames["webhook_config_content_type"]
                     ).optional(),
                     "digest": t.string().optional(),
-                    "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                    "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                     "token": t.string().optional(),
                 }
             ),
@@ -5714,10 +5714,10 @@ def import_github(params=None):
             "test_url": t.string(),
             "ping_url": t.string(),
             "deliveries_url": t.string().optional(),
-            "last_response": t.proxy(renames["hook-response"]),
+            "last_response": t.proxy(renames["hook_response"]),
         }
     ).named(renames["hook"])
-    types["import"] = t.struct(
+    types["ximport"] = t.struct(
         {
             "vcs": t.string().optional(),
             "use_lfs": t.boolean().optional(),
@@ -5751,8 +5751,8 @@ def import_github(params=None):
             "repository_url": t.string(),
             "svn_root": t.string().optional(),
         }
-    ).named(renames["import"])
-    types["porter-author"] = t.struct(
+    ).named(renames["ximport"])
+    types["porter_author"] = t.struct(
         {
             "id": t.integer(),
             "remote_id": t.string(),
@@ -5762,16 +5762,16 @@ def import_github(params=None):
             "url": t.string(),
             "import_url": t.string(),
         }
-    ).named(renames["porter-author"])
-    types["porter-large-file"] = t.struct(
+    ).named(renames["porter_author"])
+    types["porter_large_file"] = t.struct(
         {
             "ref_name": t.string(),
             "path": t.string(),
             "oid": t.string(),
             "size": t.integer(),
         }
-    ).named(renames["porter-large-file"])
-    types["nullable-issue"] = (
+    ).named(renames["porter_large_file"])
+    types["nullable_issue"] = (
         t.struct(
             {
                 "id": t.integer(),
@@ -5787,7 +5787,7 @@ def import_github(params=None):
                 "state_reason": t.string().optional(),
                 "title": t.string(),
                 "body": t.string().optional(),
-                "user": t.proxy(renames["nullable-simple-user"]),
+                "user": t.proxy(renames["nullable_simple_user"]),
                 "labels": t.array(
                     t.either(
                         [
@@ -5806,9 +5806,9 @@ def import_github(params=None):
                         ]
                     )
                 ),
-                "assignee": t.proxy(renames["nullable-simple-user"]),
-                "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
-                "milestone": t.proxy(renames["nullable-milestone"]),
+                "assignee": t.proxy(renames["nullable_simple_user"]),
+                "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
+                "milestone": t.proxy(renames["nullable_milestone"]),
                 "locked": t.boolean(),
                 "active_lock_reason": t.string().optional(),
                 "comments": t.integer(),
@@ -5825,36 +5825,36 @@ def import_github(params=None):
                 "created_at": t.string(),
                 "updated_at": t.string(),
                 "draft": t.boolean().optional(),
-                "closed_by": t.proxy(renames["nullable-simple-user"]).optional(),
+                "closed_by": t.proxy(renames["nullable_simple_user"]).optional(),
                 "body_html": t.string().optional(),
                 "body_text": t.string().optional(),
                 "timeline_url": t.string().optional(),
                 "repository": t.proxy(renames["repository"]).optional(),
                 "performed_via_github_app": t.proxy(
-                    renames["nullable-integration"]
+                    renames["nullable_integration"]
                 ).optional(),
-                "author_association": t.proxy(renames["author-association"]),
-                "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+                "author_association": t.proxy(renames["author_association"]),
+                "reactions": t.proxy(renames["reaction_rollup"]).optional(),
             }
         )
         .optional()
-        .named(renames["nullable-issue"])
+        .named(renames["nullable_issue"])
     )
-    types["issue-event-label"] = t.struct(
+    types["issue_event_label"] = t.struct(
         {"name": t.string().optional(), "color": t.string().optional()}
-    ).named(renames["issue-event-label"])
-    types["issue-event-dismissed-review"] = t.struct(
+    ).named(renames["issue_event_label"])
+    types["issue_event_dismissed_review"] = t.struct(
         {
             "state": t.string(),
             "review_id": t.integer(),
             "dismissal_message": t.string().optional(),
             "dismissal_commit_id": t.string().optional(),
         }
-    ).named(renames["issue-event-dismissed-review"])
-    types["issue-event-milestone"] = t.struct({"title": t.string()}).named(
-        renames["issue-event-milestone"]
+    ).named(renames["issue_event_dismissed_review"])
+    types["issue_event_milestone"] = t.struct({"title": t.string()}).named(
+        renames["issue_event_milestone"]
     )
-    types["issue-event-project-card"] = t.struct(
+    types["issue_event_project_card"] = t.struct(
         {
             "url": t.string(),
             "id": t.integer(),
@@ -5863,183 +5863,183 @@ def import_github(params=None):
             "column_name": t.string(),
             "previous_column_name": t.string().optional(),
         }
-    ).named(renames["issue-event-project-card"])
-    types["issue-event-rename"] = t.struct(
+    ).named(renames["issue_event_project_card"])
+    types["issue_event_rename"] = t.struct(
         {"from": t.string(), "to": t.string()}
-    ).named(renames["issue-event-rename"])
-    types["issue-event"] = t.struct(
+    ).named(renames["issue_event_rename"])
+    types["issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["nullable-simple-user"]),
+            "actor": t.proxy(renames["nullable_simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "issue": t.proxy(renames["nullable-issue"]).optional(),
-            "label": t.proxy(renames["issue-event-label"]).optional(),
-            "assignee": t.proxy(renames["nullable-simple-user"]).optional(),
-            "assigner": t.proxy(renames["nullable-simple-user"]).optional(),
-            "review_requester": t.proxy(renames["nullable-simple-user"]).optional(),
-            "requested_reviewer": t.proxy(renames["nullable-simple-user"]).optional(),
+            "issue": t.proxy(renames["nullable_issue"]).optional(),
+            "label": t.proxy(renames["issue_event_label"]).optional(),
+            "assignee": t.proxy(renames["nullable_simple_user"]).optional(),
+            "assigner": t.proxy(renames["nullable_simple_user"]).optional(),
+            "review_requester": t.proxy(renames["nullable_simple_user"]).optional(),
+            "requested_reviewer": t.proxy(renames["nullable_simple_user"]).optional(),
             "requested_team": t.proxy(renames["team"]).optional(),
             "dismissed_review": t.proxy(
-                renames["issue-event-dismissed-review"]
+                renames["issue_event_dismissed_review"]
             ).optional(),
-            "milestone": t.proxy(renames["issue-event-milestone"]).optional(),
-            "project_card": t.proxy(renames["issue-event-project-card"]).optional(),
-            "rename": t.proxy(renames["issue-event-rename"]).optional(),
-            "author_association": t.proxy(renames["author-association"]).optional(),
+            "milestone": t.proxy(renames["issue_event_milestone"]).optional(),
+            "project_card": t.proxy(renames["issue_event_project_card"]).optional(),
+            "rename": t.proxy(renames["issue_event_rename"]).optional(),
+            "author_association": t.proxy(renames["author_association"]).optional(),
             "lock_reason": t.string().optional(),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
         }
-    ).named(renames["issue-event"])
-    types["labeled-issue-event"] = t.struct(
+    ).named(renames["issue_event"])
+    types["labeled_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "label": t.struct({"name": t.string(), "color": t.string()}),
         }
-    ).named(renames["labeled-issue-event"])
-    types["unlabeled-issue-event"] = t.struct(
+    ).named(renames["labeled_issue_event"])
+    types["unlabeled_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "label": t.struct({"name": t.string(), "color": t.string()}),
         }
-    ).named(renames["unlabeled-issue-event"])
-    types["assigned-issue-event"] = t.struct(
+    ).named(renames["unlabeled_issue_event"])
+    types["assigned_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
             "performed_via_github_app": t.proxy(renames["integration"]),
-            "assignee": t.proxy(renames["simple-user"]),
-            "assigner": t.proxy(renames["simple-user"]),
+            "assignee": t.proxy(renames["simple_user"]),
+            "assigner": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["assigned-issue-event"])
-    types["unassigned-issue-event"] = t.struct(
+    ).named(renames["assigned_issue_event"])
+    types["unassigned_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
-            "assignee": t.proxy(renames["simple-user"]),
-            "assigner": t.proxy(renames["simple-user"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
+            "assignee": t.proxy(renames["simple_user"]),
+            "assigner": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["unassigned-issue-event"])
-    types["milestoned-issue-event"] = t.struct(
+    ).named(renames["unassigned_issue_event"])
+    types["milestoned_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "milestone": t.struct({"title": t.string()}),
         }
-    ).named(renames["milestoned-issue-event"])
-    types["demilestoned-issue-event"] = t.struct(
+    ).named(renames["milestoned_issue_event"])
+    types["demilestoned_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "milestone": t.struct({"title": t.string()}),
         }
-    ).named(renames["demilestoned-issue-event"])
-    types["renamed-issue-event"] = t.struct(
+    ).named(renames["demilestoned_issue_event"])
+    types["renamed_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "rename": t.struct({"from": t.string(), "to": t.string()}),
         }
-    ).named(renames["renamed-issue-event"])
-    types["review-requested-issue-event"] = t.struct(
+    ).named(renames["renamed_issue_event"])
+    types["review_requested_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
-            "review_requester": t.proxy(renames["simple-user"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
+            "review_requester": t.proxy(renames["simple_user"]),
             "requested_team": t.proxy(renames["team"]).optional(),
-            "requested_reviewer": t.proxy(renames["simple-user"]).optional(),
+            "requested_reviewer": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["review-requested-issue-event"])
-    types["review-request-removed-issue-event"] = t.struct(
+    ).named(renames["review_requested_issue_event"])
+    types["review_request_removed_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
-            "review_requester": t.proxy(renames["simple-user"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
+            "review_requester": t.proxy(renames["simple_user"]),
             "requested_team": t.proxy(renames["team"]).optional(),
-            "requested_reviewer": t.proxy(renames["simple-user"]).optional(),
+            "requested_reviewer": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["review-request-removed-issue-event"])
-    types["review-dismissed-issue-event"] = t.struct(
+    ).named(renames["review_request_removed_issue_event"])
+    types["review_dismissed_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "dismissed_review": t.struct(
                 {
                     "state": t.string(),
@@ -6049,32 +6049,32 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["review-dismissed-issue-event"])
-    types["locked-issue-event"] = t.struct(
+    ).named(renames["review_dismissed_issue_event"])
+    types["locked_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "lock_reason": t.string().optional(),
         }
-    ).named(renames["locked-issue-event"])
-    types["added-to-project-issue-event"] = t.struct(
+    ).named(renames["locked_issue_event"])
+    types["added_to_project_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "project_card": t.struct(
                 {
                     "id": t.integer(),
@@ -6086,18 +6086,18 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["added-to-project-issue-event"])
-    types["moved-column-in-project-issue-event"] = t.struct(
+    ).named(renames["added_to_project_issue_event"])
+    types["moved_column_in_project_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "project_card": t.struct(
                 {
                     "id": t.integer(),
@@ -6109,18 +6109,18 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["moved-column-in-project-issue-event"])
-    types["removed-from-project-issue-event"] = t.struct(
+    ).named(renames["moved_column_in_project_issue_event"])
+    types["removed_from_project_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "project_card": t.struct(
                 {
                     "id": t.integer(),
@@ -6132,13 +6132,13 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["removed-from-project-issue-event"])
-    types["converted-note-to-issue-issue-event"] = t.struct(
+    ).named(renames["removed_from_project_issue_event"])
+    types["converted_note_to_issue_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
@@ -6155,26 +6155,26 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["converted-note-to-issue-issue-event"])
-    types["issue-event-for-issue"] = t.union(
+    ).named(renames["converted_note_to_issue_issue_event"])
+    types["issue_event_for_issue"] = t.union(
         [
-            t.proxy(renames["labeled-issue-event"]),
-            t.proxy(renames["unlabeled-issue-event"]),
-            t.proxy(renames["assigned-issue-event"]),
-            t.proxy(renames["unassigned-issue-event"]),
-            t.proxy(renames["milestoned-issue-event"]),
-            t.proxy(renames["demilestoned-issue-event"]),
-            t.proxy(renames["renamed-issue-event"]),
-            t.proxy(renames["review-requested-issue-event"]),
-            t.proxy(renames["review-request-removed-issue-event"]),
-            t.proxy(renames["review-dismissed-issue-event"]),
-            t.proxy(renames["locked-issue-event"]),
-            t.proxy(renames["added-to-project-issue-event"]),
-            t.proxy(renames["moved-column-in-project-issue-event"]),
-            t.proxy(renames["removed-from-project-issue-event"]),
-            t.proxy(renames["converted-note-to-issue-issue-event"]),
+            t.proxy(renames["labeled_issue_event"]),
+            t.proxy(renames["unlabeled_issue_event"]),
+            t.proxy(renames["assigned_issue_event"]),
+            t.proxy(renames["unassigned_issue_event"]),
+            t.proxy(renames["milestoned_issue_event"]),
+            t.proxy(renames["demilestoned_issue_event"]),
+            t.proxy(renames["renamed_issue_event"]),
+            t.proxy(renames["review_requested_issue_event"]),
+            t.proxy(renames["review_request_removed_issue_event"]),
+            t.proxy(renames["review_dismissed_issue_event"]),
+            t.proxy(renames["locked_issue_event"]),
+            t.proxy(renames["added_to_project_issue_event"]),
+            t.proxy(renames["moved_column_in_project_issue_event"]),
+            t.proxy(renames["removed_from_project_issue_event"]),
+            t.proxy(renames["converted_note_to_issue_issue_event"]),
         ]
-    ).named(renames["issue-event-for-issue"])
+    ).named(renames["issue_event_for_issue"])
     types["label"] = t.struct(
         {
             "id": t.integer(),
@@ -6186,10 +6186,10 @@ def import_github(params=None):
             "default": t.boolean(),
         }
     ).named(renames["label"])
-    types["timeline-comment-event"] = t.struct(
+    types["timeline_comment_event"] = t.struct(
         {
             "event": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
@@ -6197,21 +6197,21 @@ def import_github(params=None):
             "body_text": t.string().optional(),
             "body_html": t.string().optional(),
             "html_url": t.string(),
-            "user": t.proxy(renames["simple-user"]),
+            "user": t.proxy(renames["simple_user"]),
             "created_at": t.string(),
             "updated_at": t.string(),
             "issue_url": t.string(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
-    ).named(renames["timeline-comment-event"])
-    types["timeline-cross-referenced-event"] = t.struct(
+    ).named(renames["timeline_comment_event"])
+    types["timeline_cross_referenced_event"] = t.struct(
         {
             "event": t.string(),
-            "actor": t.proxy(renames["simple-user"]).optional(),
+            "actor": t.proxy(renames["simple_user"]).optional(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "source": t.struct(
@@ -6221,8 +6221,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["timeline-cross-referenced-event"])
-    types["timeline-committed-event"] = t.struct(
+    ).named(renames["timeline_cross_referenced_event"])
+    types["timeline_committed_event"] = t.struct(
         {
             "event": t.string().optional(),
             "sha": t.string(),
@@ -6249,13 +6249,13 @@ def import_github(params=None):
             ),
             "html_url": t.string(),
         }
-    ).named(renames["timeline-committed-event"])
-    types["timeline-reviewed-event"] = t.struct(
+    ).named(renames["timeline_committed_event"])
+    types["timeline_reviewed_event"] = t.struct(
         {
             "event": t.string(),
             "id": t.integer(),
             "node_id": t.string(),
-            "user": t.proxy(renames["simple-user"]),
+            "user": t.proxy(renames["simple_user"]),
             "body": t.string().optional(),
             "state": t.string(),
             "html_url": t.string(),
@@ -6270,10 +6270,10 @@ def import_github(params=None):
             "commit_id": t.string(),
             "body_html": t.string().optional(),
             "body_text": t.string().optional(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
         }
-    ).named(renames["timeline-reviewed-event"])
-    types["pull-request-review-comment"] = t.struct(
+    ).named(renames["timeline_reviewed_event"])
+    types["pull_request_review_comment"] = t.struct(
         {
             "url": t.string(),
             "pull_request_review_id": t.integer().optional(),
@@ -6286,13 +6286,13 @@ def import_github(params=None):
             "commit_id": t.string(),
             "original_commit_id": t.string(),
             "in_reply_to_id": t.integer().optional(),
-            "user": t.proxy(renames["simple-user"]),
+            "user": t.proxy(renames["simple_user"]),
             "body": t.string(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "html_url": t.string(),
             "pull_request_url": t.string(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
             "_links": t.struct(
                 {
                     "self": t.struct({"href": t.string()}),
@@ -6307,97 +6307,97 @@ def import_github(params=None):
             "original_line": t.integer().optional(),
             "side": t.string().optional(),
             "subject_type": t.string().optional(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
             "body_html": t.string().optional(),
             "body_text": t.string().optional(),
         }
-    ).named(renames["pull-request-review-comment"])
-    types["timeline-line-commented-event"] = t.struct(
+    ).named(renames["pull_request_review_comment"])
+    types["timeline_line_commented_event"] = t.struct(
         {
             "event": t.string().optional(),
             "node_id": t.string().optional(),
             "comments": t.array(
-                t.proxy(renames["pull-request-review-comment"])
+                t.proxy(renames["pull_request_review_comment"])
             ).optional(),
         }
-    ).named(renames["timeline-line-commented-event"])
-    types["timeline-commit-commented-event"] = t.struct(
+    ).named(renames["timeline_line_commented_event"])
+    types["timeline_commit_commented_event"] = t.struct(
         {
             "event": t.string().optional(),
             "node_id": t.string().optional(),
             "commit_id": t.string().optional(),
-            "comments": t.array(t.proxy(renames["commit-comment"])).optional(),
+            "comments": t.array(t.proxy(renames["commit_comment"])).optional(),
         }
-    ).named(renames["timeline-commit-commented-event"])
-    types["timeline-assigned-issue-event"] = t.struct(
+    ).named(renames["timeline_commit_commented_event"])
+    types["timeline_assigned_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
-            "assignee": t.proxy(renames["simple-user"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
+            "assignee": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["timeline-assigned-issue-event"])
-    types["timeline-unassigned-issue-event"] = t.struct(
+    ).named(renames["timeline_assigned_issue_event"])
+    types["timeline_unassigned_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
-            "assignee": t.proxy(renames["simple-user"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
+            "assignee": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["timeline-unassigned-issue-event"])
-    types["state-change-issue-event"] = t.struct(
+    ).named(renames["timeline_unassigned_issue_event"])
+    types["state_change_issue_event"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "url": t.string(),
-            "actor": t.proxy(renames["simple-user"]),
+            "actor": t.proxy(renames["simple_user"]),
             "event": t.string(),
             "commit_id": t.string().optional(),
             "commit_url": t.string().optional(),
             "created_at": t.string(),
-            "performed_via_github_app": t.proxy(renames["nullable-integration"]),
+            "performed_via_github_app": t.proxy(renames["nullable_integration"]),
             "state_reason": t.string().optional(),
         }
-    ).named(renames["state-change-issue-event"])
-    types["timeline-issue-events"] = t.union(
+    ).named(renames["state_change_issue_event"])
+    types["timeline_issue_events"] = t.union(
         [
-            t.proxy(renames["labeled-issue-event"]),
-            t.proxy(renames["unlabeled-issue-event"]),
-            t.proxy(renames["milestoned-issue-event"]),
-            t.proxy(renames["demilestoned-issue-event"]),
-            t.proxy(renames["renamed-issue-event"]),
-            t.proxy(renames["review-requested-issue-event"]),
-            t.proxy(renames["review-request-removed-issue-event"]),
-            t.proxy(renames["review-dismissed-issue-event"]),
-            t.proxy(renames["locked-issue-event"]),
-            t.proxy(renames["added-to-project-issue-event"]),
-            t.proxy(renames["moved-column-in-project-issue-event"]),
-            t.proxy(renames["removed-from-project-issue-event"]),
-            t.proxy(renames["converted-note-to-issue-issue-event"]),
-            t.proxy(renames["timeline-comment-event"]),
-            t.proxy(renames["timeline-cross-referenced-event"]),
-            t.proxy(renames["timeline-committed-event"]),
-            t.proxy(renames["timeline-reviewed-event"]),
-            t.proxy(renames["timeline-line-commented-event"]),
-            t.proxy(renames["timeline-commit-commented-event"]),
-            t.proxy(renames["timeline-assigned-issue-event"]),
-            t.proxy(renames["timeline-unassigned-issue-event"]),
-            t.proxy(renames["state-change-issue-event"]),
+            t.proxy(renames["labeled_issue_event"]),
+            t.proxy(renames["unlabeled_issue_event"]),
+            t.proxy(renames["milestoned_issue_event"]),
+            t.proxy(renames["demilestoned_issue_event"]),
+            t.proxy(renames["renamed_issue_event"]),
+            t.proxy(renames["review_requested_issue_event"]),
+            t.proxy(renames["review_request_removed_issue_event"]),
+            t.proxy(renames["review_dismissed_issue_event"]),
+            t.proxy(renames["locked_issue_event"]),
+            t.proxy(renames["added_to_project_issue_event"]),
+            t.proxy(renames["moved_column_in_project_issue_event"]),
+            t.proxy(renames["removed_from_project_issue_event"]),
+            t.proxy(renames["converted_note_to_issue_issue_event"]),
+            t.proxy(renames["timeline_comment_event"]),
+            t.proxy(renames["timeline_cross_referenced_event"]),
+            t.proxy(renames["timeline_committed_event"]),
+            t.proxy(renames["timeline_reviewed_event"]),
+            t.proxy(renames["timeline_line_commented_event"]),
+            t.proxy(renames["timeline_commit_commented_event"]),
+            t.proxy(renames["timeline_assigned_issue_event"]),
+            t.proxy(renames["timeline_unassigned_issue_event"]),
+            t.proxy(renames["state_change_issue_event"]),
         ]
-    ).named(renames["timeline-issue-events"])
-    types["deploy-key"] = t.struct(
+    ).named(renames["timeline_issue_events"])
+    types["deploy_key"] = t.struct(
         {
             "id": t.integer(),
             "key": t.string(),
@@ -6409,9 +6409,9 @@ def import_github(params=None):
             "added_by": t.string().optional(),
             "last_used": t.string().optional(),
         }
-    ).named(renames["deploy-key"])
+    ).named(renames["deploy_key"])
     types["language"] = t.struct({}).named(renames["language"])
-    types["license-content"] = t.struct(
+    types["license_content"] = t.struct(
         {
             "name": t.string(),
             "path": t.string(),
@@ -6431,16 +6431,16 @@ def import_github(params=None):
                     "self": t.string(),
                 }
             ),
-            "license": t.proxy(renames["nullable-license-simple"]),
+            "license": t.proxy(renames["nullable_license_simple"]),
         }
-    ).named(renames["license-content"])
-    types["merged-upstream"] = t.struct(
+    ).named(renames["license_content"])
+    types["merged_upstream"] = t.struct(
         {
             "message": t.string().optional(),
             "merge_type": t.string().optional(),
             "base_branch": t.string().optional(),
         }
-    ).named(renames["merged-upstream"])
+    ).named(renames["merged_upstream"])
     types["milestone"] = t.struct(
         {
             "url": t.string(),
@@ -6452,7 +6452,7 @@ def import_github(params=None):
             "state": t.string(),
             "title": t.string(),
             "description": t.string().optional(),
-            "creator": t.proxy(renames["nullable-simple-user"]),
+            "creator": t.proxy(renames["nullable_simple_user"]),
             "open_issues": t.integer(),
             "closed_issues": t.integer(),
             "created_at": t.string(),
@@ -6461,17 +6461,17 @@ def import_github(params=None):
             "due_on": t.string().optional(),
         }
     ).named(renames["milestone"])
-    types["pages-source-hash"] = t.struct(
+    types["pages_source_hash"] = t.struct(
         {"branch": t.string(), "path": t.string()}
-    ).named(renames["pages-source-hash"])
-    types["pages-https-certificate"] = t.struct(
+    ).named(renames["pages_source_hash"])
+    types["pages_https_certificate"] = t.struct(
         {
             "state": t.string(),
             "description": t.string(),
             "domains": t.array(t.string()),
             "expires_at": t.string().optional(),
         }
-    ).named(renames["pages-https-certificate"])
+    ).named(renames["pages_https_certificate"])
     types["page"] = t.struct(
         {
             "url": t.string(),
@@ -6482,35 +6482,35 @@ def import_github(params=None):
             "custom_404": t.boolean(),
             "html_url": t.string().optional(),
             "build_type": t.string().optional(),
-            "source": t.proxy(renames["pages-source-hash"]).optional(),
+            "source": t.proxy(renames["pages_source_hash"]).optional(),
             "public": t.boolean(),
-            "https_certificate": t.proxy(renames["pages-https-certificate"]).optional(),
+            "https_certificate": t.proxy(renames["pages_https_certificate"]).optional(),
             "https_enforced": t.boolean().optional(),
         }
     ).named(renames["page"])
-    types["page-build"] = t.struct(
+    types["page_build"] = t.struct(
         {
             "url": t.string(),
             "status": t.string(),
             "error": t.struct({"message": t.string().optional()}),
-            "pusher": t.proxy(renames["nullable-simple-user"]),
+            "pusher": t.proxy(renames["nullable_simple_user"]),
             "commit": t.string(),
             "duration": t.integer(),
             "created_at": t.string(),
             "updated_at": t.string(),
         }
-    ).named(renames["page-build"])
-    types["page-build-status"] = t.struct(
+    ).named(renames["page_build"])
+    types["page_build_status"] = t.struct(
         {"url": t.string(), "status": t.string()}
-    ).named(renames["page-build-status"])
-    types["page-deployment"] = t.struct(
+    ).named(renames["page_build_status"])
+    types["page_deployment"] = t.struct(
         {
             "status_url": t.string(),
             "page_url": t.string(),
             "preview_url": t.string().optional(),
         }
-    ).named(renames["page-deployment"])
-    types["pages-health-check"] = t.struct(
+    ).named(renames["page_deployment"])
+    types["pages_health_check"] = t.struct(
         {
             "domain": t.struct(
                 {
@@ -6577,8 +6577,8 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["pages-health-check"])
-    types["pull-request"] = t.struct(
+    ).named(renames["pages_health_check"])
+    types["pull_request"] = t.struct(
         {
             "url": t.string(),
             "id": t.integer(),
@@ -6596,7 +6596,7 @@ def import_github(params=None):
             "state": t.string(),
             "locked": t.boolean(),
             "title": t.string(),
-            "user": t.proxy(renames["simple-user"]),
+            "user": t.proxy(renames["simple_user"]),
             "body": t.string().optional(),
             "labels": t.array(
                 t.struct(
@@ -6611,17 +6611,17 @@ def import_github(params=None):
                     }
                 )
             ),
-            "milestone": t.proxy(renames["nullable-milestone"]),
+            "milestone": t.proxy(renames["nullable_milestone"]),
             "active_lock_reason": t.string().optional(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "closed_at": t.string().optional(),
             "merged_at": t.string().optional(),
             "merge_commit_sha": t.string().optional(),
-            "assignee": t.proxy(renames["nullable-simple-user"]),
-            "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
-            "requested_reviewers": t.array(t.proxy(renames["simple-user"])).optional(),
-            "requested_teams": t.array(t.proxy(renames["team-simple"])).optional(),
+            "assignee": t.proxy(renames["nullable_simple_user"]),
+            "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
+            "requested_reviewers": t.array(t.proxy(renames["simple_user"])).optional(),
+            "requested_teams": t.array(t.proxy(renames["team_simple"])).optional(),
             "head": t.struct(
                 {
                     "label": t.string(),
@@ -6884,7 +6884,7 @@ def import_github(params=None):
                             "allow_merge_commit": t.boolean().optional(),
                             "allow_squash_merge": t.boolean().optional(),
                             "allow_rebase_merge": t.boolean().optional(),
-                            "license": t.proxy(renames["nullable-license-simple"]),
+                            "license": t.proxy(renames["nullable_license_simple"]),
                             "pushed_at": t.string(),
                             "size": t.integer(),
                             "ssh_url": t.string(),
@@ -6936,14 +6936,14 @@ def import_github(params=None):
                     "self": t.proxy(renames["link"]),
                 }
             ),
-            "author_association": t.proxy(renames["author-association"]),
-            "auto_merge": t.proxy(renames["auto-merge"]),
+            "author_association": t.proxy(renames["author_association"]),
+            "auto_merge": t.proxy(renames["auto_merge"]),
             "draft": t.boolean().optional(),
             "merged": t.boolean(),
             "mergeable": t.boolean().optional(),
             "rebaseable": t.boolean().optional(),
             "mergeable_state": t.string(),
-            "merged_by": t.proxy(renames["nullable-simple-user"]),
+            "merged_by": t.proxy(renames["nullable_simple_user"]),
             "comments": t.integer(),
             "review_comments": t.integer(),
             "maintainer_can_modify": t.boolean(),
@@ -6952,21 +6952,21 @@ def import_github(params=None):
             "deletions": t.integer(),
             "changed_files": t.integer(),
         }
-    ).named(renames["pull-request"])
-    types["pull-request-merge-result"] = t.struct(
+    ).named(renames["pull_request"])
+    types["pull_request_merge_result"] = t.struct(
         {"sha": t.string(), "merged": t.boolean(), "message": t.string()}
-    ).named(renames["pull-request-merge-result"])
-    types["pull-request-review-request"] = t.struct(
+    ).named(renames["pull_request_merge_result"])
+    types["pull_request_review_request"] = t.struct(
         {
-            "users": t.array(t.proxy(renames["simple-user"])),
+            "users": t.array(t.proxy(renames["simple_user"])),
             "teams": t.array(t.proxy(renames["team"])),
         }
-    ).named(renames["pull-request-review-request"])
-    types["pull-request-review"] = t.struct(
+    ).named(renames["pull_request_review_request"])
+    types["pull_request_review"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "body": t.string(),
             "state": t.string(),
             "html_url": t.string(),
@@ -6981,10 +6981,10 @@ def import_github(params=None):
             "commit_id": t.string().optional(),
             "body_html": t.string().optional(),
             "body_text": t.string().optional(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
         }
-    ).named(renames["pull-request-review"])
-    types["review-comment"] = t.struct(
+    ).named(renames["pull_request_review"])
+    types["review_comment"] = t.struct(
         {
             "url": t.string(),
             "pull_request_review_id": t.integer().optional(),
@@ -6997,13 +6997,13 @@ def import_github(params=None):
             "commit_id": t.string(),
             "original_commit_id": t.string(),
             "in_reply_to_id": t.integer().optional(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "body": t.string(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "html_url": t.string(),
             "pull_request_url": t.string(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
             "_links": t.struct(
                 {
                     "self": t.proxy(renames["link"]),
@@ -7013,7 +7013,7 @@ def import_github(params=None):
             ),
             "body_text": t.string().optional(),
             "body_html": t.string().optional(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
             "side": t.string().optional(),
             "start_side": t.string().optional(),
             "line": t.integer().optional(),
@@ -7021,8 +7021,8 @@ def import_github(params=None):
             "start_line": t.integer().optional(),
             "original_start_line": t.integer().optional(),
         }
-    ).named(renames["review-comment"])
-    types["release-asset"] = t.struct(
+    ).named(renames["review_comment"])
+    types["release_asset"] = t.struct(
         {
             "url": t.string(),
             "browser_download_url": t.string(),
@@ -7036,9 +7036,9 @@ def import_github(params=None):
             "download_count": t.integer(),
             "created_at": t.string(),
             "updated_at": t.string(),
-            "uploader": t.proxy(renames["nullable-simple-user"]),
+            "uploader": t.proxy(renames["nullable_simple_user"]),
         }
-    ).named(renames["release-asset"])
+    ).named(renames["release_asset"])
     types["release"] = t.struct(
         {
             "url": t.string(),
@@ -7057,47 +7057,47 @@ def import_github(params=None):
             "prerelease": t.boolean(),
             "created_at": t.string(),
             "published_at": t.string().optional(),
-            "author": t.proxy(renames["simple-user"]),
-            "assets": t.array(t.proxy(renames["release-asset"])),
+            "author": t.proxy(renames["simple_user"]),
+            "assets": t.array(t.proxy(renames["release_asset"])),
             "body_html": t.string().optional(),
             "body_text": t.string().optional(),
             "mentions_count": t.integer().optional(),
             "discussion_url": t.string().optional(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
     ).named(renames["release"])
-    types["release-notes-content"] = t.struct(
+    types["release_notes_content"] = t.struct(
         {"name": t.string(), "body": t.string()}
-    ).named(renames["release-notes-content"])
-    types["secret-scanning-alert"] = t.struct(
+    ).named(renames["release_notes_content"])
+    types["secret_scanning_alert"] = t.struct(
         {
-            "number": t.proxy(renames["alert-number"]).optional(),
-            "created_at": t.proxy(renames["alert-created-at"]).optional(),
-            "updated_at": t.proxy(renames["nullable-alert-updated-at"]).optional(),
-            "url": t.proxy(renames["alert-url"]).optional(),
-            "html_url": t.proxy(renames["alert-html-url"]).optional(),
+            "number": t.proxy(renames["alert_number"]).optional(),
+            "created_at": t.proxy(renames["alert_created_at"]).optional(),
+            "updated_at": t.proxy(renames["nullable_alert_updated_at"]).optional(),
+            "url": t.proxy(renames["alert_url"]).optional(),
+            "html_url": t.proxy(renames["alert_html_url"]).optional(),
             "locations_url": t.string().optional(),
-            "state": t.proxy(renames["secret-scanning-alert-state"]).optional(),
+            "state": t.proxy(renames["secret_scanning_alert_state"]).optional(),
             "resolution": t.proxy(
-                renames["secret-scanning-alert-resolution"]
+                renames["secret_scanning_alert_resolution"]
             ).optional(),
             "resolved_at": t.string().optional(),
-            "resolved_by": t.proxy(renames["nullable-simple-user"]).optional(),
+            "resolved_by": t.proxy(renames["nullable_simple_user"]).optional(),
             "resolution_comment": t.string().optional(),
             "secret_type": t.string().optional(),
             "secret_type_display_name": t.string().optional(),
             "secret": t.string().optional(),
             "push_protection_bypassed": t.boolean().optional(),
             "push_protection_bypassed_by": t.proxy(
-                renames["nullable-simple-user"]
+                renames["nullable_simple_user"]
             ).optional(),
             "push_protection_bypassed_at": t.string().optional(),
         }
-    ).named(renames["secret-scanning-alert"])
-    types["secret-scanning-alert-resolution-comment"] = (
-        t.string().optional().named(renames["secret-scanning-alert-resolution-comment"])
+    ).named(renames["secret_scanning_alert"])
+    types["secret_scanning_alert_resolution_comment"] = (
+        t.string().optional().named(renames["secret_scanning_alert_resolution_comment"])
     )
-    types["secret-scanning-location-commit"] = t.struct(
+    types["secret_scanning_location_commit"] = t.struct(
         {
             "path": t.string(),
             "start_line": t.number(),
@@ -7109,37 +7109,37 @@ def import_github(params=None):
             "commit_sha": t.string(),
             "commit_url": t.string(),
         }
-    ).named(renames["secret-scanning-location-commit"])
-    types["secret-scanning-location-issue-title"] = t.struct(
+    ).named(renames["secret_scanning_location_commit"])
+    types["secret_scanning_location_issue_title"] = t.struct(
         {"issue_title_url": t.string()}
-    ).named(renames["secret-scanning-location-issue-title"])
-    types["secret-scanning-location-issue-body"] = t.struct(
+    ).named(renames["secret_scanning_location_issue_title"])
+    types["secret_scanning_location_issue_body"] = t.struct(
         {"issue_body_url": t.string()}
-    ).named(renames["secret-scanning-location-issue-body"])
-    types["secret-scanning-location-issue-comment"] = t.struct(
+    ).named(renames["secret_scanning_location_issue_body"])
+    types["secret_scanning_location_issue_comment"] = t.struct(
         {"issue_comment_url": t.string()}
-    ).named(renames["secret-scanning-location-issue-comment"])
-    types["secret-scanning-location"] = t.struct(
+    ).named(renames["secret_scanning_location_issue_comment"])
+    types["secret_scanning_location"] = t.struct(
         {
             "type": t.string(),
             "details": t.either(
                 [
-                    t.proxy(renames["secret-scanning-location-commit"]),
-                    t.proxy(renames["secret-scanning-location-issue-title"]),
-                    t.proxy(renames["secret-scanning-location-issue-body"]),
-                    t.proxy(renames["secret-scanning-location-issue-comment"]),
+                    t.proxy(renames["secret_scanning_location_commit"]),
+                    t.proxy(renames["secret_scanning_location_issue_title"]),
+                    t.proxy(renames["secret_scanning_location_issue_body"]),
+                    t.proxy(renames["secret_scanning_location_issue_comment"]),
                 ]
             ),
         }
-    ).named(renames["secret-scanning-location"])
-    types["security-advisory-ecosystems"] = t.string().named(
-        renames["security-advisory-ecosystems"]
+    ).named(renames["secret_scanning_location"])
+    types["security_advisory_ecosystems"] = t.string().named(
+        renames["security_advisory_ecosystems"]
     )
-    types["repository-advisory-vulnerability"] = t.struct(
+    types["repository_advisory_vulnerability"] = t.struct(
         {
             "package": t.struct(
                 {
-                    "ecosystem": t.proxy(renames["security-advisory-ecosystems"]),
+                    "ecosystem": t.proxy(renames["security_advisory_ecosystems"]),
                     "name": t.string().optional(),
                 }
             ).optional(),
@@ -7147,18 +7147,18 @@ def import_github(params=None):
             "patched_versions": t.string().optional(),
             "vulnerable_functions": t.array(t.string()).optional(),
         }
-    ).named(renames["repository-advisory-vulnerability"])
-    types["security-advisory-credit-types"] = t.string().named(
-        renames["security-advisory-credit-types"]
+    ).named(renames["repository_advisory_vulnerability"])
+    types["security_advisory_credit_types"] = t.string().named(
+        renames["security_advisory_credit_types"]
     )
-    types["repository-advisory-credit"] = t.struct(
+    types["repository_advisory_credit"] = t.struct(
         {
-            "user": t.proxy(renames["simple-user"]),
-            "type": t.proxy(renames["security-advisory-credit-types"]),
+            "user": t.proxy(renames["simple_user"]),
+            "type": t.proxy(renames["security_advisory_credit_types"]),
             "state": t.string(),
         }
-    ).named(renames["repository-advisory-credit"])
-    types["repository-advisory"] = t.struct(
+    ).named(renames["repository_advisory_credit"])
+    types["repository_advisory"] = t.struct(
         {
             "ghsa_id": t.string(),
             "cve_id": t.string().optional(),
@@ -7226,7 +7226,7 @@ def import_github(params=None):
             "withdrawn_at": t.string().optional(),
             "submission": t.struct({"accepted": t.boolean()}).optional(),
             "vulnerabilities": t.array(
-                t.proxy(renames["repository-advisory-vulnerability"])
+                t.proxy(renames["repository_advisory_vulnerability"])
             ).optional(),
             "cvss": t.struct(
                 {"vector_string": t.string().optional(), "score": t.number().optional()}
@@ -7240,17 +7240,17 @@ def import_github(params=None):
                     {
                         "login": t.string().optional(),
                         "type": t.proxy(
-                            renames["security-advisory-credit-types"]
+                            renames["security_advisory_credit_types"]
                         ).optional(),
                     }
                 )
             ).optional(),
             "credits_detailed": t.array(
-                t.proxy(renames["repository-advisory-credit"])
+                t.proxy(renames["repository_advisory_credit"])
             ).optional(),
         }
-    ).named(renames["repository-advisory"])
-    types["repository-advisory-create"] = t.struct(
+    ).named(renames["repository_advisory"])
+    types["repository_advisory_create"] = t.struct(
         {
             "summary": t.string(),
             "description": t.string(),
@@ -7261,7 +7261,7 @@ def import_github(params=None):
                         "package": t.struct(
                             {
                                 "ecosystem": t.proxy(
-                                    renames["security-advisory-ecosystems"]
+                                    renames["security_advisory_ecosystems"]
                                 ),
                                 "name": t.string().optional(),
                             }
@@ -7277,15 +7277,15 @@ def import_github(params=None):
                 t.struct(
                     {
                         "login": t.string(),
-                        "type": t.proxy(renames["security-advisory-credit-types"]),
+                        "type": t.proxy(renames["security_advisory_credit_types"]),
                     }
                 )
             ).optional(),
             "severity": t.string().optional(),
             "cvss_vector_string": t.string().optional(),
         }
-    ).named(renames["repository-advisory-create"])
-    types["private-vulnerability-report-create"] = t.struct(
+    ).named(renames["repository_advisory_create"])
+    types["private_vulnerability_report_create"] = t.struct(
         {
             "summary": t.string(),
             "description": t.string(),
@@ -7295,7 +7295,7 @@ def import_github(params=None):
                         "package": t.struct(
                             {
                                 "ecosystem": t.proxy(
-                                    renames["security-advisory-ecosystems"]
+                                    renames["security_advisory_ecosystems"]
                                 ),
                                 "name": t.string().optional(),
                             }
@@ -7310,8 +7310,8 @@ def import_github(params=None):
             "severity": t.string().optional(),
             "cvss_vector_string": t.string().optional(),
         }
-    ).named(renames["private-vulnerability-report-create"])
-    types["repository-advisory-update"] = t.struct(
+    ).named(renames["private_vulnerability_report_create"])
+    types["repository_advisory_update"] = t.struct(
         {
             "summary": t.string().optional(),
             "description": t.string().optional(),
@@ -7322,7 +7322,7 @@ def import_github(params=None):
                         "package": t.struct(
                             {
                                 "ecosystem": t.proxy(
-                                    renames["security-advisory-ecosystems"]
+                                    renames["security_advisory_ecosystems"]
                                 ),
                                 "name": t.string().optional(),
                             }
@@ -7338,7 +7338,7 @@ def import_github(params=None):
                 t.struct(
                     {
                         "login": t.string(),
-                        "type": t.proxy(renames["security-advisory-credit-types"]),
+                        "type": t.proxy(renames["security_advisory_credit_types"]),
                     }
                 )
             ).optional(),
@@ -7346,19 +7346,19 @@ def import_github(params=None):
             "cvss_vector_string": t.string().optional(),
             "state": t.string().optional(),
         }
-    ).named(renames["repository-advisory-update"])
+    ).named(renames["repository_advisory_update"])
     types["stargazer"] = t.struct(
-        {"starred_at": t.string(), "user": t.proxy(renames["nullable-simple-user"])}
+        {"starred_at": t.string(), "user": t.proxy(renames["nullable_simple_user"])}
     ).named(renames["stargazer"])
-    types["code-frequency-stat"] = t.array(t.integer()).named(
-        renames["code-frequency-stat"]
+    types["code_frequency_stat"] = t.array(t.integer()).named(
+        renames["code_frequency_stat"]
     )
-    types["commit-activity"] = t.struct(
+    types["commit_activity"] = t.struct(
         {"days": t.array(t.integer()), "total": t.integer(), "week": t.integer()}
-    ).named(renames["commit-activity"])
-    types["contributor-activity"] = t.struct(
+    ).named(renames["commit_activity"])
+    types["contributor_activity"] = t.struct(
         {
-            "author": t.proxy(renames["nullable-simple-user"]),
+            "author": t.proxy(renames["nullable_simple_user"]),
             "total": t.integer(),
             "weeks": t.array(
                 t.struct(
@@ -7371,11 +7371,11 @@ def import_github(params=None):
                 )
             ),
         }
-    ).named(renames["contributor-activity"])
-    types["participation-stats"] = t.struct(
+    ).named(renames["contributor_activity"])
+    types["participation_stats"] = t.struct(
         {"all": t.array(t.integer()), "owner": t.array(t.integer())}
-    ).named(renames["participation-stats"])
-    types["repository-subscription"] = t.struct(
+    ).named(renames["participation_stats"])
+    types["repository_subscription"] = t.struct(
         {
             "subscribed": t.boolean(),
             "ignored": t.boolean(),
@@ -7384,7 +7384,7 @@ def import_github(params=None):
             "url": t.string(),
             "repository_url": t.string(),
         }
-    ).named(renames["repository-subscription"])
+    ).named(renames["repository_subscription"])
     types["tag"] = t.struct(
         {
             "name": t.string(),
@@ -7394,7 +7394,7 @@ def import_github(params=None):
             "node_id": t.string(),
         }
     ).named(renames["tag"])
-    types["tag-protection"] = t.struct(
+    types["tag_protection"] = t.struct(
         {
             "id": t.integer().optional(),
             "created_at": t.string().optional(),
@@ -7402,37 +7402,37 @@ def import_github(params=None):
             "enabled": t.boolean().optional(),
             "pattern": t.string(),
         }
-    ).named(renames["tag-protection"])
+    ).named(renames["tag_protection"])
     types["topic"] = t.struct({"names": t.array(t.string())}).named(renames["topic"])
     types["traffic"] = t.struct(
         {"timestamp": t.string(), "uniques": t.integer(), "count": t.integer()}
     ).named(renames["traffic"])
-    types["clone-traffic"] = t.struct(
+    types["clone_traffic"] = t.struct(
         {
             "count": t.integer(),
             "uniques": t.integer(),
             "clones": t.array(t.proxy(renames["traffic"])),
         }
-    ).named(renames["clone-traffic"])
-    types["content-traffic"] = t.struct(
+    ).named(renames["clone_traffic"])
+    types["content_traffic"] = t.struct(
         {
             "path": t.string(),
             "title": t.string(),
             "count": t.integer(),
             "uniques": t.integer(),
         }
-    ).named(renames["content-traffic"])
-    types["referrer-traffic"] = t.struct(
+    ).named(renames["content_traffic"])
+    types["referrer_traffic"] = t.struct(
         {"referrer": t.string(), "count": t.integer(), "uniques": t.integer()}
-    ).named(renames["referrer-traffic"])
-    types["view-traffic"] = t.struct(
+    ).named(renames["referrer_traffic"])
+    types["view_traffic"] = t.struct(
         {
             "count": t.integer(),
             "uniques": t.integer(),
             "views": t.array(t.proxy(renames["traffic"])),
         }
-    ).named(renames["view-traffic"])
-    types["search-result-text-matches"] = t.array(
+    ).named(renames["view_traffic"])
+    types["search_result_text_matches"] = t.array(
         t.struct(
             {
                 "object_url": t.string().optional(),
@@ -7449,8 +7449,8 @@ def import_github(params=None):
                 ).optional(),
             }
         )
-    ).named(renames["search-result-text-matches"])
-    types["code-search-result-item"] = t.struct(
+    ).named(renames["search_result_text_matches"])
+    types["code_search_result_item"] = t.struct(
         {
             "name": t.string(),
             "path": t.string(),
@@ -7458,16 +7458,16 @@ def import_github(params=None):
             "url": t.string(),
             "git_url": t.string(),
             "html_url": t.string(),
-            "repository": t.proxy(renames["minimal-repository"]),
+            "repository": t.proxy(renames["minimal_repository"]),
             "score": t.number(),
             "file_size": t.integer().optional(),
             "language": t.string().optional(),
             "last_modified_at": t.string().optional(),
             "line_numbers": t.array(t.string()).optional(),
-            "text_matches": t.proxy(renames["search-result-text-matches"]).optional(),
+            "text_matches": t.proxy(renames["search_result_text_matches"]).optional(),
         }
-    ).named(renames["code-search-result-item"])
-    types["commit-search-result-item"] = t.struct(
+    ).named(renames["code_search_result_item"])
+    types["commit_search_result_item"] = t.struct(
         {
             "url": t.string(),
             "sha": t.string(),
@@ -7478,7 +7478,7 @@ def import_github(params=None):
                     "author": t.struct(
                         {"name": t.string(), "email": t.string(), "date": t.string()}
                     ),
-                    "committer": t.proxy(renames["nullable-git-user"]),
+                    "committer": t.proxy(renames["nullable_git_user"]),
                     "comment_count": t.integer(),
                     "message": t.string(),
                     "tree": t.struct({"sha": t.string(), "url": t.string()}),
@@ -7486,8 +7486,8 @@ def import_github(params=None):
                     "verification": t.proxy(renames["verification"]).optional(),
                 }
             ),
-            "author": t.proxy(renames["nullable-simple-user"]),
-            "committer": t.proxy(renames["nullable-git-user"]),
+            "author": t.proxy(renames["nullable_simple_user"]),
+            "committer": t.proxy(renames["nullable_git_user"]),
             "parents": t.array(
                 t.struct(
                     {
@@ -7497,13 +7497,13 @@ def import_github(params=None):
                     }
                 )
             ),
-            "repository": t.proxy(renames["minimal-repository"]),
+            "repository": t.proxy(renames["minimal_repository"]),
             "score": t.number(),
             "node_id": t.string(),
-            "text_matches": t.proxy(renames["search-result-text-matches"]).optional(),
+            "text_matches": t.proxy(renames["search_result_text_matches"]).optional(),
         }
-    ).named(renames["commit-search-result-item"])
-    types["issue-search-result-item"] = t.struct(
+    ).named(renames["commit_search_result_item"])
+    types["issue_search_result_item"] = t.struct(
         {
             "url": t.string(),
             "repository_url": t.string(),
@@ -7517,8 +7517,8 @@ def import_github(params=None):
             "title": t.string(),
             "locked": t.boolean(),
             "active_lock_reason": t.string().optional(),
-            "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
-            "user": t.proxy(renames["nullable-simple-user"]),
+            "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
+            "user": t.proxy(renames["nullable_simple_user"]),
             "labels": t.array(
                 t.struct(
                     {
@@ -7534,13 +7534,13 @@ def import_github(params=None):
             ),
             "state": t.string(),
             "state_reason": t.string().optional(),
-            "assignee": t.proxy(renames["nullable-simple-user"]),
-            "milestone": t.proxy(renames["nullable-milestone"]),
+            "assignee": t.proxy(renames["nullable_simple_user"]),
+            "milestone": t.proxy(renames["nullable_milestone"]),
             "comments": t.integer(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "closed_at": t.string().optional(),
-            "text_matches": t.proxy(renames["search-result-text-matches"]).optional(),
+            "text_matches": t.proxy(renames["search_result_text_matches"]).optional(),
             "pull_request": t.struct(
                 {
                     "merged_at": t.string().optional(),
@@ -7552,19 +7552,19 @@ def import_github(params=None):
             ).optional(),
             "body": t.string().optional(),
             "score": t.number(),
-            "author_association": t.proxy(renames["author-association"]),
+            "author_association": t.proxy(renames["author_association"]),
             "draft": t.boolean().optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "body_html": t.string().optional(),
             "body_text": t.string().optional(),
             "timeline_url": t.string().optional(),
             "performed_via_github_app": t.proxy(
-                renames["nullable-integration"]
+                renames["nullable_integration"]
             ).optional(),
-            "reactions": t.proxy(renames["reaction-rollup"]).optional(),
+            "reactions": t.proxy(renames["reaction_rollup"]).optional(),
         }
-    ).named(renames["issue-search-result-item"])
-    types["label-search-result-item"] = t.struct(
+    ).named(renames["issue_search_result_item"])
+    types["label_search_result_item"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
@@ -7574,16 +7574,16 @@ def import_github(params=None):
             "default": t.boolean(),
             "description": t.string().optional(),
             "score": t.number(),
-            "text_matches": t.proxy(renames["search-result-text-matches"]).optional(),
+            "text_matches": t.proxy(renames["search_result_text_matches"]).optional(),
         }
-    ).named(renames["label-search-result-item"])
-    types["repo-search-result-item"] = t.struct(
+    ).named(renames["label_search_result_item"])
+    types["repo_search_result_item"] = t.struct(
         {
             "id": t.integer(),
             "node_id": t.string(),
             "name": t.string(),
             "full_name": t.string(),
-            "owner": t.proxy(renames["nullable-simple-user"]),
+            "owner": t.proxy(renames["nullable_simple_user"]),
             "private": t.boolean(),
             "html_url": t.string(),
             "description": t.string().optional(),
@@ -7656,7 +7656,7 @@ def import_github(params=None):
             "archived": t.boolean(),
             "disabled": t.boolean(),
             "visibility": t.string().optional(),
-            "license": t.proxy(renames["nullable-license-simple"]),
+            "license": t.proxy(renames["nullable_license_simple"]),
             "permissions": t.struct(
                 {
                     "admin": t.boolean(),
@@ -7666,7 +7666,7 @@ def import_github(params=None):
                     "pull": t.boolean(),
                 }
             ).optional(),
-            "text_matches": t.proxy(renames["search-result-text-matches"]).optional(),
+            "text_matches": t.proxy(renames["search_result_text_matches"]).optional(),
             "temp_clone_token": t.string().optional(),
             "allow_merge_commit": t.boolean().optional(),
             "allow_squash_merge": t.boolean().optional(),
@@ -7677,8 +7677,8 @@ def import_github(params=None):
             "is_template": t.boolean().optional(),
             "web_commit_signoff_required": t.boolean().optional(),
         }
-    ).named(renames["repo-search-result-item"])
-    types["topic-search-result-item"] = t.struct(
+    ).named(renames["repo_search_result_item"])
+    types["topic_search_result_item"] = t.struct(
         {
             "name": t.string(),
             "display_name": t.string().optional(),
@@ -7693,7 +7693,7 @@ def import_github(params=None):
             "score": t.number(),
             "repository_count": t.integer().optional(),
             "logo_url": t.string().optional(),
-            "text_matches": t.proxy(renames["search-result-text-matches"]).optional(),
+            "text_matches": t.proxy(renames["search_result_text_matches"]).optional(),
             "related": t.array(
                 t.struct(
                     {
@@ -7723,8 +7723,8 @@ def import_github(params=None):
                 )
             ).optional(),
         }
-    ).named(renames["topic-search-result-item"])
-    types["user-search-result-item"] = t.struct(
+    ).named(renames["topic_search_result_item"])
+    types["user_search_result_item"] = t.struct(
         {
             "login": t.string(),
             "id": t.integer(),
@@ -7756,13 +7756,13 @@ def import_github(params=None):
             "location": t.string().optional(),
             "site_admin": t.boolean(),
             "hireable": t.boolean().optional(),
-            "text_matches": t.proxy(renames["search-result-text-matches"]).optional(),
+            "text_matches": t.proxy(renames["search_result_text_matches"]).optional(),
             "blog": t.string().optional(),
             "company": t.string().optional(),
             "suspended_at": t.string().optional(),
         }
-    ).named(renames["user-search-result-item"])
-    types["private-user"] = t.struct(
+    ).named(renames["user_search_result_item"])
+    types["private_user"] = t.struct(
         {
             "login": t.string(),
             "id": t.integer(),
@@ -7814,8 +7814,8 @@ def import_github(params=None):
             "business_plus": t.boolean().optional(),
             "ldap_dn": t.string().optional(),
         }
-    ).named(renames["private-user"])
-    types["codespaces-secret"] = t.struct(
+    ).named(renames["private_user"])
+    types["codespaces_secret"] = t.struct(
         {
             "name": t.string(),
             "created_at": t.string(),
@@ -7823,11 +7823,11 @@ def import_github(params=None):
             "visibility": t.string(),
             "selected_repositories_url": t.string(),
         }
-    ).named(renames["codespaces-secret"])
-    types["codespaces-user-public-key"] = t.struct(
+    ).named(renames["codespaces_secret"])
+    types["codespaces_user_public_key"] = t.struct(
         {"key_id": t.string(), "key": t.string()}
-    ).named(renames["codespaces-user-public-key"])
-    types["codespace-export-details"] = t.struct(
+    ).named(renames["codespaces_user_public_key"])
+    types["codespace_export_details"] = t.struct(
         {
             "state": t.string().optional(),
             "completed_at": t.string().optional(),
@@ -7837,17 +7837,17 @@ def import_github(params=None):
             "export_url": t.string().optional(),
             "html_url": t.string().optional(),
         }
-    ).named(renames["codespace-export-details"])
-    types["codespace-with-full-repository"] = t.struct(
+    ).named(renames["codespace_export_details"])
+    types["codespace_with_full_repository"] = t.struct(
         {
             "id": t.integer(),
             "name": t.string(),
             "display_name": t.string().optional(),
             "environment_id": t.string().optional(),
-            "owner": t.proxy(renames["simple-user"]),
-            "billable_owner": t.proxy(renames["simple-user"]),
-            "repository": t.proxy(renames["full-repository"]),
-            "machine": t.proxy(renames["nullable-codespace-machine"]),
+            "owner": t.proxy(renames["simple_user"]),
+            "billable_owner": t.proxy(renames["simple_user"]),
+            "repository": t.proxy(renames["full_repository"]),
+            "machine": t.proxy(renames["nullable_codespace_machine"]),
             "devcontainer_path": t.string().optional(),
             "prebuild": t.boolean().optional(),
             "created_at": t.string(),
@@ -7882,7 +7882,7 @@ def import_github(params=None):
             "retention_period_minutes": t.integer().optional(),
             "retention_expires_at": t.string().optional(),
         }
-    ).named(renames["codespace-with-full-repository"])
+    ).named(renames["codespace_with_full_repository"])
     types["email"] = t.struct(
         {
             "email": t.string(),
@@ -7891,7 +7891,7 @@ def import_github(params=None):
             "visibility": t.string().optional(),
         }
     ).named(renames["email"])
-    types["gpg-key"] = t.struct(
+    types["gpg_key"] = t.struct(
         {
             "id": t.integer(),
             "name": t.string().optional(),
@@ -7941,7 +7941,7 @@ def import_github(params=None):
             "revoked": t.boolean(),
             "raw_key": t.string().optional(),
         }
-    ).named(renames["gpg-key"])
+    ).named(renames["gpg_key"])
     types["key"] = t.struct(
         {
             "key": t.string(),
@@ -7953,7 +7953,7 @@ def import_github(params=None):
             "read_only": t.boolean(),
         }
     ).named(renames["key"])
-    types["marketplace-account"] = t.struct(
+    types["marketplace_account"] = t.struct(
         {
             "url": t.string(),
             "id": t.integer(),
@@ -7963,8 +7963,8 @@ def import_github(params=None):
             "email": t.string().optional(),
             "organization_billing_email": t.string().optional(),
         }
-    ).named(renames["marketplace-account"])
-    types["user-marketplace-purchase"] = t.struct(
+    ).named(renames["marketplace_account"])
+    types["user_marketplace_purchase"] = t.struct(
         {
             "billing_cycle": t.string(),
             "next_billing_date": t.string().optional(),
@@ -7972,34 +7972,34 @@ def import_github(params=None):
             "on_free_trial": t.boolean(),
             "free_trial_ends_on": t.string().optional(),
             "updated_at": t.string().optional(),
-            "account": t.proxy(renames["marketplace-account"]),
-            "plan": t.proxy(renames["marketplace-listing-plan"]),
+            "account": t.proxy(renames["marketplace_account"]),
+            "plan": t.proxy(renames["marketplace_listing_plan"]),
         }
-    ).named(renames["user-marketplace-purchase"])
-    types["social-account"] = t.struct(
+    ).named(renames["user_marketplace_purchase"])
+    types["social_account"] = t.struct(
         {"provider": t.string(), "url": t.string()}
-    ).named(renames["social-account"])
-    types["ssh-signing-key"] = t.struct(
+    ).named(renames["social_account"])
+    types["ssh_signing_key"] = t.struct(
         {
             "key": t.string(),
             "id": t.integer(),
             "title": t.string(),
             "created_at": t.string(),
         }
-    ).named(renames["ssh-signing-key"])
-    types["starred-repository"] = t.struct(
+    ).named(renames["ssh_signing_key"])
+    types["starred_repository"] = t.struct(
         {"starred_at": t.string(), "repo": t.proxy(renames["repository"])}
-    ).named(renames["starred-repository"])
+    ).named(renames["starred_repository"])
     types["hovercard"] = t.struct(
         {"contexts": t.array(t.struct({"message": t.string(), "octicon": t.string()}))}
     ).named(renames["hovercard"])
-    types["key-simple"] = t.struct({"id": t.integer(), "key": t.string()}).named(
-        renames["key-simple"]
+    types["key_simple"] = t.struct({"id": t.integer(), "key": t.string()}).named(
+        renames["key_simple"]
     )
-    types["simple-installation"] = t.struct(
+    types["simple_installation"] = t.struct(
         {"id": t.integer(), "node_id": t.string()}
-    ).named(renames["simple-installation"])
-    types["simple-check-suite"] = t.struct(
+    ).named(renames["simple_installation"])
+    types["simple_check_suite"] = t.struct(
         {
             "after": t.string().optional(),
             "app": t.proxy(renames["integration"]).optional(),
@@ -8011,21 +8011,21 @@ def import_github(params=None):
             "id": t.integer().optional(),
             "node_id": t.string().optional(),
             "pull_requests": t.array(
-                t.proxy(renames["pull-request-minimal"])
+                t.proxy(renames["pull_request_minimal"])
             ).optional(),
-            "repository": t.proxy(renames["minimal-repository"]).optional(),
+            "repository": t.proxy(renames["minimal_repository"]).optional(),
             "status": t.string().optional(),
             "updated_at": t.string().optional(),
             "url": t.string().optional(),
         }
-    ).named(renames["simple-check-suite"])
-    types["check-run-with-simple-check-suite"] = t.struct(
+    ).named(renames["simple_check_suite"])
+    types["check_run_with_simple_check_suite"] = t.struct(
         {
-            "app": t.proxy(renames["nullable-integration"]),
-            "check_suite": t.proxy(renames["simple-check-suite"]),
+            "app": t.proxy(renames["nullable_integration"]),
+            "check_suite": t.proxy(renames["simple_check_suite"]),
             "completed_at": t.string().optional(),
             "conclusion": t.string().optional(),
-            "deployment": t.proxy(renames["deployment-simple"]).optional(),
+            "deployment": t.proxy(renames["deployment_simple"]).optional(),
             "details_url": t.string(),
             "external_id": t.string(),
             "head_sha": t.string(),
@@ -8042,12 +8042,12 @@ def import_github(params=None):
                     "title": t.string().optional(),
                 }
             ),
-            "pull_requests": t.array(t.proxy(renames["pull-request-minimal"])),
+            "pull_requests": t.array(t.proxy(renames["pull_request_minimal"])),
             "started_at": t.string(),
             "status": t.string(),
             "url": t.string(),
         }
-    ).named(renames["check-run-with-simple-check-suite"])
+    ).named(renames["check_run_with_simple_check_suite"])
     types["discussion"] = t.struct(
         {
             "active_lock_reason": t.string().optional(),
@@ -8148,19 +8148,19 @@ def import_github(params=None):
             ).optional(),
         }
     ).named(renames["discussion"])
-    types["merge-group"] = t.struct(
+    types["merge_group"] = t.struct(
         {
             "head_sha": t.string(),
             "head_ref": t.string(),
             "base_sha": t.string(),
             "base_ref": t.string(),
-            "head_commit": t.proxy(renames["simple-commit"]),
+            "head_commit": t.proxy(renames["simple_commit"]),
         }
-    ).named(renames["merge-group"])
-    types["personal-access-token-request"] = t.struct(
+    ).named(renames["merge_group"])
+    types["personal_access_token_request"] = t.struct(
         {
             "id": t.integer(),
-            "owner": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
             "permissions_added": t.struct(
                 {
                     "organization": t.struct({}).optional(),
@@ -8200,13 +8200,13 @@ def import_github(params=None):
             "token_expires_at": t.string().optional(),
             "token_last_used_at": t.string().optional(),
         }
-    ).named(renames["personal-access-token-request"])
-    types["projects-v2"] = t.struct(
+    ).named(renames["personal_access_token_request"])
+    types["projects_v2"] = t.struct(
         {
             "id": t.number(),
             "node_id": t.string(),
-            "owner": t.proxy(renames["simple-user"]),
-            "creator": t.proxy(renames["simple-user"]),
+            "owner": t.proxy(renames["simple_user"]),
+            "creator": t.proxy(renames["simple_user"]),
             "title": t.string(),
             "description": t.string().optional(),
             "public": t.boolean(),
@@ -8216,31 +8216,31 @@ def import_github(params=None):
             "number": t.integer(),
             "short_description": t.string().optional(),
             "deleted_at": t.string().optional(),
-            "deleted_by": t.proxy(renames["nullable-simple-user"]),
+            "deleted_by": t.proxy(renames["nullable_simple_user"]),
         }
-    ).named(renames["projects-v2"])
-    types["projects-v2-item-content-type"] = t.string().named(
-        renames["projects-v2-item-content-type"]
+    ).named(renames["projects_v2"])
+    types["projects_v2_item_content_type"] = t.string().named(
+        renames["projects_v2_item_content_type"]
     )
-    types["projects-v2-item"] = t.struct(
+    types["projects_v2_item"] = t.struct(
         {
             "id": t.number(),
             "node_id": t.string().optional(),
             "project_node_id": t.string().optional(),
             "content_node_id": t.string(),
-            "content_type": t.proxy(renames["projects-v2-item-content-type"]),
-            "creator": t.proxy(renames["simple-user"]).optional(),
+            "content_type": t.proxy(renames["projects_v2_item_content_type"]),
+            "creator": t.proxy(renames["simple_user"]).optional(),
             "created_at": t.string(),
             "updated_at": t.string(),
             "archived_at": t.string().optional(),
         }
-    ).named(renames["projects-v2-item"])
-    types["webhook-branch-protection-rule-created"] = t.struct(
+    ).named(renames["projects_v2_item"])
+    types["webhook_branch_protection_rule_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
             "rule": t.struct(
                 {
@@ -8271,15 +8271,15 @@ def import_github(params=None):
                     "updated_at": t.string(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-branch-protection-rule-created"])
-    types["webhook-branch-protection-rule-deleted"] = t.struct(
+    ).named(renames["webhook_branch_protection_rule_created"])
+    types["webhook_branch_protection_rule_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
             "rule": t.struct(
                 {
@@ -8310,10 +8310,10 @@ def import_github(params=None):
                     "updated_at": t.string(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-branch-protection-rule-deleted"])
-    types["webhook-branch-protection-rule-edited"] = t.struct(
+    ).named(renames["webhook_branch_protection_rule_deleted"])
+    types["webhook_branch_protection_rule_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -8342,8 +8342,8 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
             "rule": t.struct(
                 {
@@ -8374,65 +8374,65 @@ def import_github(params=None):
                     "updated_at": t.string(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-branch-protection-rule-edited"])
-    types["webhook-check-run-completed"] = t.struct(
+    ).named(renames["webhook_branch_protection_rule_edited"])
+    types["webhook_check_run_completed"] = t.struct(
         {
             "action": t.string().optional(),
-            "check_run": t.proxy(renames["check-run-with-simple-check-suite"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "check_run": t.proxy(renames["check_run_with_simple_check_suite"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-check-run-completed"])
-    types["webhook-check-run-completed-form-encoded"] = t.struct(
+    ).named(renames["webhook_check_run_completed"])
+    types["webhook_check_run_completed_form_encoded"] = t.struct(
         {"payload": t.string()}
-    ).named(renames["webhook-check-run-completed-form-encoded"])
-    types["webhook-check-run-created"] = t.struct(
+    ).named(renames["webhook_check_run_completed_form_encoded"])
+    types["webhook_check_run_created"] = t.struct(
         {
             "action": t.string().optional(),
-            "check_run": t.proxy(renames["check-run-with-simple-check-suite"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "check_run": t.proxy(renames["check_run_with_simple_check_suite"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-check-run-created"])
-    types["webhook-check-run-created-form-encoded"] = t.struct(
+    ).named(renames["webhook_check_run_created"])
+    types["webhook_check_run_created_form_encoded"] = t.struct(
         {"payload": t.string()}
-    ).named(renames["webhook-check-run-created-form-encoded"])
-    types["webhook-check-run-requested-action"] = t.struct(
+    ).named(renames["webhook_check_run_created_form_encoded"])
+    types["webhook_check_run_requested_action"] = t.struct(
         {
             "action": t.string(),
-            "check_run": t.proxy(renames["check-run-with-simple-check-suite"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "check_run": t.proxy(renames["check_run_with_simple_check_suite"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
             "requested_action": t.struct(
                 {"identifier": t.string().optional()}
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-check-run-requested-action"])
-    types["webhook-check-run-requested-action-form-encoded"] = t.struct(
+    ).named(renames["webhook_check_run_requested_action"])
+    types["webhook_check_run_requested_action_form_encoded"] = t.struct(
         {"payload": t.string()}
-    ).named(renames["webhook-check-run-requested-action-form-encoded"])
-    types["webhook-check-run-rerequested"] = t.struct(
+    ).named(renames["webhook_check_run_requested_action_form_encoded"])
+    types["webhook_check_run_rerequested"] = t.struct(
         {
             "action": t.string().optional(),
-            "check_run": t.proxy(renames["check-run-with-simple-check-suite"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "check_run": t.proxy(renames["check_run_with_simple_check_suite"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-check-run-rerequested"])
-    types["webhook-check-run-rerequested-form-encoded"] = t.struct(
+    ).named(renames["webhook_check_run_rerequested"])
+    types["webhook_check_run_rerequested_form_encoded"] = t.struct(
         {"payload": t.string()}
-    ).named(renames["webhook-check-run-rerequested-form-encoded"])
-    types["webhook-check-suite-completed"] = t.struct(
+    ).named(renames["webhook_check_run_rerequested_form_encoded"])
+    types["webhook_check_suite_completed"] = t.struct(
         {
             "action": t.string(),
             "actions_meta": t.struct({}).optional(),
@@ -8593,13 +8593,13 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-check-suite-completed"])
-    types["webhook-check-suite-requested"] = t.struct(
+    ).named(renames["webhook_check_suite_completed"])
+    types["webhook_check_suite_requested"] = t.struct(
         {
             "action": t.string(),
             "actions_meta": t.struct({}).optional(),
@@ -8760,13 +8760,13 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-check-suite-requested"])
-    types["webhook-check-suite-rerequested"] = t.struct(
+    ).named(renames["webhook_check_suite_requested"])
+    types["webhook_check_suite_rerequested"] = t.struct(
         {
             "action": t.string(),
             "actions_meta": t.struct(
@@ -8936,13 +8936,13 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-check-suite-rerequested"])
-    types["webhook-code-scanning-alert-appeared-in-branch"] = t.struct(
+    ).named(renames["webhook_check_suite_rerequested"])
+    types["webhook_code_scanning_alert_appeared_in_branch"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -9016,14 +9016,14 @@ def import_github(params=None):
             ),
             "commit_oid": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "ref": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-code-scanning-alert-appeared-in-branch"])
-    types["webhook-code-scanning-alert-closed-by-user"] = t.struct(
+    ).named(renames["webhook_code_scanning_alert_appeared_in_branch"])
+    types["webhook_code_scanning_alert_closed_by_user"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -9106,14 +9106,14 @@ def import_github(params=None):
             ),
             "commit_oid": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "ref": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-code-scanning-alert-closed-by-user"])
-    types["webhook-code-scanning-alert-created"] = t.struct(
+    ).named(renames["webhook_code_scanning_alert_closed_by_user"])
+    types["webhook_code_scanning_alert_created"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -9122,7 +9122,7 @@ def import_github(params=None):
                     "dismissed_at": t.string().optional(),
                     "dismissed_by": t.struct({"_": t.string().optional()}).optional(),
                     "dismissed_comment": t.proxy(
-                        renames["code-scanning-alert-dismissed-comment"]
+                        renames["code_scanning_alert_dismissed_comment"]
                     ).optional(),
                     "dismissed_reason": t.string().optional(),
                     "fixed_at": t.struct({"_": t.string().optional()}).optional(),
@@ -9178,14 +9178,14 @@ def import_github(params=None):
             ),
             "commit_oid": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "ref": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-code-scanning-alert-created"])
-    types["webhook-code-scanning-alert-fixed"] = t.struct(
+    ).named(renames["webhook_code_scanning_alert_created"])
+    types["webhook_code_scanning_alert_fixed"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -9269,14 +9269,14 @@ def import_github(params=None):
             ),
             "commit_oid": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "ref": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-code-scanning-alert-fixed"])
-    types["webhook-code-scanning-alert-reopened"] = t.struct(
+    ).named(renames["webhook_code_scanning_alert_fixed"])
+    types["webhook_code_scanning_alert_reopened"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -9335,14 +9335,14 @@ def import_github(params=None):
             ).optional(),
             "commit_oid": t.string().optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "ref": t.string().optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-code-scanning-alert-reopened"])
-    types["webhook-code-scanning-alert-reopened-by-user"] = t.struct(
+    ).named(renames["webhook_code_scanning_alert_reopened"])
+    types["webhook_code_scanning_alert_reopened_by_user"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -9392,14 +9392,14 @@ def import_github(params=None):
             ),
             "commit_oid": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "ref": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-code-scanning-alert-reopened-by-user"])
-    types["webhook-commit-comment-created"] = t.struct(
+    ).named(renames["webhook_code_scanning_alert_reopened_by_user"])
+    types["webhook_commit_comment_created"] = t.struct(
         {
             "action": t.string(),
             "comment": t.struct(
@@ -9458,120 +9458,120 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-commit-comment-created"])
-    types["webhook-create"] = t.struct(
+    ).named(renames["webhook_commit_comment_created"])
+    types["webhook_create"] = t.struct(
         {
             "description": t.string().optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "master_branch": t.string(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pusher_type": t.string(),
             "ref": t.string(),
             "ref_type": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-create"])
-    types["webhook-delete"] = t.struct(
+    ).named(renames["webhook_create"])
+    types["webhook_delete"] = t.struct(
         {
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pusher_type": t.string(),
             "ref": t.string(),
             "ref_type": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-delete"])
-    types["webhook-dependabot-alert-auto-dismissed"] = t.struct(
+    ).named(renames["webhook_delete"])
+    types["webhook_dependabot_alert_auto_dismissed"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["dependabot-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["dependabot_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-dependabot-alert-auto-dismissed"])
-    types["webhook-dependabot-alert-auto-reopened"] = t.struct(
+    ).named(renames["webhook_dependabot_alert_auto_dismissed"])
+    types["webhook_dependabot_alert_auto_reopened"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["dependabot-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["dependabot_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-dependabot-alert-auto-reopened"])
-    types["webhook-dependabot-alert-created"] = t.struct(
+    ).named(renames["webhook_dependabot_alert_auto_reopened"])
+    types["webhook_dependabot_alert_created"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["dependabot-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["dependabot_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-dependabot-alert-created"])
-    types["webhook-dependabot-alert-dismissed"] = t.struct(
+    ).named(renames["webhook_dependabot_alert_created"])
+    types["webhook_dependabot_alert_dismissed"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["dependabot-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["dependabot_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-dependabot-alert-dismissed"])
-    types["webhook-dependabot-alert-fixed"] = t.struct(
+    ).named(renames["webhook_dependabot_alert_dismissed"])
+    types["webhook_dependabot_alert_fixed"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["dependabot-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["dependabot_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-dependabot-alert-fixed"])
-    types["webhook-dependabot-alert-reintroduced"] = t.struct(
+    ).named(renames["webhook_dependabot_alert_fixed"])
+    types["webhook_dependabot_alert_reintroduced"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["dependabot-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["dependabot_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-dependabot-alert-reintroduced"])
-    types["webhook-dependabot-alert-reopened"] = t.struct(
+    ).named(renames["webhook_dependabot_alert_reintroduced"])
+    types["webhook_dependabot_alert_reopened"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["dependabot-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["dependabot_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-dependabot-alert-reopened"])
-    types["webhook-deploy-key-created"] = t.struct(
+    ).named(renames["webhook_dependabot_alert_reopened"])
+    types["webhook_deploy_key_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "key": t.struct(
                 {
                     "added_by": t.string().optional(),
@@ -9585,16 +9585,16 @@ def import_github(params=None):
                     "verified": t.boolean(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-deploy-key-created"])
-    types["webhook-deploy-key-deleted"] = t.struct(
+    ).named(renames["webhook_deploy_key_created"])
+    types["webhook_deploy_key_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "key": t.struct(
                 {
                     "added_by": t.string().optional(),
@@ -9608,12 +9608,12 @@ def import_github(params=None):
                     "verified": t.boolean(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-deploy-key-deleted"])
-    types["webhook-deployment-created"] = t.struct(
+    ).named(renames["webhook_deploy_key_deleted"])
+    types["webhook_deployment_created"] = t.struct(
         {
             "action": t.string(),
             "deployment": t.struct(
@@ -9740,10 +9740,10 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow": t.struct(
                 {
                     "badge_url": t.string(),
@@ -10034,22 +10034,22 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["webhook-deployment-created"])
-    types["webhook-deployment-protection-rule-requested"] = t.struct(
+    ).named(renames["webhook_deployment_created"])
+    types["webhook_deployment_protection_rule_requested"] = t.struct(
         {
             "action": t.string().optional(),
             "environment": t.string().optional(),
             "event": t.string().optional(),
             "deployment_callback_url": t.string().optional(),
             "deployment": t.proxy(renames["deployment"]).optional(),
-            "pull_requests": t.array(t.proxy(renames["pull-request"])).optional(),
+            "pull_requests": t.array(t.proxy(renames["pull_request"])).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-deployment-protection-rule-requested"])
-    types["webhook-deployment-status-created"] = t.struct(
+    ).named(renames["webhook_deployment_protection_rule_requested"])
+    types["webhook_deployment_status_created"] = t.struct(
         {
             "action": t.string(),
             "check_run": t.struct(
@@ -10312,10 +10312,10 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow": t.struct(
                 {
                     "badge_url": t.string(),
@@ -10606,8 +10606,8 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["webhook-deployment-status-created"])
-    types["webhook-discussion-answered"] = t.struct(
+    ).named(renames["webhook_deployment_status_created"])
+    types["webhook_discussion_answered"] = t.struct(
         {
             "action": t.string(),
             "answer": t.struct(
@@ -10666,13 +10666,13 @@ def import_github(params=None):
             ),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-answered"])
-    types["webhook-discussion-category-changed"] = t.struct(
+    ).named(renames["webhook_discussion_answered"])
+    types["webhook_discussion_category_changed"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -10699,89 +10699,24 @@ def import_github(params=None):
             ),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-category-changed"])
-    types["webhook-discussion-closed"] = t.struct(
+    ).named(renames["webhook_discussion_category_changed"])
+    types["webhook_discussion_closed"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-closed"])
-    types["webhook-discussion-comment-created"] = t.struct(
-        {
-            "action": t.string(),
-            "comment": t.struct(
-                {
-                    "author_association": t.string(),
-                    "body": t.string(),
-                    "child_comment_count": t.integer(),
-                    "created_at": t.string(),
-                    "discussion_id": t.integer(),
-                    "html_url": t.string(),
-                    "id": t.integer(),
-                    "node_id": t.string(),
-                    "parent_id": t.integer().optional(),
-                    "reactions": t.struct(
-                        {
-                            "+1": t.integer(),
-                            "-1": t.integer(),
-                            "confused": t.integer(),
-                            "eyes": t.integer(),
-                            "heart": t.integer(),
-                            "hooray": t.integer(),
-                            "laugh": t.integer(),
-                            "rocket": t.integer(),
-                            "total_count": t.integer(),
-                            "url": t.string(),
-                        }
-                    ),
-                    "repository_url": t.string(),
-                    "updated_at": t.string(),
-                    "user": t.struct(
-                        {
-                            "avatar_url": t.string().optional(),
-                            "deleted": t.boolean().optional(),
-                            "email": t.string().optional(),
-                            "events_url": t.string().optional(),
-                            "followers_url": t.string().optional(),
-                            "following_url": t.string().optional(),
-                            "gists_url": t.string().optional(),
-                            "gravatar_id": t.string().optional(),
-                            "html_url": t.string().optional(),
-                            "id": t.integer(),
-                            "login": t.string(),
-                            "name": t.string().optional(),
-                            "node_id": t.string().optional(),
-                            "organizations_url": t.string().optional(),
-                            "received_events_url": t.string().optional(),
-                            "repos_url": t.string().optional(),
-                            "site_admin": t.boolean().optional(),
-                            "starred_url": t.string().optional(),
-                            "subscriptions_url": t.string().optional(),
-                            "type": t.string().optional(),
-                            "url": t.string().optional(),
-                        }
-                    ).optional(),
-                }
-            ),
-            "discussion": t.proxy(renames["discussion"]),
-            "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
-            "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
-        }
-    ).named(renames["webhook-discussion-comment-created"])
-    types["webhook-discussion-comment-deleted"] = t.struct(
+    ).named(renames["webhook_discussion_closed"])
+    types["webhook_discussion_comment_created"] = t.struct(
         {
             "action": t.string(),
             "comment": t.struct(
@@ -10840,13 +10775,78 @@ def import_github(params=None):
             ),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-comment-deleted"])
-    types["webhook-discussion-comment-edited"] = t.struct(
+    ).named(renames["webhook_discussion_comment_created"])
+    types["webhook_discussion_comment_deleted"] = t.struct(
+        {
+            "action": t.string(),
+            "comment": t.struct(
+                {
+                    "author_association": t.string(),
+                    "body": t.string(),
+                    "child_comment_count": t.integer(),
+                    "created_at": t.string(),
+                    "discussion_id": t.integer(),
+                    "html_url": t.string(),
+                    "id": t.integer(),
+                    "node_id": t.string(),
+                    "parent_id": t.integer().optional(),
+                    "reactions": t.struct(
+                        {
+                            "+1": t.integer(),
+                            "-1": t.integer(),
+                            "confused": t.integer(),
+                            "eyes": t.integer(),
+                            "heart": t.integer(),
+                            "hooray": t.integer(),
+                            "laugh": t.integer(),
+                            "rocket": t.integer(),
+                            "total_count": t.integer(),
+                            "url": t.string(),
+                        }
+                    ),
+                    "repository_url": t.string(),
+                    "updated_at": t.string(),
+                    "user": t.struct(
+                        {
+                            "avatar_url": t.string().optional(),
+                            "deleted": t.boolean().optional(),
+                            "email": t.string().optional(),
+                            "events_url": t.string().optional(),
+                            "followers_url": t.string().optional(),
+                            "following_url": t.string().optional(),
+                            "gists_url": t.string().optional(),
+                            "gravatar_id": t.string().optional(),
+                            "html_url": t.string().optional(),
+                            "id": t.integer(),
+                            "login": t.string(),
+                            "name": t.string().optional(),
+                            "node_id": t.string().optional(),
+                            "organizations_url": t.string().optional(),
+                            "received_events_url": t.string().optional(),
+                            "repos_url": t.string().optional(),
+                            "site_admin": t.boolean().optional(),
+                            "starred_url": t.string().optional(),
+                            "subscriptions_url": t.string().optional(),
+                            "type": t.string().optional(),
+                            "url": t.string().optional(),
+                        }
+                    ).optional(),
+                }
+            ),
+            "discussion": t.proxy(renames["discussion"]),
+            "enterprise": t.proxy(renames["enterprise"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
+            "repository": t.proxy(renames["repository"]),
+            "sender": t.proxy(renames["simple_user"]),
+        }
+    ).named(renames["webhook_discussion_comment_deleted"])
+    types["webhook_discussion_comment_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct({"body": t.struct({"from": t.string()})}),
@@ -10906,13 +10906,13 @@ def import_github(params=None):
             ),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-comment-edited"])
-    types["webhook-discussion-created"] = t.struct(
+    ).named(renames["webhook_discussion_comment_edited"])
+    types["webhook_discussion_created"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.struct(
@@ -11015,24 +11015,24 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-created"])
-    types["webhook-discussion-deleted"] = t.struct(
+    ).named(renames["webhook_discussion_created"])
+    types["webhook_discussion_deleted"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-deleted"])
-    types["webhook-discussion-edited"] = t.struct(
+    ).named(renames["webhook_discussion_deleted"])
+    types["webhook_discussion_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -11043,18 +11043,18 @@ def import_github(params=None):
             ).optional(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-edited"])
-    types["webhook-discussion-labeled"] = t.struct(
+    ).named(renames["webhook_discussion_edited"])
+    types["webhook_discussion_labeled"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "label": t.struct(
                 {
                     "color": t.string(),
@@ -11066,45 +11066,45 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-labeled"])
-    types["webhook-discussion-locked"] = t.struct(
+    ).named(renames["webhook_discussion_labeled"])
+    types["webhook_discussion_locked"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-locked"])
-    types["webhook-discussion-pinned"] = t.struct(
+    ).named(renames["webhook_discussion_locked"])
+    types["webhook_discussion_pinned"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-pinned"])
-    types["webhook-discussion-reopened"] = t.struct(
+    ).named(renames["webhook_discussion_pinned"])
+    types["webhook_discussion_reopened"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-reopened"])
-    types["webhook-discussion-transferred"] = t.struct(
+    ).named(renames["webhook_discussion_reopened"])
+    types["webhook_discussion_transferred"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -11115,13 +11115,13 @@ def import_github(params=None):
             ),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-transferred"])
-    types["webhook-discussion-unanswered"] = t.struct(
+    ).named(renames["webhook_discussion_transferred"])
+    types["webhook_discussion_unanswered"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
@@ -11179,17 +11179,17 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-discussion-unanswered"])
-    types["webhook-discussion-unlabeled"] = t.struct(
+    ).named(renames["webhook_discussion_unanswered"])
+    types["webhook_discussion_unlabeled"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "label": t.struct(
                 {
                     "color": t.string(),
@@ -11201,34 +11201,34 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-unlabeled"])
-    types["webhook-discussion-unlocked"] = t.struct(
+    ).named(renames["webhook_discussion_unlabeled"])
+    types["webhook_discussion_unlocked"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-unlocked"])
-    types["webhook-discussion-unpinned"] = t.struct(
+    ).named(renames["webhook_discussion_unlocked"])
+    types["webhook_discussion_unpinned"] = t.struct(
         {
             "action": t.string(),
             "discussion": t.proxy(renames["discussion"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-discussion-unpinned"])
-    types["webhook-fork"] = t.struct(
+    ).named(renames["webhook_discussion_unpinned"])
+    types["webhook_fork"] = t.struct(
         {
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "forkee": t.struct(
@@ -11365,27 +11365,27 @@ def import_github(params=None):
                     "web_commit_signoff_required": t.boolean().optional(),
                 }
             ),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-fork"])
-    types["webhook-github-app-authorization-revoked"] = t.struct(
+    ).named(renames["webhook_fork"])
+    types["webhook_github_app_authorization_revoked"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-github-app-authorization-revoked"])
-    types["webhook-gollum"] = t.struct(
+    ).named(renames["webhook_github_app_authorization_revoked"])
+    types["webhook_gollum"] = t.struct(
         {
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pages": t.array(
                 t.struct(
                     {
@@ -11399,15 +11399,15 @@ def import_github(params=None):
                 )
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-gollum"])
-    types["webhook-installation-created"] = t.struct(
+    ).named(renames["webhook_gollum"])
+    types["webhook_installation_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "installation": t.proxy(renames["installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repositories": t.array(
                 t.struct(
                     {
@@ -11445,15 +11445,15 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-installation-created"])
-    types["webhook-installation-deleted"] = t.struct(
+    ).named(renames["webhook_installation_created"])
+    types["webhook_installation_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "installation": t.proxy(renames["installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repositories": t.array(
                 t.struct(
                     {
@@ -11467,15 +11467,15 @@ def import_github(params=None):
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "requester": t.struct({"_": t.string().optional()}).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-installation-deleted"])
-    types["webhook-installation-new-permissions-accepted"] = t.struct(
+    ).named(renames["webhook_installation_deleted"])
+    types["webhook_installation_new_permissions_accepted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "installation": t.proxy(renames["installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repositories": t.array(
                 t.struct(
                     {
@@ -11489,15 +11489,15 @@ def import_github(params=None):
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "requester": t.struct({"_": t.string().optional()}).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-installation-new-permissions-accepted"])
-    types["webhook-installation-repositories-added"] = t.struct(
+    ).named(renames["webhook_installation_new_permissions_accepted"])
+    types["webhook_installation_repositories_added"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "installation": t.proxy(renames["installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repositories_added": t.array(
                 t.struct(
                     {
@@ -11547,15 +11547,15 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-installation-repositories-added"])
-    types["webhook-installation-repositories-removed"] = t.struct(
+    ).named(renames["webhook_installation_repositories_added"])
+    types["webhook_installation_repositories_removed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "installation": t.proxy(renames["installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repositories_added": t.array(
                 t.struct(
                     {
@@ -11605,15 +11605,15 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-installation-repositories-removed"])
-    types["webhook-installation-suspend"] = t.struct(
+    ).named(renames["webhook_installation_repositories_removed"])
+    types["webhook_installation_suspend"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "installation": t.proxy(renames["installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repositories": t.array(
                 t.struct(
                     {
@@ -11627,10 +11627,10 @@ def import_github(params=None):
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "requester": t.struct({"_": t.string().optional()}).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-installation-suspend"])
-    types["webhook-installation-target-renamed"] = t.struct(
+    ).named(renames["webhook_installation_suspend"])
+    types["webhook_installation_target_renamed"] = t.struct(
         {
             "account": t.struct(
                 {
@@ -11679,19 +11679,19 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
             "target_type": t.string(),
         }
-    ).named(renames["webhook-installation-target-renamed"])
-    types["webhook-installation-unsuspend"] = t.struct(
+    ).named(renames["webhook_installation_target_renamed"])
+    types["webhook_installation_unsuspend"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "installation": t.proxy(renames["installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repositories": t.array(
                 t.struct(
                     {
@@ -11705,10 +11705,10 @@ def import_github(params=None):
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "requester": t.struct({"_": t.string().optional()}).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-installation-unsuspend"])
-    types["webhook-issue-comment-created"] = t.struct(
+    ).named(renames["webhook_installation_unsuspend"])
+    types["webhook_issue_comment_created"] = t.struct(
         {
             "action": t.string(),
             "comment": t.struct(
@@ -11721,7 +11721,7 @@ def import_github(params=None):
                     "issue_url": t.string(),
                     "node_id": t.string(),
                     "performed_via_github_app": t.proxy(
-                        renames["nullable-integration"]
+                        renames["nullable_integration"]
                     ),
                     "reactions": t.struct(
                         {
@@ -11767,7 +11767,7 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -12029,12 +12029,12 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issue-comment-created"])
-    types["webhook-issue-comment-deleted"] = t.struct(
+    ).named(renames["webhook_issue_comment_created"])
+    types["webhook_issue_comment_deleted"] = t.struct(
         {
             "action": t.string(),
             "comment": t.struct(
@@ -12047,7 +12047,7 @@ def import_github(params=None):
                     "issue_url": t.string(),
                     "node_id": t.string(),
                     "performed_via_github_app": t.proxy(
-                        renames["nullable-integration"]
+                        renames["nullable_integration"]
                     ),
                     "reactions": t.struct(
                         {
@@ -12093,7 +12093,7 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -12355,12 +12355,12 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issue-comment-deleted"])
-    types["webhook-issue-comment-edited"] = t.struct(
+    ).named(renames["webhook_issue_comment_deleted"])
+    types["webhook_issue_comment_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct({"body": t.struct({"from": t.string()}).optional()}),
@@ -12374,7 +12374,7 @@ def import_github(params=None):
                     "issue_url": t.string(),
                     "node_id": t.string(),
                     "performed_via_github_app": t.proxy(
-                        renames["nullable-integration"]
+                        renames["nullable_integration"]
                     ),
                     "reactions": t.struct(
                         {
@@ -12420,7 +12420,7 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -12682,12 +12682,12 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issue-comment-edited"])
-    types["webhook-issues-assigned"] = t.struct(
+    ).named(renames["webhook_issue_comment_edited"])
+    types["webhook_issues_assigned"] = t.struct(
         {
             "action": t.string(),
             "assignee": t.struct(
@@ -12716,7 +12716,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -12978,16 +12978,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-assigned"])
-    types["webhook-issues-closed"] = t.struct(
+    ).named(renames["webhook_issues_assigned"])
+    types["webhook_issues_closed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -13249,16 +13249,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-closed"])
-    types["webhook-issues-deleted"] = t.struct(
+    ).named(renames["webhook_issues_closed"])
+    types["webhook_issues_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -13520,16 +13520,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-deleted"])
-    types["webhook-issues-demilestoned"] = t.struct(
+    ).named(renames["webhook_issues_deleted"])
+    types["webhook_issues_demilestoned"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -13835,12 +13835,12 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-demilestoned"])
-    types["webhook-issues-edited"] = t.struct(
+    ).named(renames["webhook_issues_demilestoned"])
+    types["webhook_issues_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -13850,7 +13850,7 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -14123,16 +14123,16 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-edited"])
-    types["webhook-issues-labeled"] = t.struct(
+    ).named(renames["webhook_issues_edited"])
+    types["webhook_issues_labeled"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -14405,16 +14405,16 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-labeled"])
-    types["webhook-issues-locked"] = t.struct(
+    ).named(renames["webhook_issues_labeled"])
+    types["webhook_issues_locked"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -14676,16 +14676,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-locked"])
-    types["webhook-issues-milestoned"] = t.struct(
+    ).named(renames["webhook_issues_locked"])
+    types["webhook_issues_milestoned"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -14991,12 +14991,12 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-milestoned"])
-    types["webhook-issues-opened"] = t.struct(
+    ).named(renames["webhook_issues_milestoned"])
+    types["webhook_issues_opened"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -15398,7 +15398,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -15660,16 +15660,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-opened"])
-    types["webhook-issues-pinned"] = t.struct(
+    ).named(renames["webhook_issues_opened"])
+    types["webhook_issues_pinned"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -15931,16 +15931,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-pinned"])
-    types["webhook-issues-reopened"] = t.struct(
+    ).named(renames["webhook_issues_pinned"])
+    types["webhook_issues_reopened"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -16202,12 +16202,12 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-reopened"])
-    types["webhook-issues-transferred"] = t.struct(
+    ).named(renames["webhook_issues_reopened"])
+    types["webhook_issues_transferred"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -16611,7 +16611,7 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -16873,12 +16873,12 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-transferred"])
-    types["webhook-issues-unassigned"] = t.struct(
+    ).named(renames["webhook_issues_transferred"])
+    types["webhook_issues_unassigned"] = t.struct(
         {
             "action": t.string(),
             "assignee": t.struct(
@@ -16907,7 +16907,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -17169,16 +17169,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-unassigned"])
-    types["webhook-issues-unlabeled"] = t.struct(
+    ).named(renames["webhook_issues_unassigned"])
+    types["webhook_issues_unlabeled"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -17451,16 +17451,16 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-unlabeled"])
-    types["webhook-issues-unlocked"] = t.struct(
+    ).named(renames["webhook_issues_unlabeled"])
+    types["webhook_issues_unlocked"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -17722,16 +17722,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-unlocked"])
-    types["webhook-issues-unpinned"] = t.struct(
+    ).named(renames["webhook_issues_unlocked"])
+    types["webhook_issues_unpinned"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "issue": t.struct(
                 {
                     "active_lock_reason": t.string().optional(),
@@ -17993,16 +17993,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-issues-unpinned"])
-    types["webhook-label-created"] = t.struct(
+    ).named(renames["webhook_issues_unpinned"])
+    types["webhook_label_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "label": t.struct(
                 {
                     "color": t.string(),
@@ -18014,16 +18014,16 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-label-created"])
-    types["webhook-label-deleted"] = t.struct(
+    ).named(renames["webhook_label_created"])
+    types["webhook_label_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "label": t.struct(
                 {
                     "color": t.string(),
@@ -18035,12 +18035,12 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-label-deleted"])
-    types["webhook-label-edited"] = t.struct(
+    ).named(renames["webhook_label_deleted"])
+    types["webhook_label_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -18051,7 +18051,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "label": t.struct(
                 {
                     "color": t.string(),
@@ -18063,17 +18063,17 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-label-edited"])
-    types["webhook-marketplace-purchase-cancelled"] = t.struct(
+    ).named(renames["webhook_label_edited"])
+    types["webhook_marketplace_purchase_cancelled"] = t.struct(
         {
             "action": t.string(),
             "effective_date": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18105,7 +18105,7 @@ def import_github(params=None):
                     "unit_count": t.integer(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "previous_marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18140,15 +18140,15 @@ def import_github(params=None):
                 }
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-marketplace-purchase-cancelled"])
-    types["webhook-marketplace-purchase-changed"] = t.struct(
+    ).named(renames["webhook_marketplace_purchase_cancelled"])
+    types["webhook_marketplace_purchase_changed"] = t.struct(
         {
             "action": t.string(),
             "effective_date": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18180,7 +18180,7 @@ def import_github(params=None):
                     "unit_count": t.integer(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "previous_marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18213,15 +18213,15 @@ def import_github(params=None):
                 }
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-marketplace-purchase-changed"])
-    types["webhook-marketplace-purchase-pending-change"] = t.struct(
+    ).named(renames["webhook_marketplace_purchase_changed"])
+    types["webhook_marketplace_purchase_pending_change"] = t.struct(
         {
             "action": t.string(),
             "effective_date": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18253,7 +18253,7 @@ def import_github(params=None):
                     "unit_count": t.integer(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "previous_marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18286,15 +18286,15 @@ def import_github(params=None):
                 }
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-marketplace-purchase-pending-change"])
-    types["webhook-marketplace-purchase-pending-change-cancelled"] = t.struct(
+    ).named(renames["webhook_marketplace_purchase_pending_change"])
+    types["webhook_marketplace_purchase_pending_change_cancelled"] = t.struct(
         {
             "action": t.string(),
             "effective_date": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18328,7 +18328,7 @@ def import_github(params=None):
                     "unit_count": t.integer(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "previous_marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18363,15 +18363,15 @@ def import_github(params=None):
                 }
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-marketplace-purchase-pending-change-cancelled"])
-    types["webhook-marketplace-purchase-purchased"] = t.struct(
+    ).named(renames["webhook_marketplace_purchase_pending_change_cancelled"])
+    types["webhook_marketplace_purchase_purchased"] = t.struct(
         {
             "action": t.string(),
             "effective_date": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18403,7 +18403,7 @@ def import_github(params=None):
                     "unit_count": t.integer(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "previous_marketplace_purchase": t.struct(
                 {
                     "account": t.struct(
@@ -18438,17 +18438,17 @@ def import_github(params=None):
                 }
             ).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-marketplace-purchase-purchased"])
-    types["webhook-member-added"] = t.struct(
+    ).named(renames["webhook_marketplace_purchase_purchased"])
+    types["webhook_member_added"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
                 {"permission": t.struct({"to": t.string()}).optional()}
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "member": t.struct(
                 {
                     "avatar_url": t.string().optional(),
@@ -18474,12 +18474,12 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-member-added"])
-    types["webhook-member-edited"] = t.struct(
+    ).named(renames["webhook_member_added"])
+    types["webhook_member_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -18491,7 +18491,7 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "member": t.struct(
                 {
                     "avatar_url": t.string().optional(),
@@ -18517,16 +18517,16 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-member-edited"])
-    types["webhook-member-removed"] = t.struct(
+    ).named(renames["webhook_member_edited"])
+    types["webhook_member_removed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "member": t.struct(
                 {
                     "avatar_url": t.string().optional(),
@@ -18552,16 +18552,16 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-member-removed"])
-    types["webhook-membership-added"] = t.struct(
+    ).named(renames["webhook_member_removed"])
+    types["webhook_membership_added"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "member": t.struct(
                 {
                     "avatar_url": t.string().optional(),
@@ -18587,7 +18587,7 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
             "scope": t.string(),
             "sender": t.struct(
@@ -18649,12 +18649,12 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-membership-added"])
-    types["webhook-membership-removed"] = t.struct(
+    ).named(renames["webhook_membership_added"])
+    types["webhook_membership_removed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "member": t.struct(
                 {
                     "avatar_url": t.string().optional(),
@@ -18680,7 +18680,7 @@ def import_github(params=None):
                     "url": t.string().optional(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
             "scope": t.string(),
             "sender": t.struct(
@@ -18742,29 +18742,29 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-membership-removed"])
-    types["webhook-merge-group-checks-requested"] = t.struct(
+    ).named(renames["webhook_membership_removed"])
+    types["webhook_merge_group_checks_requested"] = t.struct(
         {
             "action": t.string(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "merge_group": t.proxy(renames["merge-group"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "merge_group": t.proxy(renames["merge_group"]),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-merge-group-checks-requested"])
-    types["webhook-merge-group-destroyed"] = t.struct(
+    ).named(renames["webhook_merge_group_checks_requested"])
+    types["webhook_merge_group_destroyed"] = t.struct(
         {
             "action": t.string(),
             "reason": t.string().optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "merge_group": t.proxy(renames["merge-group"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "merge_group": t.proxy(renames["merge_group"]),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-merge-group-destroyed"])
-    types["webhook-meta-deleted"] = t.struct(
+    ).named(renames["webhook_merge_group_destroyed"])
+    types["webhook_meta_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
@@ -18788,17 +18788,17 @@ def import_github(params=None):
                 }
             ),
             "hook_id": t.integer(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
-            "repository": t.proxy(renames["nullable-repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
+            "repository": t.proxy(renames["nullable_repository"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-meta-deleted"])
-    types["webhook-milestone-closed"] = t.struct(
+    ).named(renames["webhook_meta_deleted"])
+    types["webhook_milestone_closed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "milestone": t.struct(
                 {
                     "closed_at": t.string().optional(),
@@ -18843,16 +18843,16 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-milestone-closed"])
-    types["webhook-milestone-created"] = t.struct(
+    ).named(renames["webhook_milestone_closed"])
+    types["webhook_milestone_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "milestone": t.struct(
                 {
                     "closed_at": t.string().optional(),
@@ -18897,16 +18897,16 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-milestone-created"])
-    types["webhook-milestone-deleted"] = t.struct(
+    ).named(renames["webhook_milestone_created"])
+    types["webhook_milestone_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "milestone": t.struct(
                 {
                     "closed_at": t.string().optional(),
@@ -18951,12 +18951,12 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-milestone-deleted"])
-    types["webhook-milestone-edited"] = t.struct(
+    ).named(renames["webhook_milestone_deleted"])
+    types["webhook_milestone_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -18967,7 +18967,7 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "milestone": t.struct(
                 {
                     "closed_at": t.string().optional(),
@@ -19012,16 +19012,16 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-milestone-edited"])
-    types["webhook-milestone-opened"] = t.struct(
+    ).named(renames["webhook_milestone_edited"])
+    types["webhook_milestone_opened"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "milestone": t.struct(
                 {
                     "closed_at": t.string().optional(),
@@ -19066,12 +19066,12 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-milestone-opened"])
-    types["webhook-org-block-blocked"] = t.struct(
+    ).named(renames["webhook_milestone_opened"])
+    types["webhook_org_block_blocked"] = t.struct(
         {
             "action": t.string(),
             "blocked_user": t.struct(
@@ -19100,13 +19100,13 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-org-block-blocked"])
-    types["webhook-org-block-unblocked"] = t.struct(
+    ).named(renames["webhook_org_block_blocked"])
+    types["webhook_org_block_unblocked"] = t.struct(
         {
             "action": t.string(),
             "blocked_user": t.struct(
@@ -19135,17 +19135,17 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-org-block-unblocked"])
-    types["webhook-organization-deleted"] = t.struct(
+    ).named(renames["webhook_org_block_unblocked"])
+    types["webhook_organization_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "membership": t.struct(
                 {
                     "organization_url": t.string(),
@@ -19179,16 +19179,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-organization-deleted"])
-    types["webhook-organization-member-added"] = t.struct(
+    ).named(renames["webhook_organization_deleted"])
+    types["webhook_organization_member_added"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "membership": t.struct(
                 {
                     "organization_url": t.string(),
@@ -19222,16 +19222,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-organization-member-added"])
-    types["webhook-organization-member-invited"] = t.struct(
+    ).named(renames["webhook_organization_member_added"])
+    types["webhook_organization_member_invited"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "invitation": t.struct(
                 {
                     "created_at": t.string(),
@@ -19272,9 +19272,9 @@ def import_github(params=None):
                     "invitation_source": t.string().optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "user": t.struct(
                 {
                     "avatar_url": t.string().optional(),
@@ -19301,12 +19301,12 @@ def import_github(params=None):
                 }
             ).optional(),
         }
-    ).named(renames["webhook-organization-member-invited"])
-    types["webhook-organization-member-removed"] = t.struct(
+    ).named(renames["webhook_organization_member_invited"])
+    types["webhook_organization_member_removed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "membership": t.struct(
                 {
                     "organization_url": t.string(),
@@ -19340,19 +19340,19 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-organization-member-removed"])
-    types["webhook-organization-renamed"] = t.struct(
+    ).named(renames["webhook_organization_member_removed"])
+    types["webhook_organization_renamed"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
                 {"login": t.struct({"from": t.string().optional()}).optional()}
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "membership": t.struct(
                 {
                     "organization_url": t.string(),
@@ -19386,12 +19386,12 @@ def import_github(params=None):
                     ).optional(),
                 }
             ).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-organization-renamed"])
-    types["webhook-rubygems-metadata"] = t.struct(
+    ).named(renames["webhook_organization_renamed"])
+    types["webhook_rubygems_metadata"] = t.struct(
         {
             "name": t.string().optional(),
             "description": t.string().optional(),
@@ -19404,13 +19404,13 @@ def import_github(params=None):
             "dependencies": t.array(t.struct({})).optional(),
             "commit_oid": t.string().optional(),
         }
-    ).named(renames["webhook-rubygems-metadata"])
-    types["webhook-package-published"] = t.struct(
+    ).named(renames["webhook_rubygems_metadata"])
+    types["webhook_package_published"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "package": t.struct(
                 {
                     "created_at": t.string().optional(),
@@ -19624,7 +19624,7 @@ def import_github(params=None):
                                 }
                             ).optional(),
                             "rubygems_metadata": t.array(
-                                t.proxy(renames["webhook-rubygems-metadata"])
+                                t.proxy(renames["webhook_rubygems_metadata"])
                             ).optional(),
                             "source_url": t.string().optional(),
                             "summary": t.string(),
@@ -19648,15 +19648,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-package-published"])
-    types["webhook-package-updated"] = t.struct(
+    ).named(renames["webhook_package_published"])
+    types["webhook_package_updated"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "package": t.struct(
                 {
                     "created_at": t.string(),
@@ -19792,7 +19792,7 @@ def import_github(params=None):
                                 }
                             ).optional(),
                             "rubygems_metadata": t.array(
-                                t.proxy(renames["webhook-rubygems-metadata"])
+                                t.proxy(renames["webhook_rubygems_metadata"])
                             ).optional(),
                             "source_url": t.string().optional(),
                             "summary": t.string(),
@@ -19816,10 +19816,10 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-package-updated"])
-    types["webhook-page-build"] = t.struct(
+    ).named(renames["webhook_package_updated"])
+    types["webhook_page_build"] = t.struct(
         {
             "build": t.struct(
                 {
@@ -19859,57 +19859,57 @@ def import_github(params=None):
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "id": t.integer(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-page-build"])
-    types["webhook-personal-access-token-request-approved"] = t.struct(
+    ).named(renames["webhook_page_build"])
+    types["webhook_personal_access_token_request_approved"] = t.struct(
         {
             "action": t.string(),
             "personal_access_token_request": t.proxy(
-                renames["personal-access-token-request"]
+                renames["personal_access_token_request"]
             ),
-            "organization": t.proxy(renames["organization-simple"]),
-            "sender": t.proxy(renames["simple-user"]),
-            "installation": t.proxy(renames["simple-installation"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "sender": t.proxy(renames["simple_user"]),
+            "installation": t.proxy(renames["simple_installation"]),
         }
-    ).named(renames["webhook-personal-access-token-request-approved"])
-    types["webhook-personal-access-token-request-cancelled"] = t.struct(
+    ).named(renames["webhook_personal_access_token_request_approved"])
+    types["webhook_personal_access_token_request_cancelled"] = t.struct(
         {
             "action": t.string(),
             "personal_access_token_request": t.proxy(
-                renames["personal-access-token-request"]
+                renames["personal_access_token_request"]
             ),
-            "organization": t.proxy(renames["organization-simple"]),
-            "sender": t.proxy(renames["simple-user"]),
-            "installation": t.proxy(renames["simple-installation"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "sender": t.proxy(renames["simple_user"]),
+            "installation": t.proxy(renames["simple_installation"]),
         }
-    ).named(renames["webhook-personal-access-token-request-cancelled"])
-    types["webhook-personal-access-token-request-created"] = t.struct(
+    ).named(renames["webhook_personal_access_token_request_cancelled"])
+    types["webhook_personal_access_token_request_created"] = t.struct(
         {
             "action": t.string(),
             "personal_access_token_request": t.proxy(
-                renames["personal-access-token-request"]
+                renames["personal_access_token_request"]
             ),
-            "organization": t.proxy(renames["organization-simple"]),
-            "sender": t.proxy(renames["simple-user"]),
-            "installation": t.proxy(renames["simple-installation"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "sender": t.proxy(renames["simple_user"]),
+            "installation": t.proxy(renames["simple_installation"]),
         }
-    ).named(renames["webhook-personal-access-token-request-created"])
-    types["webhook-personal-access-token-request-denied"] = t.struct(
+    ).named(renames["webhook_personal_access_token_request_created"])
+    types["webhook_personal_access_token_request_denied"] = t.struct(
         {
             "action": t.string(),
             "personal_access_token_request": t.proxy(
-                renames["personal-access-token-request"]
+                renames["personal_access_token_request"]
             ),
-            "organization": t.proxy(renames["organization-simple"]),
-            "sender": t.proxy(renames["simple-user"]),
-            "installation": t.proxy(renames["simple-installation"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "sender": t.proxy(renames["simple_user"]),
+            "installation": t.proxy(renames["simple_installation"]),
         }
-    ).named(renames["webhook-personal-access-token-request-denied"])
-    types["webhook-ping"] = t.struct(
+    ).named(renames["webhook_personal_access_token_request_denied"])
+    types["webhook_ping"] = t.struct(
         {
             "hook": t.struct(
                 {
@@ -19918,22 +19918,22 @@ def import_github(params=None):
                     "config": t.struct(
                         {
                             "content_type": t.proxy(
-                                renames["webhook-config-content-type"]
+                                renames["webhook_config_content_type"]
                             ).optional(),
                             "insecure_ssl": t.proxy(
-                                renames["webhook-config-insecure-ssl"]
+                                renames["webhook_config_insecure_ssl"]
                             ).optional(),
                             "secret": t.proxy(
-                                renames["webhook-config-secret"]
+                                renames["webhook_config_secret"]
                             ).optional(),
-                            "url": t.proxy(renames["webhook-config-url"]).optional(),
+                            "url": t.proxy(renames["webhook_config_url"]).optional(),
                         }
                     ),
                     "created_at": t.string(),
                     "deliveries_url": t.string().optional(),
                     "events": t.array(t.string()),
                     "id": t.integer(),
-                    "last_response": t.proxy(renames["hook-response"]).optional(),
+                    "last_response": t.proxy(renames["hook_response"]).optional(),
                     "name": t.string(),
                     "ping_url": t.string().optional(),
                     "test_url": t.string().optional(),
@@ -19943,22 +19943,22 @@ def import_github(params=None):
                 }
             ).optional(),
             "hook_id": t.integer().optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
             "zen": t.string().optional(),
         }
-    ).named(renames["webhook-ping"])
-    types["webhook-ping-form-encoded"] = t.struct({"payload": t.string()}).named(
-        renames["webhook-ping-form-encoded"]
+    ).named(renames["webhook_ping"])
+    types["webhook_ping_form_encoded"] = t.struct({"payload": t.string()}).named(
+        renames["webhook_ping_form_encoded"]
     )
-    types["webhook-project-card-converted"] = t.struct(
+    types["webhook_project_card_converted"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct({"note": t.struct({"from": t.string()})}),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_card": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20001,15 +20001,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-card-converted"])
-    types["webhook-project-card-created"] = t.struct(
+    ).named(renames["webhook_project_card_converted"])
+    types["webhook_project_card_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_card": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20052,15 +20052,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-card-created"])
-    types["webhook-project-card-deleted"] = t.struct(
+    ).named(renames["webhook_project_card_created"])
+    types["webhook_project_card_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_card": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20102,17 +20102,17 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "repository": t.proxy(renames["nullable-repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "repository": t.proxy(renames["nullable_repository"]).optional(),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-card-deleted"])
-    types["webhook-project-card-edited"] = t.struct(
+    ).named(renames["webhook_project_card_deleted"])
+    types["webhook_project_card_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct({"note": t.struct({"from": t.string().optional()})}),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_card": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20155,18 +20155,18 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-card-edited"])
-    types["webhook-project-card-moved"] = t.struct(
+    ).named(renames["webhook_project_card_edited"])
+    types["webhook_project_card_moved"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
                 {"column_id": t.struct({"from": t.integer()})}
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_card": t.struct(
                 {
                     "after_id": t.number().optional(),
@@ -20209,15 +20209,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-card-moved"])
-    types["webhook-project-closed"] = t.struct(
+    ).named(renames["webhook_project_card_moved"])
+    types["webhook_project_closed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project": t.struct(
                 {
                     "body": t.string().optional(),
@@ -20260,15 +20260,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-closed"])
-    types["webhook-project-column-created"] = t.struct(
+    ).named(renames["webhook_project_closed"])
+    types["webhook_project_column_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_column": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20283,15 +20283,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-project-column-created"])
-    types["webhook-project-column-deleted"] = t.struct(
+    ).named(renames["webhook_project_column_created"])
+    types["webhook_project_column_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_column": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20305,17 +20305,17 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "repository": t.proxy(renames["nullable-repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "repository": t.proxy(renames["nullable_repository"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-project-column-deleted"])
-    types["webhook-project-column-edited"] = t.struct(
+    ).named(renames["webhook_project_column_deleted"])
+    types["webhook_project_column_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct({"name": t.struct({"from": t.string()}).optional()}),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_column": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20330,15 +20330,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-project-column-edited"])
-    types["webhook-project-column-moved"] = t.struct(
+    ).named(renames["webhook_project_column_edited"])
+    types["webhook_project_column_moved"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project_column": t.struct(
                 {
                     "after_id": t.integer().optional(),
@@ -20353,15 +20353,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-column-moved"])
-    types["webhook-project-created"] = t.struct(
+    ).named(renames["webhook_project_column_moved"])
+    types["webhook_project_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project": t.struct(
                 {
                     "body": t.string().optional(),
@@ -20404,15 +20404,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-created"])
-    types["webhook-project-deleted"] = t.struct(
+    ).named(renames["webhook_project_created"])
+    types["webhook_project_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project": t.struct(
                 {
                     "body": t.string().optional(),
@@ -20454,11 +20454,11 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ),
-            "repository": t.proxy(renames["nullable-repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "repository": t.proxy(renames["nullable_repository"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-project-deleted"])
-    types["webhook-project-edited"] = t.struct(
+    ).named(renames["webhook_project_deleted"])
+    types["webhook_project_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -20468,8 +20468,8 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project": t.struct(
                 {
                     "body": t.string().optional(),
@@ -20512,15 +20512,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-project-edited"])
-    types["webhook-project-reopened"] = t.struct(
+    ).named(renames["webhook_project_edited"])
+    types["webhook_project_reopened"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "project": t.struct(
                 {
                     "body": t.string().optional(),
@@ -20563,34 +20563,34 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-project-reopened"])
-    types["webhook-projects-v2-project-closed"] = t.struct(
+    ).named(renames["webhook_project_reopened"])
+    types["webhook_projects_v2_project_closed"] = t.struct(
         {
             "action": t.string(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2": t.proxy(renames["projects-v2"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2": t.proxy(renames["projects_v2"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-project-closed"])
-    types["webhook-projects-v2-project-created"] = t.struct(
+    ).named(renames["webhook_projects_v2_project_closed"])
+    types["webhook_projects_v2_project_created"] = t.struct(
         {
             "action": t.string(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2": t.proxy(renames["projects-v2"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2": t.proxy(renames["projects_v2"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-project-created"])
-    types["webhook-projects-v2-project-deleted"] = t.struct(
+    ).named(renames["webhook_projects_v2_project_created"])
+    types["webhook_projects_v2_project_deleted"] = t.struct(
         {
             "action": t.string(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2": t.proxy(renames["projects-v2"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2": t.proxy(renames["projects_v2"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-project-deleted"])
-    types["webhook-projects-v2-project-edited"] = t.struct(
+    ).named(renames["webhook_projects_v2_project_deleted"])
+    types["webhook_projects_v2_project_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -20609,12 +20609,12 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2": t.proxy(renames["projects-v2"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2": t.proxy(renames["projects_v2"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-project-edited"])
-    types["webhook-projects-v2-item-archived"] = t.struct(
+    ).named(renames["webhook_projects_v2_project_edited"])
+    types["webhook_projects_v2_item_archived"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -20624,13 +20624,13 @@ def import_github(params=None):
                     ).optional()
                 }
             ),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2_item": t.proxy(renames["projects-v2-item"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2_item": t.proxy(renames["projects_v2_item"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-item-archived"])
-    types["webhook-projects-v2-item-converted"] = t.struct(
+    ).named(renames["webhook_projects_v2_item_archived"])
+    types["webhook_projects_v2_item_converted"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -20640,31 +20640,31 @@ def import_github(params=None):
                     ).optional()
                 }
             ),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2_item": t.proxy(renames["projects-v2-item"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2_item": t.proxy(renames["projects_v2_item"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-item-converted"])
-    types["webhook-projects-v2-item-created"] = t.struct(
+    ).named(renames["webhook_projects_v2_item_converted"])
+    types["webhook_projects_v2_item_created"] = t.struct(
         {
             "action": t.string(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2_item": t.proxy(renames["projects-v2-item"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2_item": t.proxy(renames["projects_v2_item"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-item-created"])
-    types["webhook-projects-v2-item-deleted"] = t.struct(
+    ).named(renames["webhook_projects_v2_item_created"])
+    types["webhook_projects_v2_item_deleted"] = t.struct(
         {
             "action": t.string(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2_item": t.proxy(renames["projects-v2-item"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2_item": t.proxy(renames["projects_v2_item"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-item-deleted"])
-    types["webhook-projects-v2-item-edited"] = t.struct(
+    ).named(renames["webhook_projects_v2_item_deleted"])
+    types["webhook_projects_v2_item_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.either(
@@ -20691,13 +20691,13 @@ def import_github(params=None):
                     ),
                 ]
             ).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2_item": t.proxy(renames["projects-v2-item"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2_item": t.proxy(renames["projects_v2_item"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-item-edited"])
-    types["webhook-projects-v2-item-reordered"] = t.struct(
+    ).named(renames["webhook_projects_v2_item_edited"])
+    types["webhook_projects_v2_item_reordered"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -20707,13 +20707,13 @@ def import_github(params=None):
                     ).optional()
                 }
             ),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2_item": t.proxy(renames["projects-v2-item"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2_item": t.proxy(renames["projects_v2_item"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-item-reordered"])
-    types["webhook-projects-v2-item-restored"] = t.struct(
+    ).named(renames["webhook_projects_v2_item_reordered"])
+    types["webhook_projects_v2_item_restored"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -20723,30 +20723,30 @@ def import_github(params=None):
                     ).optional()
                 }
             ),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2_item": t.proxy(renames["projects-v2-item"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2_item": t.proxy(renames["projects_v2_item"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-item-restored"])
-    types["webhook-projects-v2-project-reopened"] = t.struct(
+    ).named(renames["webhook_projects_v2_item_restored"])
+    types["webhook_projects_v2_project_reopened"] = t.struct(
         {
             "action": t.string(),
-            "organization": t.proxy(renames["organization-simple"]),
-            "projects_v2": t.proxy(renames["projects-v2"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "organization": t.proxy(renames["organization_simple"]),
+            "projects_v2": t.proxy(renames["projects_v2"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-projects-v2-project-reopened"])
-    types["webhook-public"] = t.struct(
+    ).named(renames["webhook_projects_v2_project_reopened"])
+    types["webhook_public"] = t.struct(
         {
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-public"])
-    types["webhook-pull-request-assigned"] = t.struct(
+    ).named(renames["webhook_public"])
+    types["webhook_pull_request_assigned"] = t.struct(
         {
             "action": t.string(),
             "assignee": t.struct(
@@ -20775,9 +20775,9 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -21465,16 +21465,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-assigned"])
-    types["webhook-pull-request-auto-merge-disabled"] = t.struct(
+    ).named(renames["webhook_pull_request_assigned"])
+    types["webhook_pull_request_auto_merge_disabled"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -22163,16 +22163,16 @@ def import_github(params=None):
             ),
             "reason": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-auto-merge-disabled"])
-    types["webhook-pull-request-auto-merge-enabled"] = t.struct(
+    ).named(renames["webhook_pull_request_auto_merge_disabled"])
+    types["webhook_pull_request_auto_merge_enabled"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -22861,16 +22861,16 @@ def import_github(params=None):
             ),
             "reason": t.string().optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-auto-merge-enabled"])
-    types["webhook-pull-request-closed"] = t.struct(
+    ).named(renames["webhook_pull_request_auto_merge_enabled"])
+    types["webhook_pull_request_closed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "url": t.string(),
@@ -22889,7 +22889,7 @@ def import_github(params=None):
                     "state": t.string(),
                     "locked": t.boolean(),
                     "title": t.string(),
-                    "user": t.proxy(renames["simple-user"]),
+                    "user": t.proxy(renames["simple_user"]),
                     "body": t.string().optional(),
                     "labels": t.array(
                         t.struct(
@@ -22904,20 +22904,20 @@ def import_github(params=None):
                             }
                         )
                     ),
-                    "milestone": t.proxy(renames["nullable-milestone"]),
+                    "milestone": t.proxy(renames["nullable_milestone"]),
                     "active_lock_reason": t.string().optional(),
                     "created_at": t.string(),
                     "updated_at": t.string(),
                     "closed_at": t.string().optional(),
                     "merged_at": t.string().optional(),
                     "merge_commit_sha": t.string().optional(),
-                    "assignee": t.proxy(renames["nullable-simple-user"]),
-                    "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "assignee": t.proxy(renames["nullable_simple_user"]),
+                    "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
                     "requested_reviewers": t.array(
-                        t.proxy(renames["simple-user"])
+                        t.proxy(renames["simple_user"])
                     ).optional(),
                     "requested_teams": t.array(
-                        t.proxy(renames["team-simple"])
+                        t.proxy(renames["team_simple"])
                     ).optional(),
                     "head": t.struct(
                         {
@@ -23182,7 +23182,7 @@ def import_github(params=None):
                                     "allow_squash_merge": t.boolean().optional(),
                                     "allow_rebase_merge": t.boolean().optional(),
                                     "license": t.proxy(
-                                        renames["nullable-license-simple"]
+                                        renames["nullable_license_simple"]
                                     ),
                                     "pushed_at": t.string(),
                                     "size": t.integer(),
@@ -23235,14 +23235,14 @@ def import_github(params=None):
                             "self": t.proxy(renames["link"]),
                         }
                     ),
-                    "author_association": t.proxy(renames["author-association"]),
-                    "auto_merge": t.proxy(renames["auto-merge"]),
+                    "author_association": t.proxy(renames["author_association"]),
+                    "auto_merge": t.proxy(renames["auto_merge"]),
                     "draft": t.boolean().optional(),
                     "merged": t.boolean(),
                     "mergeable": t.boolean().optional(),
                     "rebaseable": t.boolean().optional(),
                     "mergeable_state": t.string(),
-                    "merged_by": t.proxy(renames["nullable-simple-user"]),
+                    "merged_by": t.proxy(renames["nullable_simple_user"]),
                     "comments": t.integer(),
                     "review_comments": t.integer(),
                     "maintainer_can_modify": t.boolean(),
@@ -23261,16 +23261,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-closed"])
-    types["webhook-pull-request-converted-to-draft"] = t.struct(
+    ).named(renames["webhook_pull_request_closed"])
+    types["webhook_pull_request_converted_to_draft"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "url": t.string(),
@@ -23289,7 +23289,7 @@ def import_github(params=None):
                     "state": t.string(),
                     "locked": t.boolean(),
                     "title": t.string(),
-                    "user": t.proxy(renames["simple-user"]),
+                    "user": t.proxy(renames["simple_user"]),
                     "body": t.string().optional(),
                     "labels": t.array(
                         t.struct(
@@ -23304,20 +23304,20 @@ def import_github(params=None):
                             }
                         )
                     ),
-                    "milestone": t.proxy(renames["nullable-milestone"]),
+                    "milestone": t.proxy(renames["nullable_milestone"]),
                     "active_lock_reason": t.string().optional(),
                     "created_at": t.string(),
                     "updated_at": t.string(),
                     "closed_at": t.string().optional(),
                     "merged_at": t.string().optional(),
                     "merge_commit_sha": t.string().optional(),
-                    "assignee": t.proxy(renames["nullable-simple-user"]),
-                    "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "assignee": t.proxy(renames["nullable_simple_user"]),
+                    "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
                     "requested_reviewers": t.array(
-                        t.proxy(renames["simple-user"])
+                        t.proxy(renames["simple_user"])
                     ).optional(),
                     "requested_teams": t.array(
-                        t.proxy(renames["team-simple"])
+                        t.proxy(renames["team_simple"])
                     ).optional(),
                     "head": t.struct(
                         {
@@ -23582,7 +23582,7 @@ def import_github(params=None):
                                     "allow_squash_merge": t.boolean().optional(),
                                     "allow_rebase_merge": t.boolean().optional(),
                                     "license": t.proxy(
-                                        renames["nullable-license-simple"]
+                                        renames["nullable_license_simple"]
                                     ),
                                     "pushed_at": t.string(),
                                     "size": t.integer(),
@@ -23635,14 +23635,14 @@ def import_github(params=None):
                             "self": t.proxy(renames["link"]),
                         }
                     ),
-                    "author_association": t.proxy(renames["author-association"]),
-                    "auto_merge": t.proxy(renames["auto-merge"]),
+                    "author_association": t.proxy(renames["author_association"]),
+                    "auto_merge": t.proxy(renames["auto_merge"]),
                     "draft": t.boolean().optional(),
                     "merged": t.boolean(),
                     "mergeable": t.boolean().optional(),
                     "rebaseable": t.boolean().optional(),
                     "mergeable_state": t.string(),
-                    "merged_by": t.proxy(renames["nullable-simple-user"]),
+                    "merged_by": t.proxy(renames["nullable_simple_user"]),
                     "comments": t.integer(),
                     "review_comments": t.integer(),
                     "maintainer_can_modify": t.boolean(),
@@ -23661,16 +23661,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-converted-to-draft"])
-    types["webhook-pull-request-demilestoned"] = t.struct(
+    ).named(renames["webhook_pull_request_converted_to_draft"])
+    types["webhook_pull_request_demilestoned"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "milestone": t.proxy(renames["milestone"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -24358,16 +24358,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-pull-request-demilestoned"])
-    types["webhook-pull-request-dequeued"] = t.struct(
+    ).named(renames["webhook_pull_request_demilestoned"])
+    types["webhook_pull_request_dequeued"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -25056,10 +25056,10 @@ def import_github(params=None):
             ),
             "reason": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-dequeued"])
-    types["webhook-pull-request-edited"] = t.struct(
+    ).named(renames["webhook_pull_request_dequeued"])
+    types["webhook_pull_request_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -25075,9 +25075,9 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "url": t.string(),
@@ -25096,7 +25096,7 @@ def import_github(params=None):
                     "state": t.string(),
                     "locked": t.boolean(),
                     "title": t.string(),
-                    "user": t.proxy(renames["simple-user"]),
+                    "user": t.proxy(renames["simple_user"]),
                     "body": t.string().optional(),
                     "labels": t.array(
                         t.struct(
@@ -25111,20 +25111,20 @@ def import_github(params=None):
                             }
                         )
                     ),
-                    "milestone": t.proxy(renames["nullable-milestone"]),
+                    "milestone": t.proxy(renames["nullable_milestone"]),
                     "active_lock_reason": t.string().optional(),
                     "created_at": t.string(),
                     "updated_at": t.string(),
                     "closed_at": t.string().optional(),
                     "merged_at": t.string().optional(),
                     "merge_commit_sha": t.string().optional(),
-                    "assignee": t.proxy(renames["nullable-simple-user"]),
-                    "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "assignee": t.proxy(renames["nullable_simple_user"]),
+                    "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
                     "requested_reviewers": t.array(
-                        t.proxy(renames["simple-user"])
+                        t.proxy(renames["simple_user"])
                     ).optional(),
                     "requested_teams": t.array(
-                        t.proxy(renames["team-simple"])
+                        t.proxy(renames["team_simple"])
                     ).optional(),
                     "head": t.struct(
                         {
@@ -25389,7 +25389,7 @@ def import_github(params=None):
                                     "allow_squash_merge": t.boolean().optional(),
                                     "allow_rebase_merge": t.boolean().optional(),
                                     "license": t.proxy(
-                                        renames["nullable-license-simple"]
+                                        renames["nullable_license_simple"]
                                     ),
                                     "pushed_at": t.string(),
                                     "size": t.integer(),
@@ -25442,14 +25442,14 @@ def import_github(params=None):
                             "self": t.proxy(renames["link"]),
                         }
                     ),
-                    "author_association": t.proxy(renames["author-association"]),
-                    "auto_merge": t.proxy(renames["auto-merge"]),
+                    "author_association": t.proxy(renames["author_association"]),
+                    "auto_merge": t.proxy(renames["auto_merge"]),
                     "draft": t.boolean().optional(),
                     "merged": t.boolean(),
                     "mergeable": t.boolean().optional(),
                     "rebaseable": t.boolean().optional(),
                     "mergeable_state": t.string(),
-                    "merged_by": t.proxy(renames["nullable-simple-user"]),
+                    "merged_by": t.proxy(renames["nullable_simple_user"]),
                     "comments": t.integer(),
                     "review_comments": t.integer(),
                     "maintainer_can_modify": t.boolean(),
@@ -25468,16 +25468,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-pull-request-edited"])
-    types["webhook-pull-request-enqueued"] = t.struct(
+    ).named(renames["webhook_pull_request_edited"])
+    types["webhook_pull_request_enqueued"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -26165,14 +26165,14 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-enqueued"])
-    types["webhook-pull-request-labeled"] = t.struct(
+    ).named(renames["webhook_pull_request_enqueued"])
+    types["webhook_pull_request_labeled"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "label": t.struct(
                 {
                     "color": t.string(),
@@ -26185,7 +26185,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -26873,16 +26873,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-labeled"])
-    types["webhook-pull-request-locked"] = t.struct(
+    ).named(renames["webhook_pull_request_labeled"])
+    types["webhook_pull_request_locked"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -27570,16 +27570,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-locked"])
-    types["webhook-pull-request-milestoned"] = t.struct(
+    ).named(renames["webhook_pull_request_locked"])
+    types["webhook_pull_request_milestoned"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "milestone": t.proxy(renames["milestone"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -28267,16 +28267,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-pull-request-milestoned"])
-    types["webhook-pull-request-opened"] = t.struct(
+    ).named(renames["webhook_pull_request_milestoned"])
+    types["webhook_pull_request_opened"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "url": t.string(),
@@ -28295,7 +28295,7 @@ def import_github(params=None):
                     "state": t.string(),
                     "locked": t.boolean(),
                     "title": t.string(),
-                    "user": t.proxy(renames["simple-user"]),
+                    "user": t.proxy(renames["simple_user"]),
                     "body": t.string().optional(),
                     "labels": t.array(
                         t.struct(
@@ -28310,20 +28310,20 @@ def import_github(params=None):
                             }
                         )
                     ),
-                    "milestone": t.proxy(renames["nullable-milestone"]),
+                    "milestone": t.proxy(renames["nullable_milestone"]),
                     "active_lock_reason": t.string().optional(),
                     "created_at": t.string(),
                     "updated_at": t.string(),
                     "closed_at": t.string().optional(),
                     "merged_at": t.string().optional(),
                     "merge_commit_sha": t.string().optional(),
-                    "assignee": t.proxy(renames["nullable-simple-user"]),
-                    "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "assignee": t.proxy(renames["nullable_simple_user"]),
+                    "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
                     "requested_reviewers": t.array(
-                        t.proxy(renames["simple-user"])
+                        t.proxy(renames["simple_user"])
                     ).optional(),
                     "requested_teams": t.array(
-                        t.proxy(renames["team-simple"])
+                        t.proxy(renames["team_simple"])
                     ).optional(),
                     "head": t.struct(
                         {
@@ -28588,7 +28588,7 @@ def import_github(params=None):
                                     "allow_squash_merge": t.boolean().optional(),
                                     "allow_rebase_merge": t.boolean().optional(),
                                     "license": t.proxy(
-                                        renames["nullable-license-simple"]
+                                        renames["nullable_license_simple"]
                                     ),
                                     "pushed_at": t.string(),
                                     "size": t.integer(),
@@ -28641,14 +28641,14 @@ def import_github(params=None):
                             "self": t.proxy(renames["link"]),
                         }
                     ),
-                    "author_association": t.proxy(renames["author-association"]),
-                    "auto_merge": t.proxy(renames["auto-merge"]),
+                    "author_association": t.proxy(renames["author_association"]),
+                    "auto_merge": t.proxy(renames["auto_merge"]),
                     "draft": t.boolean().optional(),
                     "merged": t.boolean(),
                     "mergeable": t.boolean().optional(),
                     "rebaseable": t.boolean().optional(),
                     "mergeable_state": t.string(),
-                    "merged_by": t.proxy(renames["nullable-simple-user"]),
+                    "merged_by": t.proxy(renames["nullable_simple_user"]),
                     "comments": t.integer(),
                     "review_comments": t.integer(),
                     "maintainer_can_modify": t.boolean(),
@@ -28667,16 +28667,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-opened"])
-    types["webhook-pull-request-ready-for-review"] = t.struct(
+    ).named(renames["webhook_pull_request_opened"])
+    types["webhook_pull_request_ready_for_review"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "url": t.string(),
@@ -28695,7 +28695,7 @@ def import_github(params=None):
                     "state": t.string(),
                     "locked": t.boolean(),
                     "title": t.string(),
-                    "user": t.proxy(renames["simple-user"]),
+                    "user": t.proxy(renames["simple_user"]),
                     "body": t.string().optional(),
                     "labels": t.array(
                         t.struct(
@@ -28710,20 +28710,20 @@ def import_github(params=None):
                             }
                         )
                     ),
-                    "milestone": t.proxy(renames["nullable-milestone"]),
+                    "milestone": t.proxy(renames["nullable_milestone"]),
                     "active_lock_reason": t.string().optional(),
                     "created_at": t.string(),
                     "updated_at": t.string(),
                     "closed_at": t.string().optional(),
                     "merged_at": t.string().optional(),
                     "merge_commit_sha": t.string().optional(),
-                    "assignee": t.proxy(renames["nullable-simple-user"]),
-                    "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "assignee": t.proxy(renames["nullable_simple_user"]),
+                    "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
                     "requested_reviewers": t.array(
-                        t.proxy(renames["simple-user"])
+                        t.proxy(renames["simple_user"])
                     ).optional(),
                     "requested_teams": t.array(
-                        t.proxy(renames["team-simple"])
+                        t.proxy(renames["team_simple"])
                     ).optional(),
                     "head": t.struct(
                         {
@@ -28988,7 +28988,7 @@ def import_github(params=None):
                                     "allow_squash_merge": t.boolean().optional(),
                                     "allow_rebase_merge": t.boolean().optional(),
                                     "license": t.proxy(
-                                        renames["nullable-license-simple"]
+                                        renames["nullable_license_simple"]
                                     ),
                                     "pushed_at": t.string(),
                                     "size": t.integer(),
@@ -29041,14 +29041,14 @@ def import_github(params=None):
                             "self": t.proxy(renames["link"]),
                         }
                     ),
-                    "author_association": t.proxy(renames["author-association"]),
-                    "auto_merge": t.proxy(renames["auto-merge"]),
+                    "author_association": t.proxy(renames["author_association"]),
+                    "auto_merge": t.proxy(renames["auto_merge"]),
                     "draft": t.boolean().optional(),
                     "merged": t.boolean(),
                     "mergeable": t.boolean().optional(),
                     "rebaseable": t.boolean().optional(),
                     "mergeable_state": t.string(),
-                    "merged_by": t.proxy(renames["nullable-simple-user"]),
+                    "merged_by": t.proxy(renames["nullable_simple_user"]),
                     "comments": t.integer(),
                     "review_comments": t.integer(),
                     "maintainer_can_modify": t.boolean(),
@@ -29067,16 +29067,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-ready-for-review"])
-    types["webhook-pull-request-reopened"] = t.struct(
+    ).named(renames["webhook_pull_request_ready_for_review"])
+    types["webhook_pull_request_reopened"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "url": t.string(),
@@ -29095,7 +29095,7 @@ def import_github(params=None):
                     "state": t.string(),
                     "locked": t.boolean(),
                     "title": t.string(),
-                    "user": t.proxy(renames["simple-user"]),
+                    "user": t.proxy(renames["simple_user"]),
                     "body": t.string().optional(),
                     "labels": t.array(
                         t.struct(
@@ -29110,20 +29110,20 @@ def import_github(params=None):
                             }
                         )
                     ),
-                    "milestone": t.proxy(renames["nullable-milestone"]),
+                    "milestone": t.proxy(renames["nullable_milestone"]),
                     "active_lock_reason": t.string().optional(),
                     "created_at": t.string(),
                     "updated_at": t.string(),
                     "closed_at": t.string().optional(),
                     "merged_at": t.string().optional(),
                     "merge_commit_sha": t.string().optional(),
-                    "assignee": t.proxy(renames["nullable-simple-user"]),
-                    "assignees": t.array(t.proxy(renames["simple-user"])).optional(),
+                    "assignee": t.proxy(renames["nullable_simple_user"]),
+                    "assignees": t.array(t.proxy(renames["simple_user"])).optional(),
                     "requested_reviewers": t.array(
-                        t.proxy(renames["simple-user"])
+                        t.proxy(renames["simple_user"])
                     ).optional(),
                     "requested_teams": t.array(
-                        t.proxy(renames["team-simple"])
+                        t.proxy(renames["team_simple"])
                     ).optional(),
                     "head": t.struct(
                         {
@@ -29388,7 +29388,7 @@ def import_github(params=None):
                                     "allow_squash_merge": t.boolean().optional(),
                                     "allow_rebase_merge": t.boolean().optional(),
                                     "license": t.proxy(
-                                        renames["nullable-license-simple"]
+                                        renames["nullable_license_simple"]
                                     ),
                                     "pushed_at": t.string(),
                                     "size": t.integer(),
@@ -29441,14 +29441,14 @@ def import_github(params=None):
                             "self": t.proxy(renames["link"]),
                         }
                     ),
-                    "author_association": t.proxy(renames["author-association"]),
-                    "auto_merge": t.proxy(renames["auto-merge"]),
+                    "author_association": t.proxy(renames["author_association"]),
+                    "auto_merge": t.proxy(renames["auto_merge"]),
                     "draft": t.boolean().optional(),
                     "merged": t.boolean(),
                     "mergeable": t.boolean().optional(),
                     "rebaseable": t.boolean().optional(),
                     "mergeable_state": t.string(),
-                    "merged_by": t.proxy(renames["nullable-simple-user"]),
+                    "merged_by": t.proxy(renames["nullable_simple_user"]),
                     "comments": t.integer(),
                     "review_comments": t.integer(),
                     "maintainer_can_modify": t.boolean(),
@@ -29467,10 +29467,10 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-reopened"])
-    types["webhook-pull-request-review-comment-created"] = t.struct(
+    ).named(renames["webhook_pull_request_reopened"])
+    types["webhook_pull_request_review_comment_created"] = t.struct(
         {
             "action": t.string(),
             "comment": t.struct(
@@ -29548,8 +29548,8 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -30201,10 +30201,10 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-review-comment-created"])
-    types["webhook-pull-request-review-comment-deleted"] = t.struct(
+    ).named(renames["webhook_pull_request_review_comment_created"])
+    types["webhook_pull_request_review_comment_deleted"] = t.struct(
         {
             "action": t.string(),
             "comment": t.struct(
@@ -30282,8 +30282,8 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -30935,10 +30935,10 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-review-comment-deleted"])
-    types["webhook-pull-request-review-comment-edited"] = t.struct(
+    ).named(renames["webhook_pull_request_review_comment_deleted"])
+    types["webhook_pull_request_review_comment_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct({"body": t.struct({"from": t.string()}).optional()}),
@@ -31017,8 +31017,8 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -31670,15 +31670,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-review-comment-edited"])
-    types["webhook-pull-request-review-dismissed"] = t.struct(
+    ).named(renames["webhook_pull_request_review_comment_edited"])
+    types["webhook_pull_request_review_dismissed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -32374,16 +32374,16 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-review-dismissed"])
-    types["webhook-pull-request-review-edited"] = t.struct(
+    ).named(renames["webhook_pull_request_review_dismissed"])
+    types["webhook_pull_request_review_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct({"body": t.struct({"from": t.string()}).optional()}),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -33065,18 +33065,18 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-review-edited"])
-    types["webhook-pull-request-review-request-removed"] = t.either(
+    ).named(renames["webhook_pull_request_review_edited"])
+    types["webhook_pull_request_review_request_removed"] = t.either(
         [
             t.struct(
                 {
                     "action": t.string(),
                     "enterprise": t.proxy(renames["enterprise"]).optional(),
-                    "installation": t.proxy(renames["simple-installation"]).optional(),
+                    "installation": t.proxy(renames["simple_installation"]).optional(),
                     "number": t.integer(),
-                    "organization": t.proxy(renames["organization-simple"]).optional(),
+                    "organization": t.proxy(renames["organization_simple"]).optional(),
                     "pull_request": t.struct(
                         {
                             "_links": t.struct(
@@ -33793,16 +33793,16 @@ def import_github(params=None):
                             "url": t.string().optional(),
                         }
                     ).optional(),
-                    "sender": t.proxy(renames["simple-user"]),
+                    "sender": t.proxy(renames["simple_user"]),
                 }
             ),
             t.struct(
                 {
                     "action": t.string(),
                     "enterprise": t.proxy(renames["enterprise"]).optional(),
-                    "installation": t.proxy(renames["simple-installation"]).optional(),
+                    "installation": t.proxy(renames["simple_installation"]).optional(),
                     "number": t.integer(),
-                    "organization": t.proxy(renames["organization-simple"]).optional(),
+                    "organization": t.proxy(renames["organization_simple"]).optional(),
                     "pull_request": t.struct(
                         {
                             "_links": t.struct(
@@ -34525,20 +34525,20 @@ def import_github(params=None):
                             "url": t.string(),
                         }
                     ),
-                    "sender": t.proxy(renames["simple-user"]),
+                    "sender": t.proxy(renames["simple_user"]),
                 }
             ),
         ]
-    ).named(renames["webhook-pull-request-review-request-removed"])
-    types["webhook-pull-request-review-requested"] = t.either(
+    ).named(renames["webhook_pull_request_review_request_removed"])
+    types["webhook_pull_request_review_requested"] = t.either(
         [
             t.struct(
                 {
                     "action": t.string(),
                     "enterprise": t.proxy(renames["enterprise"]).optional(),
-                    "installation": t.proxy(renames["simple-installation"]).optional(),
+                    "installation": t.proxy(renames["simple_installation"]).optional(),
                     "number": t.integer(),
-                    "organization": t.proxy(renames["organization-simple"]).optional(),
+                    "organization": t.proxy(renames["organization_simple"]).optional(),
                     "pull_request": t.struct(
                         {
                             "_links": t.struct(
@@ -35255,16 +35255,16 @@ def import_github(params=None):
                             "url": t.string().optional(),
                         }
                     ).optional(),
-                    "sender": t.proxy(renames["simple-user"]),
+                    "sender": t.proxy(renames["simple_user"]),
                 }
             ),
             t.struct(
                 {
                     "action": t.string(),
                     "enterprise": t.proxy(renames["enterprise"]).optional(),
-                    "installation": t.proxy(renames["simple-installation"]).optional(),
+                    "installation": t.proxy(renames["simple_installation"]).optional(),
                     "number": t.integer(),
-                    "organization": t.proxy(renames["organization-simple"]).optional(),
+                    "organization": t.proxy(renames["organization_simple"]).optional(),
                     "pull_request": t.struct(
                         {
                             "_links": t.struct(
@@ -35987,17 +35987,17 @@ def import_github(params=None):
                             "url": t.string().optional(),
                         }
                     ),
-                    "sender": t.proxy(renames["simple-user"]),
+                    "sender": t.proxy(renames["simple_user"]),
                 }
             ),
         ]
-    ).named(renames["webhook-pull-request-review-requested"])
-    types["webhook-pull-request-review-submitted"] = t.struct(
+    ).named(renames["webhook_pull_request_review_requested"])
+    types["webhook_pull_request_review_submitted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -36693,15 +36693,15 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-review-submitted"])
-    types["webhook-pull-request-review-thread-resolved"] = t.struct(
+    ).named(renames["webhook_pull_request_review_submitted"])
+    types["webhook_pull_request_review_thread_resolved"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -37343,7 +37343,7 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
             "thread": t.struct(
                 {
                     "comments": t.array(
@@ -37426,13 +37426,13 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-pull-request-review-thread-resolved"])
-    types["webhook-pull-request-review-thread-unresolved"] = t.struct(
+    ).named(renames["webhook_pull_request_review_thread_resolved"])
+    types["webhook_pull_request_review_thread_unresolved"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -38074,7 +38074,7 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
             "thread": t.struct(
                 {
                     "comments": t.array(
@@ -38157,16 +38157,16 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-pull-request-review-thread-unresolved"])
-    types["webhook-pull-request-synchronize"] = t.struct(
+    ).named(renames["webhook_pull_request_review_thread_unresolved"])
+    types["webhook_pull_request_synchronize"] = t.struct(
         {
             "action": t.string(),
             "after": t.string(),
             "before": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -38854,10 +38854,10 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-synchronize"])
-    types["webhook-pull-request-unassigned"] = t.struct(
+    ).named(renames["webhook_pull_request_synchronize"])
+    types["webhook_pull_request_unassigned"] = t.struct(
         {
             "action": t.string(),
             "assignee": t.struct(
@@ -38886,9 +38886,9 @@ def import_github(params=None):
                 }
             ).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -39576,14 +39576,14 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-pull-request-unassigned"])
-    types["webhook-pull-request-unlabeled"] = t.struct(
+    ).named(renames["webhook_pull_request_unassigned"])
+    types["webhook_pull_request_unlabeled"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "label": t.struct(
                 {
                     "color": t.string(),
@@ -39596,7 +39596,7 @@ def import_github(params=None):
                 }
             ).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -40284,16 +40284,16 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-unlabeled"])
-    types["webhook-pull-request-unlocked"] = t.struct(
+    ).named(renames["webhook_pull_request_unlabeled"])
+    types["webhook_pull_request_unlocked"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "number": t.integer(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pull_request": t.struct(
                 {
                     "_links": t.struct(
@@ -40981,10 +40981,10 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-pull-request-unlocked"])
-    types["webhook-push"] = t.struct(
+    ).named(renames["webhook_pull_request_unlocked"])
+    types["webhook_push"] = t.struct(
         {
             "after": t.string(),
             "base_ref": t.string().optional(),
@@ -41054,8 +41054,8 @@ def import_github(params=None):
                     "url": t.string(),
                 }
             ).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "pusher": t.struct(
                 {
                     "date": t.string().optional(),
@@ -41200,15 +41200,15 @@ def import_github(params=None):
                     "web_commit_signoff_required": t.boolean().optional(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-push"])
-    types["webhook-registry-package-published"] = t.struct(
+    ).named(renames["webhook_push"])
+    types["webhook_registry_package_published"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "registry_package": t.struct(
                 {
                     "created_at": t.string().optional(),
@@ -41423,7 +41423,7 @@ def import_github(params=None):
                                 }
                             ).optional(),
                             "rubygems_metadata": t.array(
-                                t.proxy(renames["webhook-rubygems-metadata"])
+                                t.proxy(renames["webhook_rubygems_metadata"])
                             ).optional(),
                             "summary": t.string(),
                             "tag_name": t.string().optional(),
@@ -41446,15 +41446,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-registry-package-published"])
-    types["webhook-registry-package-updated"] = t.struct(
+    ).named(renames["webhook_registry_package_published"])
+    types["webhook_registry_package_updated"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "registry_package": t.struct(
                 {
                     "created_at": t.string(),
@@ -41583,7 +41583,7 @@ def import_github(params=None):
                                 }
                             ).optional(),
                             "rubygems_metadata": t.array(
-                                t.proxy(renames["webhook-rubygems-metadata"])
+                                t.proxy(renames["webhook_rubygems_metadata"])
                             ).optional(),
                             "summary": t.string(),
                             "tag_name": t.string().optional(),
@@ -41598,15 +41598,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-registry-package-updated"])
-    types["webhook-release-created"] = t.struct(
+    ).named(renames["webhook_registry_package_updated"])
+    types["webhook_release_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "release": t.struct(
                 {
                     "assets": t.array(
@@ -41711,15 +41711,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-release-created"])
-    types["webhook-release-deleted"] = t.struct(
+    ).named(renames["webhook_release_created"])
+    types["webhook_release_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "release": t.struct(
                 {
                     "assets": t.array(
@@ -41824,10 +41824,10 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-release-deleted"])
-    types["webhook-release-edited"] = t.struct(
+    ).named(renames["webhook_release_deleted"])
+    types["webhook_release_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -41838,8 +41838,8 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "release": t.struct(
                 {
                     "assets": t.array(
@@ -41944,15 +41944,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-release-edited"])
-    types["webhook-release-prereleased"] = t.struct(
+    ).named(renames["webhook_release_edited"])
+    types["webhook_release_prereleased"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "release": t.struct(
                 {
                     "assets": t.array(
@@ -42057,15 +42057,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-release-prereleased"])
-    types["webhook-release-published"] = t.struct(
+    ).named(renames["webhook_release_prereleased"])
+    types["webhook_release_published"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "release": t.struct(
                 {
                     "assets": t.array(
@@ -42170,15 +42170,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-release-published"])
-    types["webhook-release-released"] = t.struct(
+    ).named(renames["webhook_release_published"])
+    types["webhook_release_released"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "release": t.struct(
                 {
                     "assets": t.array(
@@ -42283,15 +42283,15 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-release-released"])
-    types["webhook-release-unpublished"] = t.struct(
+    ).named(renames["webhook_release_released"])
+    types["webhook_release_unpublished"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "release": t.struct(
                 {
                     "assets": t.array(
@@ -42396,74 +42396,74 @@ def import_github(params=None):
                 }
             ),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-release-unpublished"])
-    types["webhook-repository-advisory-published"] = t.struct(
+    ).named(renames["webhook_release_unpublished"])
+    types["webhook_repository_advisory_published"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "repository_advisory": t.proxy(renames["repository-advisory"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "repository_advisory": t.proxy(renames["repository_advisory"]),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-repository-advisory-published"])
-    types["webhook-repository-advisory-reported"] = t.struct(
+    ).named(renames["webhook_repository_advisory_published"])
+    types["webhook_repository_advisory_reported"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "repository_advisory": t.proxy(renames["repository-advisory"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "repository_advisory": t.proxy(renames["repository_advisory"]),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-repository-advisory-reported"])
-    types["webhook-repository-archived"] = t.struct(
+    ).named(renames["webhook_repository_advisory_reported"])
+    types["webhook_repository_archived"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-archived"])
-    types["webhook-repository-created"] = t.struct(
+    ).named(renames["webhook_repository_archived"])
+    types["webhook_repository_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-created"])
-    types["webhook-repository-deleted"] = t.struct(
+    ).named(renames["webhook_repository_created"])
+    types["webhook_repository_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-deleted"])
-    types["webhook-repository-dispatch-sample"] = t.struct(
+    ).named(renames["webhook_repository_deleted"])
+    types["webhook_repository_dispatch_sample"] = t.struct(
         {
             "action": t.string(),
             "branch": t.string(),
             "client_payload": t.struct({}).optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-dispatch-sample"])
-    types["webhook-repository-edited"] = t.struct(
+    ).named(renames["webhook_repository_dispatch_sample"])
+    types["webhook_repository_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -42477,56 +42477,56 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-edited"])
-    types["webhook-repository-import"] = t.struct(
+    ).named(renames["webhook_repository_edited"])
+    types["webhook_repository_import"] = t.struct(
         {
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "status": t.string(),
         }
-    ).named(renames["webhook-repository-import"])
-    types["webhook-repository-privatized"] = t.struct(
+    ).named(renames["webhook_repository_import"])
+    types["webhook_repository_privatized"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-privatized"])
-    types["webhook-repository-publicized"] = t.struct(
+    ).named(renames["webhook_repository_privatized"])
+    types["webhook_repository_publicized"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-publicized"])
-    types["webhook-repository-renamed"] = t.struct(
+    ).named(renames["webhook_repository_publicized"])
+    types["webhook_repository_renamed"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
                 {"repository": t.struct({"name": t.struct({"from": t.string()})})}
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-renamed"])
-    types["webhook-repository-transferred"] = t.struct(
+    ).named(renames["webhook_repository_renamed"])
+    types["webhook_repository_transferred"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -42584,23 +42584,23 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-transferred"])
-    types["webhook-repository-unarchived"] = t.struct(
+    ).named(renames["webhook_repository_transferred"])
+    types["webhook_repository_unarchived"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-unarchived"])
-    types["webhook-repository-vulnerability-alert-create"] = t.struct(
+    ).named(renames["webhook_repository_unarchived"])
+    types["webhook_repository_vulnerability_alert_create"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -42649,13 +42649,13 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-vulnerability-alert-create"])
-    types["webhook-repository-vulnerability-alert-dismiss"] = t.struct(
+    ).named(renames["webhook_repository_vulnerability_alert_create"])
+    types["webhook_repository_vulnerability_alert_dismiss"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -42705,13 +42705,13 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-vulnerability-alert-dismiss"])
-    types["webhook-repository-vulnerability-alert-reopen"] = t.struct(
+    ).named(renames["webhook_repository_vulnerability_alert_dismiss"])
+    types["webhook_repository_vulnerability_alert_reopen"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -42760,13 +42760,13 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-vulnerability-alert-reopen"])
-    types["webhook-repository-vulnerability-alert-resolve"] = t.struct(
+    ).named(renames["webhook_repository_vulnerability_alert_reopen"])
+    types["webhook_repository_vulnerability_alert_resolve"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
@@ -42815,98 +42815,98 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-repository-vulnerability-alert-resolve"])
-    types["webhook-secret-scanning-alert-created"] = t.struct(
+    ).named(renames["webhook_repository_vulnerability_alert_resolve"])
+    types["webhook_secret_scanning_alert_created"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["secret-scanning-alert"]),
+            "alert": t.proxy(renames["secret_scanning_alert"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-secret-scanning-alert-created"])
-    types["webhook-secret-scanning-alert-location-created"] = t.struct(
+    ).named(renames["webhook_secret_scanning_alert_created"])
+    types["webhook_secret_scanning_alert_location_created"] = t.struct(
         {
             "action": t.string().optional(),
-            "alert": t.proxy(renames["secret-scanning-alert"]),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "location": t.proxy(renames["secret-scanning-location"]),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "alert": t.proxy(renames["secret_scanning_alert"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "location": t.proxy(renames["secret_scanning_location"]),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-secret-scanning-alert-location-created"])
-    types["webhook-secret-scanning-alert-location-created-form-encoded"] = t.struct(
+    ).named(renames["webhook_secret_scanning_alert_location_created"])
+    types["webhook_secret_scanning_alert_location_created_form_encoded"] = t.struct(
         {"payload": t.string()}
-    ).named(renames["webhook-secret-scanning-alert-location-created-form-encoded"])
-    types["webhook-secret-scanning-alert-reopened"] = t.struct(
+    ).named(renames["webhook_secret_scanning_alert_location_created_form_encoded"])
+    types["webhook_secret_scanning_alert_reopened"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["secret-scanning-alert"]),
+            "alert": t.proxy(renames["secret_scanning_alert"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-secret-scanning-alert-reopened"])
-    types["webhook-secret-scanning-alert-resolved"] = t.struct(
+    ).named(renames["webhook_secret_scanning_alert_reopened"])
+    types["webhook_secret_scanning_alert_resolved"] = t.struct(
         {
             "action": t.string(),
             "alert": t.struct(
                 {
-                    "created_at": t.proxy(renames["alert-created-at"]).optional(),
-                    "html_url": t.proxy(renames["alert-html-url"]).optional(),
+                    "created_at": t.proxy(renames["alert_created_at"]).optional(),
+                    "html_url": t.proxy(renames["alert_html_url"]).optional(),
                     "locations_url": t.string().optional(),
-                    "number": t.proxy(renames["alert-number"]).optional(),
+                    "number": t.proxy(renames["alert_number"]).optional(),
                     "push_protection_bypassed": t.boolean().optional(),
                     "push_protection_bypassed_at": t.string().optional(),
                     "push_protection_bypassed_by": t.proxy(
-                        renames["nullable-simple-user"]
+                        renames["nullable_simple_user"]
                     ).optional(),
                     "resolution": t.string().optional(),
                     "resolved_at": t.string().optional(),
-                    "resolved_by": t.proxy(renames["nullable-simple-user"]).optional(),
+                    "resolved_by": t.proxy(renames["nullable_simple_user"]).optional(),
                     "resolution_comment": t.string().optional(),
                     "secret": t.string().optional(),
                     "secret_type": t.string().optional(),
                     "secret_type_display_name": t.string().optional(),
-                    "state": t.proxy(renames["secret-scanning-alert-state"]).optional(),
-                    "updated_at": t.proxy(renames["alert-updated-at"]).optional(),
-                    "url": t.proxy(renames["alert-url"]).optional(),
+                    "state": t.proxy(renames["secret_scanning_alert_state"]).optional(),
+                    "updated_at": t.proxy(renames["alert_updated_at"]).optional(),
+                    "url": t.proxy(renames["alert_url"]).optional(),
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-secret-scanning-alert-resolved"])
-    types["webhook-secret-scanning-alert-revoked"] = t.struct(
+    ).named(renames["webhook_secret_scanning_alert_resolved"])
+    types["webhook_secret_scanning_alert_revoked"] = t.struct(
         {
             "action": t.string(),
-            "alert": t.proxy(renames["secret-scanning-alert"]),
+            "alert": t.proxy(renames["secret_scanning_alert"]),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-secret-scanning-alert-revoked"])
-    types["webhook-security-advisory-published"] = t.struct(
+    ).named(renames["webhook_secret_scanning_alert_revoked"])
+    types["webhook_security_advisory_published"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "security_advisory": t.struct(
                 {
@@ -42943,15 +42943,15 @@ def import_github(params=None):
                     "withdrawn_at": t.string().optional(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-security-advisory-published"])
-    types["webhook-security-advisory-updated"] = t.struct(
+    ).named(renames["webhook_security_advisory_published"])
+    types["webhook_security_advisory_updated"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "security_advisory": t.struct(
                 {
@@ -42988,15 +42988,15 @@ def import_github(params=None):
                     "withdrawn_at": t.string().optional(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-security-advisory-updated"])
-    types["webhook-security-advisory-withdrawn"] = t.struct(
+    ).named(renames["webhook_security_advisory_updated"])
+    types["webhook_security_advisory_withdrawn"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
             "security_advisory": t.struct(
                 {
@@ -43033,37 +43033,37 @@ def import_github(params=None):
                     "withdrawn_at": t.string(),
                 }
             ),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-security-advisory-withdrawn"])
-    types["webhook-security-and-analysis"] = t.struct(
+    ).named(renames["webhook_security_advisory_withdrawn"])
+    types["webhook_security_and_analysis"] = t.struct(
         {
             "changes": t.struct(
                 {
                     "from": t.struct(
                         {
                             "security_and_analysis": t.proxy(
-                                renames["security-and-analysis"]
+                                renames["security_and_analysis"]
                             ).optional()
                         }
                     ).optional()
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
-            "repository": t.proxy(renames["full-repository"]),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
+            "repository": t.proxy(renames["full_repository"]),
+            "sender": t.proxy(renames["simple_user"]).optional(),
         }
-    ).named(renames["webhook-security-and-analysis"])
-    types["webhook-sponsorship-cancelled"] = t.struct(
+    ).named(renames["webhook_security_and_analysis"])
+    types["webhook_sponsorship_cancelled"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "sponsorship": t.struct(
                 {
                     "created_at": t.string(),
@@ -43157,15 +43157,15 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-sponsorship-cancelled"])
-    types["webhook-sponsorship-created"] = t.struct(
+    ).named(renames["webhook_sponsorship_cancelled"])
+    types["webhook_sponsorship_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "sponsorship": t.struct(
                 {
                     "created_at": t.string(),
@@ -43259,18 +43259,18 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-sponsorship-created"])
-    types["webhook-sponsorship-edited"] = t.struct(
+    ).named(renames["webhook_sponsorship_created"])
+    types["webhook_sponsorship_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
                 {"privacy_level": t.struct({"from": t.string()}).optional()}
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "sponsorship": t.struct(
                 {
                     "created_at": t.string(),
@@ -43364,16 +43364,16 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-sponsorship-edited"])
-    types["webhook-sponsorship-pending-cancellation"] = t.struct(
+    ).named(renames["webhook_sponsorship_edited"])
+    types["webhook_sponsorship_pending_cancellation"] = t.struct(
         {
             "action": t.string(),
             "effective_date": t.string().optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "sponsorship": t.struct(
                 {
                     "created_at": t.string(),
@@ -43467,8 +43467,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-sponsorship-pending-cancellation"])
-    types["webhook-sponsorship-pending-tier-change"] = t.struct(
+    ).named(renames["webhook_sponsorship_pending_cancellation"])
+    types["webhook_sponsorship_pending_tier_change"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -43494,10 +43494,10 @@ def import_github(params=None):
             ),
             "effective_date": t.string().optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "sponsorship": t.struct(
                 {
                     "created_at": t.string(),
@@ -43591,8 +43591,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-sponsorship-pending-tier-change"])
-    types["webhook-sponsorship-tier-changed"] = t.struct(
+    ).named(renames["webhook_sponsorship_pending_tier_change"])
+    types["webhook_sponsorship_tier_changed"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -43617,10 +43617,10 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "sponsorship": t.struct(
                 {
                     "created_at": t.string(),
@@ -43714,30 +43714,30 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-sponsorship-tier-changed"])
-    types["webhook-star-created"] = t.struct(
+    ).named(renames["webhook_sponsorship_tier_changed"])
+    types["webhook_star_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "starred_at": t.string().optional(),
         }
-    ).named(renames["webhook-star-created"])
-    types["webhook-star-deleted"] = t.struct(
+    ).named(renames["webhook_star_created"])
+    types["webhook_star_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "starred_at": t.string().optional(),
         }
-    ).named(renames["webhook-star-deleted"])
-    types["webhook-status"] = t.struct(
+    ).named(renames["webhook_star_deleted"])
+    types["webhook_status"] = t.struct(
         {
             "avatar_url": t.string().optional(),
             "branches": t.array(
@@ -43856,24 +43856,24 @@ def import_github(params=None):
             "description": t.string().optional(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "id": t.integer(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "name": t.string(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "sha": t.string(),
             "state": t.string(),
             "target_url": t.string().optional(),
             "updated_at": t.string(),
         }
-    ).named(renames["webhook-status"])
-    types["webhook-team-add"] = t.struct(
+    ).named(renames["webhook_status"])
+    types["webhook_team_add"] = t.struct(
         {
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "team": t.struct(
                 {
                     "deleted": t.boolean().optional(),
@@ -43908,13 +43908,13 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-team-add"])
-    types["webhook-team-added-to-repository"] = t.struct(
+    ).named(renames["webhook_team_add"])
+    types["webhook_team_added_to_repository"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.struct(
                 {
                     "allow_auto_merge": t.boolean().optional(),
@@ -44048,7 +44048,7 @@ def import_github(params=None):
                     "watchers_count": t.integer(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
             "team": t.struct(
                 {
                     "deleted": t.boolean().optional(),
@@ -44083,13 +44083,13 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-team-added-to-repository"])
-    types["webhook-team-created"] = t.struct(
+    ).named(renames["webhook_team_added_to_repository"])
+    types["webhook_team_created"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.struct(
                 {
                     "allow_auto_merge": t.boolean().optional(),
@@ -44223,7 +44223,7 @@ def import_github(params=None):
                     "watchers_count": t.integer(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "team": t.struct(
                 {
                     "deleted": t.boolean().optional(),
@@ -44258,13 +44258,13 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-team-created"])
-    types["webhook-team-deleted"] = t.struct(
+    ).named(renames["webhook_team_created"])
+    types["webhook_team_deleted"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.struct(
                 {
                     "allow_auto_merge": t.boolean().optional(),
@@ -44398,7 +44398,7 @@ def import_github(params=None):
                     "watchers_count": t.integer(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]).optional(),
+            "sender": t.proxy(renames["simple_user"]).optional(),
             "team": t.struct(
                 {
                     "deleted": t.boolean().optional(),
@@ -44433,8 +44433,8 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-team-deleted"])
-    types["webhook-team-edited"] = t.struct(
+    ).named(renames["webhook_team_deleted"])
+    types["webhook_team_edited"] = t.struct(
         {
             "action": t.string(),
             "changes": t.struct(
@@ -44461,8 +44461,8 @@ def import_github(params=None):
                 }
             ),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.struct(
                 {
                     "allow_auto_merge": t.boolean().optional(),
@@ -44596,7 +44596,7 @@ def import_github(params=None):
                     "watchers_count": t.integer(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "team": t.struct(
                 {
                     "deleted": t.boolean().optional(),
@@ -44631,13 +44631,13 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-team-edited"])
-    types["webhook-team-removed-from-repository"] = t.struct(
+    ).named(renames["webhook_team_edited"])
+    types["webhook_team_removed_from_repository"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]),
             "repository": t.struct(
                 {
                     "allow_auto_merge": t.boolean().optional(),
@@ -44771,7 +44771,7 @@ def import_github(params=None):
                     "watchers_count": t.integer(),
                 }
             ).optional(),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "team": t.struct(
                 {
                     "deleted": t.boolean().optional(),
@@ -44806,37 +44806,37 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-team-removed-from-repository"])
-    types["webhook-watch-started"] = t.struct(
+    ).named(renames["webhook_team_removed_from_repository"])
+    types["webhook_watch_started"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
         }
-    ).named(renames["webhook-watch-started"])
-    types["webhook-workflow-dispatch"] = t.struct(
+    ).named(renames["webhook_watch_started"])
+    types["webhook_workflow_dispatch"] = t.struct(
         {
             "enterprise": t.proxy(renames["enterprise"]).optional(),
             "inputs": t.struct({}).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "ref": t.string(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow": t.string(),
         }
-    ).named(renames["webhook-workflow-dispatch"])
-    types["webhook-workflow-job-completed"] = t.struct(
+    ).named(renames["webhook_workflow_dispatch"])
+    types["webhook_workflow_job_completed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow_job": t.struct(
                 {
                     "check_run_url": t.string(),
@@ -44877,15 +44877,15 @@ def import_github(params=None):
             ),
             "deployment": t.proxy(renames["deployment"]).optional(),
         }
-    ).named(renames["webhook-workflow-job-completed"])
-    types["webhook-workflow-job-in-progress"] = t.struct(
+    ).named(renames["webhook_workflow_job_completed"])
+    types["webhook_workflow_job_in_progress"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow_job": t.struct(
                 {
                     "check_run_url": t.string(),
@@ -44926,15 +44926,15 @@ def import_github(params=None):
             ),
             "deployment": t.proxy(renames["deployment"]).optional(),
         }
-    ).named(renames["webhook-workflow-job-in-progress"])
-    types["webhook-workflow-job-queued"] = t.struct(
+    ).named(renames["webhook_workflow_job_in_progress"])
+    types["webhook_workflow_job_queued"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow_job": t.struct(
                 {
                     "check_run_url": t.string(),
@@ -44975,15 +44975,15 @@ def import_github(params=None):
             ),
             "deployment": t.proxy(renames["deployment"]).optional(),
         }
-    ).named(renames["webhook-workflow-job-queued"])
-    types["webhook-workflow-job-waiting"] = t.struct(
+    ).named(renames["webhook_workflow_job_queued"])
+    types["webhook_workflow_job_waiting"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow_job": t.struct(
                 {
                     "check_run_url": t.string(),
@@ -45024,15 +45024,15 @@ def import_github(params=None):
             ),
             "deployment": t.proxy(renames["deployment"]).optional(),
         }
-    ).named(renames["webhook-workflow-job-waiting"])
-    types["webhook-workflow-run-completed"] = t.struct(
+    ).named(renames["webhook_workflow_job_waiting"])
+    types["webhook_workflow_run_completed"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow": t.struct(
                 {
                     "badge_url": t.string(),
@@ -45345,15 +45345,15 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-workflow-run-completed"])
-    types["webhook-workflow-run-in-progress"] = t.struct(
+    ).named(renames["webhook_workflow_run_completed"])
+    types["webhook_workflow_run_in_progress"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow": t.struct(
                 {
                     "badge_url": t.string(),
@@ -45666,15 +45666,15 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-workflow-run-in-progress"])
-    types["webhook-workflow-run-requested"] = t.struct(
+    ).named(renames["webhook_workflow_run_in_progress"])
+    types["webhook_workflow_run_requested"] = t.struct(
         {
             "action": t.string(),
             "enterprise": t.proxy(renames["enterprise"]).optional(),
-            "installation": t.proxy(renames["simple-installation"]).optional(),
-            "organization": t.proxy(renames["organization-simple"]).optional(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
+            "organization": t.proxy(renames["organization_simple"]).optional(),
             "repository": t.proxy(renames["repository"]),
-            "sender": t.proxy(renames["simple-user"]),
+            "sender": t.proxy(renames["simple_user"]),
             "workflow": t.struct(
                 {
                     "badge_url": t.string(),
@@ -45988,20 +45988,20 @@ def import_github(params=None):
                 }
             ),
         }
-    ).named(renames["webhook-workflow-run-requested"])
+    ).named(renames["webhook_workflow_run_requested"])
 
     functions = {}
-    functions["meta/root"] = github.get(
+    functions["meta_root"] = github.get(
         "/",
         t.struct({}),
         t.proxy(renames["root"]),
     )
-    functions["apps/get-authenticated"] = github.get(
+    functions["apps_get_authenticated"] = github.get(
         "/app",
         t.struct({}),
         t.proxy(renames["integration"]),
     )
-    functions["apps/create-from-manifest"] = github.post(
+    functions["apps_create_from_manifest"] = github.post(
         "/app-manifests/{code}/conversions",
         t.struct({"code": t.string()}),
         t.struct(
@@ -46009,7 +46009,7 @@ def import_github(params=None):
                 "id": t.integer(),
                 "slug": t.string().optional(),
                 "node_id": t.string(),
-                "owner": t.proxy(renames["nullable-simple-user"]),
+                "owner": t.proxy(renames["nullable_simple_user"]),
                 "name": t.string(),
                 "description": t.string().optional(),
                 "external_url": t.string(),
@@ -46034,52 +46034,52 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["apps/get-webhook-config-for-app"] = github.get(
+    functions["apps_get_webhook_config_for_app"] = github.get(
         "/app/hook/config",
         t.struct({}),
-        t.proxy(renames["webhook-config"]),
+        t.proxy(renames["webhook_config"]),
     )
-    functions["apps/update-webhook-config-for-app"] = github.patch(
+    functions["apps_update_webhook_config_for_app"] = github.patch(
         "/app/hook/config",
         t.struct(
             {
-                "url": t.proxy(renames["webhook-config-url"]).optional(),
+                "url": t.proxy(renames["webhook_config_url"]).optional(),
                 "content_type": t.proxy(
-                    renames["webhook-config-content-type"]
+                    renames["webhook_config_content_type"]
                 ).optional(),
-                "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                 "insecure_ssl": t.proxy(
-                    renames["webhook-config-insecure-ssl"]
+                    renames["webhook_config_insecure_ssl"]
                 ).optional(),
             }
         ),
-        t.proxy(renames["webhook-config"]),
+        t.proxy(renames["webhook_config"]),
         content_type="application/json",
         body_fields=("url", "content_type", "secret", "insecure_ssl"),
     )
-    functions["apps/list-webhook-deliveries"] = github.get(
+    functions["apps_list_webhook_deliveries"] = github.get(
         "/app/hook/deliveries",
         t.struct(
             {"per_page": t.integer(), "cursor": t.string(), "redelivery": t.boolean()}
         ),
-        t.array(t.proxy(renames["hook-delivery-item"])),
+        t.array(t.proxy(renames["hook_delivery_item"])),
     )
-    functions["apps/get-webhook-delivery"] = github.get(
+    functions["apps_get_webhook_delivery"] = github.get(
         "/app/hook/deliveries/{delivery_id}",
         t.struct({"delivery_id": t.integer()}),
-        t.proxy(renames["hook-delivery"]),
+        t.proxy(renames["hook_delivery"]),
     )
-    functions["apps/redeliver-webhook-delivery"] = github.post(
+    functions["apps_redeliver_webhook_delivery"] = github.post(
         "/app/hook/deliveries/{delivery_id}/attempts",
         t.struct({"delivery_id": t.integer()}),
         t.struct({}),
     )
-    functions["apps/list-installation-requests-for-authenticated-app"] = github.get(
+    functions["apps_list_installation_requests_for_authenticated_app"] = github.get(
         "/app/installation-requests",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["integration-installation-request"])),
+        t.array(t.proxy(renames["integration_installation_request"])),
     )
-    functions["apps/list-installations"] = github.get(
+    functions["apps_list_installations"] = github.get(
         "/app/installations",
         t.struct(
             {
@@ -46091,69 +46091,69 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["installation"])),
     )
-    functions["apps/get-installation"] = github.get(
+    functions["apps_get_installation"] = github.get(
         "/app/installations/{installation_id}",
         t.struct({"installation_id": t.integer()}),
         t.proxy(renames["installation"]).optional(),
     )
-    functions["apps/delete-installation"] = github.delete(
+    functions["apps_delete_installation"] = github.delete(
         "/app/installations/{installation_id}",
         t.struct({"installation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/create-installation-access-token"] = github.post(
+    functions["apps_create_installation_access_token"] = github.post(
         "/app/installations/{installation_id}/access_tokens",
         t.struct(
             {
                 "installation_id": t.integer(),
                 "repositories": t.array(t.string()).optional(),
                 "repository_ids": t.array(t.integer()).optional(),
-                "permissions": t.proxy(renames["app-permissions"]).optional(),
+                "permissions": t.proxy(renames["app_permissions"]).optional(),
             }
         ),
-        t.proxy(renames["installation-token"]).optional(),
+        t.proxy(renames["installation_token"]).optional(),
         content_type="application/json",
         body_fields=("repositories", "repository_ids", "permissions"),
     )
-    functions["apps/suspend-installation"] = github.put(
+    functions["apps_suspend_installation"] = github.put(
         "/app/installations/{installation_id}/suspended",
         t.struct({"installation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/unsuspend-installation"] = github.delete(
+    functions["apps_unsuspend_installation"] = github.delete(
         "/app/installations/{installation_id}/suspended",
         t.struct({"installation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/delete-authorization"] = github.delete(
+    functions["apps_delete_authorization"] = github.delete(
         "/applications/{client_id}/grant",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.boolean(),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/check-token"] = github.post(
+    functions["apps_check_token"] = github.post(
         "/applications/{client_id}/token",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.proxy(renames["authorization"]).optional(),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/reset-token"] = github.patch(
+    functions["apps_reset_token"] = github.patch(
         "/applications/{client_id}/token",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.proxy(renames["authorization"]),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/delete-token"] = github.delete(
+    functions["apps_delete_token"] = github.delete(
         "/applications/{client_id}/token",
         t.struct({"client_id": t.string(), "access_token": t.string()}),
         t.boolean(),
         content_type="application/json",
         body_fields=("access_token",),
     )
-    functions["apps/scope-token"] = github.post(
+    functions["apps_scope_token"] = github.post(
         "/applications/{client_id}/token/scoped",
         t.struct(
             {
@@ -46163,7 +46163,7 @@ def import_github(params=None):
                 "target_id": t.integer().optional(),
                 "repositories": t.array(t.string()).optional(),
                 "repository_ids": t.array(t.integer()).optional(),
-                "permissions": t.proxy(renames["app-permissions"]).optional(),
+                "permissions": t.proxy(renames["app_permissions"]).optional(),
             }
         ),
         t.proxy(renames["authorization"]).optional(),
@@ -46177,27 +46177,27 @@ def import_github(params=None):
             "permissions",
         ),
     )
-    functions["apps/get-by-slug"] = github.get(
+    functions["apps_get_by_slug"] = github.get(
         "/apps/{app_slug}",
         t.struct({"app_slug": t.string()}),
         t.proxy(renames["integration"]).optional(),
     )
-    functions["codes-of-conduct/get-all-codes-of-conduct"] = github.get(
+    functions["codes_of_conduct_get_all_codes_of_conduct"] = github.get(
         "/codes_of_conduct",
         t.struct({}),
-        t.array(t.proxy(renames["code-of-conduct"])),
+        t.array(t.proxy(renames["code_of_conduct"])),
     )
-    functions["codes-of-conduct/get-conduct-code"] = github.get(
+    functions["codes_of_conduct_get_conduct_code"] = github.get(
         "/codes_of_conduct/{key}",
         t.struct({"key": t.string()}),
-        t.proxy(renames["code-of-conduct"]).optional(),
+        t.proxy(renames["code_of_conduct"]).optional(),
     )
-    functions["emojis/get"] = github.get(
+    functions["emojis_get"] = github.get(
         "/emojis",
         t.struct({}),
         t.struct({}),
     )
-    functions["dependabot/list-alerts-for-enterprise"] = github.get(
+    functions["dependabot_list_alerts_for_enterprise"] = github.get(
         "/enterprises/{enterprise}/dependabot/alerts",
         t.struct(
             {
@@ -46216,9 +46216,9 @@ def import_github(params=None):
                 "per_page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["dependabot-alert-with-repository"])).optional(),
+        t.array(t.proxy(renames["dependabot_alert_with_repository"])).optional(),
     )
-    functions["secret-scanning/list-alerts-for-enterprise"] = github.get(
+    functions["secret_scanning_list_alerts_for_enterprise"] = github.get(
         "/enterprises/{enterprise}/secret-scanning/alerts",
         t.struct(
             {
@@ -46233,24 +46233,24 @@ def import_github(params=None):
                 "after": t.string(),
             }
         ),
-        t.array(t.proxy(renames["organization-secret-scanning-alert"])).optional(),
+        t.array(t.proxy(renames["organization_secret_scanning_alert"])).optional(),
     )
-    functions["activity/list-public-events"] = github.get(
+    functions["activity_list_public_events"] = github.get(
         "/events",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/get-feeds"] = github.get(
+    functions["activity_get_feeds"] = github.get(
         "/feeds",
         t.struct({}),
         t.proxy(renames["feed"]),
     )
-    functions["gists/list"] = github.get(
+    functions["gists_list"] = github.get(
         "/gists",
         t.struct({"since": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["base-gist"])),
+        t.array(t.proxy(renames["base_gist"])),
     )
-    functions["gists/create"] = github.post(
+    functions["gists_create"] = github.post(
         "/gists",
         t.struct(
             {
@@ -46259,107 +46259,107 @@ def import_github(params=None):
                 "public": t.either([t.boolean(), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["gist-simple"]).optional(),
+        t.proxy(renames["gist_simple"]).optional(),
         content_type="application/json",
         body_fields=("description", "files", "public"),
     )
-    functions["gists/list-public"] = github.get(
+    functions["gists_list_public"] = github.get(
         "/gists/public",
         t.struct({"since": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["base-gist"])),
+        t.array(t.proxy(renames["base_gist"])),
     )
-    functions["gists/list-starred"] = github.get(
+    functions["gists_list_starred"] = github.get(
         "/gists/starred",
         t.struct({"since": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["base-gist"])),
+        t.array(t.proxy(renames["base_gist"])),
     )
-    functions["gists/get"] = github.get(
+    functions["gists_get"] = github.get(
         "/gists/{gist_id}",
         t.struct({"gist_id": t.string()}),
-        t.proxy(renames["gist-simple"]).optional(),
+        t.proxy(renames["gist_simple"]).optional(),
     )
-    functions["gists/delete"] = github.delete(
+    functions["gists_delete"] = github.delete(
         "/gists/{gist_id}",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/list-comments"] = github.get(
+    functions["gists_list_comments"] = github.get(
         "/gists/{gist_id}/comments",
         t.struct({"gist_id": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["gist-comment"])).optional(),
+        t.array(t.proxy(renames["gist_comment"])).optional(),
     )
-    functions["gists/create-comment"] = github.post(
+    functions["gists_create_comment"] = github.post(
         "/gists/{gist_id}/comments",
         t.struct({"gist_id": t.string(), "body": t.string()}),
-        t.proxy(renames["gist-comment"]).optional(),
+        t.proxy(renames["gist_comment"]).optional(),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["gists/get-comment"] = github.get(
+    functions["gists_get_comment"] = github.get(
         "/gists/{gist_id}/comments/{comment_id}",
         t.struct({"gist_id": t.string(), "comment_id": t.integer()}),
-        t.proxy(renames["gist-comment"]).optional(),
+        t.proxy(renames["gist_comment"]).optional(),
     )
-    functions["gists/update-comment"] = github.patch(
+    functions["gists_update_comment"] = github.patch(
         "/gists/{gist_id}/comments/{comment_id}",
         t.struct(
             {"gist_id": t.string(), "comment_id": t.integer(), "body": t.string()}
         ),
-        t.proxy(renames["gist-comment"]).optional(),
+        t.proxy(renames["gist_comment"]).optional(),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["gists/delete-comment"] = github.delete(
+    functions["gists_delete_comment"] = github.delete(
         "/gists/{gist_id}/comments/{comment_id}",
         t.struct({"gist_id": t.string(), "comment_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["gists/list-commits"] = github.get(
+    functions["gists_list_commits"] = github.get(
         "/gists/{gist_id}/commits",
         t.struct({"gist_id": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["gist-commit"])).optional(),
+        t.array(t.proxy(renames["gist_commit"])).optional(),
     )
-    functions["gists/list-forks"] = github.get(
+    functions["gists_list_forks"] = github.get(
         "/gists/{gist_id}/forks",
         t.struct({"gist_id": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["gist-simple"])).optional(),
+        t.array(t.proxy(renames["gist_simple"])).optional(),
     )
-    functions["gists/fork"] = github.post(
+    functions["gists_fork"] = github.post(
         "/gists/{gist_id}/forks",
         t.struct({"gist_id": t.string()}),
-        t.proxy(renames["base-gist"]).optional(),
+        t.proxy(renames["base_gist"]).optional(),
     )
-    functions["gists/check-is-starred"] = github.get(
+    functions["gists_check_is_starred"] = github.get(
         "/gists/{gist_id}/star",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/star"] = github.put(
+    functions["gists_star"] = github.put(
         "/gists/{gist_id}/star",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/unstar"] = github.delete(
+    functions["gists_unstar"] = github.delete(
         "/gists/{gist_id}/star",
         t.struct({"gist_id": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/get-revision"] = github.get(
+    functions["gists_get_revision"] = github.get(
         "/gists/{gist_id}/{sha}",
         t.struct({"gist_id": t.string(), "sha": t.string()}),
-        t.proxy(renames["gist-simple"]).optional(),
+        t.proxy(renames["gist_simple"]).optional(),
     )
-    functions["gitignore/get-all-templates"] = github.get(
+    functions["gitignore_get_all_templates"] = github.get(
         "/gitignore/templates",
         t.struct({}),
         t.array(t.string()),
     )
-    functions["gitignore/get-template"] = github.get(
+    functions["gitignore_get_template"] = github.get(
         "/gitignore/templates/{name}",
         t.struct({"name": t.string()}),
-        t.proxy(renames["gitignore-template"]),
+        t.proxy(renames["gitignore_template"]),
     )
-    functions["apps/list-repos-accessible-to-installation"] = github.get(
+    functions["apps_list_repos_accessible_to_installation"] = github.get(
         "/installation/repositories",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -46370,12 +46370,12 @@ def import_github(params=None):
             }
         ),
     )
-    functions["apps/revoke-installation-access-token"] = github.delete(
+    functions["apps_revoke_installation_access_token"] = github.delete(
         "/installation/token",
         t.struct({}),
         t.boolean(),
     )
-    functions["issues/list"] = github.get(
+    functions["issues_list"] = github.get(
         "/issues",
         t.struct(
             {
@@ -46395,29 +46395,29 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["licenses/get-all-commonly-used"] = github.get(
+    functions["licenses_get_all_commonly_used"] = github.get(
         "/licenses",
         t.struct(
             {"featured": t.boolean(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["license-simple"])),
+        t.array(t.proxy(renames["license_simple"])),
     )
-    functions["licenses/get"] = github.get(
+    functions["licenses_get"] = github.get(
         "/licenses/{license}",
         t.struct({"license": t.string()}),
         t.proxy(renames["license"]).optional(),
     )
-    functions["apps/get-subscription-plan-for-account"] = github.get(
+    functions["apps_get_subscription_plan_for_account"] = github.get(
         "/marketplace_listing/accounts/{account_id}",
         t.struct({"account_id": t.integer()}),
-        t.proxy(renames["marketplace-purchase"]).optional(),
+        t.proxy(renames["marketplace_purchase"]).optional(),
     )
-    functions["apps/list-plans"] = github.get(
+    functions["apps_list_plans"] = github.get(
         "/marketplace_listing/plans",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["marketplace-listing-plan"])).optional(),
+        t.array(t.proxy(renames["marketplace_listing_plan"])).optional(),
     )
-    functions["apps/list-accounts-for-plan"] = github.get(
+    functions["apps_list_accounts_for_plan"] = github.get(
         "/marketplace_listing/plans/{plan_id}/accounts",
         t.struct(
             {
@@ -46428,19 +46428,19 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["marketplace-purchase"])).optional(),
+        t.array(t.proxy(renames["marketplace_purchase"])).optional(),
     )
-    functions["apps/get-subscription-plan-for-account-stubbed"] = github.get(
+    functions["apps_get_subscription_plan_for_account_stubbed"] = github.get(
         "/marketplace_listing/stubbed/accounts/{account_id}",
         t.struct({"account_id": t.integer()}),
-        t.proxy(renames["marketplace-purchase"]).optional(),
+        t.proxy(renames["marketplace_purchase"]).optional(),
     )
-    functions["apps/list-plans-stubbed"] = github.get(
+    functions["apps_list_plans_stubbed"] = github.get(
         "/marketplace_listing/stubbed/plans",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["marketplace-listing-plan"])),
+        t.array(t.proxy(renames["marketplace_listing_plan"])),
     )
-    functions["apps/list-accounts-for-plan-stubbed"] = github.get(
+    functions["apps_list_accounts_for_plan_stubbed"] = github.get(
         "/marketplace_listing/stubbed/plans/{plan_id}/accounts",
         t.struct(
             {
@@ -46451,14 +46451,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["marketplace-purchase"])),
+        t.array(t.proxy(renames["marketplace_purchase"])),
     )
-    functions["meta/get"] = github.get(
+    functions["meta_get"] = github.get(
         "/meta",
         t.struct({}),
-        t.proxy(renames["api-overview"]),
+        t.proxy(renames["api_overview"]),
     )
-    functions["activity/list-public-events-for-repo-network"] = github.get(
+    functions["activity_list_public_events_for_repo_network"] = github.get(
         "/networks/{owner}/{repo}/events",
         t.struct(
             {
@@ -46470,7 +46470,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["event"])).optional(),
     )
-    functions["activity/list-notifications-for-authenticated-user"] = github.get(
+    functions["activity_list_notifications_for_authenticated_user"] = github.get(
         "/notifications",
         t.struct(
             {
@@ -46484,7 +46484,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["thread"])),
     )
-    functions["activity/mark-notifications-as-read"] = github.put(
+    functions["activity_mark_notifications_as_read"] = github.put(
         "/notifications",
         t.struct(
             {"last_read_at": t.string().optional(), "read": t.boolean().optional()}
@@ -46493,39 +46493,39 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("last_read_at", "read"),
     )
-    functions["activity/get-thread"] = github.get(
+    functions["activity_get_thread"] = github.get(
         "/notifications/threads/{thread_id}",
         t.struct({"thread_id": t.integer()}),
         t.proxy(renames["thread"]),
     )
-    functions["activity/mark-thread-as-read"] = github.patch(
+    functions["activity_mark_thread_as_read"] = github.patch(
         "/notifications/threads/{thread_id}",
         t.struct({"thread_id": t.integer()}),
         t.struct({}),
     )
-    functions["activity/get-thread-subscription-for-authenticated-user"] = github.get(
+    functions["activity_get_thread_subscription_for_authenticated_user"] = github.get(
         "/notifications/threads/{thread_id}/subscription",
         t.struct({"thread_id": t.integer()}),
-        t.proxy(renames["thread-subscription"]),
+        t.proxy(renames["thread_subscription"]),
     )
-    functions["activity/set-thread-subscription"] = github.put(
+    functions["activity_set_thread_subscription"] = github.put(
         "/notifications/threads/{thread_id}/subscription",
         t.struct({"thread_id": t.integer(), "ignored": t.boolean().optional()}),
-        t.proxy(renames["thread-subscription"]),
+        t.proxy(renames["thread_subscription"]),
         content_type="application/json",
         body_fields=("ignored",),
     )
-    functions["activity/delete-thread-subscription"] = github.delete(
+    functions["activity_delete_thread_subscription"] = github.delete(
         "/notifications/threads/{thread_id}/subscription",
         t.struct({"thread_id": t.integer()}),
         t.boolean(),
     )
-    functions["orgs/list"] = github.get(
+    functions["orgs_list"] = github.get(
         "/organizations",
         t.struct({"since": t.integer(), "per_page": t.integer()}),
-        t.array(t.proxy(renames["organization-simple"])),
+        t.array(t.proxy(renames["organization_simple"])),
     )
-    functions["orgs/list-pat-grant-requests"] = github.get(
+    functions["orgs_list_pat_grant_requests"] = github.get(
         "/organizations/{org}/personal-access-token-requests",
         t.struct(
             {
@@ -46542,10 +46542,10 @@ def import_github(params=None):
             }
         ),
         t.array(
-            t.proxy(renames["organization-programmatic-access-grant-request"])
+            t.proxy(renames["organization_programmatic_access_grant_request"])
         ).optional(),
     )
-    functions["orgs/review-pat-grant-requests-in-bulk"] = github.post(
+    functions["orgs_review_pat_grant_requests_in_bulk"] = github.post(
         "/organizations/{org}/personal-access-token-requests",
         t.struct(
             {
@@ -46559,7 +46559,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("pat_request_ids", "action", "reason"),
     )
-    functions["orgs/review-pat-grant-request"] = github.post(
+    functions["orgs_review_pat_grant_request"] = github.post(
         "/organizations/{org}/personal-access-token-requests/{pat_request_id}",
         t.struct(
             {
@@ -46573,7 +46573,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("action", "reason"),
     )
-    functions["orgs/list-pat-grant-request-repositories"] = github.get(
+    functions["orgs_list_pat_grant_request_repositories"] = github.get(
         "/organizations/{org}/personal-access-token-requests/{pat_request_id}/repositories",
         t.struct(
             {
@@ -46583,9 +46583,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["minimal-repository"])).optional(),
+        t.array(t.proxy(renames["minimal_repository"])).optional(),
     )
-    functions["orgs/list-pat-grants"] = github.get(
+    functions["orgs_list_pat_grants"] = github.get(
         "/organizations/{org}/personal-access-tokens",
         t.struct(
             {
@@ -46601,9 +46601,9 @@ def import_github(params=None):
                 "last_used_after": t.string(),
             }
         ),
-        t.array(t.proxy(renames["organization-programmatic-access-grant"])).optional(),
+        t.array(t.proxy(renames["organization_programmatic_access_grant"])).optional(),
     )
-    functions["orgs/update-pat-accesses"] = github.post(
+    functions["orgs_update_pat_accesses"] = github.post(
         "/organizations/{org}/personal-access-tokens",
         t.struct(
             {"org": t.string(), "action": t.string(), "pat_ids": t.array(t.integer())}
@@ -46612,14 +46612,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("action", "pat_ids"),
     )
-    functions["orgs/update-pat-access"] = github.post(
+    functions["orgs_update_pat_access"] = github.post(
         "/organizations/{org}/personal-access-tokens/{pat_id}",
         t.struct({"org": t.string(), "pat_id": t.integer(), "action": t.string()}),
         t.boolean().optional(),
         content_type="application/json",
         body_fields=("action",),
     )
-    functions["orgs/list-pat-grant-repositories"] = github.get(
+    functions["orgs_list_pat_grant_repositories"] = github.get(
         "/organizations/{org}/personal-access-tokens/{pat_id}/repositories",
         t.struct(
             {
@@ -46629,14 +46629,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["minimal-repository"])).optional(),
+        t.array(t.proxy(renames["minimal_repository"])).optional(),
     )
-    functions["orgs/get"] = github.get(
+    functions["orgs_get"] = github.get(
         "/orgs/{org}",
         t.struct({"org": t.string()}),
-        t.proxy(renames["organization-full"]).optional(),
+        t.proxy(renames["organization_full"]).optional(),
     )
-    functions["orgs/update"] = github.patch(
+    functions["orgs_update"] = github.patch(
         "/orgs/{org}",
         t.struct(
             {
@@ -46672,7 +46672,7 @@ def import_github(params=None):
                 "secret_scanning_push_protection_custom_link": t.string().optional(),
             }
         ),
-        t.proxy(renames["organization-full"]),
+        t.proxy(renames["organization_full"]),
         content_type="application/json",
         body_fields=(
             "billing_email",
@@ -46706,52 +46706,52 @@ def import_github(params=None):
             "secret_scanning_push_protection_custom_link",
         ),
     )
-    functions["orgs/delete"] = github.delete(
+    functions["orgs_delete"] = github.delete(
         "/orgs/{org}",
         t.struct({"org": t.string()}),
         t.struct({}).optional(),
     )
-    functions["actions/get-actions-cache-usage-for-org"] = github.get(
+    functions["actions_get_actions_cache_usage_for_org"] = github.get(
         "/orgs/{org}/actions/cache/usage",
         t.struct({"org": t.string()}),
-        t.proxy(renames["actions-cache-usage-org-enterprise"]),
+        t.proxy(renames["actions_cache_usage_org_enterprise"]),
     )
-    functions["actions/get-actions-cache-usage-by-repo-for-org"] = github.get(
+    functions["actions_get_actions_cache_usage_by_repo_for_org"] = github.get(
         "/orgs/{org}/actions/cache/usage-by-repository",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
                 "repository_cache_usages": t.array(
-                    t.proxy(renames["actions-cache-usage-by-repository"])
+                    t.proxy(renames["actions_cache_usage_by_repository"])
                 ),
             }
         ),
     )
-    functions["oidc/get-oidc-custom-sub-template-for-org"] = github.get(
+    functions["oidc_get_oidc_custom_sub_template_for_org"] = github.get(
         "/orgs/{org}/actions/oidc/customization/sub",
         t.struct({"org": t.string()}),
-        t.proxy(renames["oidc-custom-sub"]),
+        t.proxy(renames["oidc_custom_sub"]),
     )
-    functions["oidc/update-oidc-custom-sub-template-for-org"] = github.put(
+    functions["oidc_update_oidc_custom_sub_template_for_org"] = github.put(
         "/orgs/{org}/actions/oidc/customization/sub",
         t.struct({"org": t.string(), "include_claim_keys": t.array(t.string())}),
-        t.proxy(renames["empty-object"]).optional(),
+        t.proxy(renames["empty_object"]).optional(),
         content_type="application/json",
         body_fields=("include_claim_keys",),
     )
-    functions["actions/get-github-actions-permissions-organization"] = github.get(
+    functions["actions_get_github_actions_permissions_organization"] = github.get(
         "/orgs/{org}/actions/permissions",
         t.struct({"org": t.string()}),
-        t.proxy(renames["actions-organization-permissions"]),
+        t.proxy(renames["actions_organization_permissions"]),
     )
-    functions["actions/set-github-actions-permissions-organization"] = github.put(
+    functions["actions_set_github_actions_permissions_organization"] = github.put(
         "/orgs/{org}/actions/permissions",
         t.struct(
             {
                 "org": t.string(),
-                "enabled_repositories": t.proxy(renames["enabled-repositories"]),
-                "allowed_actions": t.proxy(renames["allowed-actions"]).optional(),
+                "enabled_repositories": t.proxy(renames["enabled_repositories"]),
+                "allowed_actions": t.proxy(renames["allowed_actions"]).optional(),
             }
         ),
         t.boolean(),
@@ -46759,7 +46759,7 @@ def import_github(params=None):
         body_fields=("enabled_repositories", "allowed_actions"),
     )
     functions[
-        "actions/list-selected-repositories-enabled-github-actions-organization"
+        "actions_list_selected_repositories_enabled_github_actions_organization"
     ] = github.get(
         "/orgs/{org}/actions/permissions/repositories",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
@@ -46771,7 +46771,7 @@ def import_github(params=None):
         ),
     )
     functions[
-        "actions/set-selected-repositories-enabled-github-actions-organization"
+        "actions_set_selected_repositories_enabled_github_actions_organization"
     ] = github.put(
         "/orgs/{org}/actions/permissions/repositories",
         t.struct({"org": t.string(), "selected_repository_ids": t.array(t.integer())}),
@@ -46780,25 +46780,25 @@ def import_github(params=None):
         body_fields=("selected_repository_ids",),
     )
     functions[
-        "actions/enable-selected-repository-github-actions-organization"
+        "actions_enable_selected_repository_github_actions_organization"
     ] = github.put(
         "/orgs/{org}/actions/permissions/repositories/{repository_id}",
         t.struct({"org": t.string(), "repository_id": t.integer()}),
         t.boolean(),
     )
     functions[
-        "actions/disable-selected-repository-github-actions-organization"
+        "actions_disable_selected_repository_github_actions_organization"
     ] = github.delete(
         "/orgs/{org}/actions/permissions/repositories/{repository_id}",
         t.struct({"org": t.string(), "repository_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/get-allowed-actions-organization"] = github.get(
+    functions["actions_get_allowed_actions_organization"] = github.get(
         "/orgs/{org}/actions/permissions/selected-actions",
         t.struct({"org": t.string()}),
-        t.proxy(renames["selected-actions"]),
+        t.proxy(renames["selected_actions"]),
     )
-    functions["actions/set-allowed-actions-organization"] = github.put(
+    functions["actions_set_allowed_actions_organization"] = github.put(
         "/orgs/{org}/actions/permissions/selected-actions",
         t.struct(
             {
@@ -46813,24 +46813,24 @@ def import_github(params=None):
         body_fields=("github_owned_allowed", "verified_allowed", "patterns_allowed"),
     )
     functions[
-        "actions/get-github-actions-default-workflow-permissions-organization"
+        "actions_get_github_actions_default_workflow_permissions_organization"
     ] = github.get(
         "/orgs/{org}/actions/permissions/workflow",
         t.struct({"org": t.string()}),
-        t.proxy(renames["actions-get-default-workflow-permissions"]),
+        t.proxy(renames["actions_get_default_workflow_permissions"]),
     )
     functions[
-        "actions/set-github-actions-default-workflow-permissions-organization"
+        "actions_set_github_actions_default_workflow_permissions_organization"
     ] = github.put(
         "/orgs/{org}/actions/permissions/workflow",
         t.struct(
             {
                 "org": t.string(),
                 "default_workflow_permissions": t.proxy(
-                    renames["actions-default-workflow-permissions"]
+                    renames["actions_default_workflow_permissions"]
                 ).optional(),
                 "can_approve_pull_request_reviews": t.proxy(
-                    renames["actions-can-approve-pull-request-reviews"]
+                    renames["actions_can_approve_pull_request_reviews"]
                 ).optional(),
             }
         ),
@@ -46841,17 +46841,17 @@ def import_github(params=None):
             "can_approve_pull_request_reviews",
         ),
     )
-    functions["actions/list-required-workflows"] = github.get(
+    functions["actions_list_required_workflows"] = github.get(
         "/orgs/{org}/actions/required_workflows",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "required_workflows": t.array(t.proxy(renames["required-workflow"])),
+                "required_workflows": t.array(t.proxy(renames["required_workflow"])),
             }
         ),
     )
-    functions["actions/create-required-workflow"] = github.post(
+    functions["actions_create_required_workflow"] = github.post(
         "/orgs/{org}/actions/required_workflows",
         t.struct(
             {
@@ -46862,7 +46862,7 @@ def import_github(params=None):
                 "selected_repository_ids": t.array(t.integer()).optional(),
             }
         ),
-        t.proxy(renames["required-workflow"]),
+        t.proxy(renames["required_workflow"]),
         content_type="application/json",
         body_fields=(
             "workflow_file_path",
@@ -46871,12 +46871,12 @@ def import_github(params=None):
             "selected_repository_ids",
         ),
     )
-    functions["actions/get-required-workflow"] = github.get(
+    functions["actions_get_required_workflow"] = github.get(
         "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
         t.struct({"org": t.string(), "required_workflow_id": t.integer()}),
-        t.proxy(renames["required-workflow"]),
+        t.proxy(renames["required_workflow"]),
     )
-    functions["actions/update-required-workflow"] = github.patch(
+    functions["actions_update_required_workflow"] = github.patch(
         "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
         t.struct(
             {
@@ -46888,7 +46888,7 @@ def import_github(params=None):
                 "selected_repository_ids": t.array(t.integer()).optional(),
             }
         ),
-        t.proxy(renames["required-workflow"]),
+        t.proxy(renames["required_workflow"]),
         content_type="application/json",
         body_fields=(
             "workflow_file_path",
@@ -46897,12 +46897,12 @@ def import_github(params=None):
             "selected_repository_ids",
         ),
     )
-    functions["actions/delete-required-workflow"] = github.delete(
+    functions["actions_delete_required_workflow"] = github.delete(
         "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
         t.struct({"org": t.string(), "required_workflow_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/list-selected-repositories-required-workflow"] = github.get(
+    functions["actions_list_selected_repositories_required_workflow"] = github.get(
         "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories",
         t.struct({"org": t.string(), "required_workflow_id": t.integer()}),
         t.struct(
@@ -46912,7 +46912,7 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["actions/set-selected-repos-to-required-workflow"] = github.put(
+    functions["actions_set_selected_repos_to_required_workflow"] = github.put(
         "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories",
         t.struct(
             {
@@ -46925,7 +46925,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("selected_repository_ids",),
     )
-    functions["actions/add-selected-repo-to-required-workflow"] = github.put(
+    functions["actions_add_selected_repo_to_required_workflow"] = github.put(
         "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories/{repository_id}",
         t.struct(
             {
@@ -46936,7 +46936,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["actions/remove-selected-repo-from-required-workflow"] = github.delete(
+    functions["actions_remove_selected_repo_from_required_workflow"] = github.delete(
         "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories/{repository_id}",
         t.struct(
             {
@@ -46947,44 +46947,44 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["actions/list-self-hosted-runners-for-org"] = github.get(
+    functions["actions_list_self_hosted_runners_for_org"] = github.get(
         "/orgs/{org}/actions/runners",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {"total_count": t.integer(), "runners": t.array(t.proxy(renames["runner"]))}
         ),
     )
-    functions["actions/list-runner-applications-for-org"] = github.get(
+    functions["actions_list_runner_applications_for_org"] = github.get(
         "/orgs/{org}/actions/runners/downloads",
         t.struct({"org": t.string()}),
-        t.array(t.proxy(renames["runner-application"])),
+        t.array(t.proxy(renames["runner_application"])),
     )
-    functions["actions/create-registration-token-for-org"] = github.post(
+    functions["actions_create_registration_token_for_org"] = github.post(
         "/orgs/{org}/actions/runners/registration-token",
         t.struct({"org": t.string()}),
-        t.proxy(renames["authentication-token"]),
+        t.proxy(renames["authentication_token"]),
     )
-    functions["actions/create-remove-token-for-org"] = github.post(
+    functions["actions_create_remove_token_for_org"] = github.post(
         "/orgs/{org}/actions/runners/remove-token",
         t.struct({"org": t.string()}),
-        t.proxy(renames["authentication-token"]),
+        t.proxy(renames["authentication_token"]),
     )
-    functions["actions/get-self-hosted-runner-for-org"] = github.get(
+    functions["actions_get_self_hosted_runner_for_org"] = github.get(
         "/orgs/{org}/actions/runners/{runner_id}",
         t.struct({"org": t.string(), "runner_id": t.integer()}),
         t.proxy(renames["runner"]),
     )
-    functions["actions/delete-self-hosted-runner-from-org"] = github.delete(
+    functions["actions_delete_self_hosted_runner_from_org"] = github.delete(
         "/orgs/{org}/actions/runners/{runner_id}",
         t.struct({"org": t.string(), "runner_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/list-labels-for-self-hosted-runner-for-org"] = github.get(
+    functions["actions_list_labels_for_self_hosted_runner_for_org"] = github.get(
         "/orgs/{org}/actions/runners/{runner_id}/labels",
         t.struct({"org": t.string(), "runner_id": t.integer()}),
         t.struct({}).optional(),
     )
-    functions["actions/add-custom-labels-to-self-hosted-runner-for-org"] = github.post(
+    functions["actions_add_custom_labels_to_self_hosted_runner_for_org"] = github.post(
         "/orgs/{org}/actions/runners/{runner_id}/labels",
         t.struct(
             {"org": t.string(), "runner_id": t.integer(), "labels": t.array(t.string())}
@@ -46993,7 +46993,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("labels",),
     )
-    functions["actions/set-custom-labels-for-self-hosted-runner-for-org"] = github.put(
+    functions["actions_set_custom_labels_for_self_hosted_runner_for_org"] = github.put(
         "/orgs/{org}/actions/runners/{runner_id}/labels",
         t.struct(
             {"org": t.string(), "runner_id": t.integer(), "labels": t.array(t.string())}
@@ -47003,40 +47003,40 @@ def import_github(params=None):
         body_fields=("labels",),
     )
     functions[
-        "actions/remove-all-custom-labels-from-self-hosted-runner-for-org"
+        "actions_remove_all_custom_labels_from_self_hosted_runner_for_org"
     ] = github.delete(
         "/orgs/{org}/actions/runners/{runner_id}/labels",
         t.struct({"org": t.string(), "runner_id": t.integer()}),
         t.struct({}).optional(),
     )
     functions[
-        "actions/remove-custom-label-from-self-hosted-runner-for-org"
+        "actions_remove_custom_label_from_self_hosted_runner_for_org"
     ] = github.delete(
         "/orgs/{org}/actions/runners/{runner_id}/labels/{name}",
         t.struct({"org": t.string(), "runner_id": t.integer(), "name": t.string()}),
         t.struct({}).optional(),
     )
-    functions["actions/list-org-secrets"] = github.get(
+    functions["actions_list_org_secrets"] = github.get(
         "/orgs/{org}/actions/secrets",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["organization-actions-secret"])),
+                "secrets": t.array(t.proxy(renames["organization_actions_secret"])),
             }
         ),
     )
-    functions["actions/get-org-public-key"] = github.get(
+    functions["actions_get_org_public_key"] = github.get(
         "/orgs/{org}/actions/secrets/public-key",
         t.struct({"org": t.string()}),
-        t.proxy(renames["actions-public-key"]),
+        t.proxy(renames["actions_public_key"]),
     )
-    functions["actions/get-org-secret"] = github.get(
+    functions["actions_get_org_secret"] = github.get(
         "/orgs/{org}/actions/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
-        t.proxy(renames["organization-actions-secret"]),
+        t.proxy(renames["organization_actions_secret"]),
     )
-    functions["actions/create-or-update-org-secret"] = github.put(
+    functions["actions_create_or_update_org_secret"] = github.put(
         "/orgs/{org}/actions/secrets/{secret_name}",
         t.struct(
             {
@@ -47048,7 +47048,7 @@ def import_github(params=None):
                 "selected_repository_ids": t.array(t.integer()).optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=(
             "encrypted_value",
@@ -47057,12 +47057,12 @@ def import_github(params=None):
             "selected_repository_ids",
         ),
     )
-    functions["actions/delete-org-secret"] = github.delete(
+    functions["actions_delete_org_secret"] = github.delete(
         "/orgs/{org}/actions/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
         t.boolean(),
     )
-    functions["actions/list-selected-repos-for-org-secret"] = github.get(
+    functions["actions_list_selected_repos_for_org_secret"] = github.get(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -47075,11 +47075,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "repositories": t.array(t.proxy(renames["minimal-repository"])),
+                "repositories": t.array(t.proxy(renames["minimal_repository"])),
             }
         ),
     )
-    functions["actions/set-selected-repos-for-org-secret"] = github.put(
+    functions["actions_set_selected_repos_for_org_secret"] = github.put(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -47092,31 +47092,31 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("selected_repository_ids",),
     )
-    functions["actions/add-selected-repo-to-org-secret"] = github.put(
+    functions["actions_add_selected_repo_to_org_secret"] = github.put(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["actions/remove-selected-repo-from-org-secret"] = github.delete(
+    functions["actions_remove_selected_repo_from_org_secret"] = github.delete(
         "/orgs/{org}/actions/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["actions/list-org-variables"] = github.get(
+    functions["actions_list_org_variables"] = github.get(
         "/orgs/{org}/actions/variables",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "variables": t.array(t.proxy(renames["organization-actions-variable"])),
+                "variables": t.array(t.proxy(renames["organization_actions_variable"])),
             }
         ),
     )
-    functions["actions/create-org-variable"] = github.post(
+    functions["actions_create_org_variable"] = github.post(
         "/orgs/{org}/actions/variables",
         t.struct(
             {
@@ -47127,21 +47127,21 @@ def import_github(params=None):
                 "selected_repository_ids": t.array(t.integer()).optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("name", "value", "visibility", "selected_repository_ids"),
     )
-    functions["actions/get-org-variable"] = github.get(
+    functions["actions_get_org_variable"] = github.get(
         "/orgs/{org}/actions/variables/{name}",
         t.struct({"org": t.string(), "name": t.string()}),
-        t.proxy(renames["organization-actions-variable"]),
+        t.proxy(renames["organization_actions_variable"]),
     )
-    functions["actions/delete-org-variable"] = github.delete(
+    functions["actions_delete_org_variable"] = github.delete(
         "/orgs/{org}/actions/variables/{name}",
         t.struct({"org": t.string(), "name": t.string()}),
         t.boolean(),
     )
-    functions["actions/list-selected-repos-for-org-variable"] = github.get(
+    functions["actions_list_selected_repos_for_org_variable"] = github.get(
         "/orgs/{org}/actions/variables/{name}/repositories",
         t.struct(
             {
@@ -47154,11 +47154,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "repositories": t.array(t.proxy(renames["minimal-repository"])),
+                "repositories": t.array(t.proxy(renames["minimal_repository"])),
             }
         ),
     )
-    functions["actions/set-selected-repos-for-org-variable"] = github.put(
+    functions["actions_set_selected_repos_for_org_variable"] = github.put(
         "/orgs/{org}/actions/variables/{name}/repositories",
         t.struct(
             {
@@ -47171,56 +47171,56 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("selected_repository_ids",),
     )
-    functions["actions/add-selected-repo-to-org-variable"] = github.put(
+    functions["actions_add_selected_repo_to_org_variable"] = github.put(
         "/orgs/{org}/actions/variables/{name}/repositories/{repository_id}",
         t.struct({"org": t.string(), "name": t.string(), "repository_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/remove-selected-repo-from-org-variable"] = github.delete(
+    functions["actions_remove_selected_repo_from_org_variable"] = github.delete(
         "/orgs/{org}/actions/variables/{name}/repositories/{repository_id}",
         t.struct({"org": t.string(), "name": t.string(), "repository_id": t.integer()}),
         t.boolean(),
     )
-    functions["orgs/list-blocked-users"] = github.get(
+    functions["orgs_list_blocked_users"] = github.get(
         "/orgs/{org}/blocks",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["orgs/check-blocked-user"] = github.get(
+    functions["orgs_check_blocked_user"] = github.get(
         "/orgs/{org}/blocks/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["orgs/block-user"] = github.put(
+    functions["orgs_block_user"] = github.put(
         "/orgs/{org}/blocks/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["orgs/unblock-user"] = github.delete(
+    functions["orgs_unblock_user"] = github.delete(
         "/orgs/{org}/blocks/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["code-scanning/list-alerts-for-org"] = github.get(
+    functions["code_scanning_list_alerts_for_org"] = github.get(
         "/orgs/{org}/code-scanning/alerts",
         t.struct(
             {
                 "org": t.string(),
-                "tool_name": t.proxy(renames["code-scanning-analysis-tool-name"]),
-                "tool_guid": t.proxy(renames["code-scanning-analysis-tool-guid"]),
+                "tool_name": t.proxy(renames["code_scanning_analysis_tool_name"]),
+                "tool_guid": t.proxy(renames["code_scanning_analysis_tool_guid"]),
                 "before": t.string(),
                 "after": t.string(),
                 "page": t.integer(),
                 "per_page": t.integer(),
                 "direction": t.string(),
-                "state": t.proxy(renames["code-scanning-alert-state"]),
+                "state": t.proxy(renames["code_scanning_alert_state"]),
                 "sort": t.string(),
-                "severity": t.proxy(renames["code-scanning-alert-severity"]),
+                "severity": t.proxy(renames["code_scanning_alert_severity"]),
             }
         ),
-        t.array(t.proxy(renames["code-scanning-organization-alert-items"])).optional(),
+        t.array(t.proxy(renames["code_scanning_organization_alert_items"])).optional(),
     )
-    functions["codespaces/list-in-organization"] = github.get(
+    functions["codespaces_list_in_organization"] = github.get(
         "/orgs/{org}/codespaces",
         t.struct({"per_page": t.integer(), "page": t.integer(), "org": t.string()}),
         t.struct(
@@ -47230,7 +47230,7 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["codespaces/set-codespaces-billing"] = github.put(
+    functions["codespaces_set_codespaces_billing"] = github.put(
         "/orgs/{org}/codespaces/billing",
         t.struct(
             {
@@ -47243,41 +47243,41 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("visibility", "selected_usernames"),
     )
-    functions["codespaces/set-codespaces-billing-users"] = github.post(
+    functions["codespaces_set_codespaces_billing_users"] = github.post(
         "/orgs/{org}/codespaces/billing/selected_users",
         t.struct({"org": t.string(), "selected_usernames": t.array(t.string())}),
         t.boolean().optional(),
         content_type="application/json",
         body_fields=("selected_usernames",),
     )
-    functions["codespaces/delete-codespaces-billing-users"] = github.delete(
+    functions["codespaces_delete_codespaces_billing_users"] = github.delete(
         "/orgs/{org}/codespaces/billing/selected_users",
         t.struct({"org": t.string(), "selected_usernames": t.array(t.string())}),
         t.boolean().optional(),
         content_type="application/json",
         body_fields=("selected_usernames",),
     )
-    functions["codespaces/list-org-secrets"] = github.get(
+    functions["codespaces_list_org_secrets"] = github.get(
         "/orgs/{org}/codespaces/secrets",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["codespaces-org-secret"])),
+                "secrets": t.array(t.proxy(renames["codespaces_org_secret"])),
             }
         ),
     )
-    functions["codespaces/get-org-public-key"] = github.get(
+    functions["codespaces_get_org_public_key"] = github.get(
         "/orgs/{org}/codespaces/secrets/public-key",
         t.struct({"org": t.string()}),
-        t.proxy(renames["codespaces-public-key"]),
+        t.proxy(renames["codespaces_public_key"]),
     )
-    functions["codespaces/get-org-secret"] = github.get(
+    functions["codespaces_get_org_secret"] = github.get(
         "/orgs/{org}/codespaces/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
-        t.proxy(renames["codespaces-org-secret"]),
+        t.proxy(renames["codespaces_org_secret"]),
     )
-    functions["codespaces/create-or-update-org-secret"] = github.put(
+    functions["codespaces_create_or_update_org_secret"] = github.put(
         "/orgs/{org}/codespaces/secrets/{secret_name}",
         t.struct(
             {
@@ -47289,7 +47289,7 @@ def import_github(params=None):
                 "selected_repository_ids": t.array(t.integer()).optional(),
             }
         ),
-        t.proxy(renames["empty-object"]).optional(),
+        t.proxy(renames["empty_object"]).optional(),
         content_type="application/json",
         body_fields=(
             "encrypted_value",
@@ -47298,12 +47298,12 @@ def import_github(params=None):
             "selected_repository_ids",
         ),
     )
-    functions["codespaces/delete-org-secret"] = github.delete(
+    functions["codespaces_delete_org_secret"] = github.delete(
         "/orgs/{org}/codespaces/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
         t.boolean().optional(),
     )
-    functions["codespaces/list-selected-repos-for-org-secret"] = github.get(
+    functions["codespaces_list_selected_repos_for_org_secret"] = github.get(
         "/orgs/{org}/codespaces/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -47316,11 +47316,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "repositories": t.array(t.proxy(renames["minimal-repository"])),
+                "repositories": t.array(t.proxy(renames["minimal_repository"])),
             }
         ).optional(),
     )
-    functions["codespaces/set-selected-repos-for-org-secret"] = github.put(
+    functions["codespaces_set_selected_repos_for_org_secret"] = github.put(
         "/orgs/{org}/codespaces/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -47333,21 +47333,21 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("selected_repository_ids",),
     )
-    functions["codespaces/add-selected-repo-to-org-secret"] = github.put(
+    functions["codespaces_add_selected_repo_to_org_secret"] = github.put(
         "/orgs/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["codespaces/remove-selected-repo-from-org-secret"] = github.delete(
+    functions["codespaces_remove_selected_repo_from_org_secret"] = github.delete(
         "/orgs/{org}/codespaces/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["dependabot/list-alerts-for-org"] = github.get(
+    functions["dependabot_list_alerts_for_org"] = github.get(
         "/orgs/{org}/dependabot/alerts",
         t.struct(
             {
@@ -47366,29 +47366,29 @@ def import_github(params=None):
                 "per_page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["dependabot-alert-with-repository"])).optional(),
+        t.array(t.proxy(renames["dependabot_alert_with_repository"])).optional(),
     )
-    functions["dependabot/list-org-secrets"] = github.get(
+    functions["dependabot_list_org_secrets"] = github.get(
         "/orgs/{org}/dependabot/secrets",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["organization-dependabot-secret"])),
+                "secrets": t.array(t.proxy(renames["organization_dependabot_secret"])),
             }
         ),
     )
-    functions["dependabot/get-org-public-key"] = github.get(
+    functions["dependabot_get_org_public_key"] = github.get(
         "/orgs/{org}/dependabot/secrets/public-key",
         t.struct({"org": t.string()}),
-        t.proxy(renames["dependabot-public-key"]),
+        t.proxy(renames["dependabot_public_key"]),
     )
-    functions["dependabot/get-org-secret"] = github.get(
+    functions["dependabot_get_org_secret"] = github.get(
         "/orgs/{org}/dependabot/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
-        t.proxy(renames["organization-dependabot-secret"]),
+        t.proxy(renames["organization_dependabot_secret"]),
     )
-    functions["dependabot/create-or-update-org-secret"] = github.put(
+    functions["dependabot_create_or_update_org_secret"] = github.put(
         "/orgs/{org}/dependabot/secrets/{secret_name}",
         t.struct(
             {
@@ -47400,7 +47400,7 @@ def import_github(params=None):
                 "selected_repository_ids": t.array(t.string()).optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=(
             "encrypted_value",
@@ -47409,12 +47409,12 @@ def import_github(params=None):
             "selected_repository_ids",
         ),
     )
-    functions["dependabot/delete-org-secret"] = github.delete(
+    functions["dependabot_delete_org_secret"] = github.delete(
         "/orgs/{org}/dependabot/secrets/{secret_name}",
         t.struct({"org": t.string(), "secret_name": t.string()}),
         t.boolean(),
     )
-    functions["dependabot/list-selected-repos-for-org-secret"] = github.get(
+    functions["dependabot_list_selected_repos_for_org_secret"] = github.get(
         "/orgs/{org}/dependabot/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -47427,11 +47427,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "repositories": t.array(t.proxy(renames["minimal-repository"])),
+                "repositories": t.array(t.proxy(renames["minimal_repository"])),
             }
         ),
     )
-    functions["dependabot/set-selected-repos-for-org-secret"] = github.put(
+    functions["dependabot_set_selected_repos_for_org_secret"] = github.put(
         "/orgs/{org}/dependabot/secrets/{secret_name}/repositories",
         t.struct(
             {
@@ -47444,14 +47444,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("selected_repository_ids",),
     )
-    functions["dependabot/add-selected-repo-to-org-secret"] = github.put(
+    functions["dependabot_add_selected_repo_to_org_secret"] = github.put(
         "/orgs/{org}/dependabot/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["dependabot/remove-selected-repo-from-org-secret"] = github.delete(
+    functions["dependabot_remove_selected_repo_from_org_secret"] = github.delete(
         "/orgs/{org}/dependabot/secrets/{secret_name}/repositories/{repository_id}",
         t.struct(
             {"org": t.string(), "secret_name": t.string(), "repository_id": t.integer()}
@@ -47459,28 +47459,28 @@ def import_github(params=None):
         t.boolean(),
     )
     functions[
-        "packages/list-docker-migration-conflicting-packages-for-organization"
+        "packages_list_docker_migration_conflicting_packages_for_organization"
     ] = github.get(
         "/orgs/{org}/docker/conflicts",
         t.struct({"org": t.string()}),
         t.array(t.proxy(renames["package"])),
     )
-    functions["activity/list-public-org-events"] = github.get(
+    functions["activity_list_public_org_events"] = github.get(
         "/orgs/{org}/events",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["event"])),
     )
-    functions["orgs/list-failed-invitations"] = github.get(
+    functions["orgs_list_failed_invitations"] = github.get(
         "/orgs/{org}/failed_invitations",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["organization-invitation"])).optional(),
+        t.array(t.proxy(renames["organization_invitation"])).optional(),
     )
-    functions["orgs/list-webhooks"] = github.get(
+    functions["orgs_list_webhooks"] = github.get(
         "/orgs/{org}/hooks",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["org-hook"])).optional(),
+        t.array(t.proxy(renames["org_hook"])).optional(),
     )
-    functions["orgs/create-webhook"] = github.post(
+    functions["orgs_create_webhook"] = github.post(
         "/orgs/{org}/hooks",
         t.struct(
             {
@@ -47488,13 +47488,13 @@ def import_github(params=None):
                 "name": t.string(),
                 "config": t.struct(
                     {
-                        "url": t.proxy(renames["webhook-config-url"]),
+                        "url": t.proxy(renames["webhook_config_url"]),
                         "content_type": t.proxy(
-                            renames["webhook-config-content-type"]
+                            renames["webhook_config_content_type"]
                         ).optional(),
-                        "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                        "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                         "insecure_ssl": t.proxy(
-                            renames["webhook-config-insecure-ssl"]
+                            renames["webhook_config_insecure_ssl"]
                         ).optional(),
                         "username": t.string().optional(),
                         "password": t.string().optional(),
@@ -47504,16 +47504,16 @@ def import_github(params=None):
                 "active": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["org-hook"]).optional(),
+        t.proxy(renames["org_hook"]).optional(),
         content_type="application/json",
         body_fields=("name", "config", "events", "active"),
     )
-    functions["orgs/get-webhook"] = github.get(
+    functions["orgs_get_webhook"] = github.get(
         "/orgs/{org}/hooks/{hook_id}",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
-        t.proxy(renames["org-hook"]).optional(),
+        t.proxy(renames["org_hook"]).optional(),
     )
-    functions["orgs/update-webhook"] = github.patch(
+    functions["orgs_update_webhook"] = github.patch(
         "/orgs/{org}/hooks/{hook_id}",
         t.struct(
             {
@@ -47521,13 +47521,13 @@ def import_github(params=None):
                 "hook_id": t.integer(),
                 "config": t.struct(
                     {
-                        "url": t.proxy(renames["webhook-config-url"]),
+                        "url": t.proxy(renames["webhook_config_url"]),
                         "content_type": t.proxy(
-                            renames["webhook-config-content-type"]
+                            renames["webhook_config_content_type"]
                         ).optional(),
-                        "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                        "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                         "insecure_ssl": t.proxy(
-                            renames["webhook-config-insecure-ssl"]
+                            renames["webhook_config_insecure_ssl"]
                         ).optional(),
                     }
                 ).optional(),
@@ -47536,41 +47536,41 @@ def import_github(params=None):
                 "name": t.string().optional(),
             }
         ),
-        t.proxy(renames["org-hook"]).optional(),
+        t.proxy(renames["org_hook"]).optional(),
         content_type="application/json",
         body_fields=("config", "events", "active", "name"),
     )
-    functions["orgs/delete-webhook"] = github.delete(
+    functions["orgs_delete_webhook"] = github.delete(
         "/orgs/{org}/hooks/{hook_id}",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["orgs/get-webhook-config-for-org"] = github.get(
+    functions["orgs_get_webhook_config_for_org"] = github.get(
         "/orgs/{org}/hooks/{hook_id}/config",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
-        t.proxy(renames["webhook-config"]),
+        t.proxy(renames["webhook_config"]),
     )
-    functions["orgs/update-webhook-config-for-org"] = github.patch(
+    functions["orgs_update_webhook_config_for_org"] = github.patch(
         "/orgs/{org}/hooks/{hook_id}/config",
         t.struct(
             {
                 "org": t.string(),
                 "hook_id": t.integer(),
-                "url": t.proxy(renames["webhook-config-url"]).optional(),
+                "url": t.proxy(renames["webhook_config_url"]).optional(),
                 "content_type": t.proxy(
-                    renames["webhook-config-content-type"]
+                    renames["webhook_config_content_type"]
                 ).optional(),
-                "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                 "insecure_ssl": t.proxy(
-                    renames["webhook-config-insecure-ssl"]
+                    renames["webhook_config_insecure_ssl"]
                 ).optional(),
             }
         ),
-        t.proxy(renames["webhook-config"]),
+        t.proxy(renames["webhook_config"]),
         content_type="application/json",
         body_fields=("url", "content_type", "secret", "insecure_ssl"),
     )
-    functions["orgs/list-webhook-deliveries"] = github.get(
+    functions["orgs_list_webhook_deliveries"] = github.get(
         "/orgs/{org}/hooks/{hook_id}/deliveries",
         t.struct(
             {
@@ -47581,33 +47581,33 @@ def import_github(params=None):
                 "redelivery": t.boolean(),
             }
         ),
-        t.array(t.proxy(renames["hook-delivery-item"])),
+        t.array(t.proxy(renames["hook_delivery_item"])),
     )
-    functions["orgs/get-webhook-delivery"] = github.get(
+    functions["orgs_get_webhook_delivery"] = github.get(
         "/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}",
         t.struct(
             {"org": t.string(), "hook_id": t.integer(), "delivery_id": t.integer()}
         ),
-        t.proxy(renames["hook-delivery"]),
+        t.proxy(renames["hook_delivery"]),
     )
-    functions["orgs/redeliver-webhook-delivery"] = github.post(
+    functions["orgs_redeliver_webhook_delivery"] = github.post(
         "/orgs/{org}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
         t.struct(
             {"org": t.string(), "hook_id": t.integer(), "delivery_id": t.integer()}
         ),
         t.struct({}),
     )
-    functions["orgs/ping-webhook"] = github.post(
+    functions["orgs_ping_webhook"] = github.post(
         "/orgs/{org}/hooks/{hook_id}/pings",
         t.struct({"org": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/get-org-installation"] = github.get(
+    functions["apps_get_org_installation"] = github.get(
         "/orgs/{org}/installation",
         t.struct({"org": t.string()}),
         t.proxy(renames["installation"]),
     )
-    functions["orgs/list-app-installations"] = github.get(
+    functions["orgs_list_app_installations"] = github.get(
         "/orgs/{org}/installations",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -47617,30 +47617,30 @@ def import_github(params=None):
             }
         ),
     )
-    functions["interactions/get-restrictions-for-org"] = github.get(
+    functions["interactions_get_restrictions_for_org"] = github.get(
         "/orgs/{org}/interaction-limits",
         t.struct({"org": t.string()}),
-        t.union([t.proxy(renames["interaction-limit-response"]), t.struct({})]),
+        t.union([t.proxy(renames["interaction_limit_response"]), t.struct({})]),
     )
-    functions["interactions/set-restrictions-for-org"] = github.put(
+    functions["interactions_set_restrictions_for_org"] = github.put(
         "/orgs/{org}/interaction-limits",
         t.struct(
             {
                 "org": t.string(),
-                "limit": t.proxy(renames["interaction-group"]),
-                "expiry": t.proxy(renames["interaction-expiry"]).optional(),
+                "limit": t.proxy(renames["interaction_group"]),
+                "expiry": t.proxy(renames["interaction_expiry"]).optional(),
             }
         ),
-        t.proxy(renames["interaction-limit-response"]),
+        t.proxy(renames["interaction_limit_response"]),
         content_type="application/json",
         body_fields=("limit", "expiry"),
     )
-    functions["interactions/remove-restrictions-for-org"] = github.delete(
+    functions["interactions_remove_restrictions_for_org"] = github.delete(
         "/orgs/{org}/interaction-limits",
         t.struct({"org": t.string()}),
         t.boolean(),
     )
-    functions["orgs/list-pending-invitations"] = github.get(
+    functions["orgs_list_pending_invitations"] = github.get(
         "/orgs/{org}/invitations",
         t.struct(
             {
@@ -47651,9 +47651,9 @@ def import_github(params=None):
                 "invitation_source": t.string(),
             }
         ),
-        t.array(t.proxy(renames["organization-invitation"])).optional(),
+        t.array(t.proxy(renames["organization_invitation"])).optional(),
     )
-    functions["orgs/create-invitation"] = github.post(
+    functions["orgs_create_invitation"] = github.post(
         "/orgs/{org}/invitations",
         t.struct(
             {
@@ -47664,16 +47664,16 @@ def import_github(params=None):
                 "team_ids": t.array(t.integer()).optional(),
             }
         ),
-        t.proxy(renames["organization-invitation"]).optional(),
+        t.proxy(renames["organization_invitation"]).optional(),
         content_type="application/json",
         body_fields=("invitee_id", "email", "role", "team_ids"),
     )
-    functions["orgs/cancel-invitation"] = github.delete(
+    functions["orgs_cancel_invitation"] = github.delete(
         "/orgs/{org}/invitations/{invitation_id}",
         t.struct({"org": t.string(), "invitation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["orgs/list-invitation-teams"] = github.get(
+    functions["orgs_list_invitation_teams"] = github.get(
         "/orgs/{org}/invitations/{invitation_id}/teams",
         t.struct(
             {
@@ -47685,7 +47685,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["team"])).optional(),
     )
-    functions["issues/list-for-org"] = github.get(
+    functions["issues_list_for_org"] = github.get(
         "/orgs/{org}/issues",
         t.struct(
             {
@@ -47702,7 +47702,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["orgs/list-members"] = github.get(
+    functions["orgs_list_members"] = github.get(
         "/orgs/{org}/members",
         t.struct(
             {
@@ -47713,19 +47713,19 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["orgs/check-membership-for-user"] = github.get(
+    functions["orgs_check_membership_for_user"] = github.get(
         "/orgs/{org}/members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["orgs/remove-member"] = github.delete(
+    functions["orgs_remove_member"] = github.delete(
         "/orgs/{org}/members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["codespaces/get-codespaces-for-user-in-org"] = github.get(
+    functions["codespaces_get_codespaces_for_user_in_org"] = github.get(
         "/orgs/{org}/members/{username}/codespaces",
         t.struct(
             {
@@ -47742,40 +47742,40 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["codespaces/delete-from-organization"] = github.delete(
+    functions["codespaces_delete_from_organization"] = github.delete(
         "/orgs/{org}/members/{username}/codespaces/{codespace_name}",
         t.struct(
             {"org": t.string(), "username": t.string(), "codespace_name": t.string()}
         ),
         t.struct({}).optional(),
     )
-    functions["codespaces/stop-in-organization"] = github.post(
+    functions["codespaces_stop_in_organization"] = github.post(
         "/orgs/{org}/members/{username}/codespaces/{codespace_name}/stop",
         t.struct(
             {"org": t.string(), "username": t.string(), "codespace_name": t.string()}
         ),
         t.proxy(renames["codespace"]).optional(),
     )
-    functions["orgs/get-membership-for-user"] = github.get(
+    functions["orgs_get_membership_for_user"] = github.get(
         "/orgs/{org}/memberships/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
-        t.proxy(renames["org-membership"]).optional(),
+        t.proxy(renames["org_membership"]).optional(),
     )
-    functions["orgs/set-membership-for-user"] = github.put(
+    functions["orgs_set_membership_for_user"] = github.put(
         "/orgs/{org}/memberships/{username}",
         t.struct(
             {"org": t.string(), "username": t.string(), "role": t.string().optional()}
         ),
-        t.proxy(renames["org-membership"]),
+        t.proxy(renames["org_membership"]),
         content_type="application/json",
         body_fields=("role",),
     )
-    functions["orgs/remove-membership-for-user"] = github.delete(
+    functions["orgs_remove_membership_for_user"] = github.delete(
         "/orgs/{org}/memberships/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["migrations/list-for-org"] = github.get(
+    functions["migrations_list_for_org"] = github.get(
         "/orgs/{org}/migrations",
         t.struct(
             {
@@ -47787,7 +47787,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["migration"])),
     )
-    functions["migrations/start-for-org"] = github.post(
+    functions["migrations_start_for_org"] = github.post(
         "/orgs/{org}/migrations",
         t.struct(
             {
@@ -47817,7 +47817,7 @@ def import_github(params=None):
             "exclude",
         ),
     )
-    functions["migrations/get-status-for-org"] = github.get(
+    functions["migrations_get_status_for_org"] = github.get(
         "/orgs/{org}/migrations/{migration_id}",
         t.struct(
             {
@@ -47828,24 +47828,24 @@ def import_github(params=None):
         ),
         t.proxy(renames["migration"]).optional(),
     )
-    functions["migrations/download-archive-for-org"] = github.get(
+    functions["migrations_download_archive_for_org"] = github.get(
         "/orgs/{org}/migrations/{migration_id}/archive",
         t.struct({"org": t.string(), "migration_id": t.integer()}),
         t.struct({}).optional(),
     )
-    functions["migrations/delete-archive-for-org"] = github.delete(
+    functions["migrations_delete_archive_for_org"] = github.delete(
         "/orgs/{org}/migrations/{migration_id}/archive",
         t.struct({"org": t.string(), "migration_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["migrations/unlock-repo-for-org"] = github.delete(
+    functions["migrations_unlock_repo_for_org"] = github.delete(
         "/orgs/{org}/migrations/{migration_id}/repos/{repo_name}/lock",
         t.struct(
             {"org": t.string(), "migration_id": t.integer(), "repo_name": t.string()}
         ),
         t.boolean().optional(),
     )
-    functions["migrations/list-repos-for-org"] = github.get(
+    functions["migrations_list_repos_for_org"] = github.get(
         "/orgs/{org}/migrations/{migration_id}/repositories",
         t.struct(
             {
@@ -47855,9 +47855,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["minimal-repository"])).optional(),
+        t.array(t.proxy(renames["minimal_repository"])).optional(),
     )
-    functions["orgs/list-outside-collaborators"] = github.get(
+    functions["orgs_list_outside_collaborators"] = github.get(
         "/orgs/{org}/outside_collaborators",
         t.struct(
             {
@@ -47867,9 +47867,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["orgs/convert-member-to-outside-collaborator"] = github.put(
+    functions["orgs_convert_member_to_outside_collaborator"] = github.put(
         "/orgs/{org}/outside_collaborators/{username}",
         t.struct(
             {"org": t.string(), "username": t.string(), "async": t.boolean().optional()}
@@ -47878,12 +47878,12 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("async",),
     )
-    functions["orgs/remove-outside-collaborator"] = github.delete(
+    functions["orgs_remove_outside_collaborator"] = github.delete(
         "/orgs/{org}/outside_collaborators/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["packages/list-packages-for-organization"] = github.get(
+    functions["packages_list_packages_for_organization"] = github.get(
         "/orgs/{org}/packages",
         t.struct(
             {
@@ -47896,21 +47896,21 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["package"])),
     )
-    functions["packages/get-package-for-organization"] = github.get(
+    functions["packages_get_package_for_organization"] = github.get(
         "/orgs/{org}/packages/{package_type}/{package_name}",
         t.struct(
             {"package_type": t.string(), "package_name": t.string(), "org": t.string()}
         ),
         t.proxy(renames["package"]),
     )
-    functions["packages/delete-package-for-org"] = github.delete(
+    functions["packages_delete_package_for_org"] = github.delete(
         "/orgs/{org}/packages/{package_type}/{package_name}",
         t.struct(
             {"package_type": t.string(), "package_name": t.string(), "org": t.string()}
         ),
         t.boolean().optional(),
     )
-    functions["packages/restore-package-for-org"] = github.post(
+    functions["packages_restore_package_for_org"] = github.post(
         "/orgs/{org}/packages/{package_type}/{package_name}/restore",
         t.struct(
             {
@@ -47923,7 +47923,7 @@ def import_github(params=None):
         t.boolean().optional(),
     )
     functions[
-        "packages/get-all-package-versions-for-package-owned-by-org"
+        "packages_get_all_package_versions_for_package_owned_by_org"
     ] = github.get(
         "/orgs/{org}/packages/{package_type}/{package_name}/versions",
         t.struct(
@@ -47936,9 +47936,9 @@ def import_github(params=None):
                 "state": t.string(),
             }
         ),
-        t.array(t.proxy(renames["package-version"])).optional(),
+        t.array(t.proxy(renames["package_version"])).optional(),
     )
-    functions["packages/get-package-version-for-organization"] = github.get(
+    functions["packages_get_package_version_for_organization"] = github.get(
         "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}",
         t.struct(
             {
@@ -47948,9 +47948,9 @@ def import_github(params=None):
                 "package_version_id": t.integer(),
             }
         ),
-        t.proxy(renames["package-version"]),
+        t.proxy(renames["package_version"]),
     )
-    functions["packages/delete-package-version-for-org"] = github.delete(
+    functions["packages_delete_package_version_for_org"] = github.delete(
         "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}",
         t.struct(
             {
@@ -47962,7 +47962,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["packages/restore-package-version-for-org"] = github.post(
+    functions["packages_restore_package_version_for_org"] = github.post(
         "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
         t.struct(
             {
@@ -47974,7 +47974,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["projects/list-for-org"] = github.get(
+    functions["projects_list_for_org"] = github.get(
         "/orgs/{org}/projects",
         t.struct(
             {
@@ -47986,7 +47986,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["project"])),
     )
-    functions["projects/create-for-org"] = github.post(
+    functions["projects_create_for_org"] = github.post(
         "/orgs/{org}/projects",
         t.struct(
             {"org": t.string(), "name": t.string(), "body": t.string().optional()}
@@ -47995,27 +47995,27 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("name", "body"),
     )
-    functions["orgs/list-public-members"] = github.get(
+    functions["orgs_list_public_members"] = github.get(
         "/orgs/{org}/public_members",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["orgs/check-public-membership-for-user"] = github.get(
+    functions["orgs_check_public_membership_for_user"] = github.get(
         "/orgs/{org}/public_members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["orgs/set-public-membership-for-authenticated-user"] = github.put(
+    functions["orgs_set_public_membership_for_authenticated_user"] = github.put(
         "/orgs/{org}/public_members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["orgs/remove-public-membership-for-authenticated-user"] = github.delete(
+    functions["orgs_remove_public_membership_for_authenticated_user"] = github.delete(
         "/orgs/{org}/public_members/{username}",
         t.struct({"org": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-for-org"] = github.get(
+    functions["repos_list_for_org"] = github.get(
         "/orgs/{org}/repos",
         t.struct(
             {
@@ -48027,9 +48027,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["minimal-repository"])),
+        t.array(t.proxy(renames["minimal_repository"])),
     )
-    functions["repos/create-in-org"] = github.post(
+    functions["repos_create_in_org"] = github.post(
         "/orgs/{org}/repos",
         t.struct(
             {
@@ -48089,27 +48089,27 @@ def import_github(params=None):
             "merge_commit_message",
         ),
     )
-    functions["repos/get-org-rulesets"] = github.get(
+    functions["repos_get_org_rulesets"] = github.get(
         "/orgs/{org}/rulesets",
         t.struct({"org": t.string()}),
-        t.array(t.proxy(renames["repository-ruleset"])).optional(),
+        t.array(t.proxy(renames["repository_ruleset"])).optional(),
     )
-    functions["repos/create-org-ruleset"] = github.post(
+    functions["repos_create_org_ruleset"] = github.post(
         "/orgs/{org}/rulesets",
         t.struct(
             {
                 "org": t.string(),
                 "name": t.string(),
                 "target": t.string().optional(),
-                "enforcement": t.proxy(renames["repository-rule-enforcement"]),
+                "enforcement": t.proxy(renames["repository_rule_enforcement"]),
                 "bypass_actors": t.array(
-                    t.proxy(renames["repository-ruleset-bypass-actor"])
+                    t.proxy(renames["repository_ruleset_bypass_actor"])
                 ).optional(),
-                "conditions": t.proxy(renames["org-ruleset-conditions"]).optional(),
-                "rules": t.array(t.proxy(renames["repository-rule"])).optional(),
+                "conditions": t.proxy(renames["org_ruleset_conditions"]).optional(),
+                "rules": t.array(t.proxy(renames["repository_rule"])).optional(),
             }
         ),
-        t.proxy(renames["repository-ruleset"]).optional(),
+        t.proxy(renames["repository_ruleset"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -48120,12 +48120,12 @@ def import_github(params=None):
             "rules",
         ),
     )
-    functions["repos/get-org-ruleset"] = github.get(
+    functions["repos_get_org_ruleset"] = github.get(
         "/orgs/{org}/rulesets/{ruleset_id}",
         t.struct({"org": t.string(), "ruleset_id": t.integer()}),
-        t.proxy(renames["repository-ruleset"]).optional(),
+        t.proxy(renames["repository_ruleset"]).optional(),
     )
-    functions["repos/update-org-ruleset"] = github.put(
+    functions["repos_update_org_ruleset"] = github.put(
         "/orgs/{org}/rulesets/{ruleset_id}",
         t.struct(
             {
@@ -48134,16 +48134,16 @@ def import_github(params=None):
                 "name": t.string().optional(),
                 "target": t.string().optional(),
                 "enforcement": t.proxy(
-                    renames["repository-rule-enforcement"]
+                    renames["repository_rule_enforcement"]
                 ).optional(),
                 "bypass_actors": t.array(
-                    t.proxy(renames["repository-ruleset-bypass-actor"])
+                    t.proxy(renames["repository_ruleset_bypass_actor"])
                 ).optional(),
-                "conditions": t.proxy(renames["org-ruleset-conditions"]).optional(),
-                "rules": t.array(t.proxy(renames["repository-rule"])).optional(),
+                "conditions": t.proxy(renames["org_ruleset_conditions"]).optional(),
+                "rules": t.array(t.proxy(renames["repository_rule"])).optional(),
             }
         ),
-        t.proxy(renames["repository-ruleset"]).optional(),
+        t.proxy(renames["repository_ruleset"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -48154,12 +48154,12 @@ def import_github(params=None):
             "rules",
         ),
     )
-    functions["repos/delete-org-ruleset"] = github.delete(
+    functions["repos_delete_org_ruleset"] = github.delete(
         "/orgs/{org}/rulesets/{ruleset_id}",
         t.struct({"org": t.string(), "ruleset_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["secret-scanning/list-alerts-for-org"] = github.get(
+    functions["secret_scanning_list_alerts_for_org"] = github.get(
         "/orgs/{org}/secret-scanning/alerts",
         t.struct(
             {
@@ -48175,44 +48175,44 @@ def import_github(params=None):
                 "after": t.string(),
             }
         ),
-        t.array(t.proxy(renames["organization-secret-scanning-alert"])).optional(),
+        t.array(t.proxy(renames["organization_secret_scanning_alert"])).optional(),
     )
-    functions["orgs/list-security-manager-teams"] = github.get(
+    functions["orgs_list_security_manager_teams"] = github.get(
         "/orgs/{org}/security-managers",
         t.struct({"org": t.string()}),
-        t.array(t.proxy(renames["team-simple"])),
+        t.array(t.proxy(renames["team_simple"])),
     )
-    functions["orgs/add-security-manager-team"] = github.put(
+    functions["orgs_add_security_manager_team"] = github.put(
         "/orgs/{org}/security-managers/teams/{team_slug}",
         t.struct({"org": t.string(), "team_slug": t.string()}),
         t.boolean(),
     )
-    functions["orgs/remove-security-manager-team"] = github.delete(
+    functions["orgs_remove_security_manager_team"] = github.delete(
         "/orgs/{org}/security-managers/teams/{team_slug}",
         t.struct({"org": t.string(), "team_slug": t.string()}),
         t.boolean(),
     )
-    functions["billing/get-github-actions-billing-org"] = github.get(
+    functions["billing_get_github_actions_billing_org"] = github.get(
         "/orgs/{org}/settings/billing/actions",
         t.struct({"org": t.string()}),
-        t.proxy(renames["actions-billing-usage"]),
+        t.proxy(renames["actions_billing_usage"]),
     )
-    functions["billing/get-github-packages-billing-org"] = github.get(
+    functions["billing_get_github_packages_billing_org"] = github.get(
         "/orgs/{org}/settings/billing/packages",
         t.struct({"org": t.string()}),
-        t.proxy(renames["packages-billing-usage"]),
+        t.proxy(renames["packages_billing_usage"]),
     )
-    functions["billing/get-shared-storage-billing-org"] = github.get(
+    functions["billing_get_shared_storage_billing_org"] = github.get(
         "/orgs/{org}/settings/billing/shared-storage",
         t.struct({"org": t.string()}),
-        t.proxy(renames["combined-billing-usage"]),
+        t.proxy(renames["combined_billing_usage"]),
     )
-    functions["teams/list"] = github.get(
+    functions["teams_list"] = github.get(
         "/orgs/{org}/teams",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["team"])),
     )
-    functions["teams/create"] = github.post(
+    functions["teams_create"] = github.post(
         "/orgs/{org}/teams",
         t.struct(
             {
@@ -48227,7 +48227,7 @@ def import_github(params=None):
                 "parent_team_id": t.integer().optional(),
             }
         ),
-        t.proxy(renames["team-full"]),
+        t.proxy(renames["team_full"]),
         content_type="application/json",
         body_fields=(
             "name",
@@ -48240,12 +48240,12 @@ def import_github(params=None):
             "parent_team_id",
         ),
     )
-    functions["teams/get-by-name"] = github.get(
+    functions["teams_get_by_name"] = github.get(
         "/orgs/{org}/teams/{team_slug}",
         t.struct({"org": t.string(), "team_slug": t.string()}),
-        t.proxy(renames["team-full"]).optional(),
+        t.proxy(renames["team_full"]).optional(),
     )
-    functions["teams/update-in-org"] = github.patch(
+    functions["teams_update_in_org"] = github.patch(
         "/orgs/{org}/teams/{team_slug}",
         t.struct(
             {
@@ -48259,7 +48259,7 @@ def import_github(params=None):
                 "parent_team_id": t.integer().optional(),
             }
         ),
-        t.proxy(renames["team-full"]).optional(),
+        t.proxy(renames["team_full"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -48270,12 +48270,12 @@ def import_github(params=None):
             "parent_team_id",
         ),
     )
-    functions["teams/delete-in-org"] = github.delete(
+    functions["teams_delete_in_org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}",
         t.struct({"org": t.string(), "team_slug": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-discussions-in-org"] = github.get(
+    functions["teams_list_discussions_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions",
         t.struct(
             {
@@ -48287,9 +48287,9 @@ def import_github(params=None):
                 "pinned": t.string(),
             }
         ),
-        t.array(t.proxy(renames["team-discussion"])),
+        t.array(t.proxy(renames["team_discussion"])),
     )
-    functions["teams/create-discussion-in-org"] = github.post(
+    functions["teams_create_discussion_in_org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions",
         t.struct(
             {
@@ -48300,11 +48300,11 @@ def import_github(params=None):
                 "private": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["team-discussion"]),
+        t.proxy(renames["team_discussion"]),
         content_type="application/json",
         body_fields=("title", "body", "private"),
     )
-    functions["teams/get-discussion-in-org"] = github.get(
+    functions["teams_get_discussion_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
         t.struct(
             {
@@ -48313,9 +48313,9 @@ def import_github(params=None):
                 "discussion_number": t.integer(),
             }
         ),
-        t.proxy(renames["team-discussion"]),
+        t.proxy(renames["team_discussion"]),
     )
-    functions["teams/update-discussion-in-org"] = github.patch(
+    functions["teams_update_discussion_in_org"] = github.patch(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
         t.struct(
             {
@@ -48326,11 +48326,11 @@ def import_github(params=None):
                 "body": t.string().optional(),
             }
         ),
-        t.proxy(renames["team-discussion"]),
+        t.proxy(renames["team_discussion"]),
         content_type="application/json",
         body_fields=("title", "body"),
     )
-    functions["teams/delete-discussion-in-org"] = github.delete(
+    functions["teams_delete_discussion_in_org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}",
         t.struct(
             {
@@ -48341,7 +48341,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["teams/list-discussion-comments-in-org"] = github.get(
+    functions["teams_list_discussion_comments_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -48353,9 +48353,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["team-discussion-comment"])),
+        t.array(t.proxy(renames["team_discussion_comment"])),
     )
-    functions["teams/create-discussion-comment-in-org"] = github.post(
+    functions["teams_create_discussion_comment_in_org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -48365,11 +48365,11 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["team-discussion-comment"]),
+        t.proxy(renames["team_discussion_comment"]),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/get-discussion-comment-in-org"] = github.get(
+    functions["teams_get_discussion_comment_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -48379,9 +48379,9 @@ def import_github(params=None):
                 "comment_number": t.integer(),
             }
         ),
-        t.proxy(renames["team-discussion-comment"]),
+        t.proxy(renames["team_discussion_comment"]),
     )
-    functions["teams/update-discussion-comment-in-org"] = github.patch(
+    functions["teams_update_discussion_comment_in_org"] = github.patch(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -48392,11 +48392,11 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["team-discussion-comment"]),
+        t.proxy(renames["team_discussion_comment"]),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/delete-discussion-comment-in-org"] = github.delete(
+    functions["teams_delete_discussion_comment_in_org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -48408,7 +48408,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["reactions/list-for-team-discussion-comment-in-org"] = github.get(
+    functions["reactions_list_for_team_discussion_comment_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -48423,7 +48423,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-comment-in-org"] = github.post(
+    functions["reactions_create_for_team_discussion_comment_in_org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -48438,7 +48438,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-team-discussion-comment"] = github.delete(
+    functions["reactions_delete_for_team_discussion_comment"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/comments/{comment_number}/reactions/{reaction_id}",
         t.struct(
             {
@@ -48451,7 +48451,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["reactions/list-for-team-discussion-in-org"] = github.get(
+    functions["reactions_list_for_team_discussion_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -48465,7 +48465,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-in-org"] = github.post(
+    functions["reactions_create_for_team_discussion_in_org"] = github.post(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -48479,7 +48479,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-team-discussion"] = github.delete(
+    functions["reactions_delete_for_team_discussion"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/discussions/{discussion_number}/reactions/{reaction_id}",
         t.struct(
             {
@@ -48491,7 +48491,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["teams/list-pending-invitations-in-org"] = github.get(
+    functions["teams_list_pending_invitations_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/invitations",
         t.struct(
             {
@@ -48501,9 +48501,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["organization-invitation"])),
+        t.array(t.proxy(renames["organization_invitation"])),
     )
-    functions["teams/list-members-in-org"] = github.get(
+    functions["teams_list_members_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/members",
         t.struct(
             {
@@ -48514,14 +48514,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["teams/get-membership-for-user-in-org"] = github.get(
+    functions["teams_get_membership_for_user_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/memberships/{username}",
         t.struct({"org": t.string(), "team_slug": t.string(), "username": t.string()}),
-        t.proxy(renames["team-membership"]).optional(),
+        t.proxy(renames["team_membership"]).optional(),
     )
-    functions["teams/add-or-update-membership-for-user-in-org"] = github.put(
+    functions["teams_add_or_update_membership_for_user_in_org"] = github.put(
         "/orgs/{org}/teams/{team_slug}/memberships/{username}",
         t.struct(
             {
@@ -48531,16 +48531,16 @@ def import_github(params=None):
                 "role": t.string().optional(),
             }
         ),
-        t.proxy(renames["team-membership"]),
+        t.proxy(renames["team_membership"]),
         content_type="application/json",
         body_fields=("role",),
     )
-    functions["teams/remove-membership-for-user-in-org"] = github.delete(
+    functions["teams_remove_membership_for_user_in_org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/memberships/{username}",
         t.struct({"org": t.string(), "team_slug": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-projects-in-org"] = github.get(
+    functions["teams_list_projects_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/projects",
         t.struct(
             {
@@ -48550,16 +48550,16 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["team-project"])),
+        t.array(t.proxy(renames["team_project"])),
     )
-    functions["teams/check-permissions-for-project-in-org"] = github.get(
+    functions["teams_check_permissions_for_project_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
         t.struct(
             {"org": t.string(), "team_slug": t.string(), "project_id": t.integer()}
         ),
-        t.proxy(renames["team-project"]).optional(),
+        t.proxy(renames["team_project"]).optional(),
     )
-    functions["teams/add-or-update-project-permissions-in-org"] = github.put(
+    functions["teams_add_or_update_project_permissions_in_org"] = github.put(
         "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
         t.struct(
             {
@@ -48573,14 +48573,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-project-in-org"] = github.delete(
+    functions["teams_remove_project_in_org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/projects/{project_id}",
         t.struct(
             {"org": t.string(), "team_slug": t.string(), "project_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["teams/list-repos-in-org"] = github.get(
+    functions["teams_list_repos_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/repos",
         t.struct(
             {
@@ -48590,9 +48590,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["minimal-repository"])),
+        t.array(t.proxy(renames["minimal_repository"])),
     )
-    functions["teams/check-permissions-for-repo-in-org"] = github.get(
+    functions["teams_check_permissions_for_repo_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -48602,9 +48602,9 @@ def import_github(params=None):
                 "repo": t.string(),
             }
         ),
-        t.proxy(renames["team-repository"]).optional(),
+        t.proxy(renames["team_repository"]).optional(),
     )
-    functions["teams/add-or-update-repo-permissions-in-org"] = github.put(
+    functions["teams_add_or_update_repo_permissions_in_org"] = github.put(
         "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -48619,7 +48619,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-repo-in-org"] = github.delete(
+    functions["teams_remove_repo_in_org"] = github.delete(
         "/orgs/{org}/teams/{team_slug}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -48631,7 +48631,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["teams/list-child-in-org"] = github.get(
+    functions["teams_list_child_in_org"] = github.get(
         "/orgs/{org}/teams/{team_slug}/teams",
         t.struct(
             {
@@ -48643,7 +48643,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["team"])),
     )
-    functions["orgs/enable-or-disable-security-product-on-all-org-repos"] = github.post(
+    functions["orgs_enable_or_disable_security_product_on_all_org_repos"] = github.post(
         "/orgs/{org}/{security_product}/{enablement}",
         t.struct(
             {
@@ -48654,12 +48654,12 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["projects/get-card"] = github.get(
+    functions["projects_get_card"] = github.get(
         "/projects/columns/cards/{card_id}",
         t.struct({"card_id": t.integer()}),
-        t.proxy(renames["project-card"]).optional(),
+        t.proxy(renames["project_card"]).optional(),
     )
-    functions["projects/update-card"] = github.patch(
+    functions["projects_update_card"] = github.patch(
         "/projects/columns/cards/{card_id}",
         t.struct(
             {
@@ -48668,16 +48668,16 @@ def import_github(params=None):
                 "archived": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["project-card"]).optional(),
+        t.proxy(renames["project_card"]).optional(),
         content_type="application/json",
         body_fields=("note", "archived"),
     )
-    functions["projects/delete-card"] = github.delete(
+    functions["projects_delete_card"] = github.delete(
         "/projects/columns/cards/{card_id}",
         t.struct({"card_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["projects/move-card"] = github.post(
+    functions["projects_move_card"] = github.post(
         "/projects/columns/cards/{card_id}/moves",
         t.struct(
             {
@@ -48690,24 +48690,24 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("position", "column_id"),
     )
-    functions["projects/get-column"] = github.get(
+    functions["projects_get_column"] = github.get(
         "/projects/columns/{column_id}",
         t.struct({"column_id": t.integer()}),
-        t.proxy(renames["project-column"]).optional(),
+        t.proxy(renames["project_column"]).optional(),
     )
-    functions["projects/update-column"] = github.patch(
+    functions["projects_update_column"] = github.patch(
         "/projects/columns/{column_id}",
         t.struct({"column_id": t.integer(), "name": t.string()}),
-        t.proxy(renames["project-column"]),
+        t.proxy(renames["project_column"]),
         content_type="application/json",
         body_fields=("name",),
     )
-    functions["projects/delete-column"] = github.delete(
+    functions["projects_delete_column"] = github.delete(
         "/projects/columns/{column_id}",
         t.struct({"column_id": t.integer()}),
         t.boolean(),
     )
-    functions["projects/list-cards"] = github.get(
+    functions["projects_list_cards"] = github.get(
         "/projects/columns/{column_id}/cards",
         t.struct(
             {
@@ -48717,21 +48717,21 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["project-card"])),
+        t.array(t.proxy(renames["project_card"])),
     )
-    functions["projects/move-column"] = github.post(
+    functions["projects_move_column"] = github.post(
         "/projects/columns/{column_id}/moves",
         t.struct({"column_id": t.integer(), "position": t.string()}),
         t.struct({}),
         content_type="application/json",
         body_fields=("position",),
     )
-    functions["projects/get"] = github.get(
+    functions["projects_get"] = github.get(
         "/projects/{project_id}",
         t.struct({"project_id": t.integer()}),
         t.proxy(renames["project"]),
     )
-    functions["projects/update"] = github.patch(
+    functions["projects_update"] = github.patch(
         "/projects/{project_id}",
         t.struct(
             {
@@ -48747,12 +48747,12 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("name", "body", "state", "organization_permission", "private"),
     )
-    functions["projects/delete"] = github.delete(
+    functions["projects_delete"] = github.delete(
         "/projects/{project_id}",
         t.struct({"project_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["projects/list-collaborators"] = github.get(
+    functions["projects_list_collaborators"] = github.get(
         "/projects/{project_id}/collaborators",
         t.struct(
             {
@@ -48762,9 +48762,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["simple-user"])).optional(),
+        t.array(t.proxy(renames["simple_user"])).optional(),
     )
-    functions["projects/add-collaborator"] = github.put(
+    functions["projects_add_collaborator"] = github.put(
         "/projects/{project_id}/collaborators/{username}",
         t.struct(
             {
@@ -48777,36 +48777,36 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["projects/remove-collaborator"] = github.delete(
+    functions["projects_remove_collaborator"] = github.delete(
         "/projects/{project_id}/collaborators/{username}",
         t.struct({"project_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["projects/get-permission-for-user"] = github.get(
+    functions["projects_get_permission_for_user"] = github.get(
         "/projects/{project_id}/collaborators/{username}/permission",
         t.struct({"project_id": t.integer(), "username": t.string()}),
-        t.proxy(renames["project-collaborator-permission"]).optional(),
+        t.proxy(renames["project_collaborator_permission"]).optional(),
     )
-    functions["projects/list-columns"] = github.get(
+    functions["projects_list_columns"] = github.get(
         "/projects/{project_id}/columns",
         t.struct(
             {"project_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["project-column"])),
+        t.array(t.proxy(renames["project_column"])),
     )
-    functions["projects/create-column"] = github.post(
+    functions["projects_create_column"] = github.post(
         "/projects/{project_id}/columns",
         t.struct({"project_id": t.integer(), "name": t.string()}),
-        t.proxy(renames["project-column"]),
+        t.proxy(renames["project_column"]),
         content_type="application/json",
         body_fields=("name",),
     )
-    functions["rate-limit/get"] = github.get(
+    functions["rate_limit_get"] = github.get(
         "/rate_limit",
         t.struct({}),
-        t.proxy(renames["rate-limit-overview"]).optional(),
+        t.proxy(renames["rate_limit_overview"]).optional(),
     )
-    functions["actions/list-repo-required-workflows"] = github.get(
+    functions["actions_list_repo_required_workflows"] = github.get(
         "/repos/{org}/{repo}/actions/required_workflows",
         t.struct(
             {
@@ -48820,12 +48820,12 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "required_workflows": t.array(
-                    t.proxy(renames["repo-required-workflow"])
+                    t.proxy(renames["repo_required_workflow"])
                 ),
             }
         ).optional(),
     )
-    functions["actions/get-repo-required-workflow"] = github.get(
+    functions["actions_get_repo_required_workflow"] = github.get(
         "/repos/{org}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}",
         t.struct(
             {
@@ -48834,9 +48834,9 @@ def import_github(params=None):
                 "required_workflow_id_for_repo": t.integer(),
             }
         ),
-        t.proxy(renames["repo-required-workflow"]).optional(),
+        t.proxy(renames["repo_required_workflow"]).optional(),
     )
-    functions["actions/get-repo-required-workflow-usage"] = github.get(
+    functions["actions_get_repo_required_workflow_usage"] = github.get(
         "/repos/{org}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}/timing",
         t.struct(
             {
@@ -48845,14 +48845,14 @@ def import_github(params=None):
                 "required_workflow_id_for_repo": t.integer(),
             }
         ),
-        t.proxy(renames["workflow-usage"]).optional(),
+        t.proxy(renames["workflow_usage"]).optional(),
     )
-    functions["repos/get"] = github.get(
+    functions["repos_get"] = github.get(
         "/repos/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["full-repository"]).optional(),
+        t.proxy(renames["full_repository"]).optional(),
     )
-    functions["repos/update"] = github.patch(
+    functions["repos_update"] = github.patch(
         "/repos/{owner}/{repo}",
         t.struct(
             {
@@ -48897,7 +48897,7 @@ def import_github(params=None):
                 "web_commit_signoff_required": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["full-repository"]).optional(),
+        t.proxy(renames["full_repository"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -48927,12 +48927,12 @@ def import_github(params=None):
             "web_commit_signoff_required",
         ),
     )
-    functions["repos/delete"] = github.delete(
+    functions["repos_delete"] = github.delete(
         "/repos/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["actions/list-artifacts-for-repo"] = github.get(
+    functions["actions_list_artifacts_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/artifacts",
         t.struct(
             {
@@ -48950,17 +48950,17 @@ def import_github(params=None):
             }
         ),
     )
-    functions["actions/get-artifact"] = github.get(
+    functions["actions_get_artifact"] = github.get(
         "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "artifact_id": t.integer()}),
         t.proxy(renames["artifact"]),
     )
-    functions["actions/delete-artifact"] = github.delete(
+    functions["actions_delete_artifact"] = github.delete(
         "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "artifact_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/download-artifact"] = github.get(
+    functions["actions_download_artifact"] = github.get(
         "/repos/{owner}/{repo}/actions/artifacts/{artifact_id}/{archive_format}",
         t.struct(
             {
@@ -48972,12 +48972,12 @@ def import_github(params=None):
         ),
         t.struct({}),
     )
-    functions["actions/get-actions-cache-usage"] = github.get(
+    functions["actions_get_actions_cache_usage"] = github.get(
         "/repos/{owner}/{repo}/actions/cache/usage",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["actions-cache-usage-by-repository"]),
+        t.proxy(renames["actions_cache_usage_by_repository"]),
     )
-    functions["actions/get-actions-cache-list"] = github.get(
+    functions["actions_get_actions_cache_list"] = github.get(
         "/repos/{owner}/{repo}/actions/caches",
         t.struct(
             {
@@ -48991,9 +48991,9 @@ def import_github(params=None):
                 "direction": t.string(),
             }
         ),
-        t.proxy(renames["actions-cache-list"]),
+        t.proxy(renames["actions_cache_list"]),
     )
-    functions["actions/delete-actions-cache-by-key"] = github.delete(
+    functions["actions_delete_actions_cache_by_key"] = github.delete(
         "/repos/{owner}/{repo}/actions/caches",
         t.struct(
             {
@@ -49003,24 +49003,24 @@ def import_github(params=None):
                 "ref": t.string(),
             }
         ),
-        t.proxy(renames["actions-cache-list"]),
+        t.proxy(renames["actions_cache_list"]),
     )
-    functions["actions/delete-actions-cache-by-id"] = github.delete(
+    functions["actions_delete_actions_cache_by_id"] = github.delete(
         "/repos/{owner}/{repo}/actions/caches/{cache_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "cache_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/get-job-for-workflow-run"] = github.get(
+    functions["actions_get_job_for_workflow_run"] = github.get(
         "/repos/{owner}/{repo}/actions/jobs/{job_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "job_id": t.integer()}),
         t.proxy(renames["job"]),
     )
-    functions["actions/download-job-logs-for-workflow-run"] = github.get(
+    functions["actions_download_job_logs_for_workflow_run"] = github.get(
         "/repos/{owner}/{repo}/actions/jobs/{job_id}/logs",
         t.struct({"owner": t.string(), "repo": t.string(), "job_id": t.integer()}),
         t.struct({}),
     )
-    functions["actions/re-run-job-for-workflow-run"] = github.post(
+    functions["actions_re_run_job_for_workflow_run"] = github.post(
         "/repos/{owner}/{repo}/actions/jobs/{job_id}/rerun",
         t.struct(
             {
@@ -49030,16 +49030,16 @@ def import_github(params=None):
                 "enable_debug_logging": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("enable_debug_logging",),
     )
-    functions["actions/get-custom-oidc-sub-claim-for-repo"] = github.get(
+    functions["actions_get_custom_oidc_sub_claim_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/oidc/customization/sub",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["oidc-custom-sub-repo"]).optional(),
+        t.proxy(renames["oidc_custom_sub_repo"]).optional(),
     )
-    functions["actions/set-custom-oidc-sub-claim-for-repo"] = github.put(
+    functions["actions_set_custom_oidc_sub_claim_for_repo"] = github.put(
         "/repos/{owner}/{repo}/actions/oidc/customization/sub",
         t.struct(
             {
@@ -49049,11 +49049,11 @@ def import_github(params=None):
                 "include_claim_keys": t.array(t.string()).optional(),
             }
         ),
-        t.proxy(renames["empty-object"]).optional(),
+        t.proxy(renames["empty_object"]).optional(),
         content_type="application/json",
         body_fields=("use_default", "include_claim_keys"),
     )
-    functions["actions/list-repo-organization-secrets"] = github.get(
+    functions["actions_list_repo_organization_secrets"] = github.get(
         "/repos/{owner}/{repo}/actions/organization-secrets",
         t.struct(
             {
@@ -49066,11 +49066,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["actions-secret"])),
+                "secrets": t.array(t.proxy(renames["actions_secret"])),
             }
         ),
     )
-    functions["actions/list-repo-organization-variables"] = github.get(
+    functions["actions_list_repo_organization_variables"] = github.get(
         "/repos/{owner}/{repo}/actions/organization-variables",
         t.struct(
             {
@@ -49083,47 +49083,47 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "variables": t.array(t.proxy(renames["actions-variable"])),
+                "variables": t.array(t.proxy(renames["actions_variable"])),
             }
         ),
     )
-    functions["actions/get-github-actions-permissions-repository"] = github.get(
+    functions["actions_get_github_actions_permissions_repository"] = github.get(
         "/repos/{owner}/{repo}/actions/permissions",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["actions-repository-permissions"]),
+        t.proxy(renames["actions_repository_permissions"]),
     )
-    functions["actions/set-github-actions-permissions-repository"] = github.put(
+    functions["actions_set_github_actions_permissions_repository"] = github.put(
         "/repos/{owner}/{repo}/actions/permissions",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "enabled": t.proxy(renames["actions-enabled"]),
-                "allowed_actions": t.proxy(renames["allowed-actions"]).optional(),
+                "enabled": t.proxy(renames["actions_enabled"]),
+                "allowed_actions": t.proxy(renames["allowed_actions"]).optional(),
             }
         ),
         t.boolean(),
         content_type="application/json",
         body_fields=("enabled", "allowed_actions"),
     )
-    functions["actions/get-workflow-access-to-repository"] = github.get(
+    functions["actions_get_workflow_access_to_repository"] = github.get(
         "/repos/{owner}/{repo}/actions/permissions/access",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["actions-workflow-access-to-repository"]),
+        t.proxy(renames["actions_workflow_access_to_repository"]),
     )
-    functions["actions/set-workflow-access-to-repository"] = github.put(
+    functions["actions_set_workflow_access_to_repository"] = github.put(
         "/repos/{owner}/{repo}/actions/permissions/access",
         t.struct({"owner": t.string(), "repo": t.string(), "access_level": t.string()}),
         t.boolean(),
         content_type="application/json",
         body_fields=("access_level",),
     )
-    functions["actions/get-allowed-actions-repository"] = github.get(
+    functions["actions_get_allowed_actions_repository"] = github.get(
         "/repos/{owner}/{repo}/actions/permissions/selected-actions",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["selected-actions"]),
+        t.proxy(renames["selected_actions"]),
     )
-    functions["actions/set-allowed-actions-repository"] = github.put(
+    functions["actions_set_allowed_actions_repository"] = github.put(
         "/repos/{owner}/{repo}/actions/permissions/selected-actions",
         t.struct(
             {
@@ -49139,14 +49139,14 @@ def import_github(params=None):
         body_fields=("github_owned_allowed", "verified_allowed", "patterns_allowed"),
     )
     functions[
-        "actions/get-github-actions-default-workflow-permissions-repository"
+        "actions_get_github_actions_default_workflow_permissions_repository"
     ] = github.get(
         "/repos/{owner}/{repo}/actions/permissions/workflow",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["actions-get-default-workflow-permissions"]),
+        t.proxy(renames["actions_get_default_workflow_permissions"]),
     )
     functions[
-        "actions/set-github-actions-default-workflow-permissions-repository"
+        "actions_set_github_actions_default_workflow_permissions_repository"
     ] = github.put(
         "/repos/{owner}/{repo}/actions/permissions/workflow",
         t.struct(
@@ -49154,10 +49154,10 @@ def import_github(params=None):
                 "owner": t.string(),
                 "repo": t.string(),
                 "default_workflow_permissions": t.proxy(
-                    renames["actions-default-workflow-permissions"]
+                    renames["actions_default_workflow_permissions"]
                 ).optional(),
                 "can_approve_pull_request_reviews": t.proxy(
-                    renames["actions-can-approve-pull-request-reviews"]
+                    renames["actions_can_approve_pull_request_reviews"]
                 ).optional(),
             }
         ),
@@ -49168,7 +49168,7 @@ def import_github(params=None):
             "can_approve_pull_request_reviews",
         ),
     )
-    functions["actions/list-required-workflow-runs"] = github.get(
+    functions["actions_list_required_workflow_runs"] = github.get(
         "/repos/{owner}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}/runs",
         t.struct(
             {
@@ -49190,11 +49190,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "workflow_runs": t.array(t.proxy(renames["workflow-run"])),
+                "workflow_runs": t.array(t.proxy(renames["workflow_run"])),
             }
         ),
     )
-    functions["actions/list-self-hosted-runners-for-repo"] = github.get(
+    functions["actions_list_self_hosted_runners_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners",
         t.struct(
             {
@@ -49208,37 +49208,37 @@ def import_github(params=None):
             {"total_count": t.integer(), "runners": t.array(t.proxy(renames["runner"]))}
         ),
     )
-    functions["actions/list-runner-applications-for-repo"] = github.get(
+    functions["actions_list_runner_applications_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners/downloads",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["runner-application"])),
+        t.array(t.proxy(renames["runner_application"])),
     )
-    functions["actions/create-registration-token-for-repo"] = github.post(
+    functions["actions_create_registration_token_for_repo"] = github.post(
         "/repos/{owner}/{repo}/actions/runners/registration-token",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["authentication-token"]),
+        t.proxy(renames["authentication_token"]),
     )
-    functions["actions/create-remove-token-for-repo"] = github.post(
+    functions["actions_create_remove_token_for_repo"] = github.post(
         "/repos/{owner}/{repo}/actions/runners/remove-token",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["authentication-token"]),
+        t.proxy(renames["authentication_token"]),
     )
-    functions["actions/get-self-hosted-runner-for-repo"] = github.get(
+    functions["actions_get_self_hosted_runner_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "runner_id": t.integer()}),
         t.proxy(renames["runner"]),
     )
-    functions["actions/delete-self-hosted-runner-from-repo"] = github.delete(
+    functions["actions_delete_self_hosted_runner_from_repo"] = github.delete(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "runner_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/list-labels-for-self-hosted-runner-for-repo"] = github.get(
+    functions["actions_list_labels_for_self_hosted_runner_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}/labels",
         t.struct({"owner": t.string(), "repo": t.string(), "runner_id": t.integer()}),
         t.struct({}).optional(),
     )
-    functions["actions/add-custom-labels-to-self-hosted-runner-for-repo"] = github.post(
+    functions["actions_add_custom_labels_to_self_hosted_runner_for_repo"] = github.post(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}/labels",
         t.struct(
             {
@@ -49252,7 +49252,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("labels",),
     )
-    functions["actions/set-custom-labels-for-self-hosted-runner-for-repo"] = github.put(
+    functions["actions_set_custom_labels_for_self_hosted_runner_for_repo"] = github.put(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}/labels",
         t.struct(
             {
@@ -49267,14 +49267,14 @@ def import_github(params=None):
         body_fields=("labels",),
     )
     functions[
-        "actions/remove-all-custom-labels-from-self-hosted-runner-for-repo"
+        "actions_remove_all_custom_labels_from_self_hosted_runner_for_repo"
     ] = github.delete(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}/labels",
         t.struct({"owner": t.string(), "repo": t.string(), "runner_id": t.integer()}),
         t.struct({}).optional(),
     )
     functions[
-        "actions/remove-custom-label-from-self-hosted-runner-for-repo"
+        "actions_remove_custom_label_from_self_hosted_runner_for_repo"
     ] = github.delete(
         "/repos/{owner}/{repo}/actions/runners/{runner_id}/labels/{name}",
         t.struct(
@@ -49287,7 +49287,7 @@ def import_github(params=None):
         ),
         t.struct({}).optional(),
     )
-    functions["actions/list-workflow-runs-for-repo"] = github.get(
+    functions["actions_list_workflow_runs_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runs",
         t.struct(
             {
@@ -49308,11 +49308,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "workflow_runs": t.array(t.proxy(renames["workflow-run"])),
+                "workflow_runs": t.array(t.proxy(renames["workflow_run"])),
             }
         ),
     )
-    functions["actions/get-workflow-run"] = github.get(
+    functions["actions_get_workflow_run"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}",
         t.struct(
             {
@@ -49322,24 +49322,24 @@ def import_github(params=None):
                 "exclude_pull_requests": t.boolean(),
             }
         ),
-        t.proxy(renames["workflow-run"]),
+        t.proxy(renames["workflow_run"]),
     )
-    functions["actions/delete-workflow-run"] = github.delete(
+    functions["actions_delete_workflow_run"] = github.delete(
         "/repos/{owner}/{repo}/actions/runs/{run_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/get-reviews-for-run"] = github.get(
+    functions["actions_get_reviews_for_run"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/approvals",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
-        t.array(t.proxy(renames["environment-approvals"])),
+        t.array(t.proxy(renames["environment_approvals"])),
     )
-    functions["actions/approve-workflow-run"] = github.post(
+    functions["actions_approve_workflow_run"] = github.post(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/approve",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
-        t.proxy(renames["empty-object"]).optional(),
+        t.proxy(renames["empty_object"]).optional(),
     )
-    functions["actions/list-workflow-run-artifacts"] = github.get(
+    functions["actions_list_workflow_run_artifacts"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/artifacts",
         t.struct(
             {
@@ -49357,7 +49357,7 @@ def import_github(params=None):
             }
         ),
     )
-    functions["actions/get-workflow-run-attempt"] = github.get(
+    functions["actions_get_workflow_run_attempt"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}",
         t.struct(
             {
@@ -49368,9 +49368,9 @@ def import_github(params=None):
                 "exclude_pull_requests": t.boolean(),
             }
         ),
-        t.proxy(renames["workflow-run"]),
+        t.proxy(renames["workflow_run"]),
     )
-    functions["actions/list-jobs-for-workflow-run-attempt"] = github.get(
+    functions["actions_list_jobs_for_workflow_run_attempt"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}/jobs",
         t.struct(
             {
@@ -49386,7 +49386,7 @@ def import_github(params=None):
             {"total_count": t.integer(), "jobs": t.array(t.proxy(renames["job"]))}
         ).optional(),
     )
-    functions["actions/download-workflow-run-attempt-logs"] = github.get(
+    functions["actions_download_workflow_run_attempt_logs"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/attempts/{attempt_number}/logs",
         t.struct(
             {
@@ -49398,12 +49398,12 @@ def import_github(params=None):
         ),
         t.struct({}),
     )
-    functions["actions/cancel-workflow-run"] = github.post(
+    functions["actions_cancel_workflow_run"] = github.post(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/cancel",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
     )
-    functions["actions/list-jobs-for-workflow-run"] = github.get(
+    functions["actions_list_jobs_for_workflow_run"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/jobs",
         t.struct(
             {
@@ -49419,22 +49419,22 @@ def import_github(params=None):
             {"total_count": t.integer(), "jobs": t.array(t.proxy(renames["job"]))}
         ),
     )
-    functions["actions/download-workflow-run-logs"] = github.get(
+    functions["actions_download_workflow_run_logs"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/logs",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.struct({}),
     )
-    functions["actions/delete-workflow-run-logs"] = github.delete(
+    functions["actions_delete_workflow_run_logs"] = github.delete(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/logs",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
         t.boolean(),
     )
-    functions["actions/get-pending-deployments-for-run"] = github.get(
+    functions["actions_get_pending_deployments_for_run"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
-        t.array(t.proxy(renames["pending-deployment"])),
+        t.array(t.proxy(renames["pending_deployment"])),
     )
-    functions["actions/review-pending-deployments-for-run"] = github.post(
+    functions["actions_review_pending_deployments_for_run"] = github.post(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments",
         t.struct(
             {
@@ -49450,7 +49450,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("environment_ids", "state", "comment"),
     )
-    functions["actions/re-run-workflow"] = github.post(
+    functions["actions_re_run_workflow"] = github.post(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/rerun",
         t.struct(
             {
@@ -49460,11 +49460,11 @@ def import_github(params=None):
                 "enable_debug_logging": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("enable_debug_logging",),
     )
-    functions["actions/re-run-workflow-failed-jobs"] = github.post(
+    functions["actions_re_run_workflow_failed_jobs"] = github.post(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/rerun-failed-jobs",
         t.struct(
             {
@@ -49474,16 +49474,16 @@ def import_github(params=None):
                 "enable_debug_logging": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("enable_debug_logging",),
     )
-    functions["actions/get-workflow-run-usage"] = github.get(
+    functions["actions_get_workflow_run_usage"] = github.get(
         "/repos/{owner}/{repo}/actions/runs/{run_id}/timing",
         t.struct({"owner": t.string(), "repo": t.string(), "run_id": t.integer()}),
-        t.proxy(renames["workflow-run-usage"]),
+        t.proxy(renames["workflow_run_usage"]),
     )
-    functions["actions/list-repo-secrets"] = github.get(
+    functions["actions_list_repo_secrets"] = github.get(
         "/repos/{owner}/{repo}/actions/secrets",
         t.struct(
             {
@@ -49496,21 +49496,21 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["actions-secret"])),
+                "secrets": t.array(t.proxy(renames["actions_secret"])),
             }
         ),
     )
-    functions["actions/get-repo-public-key"] = github.get(
+    functions["actions_get_repo_public_key"] = github.get(
         "/repos/{owner}/{repo}/actions/secrets/public-key",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["actions-public-key"]),
+        t.proxy(renames["actions_public_key"]),
     )
-    functions["actions/get-repo-secret"] = github.get(
+    functions["actions_get_repo_secret"] = github.get(
         "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
-        t.proxy(renames["actions-secret"]),
+        t.proxy(renames["actions_secret"]),
     )
-    functions["actions/create-or-update-repo-secret"] = github.put(
+    functions["actions_create_or_update_repo_secret"] = github.put(
         "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
         t.struct(
             {
@@ -49521,16 +49521,16 @@ def import_github(params=None):
                 "key_id": t.string().optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("encrypted_value", "key_id"),
     )
-    functions["actions/delete-repo-secret"] = github.delete(
+    functions["actions_delete_repo_secret"] = github.delete(
         "/repos/{owner}/{repo}/actions/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
         t.boolean(),
     )
-    functions["actions/list-repo-variables"] = github.get(
+    functions["actions_list_repo_variables"] = github.get(
         "/repos/{owner}/{repo}/actions/variables",
         t.struct(
             {
@@ -49543,11 +49543,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "variables": t.array(t.proxy(renames["actions-variable"])),
+                "variables": t.array(t.proxy(renames["actions_variable"])),
             }
         ),
     )
-    functions["actions/create-repo-variable"] = github.post(
+    functions["actions_create_repo_variable"] = github.post(
         "/repos/{owner}/{repo}/actions/variables",
         t.struct(
             {
@@ -49557,21 +49557,21 @@ def import_github(params=None):
                 "value": t.string(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("name", "value"),
     )
-    functions["actions/get-repo-variable"] = github.get(
+    functions["actions_get_repo_variable"] = github.get(
         "/repos/{owner}/{repo}/actions/variables/{name}",
         t.struct({"owner": t.string(), "repo": t.string(), "name": t.string()}),
-        t.proxy(renames["actions-variable"]),
+        t.proxy(renames["actions_variable"]),
     )
-    functions["actions/delete-repo-variable"] = github.delete(
+    functions["actions_delete_repo_variable"] = github.delete(
         "/repos/{owner}/{repo}/actions/variables/{name}",
         t.struct({"owner": t.string(), "repo": t.string(), "name": t.string()}),
         t.boolean(),
     )
-    functions["actions/list-repo-workflows"] = github.get(
+    functions["actions_list_repo_workflows"] = github.get(
         "/repos/{owner}/{repo}/actions/workflows",
         t.struct(
             {
@@ -49588,7 +49588,7 @@ def import_github(params=None):
             }
         ),
     )
-    functions["actions/get-workflow"] = github.get(
+    functions["actions_get_workflow"] = github.get(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}",
         t.struct(
             {
@@ -49599,7 +49599,7 @@ def import_github(params=None):
         ),
         t.proxy(renames["workflow"]),
     )
-    functions["actions/disable-workflow"] = github.put(
+    functions["actions_disable_workflow"] = github.put(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/disable",
         t.struct(
             {
@@ -49610,7 +49610,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/create-workflow-dispatch"] = github.post(
+    functions["actions_create_workflow_dispatch"] = github.post(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches",
         t.struct(
             {
@@ -49625,7 +49625,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("ref", "inputs"),
     )
-    functions["actions/enable-workflow"] = github.put(
+    functions["actions_enable_workflow"] = github.put(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/enable",
         t.struct(
             {
@@ -49636,7 +49636,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/list-workflow-runs"] = github.get(
+    functions["actions_list_workflow_runs"] = github.get(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/runs",
         t.struct(
             {
@@ -49658,11 +49658,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "workflow_runs": t.array(t.proxy(renames["workflow-run"])),
+                "workflow_runs": t.array(t.proxy(renames["workflow_run"])),
             }
         ),
     )
-    functions["actions/get-workflow-usage"] = github.get(
+    functions["actions_get_workflow_usage"] = github.get(
         "/repos/{owner}/{repo}/actions/workflows/{workflow_id}/timing",
         t.struct(
             {
@@ -49671,9 +49671,9 @@ def import_github(params=None):
                 "workflow_id": t.either([t.integer(), t.string()]),
             }
         ),
-        t.proxy(renames["workflow-usage"]),
+        t.proxy(renames["workflow_usage"]),
     )
-    functions["issues/list-assignees"] = github.get(
+    functions["issues_list_assignees"] = github.get(
         "/repos/{owner}/{repo}/assignees",
         t.struct(
             {
@@ -49683,19 +49683,19 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["simple-user"])).optional(),
+        t.array(t.proxy(renames["simple_user"])).optional(),
     )
-    functions["issues/check-user-can-be-assigned"] = github.get(
+    functions["issues_check_user_can_be_assigned"] = github.get(
         "/repos/{owner}/{repo}/assignees/{assignee}",
         t.struct({"owner": t.string(), "repo": t.string(), "assignee": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/list-autolinks"] = github.get(
+    functions["repos_list_autolinks"] = github.get(
         "/repos/{owner}/{repo}/autolinks",
         t.struct({"owner": t.string(), "repo": t.string(), "page": t.integer()}),
         t.array(t.proxy(renames["autolink"])),
     )
-    functions["repos/create-autolink"] = github.post(
+    functions["repos_create_autolink"] = github.post(
         "/repos/{owner}/{repo}/autolinks",
         t.struct(
             {
@@ -49710,27 +49710,27 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("key_prefix", "url_template", "is_alphanumeric"),
     )
-    functions["repos/get-autolink"] = github.get(
+    functions["repos_get_autolink"] = github.get(
         "/repos/{owner}/{repo}/autolinks/{autolink_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "autolink_id": t.integer()}),
         t.proxy(renames["autolink"]).optional(),
     )
-    functions["repos/delete-autolink"] = github.delete(
+    functions["repos_delete_autolink"] = github.delete(
         "/repos/{owner}/{repo}/autolinks/{autolink_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "autolink_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["repos/enable-automated-security-fixes"] = github.put(
+    functions["repos_enable_automated_security_fixes"] = github.put(
         "/repos/{owner}/{repo}/automated-security-fixes",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["repos/disable-automated-security-fixes"] = github.delete(
+    functions["repos_disable_automated_security_fixes"] = github.delete(
         "/repos/{owner}/{repo}/automated-security-fixes",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-branches"] = github.get(
+    functions["repos_list_branches"] = github.get(
         "/repos/{owner}/{repo}/branches",
         t.struct(
             {
@@ -49741,19 +49741,19 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["short-branch"])).optional(),
+        t.array(t.proxy(renames["short_branch"])).optional(),
     )
-    functions["repos/get-branch"] = github.get(
+    functions["repos_get_branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["branch-with-protection"]).optional(),
+        t.proxy(renames["branch_with_protection"]).optional(),
     )
-    functions["repos/get-branch-protection"] = github.get(
+    functions["repos_get_branch_protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["branch-protection"]).optional(),
+        t.proxy(renames["branch_protection"]).optional(),
     )
-    functions["repos/update-branch-protection"] = github.put(
+    functions["repos_update_branch_protection"] = github.put(
         "/repos/{owner}/{repo}/branches/{branch}/protection",
         t.struct(
             {
@@ -49813,7 +49813,7 @@ def import_github(params=None):
                 "allow_fork_syncing": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["protected-branch"]).optional(),
+        t.proxy(renames["protected_branch"]).optional(),
         content_type="application/json",
         body_fields=(
             "required_status_checks",
@@ -49829,32 +49829,32 @@ def import_github(params=None):
             "allow_fork_syncing",
         ),
     )
-    functions["repos/delete-branch-protection"] = github.delete(
+    functions["repos_delete_branch_protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-admin-branch-protection"] = github.get(
+    functions["repos_get_admin_branch_protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["protected-branch-admin-enforced"]),
+        t.proxy(renames["protected_branch_admin_enforced"]),
     )
-    functions["repos/set-admin-branch-protection"] = github.post(
+    functions["repos_set_admin_branch_protection"] = github.post(
         "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["protected-branch-admin-enforced"]),
+        t.proxy(renames["protected_branch_admin_enforced"]),
     )
-    functions["repos/delete-admin-branch-protection"] = github.delete(
+    functions["repos_delete_admin_branch_protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/enforce_admins",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/get-pull-request-review-protection"] = github.get(
+    functions["repos_get_pull_request_review_protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["protected-branch-pull-request-review"]),
+        t.proxy(renames["protected_branch_pull_request_review"]),
     )
-    functions["repos/update-pull-request-review-protection"] = github.patch(
+    functions["repos_update_pull_request_review_protection"] = github.patch(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
         t.struct(
             {
@@ -49881,7 +49881,7 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["protected-branch-pull-request-review"]),
+        t.proxy(renames["protected_branch_pull_request_review"]),
         content_type="application/json",
         body_fields=(
             "dismissal_restrictions",
@@ -49892,32 +49892,32 @@ def import_github(params=None):
             "bypass_pull_request_allowances",
         ),
     )
-    functions["repos/delete-pull-request-review-protection"] = github.delete(
+    functions["repos_delete_pull_request_review_protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_pull_request_reviews",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/get-commit-signature-protection"] = github.get(
+    functions["repos_get_commit_signature_protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["protected-branch-admin-enforced"]).optional(),
+        t.proxy(renames["protected_branch_admin_enforced"]).optional(),
     )
-    functions["repos/create-commit-signature-protection"] = github.post(
+    functions["repos_create_commit_signature_protection"] = github.post(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["protected-branch-admin-enforced"]).optional(),
+        t.proxy(renames["protected_branch_admin_enforced"]).optional(),
     )
-    functions["repos/delete-commit-signature-protection"] = github.delete(
+    functions["repos_delete_commit_signature_protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_signatures",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/get-status-checks-protection"] = github.get(
+    functions["repos_get_status_checks_protection"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["status-check-policy"]).optional(),
+        t.proxy(renames["status_check_policy"]).optional(),
     )
-    functions["repos/update-status-check-protection"] = github.patch(
+    functions["repos_update_status_check_protection"] = github.patch(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
         t.struct(
             {
@@ -49931,46 +49931,46 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["status-check-policy"]).optional(),
+        t.proxy(renames["status_check_policy"]).optional(),
         content_type="application/json",
         body_fields=("strict", "contexts", "checks"),
     )
-    functions["repos/remove-status-check-protection"] = github.delete(
+    functions["repos_remove_status_check_protection"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-all-status-check-contexts"] = github.get(
+    functions["repos_get_all_status_check_contexts"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.array(t.string()).optional(),
     )
-    functions["repos/get-access-restrictions"] = github.get(
+    functions["repos_get_access_restrictions"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["branch-restriction-policy"]).optional(),
+        t.proxy(renames["branch_restriction_policy"]).optional(),
     )
-    functions["repos/delete-access-restrictions"] = github.delete(
+    functions["repos_delete_access_restrictions"] = github.delete(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-apps-with-access-to-protected-branch"] = github.get(
+    functions["repos_get_apps_with_access_to_protected_branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.array(t.proxy(renames["integration"])).optional(),
     )
-    functions["repos/get-teams-with-access-to-protected-branch"] = github.get(
+    functions["repos_get_teams_with_access_to_protected_branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
         t.array(t.proxy(renames["team"])).optional(),
     )
-    functions["repos/get-users-with-access-to-protected-branch"] = github.get(
+    functions["repos_get_users_with_access_to_protected_branch"] = github.get(
         "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/users",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.array(t.proxy(renames["simple-user"])).optional(),
+        t.array(t.proxy(renames["simple_user"])).optional(),
     )
-    functions["repos/rename-branch"] = github.post(
+    functions["repos_rename_branch"] = github.post(
         "/repos/{owner}/{repo}/branches/{branch}/rename",
         t.struct(
             {
@@ -49980,18 +49980,18 @@ def import_github(params=None):
                 "new_name": t.string(),
             }
         ),
-        t.proxy(renames["branch-with-protection"]).optional(),
+        t.proxy(renames["branch_with_protection"]).optional(),
         content_type="application/json",
         body_fields=("new_name",),
     )
-    functions["checks/get"] = github.get(
+    functions["checks_get"] = github.get(
         "/repos/{owner}/{repo}/check-runs/{check_run_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "check_run_id": t.integer()}
         ),
-        t.proxy(renames["check-run"]),
+        t.proxy(renames["check_run"]),
     )
-    functions["checks/list-annotations"] = github.get(
+    functions["checks_list_annotations"] = github.get(
         "/repos/{owner}/{repo}/check-runs/{check_run_id}/annotations",
         t.struct(
             {
@@ -50002,23 +50002,23 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["check-annotation"])),
+        t.array(t.proxy(renames["check_annotation"])),
     )
-    functions["checks/rerequest-run"] = github.post(
+    functions["checks_rerequest_run"] = github.post(
         "/repos/{owner}/{repo}/check-runs/{check_run_id}/rerequest",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "check_run_id": t.integer()}
         ),
-        t.proxy(renames["empty-object"]).optional(),
+        t.proxy(renames["empty_object"]).optional(),
     )
-    functions["checks/create-suite"] = github.post(
+    functions["checks_create_suite"] = github.post(
         "/repos/{owner}/{repo}/check-suites",
         t.struct({"owner": t.string(), "repo": t.string(), "head_sha": t.string()}),
-        t.proxy(renames["check-suite"]),
+        t.proxy(renames["check_suite"]),
         content_type="application/json",
         body_fields=("head_sha",),
     )
-    functions["checks/set-suites-preferences"] = github.patch(
+    functions["checks_set_suites_preferences"] = github.patch(
         "/repos/{owner}/{repo}/check-suites/preferences",
         t.struct(
             {
@@ -50029,18 +50029,18 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["check-suite-preference"]),
+        t.proxy(renames["check_suite_preference"]),
         content_type="application/json",
         body_fields=("auto_trigger_checks",),
     )
-    functions["checks/get-suite"] = github.get(
+    functions["checks_get_suite"] = github.get(
         "/repos/{owner}/{repo}/check-suites/{check_suite_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "check_suite_id": t.integer()}
         ),
-        t.proxy(renames["check-suite"]),
+        t.proxy(renames["check_suite"]),
     )
-    functions["checks/list-for-suite"] = github.get(
+    functions["checks_list_for_suite"] = github.get(
         "/repos/{owner}/{repo}/check-suites/{check_suite_id}/check-runs",
         t.struct(
             {
@@ -50057,105 +50057,105 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "check_runs": t.array(t.proxy(renames["check-run"])),
+                "check_runs": t.array(t.proxy(renames["check_run"])),
             }
         ),
     )
-    functions["checks/rerequest-suite"] = github.post(
+    functions["checks_rerequest_suite"] = github.post(
         "/repos/{owner}/{repo}/check-suites/{check_suite_id}/rerequest",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "check_suite_id": t.integer()}
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
     )
-    functions["code-scanning/list-alerts-for-repo"] = github.get(
+    functions["code_scanning_list_alerts_for_repo"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/alerts",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "tool_name": t.proxy(renames["code-scanning-analysis-tool-name"]),
-                "tool_guid": t.proxy(renames["code-scanning-analysis-tool-guid"]),
+                "tool_name": t.proxy(renames["code_scanning_analysis_tool_name"]),
+                "tool_guid": t.proxy(renames["code_scanning_analysis_tool_guid"]),
                 "page": t.integer(),
                 "per_page": t.integer(),
-                "ref": t.proxy(renames["code-scanning-ref"]),
+                "ref": t.proxy(renames["code_scanning_ref"]),
                 "direction": t.string(),
                 "sort": t.string(),
-                "state": t.proxy(renames["code-scanning-alert-state"]),
-                "severity": t.proxy(renames["code-scanning-alert-severity"]),
+                "state": t.proxy(renames["code_scanning_alert_state"]),
+                "severity": t.proxy(renames["code_scanning_alert_severity"]),
             }
         ),
-        t.array(t.proxy(renames["code-scanning-alert-items"])).optional(),
+        t.array(t.proxy(renames["code_scanning_alert_items"])).optional(),
     )
-    functions["code-scanning/get-alert"] = github.get(
+    functions["code_scanning_get_alert"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
+                "alert_number": t.proxy(renames["alert_number"]),
             }
         ),
-        t.proxy(renames["code-scanning-alert"]).optional(),
+        t.proxy(renames["code_scanning_alert"]).optional(),
     )
-    functions["code-scanning/update-alert"] = github.patch(
+    functions["code_scanning_update_alert"] = github.patch(
         "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
-                "state": t.proxy(renames["code-scanning-alert-set-state"]),
+                "alert_number": t.proxy(renames["alert_number"]),
+                "state": t.proxy(renames["code_scanning_alert_set_state"]),
                 "dismissed_reason": t.proxy(
-                    renames["code-scanning-alert-dismissed-reason"]
+                    renames["code_scanning_alert_dismissed_reason"]
                 ).optional(),
                 "dismissed_comment": t.proxy(
-                    renames["code-scanning-alert-dismissed-comment"]
+                    renames["code_scanning_alert_dismissed_comment"]
                 ).optional(),
             }
         ),
-        t.proxy(renames["code-scanning-alert"]).optional(),
+        t.proxy(renames["code_scanning_alert"]).optional(),
         content_type="application/json",
         body_fields=("state", "dismissed_reason", "dismissed_comment"),
     )
-    functions["code-scanning/list-alert-instances"] = github.get(
+    functions["code_scanning_list_alert_instances"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/alerts/{alert_number}/instances",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
+                "alert_number": t.proxy(renames["alert_number"]),
                 "page": t.integer(),
                 "per_page": t.integer(),
-                "ref": t.proxy(renames["code-scanning-ref"]),
+                "ref": t.proxy(renames["code_scanning_ref"]),
             }
         ),
-        t.array(t.proxy(renames["code-scanning-alert-instance"])).optional(),
+        t.array(t.proxy(renames["code_scanning_alert_instance"])).optional(),
     )
-    functions["code-scanning/list-recent-analyses"] = github.get(
+    functions["code_scanning_list_recent_analyses"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/analyses",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "tool_name": t.proxy(renames["code-scanning-analysis-tool-name"]),
-                "tool_guid": t.proxy(renames["code-scanning-analysis-tool-guid"]),
+                "tool_name": t.proxy(renames["code_scanning_analysis_tool_name"]),
+                "tool_guid": t.proxy(renames["code_scanning_analysis_tool_guid"]),
                 "page": t.integer(),
                 "per_page": t.integer(),
-                "ref": t.proxy(renames["code-scanning-ref"]),
-                "sarif_id": t.proxy(renames["code-scanning-analysis-sarif-id"]),
+                "ref": t.proxy(renames["code_scanning_ref"]),
+                "sarif_id": t.proxy(renames["code_scanning_analysis_sarif_id"]),
                 "direction": t.string(),
                 "sort": t.string(),
             }
         ),
-        t.array(t.proxy(renames["code-scanning-analysis"])).optional(),
+        t.array(t.proxy(renames["code_scanning_analysis"])).optional(),
     )
-    functions["code-scanning/get-analysis"] = github.get(
+    functions["code_scanning_get_analysis"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/analyses/{analysis_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "analysis_id": t.integer()}),
-        t.proxy(renames["code-scanning-analysis"]).optional(),
+        t.proxy(renames["code_scanning_analysis"]).optional(),
     )
-    functions["code-scanning/delete-analysis"] = github.delete(
+    functions["code_scanning_delete_analysis"] = github.delete(
         "/repos/{owner}/{repo}/code-scanning/analyses/{analysis_id}",
         t.struct(
             {
@@ -50165,24 +50165,24 @@ def import_github(params=None):
                 "confirm_delete": t.string().optional(),
             }
         ),
-        t.proxy(renames["code-scanning-analysis-deletion"]).optional(),
+        t.proxy(renames["code_scanning_analysis_deletion"]).optional(),
     )
-    functions["code-scanning/list-codeql-databases"] = github.get(
+    functions["code_scanning_list_codeql_databases"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/codeql/databases",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["code-scanning-codeql-database"])).optional(),
+        t.array(t.proxy(renames["code_scanning_codeql_database"])).optional(),
     )
-    functions["code-scanning/get-codeql-database"] = github.get(
+    functions["code_scanning_get_codeql_database"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/codeql/databases/{language}",
         t.struct({"owner": t.string(), "repo": t.string(), "language": t.string()}),
-        t.proxy(renames["code-scanning-codeql-database"]).optional(),
+        t.proxy(renames["code_scanning_codeql_database"]).optional(),
     )
-    functions["code-scanning/get-default-setup"] = github.get(
+    functions["code_scanning_get_default_setup"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/default-setup",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["code-scanning-default-setup"]).optional(),
+        t.proxy(renames["code_scanning_default_setup"]).optional(),
     )
-    functions["code-scanning/update-default-setup"] = github.patch(
+    functions["code_scanning_update_default_setup"] = github.patch(
         "/repos/{owner}/{repo}/code-scanning/default-setup",
         t.struct(
             {
@@ -50192,26 +50192,26 @@ def import_github(params=None):
                 "query_suite": t.string().optional(),
             }
         ),
-        t.proxy(renames["empty-object"]).optional(),
+        t.proxy(renames["empty_object"]).optional(),
         content_type="application/json",
         body_fields=("state", "query_suite"),
     )
-    functions["code-scanning/upload-sarif"] = github.post(
+    functions["code_scanning_upload_sarif"] = github.post(
         "/repos/{owner}/{repo}/code-scanning/sarifs",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "commit_sha": t.proxy(renames["code-scanning-analysis-commit-sha"]),
-                "ref": t.proxy(renames["code-scanning-ref"]),
-                "sarif": t.proxy(renames["code-scanning-analysis-sarif-file"]),
+                "commit_sha": t.proxy(renames["code_scanning_analysis_commit_sha"]),
+                "ref": t.proxy(renames["code_scanning_ref"]),
+                "sarif": t.proxy(renames["code_scanning_analysis_sarif_file"]),
                 "checkout_uri": t.string().optional(),
                 "started_at": t.string().optional(),
                 "tool_name": t.string().optional(),
                 "validate": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["code-scanning-sarifs-receipt"]).optional(),
+        t.proxy(renames["code_scanning_sarifs_receipt"]).optional(),
         content_type="application/json",
         body_fields=(
             "commit_sha",
@@ -50223,17 +50223,17 @@ def import_github(params=None):
             "validate",
         ),
     )
-    functions["code-scanning/get-sarif"] = github.get(
+    functions["code_scanning_get_sarif"] = github.get(
         "/repos/{owner}/{repo}/code-scanning/sarifs/{sarif_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "sarif_id": t.string()}),
-        t.proxy(renames["code-scanning-sarifs-status"]).optional(),
+        t.proxy(renames["code_scanning_sarifs_status"]).optional(),
     )
-    functions["repos/codeowners-errors"] = github.get(
+    functions["repos_codeowners_errors"] = github.get(
         "/repos/{owner}/{repo}/codeowners/errors",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
-        t.proxy(renames["codeowners-errors"]).optional(),
+        t.proxy(renames["codeowners_errors"]).optional(),
     )
-    functions["codespaces/list-in-repository-for-authenticated-user"] = github.get(
+    functions["codespaces_list_in_repository_for_authenticated_user"] = github.get(
         "/repos/{owner}/{repo}/codespaces",
         t.struct(
             {
@@ -50250,7 +50250,7 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["codespaces/create-with-repo-for-authenticated-user"] = github.post(
+    functions["codespaces_create_with_repo_for_authenticated_user"] = github.post(
         "/repos/{owner}/{repo}/codespaces",
         t.struct(
             {
@@ -50286,7 +50286,7 @@ def import_github(params=None):
         ),
     )
     functions[
-        "codespaces/list-devcontainers-in-repository-for-authenticated-user"
+        "codespaces_list_devcontainers_in_repository_for_authenticated_user"
     ] = github.get(
         "/repos/{owner}/{repo}/codespaces/devcontainers",
         t.struct(
@@ -50312,7 +50312,7 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["codespaces/repo-machines-for-authenticated-user"] = github.get(
+    functions["codespaces_repo_machines_for_authenticated_user"] = github.get(
         "/repos/{owner}/{repo}/codespaces/machines",
         t.struct(
             {
@@ -50325,11 +50325,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "machines": t.array(t.proxy(renames["codespace-machine"])),
+                "machines": t.array(t.proxy(renames["codespace_machine"])),
             }
         ).optional(),
     )
-    functions["codespaces/pre-flight-with-repo-for-authenticated-user"] = github.get(
+    functions["codespaces_pre_flight_with_repo_for_authenticated_user"] = github.get(
         "/repos/{owner}/{repo}/codespaces/new",
         t.struct(
             {
@@ -50341,14 +50341,14 @@ def import_github(params=None):
         ),
         t.struct(
             {
-                "billable_owner": t.proxy(renames["simple-user"]).optional(),
+                "billable_owner": t.proxy(renames["simple_user"]).optional(),
                 "defaults": t.struct(
                     {"location": t.string(), "devcontainer_path": t.string().optional()}
                 ).optional(),
             }
         ).optional(),
     )
-    functions["codespaces/list-repo-secrets"] = github.get(
+    functions["codespaces_list_repo_secrets"] = github.get(
         "/repos/{owner}/{repo}/codespaces/secrets",
         t.struct(
             {
@@ -50361,21 +50361,21 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["repo-codespaces-secret"])),
+                "secrets": t.array(t.proxy(renames["repo_codespaces_secret"])),
             }
         ),
     )
-    functions["codespaces/get-repo-public-key"] = github.get(
+    functions["codespaces_get_repo_public_key"] = github.get(
         "/repos/{owner}/{repo}/codespaces/secrets/public-key",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["codespaces-public-key"]),
+        t.proxy(renames["codespaces_public_key"]),
     )
-    functions["codespaces/get-repo-secret"] = github.get(
+    functions["codespaces_get_repo_secret"] = github.get(
         "/repos/{owner}/{repo}/codespaces/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
-        t.proxy(renames["repo-codespaces-secret"]),
+        t.proxy(renames["repo_codespaces_secret"]),
     )
-    functions["codespaces/create-or-update-repo-secret"] = github.put(
+    functions["codespaces_create_or_update_repo_secret"] = github.put(
         "/repos/{owner}/{repo}/codespaces/secrets/{secret_name}",
         t.struct(
             {
@@ -50386,16 +50386,16 @@ def import_github(params=None):
                 "key_id": t.string().optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("encrypted_value", "key_id"),
     )
-    functions["codespaces/delete-repo-secret"] = github.delete(
+    functions["codespaces_delete_repo_secret"] = github.delete(
         "/repos/{owner}/{repo}/codespaces/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-collaborators"] = github.get(
+    functions["repos_list_collaborators"] = github.get(
         "/repos/{owner}/{repo}/collaborators",
         t.struct(
             {
@@ -50409,12 +50409,12 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["collaborator"])).optional(),
     )
-    functions["repos/check-collaborator"] = github.get(
+    functions["repos_check_collaborator"] = github.get(
         "/repos/{owner}/{repo}/collaborators/{username}",
         t.struct({"owner": t.string(), "repo": t.string(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/add-collaborator"] = github.put(
+    functions["repos_add_collaborator"] = github.put(
         "/repos/{owner}/{repo}/collaborators/{username}",
         t.struct(
             {
@@ -50424,21 +50424,21 @@ def import_github(params=None):
                 "permission": t.string().optional(),
             }
         ),
-        t.proxy(renames["repository-invitation"]),
+        t.proxy(renames["repository_invitation"]),
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["repos/remove-collaborator"] = github.delete(
+    functions["repos_remove_collaborator"] = github.delete(
         "/repos/{owner}/{repo}/collaborators/{username}",
         t.struct({"owner": t.string(), "repo": t.string(), "username": t.string()}),
         t.boolean(),
     )
-    functions["repos/get-collaborator-permission-level"] = github.get(
+    functions["repos_get_collaborator_permission_level"] = github.get(
         "/repos/{owner}/{repo}/collaborators/{username}/permission",
         t.struct({"owner": t.string(), "repo": t.string(), "username": t.string()}),
-        t.proxy(renames["repository-collaborator-permission"]).optional(),
+        t.proxy(renames["repository_collaborator_permission"]).optional(),
     )
-    functions["repos/list-commit-comments-for-repo"] = github.get(
+    functions["repos_list_commit_comments_for_repo"] = github.get(
         "/repos/{owner}/{repo}/comments",
         t.struct(
             {
@@ -50448,14 +50448,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["commit-comment"])),
+        t.array(t.proxy(renames["commit_comment"])),
     )
-    functions["repos/get-commit-comment"] = github.get(
+    functions["repos_get_commit_comment"] = github.get(
         "/repos/{owner}/{repo}/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
-        t.proxy(renames["commit-comment"]).optional(),
+        t.proxy(renames["commit_comment"]).optional(),
     )
-    functions["repos/update-commit-comment"] = github.patch(
+    functions["repos_update_commit_comment"] = github.patch(
         "/repos/{owner}/{repo}/comments/{comment_id}",
         t.struct(
             {
@@ -50465,16 +50465,16 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["commit-comment"]).optional(),
+        t.proxy(renames["commit_comment"]).optional(),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["repos/delete-commit-comment"] = github.delete(
+    functions["repos_delete_commit_comment"] = github.delete(
         "/repos/{owner}/{repo}/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["reactions/list-for-commit-comment"] = github.get(
+    functions["reactions_list_for_commit_comment"] = github.get(
         "/repos/{owner}/{repo}/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -50488,7 +50488,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-commit-comment"] = github.post(
+    functions["reactions_create_for_commit_comment"] = github.post(
         "/repos/{owner}/{repo}/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -50502,7 +50502,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-commit-comment"] = github.delete(
+    functions["reactions_delete_for_commit_comment"] = github.delete(
         "/repos/{owner}/{repo}/comments/{comment_id}/reactions/{reaction_id}",
         t.struct(
             {
@@ -50514,7 +50514,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["repos/list-commits"] = github.get(
+    functions["repos_list_commits"] = github.get(
         "/repos/{owner}/{repo}/commits",
         t.struct(
             {
@@ -50532,12 +50532,12 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["commit"])).optional(),
     )
-    functions["repos/list-branches-for-head-commit"] = github.get(
+    functions["repos_list_branches_for_head_commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{commit_sha}/branches-where-head",
         t.struct({"owner": t.string(), "repo": t.string(), "commit_sha": t.string()}),
-        t.array(t.proxy(renames["branch-short"])),
+        t.array(t.proxy(renames["branch_short"])),
     )
-    functions["repos/list-comments-for-commit"] = github.get(
+    functions["repos_list_comments_for_commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{commit_sha}/comments",
         t.struct(
             {
@@ -50548,9 +50548,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["commit-comment"])),
+        t.array(t.proxy(renames["commit_comment"])),
     )
-    functions["repos/create-commit-comment"] = github.post(
+    functions["repos_create_commit_comment"] = github.post(
         "/repos/{owner}/{repo}/commits/{commit_sha}/comments",
         t.struct(
             {
@@ -50563,11 +50563,11 @@ def import_github(params=None):
                 "line": t.integer().optional(),
             }
         ),
-        t.proxy(renames["commit-comment"]),
+        t.proxy(renames["commit_comment"]),
         content_type="application/json",
         body_fields=("body", "path", "position", "line"),
     )
-    functions["repos/list-pull-requests-associated-with-commit"] = github.get(
+    functions["repos_list_pull_requests_associated_with_commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{commit_sha}/pulls",
         t.struct(
             {
@@ -50578,9 +50578,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["pull-request-simple"])),
+        t.array(t.proxy(renames["pull_request_simple"])),
     )
-    functions["repos/get-commit"] = github.get(
+    functions["repos_get_commit"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}",
         t.struct(
             {
@@ -50593,7 +50593,7 @@ def import_github(params=None):
         ),
         t.proxy(renames["commit"]).optional(),
     )
-    functions["checks/list-for-ref"] = github.get(
+    functions["checks_list_for_ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/check-runs",
         t.struct(
             {
@@ -50611,11 +50611,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "check_runs": t.array(t.proxy(renames["check-run"])),
+                "check_runs": t.array(t.proxy(renames["check_run"])),
             }
         ),
     )
-    functions["checks/list-suites-for-ref"] = github.get(
+    functions["checks_list_suites_for_ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/check-suites",
         t.struct(
             {
@@ -50631,11 +50631,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "check_suites": t.array(t.proxy(renames["check-suite"])),
+                "check_suites": t.array(t.proxy(renames["check_suite"])),
             }
         ),
     )
-    functions["repos/get-combined-status-for-ref"] = github.get(
+    functions["repos_get_combined_status_for_ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/status",
         t.struct(
             {
@@ -50646,9 +50646,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.proxy(renames["combined-commit-status"]).optional(),
+        t.proxy(renames["combined_commit_status"]).optional(),
     )
-    functions["repos/list-commit-statuses-for-ref"] = github.get(
+    functions["repos_list_commit_statuses_for_ref"] = github.get(
         "/repos/{owner}/{repo}/commits/{ref}/statuses",
         t.struct(
             {
@@ -50661,12 +50661,12 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["status"])),
     )
-    functions["repos/get-community-profile-metrics"] = github.get(
+    functions["repos_get_community_profile_metrics"] = github.get(
         "/repos/{owner}/{repo}/community/profile",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["community-profile"]),
+        t.proxy(renames["community_profile"]),
     )
-    functions["repos/compare-commits"] = github.get(
+    functions["repos_compare_commits"] = github.get(
         "/repos/{owner}/{repo}/compare/{basehead}",
         t.struct(
             {
@@ -50677,9 +50677,9 @@ def import_github(params=None):
                 "basehead": t.string(),
             }
         ),
-        t.proxy(renames["commit-comparison"]).optional(),
+        t.proxy(renames["commit_comparison"]).optional(),
     )
-    functions["repos/get-content"] = github.get(
+    functions["repos_get_content"] = github.get(
         "/repos/{owner}/{repo}/contents/{path}",
         t.struct(
             {
@@ -50691,14 +50691,14 @@ def import_github(params=None):
         ),
         t.either(
             [
-                t.proxy(renames["content-directory"]),
-                t.proxy(renames["content-file"]),
-                t.proxy(renames["content-symlink"]),
-                t.proxy(renames["content-submodule"]),
+                t.proxy(renames["content_directory"]),
+                t.proxy(renames["content_file"]),
+                t.proxy(renames["content_symlink"]),
+                t.proxy(renames["content_submodule"]),
             ]
         ).optional(),
     )
-    functions["repos/create-or-update-file-contents"] = github.put(
+    functions["repos_create_or_update_file_contents"] = github.put(
         "/repos/{owner}/{repo}/contents/{path}",
         t.struct(
             {
@@ -50725,11 +50725,11 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["file-commit"]).optional(),
+        t.proxy(renames["file_commit"]).optional(),
         content_type="application/json",
         body_fields=("message", "content", "sha", "branch", "committer", "author"),
     )
-    functions["repos/delete-file"] = github.delete(
+    functions["repos_delete_file"] = github.delete(
         "/repos/{owner}/{repo}/contents/{path}",
         t.struct(
             {
@@ -50747,11 +50747,11 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["file-commit"]).optional(),
+        t.proxy(renames["file_commit"]).optional(),
         content_type="application/json",
         body_fields=("message", "sha", "branch", "committer", "author"),
     )
-    functions["repos/list-contributors"] = github.get(
+    functions["repos_list_contributors"] = github.get(
         "/repos/{owner}/{repo}/contributors",
         t.struct(
             {
@@ -50764,7 +50764,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["contributor"])).optional(),
     )
-    functions["dependabot/list-alerts-for-repo"] = github.get(
+    functions["dependabot_list_alerts_for_repo"] = github.get(
         "/repos/{owner}/{repo}/dependabot/alerts",
         t.struct(
             {
@@ -50786,36 +50786,36 @@ def import_github(params=None):
                 "last": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["dependabot-alert"])).optional(),
+        t.array(t.proxy(renames["dependabot_alert"])).optional(),
     )
-    functions["dependabot/get-alert"] = github.get(
+    functions["dependabot_get_alert"] = github.get(
         "/repos/{owner}/{repo}/dependabot/alerts/{alert_number}",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
+                "alert_number": t.proxy(renames["alert_number"]),
             }
         ),
-        t.proxy(renames["dependabot-alert"]).optional(),
+        t.proxy(renames["dependabot_alert"]).optional(),
     )
-    functions["dependabot/update-alert"] = github.patch(
+    functions["dependabot_update_alert"] = github.patch(
         "/repos/{owner}/{repo}/dependabot/alerts/{alert_number}",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
+                "alert_number": t.proxy(renames["alert_number"]),
                 "state": t.string(),
                 "dismissed_reason": t.string().optional(),
                 "dismissed_comment": t.string().optional(),
             }
         ),
-        t.proxy(renames["dependabot-alert"]).optional(),
+        t.proxy(renames["dependabot_alert"]).optional(),
         content_type="application/json",
         body_fields=("state", "dismissed_reason", "dismissed_comment"),
     )
-    functions["dependabot/list-repo-secrets"] = github.get(
+    functions["dependabot_list_repo_secrets"] = github.get(
         "/repos/{owner}/{repo}/dependabot/secrets",
         t.struct(
             {
@@ -50828,21 +50828,21 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["dependabot-secret"])),
+                "secrets": t.array(t.proxy(renames["dependabot_secret"])),
             }
         ),
     )
-    functions["dependabot/get-repo-public-key"] = github.get(
+    functions["dependabot_get_repo_public_key"] = github.get(
         "/repos/{owner}/{repo}/dependabot/secrets/public-key",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["dependabot-public-key"]),
+        t.proxy(renames["dependabot_public_key"]),
     )
-    functions["dependabot/get-repo-secret"] = github.get(
+    functions["dependabot_get_repo_secret"] = github.get(
         "/repos/{owner}/{repo}/dependabot/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
-        t.proxy(renames["dependabot-secret"]),
+        t.proxy(renames["dependabot_secret"]),
     )
-    functions["dependabot/create-or-update-repo-secret"] = github.put(
+    functions["dependabot_create_or_update_repo_secret"] = github.put(
         "/repos/{owner}/{repo}/dependabot/secrets/{secret_name}",
         t.struct(
             {
@@ -50853,16 +50853,16 @@ def import_github(params=None):
                 "key_id": t.string().optional(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("encrypted_value", "key_id"),
     )
-    functions["dependabot/delete-repo-secret"] = github.delete(
+    functions["dependabot_delete_repo_secret"] = github.delete(
         "/repos/{owner}/{repo}/dependabot/secrets/{secret_name}",
         t.struct({"owner": t.string(), "repo": t.string(), "secret_name": t.string()}),
         t.boolean(),
     )
-    functions["dependency-graph/diff-range"] = github.get(
+    functions["dependency_graph_diff_range"] = github.get(
         "/repos/{owner}/{repo}/dependency-graph/compare/{basehead}",
         t.struct(
             {
@@ -50872,14 +50872,14 @@ def import_github(params=None):
                 "name": t.string(),
             }
         ),
-        t.proxy(renames["dependency-graph-diff"]).optional(),
+        t.proxy(renames["dependency_graph_diff"]).optional(),
     )
-    functions["dependency-graph/export-sbom"] = github.get(
+    functions["dependency_graph_export_sbom"] = github.get(
         "/repos/{owner}/{repo}/dependency-graph/sbom",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["dependency-graph-spdx-sbom"]).optional(),
+        t.proxy(renames["dependency_graph_spdx_sbom"]).optional(),
     )
-    functions["dependency-graph/create-repository-snapshot"] = github.post(
+    functions["dependency_graph_create_repository_snapshot"] = github.post(
         "/repos/{owner}/{repo}/dependency-graph/snapshots",
         t.struct(
             {
@@ -50923,7 +50923,7 @@ def import_github(params=None):
             "scanned",
         ),
     )
-    functions["repos/list-deployments"] = github.get(
+    functions["repos_list_deployments"] = github.get(
         "/repos/{owner}/{repo}/deployments",
         t.struct(
             {
@@ -50939,7 +50939,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["deployment"])),
     )
-    functions["repos/create-deployment"] = github.post(
+    functions["repos_create_deployment"] = github.post(
         "/repos/{owner}/{repo}/deployments",
         t.struct(
             {
@@ -50970,21 +50970,21 @@ def import_github(params=None):
             "production_environment",
         ),
     )
-    functions["repos/get-deployment"] = github.get(
+    functions["repos_get_deployment"] = github.get(
         "/repos/{owner}/{repo}/deployments/{deployment_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "deployment_id": t.integer()}
         ),
         t.proxy(renames["deployment"]).optional(),
     )
-    functions["repos/delete-deployment"] = github.delete(
+    functions["repos_delete_deployment"] = github.delete(
         "/repos/{owner}/{repo}/deployments/{deployment_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "deployment_id": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["repos/list-deployment-statuses"] = github.get(
+    functions["repos_list_deployment_statuses"] = github.get(
         "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
         t.struct(
             {
@@ -50995,9 +50995,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["deployment-status"])).optional(),
+        t.array(t.proxy(renames["deployment_status"])).optional(),
     )
-    functions["repos/create-deployment-status"] = github.post(
+    functions["repos_create_deployment_status"] = github.post(
         "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses",
         t.struct(
             {
@@ -51013,7 +51013,7 @@ def import_github(params=None):
                 "auto_inactive": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["deployment-status"]),
+        t.proxy(renames["deployment_status"]),
         content_type="application/json",
         body_fields=(
             "state",
@@ -51025,7 +51025,7 @@ def import_github(params=None):
             "auto_inactive",
         ),
     )
-    functions["repos/get-deployment-status"] = github.get(
+    functions["repos_get_deployment_status"] = github.get(
         "/repos/{owner}/{repo}/deployments/{deployment_id}/statuses/{status_id}",
         t.struct(
             {
@@ -51035,9 +51035,9 @@ def import_github(params=None):
                 "status_id": t.integer(),
             }
         ),
-        t.proxy(renames["deployment-status"]).optional(),
+        t.proxy(renames["deployment_status"]).optional(),
     )
-    functions["repos/create-dispatch-event"] = github.post(
+    functions["repos_create_dispatch_event"] = github.post(
         "/repos/{owner}/{repo}/dispatches",
         t.struct(
             {
@@ -51051,7 +51051,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("event_type", "client_payload"),
     )
-    functions["repos/get-all-environments"] = github.get(
+    functions["repos_get_all_environments"] = github.get(
         "/repos/{owner}/{repo}/environments",
         t.struct(
             {
@@ -51068,33 +51068,33 @@ def import_github(params=None):
             }
         ),
     )
-    functions["repos/get-environment"] = github.get(
+    functions["repos_get_environment"] = github.get(
         "/repos/{owner}/{repo}/environments/{environment_name}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "environment_name": t.string()}
         ),
         t.proxy(renames["environment"]),
     )
-    functions["repos/create-or-update-environment"] = github.put(
+    functions["repos_create_or_update_environment"] = github.put(
         "/repos/{owner}/{repo}/environments/{environment_name}",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
                 "environment_name": t.string(),
-                "wait_timer": t.proxy(renames["wait-timer"]).optional(),
+                "wait_timer": t.proxy(renames["wait_timer"]).optional(),
                 "reviewers": t.array(
                     t.struct(
                         {
                             "type": t.proxy(
-                                renames["deployment-reviewer-type"]
+                                renames["deployment_reviewer_type"]
                             ).optional(),
                             "id": t.integer().optional(),
                         }
                     )
                 ).optional(),
                 "deployment_branch_policy": t.proxy(
-                    renames["deployment-branch-policy-settings"]
+                    renames["deployment_branch_policy_settings"]
                 ).optional(),
             }
         ),
@@ -51102,14 +51102,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("wait_timer", "reviewers", "deployment_branch_policy"),
     )
-    functions["repos/delete-an-environment"] = github.delete(
+    functions["repos_delete_an_environment"] = github.delete(
         "/repos/{owner}/{repo}/environments/{environment_name}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "environment_name": t.string()}
         ),
         t.boolean(),
     )
-    functions["repos/list-deployment-branch-policies"] = github.get(
+    functions["repos_list_deployment_branch_policies"] = github.get(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies",
         t.struct(
             {
@@ -51124,12 +51124,12 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "branch_policies": t.array(
-                    t.proxy(renames["deployment-branch-policy"])
+                    t.proxy(renames["deployment_branch_policy"])
                 ),
             }
         ),
     )
-    functions["repos/create-deployment-branch-policy"] = github.post(
+    functions["repos_create_deployment_branch_policy"] = github.post(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies",
         t.struct(
             {
@@ -51139,11 +51139,11 @@ def import_github(params=None):
                 "name": t.string(),
             }
         ),
-        t.proxy(renames["deployment-branch-policy"]).optional(),
+        t.proxy(renames["deployment_branch_policy"]).optional(),
         content_type="application/json",
         body_fields=("name",),
     )
-    functions["repos/get-deployment-branch-policy"] = github.get(
+    functions["repos_get_deployment_branch_policy"] = github.get(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies/{branch_policy_id}",
         t.struct(
             {
@@ -51153,9 +51153,9 @@ def import_github(params=None):
                 "branch_policy_id": t.integer(),
             }
         ),
-        t.proxy(renames["deployment-branch-policy"]),
+        t.proxy(renames["deployment_branch_policy"]),
     )
-    functions["repos/update-deployment-branch-policy"] = github.put(
+    functions["repos_update_deployment_branch_policy"] = github.put(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies/{branch_policy_id}",
         t.struct(
             {
@@ -51166,11 +51166,11 @@ def import_github(params=None):
                 "name": t.string(),
             }
         ),
-        t.proxy(renames["deployment-branch-policy"]),
+        t.proxy(renames["deployment_branch_policy"]),
         content_type="application/json",
         body_fields=("name",),
     )
-    functions["repos/delete-deployment-branch-policy"] = github.delete(
+    functions["repos_delete_deployment_branch_policy"] = github.delete(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment-branch-policies/{branch_policy_id}",
         t.struct(
             {
@@ -51182,7 +51182,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["repos/get-all-deployment-protection-rules"] = github.get(
+    functions["repos_get_all_deployment_protection_rules"] = github.get(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules",
         t.struct(
             {"environment_name": t.string(), "repo": t.string(), "owner": t.string()}
@@ -51191,12 +51191,12 @@ def import_github(params=None):
             {
                 "total_count": t.integer().optional(),
                 "custom_deployment_protection_rules": t.array(
-                    t.proxy(renames["deployment-protection-rule"])
+                    t.proxy(renames["deployment_protection_rule"])
                 ).optional(),
             }
         ),
     )
-    functions["repos/create-deployment-protection-rule"] = github.post(
+    functions["repos_create_deployment_protection_rule"] = github.post(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules",
         t.struct(
             {
@@ -51206,11 +51206,11 @@ def import_github(params=None):
                 "integration_id": t.integer().optional(),
             }
         ),
-        t.proxy(renames["deployment-protection-rule"]),
+        t.proxy(renames["deployment_protection_rule"]),
         content_type="application/json",
         body_fields=("integration_id",),
     )
-    functions["repos/list-custom-deployment-rule-integrations"] = github.get(
+    functions["repos_list_custom_deployment_rule_integrations"] = github.get(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules/apps",
         t.struct(
             {
@@ -51225,12 +51225,12 @@ def import_github(params=None):
             {
                 "total_count": t.integer().optional(),
                 "available_custom_deployment_protection_rule_integrations": t.array(
-                    t.proxy(renames["custom-deployment-rule-app"])
+                    t.proxy(renames["custom_deployment_rule_app"])
                 ).optional(),
             }
         ),
     )
-    functions["repos/get-custom-deployment-protection-rule"] = github.get(
+    functions["repos_get_custom_deployment_protection_rule"] = github.get(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules/{protection_rule_id}",
         t.struct(
             {
@@ -51240,9 +51240,9 @@ def import_github(params=None):
                 "protection_rule_id": t.integer(),
             }
         ),
-        t.proxy(renames["deployment-protection-rule"]),
+        t.proxy(renames["deployment_protection_rule"]),
     )
-    functions["repos/disable-deployment-protection-rule"] = github.delete(
+    functions["repos_disable_deployment_protection_rule"] = github.delete(
         "/repos/{owner}/{repo}/environments/{environment_name}/deployment_protection_rules/{protection_rule_id}",
         t.struct(
             {
@@ -51254,7 +51254,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["activity/list-repo-events"] = github.get(
+    functions["activity_list_repo_events"] = github.get(
         "/repos/{owner}/{repo}/events",
         t.struct(
             {
@@ -51266,7 +51266,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["repos/list-forks"] = github.get(
+    functions["repos_list_forks"] = github.get(
         "/repos/{owner}/{repo}/forks",
         t.struct(
             {
@@ -51277,9 +51277,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["minimal-repository"])),
+        t.array(t.proxy(renames["minimal_repository"])),
     )
-    functions["repos/create-fork"] = github.post(
+    functions["repos_create_fork"] = github.post(
         "/repos/{owner}/{repo}/forks",
         t.struct(
             {
@@ -51290,11 +51290,11 @@ def import_github(params=None):
                 "default_branch_only": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["full-repository"]).optional(),
+        t.proxy(renames["full_repository"]).optional(),
         content_type="application/json",
         body_fields=("organization", "name", "default_branch_only"),
     )
-    functions["git/create-blob"] = github.post(
+    functions["git_create_blob"] = github.post(
         "/repos/{owner}/{repo}/git/blobs",
         t.struct(
             {
@@ -51304,16 +51304,16 @@ def import_github(params=None):
                 "encoding": t.string().optional(),
             }
         ),
-        t.proxy(renames["short-blob"]).optional(),
+        t.proxy(renames["short_blob"]).optional(),
         content_type="application/json",
         body_fields=("content", "encoding"),
     )
-    functions["git/get-blob"] = github.get(
+    functions["git_get_blob"] = github.get(
         "/repos/{owner}/{repo}/git/blobs/{file_sha}",
         t.struct({"owner": t.string(), "repo": t.string(), "file_sha": t.string()}),
         t.proxy(renames["blob"]).optional(),
     )
-    functions["git/create-commit"] = github.post(
+    functions["git_create_commit"] = github.post(
         "/repos/{owner}/{repo}/git/commits",
         t.struct(
             {
@@ -51339,26 +51339,26 @@ def import_github(params=None):
                 "signature": t.string().optional(),
             }
         ),
-        t.proxy(renames["git-commit"]).optional(),
+        t.proxy(renames["git_commit"]).optional(),
         content_type="application/json",
         body_fields=("message", "tree", "parents", "author", "committer", "signature"),
     )
-    functions["git/get-commit"] = github.get(
+    functions["git_get_commit"] = github.get(
         "/repos/{owner}/{repo}/git/commits/{commit_sha}",
         t.struct({"owner": t.string(), "repo": t.string(), "commit_sha": t.string()}),
-        t.proxy(renames["git-commit"]).optional(),
+        t.proxy(renames["git_commit"]).optional(),
     )
-    functions["git/list-matching-refs"] = github.get(
+    functions["git_list_matching_refs"] = github.get(
         "/repos/{owner}/{repo}/git/matching-refs/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
-        t.array(t.proxy(renames["git-ref"])),
+        t.array(t.proxy(renames["git_ref"])),
     )
-    functions["git/get-ref"] = github.get(
+    functions["git_get_ref"] = github.get(
         "/repos/{owner}/{repo}/git/ref/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
-        t.proxy(renames["git-ref"]).optional(),
+        t.proxy(renames["git_ref"]).optional(),
     )
-    functions["git/create-ref"] = github.post(
+    functions["git_create_ref"] = github.post(
         "/repos/{owner}/{repo}/git/refs",
         t.struct(
             {
@@ -51368,11 +51368,11 @@ def import_github(params=None):
                 "sha": t.string(),
             }
         ),
-        t.proxy(renames["git-ref"]),
+        t.proxy(renames["git_ref"]),
         content_type="application/json",
         body_fields=("ref", "sha"),
     )
-    functions["git/update-ref"] = github.patch(
+    functions["git_update_ref"] = github.patch(
         "/repos/{owner}/{repo}/git/refs/{ref}",
         t.struct(
             {
@@ -51383,16 +51383,16 @@ def import_github(params=None):
                 "force": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["git-ref"]),
+        t.proxy(renames["git_ref"]),
         content_type="application/json",
         body_fields=("sha", "force"),
     )
-    functions["git/delete-ref"] = github.delete(
+    functions["git_delete_ref"] = github.delete(
         "/repos/{owner}/{repo}/git/refs/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.boolean(),
     )
-    functions["git/create-tag"] = github.post(
+    functions["git_create_tag"] = github.post(
         "/repos/{owner}/{repo}/git/tags",
         t.struct(
             {
@@ -51411,16 +51411,16 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["git-tag"]),
+        t.proxy(renames["git_tag"]),
         content_type="application/json",
         body_fields=("tag", "message", "object", "type", "tagger"),
     )
-    functions["git/get-tag"] = github.get(
+    functions["git_get_tag"] = github.get(
         "/repos/{owner}/{repo}/git/tags/{tag_sha}",
         t.struct({"owner": t.string(), "repo": t.string(), "tag_sha": t.string()}),
-        t.proxy(renames["git-tag"]).optional(),
+        t.proxy(renames["git_tag"]).optional(),
     )
-    functions["git/create-tree"] = github.post(
+    functions["git_create_tree"] = github.post(
         "/repos/{owner}/{repo}/git/trees",
         t.struct(
             {
@@ -51440,11 +51440,11 @@ def import_github(params=None):
                 "base_tree": t.string().optional(),
             }
         ),
-        t.proxy(renames["git-tree"]).optional(),
+        t.proxy(renames["git_tree"]).optional(),
         content_type="application/json",
         body_fields=("tree", "base_tree"),
     )
-    functions["git/get-tree"] = github.get(
+    functions["git_get_tree"] = github.get(
         "/repos/{owner}/{repo}/git/trees/{tree_sha}",
         t.struct(
             {
@@ -51454,9 +51454,9 @@ def import_github(params=None):
                 "recursive": t.string(),
             }
         ),
-        t.proxy(renames["git-tree"]).optional(),
+        t.proxy(renames["git_tree"]).optional(),
     )
-    functions["repos/list-webhooks"] = github.get(
+    functions["repos_list_webhooks"] = github.get(
         "/repos/{owner}/{repo}/hooks",
         t.struct(
             {
@@ -51468,7 +51468,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["hook"])).optional(),
     )
-    functions["repos/create-webhook"] = github.post(
+    functions["repos_create_webhook"] = github.post(
         "/repos/{owner}/{repo}/hooks",
         t.struct(
             {
@@ -51477,13 +51477,13 @@ def import_github(params=None):
                 "name": t.string().optional(),
                 "config": t.struct(
                     {
-                        "url": t.proxy(renames["webhook-config-url"]).optional(),
+                        "url": t.proxy(renames["webhook_config_url"]).optional(),
                         "content_type": t.proxy(
-                            renames["webhook-config-content-type"]
+                            renames["webhook_config_content_type"]
                         ).optional(),
-                        "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                        "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                         "insecure_ssl": t.proxy(
-                            renames["webhook-config-insecure-ssl"]
+                            renames["webhook_config_insecure_ssl"]
                         ).optional(),
                         "token": t.string().optional(),
                         "digest": t.string().optional(),
@@ -51497,12 +51497,12 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("name", "config", "events", "active"),
     )
-    functions["repos/get-webhook"] = github.get(
+    functions["repos_get_webhook"] = github.get(
         "/repos/{owner}/{repo}/hooks/{hook_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.proxy(renames["hook"]).optional(),
     )
-    functions["repos/update-webhook"] = github.patch(
+    functions["repos_update_webhook"] = github.patch(
         "/repos/{owner}/{repo}/hooks/{hook_id}",
         t.struct(
             {
@@ -51511,13 +51511,13 @@ def import_github(params=None):
                 "hook_id": t.integer(),
                 "config": t.struct(
                     {
-                        "url": t.proxy(renames["webhook-config-url"]),
+                        "url": t.proxy(renames["webhook_config_url"]),
                         "content_type": t.proxy(
-                            renames["webhook-config-content-type"]
+                            renames["webhook_config_content_type"]
                         ).optional(),
-                        "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                        "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                         "insecure_ssl": t.proxy(
-                            renames["webhook-config-insecure-ssl"]
+                            renames["webhook_config_insecure_ssl"]
                         ).optional(),
                         "address": t.string().optional(),
                         "room": t.string().optional(),
@@ -51533,38 +51533,38 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("config", "events", "add_events", "remove_events", "active"),
     )
-    functions["repos/delete-webhook"] = github.delete(
+    functions["repos_delete_webhook"] = github.delete(
         "/repos/{owner}/{repo}/hooks/{hook_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["repos/get-webhook-config-for-repo"] = github.get(
+    functions["repos_get_webhook_config_for_repo"] = github.get(
         "/repos/{owner}/{repo}/hooks/{hook_id}/config",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
-        t.proxy(renames["webhook-config"]),
+        t.proxy(renames["webhook_config"]),
     )
-    functions["repos/update-webhook-config-for-repo"] = github.patch(
+    functions["repos_update_webhook_config_for_repo"] = github.patch(
         "/repos/{owner}/{repo}/hooks/{hook_id}/config",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
                 "hook_id": t.integer(),
-                "url": t.proxy(renames["webhook-config-url"]).optional(),
+                "url": t.proxy(renames["webhook_config_url"]).optional(),
                 "content_type": t.proxy(
-                    renames["webhook-config-content-type"]
+                    renames["webhook_config_content_type"]
                 ).optional(),
-                "secret": t.proxy(renames["webhook-config-secret"]).optional(),
+                "secret": t.proxy(renames["webhook_config_secret"]).optional(),
                 "insecure_ssl": t.proxy(
-                    renames["webhook-config-insecure-ssl"]
+                    renames["webhook_config_insecure_ssl"]
                 ).optional(),
             }
         ),
-        t.proxy(renames["webhook-config"]),
+        t.proxy(renames["webhook_config"]),
         content_type="application/json",
         body_fields=("url", "content_type", "secret", "insecure_ssl"),
     )
-    functions["repos/list-webhook-deliveries"] = github.get(
+    functions["repos_list_webhook_deliveries"] = github.get(
         "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries",
         t.struct(
             {
@@ -51576,9 +51576,9 @@ def import_github(params=None):
                 "redelivery": t.boolean(),
             }
         ),
-        t.array(t.proxy(renames["hook-delivery-item"])),
+        t.array(t.proxy(renames["hook_delivery_item"])),
     )
-    functions["repos/get-webhook-delivery"] = github.get(
+    functions["repos_get_webhook_delivery"] = github.get(
         "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}",
         t.struct(
             {
@@ -51588,9 +51588,9 @@ def import_github(params=None):
                 "delivery_id": t.integer(),
             }
         ),
-        t.proxy(renames["hook-delivery"]),
+        t.proxy(renames["hook_delivery"]),
     )
-    functions["repos/redeliver-webhook-delivery"] = github.post(
+    functions["repos_redeliver_webhook_delivery"] = github.post(
         "/repos/{owner}/{repo}/hooks/{hook_id}/deliveries/{delivery_id}/attempts",
         t.struct(
             {
@@ -51602,22 +51602,22 @@ def import_github(params=None):
         ),
         t.struct({}),
     )
-    functions["repos/ping-webhook"] = github.post(
+    functions["repos_ping_webhook"] = github.post(
         "/repos/{owner}/{repo}/hooks/{hook_id}/pings",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["repos/test-push-webhook"] = github.post(
+    functions["repos_test_push_webhook"] = github.post(
         "/repos/{owner}/{repo}/hooks/{hook_id}/tests",
         t.struct({"owner": t.string(), "repo": t.string(), "hook_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["migrations/get-import-status"] = github.get(
+    functions["migrations_get_import_status"] = github.get(
         "/repos/{owner}/{repo}/import",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["import"]).optional(),
+        t.proxy(renames["ximport"]).optional(),
     )
-    functions["migrations/start-import"] = github.put(
+    functions["migrations_start_import"] = github.put(
         "/repos/{owner}/{repo}/import",
         t.struct(
             {
@@ -51630,11 +51630,11 @@ def import_github(params=None):
                 "tfvc_project": t.string().optional(),
             }
         ),
-        t.proxy(renames["import"]).optional(),
+        t.proxy(renames["ximport"]).optional(),
         content_type="application/json",
         body_fields=("vcs_url", "vcs", "vcs_username", "vcs_password", "tfvc_project"),
     )
-    functions["migrations/update-import"] = github.patch(
+    functions["migrations_update_import"] = github.patch(
         "/repos/{owner}/{repo}/import",
         t.struct(
             {
@@ -51646,21 +51646,21 @@ def import_github(params=None):
                 "tfvc_project": t.string().optional(),
             }
         ),
-        t.proxy(renames["import"]),
+        t.proxy(renames["ximport"]),
         content_type="application/json",
         body_fields=("vcs_username", "vcs_password", "vcs", "tfvc_project"),
     )
-    functions["migrations/cancel-import"] = github.delete(
+    functions["migrations_cancel_import"] = github.delete(
         "/repos/{owner}/{repo}/import",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["migrations/get-commit-authors"] = github.get(
+    functions["migrations_get_commit_authors"] = github.get(
         "/repos/{owner}/{repo}/import/authors",
         t.struct({"owner": t.string(), "repo": t.string(), "since": t.integer()}),
-        t.array(t.proxy(renames["porter-author"])).optional(),
+        t.array(t.proxy(renames["porter_author"])).optional(),
     )
-    functions["migrations/map-commit-author"] = github.patch(
+    functions["migrations_map_commit_author"] = github.patch(
         "/repos/{owner}/{repo}/import/authors/{author_id}",
         t.struct(
             {
@@ -51671,52 +51671,52 @@ def import_github(params=None):
                 "name": t.string().optional(),
             }
         ),
-        t.proxy(renames["porter-author"]).optional(),
+        t.proxy(renames["porter_author"]).optional(),
         content_type="application/json",
         body_fields=("email", "name"),
     )
-    functions["migrations/get-large-files"] = github.get(
+    functions["migrations_get_large_files"] = github.get(
         "/repos/{owner}/{repo}/import/large_files",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["porter-large-file"])),
+        t.array(t.proxy(renames["porter_large_file"])),
     )
-    functions["migrations/set-lfs-preference"] = github.patch(
+    functions["migrations_set_lfs_preference"] = github.patch(
         "/repos/{owner}/{repo}/import/lfs",
         t.struct({"owner": t.string(), "repo": t.string(), "use_lfs": t.string()}),
-        t.proxy(renames["import"]),
+        t.proxy(renames["ximport"]),
         content_type="application/json",
         body_fields=("use_lfs",),
     )
-    functions["apps/get-repo-installation"] = github.get(
+    functions["apps_get_repo_installation"] = github.get(
         "/repos/{owner}/{repo}/installation",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["installation"]).optional(),
     )
-    functions["interactions/get-restrictions-for-repo"] = github.get(
+    functions["interactions_get_restrictions_for_repo"] = github.get(
         "/repos/{owner}/{repo}/interaction-limits",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.union([t.proxy(renames["interaction-limit-response"]), t.struct({})]),
+        t.union([t.proxy(renames["interaction_limit_response"]), t.struct({})]),
     )
-    functions["interactions/set-restrictions-for-repo"] = github.put(
+    functions["interactions_set_restrictions_for_repo"] = github.put(
         "/repos/{owner}/{repo}/interaction-limits",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "limit": t.proxy(renames["interaction-group"]),
-                "expiry": t.proxy(renames["interaction-expiry"]).optional(),
+                "limit": t.proxy(renames["interaction_group"]),
+                "expiry": t.proxy(renames["interaction_expiry"]).optional(),
             }
         ),
-        t.proxy(renames["interaction-limit-response"]),
+        t.proxy(renames["interaction_limit_response"]),
         content_type="application/json",
         body_fields=("limit", "expiry"),
     )
-    functions["interactions/remove-restrictions-for-repo"] = github.delete(
+    functions["interactions_remove_restrictions_for_repo"] = github.delete(
         "/repos/{owner}/{repo}/interaction-limits",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-invitations"] = github.get(
+    functions["repos_list_invitations"] = github.get(
         "/repos/{owner}/{repo}/invitations",
         t.struct(
             {
@@ -51726,9 +51726,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["repository-invitation"])),
+        t.array(t.proxy(renames["repository_invitation"])),
     )
-    functions["repos/update-invitation"] = github.patch(
+    functions["repos_update_invitation"] = github.patch(
         "/repos/{owner}/{repo}/invitations/{invitation_id}",
         t.struct(
             {
@@ -51738,18 +51738,18 @@ def import_github(params=None):
                 "permissions": t.string().optional(),
             }
         ),
-        t.proxy(renames["repository-invitation"]),
+        t.proxy(renames["repository_invitation"]),
         content_type="application/json",
         body_fields=("permissions",),
     )
-    functions["repos/delete-invitation"] = github.delete(
+    functions["repos_delete_invitation"] = github.delete(
         "/repos/{owner}/{repo}/invitations/{invitation_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "invitation_id": t.integer()}
         ),
         t.boolean(),
     )
-    functions["issues/list-for-repo"] = github.get(
+    functions["issues_list_for_repo"] = github.get(
         "/repos/{owner}/{repo}/issues",
         t.struct(
             {
@@ -51770,7 +51770,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["issues/create"] = github.post(
+    functions["issues_create"] = github.post(
         "/repos/{owner}/{repo}/issues",
         t.struct(
             {
@@ -51802,7 +51802,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("title", "body", "assignee", "milestone", "labels", "assignees"),
     )
-    functions["issues/list-comments-for-repo"] = github.get(
+    functions["issues_list_comments_for_repo"] = github.get(
         "/repos/{owner}/{repo}/issues/comments",
         t.struct(
             {
@@ -51815,14 +51815,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["issue-comment"])).optional(),
+        t.array(t.proxy(renames["issue_comment"])).optional(),
     )
-    functions["issues/get-comment"] = github.get(
+    functions["issues_get_comment"] = github.get(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
-        t.proxy(renames["issue-comment"]).optional(),
+        t.proxy(renames["issue_comment"]).optional(),
     )
-    functions["issues/update-comment"] = github.patch(
+    functions["issues_update_comment"] = github.patch(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}",
         t.struct(
             {
@@ -51832,16 +51832,16 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["issue-comment"]),
+        t.proxy(renames["issue_comment"]),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["issues/delete-comment"] = github.delete(
+    functions["issues_delete_comment"] = github.delete(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.boolean(),
     )
-    functions["reactions/list-for-issue-comment"] = github.get(
+    functions["reactions_list_for_issue_comment"] = github.get(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -51855,7 +51855,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-issue-comment"] = github.post(
+    functions["reactions_create_for_issue_comment"] = github.post(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -51869,7 +51869,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-issue-comment"] = github.delete(
+    functions["reactions_delete_for_issue_comment"] = github.delete(
         "/repos/{owner}/{repo}/issues/comments/{comment_id}/reactions/{reaction_id}",
         t.struct(
             {
@@ -51881,7 +51881,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["issues/list-events-for-repo"] = github.get(
+    functions["issues_list_events_for_repo"] = github.get(
         "/repos/{owner}/{repo}/issues/events",
         t.struct(
             {
@@ -51891,21 +51891,21 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["issue-event"])),
+        t.array(t.proxy(renames["issue_event"])),
     )
-    functions["issues/get-event"] = github.get(
+    functions["issues_get_event"] = github.get(
         "/repos/{owner}/{repo}/issues/events/{event_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "event_id": t.integer()}),
-        t.proxy(renames["issue-event"]).optional(),
+        t.proxy(renames["issue_event"]).optional(),
     )
-    functions["issues/get"] = github.get(
+    functions["issues_get"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "issue_number": t.integer()}
         ),
         t.proxy(renames["issue"]).optional(),
     )
-    functions["issues/update"] = github.patch(
+    functions["issues_update"] = github.patch(
         "/repos/{owner}/{repo}/issues/{issue_number}",
         t.struct(
             {
@@ -51949,7 +51949,7 @@ def import_github(params=None):
             "assignees",
         ),
     )
-    functions["issues/add-assignees"] = github.post(
+    functions["issues_add_assignees"] = github.post(
         "/repos/{owner}/{repo}/issues/{issue_number}/assignees",
         t.struct(
             {
@@ -51963,7 +51963,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("assignees",),
     )
-    functions["issues/remove-assignees"] = github.delete(
+    functions["issues_remove_assignees"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/assignees",
         t.struct(
             {
@@ -51977,7 +51977,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("assignees",),
     )
-    functions["issues/check-user-can-be-assigned-to-issue"] = github.get(
+    functions["issues_check_user_can_be_assigned_to_issue"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/assignees/{assignee}",
         t.struct(
             {
@@ -51989,7 +51989,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["issues/list-comments"] = github.get(
+    functions["issues_list_comments"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/comments",
         t.struct(
             {
@@ -52001,9 +52001,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["issue-comment"])).optional(),
+        t.array(t.proxy(renames["issue_comment"])).optional(),
     )
-    functions["issues/create-comment"] = github.post(
+    functions["issues_create_comment"] = github.post(
         "/repos/{owner}/{repo}/issues/{issue_number}/comments",
         t.struct(
             {
@@ -52013,11 +52013,11 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["issue-comment"]).optional(),
+        t.proxy(renames["issue_comment"]).optional(),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["issues/list-events"] = github.get(
+    functions["issues_list_events"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/events",
         t.struct(
             {
@@ -52028,9 +52028,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["issue-event-for-issue"])),
+        t.array(t.proxy(renames["issue_event_for_issue"])),
     )
-    functions["issues/list-labels-on-issue"] = github.get(
+    functions["issues_list_labels_on_issue"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/labels",
         t.struct(
             {
@@ -52043,14 +52043,14 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["label"])).optional(),
     )
-    functions["issues/remove-all-labels"] = github.delete(
+    functions["issues_remove_all_labels"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/labels",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "issue_number": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["issues/remove-label"] = github.delete(
+    functions["issues_remove_label"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/labels/{name}",
         t.struct(
             {
@@ -52062,7 +52062,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["label"])).optional(),
     )
-    functions["issues/lock"] = github.put(
+    functions["issues_lock"] = github.put(
         "/repos/{owner}/{repo}/issues/{issue_number}/lock",
         t.struct(
             {
@@ -52076,14 +52076,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("lock_reason",),
     )
-    functions["issues/unlock"] = github.delete(
+    functions["issues_unlock"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/lock",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "issue_number": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["reactions/list-for-issue"] = github.get(
+    functions["reactions_list_for_issue"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/reactions",
         t.struct(
             {
@@ -52097,7 +52097,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-issue"] = github.post(
+    functions["reactions_create_for_issue"] = github.post(
         "/repos/{owner}/{repo}/issues/{issue_number}/reactions",
         t.struct(
             {
@@ -52111,7 +52111,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-issue"] = github.delete(
+    functions["reactions_delete_for_issue"] = github.delete(
         "/repos/{owner}/{repo}/issues/{issue_number}/reactions/{reaction_id}",
         t.struct(
             {
@@ -52123,7 +52123,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["issues/list-events-for-timeline"] = github.get(
+    functions["issues_list_events_for_timeline"] = github.get(
         "/repos/{owner}/{repo}/issues/{issue_number}/timeline",
         t.struct(
             {
@@ -52134,9 +52134,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["timeline-issue-events"])).optional(),
+        t.array(t.proxy(renames["timeline_issue_events"])).optional(),
     )
-    functions["repos/list-deploy-keys"] = github.get(
+    functions["repos_list_deploy_keys"] = github.get(
         "/repos/{owner}/{repo}/keys",
         t.struct(
             {
@@ -52146,9 +52146,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["deploy-key"])),
+        t.array(t.proxy(renames["deploy_key"])),
     )
-    functions["repos/create-deploy-key"] = github.post(
+    functions["repos_create_deploy_key"] = github.post(
         "/repos/{owner}/{repo}/keys",
         t.struct(
             {
@@ -52159,21 +52159,21 @@ def import_github(params=None):
                 "read_only": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["deploy-key"]),
+        t.proxy(renames["deploy_key"]),
         content_type="application/json",
         body_fields=("title", "key", "read_only"),
     )
-    functions["repos/get-deploy-key"] = github.get(
+    functions["repos_get_deploy_key"] = github.get(
         "/repos/{owner}/{repo}/keys/{key_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "key_id": t.integer()}),
-        t.proxy(renames["deploy-key"]).optional(),
+        t.proxy(renames["deploy_key"]).optional(),
     )
-    functions["repos/delete-deploy-key"] = github.delete(
+    functions["repos_delete_deploy_key"] = github.delete(
         "/repos/{owner}/{repo}/keys/{key_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "key_id": t.integer()}),
         t.boolean(),
     )
-    functions["issues/list-labels-for-repo"] = github.get(
+    functions["issues_list_labels_for_repo"] = github.get(
         "/repos/{owner}/{repo}/labels",
         t.struct(
             {
@@ -52185,7 +52185,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["label"])).optional(),
     )
-    functions["issues/create-label"] = github.post(
+    functions["issues_create_label"] = github.post(
         "/repos/{owner}/{repo}/labels",
         t.struct(
             {
@@ -52200,12 +52200,12 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("name", "color", "description"),
     )
-    functions["issues/get-label"] = github.get(
+    functions["issues_get_label"] = github.get(
         "/repos/{owner}/{repo}/labels/{name}",
         t.struct({"owner": t.string(), "repo": t.string(), "name": t.string()}),
         t.proxy(renames["label"]).optional(),
     )
-    functions["issues/update-label"] = github.patch(
+    functions["issues_update_label"] = github.patch(
         "/repos/{owner}/{repo}/labels/{name}",
         t.struct(
             {
@@ -52221,39 +52221,39 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("new_name", "color", "description"),
     )
-    functions["issues/delete-label"] = github.delete(
+    functions["issues_delete_label"] = github.delete(
         "/repos/{owner}/{repo}/labels/{name}",
         t.struct({"owner": t.string(), "repo": t.string(), "name": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-languages"] = github.get(
+    functions["repos_list_languages"] = github.get(
         "/repos/{owner}/{repo}/languages",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["language"]),
     )
-    functions["repos/enable-lfs-for-repo"] = github.put(
+    functions["repos_enable_lfs_for_repo"] = github.put(
         "/repos/{owner}/{repo}/lfs",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.struct({}),
     )
-    functions["repos/disable-lfs-for-repo"] = github.delete(
+    functions["repos_disable_lfs_for_repo"] = github.delete(
         "/repos/{owner}/{repo}/lfs",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["licenses/get-for-repo"] = github.get(
+    functions["licenses_get_for_repo"] = github.get(
         "/repos/{owner}/{repo}/license",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["license-content"]),
+        t.proxy(renames["license_content"]),
     )
-    functions["repos/merge-upstream"] = github.post(
+    functions["repos_merge_upstream"] = github.post(
         "/repos/{owner}/{repo}/merge-upstream",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.proxy(renames["merged-upstream"]),
+        t.proxy(renames["merged_upstream"]),
         content_type="application/json",
         body_fields=("branch",),
     )
-    functions["repos/merge"] = github.post(
+    functions["repos_merge"] = github.post(
         "/repos/{owner}/{repo}/merges",
         t.struct(
             {
@@ -52268,7 +52268,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("base", "head", "commit_message"),
     )
-    functions["issues/list-milestones"] = github.get(
+    functions["issues_list_milestones"] = github.get(
         "/repos/{owner}/{repo}/milestones",
         t.struct(
             {
@@ -52283,7 +52283,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["milestone"])).optional(),
     )
-    functions["issues/create-milestone"] = github.post(
+    functions["issues_create_milestone"] = github.post(
         "/repos/{owner}/{repo}/milestones",
         t.struct(
             {
@@ -52299,14 +52299,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("title", "state", "description", "due_on"),
     )
-    functions["issues/get-milestone"] = github.get(
+    functions["issues_get_milestone"] = github.get(
         "/repos/{owner}/{repo}/milestones/{milestone_number}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "milestone_number": t.integer()}
         ),
         t.proxy(renames["milestone"]).optional(),
     )
-    functions["issues/update-milestone"] = github.patch(
+    functions["issues_update_milestone"] = github.patch(
         "/repos/{owner}/{repo}/milestones/{milestone_number}",
         t.struct(
             {
@@ -52323,14 +52323,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("title", "state", "description", "due_on"),
     )
-    functions["issues/delete-milestone"] = github.delete(
+    functions["issues_delete_milestone"] = github.delete(
         "/repos/{owner}/{repo}/milestones/{milestone_number}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "milestone_number": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["issues/list-labels-for-milestone"] = github.get(
+    functions["issues_list_labels_for_milestone"] = github.get(
         "/repos/{owner}/{repo}/milestones/{milestone_number}/labels",
         t.struct(
             {
@@ -52343,7 +52343,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["label"])),
     )
-    functions["activity/list-repo-notifications-for-authenticated-user"] = github.get(
+    functions["activity_list_repo_notifications_for_authenticated_user"] = github.get(
         "/repos/{owner}/{repo}/notifications",
         t.struct(
             {
@@ -52359,7 +52359,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["thread"])),
     )
-    functions["activity/mark-repo-notifications-as-read"] = github.put(
+    functions["activity_mark_repo_notifications_as_read"] = github.put(
         "/repos/{owner}/{repo}/notifications",
         t.struct(
             {
@@ -52372,17 +52372,17 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("last_read_at",),
     )
-    functions["repos/get-pages"] = github.get(
+    functions["repos_get_pages"] = github.get(
         "/repos/{owner}/{repo}/pages",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["page"]).optional(),
     )
-    functions["repos/delete-pages-site"] = github.delete(
+    functions["repos_delete_pages_site"] = github.delete(
         "/repos/{owner}/{repo}/pages",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/list-pages-builds"] = github.get(
+    functions["repos_list_pages_builds"] = github.get(
         "/repos/{owner}/{repo}/pages/builds",
         t.struct(
             {
@@ -52392,24 +52392,24 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["page-build"])),
+        t.array(t.proxy(renames["page_build"])),
     )
-    functions["repos/request-pages-build"] = github.post(
+    functions["repos_request_pages_build"] = github.post(
         "/repos/{owner}/{repo}/pages/builds",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["page-build-status"]),
+        t.proxy(renames["page_build_status"]),
     )
-    functions["repos/get-latest-pages-build"] = github.get(
+    functions["repos_get_latest_pages_build"] = github.get(
         "/repos/{owner}/{repo}/pages/builds/latest",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["page-build"]),
+        t.proxy(renames["page_build"]),
     )
-    functions["repos/get-pages-build"] = github.get(
+    functions["repos_get_pages_build"] = github.get(
         "/repos/{owner}/{repo}/pages/builds/{build_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "build_id": t.integer()}),
-        t.proxy(renames["page-build"]),
+        t.proxy(renames["page_build"]),
     )
-    functions["repos/create-pages-deployment"] = github.post(
+    functions["repos_create_pages_deployment"] = github.post(
         "/repos/{owner}/{repo}/pages/deployment",
         t.struct(
             {
@@ -52421,7 +52421,7 @@ def import_github(params=None):
                 "oidc_token": t.string(),
             }
         ),
-        t.proxy(renames["page-deployment"]).optional(),
+        t.proxy(renames["page_deployment"]).optional(),
         content_type="application/json",
         body_fields=(
             "artifact_url",
@@ -52430,12 +52430,12 @@ def import_github(params=None):
             "oidc_token",
         ),
     )
-    functions["repos/get-pages-health-check"] = github.get(
+    functions["repos_get_pages_health_check"] = github.get(
         "/repos/{owner}/{repo}/pages/health",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["pages-health-check"]).optional(),
+        t.proxy(renames["pages_health_check"]).optional(),
     )
-    functions["projects/list-for-repo"] = github.get(
+    functions["projects_list_for_repo"] = github.get(
         "/repos/{owner}/{repo}/projects",
         t.struct(
             {
@@ -52448,7 +52448,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["project"])).optional(),
     )
-    functions["projects/create-for-repo"] = github.post(
+    functions["projects_create_for_repo"] = github.post(
         "/repos/{owner}/{repo}/projects",
         t.struct(
             {
@@ -52462,7 +52462,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("name", "body"),
     )
-    functions["pulls/list"] = github.get(
+    functions["pulls_list"] = github.get(
         "/repos/{owner}/{repo}/pulls",
         t.struct(
             {
@@ -52477,9 +52477,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["pull-request-simple"])),
+        t.array(t.proxy(renames["pull_request_simple"])),
     )
-    functions["pulls/create"] = github.post(
+    functions["pulls_create"] = github.post(
         "/repos/{owner}/{repo}/pulls",
         t.struct(
             {
@@ -52495,7 +52495,7 @@ def import_github(params=None):
                 "issue": t.integer().optional(),
             }
         ),
-        t.proxy(renames["pull-request"]),
+        t.proxy(renames["pull_request"]),
         content_type="application/json",
         body_fields=(
             "title",
@@ -52508,7 +52508,7 @@ def import_github(params=None):
             "issue",
         ),
     )
-    functions["pulls/list-review-comments-for-repo"] = github.get(
+    functions["pulls_list_review_comments_for_repo"] = github.get(
         "/repos/{owner}/{repo}/pulls/comments",
         t.struct(
             {
@@ -52521,14 +52521,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["pull-request-review-comment"])),
+        t.array(t.proxy(renames["pull_request_review_comment"])),
     )
-    functions["pulls/get-review-comment"] = github.get(
+    functions["pulls_get_review_comment"] = github.get(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
-        t.proxy(renames["pull-request-review-comment"]).optional(),
+        t.proxy(renames["pull_request_review_comment"]).optional(),
     )
-    functions["pulls/update-review-comment"] = github.patch(
+    functions["pulls_update_review_comment"] = github.patch(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
         t.struct(
             {
@@ -52538,16 +52538,16 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["pull-request-review-comment"]),
+        t.proxy(renames["pull_request_review_comment"]),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["pulls/delete-review-comment"] = github.delete(
+    functions["pulls_delete_review_comment"] = github.delete(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "comment_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["reactions/list-for-pull-request-review-comment"] = github.get(
+    functions["reactions_list_for_pull_request_review_comment"] = github.get(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -52561,7 +52561,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-pull-request-review-comment"] = github.post(
+    functions["reactions_create_for_pull_request_review_comment"] = github.post(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions",
         t.struct(
             {
@@ -52575,7 +52575,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-pull-request-comment"] = github.delete(
+    functions["reactions_delete_for_pull_request_comment"] = github.delete(
         "/repos/{owner}/{repo}/pulls/comments/{comment_id}/reactions/{reaction_id}",
         t.struct(
             {
@@ -52587,12 +52587,12 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["pulls/get"] = github.get(
+    functions["pulls_get"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}",
         t.struct({"owner": t.string(), "repo": t.string(), "pull_number": t.integer()}),
-        t.proxy(renames["pull-request"]).optional(),
+        t.proxy(renames["pull_request"]).optional(),
     )
-    functions["pulls/update"] = github.patch(
+    functions["pulls_update"] = github.patch(
         "/repos/{owner}/{repo}/pulls/{pull_number}",
         t.struct(
             {
@@ -52606,11 +52606,11 @@ def import_github(params=None):
                 "maintainer_can_modify": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["pull-request"]),
+        t.proxy(renames["pull_request"]),
         content_type="application/json",
         body_fields=("title", "body", "state", "base", "maintainer_can_modify"),
     )
-    functions["codespaces/create-with-pr-for-authenticated-user"] = github.post(
+    functions["codespaces_create_with_pr_for_authenticated_user"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/codespaces",
         t.struct(
             {
@@ -52644,7 +52644,7 @@ def import_github(params=None):
             "retention_period_minutes",
         ),
     )
-    functions["pulls/list-review-comments"] = github.get(
+    functions["pulls_list_review_comments"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
         t.struct(
             {
@@ -52658,9 +52658,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["pull-request-review-comment"])),
+        t.array(t.proxy(renames["pull_request_review_comment"])),
     )
-    functions["pulls/create-review-comment"] = github.post(
+    functions["pulls_create_review_comment"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/comments",
         t.struct(
             {
@@ -52679,7 +52679,7 @@ def import_github(params=None):
                 "subject_type": t.string().optional(),
             }
         ),
-        t.proxy(renames["pull-request-review-comment"]),
+        t.proxy(renames["pull_request_review_comment"]),
         content_type="application/json",
         body_fields=(
             "body",
@@ -52694,7 +52694,7 @@ def import_github(params=None):
             "subject_type",
         ),
     )
-    functions["pulls/create-reply-for-review-comment"] = github.post(
+    functions["pulls_create_reply_for_review_comment"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/comments/{comment_id}/replies",
         t.struct(
             {
@@ -52705,11 +52705,11 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["pull-request-review-comment"]).optional(),
+        t.proxy(renames["pull_request_review_comment"]).optional(),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["pulls/list-commits"] = github.get(
+    functions["pulls_list_commits"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/commits",
         t.struct(
             {
@@ -52722,7 +52722,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["commit"])),
     )
-    functions["pulls/list-files"] = github.get(
+    functions["pulls_list_files"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/files",
         t.struct(
             {
@@ -52733,14 +52733,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["diff-entry"])),
+        t.array(t.proxy(renames["diff_entry"])),
     )
-    functions["pulls/check-if-merged"] = github.get(
+    functions["pulls_check_if_merged"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/merge",
         t.struct({"owner": t.string(), "repo": t.string(), "pull_number": t.integer()}),
         t.boolean().optional(),
     )
-    functions["pulls/merge"] = github.put(
+    functions["pulls_merge"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/merge",
         t.struct(
             {
@@ -52753,16 +52753,16 @@ def import_github(params=None):
                 "merge_method": t.string().optional(),
             }
         ),
-        t.proxy(renames["pull-request-merge-result"]).optional(),
+        t.proxy(renames["pull_request_merge_result"]).optional(),
         content_type="application/json",
         body_fields=("commit_title", "commit_message", "sha", "merge_method"),
     )
-    functions["pulls/list-requested-reviewers"] = github.get(
+    functions["pulls_list_requested_reviewers"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
         t.struct({"owner": t.string(), "repo": t.string(), "pull_number": t.integer()}),
-        t.proxy(renames["pull-request-review-request"]),
+        t.proxy(renames["pull_request_review_request"]),
     )
-    functions["pulls/remove-requested-reviewers"] = github.delete(
+    functions["pulls_remove_requested_reviewers"] = github.delete(
         "/repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers",
         t.struct(
             {
@@ -52773,11 +52773,11 @@ def import_github(params=None):
                 "team_reviewers": t.array(t.string()).optional(),
             }
         ),
-        t.proxy(renames["pull-request-simple"]),
+        t.proxy(renames["pull_request_simple"]),
         content_type="application/json",
         body_fields=("reviewers", "team_reviewers"),
     )
-    functions["pulls/list-reviews"] = github.get(
+    functions["pulls_list_reviews"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews",
         t.struct(
             {
@@ -52788,9 +52788,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["pull-request-review"])),
+        t.array(t.proxy(renames["pull_request_review"])),
     )
-    functions["pulls/create-review"] = github.post(
+    functions["pulls_create_review"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews",
         t.struct(
             {
@@ -52815,11 +52815,11 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["pull-request-review"]),
+        t.proxy(renames["pull_request_review"]),
         content_type="application/json",
         body_fields=("commit_id", "body", "event", "comments"),
     )
-    functions["pulls/get-review"] = github.get(
+    functions["pulls_get_review"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
         t.struct(
             {
@@ -52829,9 +52829,9 @@ def import_github(params=None):
                 "review_id": t.integer(),
             }
         ),
-        t.proxy(renames["pull-request-review"]).optional(),
+        t.proxy(renames["pull_request_review"]).optional(),
     )
-    functions["pulls/update-review"] = github.put(
+    functions["pulls_update_review"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
         t.struct(
             {
@@ -52842,11 +52842,11 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["pull-request-review"]),
+        t.proxy(renames["pull_request_review"]),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["pulls/delete-pending-review"] = github.delete(
+    functions["pulls_delete_pending_review"] = github.delete(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}",
         t.struct(
             {
@@ -52856,9 +52856,9 @@ def import_github(params=None):
                 "review_id": t.integer(),
             }
         ),
-        t.proxy(renames["pull-request-review"]).optional(),
+        t.proxy(renames["pull_request_review"]).optional(),
     )
-    functions["pulls/list-comments-for-review"] = github.get(
+    functions["pulls_list_comments_for_review"] = github.get(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/comments",
         t.struct(
             {
@@ -52870,9 +52870,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["review-comment"])).optional(),
+        t.array(t.proxy(renames["review_comment"])).optional(),
     )
-    functions["pulls/dismiss-review"] = github.put(
+    functions["pulls_dismiss_review"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/dismissals",
         t.struct(
             {
@@ -52884,11 +52884,11 @@ def import_github(params=None):
                 "event": t.string().optional(),
             }
         ),
-        t.proxy(renames["pull-request-review"]).optional(),
+        t.proxy(renames["pull_request_review"]).optional(),
         content_type="application/json",
         body_fields=("message", "event"),
     )
-    functions["pulls/submit-review"] = github.post(
+    functions["pulls_submit_review"] = github.post(
         "/repos/{owner}/{repo}/pulls/{pull_number}/reviews/{review_id}/events",
         t.struct(
             {
@@ -52900,11 +52900,11 @@ def import_github(params=None):
                 "event": t.string(),
             }
         ),
-        t.proxy(renames["pull-request-review"]).optional(),
+        t.proxy(renames["pull_request_review"]).optional(),
         content_type="application/json",
         body_fields=("body", "event"),
     )
-    functions["pulls/update-branch"] = github.put(
+    functions["pulls_update_branch"] = github.put(
         "/repos/{owner}/{repo}/pulls/{pull_number}/update-branch",
         t.struct(
             {
@@ -52918,12 +52918,12 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("expected_head_sha",),
     )
-    functions["repos/get-readme"] = github.get(
+    functions["repos_get_readme"] = github.get(
         "/repos/{owner}/{repo}/readme",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
-        t.proxy(renames["content-file"]).optional(),
+        t.proxy(renames["content_file"]).optional(),
     )
-    functions["repos/get-readme-in-directory"] = github.get(
+    functions["repos_get_readme_in_directory"] = github.get(
         "/repos/{owner}/{repo}/readme/{dir}",
         t.struct(
             {
@@ -52933,9 +52933,9 @@ def import_github(params=None):
                 "ref": t.string(),
             }
         ),
-        t.proxy(renames["content-file"]).optional(),
+        t.proxy(renames["content_file"]).optional(),
     )
-    functions["repos/list-releases"] = github.get(
+    functions["repos_list_releases"] = github.get(
         "/repos/{owner}/{repo}/releases",
         t.struct(
             {
@@ -52947,7 +52947,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["release"])).optional(),
     )
-    functions["repos/create-release"] = github.post(
+    functions["repos_create_release"] = github.post(
         "/repos/{owner}/{repo}/releases",
         t.struct(
             {
@@ -52978,12 +52978,12 @@ def import_github(params=None):
             "make_latest",
         ),
     )
-    functions["repos/get-release-asset"] = github.get(
+    functions["repos_get_release_asset"] = github.get(
         "/repos/{owner}/{repo}/releases/assets/{asset_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "asset_id": t.integer()}),
-        t.proxy(renames["release-asset"]).optional(),
+        t.proxy(renames["release_asset"]).optional(),
     )
-    functions["repos/update-release-asset"] = github.patch(
+    functions["repos_update_release_asset"] = github.patch(
         "/repos/{owner}/{repo}/releases/assets/{asset_id}",
         t.struct(
             {
@@ -52995,16 +52995,16 @@ def import_github(params=None):
                 "state": t.string().optional(),
             }
         ),
-        t.proxy(renames["release-asset"]),
+        t.proxy(renames["release_asset"]),
         content_type="application/json",
         body_fields=("name", "label", "state"),
     )
-    functions["repos/delete-release-asset"] = github.delete(
+    functions["repos_delete_release_asset"] = github.delete(
         "/repos/{owner}/{repo}/releases/assets/{asset_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "asset_id": t.integer()}),
         t.boolean(),
     )
-    functions["repos/generate-release-notes"] = github.post(
+    functions["repos_generate_release_notes"] = github.post(
         "/repos/{owner}/{repo}/releases/generate-notes",
         t.struct(
             {
@@ -53016,7 +53016,7 @@ def import_github(params=None):
                 "configuration_file_path": t.string().optional(),
             }
         ),
-        t.proxy(renames["release-notes-content"]).optional(),
+        t.proxy(renames["release_notes_content"]).optional(),
         content_type="application/json",
         body_fields=(
             "tag_name",
@@ -53025,22 +53025,22 @@ def import_github(params=None):
             "configuration_file_path",
         ),
     )
-    functions["repos/get-latest-release"] = github.get(
+    functions["repos_get_latest_release"] = github.get(
         "/repos/{owner}/{repo}/releases/latest",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.proxy(renames["release"]),
     )
-    functions["repos/get-release-by-tag"] = github.get(
+    functions["repos_get_release_by_tag"] = github.get(
         "/repos/{owner}/{repo}/releases/tags/{tag}",
         t.struct({"owner": t.string(), "repo": t.string(), "tag": t.string()}),
         t.proxy(renames["release"]).optional(),
     )
-    functions["repos/get-release"] = github.get(
+    functions["repos_get_release"] = github.get(
         "/repos/{owner}/{repo}/releases/{release_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "release_id": t.integer()}),
         t.proxy(renames["release"]).optional(),
     )
-    functions["repos/update-release"] = github.patch(
+    functions["repos_update_release"] = github.patch(
         "/repos/{owner}/{repo}/releases/{release_id}",
         t.struct(
             {
@@ -53070,12 +53070,12 @@ def import_github(params=None):
             "discussion_category_name",
         ),
     )
-    functions["repos/delete-release"] = github.delete(
+    functions["repos_delete_release"] = github.delete(
         "/repos/{owner}/{repo}/releases/{release_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "release_id": t.integer()}),
         t.boolean(),
     )
-    functions["repos/list-release-assets"] = github.get(
+    functions["repos_list_release_assets"] = github.get(
         "/repos/{owner}/{repo}/releases/{release_id}/assets",
         t.struct(
             {
@@ -53086,9 +53086,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["release-asset"])),
+        t.array(t.proxy(renames["release_asset"])),
     )
-    functions["reactions/list-for-release"] = github.get(
+    functions["reactions_list_for_release"] = github.get(
         "/repos/{owner}/{repo}/releases/{release_id}/reactions",
         t.struct(
             {
@@ -53102,7 +53102,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])).optional(),
     )
-    functions["reactions/create-for-release"] = github.post(
+    functions["reactions_create_for_release"] = github.post(
         "/repos/{owner}/{repo}/releases/{release_id}/reactions",
         t.struct(
             {
@@ -53116,7 +53116,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/delete-for-release"] = github.delete(
+    functions["reactions_delete_for_release"] = github.delete(
         "/repos/{owner}/{repo}/releases/{release_id}/reactions/{reaction_id}",
         t.struct(
             {
@@ -53128,19 +53128,19 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["repos/get-branch-rules"] = github.get(
+    functions["repos_get_branch_rules"] = github.get(
         "/repos/{owner}/{repo}/rules/branches/{branch}",
         t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
-        t.array(t.proxy(renames["repository-rule"])),
+        t.array(t.proxy(renames["repository_rule"])),
     )
-    functions["repos/get-repo-rulesets"] = github.get(
+    functions["repos_get_repo_rulesets"] = github.get(
         "/repos/{owner}/{repo}/rulesets",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "includes_parents": t.boolean()}
         ),
-        t.array(t.proxy(renames["repository-ruleset"])).optional(),
+        t.array(t.proxy(renames["repository_ruleset"])).optional(),
     )
-    functions["repos/create-repo-ruleset"] = github.post(
+    functions["repos_create_repo_ruleset"] = github.post(
         "/repos/{owner}/{repo}/rulesets",
         t.struct(
             {
@@ -53148,18 +53148,18 @@ def import_github(params=None):
                 "repo": t.string(),
                 "name": t.string(),
                 "target": t.string().optional(),
-                "enforcement": t.proxy(renames["repository-rule-enforcement"]),
+                "enforcement": t.proxy(renames["repository_rule_enforcement"]),
                 "bypass_mode": t.string().optional(),
                 "bypass_actors": t.array(
-                    t.proxy(renames["repository-ruleset-bypass-actor"])
+                    t.proxy(renames["repository_ruleset_bypass_actor"])
                 ).optional(),
                 "conditions": t.proxy(
-                    renames["repository-ruleset-conditions"]
+                    renames["repository_ruleset_conditions"]
                 ).optional(),
-                "rules": t.array(t.proxy(renames["repository-rule"])).optional(),
+                "rules": t.array(t.proxy(renames["repository_rule"])).optional(),
             }
         ),
-        t.proxy(renames["repository-ruleset"]).optional(),
+        t.proxy(renames["repository_ruleset"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -53171,7 +53171,7 @@ def import_github(params=None):
             "rules",
         ),
     )
-    functions["repos/get-repo-ruleset"] = github.get(
+    functions["repos_get_repo_ruleset"] = github.get(
         "/repos/{owner}/{repo}/rulesets/{ruleset_id}",
         t.struct(
             {
@@ -53181,9 +53181,9 @@ def import_github(params=None):
                 "includes_parents": t.boolean(),
             }
         ),
-        t.proxy(renames["repository-ruleset"]).optional(),
+        t.proxy(renames["repository_ruleset"]).optional(),
     )
-    functions["repos/update-repo-ruleset"] = github.put(
+    functions["repos_update_repo_ruleset"] = github.put(
         "/repos/{owner}/{repo}/rulesets/{ruleset_id}",
         t.struct(
             {
@@ -53193,19 +53193,19 @@ def import_github(params=None):
                 "name": t.string().optional(),
                 "target": t.string().optional(),
                 "enforcement": t.proxy(
-                    renames["repository-rule-enforcement"]
+                    renames["repository_rule_enforcement"]
                 ).optional(),
                 "bypass_mode": t.string().optional(),
                 "bypass_actors": t.array(
-                    t.proxy(renames["repository-ruleset-bypass-actor"])
+                    t.proxy(renames["repository_ruleset_bypass_actor"])
                 ).optional(),
                 "conditions": t.proxy(
-                    renames["repository-ruleset-conditions"]
+                    renames["repository_ruleset_conditions"]
                 ).optional(),
-                "rules": t.array(t.proxy(renames["repository-rule"])).optional(),
+                "rules": t.array(t.proxy(renames["repository_rule"])).optional(),
             }
         ),
-        t.proxy(renames["repository-ruleset"]).optional(),
+        t.proxy(renames["repository_ruleset"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -53217,12 +53217,12 @@ def import_github(params=None):
             "rules",
         ),
     )
-    functions["repos/delete-repo-ruleset"] = github.delete(
+    functions["repos_delete_repo_ruleset"] = github.delete(
         "/repos/{owner}/{repo}/rulesets/{ruleset_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "ruleset_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["secret-scanning/list-alerts-for-repo"] = github.get(
+    functions["secret_scanning_list_alerts_for_repo"] = github.get(
         "/repos/{owner}/{repo}/secret-scanning/alerts",
         t.struct(
             {
@@ -53239,53 +53239,53 @@ def import_github(params=None):
                 "after": t.string(),
             }
         ),
-        t.array(t.proxy(renames["secret-scanning-alert"])).optional(),
+        t.array(t.proxy(renames["secret_scanning_alert"])).optional(),
     )
-    functions["secret-scanning/get-alert"] = github.get(
+    functions["secret_scanning_get_alert"] = github.get(
         "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
+                "alert_number": t.proxy(renames["alert_number"]),
             }
         ),
-        t.proxy(renames["secret-scanning-alert"]).optional(),
+        t.proxy(renames["secret_scanning_alert"]).optional(),
     )
-    functions["secret-scanning/update-alert"] = github.patch(
+    functions["secret_scanning_update_alert"] = github.patch(
         "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
-                "state": t.proxy(renames["secret-scanning-alert-state"]),
+                "alert_number": t.proxy(renames["alert_number"]),
+                "state": t.proxy(renames["secret_scanning_alert_state"]),
                 "resolution": t.proxy(
-                    renames["secret-scanning-alert-resolution"]
+                    renames["secret_scanning_alert_resolution"]
                 ).optional(),
                 "resolution_comment": t.proxy(
-                    renames["secret-scanning-alert-resolution-comment"]
+                    renames["secret_scanning_alert_resolution_comment"]
                 ).optional(),
             }
         ),
-        t.proxy(renames["secret-scanning-alert"]).optional(),
+        t.proxy(renames["secret_scanning_alert"]).optional(),
         content_type="application/json",
         body_fields=("state", "resolution", "resolution_comment"),
     )
-    functions["secret-scanning/list-locations-for-alert"] = github.get(
+    functions["secret_scanning_list_locations_for_alert"] = github.get(
         "/repos/{owner}/{repo}/secret-scanning/alerts/{alert_number}/locations",
         t.struct(
             {
                 "owner": t.string(),
                 "repo": t.string(),
-                "alert_number": t.proxy(renames["alert-number"]),
+                "alert_number": t.proxy(renames["alert_number"]),
                 "page": t.integer(),
                 "per_page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["secret-scanning-location"])).optional(),
+        t.array(t.proxy(renames["secret_scanning_location"])).optional(),
     )
-    functions["security-advisories/list-repository-advisories"] = github.get(
+    functions["security_advisories_list_repository_advisories"] = github.get(
         "/repos/{owner}/{repo}/security-advisories",
         t.struct(
             {
@@ -53299,9 +53299,9 @@ def import_github(params=None):
                 "state": t.string(),
             }
         ),
-        t.array(t.proxy(renames["repository-advisory"])).optional(),
+        t.array(t.proxy(renames["repository_advisory"])).optional(),
     )
-    functions["security-advisories/create-repository-advisory"] = github.post(
+    functions["security_advisories_create_repository_advisory"] = github.post(
         "/repos/{owner}/{repo}/security-advisories",
         t.struct(
             {
@@ -53316,7 +53316,7 @@ def import_github(params=None):
                             "package": t.struct(
                                 {
                                     "ecosystem": t.proxy(
-                                        renames["security-advisory-ecosystems"]
+                                        renames["security_advisory_ecosystems"]
                                     ),
                                     "name": t.string().optional(),
                                 }
@@ -53332,7 +53332,7 @@ def import_github(params=None):
                     t.struct(
                         {
                             "login": t.string(),
-                            "type": t.proxy(renames["security-advisory-credit-types"]),
+                            "type": t.proxy(renames["security_advisory_credit_types"]),
                         }
                     )
                 ).optional(),
@@ -53340,7 +53340,7 @@ def import_github(params=None):
                 "cvss_vector_string": t.string().optional(),
             }
         ),
-        t.proxy(renames["repository-advisory"]).optional(),
+        t.proxy(renames["repository_advisory"]).optional(),
         content_type="application/json",
         body_fields=(
             "summary",
@@ -53353,7 +53353,7 @@ def import_github(params=None):
             "cvss_vector_string",
         ),
     )
-    functions["security-advisories/create-private-vulnerability-report"] = github.post(
+    functions["security_advisories_create_private_vulnerability_report"] = github.post(
         "/repos/{owner}/{repo}/security-advisories/reports",
         t.struct(
             {
@@ -53367,7 +53367,7 @@ def import_github(params=None):
                             "package": t.struct(
                                 {
                                     "ecosystem": t.proxy(
-                                        renames["security-advisory-ecosystems"]
+                                        renames["security_advisory_ecosystems"]
                                     ),
                                     "name": t.string().optional(),
                                 }
@@ -53383,7 +53383,7 @@ def import_github(params=None):
                 "cvss_vector_string": t.string().optional(),
             }
         ),
-        t.proxy(renames["repository-advisory"]).optional(),
+        t.proxy(renames["repository_advisory"]).optional(),
         content_type="application/json",
         body_fields=(
             "summary",
@@ -53394,12 +53394,12 @@ def import_github(params=None):
             "cvss_vector_string",
         ),
     )
-    functions["security-advisories/get-repository-advisory"] = github.get(
+    functions["security_advisories_get_repository_advisory"] = github.get(
         "/repos/{owner}/{repo}/security-advisories/{ghsa_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "ghsa_id": t.string()}),
-        t.proxy(renames["repository-advisory"]).optional(),
+        t.proxy(renames["repository_advisory"]).optional(),
     )
-    functions["security-advisories/update-repository-advisory"] = github.patch(
+    functions["security_advisories_update_repository_advisory"] = github.patch(
         "/repos/{owner}/{repo}/security-advisories/{ghsa_id}",
         t.struct(
             {
@@ -53415,7 +53415,7 @@ def import_github(params=None):
                             "package": t.struct(
                                 {
                                     "ecosystem": t.proxy(
-                                        renames["security-advisory-ecosystems"]
+                                        renames["security_advisory_ecosystems"]
                                     ),
                                     "name": t.string().optional(),
                                 }
@@ -53431,7 +53431,7 @@ def import_github(params=None):
                     t.struct(
                         {
                             "login": t.string(),
-                            "type": t.proxy(renames["security-advisory-credit-types"]),
+                            "type": t.proxy(renames["security_advisory_credit_types"]),
                         }
                     )
                 ).optional(),
@@ -53440,7 +53440,7 @@ def import_github(params=None):
                 "state": t.string().optional(),
             }
         ),
-        t.proxy(renames["repository-advisory"]).optional(),
+        t.proxy(renames["repository_advisory"]).optional(),
         content_type="application/json",
         body_fields=(
             "summary",
@@ -53454,7 +53454,7 @@ def import_github(params=None):
             "state",
         ),
     )
-    functions["activity/list-stargazers-for-repo"] = github.get(
+    functions["activity_list_stargazers_for_repo"] = github.get(
         "/repos/{owner}/{repo}/stargazers",
         t.struct(
             {
@@ -53466,37 +53466,37 @@ def import_github(params=None):
         ),
         t.union(
             [
-                t.array(t.proxy(renames["simple-user"])),
+                t.array(t.proxy(renames["simple_user"])),
                 t.array(t.proxy(renames["stargazer"])),
             ]
         ),
     )
-    functions["repos/get-code-frequency-stats"] = github.get(
+    functions["repos_get_code_frequency_stats"] = github.get(
         "/repos/{owner}/{repo}/stats/code_frequency",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["code-frequency-stat"])),
+        t.array(t.proxy(renames["code_frequency_stat"])),
     )
-    functions["repos/get-commit-activity-stats"] = github.get(
+    functions["repos_get_commit_activity_stats"] = github.get(
         "/repos/{owner}/{repo}/stats/commit_activity",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["commit-activity"])),
+        t.array(t.proxy(renames["commit_activity"])),
     )
-    functions["repos/get-contributors-stats"] = github.get(
+    functions["repos_get_contributors_stats"] = github.get(
         "/repos/{owner}/{repo}/stats/contributors",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["contributor-activity"])),
+        t.array(t.proxy(renames["contributor_activity"])),
     )
-    functions["repos/get-participation-stats"] = github.get(
+    functions["repos_get_participation_stats"] = github.get(
         "/repos/{owner}/{repo}/stats/participation",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["participation-stats"]).optional(),
+        t.proxy(renames["participation_stats"]).optional(),
     )
-    functions["repos/get-punch-card-stats"] = github.get(
+    functions["repos_get_punch_card_stats"] = github.get(
         "/repos/{owner}/{repo}/stats/punch_card",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["code-frequency-stat"])),
+        t.array(t.proxy(renames["code_frequency_stat"])),
     )
-    functions["repos/create-commit-status"] = github.post(
+    functions["repos_create_commit_status"] = github.post(
         "/repos/{owner}/{repo}/statuses/{sha}",
         t.struct(
             {
@@ -53513,7 +53513,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("state", "target_url", "description", "context"),
     )
-    functions["activity/list-watchers-for-repo"] = github.get(
+    functions["activity_list_watchers_for_repo"] = github.get(
         "/repos/{owner}/{repo}/subscribers",
         t.struct(
             {
@@ -53523,14 +53523,14 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["activity/get-repo-subscription"] = github.get(
+    functions["activity_get_repo_subscription"] = github.get(
         "/repos/{owner}/{repo}/subscription",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["repository-subscription"]).optional(),
+        t.proxy(renames["repository_subscription"]).optional(),
     )
-    functions["activity/set-repo-subscription"] = github.put(
+    functions["activity_set_repo_subscription"] = github.put(
         "/repos/{owner}/{repo}/subscription",
         t.struct(
             {
@@ -53540,16 +53540,16 @@ def import_github(params=None):
                 "ignored": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["repository-subscription"]),
+        t.proxy(renames["repository_subscription"]),
         content_type="application/json",
         body_fields=("subscribed", "ignored"),
     )
-    functions["activity/delete-repo-subscription"] = github.delete(
+    functions["activity_delete_repo_subscription"] = github.delete(
         "/repos/{owner}/{repo}/subscription",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["repos/list-tags"] = github.get(
+    functions["repos_list_tags"] = github.get(
         "/repos/{owner}/{repo}/tags",
         t.struct(
             {
@@ -53561,31 +53561,31 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["tag"])),
     )
-    functions["repos/list-tag-protection"] = github.get(
+    functions["repos_list_tag_protection"] = github.get(
         "/repos/{owner}/{repo}/tags/protection",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["tag-protection"])).optional(),
+        t.array(t.proxy(renames["tag_protection"])).optional(),
     )
-    functions["repos/create-tag-protection"] = github.post(
+    functions["repos_create_tag_protection"] = github.post(
         "/repos/{owner}/{repo}/tags/protection",
         t.struct({"owner": t.string(), "repo": t.string(), "pattern": t.string()}),
-        t.proxy(renames["tag-protection"]).optional(),
+        t.proxy(renames["tag_protection"]).optional(),
         content_type="application/json",
         body_fields=("pattern",),
     )
-    functions["repos/delete-tag-protection"] = github.delete(
+    functions["repos_delete_tag_protection"] = github.delete(
         "/repos/{owner}/{repo}/tags/protection/{tag_protection_id}",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "tag_protection_id": t.integer()}
         ),
         t.boolean().optional(),
     )
-    functions["repos/download-tarball-archive"] = github.get(
+    functions["repos_download_tarball_archive"] = github.get(
         "/repos/{owner}/{repo}/tarball/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.struct({}),
     )
-    functions["repos/list-teams"] = github.get(
+    functions["repos_list_teams"] = github.get(
         "/repos/{owner}/{repo}/teams",
         t.struct(
             {
@@ -53597,7 +53597,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["team"])),
     )
-    functions["repos/get-all-topics"] = github.get(
+    functions["repos_get_all_topics"] = github.get(
         "/repos/{owner}/{repo}/topics",
         t.struct(
             {
@@ -53609,7 +53609,7 @@ def import_github(params=None):
         ),
         t.proxy(renames["topic"]).optional(),
     )
-    functions["repos/replace-all-topics"] = github.put(
+    functions["repos_replace_all_topics"] = github.put(
         "/repos/{owner}/{repo}/topics",
         t.struct(
             {"owner": t.string(), "repo": t.string(), "names": t.array(t.string())}
@@ -53618,27 +53618,27 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("names",),
     )
-    functions["repos/get-clones"] = github.get(
+    functions["repos_get_clones"] = github.get(
         "/repos/{owner}/{repo}/traffic/clones",
         t.struct({"owner": t.string(), "repo": t.string(), "per": t.string()}),
-        t.proxy(renames["clone-traffic"]),
+        t.proxy(renames["clone_traffic"]),
     )
-    functions["repos/get-top-paths"] = github.get(
+    functions["repos_get_top_paths"] = github.get(
         "/repos/{owner}/{repo}/traffic/popular/paths",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["content-traffic"])),
+        t.array(t.proxy(renames["content_traffic"])),
     )
-    functions["repos/get-top-referrers"] = github.get(
+    functions["repos_get_top_referrers"] = github.get(
         "/repos/{owner}/{repo}/traffic/popular/referrers",
         t.struct({"owner": t.string(), "repo": t.string()}),
-        t.array(t.proxy(renames["referrer-traffic"])),
+        t.array(t.proxy(renames["referrer_traffic"])),
     )
-    functions["repos/get-views"] = github.get(
+    functions["repos_get_views"] = github.get(
         "/repos/{owner}/{repo}/traffic/views",
         t.struct({"owner": t.string(), "repo": t.string(), "per": t.string()}),
-        t.proxy(renames["view-traffic"]),
+        t.proxy(renames["view_traffic"]),
     )
-    functions["repos/transfer"] = github.post(
+    functions["repos_transfer"] = github.post(
         "/repos/{owner}/{repo}/transfer",
         t.struct(
             {
@@ -53649,31 +53649,31 @@ def import_github(params=None):
                 "team_ids": t.array(t.integer()).optional(),
             }
         ),
-        t.proxy(renames["minimal-repository"]),
+        t.proxy(renames["minimal_repository"]),
         content_type="application/json",
         body_fields=("new_owner", "new_name", "team_ids"),
     )
-    functions["repos/check-vulnerability-alerts"] = github.get(
+    functions["repos_check_vulnerability_alerts"] = github.get(
         "/repos/{owner}/{repo}/vulnerability-alerts",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["repos/enable-vulnerability-alerts"] = github.put(
+    functions["repos_enable_vulnerability_alerts"] = github.put(
         "/repos/{owner}/{repo}/vulnerability-alerts",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["repos/disable-vulnerability-alerts"] = github.delete(
+    functions["repos_disable_vulnerability_alerts"] = github.delete(
         "/repos/{owner}/{repo}/vulnerability-alerts",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["repos/download-zipball-archive"] = github.get(
+    functions["repos_download_zipball_archive"] = github.get(
         "/repos/{owner}/{repo}/zipball/{ref}",
         t.struct({"owner": t.string(), "repo": t.string(), "ref": t.string()}),
         t.struct({}),
     )
-    functions["repos/create-using-template"] = github.post(
+    functions["repos_create_using_template"] = github.post(
         "/repos/{template_owner}/{template_repo}/generate",
         t.struct(
             {
@@ -53690,12 +53690,12 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("owner", "name", "description", "include_all_branches", "private"),
     )
-    functions["repos/list-public"] = github.get(
+    functions["repos_list_public"] = github.get(
         "/repositories",
         t.struct({"since": t.integer()}),
-        t.array(t.proxy(renames["minimal-repository"])),
+        t.array(t.proxy(renames["minimal_repository"])),
     )
-    functions["actions/list-environment-secrets"] = github.get(
+    functions["actions_list_environment_secrets"] = github.get(
         "/repositories/{repository_id}/environments/{environment_name}/secrets",
         t.struct(
             {
@@ -53708,16 +53708,16 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["actions-secret"])),
+                "secrets": t.array(t.proxy(renames["actions_secret"])),
             }
         ),
     )
-    functions["actions/get-environment-public-key"] = github.get(
+    functions["actions_get_environment_public_key"] = github.get(
         "/repositories/{repository_id}/environments/{environment_name}/secrets/public-key",
         t.struct({"repository_id": t.integer(), "environment_name": t.string()}),
-        t.proxy(renames["actions-public-key"]),
+        t.proxy(renames["actions_public_key"]),
     )
-    functions["actions/get-environment-secret"] = github.get(
+    functions["actions_get_environment_secret"] = github.get(
         "/repositories/{repository_id}/environments/{environment_name}/secrets/{secret_name}",
         t.struct(
             {
@@ -53726,9 +53726,9 @@ def import_github(params=None):
                 "secret_name": t.string(),
             }
         ),
-        t.proxy(renames["actions-secret"]),
+        t.proxy(renames["actions_secret"]),
     )
-    functions["actions/create-or-update-environment-secret"] = github.put(
+    functions["actions_create_or_update_environment_secret"] = github.put(
         "/repositories/{repository_id}/environments/{environment_name}/secrets/{secret_name}",
         t.struct(
             {
@@ -53739,11 +53739,11 @@ def import_github(params=None):
                 "key_id": t.string(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("encrypted_value", "key_id"),
     )
-    functions["actions/delete-environment-secret"] = github.delete(
+    functions["actions_delete_environment_secret"] = github.delete(
         "/repositories/{repository_id}/environments/{environment_name}/secrets/{secret_name}",
         t.struct(
             {
@@ -53754,7 +53754,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["actions/list-environment-variables"] = github.get(
+    functions["actions_list_environment_variables"] = github.get(
         "/repositories/{repository_id}/environments/{environment_name}/variables",
         t.struct(
             {
@@ -53767,11 +53767,11 @@ def import_github(params=None):
         t.struct(
             {
                 "total_count": t.integer(),
-                "variables": t.array(t.proxy(renames["actions-variable"])),
+                "variables": t.array(t.proxy(renames["actions_variable"])),
             }
         ),
     )
-    functions["actions/create-environment-variable"] = github.post(
+    functions["actions_create_environment_variable"] = github.post(
         "/repositories/{repository_id}/environments/{environment_name}/variables",
         t.struct(
             {
@@ -53781,11 +53781,11 @@ def import_github(params=None):
                 "value": t.string(),
             }
         ),
-        t.proxy(renames["empty-object"]),
+        t.proxy(renames["empty_object"]),
         content_type="application/json",
         body_fields=("name", "value"),
     )
-    functions["actions/get-environment-variable"] = github.get(
+    functions["actions_get_environment_variable"] = github.get(
         "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
         t.struct(
             {
@@ -53794,9 +53794,9 @@ def import_github(params=None):
                 "name": t.string(),
             }
         ),
-        t.proxy(renames["actions-variable"]),
+        t.proxy(renames["actions_variable"]),
     )
-    functions["actions/delete-environment-variable"] = github.delete(
+    functions["actions_delete_environment_variable"] = github.delete(
         "/repositories/{repository_id}/environments/{environment_name}/variables/{name}",
         t.struct(
             {
@@ -53807,7 +53807,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["search/code"] = github.get(
+    functions["search_code"] = github.get(
         "/search/code",
         t.struct(
             {
@@ -53822,11 +53822,11 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "incomplete_results": t.boolean(),
-                "items": t.array(t.proxy(renames["code-search-result-item"])),
+                "items": t.array(t.proxy(renames["code_search_result_item"])),
             }
         ),
     )
-    functions["search/commits"] = github.get(
+    functions["search_commits"] = github.get(
         "/search/commits",
         t.struct(
             {
@@ -53841,11 +53841,11 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "incomplete_results": t.boolean(),
-                "items": t.array(t.proxy(renames["commit-search-result-item"])),
+                "items": t.array(t.proxy(renames["commit_search_result_item"])),
             }
         ),
     )
-    functions["search/issues-and-pull-requests"] = github.get(
+    functions["search_issues_and_pull_requests"] = github.get(
         "/search/issues",
         t.struct(
             {
@@ -53860,11 +53860,11 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "incomplete_results": t.boolean(),
-                "items": t.array(t.proxy(renames["issue-search-result-item"])),
+                "items": t.array(t.proxy(renames["issue_search_result_item"])),
             }
         ),
     )
-    functions["search/labels"] = github.get(
+    functions["search_labels"] = github.get(
         "/search/labels",
         t.struct(
             {
@@ -53880,11 +53880,11 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "incomplete_results": t.boolean(),
-                "items": t.array(t.proxy(renames["label-search-result-item"])),
+                "items": t.array(t.proxy(renames["label_search_result_item"])),
             }
         ).optional(),
     )
-    functions["search/repos"] = github.get(
+    functions["search_repos"] = github.get(
         "/search/repositories",
         t.struct(
             {
@@ -53899,22 +53899,22 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "incomplete_results": t.boolean(),
-                "items": t.array(t.proxy(renames["repo-search-result-item"])),
+                "items": t.array(t.proxy(renames["repo_search_result_item"])),
             }
         ),
     )
-    functions["search/topics"] = github.get(
+    functions["search_topics"] = github.get(
         "/search/topics",
         t.struct({"q": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
                 "incomplete_results": t.boolean(),
-                "items": t.array(t.proxy(renames["topic-search-result-item"])),
+                "items": t.array(t.proxy(renames["topic_search_result_item"])),
             }
         ),
     )
-    functions["search/users"] = github.get(
+    functions["search_users"] = github.get(
         "/search/users",
         t.struct(
             {
@@ -53929,16 +53929,16 @@ def import_github(params=None):
             {
                 "total_count": t.integer(),
                 "incomplete_results": t.boolean(),
-                "items": t.array(t.proxy(renames["user-search-result-item"])),
+                "items": t.array(t.proxy(renames["user_search_result_item"])),
             }
         ),
     )
-    functions["teams/get-legacy"] = github.get(
+    functions["teams_get_legacy"] = github.get(
         "/teams/{team_id}",
         t.struct({"team_id": t.integer()}),
-        t.proxy(renames["team-full"]).optional(),
+        t.proxy(renames["team_full"]).optional(),
     )
-    functions["teams/update-legacy"] = github.patch(
+    functions["teams_update_legacy"] = github.patch(
         "/teams/{team_id}",
         t.struct(
             {
@@ -53951,7 +53951,7 @@ def import_github(params=None):
                 "parent_team_id": t.integer().optional(),
             }
         ),
-        t.proxy(renames["team-full"]).optional(),
+        t.proxy(renames["team_full"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -53962,12 +53962,12 @@ def import_github(params=None):
             "parent_team_id",
         ),
     )
-    functions["teams/delete-legacy"] = github.delete(
+    functions["teams_delete_legacy"] = github.delete(
         "/teams/{team_id}",
         t.struct({"team_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["teams/list-discussions-legacy"] = github.get(
+    functions["teams_list_discussions_legacy"] = github.get(
         "/teams/{team_id}/discussions",
         t.struct(
             {
@@ -53977,9 +53977,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["team-discussion"])),
+        t.array(t.proxy(renames["team_discussion"])),
     )
-    functions["teams/create-discussion-legacy"] = github.post(
+    functions["teams_create_discussion_legacy"] = github.post(
         "/teams/{team_id}/discussions",
         t.struct(
             {
@@ -53989,16 +53989,16 @@ def import_github(params=None):
                 "private": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["team-discussion"]),
+        t.proxy(renames["team_discussion"]),
         content_type="application/json",
         body_fields=("title", "body", "private"),
     )
-    functions["teams/get-discussion-legacy"] = github.get(
+    functions["teams_get_discussion_legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}",
         t.struct({"team_id": t.integer(), "discussion_number": t.integer()}),
-        t.proxy(renames["team-discussion"]),
+        t.proxy(renames["team_discussion"]),
     )
-    functions["teams/update-discussion-legacy"] = github.patch(
+    functions["teams_update_discussion_legacy"] = github.patch(
         "/teams/{team_id}/discussions/{discussion_number}",
         t.struct(
             {
@@ -54008,16 +54008,16 @@ def import_github(params=None):
                 "body": t.string().optional(),
             }
         ),
-        t.proxy(renames["team-discussion"]),
+        t.proxy(renames["team_discussion"]),
         content_type="application/json",
         body_fields=("title", "body"),
     )
-    functions["teams/delete-discussion-legacy"] = github.delete(
+    functions["teams_delete_discussion_legacy"] = github.delete(
         "/teams/{team_id}/discussions/{discussion_number}",
         t.struct({"team_id": t.integer(), "discussion_number": t.integer()}),
         t.boolean(),
     )
-    functions["teams/list-discussion-comments-legacy"] = github.get(
+    functions["teams_list_discussion_comments_legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -54028,9 +54028,9 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["team-discussion-comment"])),
+        t.array(t.proxy(renames["team_discussion_comment"])),
     )
-    functions["teams/create-discussion-comment-legacy"] = github.post(
+    functions["teams_create_discussion_comment_legacy"] = github.post(
         "/teams/{team_id}/discussions/{discussion_number}/comments",
         t.struct(
             {
@@ -54039,11 +54039,11 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["team-discussion-comment"]),
+        t.proxy(renames["team_discussion_comment"]),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/get-discussion-comment-legacy"] = github.get(
+    functions["teams_get_discussion_comment_legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -54052,9 +54052,9 @@ def import_github(params=None):
                 "comment_number": t.integer(),
             }
         ),
-        t.proxy(renames["team-discussion-comment"]),
+        t.proxy(renames["team_discussion_comment"]),
     )
-    functions["teams/update-discussion-comment-legacy"] = github.patch(
+    functions["teams_update_discussion_comment_legacy"] = github.patch(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -54064,11 +54064,11 @@ def import_github(params=None):
                 "body": t.string(),
             }
         ),
-        t.proxy(renames["team-discussion-comment"]),
+        t.proxy(renames["team_discussion_comment"]),
         content_type="application/json",
         body_fields=("body",),
     )
-    functions["teams/delete-discussion-comment-legacy"] = github.delete(
+    functions["teams_delete_discussion_comment_legacy"] = github.delete(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}",
         t.struct(
             {
@@ -54079,7 +54079,7 @@ def import_github(params=None):
         ),
         t.boolean(),
     )
-    functions["reactions/list-for-team-discussion-comment-legacy"] = github.get(
+    functions["reactions_list_for_team_discussion_comment_legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -54093,7 +54093,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-comment-legacy"] = github.post(
+    functions["reactions_create_for_team_discussion_comment_legacy"] = github.post(
         "/teams/{team_id}/discussions/{discussion_number}/comments/{comment_number}/reactions",
         t.struct(
             {
@@ -54107,7 +54107,7 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["reactions/list-for-team-discussion-legacy"] = github.get(
+    functions["reactions_list_for_team_discussion_legacy"] = github.get(
         "/teams/{team_id}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -54120,7 +54120,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["reaction"])),
     )
-    functions["reactions/create-for-team-discussion-legacy"] = github.post(
+    functions["reactions_create_for_team_discussion_legacy"] = github.post(
         "/teams/{team_id}/discussions/{discussion_number}/reactions",
         t.struct(
             {
@@ -54133,14 +54133,14 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("content",),
     )
-    functions["teams/list-pending-invitations-legacy"] = github.get(
+    functions["teams_list_pending_invitations_legacy"] = github.get(
         "/teams/{team_id}/invitations",
         t.struct(
             {"team_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["organization-invitation"])),
+        t.array(t.proxy(renames["organization_invitation"])),
     )
-    functions["teams/list-members-legacy"] = github.get(
+    functions["teams_list_members_legacy"] = github.get(
         "/teams/{team_id}/members",
         t.struct(
             {
@@ -54150,29 +54150,29 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["simple-user"])).optional(),
+        t.array(t.proxy(renames["simple_user"])).optional(),
     )
-    functions["teams/get-member-legacy"] = github.get(
+    functions["teams_get_member_legacy"] = github.get(
         "/teams/{team_id}/members/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["teams/add-member-legacy"] = github.put(
+    functions["teams_add_member_legacy"] = github.put(
         "/teams/{team_id}/members/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["teams/remove-member-legacy"] = github.delete(
+    functions["teams_remove_member_legacy"] = github.delete(
         "/teams/{team_id}/members/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean().optional(),
     )
-    functions["teams/get-membership-for-user-legacy"] = github.get(
+    functions["teams_get_membership_for_user_legacy"] = github.get(
         "/teams/{team_id}/memberships/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
-        t.proxy(renames["team-membership"]).optional(),
+        t.proxy(renames["team_membership"]).optional(),
     )
-    functions["teams/add-or-update-membership-for-user-legacy"] = github.put(
+    functions["teams_add_or_update_membership_for_user_legacy"] = github.put(
         "/teams/{team_id}/memberships/{username}",
         t.struct(
             {
@@ -54181,28 +54181,28 @@ def import_github(params=None):
                 "role": t.string().optional(),
             }
         ),
-        t.proxy(renames["team-membership"]).optional(),
+        t.proxy(renames["team_membership"]).optional(),
         content_type="application/json",
         body_fields=("role",),
     )
-    functions["teams/remove-membership-for-user-legacy"] = github.delete(
+    functions["teams_remove_membership_for_user_legacy"] = github.delete(
         "/teams/{team_id}/memberships/{username}",
         t.struct({"team_id": t.integer(), "username": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-projects-legacy"] = github.get(
+    functions["teams_list_projects_legacy"] = github.get(
         "/teams/{team_id}/projects",
         t.struct(
             {"team_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["team-project"])).optional(),
+        t.array(t.proxy(renames["team_project"])).optional(),
     )
-    functions["teams/check-permissions-for-project-legacy"] = github.get(
+    functions["teams_check_permissions_for_project_legacy"] = github.get(
         "/teams/{team_id}/projects/{project_id}",
         t.struct({"team_id": t.integer(), "project_id": t.integer()}),
-        t.proxy(renames["team-project"]).optional(),
+        t.proxy(renames["team_project"]).optional(),
     )
-    functions["teams/add-or-update-project-permissions-legacy"] = github.put(
+    functions["teams_add_or_update_project_permissions_legacy"] = github.put(
         "/teams/{team_id}/projects/{project_id}",
         t.struct(
             {
@@ -54215,24 +54215,24 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-project-legacy"] = github.delete(
+    functions["teams_remove_project_legacy"] = github.delete(
         "/teams/{team_id}/projects/{project_id}",
         t.struct({"team_id": t.integer(), "project_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["teams/list-repos-legacy"] = github.get(
+    functions["teams_list_repos_legacy"] = github.get(
         "/teams/{team_id}/repos",
         t.struct(
             {"team_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["minimal-repository"])).optional(),
+        t.array(t.proxy(renames["minimal_repository"])).optional(),
     )
-    functions["teams/check-permissions-for-repo-legacy"] = github.get(
+    functions["teams_check_permissions_for_repo_legacy"] = github.get(
         "/teams/{team_id}/repos/{owner}/{repo}",
         t.struct({"team_id": t.integer(), "owner": t.string(), "repo": t.string()}),
-        t.proxy(renames["team-repository"]).optional(),
+        t.proxy(renames["team_repository"]).optional(),
     )
-    functions["teams/add-or-update-repo-permissions-legacy"] = github.put(
+    functions["teams_add_or_update_repo_permissions_legacy"] = github.put(
         "/teams/{team_id}/repos/{owner}/{repo}",
         t.struct(
             {
@@ -54246,24 +54246,24 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("permission",),
     )
-    functions["teams/remove-repo-legacy"] = github.delete(
+    functions["teams_remove_repo_legacy"] = github.delete(
         "/teams/{team_id}/repos/{owner}/{repo}",
         t.struct({"team_id": t.integer(), "owner": t.string(), "repo": t.string()}),
         t.boolean(),
     )
-    functions["teams/list-child-legacy"] = github.get(
+    functions["teams_list_child_legacy"] = github.get(
         "/teams/{team_id}/teams",
         t.struct(
             {"team_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["team"])).optional(),
     )
-    functions["users/get-authenticated"] = github.get(
+    functions["users_get_authenticated"] = github.get(
         "/user",
         t.struct({}),
-        t.either([t.proxy(renames["private-user"]), t.proxy(renames["public-user"])]),
+        t.either([t.proxy(renames["private_user"]), t.proxy(renames["public_user"])]),
     )
-    functions["users/update-authenticated"] = github.patch(
+    functions["users_update_authenticated"] = github.patch(
         "/user",
         t.struct(
             {
@@ -54277,7 +54277,7 @@ def import_github(params=None):
                 "bio": t.string().optional(),
             }
         ),
-        t.proxy(renames["private-user"]).optional(),
+        t.proxy(renames["private_user"]).optional(),
         content_type="application/json",
         body_fields=(
             "name",
@@ -54290,27 +54290,27 @@ def import_github(params=None):
             "bio",
         ),
     )
-    functions["users/list-blocked-by-authenticated-user"] = github.get(
+    functions["users_list_blocked_by_authenticated_user"] = github.get(
         "/user/blocks",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["simple-user"])).optional(),
+        t.array(t.proxy(renames["simple_user"])).optional(),
     )
-    functions["users/check-blocked"] = github.get(
+    functions["users_check_blocked"] = github.get(
         "/user/blocks/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/block"] = github.put(
+    functions["users_block"] = github.put(
         "/user/blocks/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/unblock"] = github.delete(
+    functions["users_unblock"] = github.delete(
         "/user/blocks/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["codespaces/list-for-authenticated-user"] = github.get(
+    functions["codespaces_list_for_authenticated_user"] = github.get(
         "/user/codespaces",
         t.struct(
             {"per_page": t.integer(), "page": t.integer(), "repository_id": t.integer()}
@@ -54322,27 +54322,27 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["codespaces/list-secrets-for-authenticated-user"] = github.get(
+    functions["codespaces_list_secrets_for_authenticated_user"] = github.get(
         "/user/codespaces/secrets",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "secrets": t.array(t.proxy(renames["codespaces-secret"])),
+                "secrets": t.array(t.proxy(renames["codespaces_secret"])),
             }
         ),
     )
-    functions["codespaces/get-public-key-for-authenticated-user"] = github.get(
+    functions["codespaces_get_public_key_for_authenticated_user"] = github.get(
         "/user/codespaces/secrets/public-key",
         t.struct({}),
-        t.proxy(renames["codespaces-user-public-key"]),
+        t.proxy(renames["codespaces_user_public_key"]),
     )
-    functions["codespaces/get-secret-for-authenticated-user"] = github.get(
+    functions["codespaces_get_secret_for_authenticated_user"] = github.get(
         "/user/codespaces/secrets/{secret_name}",
         t.struct({"secret_name": t.string()}),
-        t.proxy(renames["codespaces-secret"]),
+        t.proxy(renames["codespaces_secret"]),
     )
-    functions["codespaces/create-or-update-secret-for-authenticated-user"] = github.put(
+    functions["codespaces_create_or_update_secret_for_authenticated_user"] = github.put(
         "/user/codespaces/secrets/{secret_name}",
         t.struct(
             {
@@ -54354,29 +54354,29 @@ def import_github(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["empty-object"]).optional(),
+        t.proxy(renames["empty_object"]).optional(),
         content_type="application/json",
         body_fields=("encrypted_value", "key_id", "selected_repository_ids"),
     )
-    functions["codespaces/delete-secret-for-authenticated-user"] = github.delete(
+    functions["codespaces_delete_secret_for_authenticated_user"] = github.delete(
         "/user/codespaces/secrets/{secret_name}",
         t.struct({"secret_name": t.string()}),
         t.boolean(),
     )
     functions[
-        "codespaces/list-repositories-for-secret-for-authenticated-user"
+        "codespaces_list_repositories_for_secret_for_authenticated_user"
     ] = github.get(
         "/user/codespaces/secrets/{secret_name}/repositories",
         t.struct({"secret_name": t.string()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "repositories": t.array(t.proxy(renames["minimal-repository"])),
+                "repositories": t.array(t.proxy(renames["minimal_repository"])),
             }
         ).optional(),
     )
     functions[
-        "codespaces/set-repositories-for-secret-for-authenticated-user"
+        "codespaces_set_repositories_for_secret_for_authenticated_user"
     ] = github.put(
         "/user/codespaces/secrets/{secret_name}/repositories",
         t.struct(
@@ -54387,25 +54387,25 @@ def import_github(params=None):
         body_fields=("selected_repository_ids",),
     )
     functions[
-        "codespaces/add-repository-for-secret-for-authenticated-user"
+        "codespaces_add_repository_for_secret_for_authenticated_user"
     ] = github.put(
         "/user/codespaces/secrets/{secret_name}/repositories/{repository_id}",
         t.struct({"secret_name": t.string(), "repository_id": t.integer()}),
         t.boolean().optional(),
     )
     functions[
-        "codespaces/remove-repository-for-secret-for-authenticated-user"
+        "codespaces_remove_repository_for_secret_for_authenticated_user"
     ] = github.delete(
         "/user/codespaces/secrets/{secret_name}/repositories/{repository_id}",
         t.struct({"secret_name": t.string(), "repository_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["codespaces/get-for-authenticated-user"] = github.get(
+    functions["codespaces_get_for_authenticated_user"] = github.get(
         "/user/codespaces/{codespace_name}",
         t.struct({"codespace_name": t.string()}),
         t.proxy(renames["codespace"]).optional(),
     )
-    functions["codespaces/update-for-authenticated-user"] = github.patch(
+    functions["codespaces_update_for_authenticated_user"] = github.patch(
         "/user/codespaces/{codespace_name}",
         t.struct(
             {
@@ -54419,32 +54419,32 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("machine", "display_name", "recent_folders"),
     )
-    functions["codespaces/delete-for-authenticated-user"] = github.delete(
+    functions["codespaces_delete_for_authenticated_user"] = github.delete(
         "/user/codespaces/{codespace_name}",
         t.struct({"codespace_name": t.string()}),
         t.struct({}).optional(),
     )
-    functions["codespaces/export-for-authenticated-user"] = github.post(
+    functions["codespaces_export_for_authenticated_user"] = github.post(
         "/user/codespaces/{codespace_name}/exports",
         t.struct({"codespace_name": t.string()}),
-        t.proxy(renames["codespace-export-details"]).optional(),
+        t.proxy(renames["codespace_export_details"]).optional(),
     )
-    functions["codespaces/get-export-details-for-authenticated-user"] = github.get(
+    functions["codespaces_get_export_details_for_authenticated_user"] = github.get(
         "/user/codespaces/{codespace_name}/exports/{export_id}",
         t.struct({"codespace_name": t.string(), "export_id": t.string()}),
-        t.proxy(renames["codespace-export-details"]).optional(),
+        t.proxy(renames["codespace_export_details"]).optional(),
     )
-    functions["codespaces/codespace-machines-for-authenticated-user"] = github.get(
+    functions["codespaces_codespace_machines_for_authenticated_user"] = github.get(
         "/user/codespaces/{codespace_name}/machines",
         t.struct({"codespace_name": t.string()}),
         t.struct(
             {
                 "total_count": t.integer(),
-                "machines": t.array(t.proxy(renames["codespace-machine"])),
+                "machines": t.array(t.proxy(renames["codespace_machine"])),
             }
         ).optional(),
     )
-    functions["codespaces/publish-for-authenticated-user"] = github.post(
+    functions["codespaces_publish_for_authenticated_user"] = github.post(
         "/user/codespaces/{codespace_name}/publish",
         t.struct(
             {
@@ -54453,29 +54453,29 @@ def import_github(params=None):
                 "private": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["codespace-with-full-repository"]).optional(),
+        t.proxy(renames["codespace_with_full_repository"]).optional(),
         content_type="application/json",
         body_fields=("name", "private"),
     )
-    functions["codespaces/start-for-authenticated-user"] = github.post(
+    functions["codespaces_start_for_authenticated_user"] = github.post(
         "/user/codespaces/{codespace_name}/start",
         t.struct({"codespace_name": t.string()}),
         t.proxy(renames["codespace"]).optional(),
     )
-    functions["codespaces/stop-for-authenticated-user"] = github.post(
+    functions["codespaces_stop_for_authenticated_user"] = github.post(
         "/user/codespaces/{codespace_name}/stop",
         t.struct({"codespace_name": t.string()}),
         t.proxy(renames["codespace"]).optional(),
     )
     functions[
-        "packages/list-docker-migration-conflicting-packages-for-authenticated-user"
+        "packages_list_docker_migration_conflicting_packages_for_authenticated_user"
     ] = github.get(
         "/user/docker/conflicts",
         t.struct({}),
         t.array(t.proxy(renames["package"])),
     )
     functions[
-        "users/set-primary-email-visibility-for-authenticated-user"
+        "users_set_primary_email_visibility_for_authenticated_user"
     ] = github.patch(
         "/user/email/visibility",
         t.struct({"visibility": t.string()}),
@@ -54483,59 +54483,59 @@ def import_github(params=None):
         content_type="application/json",
         body_fields=("visibility",),
     )
-    functions["users/list-emails-for-authenticated-user"] = github.get(
+    functions["users_list_emails_for_authenticated_user"] = github.get(
         "/user/emails",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["email"])).optional(),
     )
-    functions["users/list-followers-for-authenticated-user"] = github.get(
+    functions["users_list_followers_for_authenticated_user"] = github.get(
         "/user/followers",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["users/list-followed-by-authenticated-user"] = github.get(
+    functions["users_list_followed_by_authenticated_user"] = github.get(
         "/user/following",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["users/check-person-is-followed-by-authenticated"] = github.get(
+    functions["users_check_person_is_followed_by_authenticated"] = github.get(
         "/user/following/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/follow"] = github.put(
+    functions["users_follow"] = github.put(
         "/user/following/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/unfollow"] = github.delete(
+    functions["users_unfollow"] = github.delete(
         "/user/following/{username}",
         t.struct({"username": t.string()}),
         t.boolean().optional(),
     )
-    functions["users/list-gpg-keys-for-authenticated-user"] = github.get(
+    functions["users_list_gpg_keys_for_authenticated_user"] = github.get(
         "/user/gpg_keys",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["gpg-key"])).optional(),
+        t.array(t.proxy(renames["gpg_key"])).optional(),
     )
-    functions["users/create-gpg-key-for-authenticated-user"] = github.post(
+    functions["users_create_gpg_key_for_authenticated_user"] = github.post(
         "/user/gpg_keys",
         t.struct({"name": t.string().optional(), "armored_public_key": t.string()}),
-        t.proxy(renames["gpg-key"]).optional(),
+        t.proxy(renames["gpg_key"]).optional(),
         content_type="application/json",
         body_fields=("name", "armored_public_key"),
     )
-    functions["users/get-gpg-key-for-authenticated-user"] = github.get(
+    functions["users_get_gpg_key_for_authenticated_user"] = github.get(
         "/user/gpg_keys/{gpg_key_id}",
         t.struct({"gpg_key_id": t.integer()}),
-        t.proxy(renames["gpg-key"]).optional(),
+        t.proxy(renames["gpg_key"]).optional(),
     )
-    functions["users/delete-gpg-key-for-authenticated-user"] = github.delete(
+    functions["users_delete_gpg_key_for_authenticated_user"] = github.delete(
         "/user/gpg_keys/{gpg_key_id}",
         t.struct({"gpg_key_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/list-installations-for-authenticated-user"] = github.get(
+    functions["apps_list_installations_for_authenticated_user"] = github.get(
         "/user/installations",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.struct(
@@ -54545,7 +54545,7 @@ def import_github(params=None):
             }
         ),
     )
-    functions["apps/list-installation-repos-for-authenticated-user"] = github.get(
+    functions["apps_list_installation_repos_for_authenticated_user"] = github.get(
         "/user/installations/{installation_id}/repositories",
         t.struct(
             {
@@ -54562,43 +54562,43 @@ def import_github(params=None):
             }
         ).optional(),
     )
-    functions["apps/add-repo-to-installation-for-authenticated-user"] = github.put(
+    functions["apps_add_repo_to_installation_for_authenticated_user"] = github.put(
         "/user/installations/{installation_id}/repositories/{repository_id}",
         t.struct({"installation_id": t.integer(), "repository_id": t.integer()}),
         t.boolean().optional(),
     )
     functions[
-        "apps/remove-repo-from-installation-for-authenticated-user"
+        "apps_remove_repo_from_installation_for_authenticated_user"
     ] = github.delete(
         "/user/installations/{installation_id}/repositories/{repository_id}",
         t.struct({"installation_id": t.integer(), "repository_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["interactions/get-restrictions-for-authenticated-user"] = github.get(
+    functions["interactions_get_restrictions_for_authenticated_user"] = github.get(
         "/user/interaction-limits",
         t.struct({}),
-        t.union([t.proxy(renames["interaction-limit-response"]), t.struct({})]),
+        t.union([t.proxy(renames["interaction_limit_response"]), t.struct({})]),
     )
-    functions["interactions/set-restrictions-for-authenticated-user"] = github.put(
+    functions["interactions_set_restrictions_for_authenticated_user"] = github.put(
         "/user/interaction-limits",
         t.struct(
             {
-                "limit": t.proxy(renames["interaction-group"]),
-                "expiry": t.proxy(renames["interaction-expiry"]).optional(),
+                "limit": t.proxy(renames["interaction_group"]),
+                "expiry": t.proxy(renames["interaction_expiry"]).optional(),
             }
         ),
-        t.proxy(renames["interaction-limit-response"]),
+        t.proxy(renames["interaction_limit_response"]),
         content_type="application/json",
         body_fields=("limit", "expiry"),
     )
     functions[
-        "interactions/remove-restrictions-for-authenticated-user"
+        "interactions_remove_restrictions_for_authenticated_user"
     ] = github.delete(
         "/user/interaction-limits",
         t.struct({}),
         t.boolean(),
     )
-    functions["issues/list-for-authenticated-user"] = github.get(
+    functions["issues_list_for_authenticated_user"] = github.get(
         "/user/issues",
         t.struct(
             {
@@ -54614,61 +54614,61 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["issue"])).optional(),
     )
-    functions["users/list-public-ssh-keys-for-authenticated-user"] = github.get(
+    functions["users_list_public_ssh_keys_for_authenticated_user"] = github.get(
         "/user/keys",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["key"])).optional(),
     )
-    functions["users/create-public-ssh-key-for-authenticated-user"] = github.post(
+    functions["users_create_public_ssh_key_for_authenticated_user"] = github.post(
         "/user/keys",
         t.struct({"title": t.string().optional(), "key": t.string()}),
         t.proxy(renames["key"]).optional(),
         content_type="application/json",
         body_fields=("title", "key"),
     )
-    functions["users/get-public-ssh-key-for-authenticated-user"] = github.get(
+    functions["users_get_public_ssh_key_for_authenticated_user"] = github.get(
         "/user/keys/{key_id}",
         t.struct({"key_id": t.integer()}),
         t.proxy(renames["key"]).optional(),
     )
-    functions["users/delete-public-ssh-key-for-authenticated-user"] = github.delete(
+    functions["users_delete_public_ssh_key_for_authenticated_user"] = github.delete(
         "/user/keys/{key_id}",
         t.struct({"key_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["apps/list-subscriptions-for-authenticated-user"] = github.get(
+    functions["apps_list_subscriptions_for_authenticated_user"] = github.get(
         "/user/marketplace_purchases",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["user-marketplace-purchase"])).optional(),
+        t.array(t.proxy(renames["user_marketplace_purchase"])).optional(),
     )
-    functions["apps/list-subscriptions-for-authenticated-user-stubbed"] = github.get(
+    functions["apps_list_subscriptions_for_authenticated_user_stubbed"] = github.get(
         "/user/marketplace_purchases/stubbed",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["user-marketplace-purchase"])),
+        t.array(t.proxy(renames["user_marketplace_purchase"])),
     )
-    functions["orgs/list-memberships-for-authenticated-user"] = github.get(
+    functions["orgs_list_memberships_for_authenticated_user"] = github.get(
         "/user/memberships/orgs",
         t.struct({"state": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["org-membership"])),
+        t.array(t.proxy(renames["org_membership"])),
     )
-    functions["orgs/get-membership-for-authenticated-user"] = github.get(
+    functions["orgs_get_membership_for_authenticated_user"] = github.get(
         "/user/memberships/orgs/{org}",
         t.struct({"org": t.string()}),
-        t.proxy(renames["org-membership"]).optional(),
+        t.proxy(renames["org_membership"]).optional(),
     )
-    functions["orgs/update-membership-for-authenticated-user"] = github.patch(
+    functions["orgs_update_membership_for_authenticated_user"] = github.patch(
         "/user/memberships/orgs/{org}",
         t.struct({"org": t.string(), "state": t.string()}),
-        t.proxy(renames["org-membership"]).optional(),
+        t.proxy(renames["org_membership"]).optional(),
         content_type="application/json",
         body_fields=("state",),
     )
-    functions["migrations/list-for-authenticated-user"] = github.get(
+    functions["migrations_list_for_authenticated_user"] = github.get(
         "/user/migrations",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["migration"])),
     )
-    functions["migrations/start-for-authenticated-user"] = github.post(
+    functions["migrations_start_for_authenticated_user"] = github.post(
         "/user/migrations",
         t.struct(
             {
@@ -54697,39 +54697,39 @@ def import_github(params=None):
             "repositories",
         ),
     )
-    functions["migrations/get-status-for-authenticated-user"] = github.get(
+    functions["migrations_get_status_for_authenticated_user"] = github.get(
         "/user/migrations/{migration_id}",
         t.struct({"migration_id": t.integer(), "exclude": t.array(t.string())}),
         t.proxy(renames["migration"]).optional(),
     )
-    functions["migrations/get-archive-for-authenticated-user"] = github.get(
+    functions["migrations_get_archive_for_authenticated_user"] = github.get(
         "/user/migrations/{migration_id}/archive",
         t.struct({"migration_id": t.integer()}),
         t.struct({}),
     )
-    functions["migrations/delete-archive-for-authenticated-user"] = github.delete(
+    functions["migrations_delete_archive_for_authenticated_user"] = github.delete(
         "/user/migrations/{migration_id}/archive",
         t.struct({"migration_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["migrations/unlock-repo-for-authenticated-user"] = github.delete(
+    functions["migrations_unlock_repo_for_authenticated_user"] = github.delete(
         "/user/migrations/{migration_id}/repos/{repo_name}/lock",
         t.struct({"migration_id": t.integer(), "repo_name": t.string()}),
         t.boolean().optional(),
     )
-    functions["migrations/list-repos-for-authenticated-user"] = github.get(
+    functions["migrations_list_repos_for_authenticated_user"] = github.get(
         "/user/migrations/{migration_id}/repositories",
         t.struct(
             {"migration_id": t.integer(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["minimal-repository"])).optional(),
+        t.array(t.proxy(renames["minimal_repository"])).optional(),
     )
-    functions["orgs/list-for-authenticated-user"] = github.get(
+    functions["orgs_list_for_authenticated_user"] = github.get(
         "/user/orgs",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["organization-simple"])),
+        t.array(t.proxy(renames["organization_simple"])),
     )
-    functions["packages/list-packages-for-authenticated-user"] = github.get(
+    functions["packages_list_packages_for_authenticated_user"] = github.get(
         "/user/packages",
         t.struct(
             {
@@ -54741,17 +54741,17 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["package"])),
     )
-    functions["packages/get-package-for-authenticated-user"] = github.get(
+    functions["packages_get_package_for_authenticated_user"] = github.get(
         "/user/packages/{package_type}/{package_name}",
         t.struct({"package_type": t.string(), "package_name": t.string()}),
         t.proxy(renames["package"]),
     )
-    functions["packages/delete-package-for-authenticated-user"] = github.delete(
+    functions["packages_delete_package_for_authenticated_user"] = github.delete(
         "/user/packages/{package_type}/{package_name}",
         t.struct({"package_type": t.string(), "package_name": t.string()}),
         t.boolean().optional(),
     )
-    functions["packages/restore-package-for-authenticated-user"] = github.post(
+    functions["packages_restore_package_for_authenticated_user"] = github.post(
         "/user/packages/{package_type}/{package_name}/restore",
         t.struct(
             {
@@ -54763,7 +54763,7 @@ def import_github(params=None):
         t.boolean().optional(),
     )
     functions[
-        "packages/get-all-package-versions-for-package-owned-by-authenticated-user"
+        "packages_get_all_package_versions_for_package_owned_by_authenticated_user"
     ] = github.get(
         "/user/packages/{package_type}/{package_name}/versions",
         t.struct(
@@ -54775,9 +54775,9 @@ def import_github(params=None):
                 "state": t.string(),
             }
         ),
-        t.array(t.proxy(renames["package-version"])).optional(),
+        t.array(t.proxy(renames["package_version"])).optional(),
     )
-    functions["packages/get-package-version-for-authenticated-user"] = github.get(
+    functions["packages_get_package_version_for_authenticated_user"] = github.get(
         "/user/packages/{package_type}/{package_name}/versions/{package_version_id}",
         t.struct(
             {
@@ -54786,9 +54786,9 @@ def import_github(params=None):
                 "package_version_id": t.integer(),
             }
         ),
-        t.proxy(renames["package-version"]),
+        t.proxy(renames["package_version"]),
     )
-    functions["packages/delete-package-version-for-authenticated-user"] = github.delete(
+    functions["packages_delete_package_version_for_authenticated_user"] = github.delete(
         "/user/packages/{package_type}/{package_name}/versions/{package_version_id}",
         t.struct(
             {
@@ -54799,7 +54799,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["packages/restore-package-version-for-authenticated-user"] = github.post(
+    functions["packages_restore_package_version_for_authenticated_user"] = github.post(
         "/user/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
         t.struct(
             {
@@ -54810,19 +54810,19 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["projects/create-for-authenticated-user"] = github.post(
+    functions["projects_create_for_authenticated_user"] = github.post(
         "/user/projects",
         t.struct({"name": t.string(), "body": t.string().optional()}),
         t.proxy(renames["project"]),
         content_type="application/json",
         body_fields=("name", "body"),
     )
-    functions["users/list-public-emails-for-authenticated-user"] = github.get(
+    functions["users_list_public_emails_for_authenticated_user"] = github.get(
         "/user/public_emails",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["email"])).optional(),
     )
-    functions["repos/list-for-authenticated-user"] = github.get(
+    functions["repos_list_for_authenticated_user"] = github.get(
         "/user/repos",
         t.struct(
             {
@@ -54839,7 +54839,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["repository"])),
     )
-    functions["repos/create-for-authenticated-user"] = github.post(
+    functions["repos_create_for_authenticated_user"] = github.post(
         "/user/repos",
         t.struct(
             {
@@ -54896,63 +54896,63 @@ def import_github(params=None):
             "is_template",
         ),
     )
-    functions["repos/list-invitations-for-authenticated-user"] = github.get(
+    functions["repos_list_invitations_for_authenticated_user"] = github.get(
         "/user/repository_invitations",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["repository-invitation"])).optional(),
+        t.array(t.proxy(renames["repository_invitation"])).optional(),
     )
-    functions["repos/accept-invitation-for-authenticated-user"] = github.patch(
+    functions["repos_accept_invitation_for_authenticated_user"] = github.patch(
         "/user/repository_invitations/{invitation_id}",
         t.struct({"invitation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["repos/decline-invitation-for-authenticated-user"] = github.delete(
+    functions["repos_decline_invitation_for_authenticated_user"] = github.delete(
         "/user/repository_invitations/{invitation_id}",
         t.struct({"invitation_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["users/list-social-accounts-for-authenticated-user"] = github.get(
+    functions["users_list_social_accounts_for_authenticated_user"] = github.get(
         "/user/social_accounts",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["social-account"])).optional(),
+        t.array(t.proxy(renames["social_account"])).optional(),
     )
-    functions["users/add-social-account-for-authenticated-user"] = github.post(
+    functions["users_add_social_account_for_authenticated_user"] = github.post(
         "/user/social_accounts",
         t.struct({"account_urls": t.array(t.string())}),
-        t.array(t.proxy(renames["social-account"])).optional(),
+        t.array(t.proxy(renames["social_account"])).optional(),
         content_type="application/json",
         body_fields=("account_urls",),
     )
-    functions["users/delete-social-account-for-authenticated-user"] = github.delete(
+    functions["users_delete_social_account_for_authenticated_user"] = github.delete(
         "/user/social_accounts",
         t.struct({"account_urls": t.array(t.string())}),
         t.boolean().optional(),
         content_type="application/json",
         body_fields=("account_urls",),
     )
-    functions["users/list-ssh-signing-keys-for-authenticated-user"] = github.get(
+    functions["users_list_ssh_signing_keys_for_authenticated_user"] = github.get(
         "/user/ssh_signing_keys",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["ssh-signing-key"])).optional(),
+        t.array(t.proxy(renames["ssh_signing_key"])).optional(),
     )
-    functions["users/create-ssh-signing-key-for-authenticated-user"] = github.post(
+    functions["users_create_ssh_signing_key_for_authenticated_user"] = github.post(
         "/user/ssh_signing_keys",
         t.struct({"title": t.string().optional(), "key": t.string()}),
-        t.proxy(renames["ssh-signing-key"]).optional(),
+        t.proxy(renames["ssh_signing_key"]).optional(),
         content_type="application/json",
         body_fields=("title", "key"),
     )
-    functions["users/get-ssh-signing-key-for-authenticated-user"] = github.get(
+    functions["users_get_ssh_signing_key_for_authenticated_user"] = github.get(
         "/user/ssh_signing_keys/{ssh_signing_key_id}",
         t.struct({"ssh_signing_key_id": t.integer()}),
-        t.proxy(renames["ssh-signing-key"]).optional(),
+        t.proxy(renames["ssh_signing_key"]).optional(),
     )
-    functions["users/delete-ssh-signing-key-for-authenticated-user"] = github.delete(
+    functions["users_delete_ssh_signing_key_for_authenticated_user"] = github.delete(
         "/user/ssh_signing_keys/{ssh_signing_key_id}",
         t.struct({"ssh_signing_key_id": t.integer()}),
         t.boolean().optional(),
     )
-    functions["activity/list-repos-starred-by-authenticated-user"] = github.get(
+    functions["activity_list_repos_starred_by_authenticated_user"] = github.get(
         "/user/starred",
         t.struct(
             {
@@ -54964,58 +54964,58 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["repository"])),
     )
-    functions["activity/check-repo-is-starred-by-authenticated-user"] = github.get(
+    functions["activity_check_repo_is_starred_by_authenticated_user"] = github.get(
         "/user/starred/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["activity/star-repo-for-authenticated-user"] = github.put(
+    functions["activity_star_repo_for_authenticated_user"] = github.put(
         "/user/starred/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["activity/unstar-repo-for-authenticated-user"] = github.delete(
+    functions["activity_unstar_repo_for_authenticated_user"] = github.delete(
         "/user/starred/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.boolean().optional(),
     )
-    functions["activity/list-watched-repos-for-authenticated-user"] = github.get(
+    functions["activity_list_watched_repos_for_authenticated_user"] = github.get(
         "/user/subscriptions",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["minimal-repository"])),
+        t.array(t.proxy(renames["minimal_repository"])),
     )
-    functions["teams/list-for-authenticated-user"] = github.get(
+    functions["teams_list_for_authenticated_user"] = github.get(
         "/user/teams",
         t.struct({"per_page": t.integer(), "page": t.integer()}),
-        t.array(t.proxy(renames["team-full"])).optional(),
+        t.array(t.proxy(renames["team_full"])).optional(),
     )
-    functions["users/list"] = github.get(
+    functions["users_list"] = github.get(
         "/users",
         t.struct({"since": t.integer(), "per_page": t.integer()}),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["users/get-by-username"] = github.get(
+    functions["users_get_by_username"] = github.get(
         "/users/{username}",
         t.struct({"username": t.string()}),
         t.either(
-            [t.proxy(renames["private-user"]), t.proxy(renames["public-user"])]
+            [t.proxy(renames["private_user"]), t.proxy(renames["public_user"])]
         ).optional(),
     )
     functions[
-        "packages/list-docker-migration-conflicting-packages-for-user"
+        "packages_list_docker_migration_conflicting_packages_for_user"
     ] = github.get(
         "/users/{username}/docker/conflicts",
         t.struct({"username": t.string()}),
         t.array(t.proxy(renames["package"])),
     )
-    functions["activity/list-events-for-authenticated-user"] = github.get(
+    functions["activity_list_events_for_authenticated_user"] = github.get(
         "/users/{username}/events",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/list-org-events-for-authenticated-user"] = github.get(
+    functions["activity_list_org_events_for_authenticated_user"] = github.get(
         "/users/{username}/events/orgs/{org}",
         t.struct(
             {
@@ -55027,33 +55027,33 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/list-public-events-for-user"] = github.get(
+    functions["activity_list_public_events_for_user"] = github.get(
         "/users/{username}/events/public",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["users/list-followers-for-user"] = github.get(
+    functions["users_list_followers_for_user"] = github.get(
         "/users/{username}/followers",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["users/list-following-for-user"] = github.get(
+    functions["users_list_following_for_user"] = github.get(
         "/users/{username}/following",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["simple-user"])),
+        t.array(t.proxy(renames["simple_user"])),
     )
-    functions["users/check-following-for-user"] = github.get(
+    functions["users_check_following_for_user"] = github.get(
         "/users/{username}/following/{target_user}",
         t.struct({"username": t.string(), "target_user": t.string()}),
         t.boolean().optional(),
     )
-    functions["gists/list-for-user"] = github.get(
+    functions["gists_list_for_user"] = github.get(
         "/users/{username}/gists",
         t.struct(
             {
@@ -55063,16 +55063,16 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["base-gist"])),
+        t.array(t.proxy(renames["base_gist"])),
     )
-    functions["users/list-gpg-keys-for-user"] = github.get(
+    functions["users_list_gpg_keys_for_user"] = github.get(
         "/users/{username}/gpg_keys",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["gpg-key"])),
+        t.array(t.proxy(renames["gpg_key"])),
     )
-    functions["users/get-context-for-user"] = github.get(
+    functions["users_get_context_for_user"] = github.get(
         "/users/{username}/hovercard",
         t.struct(
             {
@@ -55083,26 +55083,26 @@ def import_github(params=None):
         ),
         t.proxy(renames["hovercard"]).optional(),
     )
-    functions["apps/get-user-installation"] = github.get(
+    functions["apps_get_user_installation"] = github.get(
         "/users/{username}/installation",
         t.struct({"username": t.string()}),
         t.proxy(renames["installation"]),
     )
-    functions["users/list-public-keys-for-user"] = github.get(
+    functions["users_list_public_keys_for_user"] = github.get(
         "/users/{username}/keys",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["key-simple"])),
+        t.array(t.proxy(renames["key_simple"])),
     )
-    functions["orgs/list-for-user"] = github.get(
+    functions["orgs_list_for_user"] = github.get(
         "/users/{username}/orgs",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["organization-simple"])),
+        t.array(t.proxy(renames["organization_simple"])),
     )
-    functions["packages/list-packages-for-user"] = github.get(
+    functions["packages_list_packages_for_user"] = github.get(
         "/users/{username}/packages",
         t.struct(
             {
@@ -55115,7 +55115,7 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["package"])),
     )
-    functions["packages/get-package-for-user"] = github.get(
+    functions["packages_get_package_for_user"] = github.get(
         "/users/{username}/packages/{package_type}/{package_name}",
         t.struct(
             {
@@ -55126,7 +55126,7 @@ def import_github(params=None):
         ),
         t.proxy(renames["package"]),
     )
-    functions["packages/delete-package-for-user"] = github.delete(
+    functions["packages_delete_package_for_user"] = github.delete(
         "/users/{username}/packages/{package_type}/{package_name}",
         t.struct(
             {
@@ -55137,7 +55137,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["packages/restore-package-for-user"] = github.post(
+    functions["packages_restore_package_for_user"] = github.post(
         "/users/{username}/packages/{package_type}/{package_name}/restore",
         t.struct(
             {
@@ -55150,7 +55150,7 @@ def import_github(params=None):
         t.boolean().optional(),
     )
     functions[
-        "packages/get-all-package-versions-for-package-owned-by-user"
+        "packages_get_all_package_versions_for_package_owned_by_user"
     ] = github.get(
         "/users/{username}/packages/{package_type}/{package_name}/versions",
         t.struct(
@@ -55160,9 +55160,9 @@ def import_github(params=None):
                 "username": t.string(),
             }
         ),
-        t.array(t.proxy(renames["package-version"])).optional(),
+        t.array(t.proxy(renames["package_version"])).optional(),
     )
-    functions["packages/get-package-version-for-user"] = github.get(
+    functions["packages_get_package_version_for_user"] = github.get(
         "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}",
         t.struct(
             {
@@ -55172,9 +55172,9 @@ def import_github(params=None):
                 "username": t.string(),
             }
         ),
-        t.proxy(renames["package-version"]),
+        t.proxy(renames["package_version"]),
     )
-    functions["packages/delete-package-version-for-user"] = github.delete(
+    functions["packages_delete_package_version_for_user"] = github.delete(
         "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}",
         t.struct(
             {
@@ -55186,7 +55186,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["packages/restore-package-version-for-user"] = github.post(
+    functions["packages_restore_package_version_for_user"] = github.post(
         "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
         t.struct(
             {
@@ -55198,7 +55198,7 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
-    functions["projects/list-for-user"] = github.get(
+    functions["projects_list_for_user"] = github.get(
         "/users/{username}/projects",
         t.struct(
             {
@@ -55210,21 +55210,21 @@ def import_github(params=None):
         ),
         t.array(t.proxy(renames["project"])),
     )
-    functions["activity/list-received-events-for-user"] = github.get(
+    functions["activity_list_received_events_for_user"] = github.get(
         "/users/{username}/received_events",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["activity/list-received-public-events-for-user"] = github.get(
+    functions["activity_list_received_public_events_for_user"] = github.get(
         "/users/{username}/received_events/public",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
         t.array(t.proxy(renames["event"])),
     )
-    functions["repos/list-for-user"] = github.get(
+    functions["repos_list_for_user"] = github.get(
         "/users/{username}/repos",
         t.struct(
             {
@@ -55236,38 +55236,38 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["minimal-repository"])),
+        t.array(t.proxy(renames["minimal_repository"])),
     )
-    functions["billing/get-github-actions-billing-user"] = github.get(
+    functions["billing_get_github_actions_billing_user"] = github.get(
         "/users/{username}/settings/billing/actions",
         t.struct({"username": t.string()}),
-        t.proxy(renames["actions-billing-usage"]),
+        t.proxy(renames["actions_billing_usage"]),
     )
-    functions["billing/get-github-packages-billing-user"] = github.get(
+    functions["billing_get_github_packages_billing_user"] = github.get(
         "/users/{username}/settings/billing/packages",
         t.struct({"username": t.string()}),
-        t.proxy(renames["packages-billing-usage"]),
+        t.proxy(renames["packages_billing_usage"]),
     )
-    functions["billing/get-shared-storage-billing-user"] = github.get(
+    functions["billing_get_shared_storage_billing_user"] = github.get(
         "/users/{username}/settings/billing/shared-storage",
         t.struct({"username": t.string()}),
-        t.proxy(renames["combined-billing-usage"]),
+        t.proxy(renames["combined_billing_usage"]),
     )
-    functions["users/list-social-accounts-for-user"] = github.get(
+    functions["users_list_social_accounts_for_user"] = github.get(
         "/users/{username}/social_accounts",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["social-account"])),
+        t.array(t.proxy(renames["social_account"])),
     )
-    functions["users/list-ssh-signing-keys-for-user"] = github.get(
+    functions["users_list_ssh_signing_keys_for_user"] = github.get(
         "/users/{username}/ssh_signing_keys",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["ssh-signing-key"])),
+        t.array(t.proxy(renames["ssh_signing_key"])),
     )
-    functions["activity/list-repos-starred-by-user"] = github.get(
+    functions["activity_list_repos_starred_by_user"] = github.get(
         "/users/{username}/starred",
         t.struct(
             {
@@ -55280,19 +55280,19 @@ def import_github(params=None):
         ),
         t.union(
             [
-                t.array(t.proxy(renames["starred-repository"])),
+                t.array(t.proxy(renames["starred_repository"])),
                 t.array(t.proxy(renames["repository"])),
             ]
         ),
     )
-    functions["activity/list-repos-watched-by-user"] = github.get(
+    functions["activity_list_repos_watched_by_user"] = github.get(
         "/users/{username}/subscriptions",
         t.struct(
             {"username": t.string(), "per_page": t.integer(), "page": t.integer()}
         ),
-        t.array(t.proxy(renames["minimal-repository"])),
+        t.array(t.proxy(renames["minimal_repository"])),
     )
-    functions["meta/get-all-versions"] = github.get(
+    functions["meta_get_all_versions"] = github.get(
         "/versions",
         t.struct({}),
         t.array(t.string()).optional(),
