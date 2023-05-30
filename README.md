@@ -1,6 +1,15 @@
 # Typegraph Core
 
-## Setup
+[Metatype](https://github.com/metatypedev/metatype) standard library.
+
+## Getting started
+
+```
+pip install typegraph-std
+```
+
+### Development
+
 ```shell
 pre-commit install
 python3 -m venv .venv

@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "typegraph_std"
 version = "0.0.1"
-description = "All your preferred typegraphs in a single package."
+description = "Metatype standard library."
 authors = ["Metatype Contributors <support@metatype.dev>"]
 license = "MPL-2.0"
 homepage = "https://metatype.dev"
-repository = "https://github.com/metatypedev/typegraphs"
-include = ["typegraphs/**/*", "LICENSE.md"]
+repository = "https://github.com/metatypedev/typegraph_std"
+include = ["typegraph_std", "LICENSE.md"]
 keywords = ["metatype", "typegraph"]
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
@@ -15,7 +15,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-typegraph = "^0.1.7"
+typegraph = "^0.1.9"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.0.265"
