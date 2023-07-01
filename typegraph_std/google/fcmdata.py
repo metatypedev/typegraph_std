@@ -1,28 +1,28 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_fcmdata() -> Import:
+def import_fcmdata():
     fcmdata = HTTPRuntime("https://fcmdata.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_fcmdata_1_ErrorResponse",
         "GoogleFirebaseFcmDataV1beta1MessageInsightPercentsIn": "_fcmdata_2_GoogleFirebaseFcmDataV1beta1MessageInsightPercentsIn",
         "GoogleFirebaseFcmDataV1beta1MessageInsightPercentsOut": "_fcmdata_3_GoogleFirebaseFcmDataV1beta1MessageInsightPercentsOut",
-        "GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsIn": "_fcmdata_4_GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsIn",
-        "GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsOut": "_fcmdata_5_GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsOut",
-        "GoogleFirebaseFcmDataV1beta1DataIn": "_fcmdata_6_GoogleFirebaseFcmDataV1beta1DataIn",
-        "GoogleFirebaseFcmDataV1beta1DataOut": "_fcmdata_7_GoogleFirebaseFcmDataV1beta1DataOut",
-        "GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn": "_fcmdata_8_GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn",
-        "GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut": "_fcmdata_9_GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut",
-        "GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn": "_fcmdata_10_GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn",
-        "GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut": "_fcmdata_11_GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut",
-        "GoogleTypeDateIn": "_fcmdata_12_GoogleTypeDateIn",
-        "GoogleTypeDateOut": "_fcmdata_13_GoogleTypeDateOut",
-        "GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn": "_fcmdata_14_GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn",
-        "GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut": "_fcmdata_15_GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut",
+        "GoogleTypeDateIn": "_fcmdata_4_GoogleTypeDateIn",
+        "GoogleTypeDateOut": "_fcmdata_5_GoogleTypeDateOut",
+        "GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn": "_fcmdata_6_GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn",
+        "GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut": "_fcmdata_7_GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut",
+        "GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn": "_fcmdata_8_GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn",
+        "GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut": "_fcmdata_9_GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut",
+        "GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn": "_fcmdata_10_GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn",
+        "GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut": "_fcmdata_11_GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut",
+        "GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsIn": "_fcmdata_12_GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsIn",
+        "GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsOut": "_fcmdata_13_GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsOut",
+        "GoogleFirebaseFcmDataV1beta1DataIn": "_fcmdata_14_GoogleFirebaseFcmDataV1beta1DataIn",
+        "GoogleFirebaseFcmDataV1beta1DataOut": "_fcmdata_15_GoogleFirebaseFcmDataV1beta1DataOut",
     }
 
     types = {}
@@ -38,22 +38,90 @@ def import_fcmdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleFirebaseFcmDataV1beta1MessageInsightPercentsOut"])
+    types["GoogleTypeDateIn"] = t.struct(
+        {
+            "day": t.integer().optional(),
+            "year": t.integer().optional(),
+            "month": t.integer().optional(),
+        }
+    ).named(renames["GoogleTypeDateIn"])
+    types["GoogleTypeDateOut"] = t.struct(
+        {
+            "day": t.integer().optional(),
+            "year": t.integer().optional(),
+            "month": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleTypeDateOut"])
+    types["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn"] = t.struct(
+        {
+            "droppedTooManyPendingMessages": t.number().optional(),
+            "pending": t.number().optional(),
+            "droppedDeviceInactive": t.number().optional(),
+            "droppedAppForceStopped": t.number().optional(),
+            "delivered": t.number().optional(),
+        }
+    ).named(renames["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn"])
+    types["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut"] = t.struct(
+        {
+            "droppedTooManyPendingMessages": t.number().optional(),
+            "pending": t.number().optional(),
+            "droppedDeviceInactive": t.number().optional(),
+            "droppedAppForceStopped": t.number().optional(),
+            "delivered": t.number().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut"])
+    types["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn"] = t.struct(
+        {
+            "appId": t.string().optional(),
+            "data": t.proxy(renames["GoogleFirebaseFcmDataV1beta1DataIn"]).optional(),
+            "date": t.proxy(renames["GoogleTypeDateIn"]).optional(),
+            "analyticsLabel": t.string().optional(),
+        }
+    ).named(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn"])
+    types["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut"] = t.struct(
+        {
+            "appId": t.string().optional(),
+            "data": t.proxy(renames["GoogleFirebaseFcmDataV1beta1DataOut"]).optional(),
+            "date": t.proxy(renames["GoogleTypeDateOut"]).optional(),
+            "analyticsLabel": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut"])
+    types["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn"] = t.struct(
+        {
+            "androidDeliveryData": t.array(
+                t.proxy(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn"])
+    types["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut"] = t.struct(
+        {
+            "androidDeliveryData": t.array(
+                t.proxy(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut"])
     types["GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsIn"] = t.struct(
         {
-            "delayedDeviceDoze": t.number().optional(),
             "delayedMessageThrottled": t.number().optional(),
-            "delayedDeviceOffline": t.number().optional(),
-            "deliveredNoDelay": t.number().optional(),
             "delayedUserStopped": t.number().optional(),
+            "delayedDeviceDoze": t.number().optional(),
+            "deliveredNoDelay": t.number().optional(),
+            "delayedDeviceOffline": t.number().optional(),
         }
     ).named(renames["GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsIn"])
     types["GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsOut"] = t.struct(
         {
-            "delayedDeviceDoze": t.number().optional(),
             "delayedMessageThrottled": t.number().optional(),
-            "delayedDeviceOffline": t.number().optional(),
-            "deliveredNoDelay": t.number().optional(),
             "delayedUserStopped": t.number().optional(),
+            "delayedDeviceDoze": t.number().optional(),
+            "deliveredNoDelay": t.number().optional(),
+            "delayedDeviceOffline": t.number().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercentsOut"])
@@ -86,74 +154,6 @@ def import_fcmdata() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleFirebaseFcmDataV1beta1DataOut"])
-    types["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn"] = t.struct(
-        {
-            "androidDeliveryData": t.array(
-                t.proxy(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseIn"])
-    types["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut"] = t.struct(
-        {
-            "androidDeliveryData": t.array(
-                t.proxy(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponseOut"])
-    types["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn"] = t.struct(
-        {
-            "analyticsLabel": t.string().optional(),
-            "date": t.proxy(renames["GoogleTypeDateIn"]).optional(),
-            "appId": t.string().optional(),
-            "data": t.proxy(renames["GoogleFirebaseFcmDataV1beta1DataIn"]).optional(),
-        }
-    ).named(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataIn"])
-    types["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut"] = t.struct(
-        {
-            "analyticsLabel": t.string().optional(),
-            "date": t.proxy(renames["GoogleTypeDateOut"]).optional(),
-            "appId": t.string().optional(),
-            "data": t.proxy(renames["GoogleFirebaseFcmDataV1beta1DataOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleFirebaseFcmDataV1beta1AndroidDeliveryDataOut"])
-    types["GoogleTypeDateIn"] = t.struct(
-        {
-            "month": t.integer().optional(),
-            "day": t.integer().optional(),
-            "year": t.integer().optional(),
-        }
-    ).named(renames["GoogleTypeDateIn"])
-    types["GoogleTypeDateOut"] = t.struct(
-        {
-            "month": t.integer().optional(),
-            "day": t.integer().optional(),
-            "year": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleTypeDateOut"])
-    types["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn"] = t.struct(
-        {
-            "droppedAppForceStopped": t.number().optional(),
-            "delivered": t.number().optional(),
-            "droppedDeviceInactive": t.number().optional(),
-            "pending": t.number().optional(),
-            "droppedTooManyPendingMessages": t.number().optional(),
-        }
-    ).named(renames["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsIn"])
-    types["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut"] = t.struct(
-        {
-            "droppedAppForceStopped": t.number().optional(),
-            "delivered": t.number().optional(),
-            "droppedDeviceInactive": t.number().optional(),
-            "pending": t.number().optional(),
-            "droppedTooManyPendingMessages": t.number().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleFirebaseFcmDataV1beta1MessageOutcomePercentsOut"])
 
     functions = {}
     functions["projectsAndroidAppsDeliveryDataList"] = fcmdata.get(
@@ -161,8 +161,8 @@ def import_fcmdata() -> Import:
         t.struct(
             {
                 "parent": t.string(),
-                "pageSize": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),

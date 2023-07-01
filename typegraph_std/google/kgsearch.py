@@ -1,10 +1,10 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_kgsearch() -> Import:
+def import_kgsearch():
     kgsearch = HTTPRuntime("https://kgsearch.googleapis.com/")
 
     renames = {
@@ -19,20 +19,20 @@ def import_kgsearch() -> Import:
     ).named(renames["ErrorResponse"])
     types["SearchResponseIn"] = t.struct(
         {
+            "@context": t.struct({"_": t.string().optional()}).optional(),
+            "@type": t.struct({"_": t.string().optional()}).optional(),
             "itemListElement": t.array(
                 t.struct({"_": t.string().optional()})
             ).optional(),
-            "@context": t.struct({"_": t.string().optional()}).optional(),
-            "@type": t.struct({"_": t.string().optional()}).optional(),
         }
     ).named(renames["SearchResponseIn"])
     types["SearchResponseOut"] = t.struct(
         {
+            "@context": t.struct({"_": t.string().optional()}).optional(),
+            "@type": t.struct({"_": t.string().optional()}).optional(),
             "itemListElement": t.array(
                 t.struct({"_": t.string().optional()})
             ).optional(),
-            "@context": t.struct({"_": t.string().optional()}).optional(),
-            "@type": t.struct({"_": t.string().optional()}).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SearchResponseOut"])
@@ -42,13 +42,13 @@ def import_kgsearch() -> Import:
         "v1/entities:search",
         t.struct(
             {
-                "ids": t.string().optional(),
                 "prefix": t.boolean().optional(),
                 "limit": t.integer().optional(),
-                "languages": t.string().optional(),
                 "indent": t.boolean().optional(),
+                "ids": t.string().optional(),
                 "query": t.string().optional(),
                 "types": t.string().optional(),
+                "languages": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),

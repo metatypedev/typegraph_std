@@ -1,50 +1,50 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_playcustomapp() -> Import:
+def import_playcustomapp():
     playcustomapp = HTTPRuntime("https://playcustomapp.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_playcustomapp_1_ErrorResponse",
-        "CustomAppIn": "_playcustomapp_2_CustomAppIn",
-        "CustomAppOut": "_playcustomapp_3_CustomAppOut",
-        "OrganizationIn": "_playcustomapp_4_OrganizationIn",
-        "OrganizationOut": "_playcustomapp_5_OrganizationOut",
+        "OrganizationIn": "_playcustomapp_2_OrganizationIn",
+        "OrganizationOut": "_playcustomapp_3_OrganizationOut",
+        "CustomAppIn": "_playcustomapp_4_CustomAppIn",
+        "CustomAppOut": "_playcustomapp_5_CustomAppOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
+    types["OrganizationIn"] = t.struct(
+        {"organizationId": t.string(), "organizationName": t.string().optional()}
+    ).named(renames["OrganizationIn"])
+    types["OrganizationOut"] = t.struct(
+        {
+            "organizationId": t.string(),
+            "organizationName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OrganizationOut"])
     types["CustomAppIn"] = t.struct(
         {
-            "organizations": t.array(t.proxy(renames["OrganizationIn"])).optional(),
             "languageCode": t.string().optional(),
+            "organizations": t.array(t.proxy(renames["OrganizationIn"])).optional(),
             "title": t.string().optional(),
         }
     ).named(renames["CustomAppIn"])
     types["CustomAppOut"] = t.struct(
         {
             "packageName": t.string().optional(),
-            "organizations": t.array(t.proxy(renames["OrganizationOut"])).optional(),
             "languageCode": t.string().optional(),
+            "organizations": t.array(t.proxy(renames["OrganizationOut"])).optional(),
             "title": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CustomAppOut"])
-    types["OrganizationIn"] = t.struct(
-        {"organizationName": t.string().optional(), "organizationId": t.string()}
-    ).named(renames["OrganizationIn"])
-    types["OrganizationOut"] = t.struct(
-        {
-            "organizationName": t.string().optional(),
-            "organizationId": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OrganizationOut"])
 
     functions = {}
     functions["accountsCustomAppsCreate"] = playcustomapp.post(
@@ -52,8 +52,8 @@ def import_playcustomapp() -> Import:
         t.struct(
             {
                 "account": t.string().optional(),
-                "organizations": t.array(t.proxy(renames["OrganizationIn"])).optional(),
                 "languageCode": t.string().optional(),
+                "organizations": t.array(t.proxy(renames["OrganizationIn"])).optional(),
                 "title": t.string().optional(),
                 "auth": t.string().optional(),
             }

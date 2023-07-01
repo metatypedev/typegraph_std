@@ -1,49 +1,26 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_abusiveexperiencereport() -> Import:
+def import_abusiveexperiencereport():
     abusiveexperiencereport = HTTPRuntime(
         "https://abusiveexperiencereport.googleapis.com/"
     )
 
     renames = {
         "ErrorResponse": "_abusiveexperiencereport_1_ErrorResponse",
-        "SiteSummaryResponseIn": "_abusiveexperiencereport_2_SiteSummaryResponseIn",
-        "SiteSummaryResponseOut": "_abusiveexperiencereport_3_SiteSummaryResponseOut",
-        "ViolatingSitesResponseIn": "_abusiveexperiencereport_4_ViolatingSitesResponseIn",
-        "ViolatingSitesResponseOut": "_abusiveexperiencereport_5_ViolatingSitesResponseOut",
+        "ViolatingSitesResponseIn": "_abusiveexperiencereport_2_ViolatingSitesResponseIn",
+        "ViolatingSitesResponseOut": "_abusiveexperiencereport_3_ViolatingSitesResponseOut",
+        "SiteSummaryResponseIn": "_abusiveexperiencereport_4_SiteSummaryResponseIn",
+        "SiteSummaryResponseOut": "_abusiveexperiencereport_5_SiteSummaryResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["SiteSummaryResponseIn"] = t.struct(
-        {
-            "reviewedSite": t.string().optional(),
-            "reportUrl": t.string().optional(),
-            "lastChangeTime": t.string().optional(),
-            "enforcementTime": t.string().optional(),
-            "underReview": t.boolean().optional(),
-            "filterStatus": t.string().optional(),
-            "abusiveStatus": t.string().optional(),
-        }
-    ).named(renames["SiteSummaryResponseIn"])
-    types["SiteSummaryResponseOut"] = t.struct(
-        {
-            "reviewedSite": t.string().optional(),
-            "reportUrl": t.string().optional(),
-            "lastChangeTime": t.string().optional(),
-            "enforcementTime": t.string().optional(),
-            "underReview": t.boolean().optional(),
-            "filterStatus": t.string().optional(),
-            "abusiveStatus": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SiteSummaryResponseOut"])
     types["ViolatingSitesResponseIn"] = t.struct(
         {
             "violatingSites": t.array(
@@ -59,6 +36,29 @@ def import_abusiveexperiencereport() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ViolatingSitesResponseOut"])
+    types["SiteSummaryResponseIn"] = t.struct(
+        {
+            "reportUrl": t.string().optional(),
+            "enforcementTime": t.string().optional(),
+            "filterStatus": t.string().optional(),
+            "underReview": t.boolean().optional(),
+            "reviewedSite": t.string().optional(),
+            "lastChangeTime": t.string().optional(),
+            "abusiveStatus": t.string().optional(),
+        }
+    ).named(renames["SiteSummaryResponseIn"])
+    types["SiteSummaryResponseOut"] = t.struct(
+        {
+            "reportUrl": t.string().optional(),
+            "enforcementTime": t.string().optional(),
+            "filterStatus": t.string().optional(),
+            "underReview": t.boolean().optional(),
+            "reviewedSite": t.string().optional(),
+            "lastChangeTime": t.string().optional(),
+            "abusiveStatus": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SiteSummaryResponseOut"])
 
     functions = {}
     functions["violatingSitesList"] = abusiveexperiencereport.get(

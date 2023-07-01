@@ -1,40 +1,74 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_digitalassetlinks() -> Import:
+def import_digitalassetlinks():
     digitalassetlinks = HTTPRuntime("https://digitalassetlinks.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_digitalassetlinks_1_ErrorResponse",
-        "CertificateInfoIn": "_digitalassetlinks_2_CertificateInfoIn",
-        "CertificateInfoOut": "_digitalassetlinks_3_CertificateInfoOut",
-        "BulkCheckRequestIn": "_digitalassetlinks_4_BulkCheckRequestIn",
-        "BulkCheckRequestOut": "_digitalassetlinks_5_BulkCheckRequestOut",
-        "AssetIn": "_digitalassetlinks_6_AssetIn",
-        "AssetOut": "_digitalassetlinks_7_AssetOut",
-        "StatementIn": "_digitalassetlinks_8_StatementIn",
-        "StatementOut": "_digitalassetlinks_9_StatementOut",
-        "BulkCheckResponseIn": "_digitalassetlinks_10_BulkCheckResponseIn",
-        "BulkCheckResponseOut": "_digitalassetlinks_11_BulkCheckResponseOut",
-        "StatementTemplateIn": "_digitalassetlinks_12_StatementTemplateIn",
-        "StatementTemplateOut": "_digitalassetlinks_13_StatementTemplateOut",
-        "CheckResponseIn": "_digitalassetlinks_14_CheckResponseIn",
-        "CheckResponseOut": "_digitalassetlinks_15_CheckResponseOut",
-        "ListResponseIn": "_digitalassetlinks_16_ListResponseIn",
-        "ListResponseOut": "_digitalassetlinks_17_ListResponseOut",
+        "BulkCheckRequestIn": "_digitalassetlinks_2_BulkCheckRequestIn",
+        "BulkCheckRequestOut": "_digitalassetlinks_3_BulkCheckRequestOut",
+        "AndroidAppAssetIn": "_digitalassetlinks_4_AndroidAppAssetIn",
+        "AndroidAppAssetOut": "_digitalassetlinks_5_AndroidAppAssetOut",
+        "CertificateInfoIn": "_digitalassetlinks_6_CertificateInfoIn",
+        "CertificateInfoOut": "_digitalassetlinks_7_CertificateInfoOut",
+        "CheckResponseIn": "_digitalassetlinks_8_CheckResponseIn",
+        "CheckResponseOut": "_digitalassetlinks_9_CheckResponseOut",
+        "ListResponseIn": "_digitalassetlinks_10_ListResponseIn",
+        "ListResponseOut": "_digitalassetlinks_11_ListResponseOut",
+        "StatementIn": "_digitalassetlinks_12_StatementIn",
+        "StatementOut": "_digitalassetlinks_13_StatementOut",
+        "BulkCheckResponseIn": "_digitalassetlinks_14_BulkCheckResponseIn",
+        "BulkCheckResponseOut": "_digitalassetlinks_15_BulkCheckResponseOut",
+        "AssetIn": "_digitalassetlinks_16_AssetIn",
+        "AssetOut": "_digitalassetlinks_17_AssetOut",
         "WebAssetIn": "_digitalassetlinks_18_WebAssetIn",
         "WebAssetOut": "_digitalassetlinks_19_WebAssetOut",
-        "AndroidAppAssetIn": "_digitalassetlinks_20_AndroidAppAssetIn",
-        "AndroidAppAssetOut": "_digitalassetlinks_21_AndroidAppAssetOut",
+        "StatementTemplateIn": "_digitalassetlinks_20_StatementTemplateIn",
+        "StatementTemplateOut": "_digitalassetlinks_21_StatementTemplateOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
+    types["BulkCheckRequestIn"] = t.struct(
+        {
+            "statements": t.array(t.proxy(renames["StatementTemplateIn"])).optional(),
+            "defaultSource": t.proxy(renames["AssetIn"]).optional(),
+            "allowGoogleInternalDataSources": t.boolean().optional(),
+            "defaultRelation": t.string().optional(),
+            "defaultTarget": t.proxy(renames["AssetIn"]).optional(),
+            "skipCacheLookup": t.boolean().optional(),
+        }
+    ).named(renames["BulkCheckRequestIn"])
+    types["BulkCheckRequestOut"] = t.struct(
+        {
+            "statements": t.array(t.proxy(renames["StatementTemplateOut"])).optional(),
+            "defaultSource": t.proxy(renames["AssetOut"]).optional(),
+            "allowGoogleInternalDataSources": t.boolean().optional(),
+            "defaultRelation": t.string().optional(),
+            "defaultTarget": t.proxy(renames["AssetOut"]).optional(),
+            "skipCacheLookup": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BulkCheckRequestOut"])
+    types["AndroidAppAssetIn"] = t.struct(
+        {
+            "packageName": t.string().optional(),
+            "certificate": t.proxy(renames["CertificateInfoIn"]).optional(),
+        }
+    ).named(renames["AndroidAppAssetIn"])
+    types["AndroidAppAssetOut"] = t.struct(
+        {
+            "packageName": t.string().optional(),
+            "certificate": t.proxy(renames["CertificateInfoOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AndroidAppAssetOut"])
     types["CertificateInfoIn"] = t.struct(
         {"sha256Fingerprint": t.string().optional()}
     ).named(renames["CertificateInfoIn"])
@@ -44,52 +78,52 @@ def import_digitalassetlinks() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["CertificateInfoOut"])
-    types["BulkCheckRequestIn"] = t.struct(
+    types["CheckResponseIn"] = t.struct(
         {
-            "statements": t.array(t.proxy(renames["StatementTemplateIn"])).optional(),
-            "defaultTarget": t.proxy(renames["AssetIn"]).optional(),
-            "defaultSource": t.proxy(renames["AssetIn"]).optional(),
-            "allowGoogleInternalDataSources": t.boolean().optional(),
-            "defaultRelation": t.string().optional(),
-            "skipCacheLookup": t.boolean().optional(),
+            "errorCode": t.array(t.string()).optional(),
+            "linked": t.boolean().optional(),
+            "debugString": t.string().optional(),
+            "maxAge": t.string().optional(),
         }
-    ).named(renames["BulkCheckRequestIn"])
-    types["BulkCheckRequestOut"] = t.struct(
+    ).named(renames["CheckResponseIn"])
+    types["CheckResponseOut"] = t.struct(
         {
-            "statements": t.array(t.proxy(renames["StatementTemplateOut"])).optional(),
-            "defaultTarget": t.proxy(renames["AssetOut"]).optional(),
-            "defaultSource": t.proxy(renames["AssetOut"]).optional(),
-            "allowGoogleInternalDataSources": t.boolean().optional(),
-            "defaultRelation": t.string().optional(),
-            "skipCacheLookup": t.boolean().optional(),
+            "errorCode": t.array(t.string()).optional(),
+            "linked": t.boolean().optional(),
+            "debugString": t.string().optional(),
+            "maxAge": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["BulkCheckRequestOut"])
-    types["AssetIn"] = t.struct(
+    ).named(renames["CheckResponseOut"])
+    types["ListResponseIn"] = t.struct(
         {
-            "web": t.proxy(renames["WebAssetIn"]).optional(),
-            "androidApp": t.proxy(renames["AndroidAppAssetIn"]).optional(),
+            "maxAge": t.string().optional(),
+            "statements": t.array(t.proxy(renames["StatementIn"])).optional(),
+            "errorCode": t.array(t.string()).optional(),
+            "debugString": t.string().optional(),
         }
-    ).named(renames["AssetIn"])
-    types["AssetOut"] = t.struct(
+    ).named(renames["ListResponseIn"])
+    types["ListResponseOut"] = t.struct(
         {
-            "web": t.proxy(renames["WebAssetOut"]).optional(),
-            "androidApp": t.proxy(renames["AndroidAppAssetOut"]).optional(),
+            "maxAge": t.string().optional(),
+            "statements": t.array(t.proxy(renames["StatementOut"])).optional(),
+            "errorCode": t.array(t.string()).optional(),
+            "debugString": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AssetOut"])
+    ).named(renames["ListResponseOut"])
     types["StatementIn"] = t.struct(
         {
-            "target": t.proxy(renames["AssetIn"]).optional(),
             "source": t.proxy(renames["AssetIn"]).optional(),
             "relation": t.string().optional(),
+            "target": t.proxy(renames["AssetIn"]).optional(),
         }
     ).named(renames["StatementIn"])
     types["StatementOut"] = t.struct(
         {
-            "target": t.proxy(renames["AssetOut"]).optional(),
             "source": t.proxy(renames["AssetOut"]).optional(),
             "relation": t.string().optional(),
+            "target": t.proxy(renames["AssetOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["StatementOut"])
@@ -106,55 +140,19 @@ def import_digitalassetlinks() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["BulkCheckResponseOut"])
-    types["StatementTemplateIn"] = t.struct(
+    types["AssetIn"] = t.struct(
         {
-            "target": t.proxy(renames["AssetIn"]).optional(),
-            "source": t.proxy(renames["AssetIn"]).optional(),
-            "relation": t.string().optional(),
+            "androidApp": t.proxy(renames["AndroidAppAssetIn"]).optional(),
+            "web": t.proxy(renames["WebAssetIn"]).optional(),
         }
-    ).named(renames["StatementTemplateIn"])
-    types["StatementTemplateOut"] = t.struct(
+    ).named(renames["AssetIn"])
+    types["AssetOut"] = t.struct(
         {
-            "target": t.proxy(renames["AssetOut"]).optional(),
-            "source": t.proxy(renames["AssetOut"]).optional(),
-            "relation": t.string().optional(),
+            "androidApp": t.proxy(renames["AndroidAppAssetOut"]).optional(),
+            "web": t.proxy(renames["WebAssetOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["StatementTemplateOut"])
-    types["CheckResponseIn"] = t.struct(
-        {
-            "debugString": t.string().optional(),
-            "maxAge": t.string().optional(),
-            "linked": t.boolean().optional(),
-            "errorCode": t.array(t.string()).optional(),
-        }
-    ).named(renames["CheckResponseIn"])
-    types["CheckResponseOut"] = t.struct(
-        {
-            "debugString": t.string().optional(),
-            "maxAge": t.string().optional(),
-            "linked": t.boolean().optional(),
-            "errorCode": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CheckResponseOut"])
-    types["ListResponseIn"] = t.struct(
-        {
-            "maxAge": t.string().optional(),
-            "errorCode": t.array(t.string()).optional(),
-            "debugString": t.string().optional(),
-            "statements": t.array(t.proxy(renames["StatementIn"])).optional(),
-        }
-    ).named(renames["ListResponseIn"])
-    types["ListResponseOut"] = t.struct(
-        {
-            "maxAge": t.string().optional(),
-            "errorCode": t.array(t.string()).optional(),
-            "debugString": t.string().optional(),
-            "statements": t.array(t.proxy(renames["StatementOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListResponseOut"])
+    ).named(renames["AssetOut"])
     types["WebAssetIn"] = t.struct({"site": t.string().optional()}).named(
         renames["WebAssetIn"]
     )
@@ -164,32 +162,49 @@ def import_digitalassetlinks() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["WebAssetOut"])
-    types["AndroidAppAssetIn"] = t.struct(
+    types["StatementTemplateIn"] = t.struct(
         {
-            "packageName": t.string().optional(),
-            "certificate": t.proxy(renames["CertificateInfoIn"]).optional(),
+            "target": t.proxy(renames["AssetIn"]).optional(),
+            "relation": t.string().optional(),
+            "source": t.proxy(renames["AssetIn"]).optional(),
         }
-    ).named(renames["AndroidAppAssetIn"])
-    types["AndroidAppAssetOut"] = t.struct(
+    ).named(renames["StatementTemplateIn"])
+    types["StatementTemplateOut"] = t.struct(
         {
-            "packageName": t.string().optional(),
-            "certificate": t.proxy(renames["CertificateInfoOut"]).optional(),
+            "target": t.proxy(renames["AssetOut"]).optional(),
+            "relation": t.string().optional(),
+            "source": t.proxy(renames["AssetOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AndroidAppAssetOut"])
+    ).named(renames["StatementTemplateOut"])
 
     functions = {}
+    functions["statementsList"] = digitalassetlinks.get(
+        "v1/statements:list",
+        t.struct(
+            {
+                "source.web.site": t.string().optional(),
+                "relation": t.string().optional(),
+                "source.androidApp.certificate.sha256Fingerprint": t.string().optional(),
+                "source.androidApp.packageName": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
     functions["assetlinksBulkCheck"] = digitalassetlinks.get(
         "v1/assetlinks:check",
         t.struct(
             {
                 "relation": t.string().optional(),
-                "target.androidApp.packageName": t.string().optional(),
+                "target.web.site": t.string().optional(),
                 "source.androidApp.certificate.sha256Fingerprint": t.string().optional(),
                 "source.web.site": t.string().optional(),
+                "target.androidApp.packageName": t.string().optional(),
                 "target.androidApp.certificate.sha256Fingerprint": t.string().optional(),
                 "source.androidApp.packageName": t.string().optional(),
-                "target.web.site": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -202,31 +217,16 @@ def import_digitalassetlinks() -> Import:
         t.struct(
             {
                 "relation": t.string().optional(),
-                "target.androidApp.packageName": t.string().optional(),
+                "target.web.site": t.string().optional(),
                 "source.androidApp.certificate.sha256Fingerprint": t.string().optional(),
                 "source.web.site": t.string().optional(),
+                "target.androidApp.packageName": t.string().optional(),
                 "target.androidApp.certificate.sha256Fingerprint": t.string().optional(),
                 "source.androidApp.packageName": t.string().optional(),
-                "target.web.site": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
         t.proxy(renames["CheckResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["statementsList"] = digitalassetlinks.get(
-        "v1/statements:list",
-        t.struct(
-            {
-                "source.androidApp.packageName": t.string().optional(),
-                "source.web.site": t.string().optional(),
-                "source.androidApp.certificate.sha256Fingerprint": t.string().optional(),
-                "relation": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

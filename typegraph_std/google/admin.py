@@ -1,155 +1,168 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_admin() -> Import:
+def import_admin():
     admin = HTTPRuntime("https://admin.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_admin_1_ErrorResponse",
-        "ChannelIn": "_admin_2_ChannelIn",
-        "ChannelOut": "_admin_3_ChannelOut",
-        "NestedParameterIn": "_admin_4_NestedParameterIn",
-        "NestedParameterOut": "_admin_5_NestedParameterOut",
-        "UsageReportIn": "_admin_6_UsageReportIn",
-        "UsageReportOut": "_admin_7_UsageReportOut",
+        "NestedParameterIn": "_admin_2_NestedParameterIn",
+        "NestedParameterOut": "_admin_3_NestedParameterOut",
+        "ChannelIn": "_admin_4_ChannelIn",
+        "ChannelOut": "_admin_5_ChannelOut",
+        "UsageReportsIn": "_admin_6_UsageReportsIn",
+        "UsageReportsOut": "_admin_7_UsageReportsOut",
         "ActivitiesIn": "_admin_8_ActivitiesIn",
         "ActivitiesOut": "_admin_9_ActivitiesOut",
         "ActivityIn": "_admin_10_ActivityIn",
         "ActivityOut": "_admin_11_ActivityOut",
-        "UsageReportsIn": "_admin_12_UsageReportsIn",
-        "UsageReportsOut": "_admin_13_UsageReportsOut",
+        "UsageReportIn": "_admin_12_UsageReportIn",
+        "UsageReportOut": "_admin_13_UsageReportOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["ChannelIn"] = t.struct(
-        {
-            "address": t.string().optional(),
-            "resourceId": t.string().optional(),
-            "payload": t.boolean().optional(),
-            "id": t.string().optional(),
-            "resourceUri": t.string().optional(),
-            "type": t.string().optional(),
-            "expiration": t.string().optional(),
-            "token": t.string().optional(),
-            "params": t.struct({"_": t.string().optional()}).optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["ChannelIn"])
-    types["ChannelOut"] = t.struct(
-        {
-            "address": t.string().optional(),
-            "resourceId": t.string().optional(),
-            "payload": t.boolean().optional(),
-            "id": t.string().optional(),
-            "resourceUri": t.string().optional(),
-            "type": t.string().optional(),
-            "expiration": t.string().optional(),
-            "token": t.string().optional(),
-            "params": t.struct({"_": t.string().optional()}).optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ChannelOut"])
     types["NestedParameterIn"] = t.struct(
         {
-            "name": t.string().optional(),
             "intValue": t.string().optional(),
-            "boolValue": t.boolean().optional(),
-            "multiIntValue": t.array(t.string()).optional(),
-            "multiValue": t.array(t.string()).optional(),
-            "multiBoolValue": t.array(t.boolean()).optional(),
             "value": t.string().optional(),
+            "boolValue": t.boolean().optional(),
+            "name": t.string().optional(),
+            "multiIntValue": t.array(t.string()).optional(),
+            "multiBoolValue": t.array(t.boolean()).optional(),
+            "multiValue": t.array(t.string()).optional(),
         }
     ).named(renames["NestedParameterIn"])
     types["NestedParameterOut"] = t.struct(
         {
-            "name": t.string().optional(),
             "intValue": t.string().optional(),
-            "boolValue": t.boolean().optional(),
-            "multiIntValue": t.array(t.string()).optional(),
-            "multiValue": t.array(t.string()).optional(),
-            "multiBoolValue": t.array(t.boolean()).optional(),
             "value": t.string().optional(),
+            "boolValue": t.boolean().optional(),
+            "name": t.string().optional(),
+            "multiIntValue": t.array(t.string()).optional(),
+            "multiBoolValue": t.array(t.boolean()).optional(),
+            "multiValue": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["NestedParameterOut"])
-    types["UsageReportIn"] = t.struct(
-        {"kind": t.string().optional(), "etag": t.string().optional()}
-    ).named(renames["UsageReportIn"])
-    types["UsageReportOut"] = t.struct(
+    types["ChannelIn"] = t.struct(
         {
+            "id": t.string().optional(),
             "kind": t.string().optional(),
-            "entity": t.struct(
-                {
-                    "type": t.string().optional(),
-                    "customerId": t.string().optional(),
-                    "profileId": t.string().optional(),
-                    "entityId": t.string().optional(),
-                    "userEmail": t.string().optional(),
-                }
-            ).optional(),
-            "parameters": t.array(
+            "address": t.string().optional(),
+            "params": t.struct({"_": t.string().optional()}).optional(),
+            "payload": t.boolean().optional(),
+            "type": t.string().optional(),
+            "resourceUri": t.string().optional(),
+            "expiration": t.string().optional(),
+            "token": t.string().optional(),
+            "resourceId": t.string().optional(),
+        }
+    ).named(renames["ChannelIn"])
+    types["ChannelOut"] = t.struct(
+        {
+            "id": t.string().optional(),
+            "kind": t.string().optional(),
+            "address": t.string().optional(),
+            "params": t.struct({"_": t.string().optional()}).optional(),
+            "payload": t.boolean().optional(),
+            "type": t.string().optional(),
+            "resourceUri": t.string().optional(),
+            "expiration": t.string().optional(),
+            "token": t.string().optional(),
+            "resourceId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ChannelOut"])
+    types["UsageReportsIn"] = t.struct(
+        {
+            "usageReports": t.array(t.proxy(renames["UsageReportIn"])).optional(),
+            "warnings": t.array(
                 t.struct(
                     {
-                        "boolValue": t.boolean().optional(),
-                        "intValue": t.string().optional(),
-                        "msgValue": t.array(
-                            t.struct({"_": t.string().optional()})
+                        "code": t.string().optional(),
+                        "data": t.array(
+                            t.struct(
+                                {
+                                    "key": t.string().optional(),
+                                    "value": t.string().optional(),
+                                }
+                            )
                         ).optional(),
-                        "stringValue": t.string().optional(),
-                        "name": t.string().optional(),
-                        "datetimeValue": t.string().optional(),
+                        "message": t.string().optional(),
                     }
                 )
             ).optional(),
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
             "etag": t.string().optional(),
-            "date": t.string().optional(),
+        }
+    ).named(renames["UsageReportsIn"])
+    types["UsageReportsOut"] = t.struct(
+        {
+            "usageReports": t.array(t.proxy(renames["UsageReportOut"])).optional(),
+            "warnings": t.array(
+                t.struct(
+                    {
+                        "code": t.string().optional(),
+                        "data": t.array(
+                            t.struct(
+                                {
+                                    "key": t.string().optional(),
+                                    "value": t.string().optional(),
+                                }
+                            )
+                        ).optional(),
+                        "message": t.string().optional(),
+                    }
+                )
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
+            "etag": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["UsageReportOut"])
+    ).named(renames["UsageReportsOut"])
     types["ActivitiesIn"] = t.struct(
         {
             "etag": t.string().optional(),
-            "nextPageToken": t.string().optional(),
-            "kind": t.string().optional(),
             "items": t.array(t.proxy(renames["ActivityIn"])).optional(),
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
         }
     ).named(renames["ActivitiesIn"])
     types["ActivitiesOut"] = t.struct(
         {
             "etag": t.string().optional(),
-            "nextPageToken": t.string().optional(),
-            "kind": t.string().optional(),
             "items": t.array(t.proxy(renames["ActivityOut"])).optional(),
+            "kind": t.string().optional(),
+            "nextPageToken": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ActivitiesOut"])
     types["ActivityIn"] = t.struct(
         {
-            "kind": t.string().optional(),
-            "actor": t.struct(
+            "id": t.struct(
                 {
-                    "key": t.string().optional(),
-                    "email": t.string().optional(),
-                    "profileId": t.string().optional(),
-                    "callerType": t.string().optional(),
+                    "uniqueQualifier": t.string().optional(),
+                    "applicationName": t.string().optional(),
+                    "customerId": t.string().optional(),
+                    "time": t.string().optional(),
                 }
             ).optional(),
             "events": t.array(
                 t.struct(
                     {
-                        "type": t.string().optional(),
                         "parameters": t.array(
                             t.struct(
                                 {
                                     "name": t.string().optional(),
-                                    "boolValue": t.boolean().optional(),
+                                    "multiIntValue": t.array(t.string()).optional(),
                                     "multiMessageValue": t.array(
                                         t.struct(
                                             {
@@ -161,9 +174,7 @@ def import_admin() -> Import:
                                             }
                                         )
                                     ).optional(),
-                                    "intValue": t.string().optional(),
-                                    "value": t.string().optional(),
-                                    "multiIntValue": t.array(t.string()).optional(),
+                                    "boolValue": t.boolean().optional(),
                                     "multiValue": t.array(t.string()).optional(),
                                     "messageValue": t.struct(
                                         {
@@ -172,16 +183,32 @@ def import_admin() -> Import:
                                             ).optional()
                                         }
                                     ).optional(),
+                                    "intValue": t.string().optional(),
+                                    "value": t.string().optional(),
                                 }
                             )
                         ).optional(),
                         "name": t.string().optional(),
+                        "type": t.string().optional(),
                     }
                 )
             ).optional(),
-            "etag": t.string().optional(),
+            "kind": t.string().optional(),
             "ipAddress": t.string().optional(),
+            "actor": t.struct(
+                {
+                    "callerType": t.string().optional(),
+                    "email": t.string().optional(),
+                    "profileId": t.string().optional(),
+                    "key": t.string().optional(),
+                }
+            ).optional(),
             "ownerDomain": t.string().optional(),
+            "etag": t.string().optional(),
+        }
+    ).named(renames["ActivityIn"])
+    types["ActivityOut"] = t.struct(
+        {
             "id": t.struct(
                 {
                     "uniqueQualifier": t.string().optional(),
@@ -190,28 +217,14 @@ def import_admin() -> Import:
                     "time": t.string().optional(),
                 }
             ).optional(),
-        }
-    ).named(renames["ActivityIn"])
-    types["ActivityOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "actor": t.struct(
-                {
-                    "key": t.string().optional(),
-                    "email": t.string().optional(),
-                    "profileId": t.string().optional(),
-                    "callerType": t.string().optional(),
-                }
-            ).optional(),
             "events": t.array(
                 t.struct(
                     {
-                        "type": t.string().optional(),
                         "parameters": t.array(
                             t.struct(
                                 {
                                     "name": t.string().optional(),
-                                    "boolValue": t.boolean().optional(),
+                                    "multiIntValue": t.array(t.string()).optional(),
                                     "multiMessageValue": t.array(
                                         t.struct(
                                             {
@@ -223,9 +236,7 @@ def import_admin() -> Import:
                                             }
                                         )
                                     ).optional(),
-                                    "intValue": t.string().optional(),
-                                    "value": t.string().optional(),
-                                    "multiIntValue": t.array(t.string()).optional(),
+                                    "boolValue": t.boolean().optional(),
                                     "multiValue": t.array(t.string()).optional(),
                                     "messageValue": t.struct(
                                         {
@@ -234,156 +245,79 @@ def import_admin() -> Import:
                                             ).optional()
                                         }
                                     ).optional(),
+                                    "intValue": t.string().optional(),
+                                    "value": t.string().optional(),
                                 }
                             )
                         ).optional(),
                         "name": t.string().optional(),
+                        "type": t.string().optional(),
                     }
                 )
             ).optional(),
-            "etag": t.string().optional(),
+            "kind": t.string().optional(),
             "ipAddress": t.string().optional(),
-            "ownerDomain": t.string().optional(),
-            "id": t.struct(
+            "actor": t.struct(
                 {
-                    "uniqueQualifier": t.string().optional(),
-                    "applicationName": t.string().optional(),
-                    "customerId": t.string().optional(),
-                    "time": t.string().optional(),
+                    "callerType": t.string().optional(),
+                    "email": t.string().optional(),
+                    "profileId": t.string().optional(),
+                    "key": t.string().optional(),
                 }
             ).optional(),
+            "ownerDomain": t.string().optional(),
+            "etag": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ActivityOut"])
-    types["UsageReportsIn"] = t.struct(
+    types["UsageReportIn"] = t.struct(
+        {"etag": t.string().optional(), "kind": t.string().optional()}
+    ).named(renames["UsageReportIn"])
+    types["UsageReportOut"] = t.struct(
         {
-            "usageReports": t.array(t.proxy(renames["UsageReportIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "warnings": t.array(
+            "parameters": t.array(
                 t.struct(
                     {
-                        "data": t.array(
-                            t.struct(
-                                {
-                                    "key": t.string().optional(),
-                                    "value": t.string().optional(),
-                                }
-                            )
+                        "stringValue": t.string().optional(),
+                        "datetimeValue": t.string().optional(),
+                        "msgValue": t.array(
+                            t.struct({"_": t.string().optional()})
                         ).optional(),
-                        "message": t.string().optional(),
-                        "code": t.string().optional(),
+                        "name": t.string().optional(),
+                        "intValue": t.string().optional(),
+                        "boolValue": t.boolean().optional(),
                     }
                 )
             ).optional(),
-            "kind": t.string().optional(),
+            "date": t.string().optional(),
             "etag": t.string().optional(),
-        }
-    ).named(renames["UsageReportsIn"])
-    types["UsageReportsOut"] = t.struct(
-        {
-            "usageReports": t.array(t.proxy(renames["UsageReportOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "warnings": t.array(
-                t.struct(
-                    {
-                        "data": t.array(
-                            t.struct(
-                                {
-                                    "key": t.string().optional(),
-                                    "value": t.string().optional(),
-                                }
-                            )
-                        ).optional(),
-                        "message": t.string().optional(),
-                        "code": t.string().optional(),
-                    }
-                )
+            "entity": t.struct(
+                {
+                    "profileId": t.string().optional(),
+                    "userEmail": t.string().optional(),
+                    "customerId": t.string().optional(),
+                    "entityId": t.string().optional(),
+                    "type": t.string().optional(),
+                }
             ).optional(),
             "kind": t.string().optional(),
-            "etag": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["UsageReportsOut"])
+    ).named(renames["UsageReportOut"])
 
     functions = {}
-    functions["activitiesList"] = admin.post(
-        "admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch",
-        t.struct(
-            {
-                "eventName": t.string().optional(),
-                "startTime": t.string().optional(),
-                "actorIpAddress": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "userKey": t.string().optional(),
-                "endTime": t.string().optional(),
-                "filters": t.string().optional(),
-                "applicationName": t.string().optional(),
-                "orgUnitID": t.string().optional(),
-                "groupIdFilter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "customerId": t.string().optional(),
-                "address": t.string().optional(),
-                "resourceId": t.string().optional(),
-                "payload": t.boolean().optional(),
-                "id": t.string().optional(),
-                "resourceUri": t.string().optional(),
-                "type": t.string().optional(),
-                "expiration": t.string().optional(),
-                "token": t.string().optional(),
-                "params": t.struct({"_": t.string().optional()}).optional(),
-                "kind": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ChannelOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["activitiesWatch"] = admin.post(
-        "admin/reports/v1/activity/users/{userKey}/applications/{applicationName}/watch",
-        t.struct(
-            {
-                "eventName": t.string().optional(),
-                "startTime": t.string().optional(),
-                "actorIpAddress": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "userKey": t.string().optional(),
-                "endTime": t.string().optional(),
-                "filters": t.string().optional(),
-                "applicationName": t.string().optional(),
-                "orgUnitID": t.string().optional(),
-                "groupIdFilter": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "customerId": t.string().optional(),
-                "address": t.string().optional(),
-                "resourceId": t.string().optional(),
-                "payload": t.boolean().optional(),
-                "id": t.string().optional(),
-                "resourceUri": t.string().optional(),
-                "type": t.string().optional(),
-                "expiration": t.string().optional(),
-                "token": t.string().optional(),
-                "params": t.struct({"_": t.string().optional()}).optional(),
-                "kind": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ChannelOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["entityUsageReportsGet"] = admin.get(
         "admin/reports/v1/usage/{entityType}/{entityKey}/dates/{date}",
         t.struct(
             {
-                "filters": t.string().optional(),
-                "entityKey": t.string().optional(),
-                "customerId": t.string().optional(),
-                "parameters": t.string().optional(),
                 "pageToken": t.string().optional(),
-                "entityType": t.string().optional(),
-                "maxResults": t.integer().optional(),
+                "parameters": t.string().optional(),
+                "filters": t.string().optional(),
                 "date": t.string().optional(),
+                "entityType": t.string().optional(),
+                "entityKey": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "customerId": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -395,10 +329,10 @@ def import_admin() -> Import:
         "admin/reports/v1/usage/dates/{date}",
         t.struct(
             {
-                "date": t.string().optional(),
                 "parameters": t.string().optional(),
-                "pageToken": t.string().optional(),
                 "customerId": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "date": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -410,15 +344,15 @@ def import_admin() -> Import:
         "admin/reports/v1/usage/users/{userKey}/dates/{date}",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "filters": t.string().optional(),
-                "parameters": t.string().optional(),
-                "groupIdFilter": t.string().optional(),
-                "orgUnitID": t.string().optional(),
-                "maxResults": t.integer().optional(),
-                "date": t.string().optional(),
                 "userKey": t.string().optional(),
+                "parameters": t.string().optional(),
                 "customerId": t.string().optional(),
+                "filters": t.string().optional(),
+                "date": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "pageToken": t.string().optional(),
+                "orgUnitID": t.string().optional(),
+                "groupIdFilter": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -430,20 +364,66 @@ def import_admin() -> Import:
         "admin/reports_v1/channels/stop",
         t.struct(
             {
-                "address": t.string().optional(),
-                "resourceId": t.string().optional(),
-                "payload": t.boolean().optional(),
                 "id": t.string().optional(),
-                "resourceUri": t.string().optional(),
+                "kind": t.string().optional(),
+                "address": t.string().optional(),
+                "params": t.struct({"_": t.string().optional()}).optional(),
+                "payload": t.boolean().optional(),
                 "type": t.string().optional(),
+                "resourceUri": t.string().optional(),
                 "expiration": t.string().optional(),
                 "token": t.string().optional(),
-                "params": t.struct({"_": t.string().optional()}).optional(),
-                "kind": t.string().optional(),
+                "resourceId": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
         t.struct({"_": t.string().optional()}),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["activitiesWatch"] = admin.get(
+        "admin/reports/v1/activity/users/{userKey}/applications/{applicationName}",
+        t.struct(
+            {
+                "startTime": t.string().optional(),
+                "customerId": t.string().optional(),
+                "userKey": t.string().optional(),
+                "actorIpAddress": t.string().optional(),
+                "applicationName": t.string().optional(),
+                "filters": t.string().optional(),
+                "endTime": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "orgUnitID": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "groupIdFilter": t.string().optional(),
+                "eventName": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ActivitiesOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["activitiesList"] = admin.get(
+        "admin/reports/v1/activity/users/{userKey}/applications/{applicationName}",
+        t.struct(
+            {
+                "startTime": t.string().optional(),
+                "customerId": t.string().optional(),
+                "userKey": t.string().optional(),
+                "actorIpAddress": t.string().optional(),
+                "applicationName": t.string().optional(),
+                "filters": t.string().optional(),
+                "endTime": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "orgUnitID": t.string().optional(),
+                "maxResults": t.integer().optional(),
+                "groupIdFilter": t.string().optional(),
+                "eventName": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ActivitiesOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

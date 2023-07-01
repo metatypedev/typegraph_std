@@ -1,10 +1,10 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_publicca() -> Import:
+def import_publicca():
     publicca = HTTPRuntime("https://publicca.googleapis.com/")
 
     renames = {

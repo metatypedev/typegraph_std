@@ -1,54 +1,79 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_connectors() -> Import:
+def import_connectors():
     connectors = HTTPRuntime("https://connectors.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_connectors_1_ErrorResponse",
-        "ExecuteSqlQueryRequestIn": "_connectors_2_ExecuteSqlQueryRequestIn",
-        "ExecuteSqlQueryRequestOut": "_connectors_3_ExecuteSqlQueryRequestOut",
-        "EntityIn": "_connectors_4_EntityIn",
-        "EntityOut": "_connectors_5_EntityOut",
-        "EmptyIn": "_connectors_6_EmptyIn",
-        "EmptyOut": "_connectors_7_EmptyOut",
-        "QueryIn": "_connectors_8_QueryIn",
-        "QueryOut": "_connectors_9_QueryOut",
-        "ExecuteSqlQueryResponseIn": "_connectors_10_ExecuteSqlQueryResponseIn",
-        "ExecuteSqlQueryResponseOut": "_connectors_11_ExecuteSqlQueryResponseOut",
-        "ExecuteActionResponseIn": "_connectors_12_ExecuteActionResponseIn",
-        "ExecuteActionResponseOut": "_connectors_13_ExecuteActionResponseOut",
-        "ListEntitiesResponseIn": "_connectors_14_ListEntitiesResponseIn",
-        "ListEntitiesResponseOut": "_connectors_15_ListEntitiesResponseOut",
-        "ExecuteActionRequestIn": "_connectors_16_ExecuteActionRequestIn",
-        "ExecuteActionRequestOut": "_connectors_17_ExecuteActionRequestOut",
-        "InputParameterIn": "_connectors_18_InputParameterIn",
-        "InputParameterOut": "_connectors_19_InputParameterOut",
-        "ActionIn": "_connectors_20_ActionIn",
-        "ActionOut": "_connectors_21_ActionOut",
-        "EntityTypeIn": "_connectors_22_EntityTypeIn",
-        "EntityTypeOut": "_connectors_23_EntityTypeOut",
-        "ListEntityTypesResponseIn": "_connectors_24_ListEntityTypesResponseIn",
-        "ListEntityTypesResponseOut": "_connectors_25_ListEntityTypesResponseOut",
-        "ReferenceIn": "_connectors_26_ReferenceIn",
-        "ReferenceOut": "_connectors_27_ReferenceOut",
-        "ResultMetadataIn": "_connectors_28_ResultMetadataIn",
-        "ResultMetadataOut": "_connectors_29_ResultMetadataOut",
-        "ListActionsResponseIn": "_connectors_30_ListActionsResponseIn",
-        "ListActionsResponseOut": "_connectors_31_ListActionsResponseOut",
-        "UpdateEntitiesWithConditionsResponseIn": "_connectors_32_UpdateEntitiesWithConditionsResponseIn",
-        "UpdateEntitiesWithConditionsResponseOut": "_connectors_33_UpdateEntitiesWithConditionsResponseOut",
-        "FieldIn": "_connectors_34_FieldIn",
-        "FieldOut": "_connectors_35_FieldOut",
+        "FieldIn": "_connectors_2_FieldIn",
+        "FieldOut": "_connectors_3_FieldOut",
+        "ExecuteSqlQueryRequestIn": "_connectors_4_ExecuteSqlQueryRequestIn",
+        "ExecuteSqlQueryRequestOut": "_connectors_5_ExecuteSqlQueryRequestOut",
+        "QueryIn": "_connectors_6_QueryIn",
+        "QueryOut": "_connectors_7_QueryOut",
+        "ReferenceIn": "_connectors_8_ReferenceIn",
+        "ReferenceOut": "_connectors_9_ReferenceOut",
+        "ListEntityTypesResponseIn": "_connectors_10_ListEntityTypesResponseIn",
+        "ListEntityTypesResponseOut": "_connectors_11_ListEntityTypesResponseOut",
+        "EntityIn": "_connectors_12_EntityIn",
+        "EntityOut": "_connectors_13_EntityOut",
+        "ListActionsResponseIn": "_connectors_14_ListActionsResponseIn",
+        "ListActionsResponseOut": "_connectors_15_ListActionsResponseOut",
+        "InputParameterIn": "_connectors_16_InputParameterIn",
+        "InputParameterOut": "_connectors_17_InputParameterOut",
+        "EmptyIn": "_connectors_18_EmptyIn",
+        "EmptyOut": "_connectors_19_EmptyOut",
+        "ExecuteActionRequestIn": "_connectors_20_ExecuteActionRequestIn",
+        "ExecuteActionRequestOut": "_connectors_21_ExecuteActionRequestOut",
+        "UpdateEntitiesWithConditionsResponseIn": "_connectors_22_UpdateEntitiesWithConditionsResponseIn",
+        "UpdateEntitiesWithConditionsResponseOut": "_connectors_23_UpdateEntitiesWithConditionsResponseOut",
+        "ActionIn": "_connectors_24_ActionIn",
+        "ActionOut": "_connectors_25_ActionOut",
+        "ListEntitiesResponseIn": "_connectors_26_ListEntitiesResponseIn",
+        "ListEntitiesResponseOut": "_connectors_27_ListEntitiesResponseOut",
+        "ExecuteActionResponseIn": "_connectors_28_ExecuteActionResponseIn",
+        "ExecuteActionResponseOut": "_connectors_29_ExecuteActionResponseOut",
+        "EntityTypeIn": "_connectors_30_EntityTypeIn",
+        "EntityTypeOut": "_connectors_31_EntityTypeOut",
+        "ExecuteSqlQueryResponseIn": "_connectors_32_ExecuteSqlQueryResponseIn",
+        "ExecuteSqlQueryResponseOut": "_connectors_33_ExecuteSqlQueryResponseOut",
+        "ResultMetadataIn": "_connectors_34_ResultMetadataIn",
+        "ResultMetadataOut": "_connectors_35_ResultMetadataOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
+    types["FieldIn"] = t.struct(
+        {
+            "additionalDetails": t.struct({"_": t.string().optional()}).optional(),
+            "nullable": t.boolean().optional(),
+            "name": t.string().optional(),
+            "description": t.string().optional(),
+            "dataType": t.string().optional(),
+            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
+            "reference": t.proxy(renames["ReferenceIn"]).optional(),
+            "key": t.boolean().optional(),
+        }
+    ).named(renames["FieldIn"])
+    types["FieldOut"] = t.struct(
+        {
+            "additionalDetails": t.struct({"_": t.string().optional()}).optional(),
+            "nullable": t.boolean().optional(),
+            "name": t.string().optional(),
+            "description": t.string().optional(),
+            "dataType": t.string().optional(),
+            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
+            "reference": t.proxy(renames["ReferenceOut"]).optional(),
+            "key": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FieldOut"])
     types["ExecuteSqlQueryRequestIn"] = t.struct(
         {"query": t.proxy(renames["QueryIn"])}
     ).named(renames["ExecuteSqlQueryRequestIn"])
@@ -58,55 +83,83 @@ def import_connectors() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ExecuteSqlQueryRequestOut"])
+    types["QueryIn"] = t.struct({"query": t.string()}).named(renames["QueryIn"])
+    types["QueryOut"] = t.struct(
+        {"query": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["QueryOut"])
+    types["ReferenceIn"] = t.struct(
+        {"type": t.string().optional(), "name": t.string().optional()}
+    ).named(renames["ReferenceIn"])
+    types["ReferenceOut"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ReferenceOut"])
+    types["ListEntityTypesResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "unsupportedTypeNames": t.array(t.string()).optional(),
+            "types": t.array(t.proxy(renames["EntityTypeIn"])).optional(),
+        }
+    ).named(renames["ListEntityTypesResponseIn"])
+    types["ListEntityTypesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "unsupportedTypeNames": t.array(t.string()).optional(),
+            "types": t.array(t.proxy(renames["EntityTypeOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListEntityTypesResponseOut"])
     types["EntityIn"] = t.struct(
         {"fields": t.struct({"_": t.string().optional()}).optional()}
     ).named(renames["EntityIn"])
     types["EntityOut"] = t.struct(
         {
-            "fields": t.struct({"_": t.string().optional()}).optional(),
             "name": t.string().optional(),
+            "fields": t.struct({"_": t.string().optional()}).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["EntityOut"])
+    types["ListActionsResponseIn"] = t.struct(
+        {
+            "actions": t.array(t.proxy(renames["ActionIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "unsupportedActionNames": t.array(t.string()).optional(),
+        }
+    ).named(renames["ListActionsResponseIn"])
+    types["ListActionsResponseOut"] = t.struct(
+        {
+            "actions": t.array(t.proxy(renames["ActionOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "unsupportedActionNames": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListActionsResponseOut"])
+    types["InputParameterIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "dataType": t.string().optional(),
+            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
+            "nullable": t.boolean().optional(),
+            "description": t.string().optional(),
+        }
+    ).named(renames["InputParameterIn"])
+    types["InputParameterOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "dataType": t.string().optional(),
+            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
+            "nullable": t.boolean().optional(),
+            "description": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["InputParameterOut"])
     types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
     types["EmptyOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["EmptyOut"])
-    types["QueryIn"] = t.struct({"query": t.string()}).named(renames["QueryIn"])
-    types["QueryOut"] = t.struct(
-        {"query": t.string(), "error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["QueryOut"])
-    types["ExecuteSqlQueryResponseIn"] = t.struct(
-        {"results": t.array(t.struct({"_": t.string().optional()})).optional()}
-    ).named(renames["ExecuteSqlQueryResponseIn"])
-    types["ExecuteSqlQueryResponseOut"] = t.struct(
-        {
-            "results": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExecuteSqlQueryResponseOut"])
-    types["ExecuteActionResponseIn"] = t.struct(
-        {"results": t.array(t.struct({"_": t.string().optional()})).optional()}
-    ).named(renames["ExecuteActionResponseIn"])
-    types["ExecuteActionResponseOut"] = t.struct(
-        {
-            "results": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExecuteActionResponseOut"])
-    types["ListEntitiesResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "entities": t.array(t.proxy(renames["EntityIn"])).optional(),
-        }
-    ).named(renames["ListEntitiesResponseIn"])
-    types["ListEntitiesResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "entities": t.array(t.proxy(renames["EntityOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListEntitiesResponseOut"])
     types["ExecuteActionRequestIn"] = t.struct(
         {"parameters": t.struct({"_": t.string().optional()}).optional()}
     ).named(renames["ExecuteActionRequestIn"])
@@ -116,25 +169,15 @@ def import_connectors() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ExecuteActionRequestOut"])
-    types["InputParameterIn"] = t.struct(
+    types["UpdateEntitiesWithConditionsResponseIn"] = t.struct(
+        {"response": t.struct({"_": t.string().optional()}).optional()}
+    ).named(renames["UpdateEntitiesWithConditionsResponseIn"])
+    types["UpdateEntitiesWithConditionsResponseOut"] = t.struct(
         {
-            "dataType": t.string().optional(),
-            "nullable": t.boolean().optional(),
-            "name": t.string().optional(),
-            "description": t.string().optional(),
-            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["InputParameterIn"])
-    types["InputParameterOut"] = t.struct(
-        {
-            "dataType": t.string().optional(),
-            "nullable": t.boolean().optional(),
-            "name": t.string().optional(),
-            "description": t.string().optional(),
-            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["InputParameterOut"])
+    ).named(renames["UpdateEntitiesWithConditionsResponseOut"])
     types["ActionIn"] = t.struct(
         {
             "resultMetadata": t.array(t.proxy(renames["ResultMetadataIn"])).optional(),
@@ -152,6 +195,28 @@ def import_connectors() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ActionOut"])
+    types["ListEntitiesResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "entities": t.array(t.proxy(renames["EntityIn"])).optional(),
+        }
+    ).named(renames["ListEntitiesResponseIn"])
+    types["ListEntitiesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "entities": t.array(t.proxy(renames["EntityOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListEntitiesResponseOut"])
+    types["ExecuteActionResponseIn"] = t.struct(
+        {"results": t.array(t.struct({"_": t.string().optional()})).optional()}
+    ).named(renames["ExecuteActionResponseIn"])
+    types["ExecuteActionResponseOut"] = t.struct(
+        {
+            "results": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExecuteActionResponseOut"])
     types["EntityTypeIn"] = t.struct(
         {
             "fields": t.array(t.proxy(renames["FieldIn"])).optional(),
@@ -165,95 +230,30 @@ def import_connectors() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["EntityTypeOut"])
-    types["ListEntityTypesResponseIn"] = t.struct(
+    types["ExecuteSqlQueryResponseIn"] = t.struct(
+        {"results": t.array(t.struct({"_": t.string().optional()})).optional()}
+    ).named(renames["ExecuteSqlQueryResponseIn"])
+    types["ExecuteSqlQueryResponseOut"] = t.struct(
         {
-            "unsupportedTypeNames": t.array(t.string()).optional(),
-            "types": t.array(t.proxy(renames["EntityTypeIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListEntityTypesResponseIn"])
-    types["ListEntityTypesResponseOut"] = t.struct(
-        {
-            "unsupportedTypeNames": t.array(t.string()).optional(),
-            "types": t.array(t.proxy(renames["EntityTypeOut"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "results": t.array(t.struct({"_": t.string().optional()})).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListEntityTypesResponseOut"])
-    types["ReferenceIn"] = t.struct(
-        {"type": t.string().optional(), "name": t.string().optional()}
-    ).named(renames["ReferenceIn"])
-    types["ReferenceOut"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "name": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReferenceOut"])
+    ).named(renames["ExecuteSqlQueryResponseOut"])
     types["ResultMetadataIn"] = t.struct(
         {
-            "name": t.string().optional(),
             "dataType": t.string().optional(),
+            "name": t.string().optional(),
             "description": t.string().optional(),
         }
     ).named(renames["ResultMetadataIn"])
     types["ResultMetadataOut"] = t.struct(
         {
-            "name": t.string().optional(),
             "dataType": t.string().optional(),
+            "name": t.string().optional(),
             "description": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ResultMetadataOut"])
-    types["ListActionsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "actions": t.array(t.proxy(renames["ActionIn"])).optional(),
-            "unsupportedActionNames": t.array(t.string()).optional(),
-        }
-    ).named(renames["ListActionsResponseIn"])
-    types["ListActionsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "actions": t.array(t.proxy(renames["ActionOut"])).optional(),
-            "unsupportedActionNames": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListActionsResponseOut"])
-    types["UpdateEntitiesWithConditionsResponseIn"] = t.struct(
-        {"response": t.struct({"_": t.string().optional()}).optional()}
-    ).named(renames["UpdateEntitiesWithConditionsResponseIn"])
-    types["UpdateEntitiesWithConditionsResponseOut"] = t.struct(
-        {
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UpdateEntitiesWithConditionsResponseOut"])
-    types["FieldIn"] = t.struct(
-        {
-            "key": t.boolean().optional(),
-            "name": t.string().optional(),
-            "nullable": t.boolean().optional(),
-            "dataType": t.string().optional(),
-            "reference": t.proxy(renames["ReferenceIn"]).optional(),
-            "additionalDetails": t.struct({"_": t.string().optional()}).optional(),
-            "description": t.string().optional(),
-            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["FieldIn"])
-    types["FieldOut"] = t.struct(
-        {
-            "key": t.boolean().optional(),
-            "name": t.string().optional(),
-            "nullable": t.boolean().optional(),
-            "dataType": t.string().optional(),
-            "reference": t.proxy(renames["ReferenceOut"]).optional(),
-            "additionalDetails": t.struct({"_": t.string().optional()}).optional(),
-            "description": t.string().optional(),
-            "defaultValue": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FieldOut"])
 
     functions = {}
     functions["projectsLocationsConnectionsExecuteSqlQuery"] = connectors.post(
@@ -266,81 +266,6 @@ def import_connectors() -> Import:
             }
         ),
         t.proxy(renames["ExecuteSqlQueryResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsConnectionsEntityTypesList"] = connectors.get(
-        "v2/{parent}/entityTypes",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "parent": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListEntityTypesResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "projectsLocationsConnectionsEntityTypesEntitiesUpdateEntitiesWithConditions"
-    ] = connectors.delete(
-        "v2/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "projectsLocationsConnectionsEntityTypesEntitiesDeleteEntitiesWithConditions"
-    ] = connectors.delete(
-        "v2/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsConnectionsEntityTypesEntitiesGet"] = connectors.delete(
-        "v2/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "projectsLocationsConnectionsEntityTypesEntitiesList"
-    ] = connectors.delete(
-        "v2/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "projectsLocationsConnectionsEntityTypesEntitiesPatch"
-    ] = connectors.delete(
-        "v2/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "projectsLocationsConnectionsEntityTypesEntitiesCreate"
-    ] = connectors.delete(
-        "v2/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "projectsLocationsConnectionsEntityTypesEntitiesDelete"
-    ] = connectors.delete(
-        "v2/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -367,6 +292,136 @@ def import_connectors() -> Import:
             }
         ),
         t.proxy(renames["ExecuteActionResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsEntityTypesList"] = connectors.get(
+        "v2/{parent}/entityTypes",
+        t.struct(
+            {
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntityTypesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsEntityTypesEntitiesDelete"] = connectors.get(
+        "v2/{parent}/entities",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "sortBy": t.string().optional(),
+                "parent": t.string(),
+                "conditions": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntitiesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsEntityTypesEntitiesPatch"] = connectors.get(
+        "v2/{parent}/entities",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "sortBy": t.string().optional(),
+                "parent": t.string(),
+                "conditions": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntitiesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "projectsLocationsConnectionsEntityTypesEntitiesDeleteEntitiesWithConditions"
+    ] = connectors.get(
+        "v2/{parent}/entities",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "sortBy": t.string().optional(),
+                "parent": t.string(),
+                "conditions": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntitiesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "projectsLocationsConnectionsEntityTypesEntitiesUpdateEntitiesWithConditions"
+    ] = connectors.get(
+        "v2/{parent}/entities",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "sortBy": t.string().optional(),
+                "parent": t.string(),
+                "conditions": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntitiesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsEntityTypesEntitiesGet"] = connectors.get(
+        "v2/{parent}/entities",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "sortBy": t.string().optional(),
+                "parent": t.string(),
+                "conditions": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntitiesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsEntityTypesEntitiesCreate"] = connectors.get(
+        "v2/{parent}/entities",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "sortBy": t.string().optional(),
+                "parent": t.string(),
+                "conditions": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntitiesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsConnectionsEntityTypesEntitiesList"] = connectors.get(
+        "v2/{parent}/entities",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "sortBy": t.string().optional(),
+                "parent": t.string(),
+                "conditions": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListEntitiesResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

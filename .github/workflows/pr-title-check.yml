@@ -1,5 +1,5 @@
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - edited
@@ -10,6 +10,6 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: thehanimo/pr-title-checker@v1.3.7
+      - uses: thehanimo/pr-title-checker@v1.4.0
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

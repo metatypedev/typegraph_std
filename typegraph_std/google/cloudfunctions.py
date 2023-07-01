@@ -1,527 +1,378 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_cloudfunctions() -> Import:
+def import_cloudfunctions():
     cloudfunctions = HTTPRuntime("https://cloudfunctions.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_cloudfunctions_1_ErrorResponse",
-        "ListOperationsResponseIn": "_cloudfunctions_2_ListOperationsResponseIn",
-        "ListOperationsResponseOut": "_cloudfunctions_3_ListOperationsResponseOut",
-        "AuditLogConfigIn": "_cloudfunctions_4_AuditLogConfigIn",
-        "AuditLogConfigOut": "_cloudfunctions_5_AuditLogConfigOut",
-        "AuditConfigIn": "_cloudfunctions_6_AuditConfigIn",
-        "AuditConfigOut": "_cloudfunctions_7_AuditConfigOut",
-        "ListRuntimesResponseIn": "_cloudfunctions_8_ListRuntimesResponseIn",
-        "ListRuntimesResponseOut": "_cloudfunctions_9_ListRuntimesResponseOut",
-        "LocationIn": "_cloudfunctions_10_LocationIn",
-        "LocationOut": "_cloudfunctions_11_LocationOut",
-        "TestIamPermissionsResponseIn": "_cloudfunctions_12_TestIamPermissionsResponseIn",
-        "TestIamPermissionsResponseOut": "_cloudfunctions_13_TestIamPermissionsResponseOut",
-        "GoogleCloudFunctionsV2alphaStateMessageIn": "_cloudfunctions_14_GoogleCloudFunctionsV2alphaStateMessageIn",
-        "GoogleCloudFunctionsV2alphaStateMessageOut": "_cloudfunctions_15_GoogleCloudFunctionsV2alphaStateMessageOut",
-        "GenerateUploadUrlRequestIn": "_cloudfunctions_16_GenerateUploadUrlRequestIn",
-        "GenerateUploadUrlRequestOut": "_cloudfunctions_17_GenerateUploadUrlRequestOut",
-        "GoogleCloudFunctionsV2alphaStageIn": "_cloudfunctions_18_GoogleCloudFunctionsV2alphaStageIn",
-        "GoogleCloudFunctionsV2alphaStageOut": "_cloudfunctions_19_GoogleCloudFunctionsV2alphaStageOut",
-        "ListFunctionsResponseIn": "_cloudfunctions_20_ListFunctionsResponseIn",
-        "ListFunctionsResponseOut": "_cloudfunctions_21_ListFunctionsResponseOut",
-        "StorageSourceIn": "_cloudfunctions_22_StorageSourceIn",
-        "StorageSourceOut": "_cloudfunctions_23_StorageSourceOut",
-        "PolicyIn": "_cloudfunctions_24_PolicyIn",
-        "PolicyOut": "_cloudfunctions_25_PolicyOut",
-        "BuildConfigIn": "_cloudfunctions_26_BuildConfigIn",
-        "BuildConfigOut": "_cloudfunctions_27_BuildConfigOut",
-        "GenerateDownloadUrlResponseIn": "_cloudfunctions_28_GenerateDownloadUrlResponseIn",
-        "GenerateDownloadUrlResponseOut": "_cloudfunctions_29_GenerateDownloadUrlResponseOut",
-        "GoogleCloudFunctionsV2betaStageIn": "_cloudfunctions_30_GoogleCloudFunctionsV2betaStageIn",
-        "GoogleCloudFunctionsV2betaStageOut": "_cloudfunctions_31_GoogleCloudFunctionsV2betaStageOut",
-        "GenerateDownloadUrlRequestIn": "_cloudfunctions_32_GenerateDownloadUrlRequestIn",
-        "GenerateDownloadUrlRequestOut": "_cloudfunctions_33_GenerateDownloadUrlRequestOut",
-        "GoogleCloudFunctionsV2betaStateMessageIn": "_cloudfunctions_34_GoogleCloudFunctionsV2betaStateMessageIn",
-        "GoogleCloudFunctionsV2betaStateMessageOut": "_cloudfunctions_35_GoogleCloudFunctionsV2betaStateMessageOut",
-        "GoogleCloudFunctionsV2OperationMetadataIn": "_cloudfunctions_36_GoogleCloudFunctionsV2OperationMetadataIn",
-        "GoogleCloudFunctionsV2OperationMetadataOut": "_cloudfunctions_37_GoogleCloudFunctionsV2OperationMetadataOut",
-        "OperationMetadataV1In": "_cloudfunctions_38_OperationMetadataV1In",
-        "OperationMetadataV1Out": "_cloudfunctions_39_OperationMetadataV1Out",
-        "FunctionIn": "_cloudfunctions_40_FunctionIn",
-        "FunctionOut": "_cloudfunctions_41_FunctionOut",
-        "ExprIn": "_cloudfunctions_42_ExprIn",
-        "ExprOut": "_cloudfunctions_43_ExprOut",
-        "BindingIn": "_cloudfunctions_44_BindingIn",
-        "BindingOut": "_cloudfunctions_45_BindingOut",
-        "GoogleCloudFunctionsV2StageIn": "_cloudfunctions_46_GoogleCloudFunctionsV2StageIn",
-        "GoogleCloudFunctionsV2StageOut": "_cloudfunctions_47_GoogleCloudFunctionsV2StageOut",
-        "SourceIn": "_cloudfunctions_48_SourceIn",
-        "SourceOut": "_cloudfunctions_49_SourceOut",
-        "SourceProvenanceIn": "_cloudfunctions_50_SourceProvenanceIn",
-        "SourceProvenanceOut": "_cloudfunctions_51_SourceProvenanceOut",
-        "ListLocationsResponseIn": "_cloudfunctions_52_ListLocationsResponseIn",
-        "ListLocationsResponseOut": "_cloudfunctions_53_ListLocationsResponseOut",
-        "SecretVersionIn": "_cloudfunctions_54_SecretVersionIn",
-        "SecretVersionOut": "_cloudfunctions_55_SecretVersionOut",
-        "SecretEnvVarIn": "_cloudfunctions_56_SecretEnvVarIn",
-        "SecretEnvVarOut": "_cloudfunctions_57_SecretEnvVarOut",
-        "ServiceConfigIn": "_cloudfunctions_58_ServiceConfigIn",
-        "ServiceConfigOut": "_cloudfunctions_59_ServiceConfigOut",
-        "GoogleCloudFunctionsV2betaOperationMetadataIn": "_cloudfunctions_60_GoogleCloudFunctionsV2betaOperationMetadataIn",
-        "GoogleCloudFunctionsV2betaOperationMetadataOut": "_cloudfunctions_61_GoogleCloudFunctionsV2betaOperationMetadataOut",
-        "EventFilterIn": "_cloudfunctions_62_EventFilterIn",
-        "EventFilterOut": "_cloudfunctions_63_EventFilterOut",
-        "TestIamPermissionsRequestIn": "_cloudfunctions_64_TestIamPermissionsRequestIn",
-        "TestIamPermissionsRequestOut": "_cloudfunctions_65_TestIamPermissionsRequestOut",
-        "SetIamPolicyRequestIn": "_cloudfunctions_66_SetIamPolicyRequestIn",
-        "SetIamPolicyRequestOut": "_cloudfunctions_67_SetIamPolicyRequestOut",
-        "SecretVolumeIn": "_cloudfunctions_68_SecretVolumeIn",
-        "SecretVolumeOut": "_cloudfunctions_69_SecretVolumeOut",
-        "GenerateUploadUrlResponseIn": "_cloudfunctions_70_GenerateUploadUrlResponseIn",
-        "GenerateUploadUrlResponseOut": "_cloudfunctions_71_GenerateUploadUrlResponseOut",
-        "RepoSourceIn": "_cloudfunctions_72_RepoSourceIn",
-        "RepoSourceOut": "_cloudfunctions_73_RepoSourceOut",
-        "OperationIn": "_cloudfunctions_74_OperationIn",
-        "OperationOut": "_cloudfunctions_75_OperationOut",
-        "EventTriggerIn": "_cloudfunctions_76_EventTriggerIn",
-        "EventTriggerOut": "_cloudfunctions_77_EventTriggerOut",
-        "StatusIn": "_cloudfunctions_78_StatusIn",
-        "StatusOut": "_cloudfunctions_79_StatusOut",
-        "RuntimeIn": "_cloudfunctions_80_RuntimeIn",
-        "RuntimeOut": "_cloudfunctions_81_RuntimeOut",
-        "GoogleCloudFunctionsV2alphaOperationMetadataIn": "_cloudfunctions_82_GoogleCloudFunctionsV2alphaOperationMetadataIn",
-        "GoogleCloudFunctionsV2alphaOperationMetadataOut": "_cloudfunctions_83_GoogleCloudFunctionsV2alphaOperationMetadataOut",
-        "GoogleCloudFunctionsV2StateMessageIn": "_cloudfunctions_84_GoogleCloudFunctionsV2StateMessageIn",
-        "GoogleCloudFunctionsV2StateMessageOut": "_cloudfunctions_85_GoogleCloudFunctionsV2StateMessageOut",
+        "ExprIn": "_cloudfunctions_2_ExprIn",
+        "ExprOut": "_cloudfunctions_3_ExprOut",
+        "StatusIn": "_cloudfunctions_4_StatusIn",
+        "StatusOut": "_cloudfunctions_5_StatusOut",
+        "AuditLogConfigIn": "_cloudfunctions_6_AuditLogConfigIn",
+        "AuditLogConfigOut": "_cloudfunctions_7_AuditLogConfigOut",
+        "EventTriggerIn": "_cloudfunctions_8_EventTriggerIn",
+        "EventTriggerOut": "_cloudfunctions_9_EventTriggerOut",
+        "SecretEnvVarIn": "_cloudfunctions_10_SecretEnvVarIn",
+        "SecretEnvVarOut": "_cloudfunctions_11_SecretEnvVarOut",
+        "StorageSourceIn": "_cloudfunctions_12_StorageSourceIn",
+        "StorageSourceOut": "_cloudfunctions_13_StorageSourceOut",
+        "ServiceConfigIn": "_cloudfunctions_14_ServiceConfigIn",
+        "ServiceConfigOut": "_cloudfunctions_15_ServiceConfigOut",
+        "GoogleCloudFunctionsV2alphaOperationMetadataIn": "_cloudfunctions_16_GoogleCloudFunctionsV2alphaOperationMetadataIn",
+        "GoogleCloudFunctionsV2alphaOperationMetadataOut": "_cloudfunctions_17_GoogleCloudFunctionsV2alphaOperationMetadataOut",
+        "BindingIn": "_cloudfunctions_18_BindingIn",
+        "BindingOut": "_cloudfunctions_19_BindingOut",
+        "PolicyIn": "_cloudfunctions_20_PolicyIn",
+        "PolicyOut": "_cloudfunctions_21_PolicyOut",
+        "TestIamPermissionsRequestIn": "_cloudfunctions_22_TestIamPermissionsRequestIn",
+        "TestIamPermissionsRequestOut": "_cloudfunctions_23_TestIamPermissionsRequestOut",
+        "ListFunctionsResponseIn": "_cloudfunctions_24_ListFunctionsResponseIn",
+        "ListFunctionsResponseOut": "_cloudfunctions_25_ListFunctionsResponseOut",
+        "GoogleCloudFunctionsV2alphaLocationMetadataIn": "_cloudfunctions_26_GoogleCloudFunctionsV2alphaLocationMetadataIn",
+        "GoogleCloudFunctionsV2alphaLocationMetadataOut": "_cloudfunctions_27_GoogleCloudFunctionsV2alphaLocationMetadataOut",
+        "GoogleCloudFunctionsV2betaStageIn": "_cloudfunctions_28_GoogleCloudFunctionsV2betaStageIn",
+        "GoogleCloudFunctionsV2betaStageOut": "_cloudfunctions_29_GoogleCloudFunctionsV2betaStageOut",
+        "ListLocationsResponseIn": "_cloudfunctions_30_ListLocationsResponseIn",
+        "ListLocationsResponseOut": "_cloudfunctions_31_ListLocationsResponseOut",
+        "SourceIn": "_cloudfunctions_32_SourceIn",
+        "SourceOut": "_cloudfunctions_33_SourceOut",
+        "SecretVersionIn": "_cloudfunctions_34_SecretVersionIn",
+        "SecretVersionOut": "_cloudfunctions_35_SecretVersionOut",
+        "GoogleCloudFunctionsV2alphaStateMessageIn": "_cloudfunctions_36_GoogleCloudFunctionsV2alphaStateMessageIn",
+        "GoogleCloudFunctionsV2alphaStateMessageOut": "_cloudfunctions_37_GoogleCloudFunctionsV2alphaStateMessageOut",
+        "GenerateDownloadUrlRequestIn": "_cloudfunctions_38_GenerateDownloadUrlRequestIn",
+        "GenerateDownloadUrlRequestOut": "_cloudfunctions_39_GenerateDownloadUrlRequestOut",
+        "SourceProvenanceIn": "_cloudfunctions_40_SourceProvenanceIn",
+        "SourceProvenanceOut": "_cloudfunctions_41_SourceProvenanceOut",
+        "GoogleCloudFunctionsV2betaLocationMetadataIn": "_cloudfunctions_42_GoogleCloudFunctionsV2betaLocationMetadataIn",
+        "GoogleCloudFunctionsV2betaLocationMetadataOut": "_cloudfunctions_43_GoogleCloudFunctionsV2betaLocationMetadataOut",
+        "ListRuntimesResponseIn": "_cloudfunctions_44_ListRuntimesResponseIn",
+        "ListRuntimesResponseOut": "_cloudfunctions_45_ListRuntimesResponseOut",
+        "SecretVolumeIn": "_cloudfunctions_46_SecretVolumeIn",
+        "SecretVolumeOut": "_cloudfunctions_47_SecretVolumeOut",
+        "TestIamPermissionsResponseIn": "_cloudfunctions_48_TestIamPermissionsResponseIn",
+        "TestIamPermissionsResponseOut": "_cloudfunctions_49_TestIamPermissionsResponseOut",
+        "OperationMetadataV1In": "_cloudfunctions_50_OperationMetadataV1In",
+        "OperationMetadataV1Out": "_cloudfunctions_51_OperationMetadataV1Out",
+        "GoogleCloudFunctionsV2betaOperationMetadataIn": "_cloudfunctions_52_GoogleCloudFunctionsV2betaOperationMetadataIn",
+        "GoogleCloudFunctionsV2betaOperationMetadataOut": "_cloudfunctions_53_GoogleCloudFunctionsV2betaOperationMetadataOut",
+        "OperationIn": "_cloudfunctions_54_OperationIn",
+        "OperationOut": "_cloudfunctions_55_OperationOut",
+        "RuntimeIn": "_cloudfunctions_56_RuntimeIn",
+        "RuntimeOut": "_cloudfunctions_57_RuntimeOut",
+        "LocationIn": "_cloudfunctions_58_LocationIn",
+        "LocationOut": "_cloudfunctions_59_LocationOut",
+        "RepoSourceIn": "_cloudfunctions_60_RepoSourceIn",
+        "RepoSourceOut": "_cloudfunctions_61_RepoSourceOut",
+        "GenerateUploadUrlRequestIn": "_cloudfunctions_62_GenerateUploadUrlRequestIn",
+        "GenerateUploadUrlRequestOut": "_cloudfunctions_63_GenerateUploadUrlRequestOut",
+        "AuditConfigIn": "_cloudfunctions_64_AuditConfigIn",
+        "AuditConfigOut": "_cloudfunctions_65_AuditConfigOut",
+        "ListOperationsResponseIn": "_cloudfunctions_66_ListOperationsResponseIn",
+        "ListOperationsResponseOut": "_cloudfunctions_67_ListOperationsResponseOut",
+        "GoogleCloudFunctionsV2alphaStageIn": "_cloudfunctions_68_GoogleCloudFunctionsV2alphaStageIn",
+        "GoogleCloudFunctionsV2alphaStageOut": "_cloudfunctions_69_GoogleCloudFunctionsV2alphaStageOut",
+        "GoogleCloudFunctionsV2betaStateMessageIn": "_cloudfunctions_70_GoogleCloudFunctionsV2betaStateMessageIn",
+        "GoogleCloudFunctionsV2betaStateMessageOut": "_cloudfunctions_71_GoogleCloudFunctionsV2betaStateMessageOut",
+        "GoogleCloudFunctionsV2StageIn": "_cloudfunctions_72_GoogleCloudFunctionsV2StageIn",
+        "GoogleCloudFunctionsV2StageOut": "_cloudfunctions_73_GoogleCloudFunctionsV2StageOut",
+        "EventFilterIn": "_cloudfunctions_74_EventFilterIn",
+        "EventFilterOut": "_cloudfunctions_75_EventFilterOut",
+        "SetIamPolicyRequestIn": "_cloudfunctions_76_SetIamPolicyRequestIn",
+        "SetIamPolicyRequestOut": "_cloudfunctions_77_SetIamPolicyRequestOut",
+        "BuildConfigIn": "_cloudfunctions_78_BuildConfigIn",
+        "BuildConfigOut": "_cloudfunctions_79_BuildConfigOut",
+        "GoogleCloudFunctionsV2LocationMetadataIn": "_cloudfunctions_80_GoogleCloudFunctionsV2LocationMetadataIn",
+        "GoogleCloudFunctionsV2LocationMetadataOut": "_cloudfunctions_81_GoogleCloudFunctionsV2LocationMetadataOut",
+        "FunctionIn": "_cloudfunctions_82_FunctionIn",
+        "FunctionOut": "_cloudfunctions_83_FunctionOut",
+        "GenerateDownloadUrlResponseIn": "_cloudfunctions_84_GenerateDownloadUrlResponseIn",
+        "GenerateDownloadUrlResponseOut": "_cloudfunctions_85_GenerateDownloadUrlResponseOut",
+        "GoogleCloudFunctionsV2OperationMetadataIn": "_cloudfunctions_86_GoogleCloudFunctionsV2OperationMetadataIn",
+        "GoogleCloudFunctionsV2OperationMetadataOut": "_cloudfunctions_87_GoogleCloudFunctionsV2OperationMetadataOut",
+        "GoogleCloudFunctionsV2StateMessageIn": "_cloudfunctions_88_GoogleCloudFunctionsV2StateMessageIn",
+        "GoogleCloudFunctionsV2StateMessageOut": "_cloudfunctions_89_GoogleCloudFunctionsV2StateMessageOut",
+        "GenerateUploadUrlResponseIn": "_cloudfunctions_90_GenerateUploadUrlResponseIn",
+        "GenerateUploadUrlResponseOut": "_cloudfunctions_91_GenerateUploadUrlResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["ListOperationsResponseIn"] = t.struct(
+    types["ExprIn"] = t.struct(
         {
-            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "description": t.string().optional(),
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
         }
-    ).named(renames["ListOperationsResponseIn"])
-    types["ListOperationsResponseOut"] = t.struct(
+    ).named(renames["ExprIn"])
+    types["ExprOut"] = t.struct(
         {
-            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "description": t.string().optional(),
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListOperationsResponseOut"])
+    ).named(renames["ExprOut"])
+    types["StatusIn"] = t.struct(
+        {
+            "message": t.string().optional(),
+            "code": t.integer().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+        }
+    ).named(renames["StatusIn"])
+    types["StatusOut"] = t.struct(
+        {
+            "message": t.string().optional(),
+            "code": t.integer().optional(),
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StatusOut"])
     types["AuditLogConfigIn"] = t.struct(
         {
-            "logType": t.string().optional(),
             "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
         }
     ).named(renames["AuditLogConfigIn"])
     types["AuditLogConfigOut"] = t.struct(
         {
-            "logType": t.string().optional(),
             "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AuditLogConfigOut"])
-    types["AuditConfigIn"] = t.struct(
+    types["EventTriggerIn"] = t.struct(
         {
-            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
-            "service": t.string().optional(),
+            "eventType": t.string(),
+            "retryPolicy": t.string().optional(),
+            "triggerRegion": t.string().optional(),
+            "channel": t.string().optional(),
+            "eventFilters": t.array(t.proxy(renames["EventFilterIn"])).optional(),
+            "pubsubTopic": t.string().optional(),
+            "serviceAccountEmail": t.string().optional(),
         }
-    ).named(renames["AuditConfigIn"])
-    types["AuditConfigOut"] = t.struct(
+    ).named(renames["EventTriggerIn"])
+    types["EventTriggerOut"] = t.struct(
         {
-            "auditLogConfigs": t.array(
-                t.proxy(renames["AuditLogConfigOut"])
-            ).optional(),
-            "service": t.string().optional(),
+            "eventType": t.string(),
+            "retryPolicy": t.string().optional(),
+            "triggerRegion": t.string().optional(),
+            "channel": t.string().optional(),
+            "eventFilters": t.array(t.proxy(renames["EventFilterOut"])).optional(),
+            "trigger": t.string().optional(),
+            "pubsubTopic": t.string().optional(),
+            "serviceAccountEmail": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AuditConfigOut"])
-    types["ListRuntimesResponseIn"] = t.struct(
-        {"runtimes": t.array(t.proxy(renames["RuntimeIn"])).optional()}
-    ).named(renames["ListRuntimesResponseIn"])
-    types["ListRuntimesResponseOut"] = t.struct(
+    ).named(renames["EventTriggerOut"])
+    types["SecretEnvVarIn"] = t.struct(
         {
-            "runtimes": t.array(t.proxy(renames["RuntimeOut"])).optional(),
+            "projectId": t.string().optional(),
+            "key": t.string().optional(),
+            "secret": t.string().optional(),
+            "version": t.string().optional(),
+        }
+    ).named(renames["SecretEnvVarIn"])
+    types["SecretEnvVarOut"] = t.struct(
+        {
+            "projectId": t.string().optional(),
+            "key": t.string().optional(),
+            "secret": t.string().optional(),
+            "version": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListRuntimesResponseOut"])
-    types["LocationIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "displayName": t.string().optional(),
-            "locationId": t.string().optional(),
-        }
-    ).named(renames["LocationIn"])
-    types["LocationOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "displayName": t.string().optional(),
-            "locationId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["LocationOut"])
-    types["TestIamPermissionsResponseIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsResponseIn"])
-    types["TestIamPermissionsResponseOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsResponseOut"])
-    types["GoogleCloudFunctionsV2alphaStateMessageIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "type": t.string().optional(),
-            "severity": t.string().optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2alphaStateMessageIn"])
-    types["GoogleCloudFunctionsV2alphaStateMessageOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "type": t.string().optional(),
-            "severity": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2alphaStateMessageOut"])
-    types["GenerateUploadUrlRequestIn"] = t.struct(
-        {"kmsKeyName": t.string().optional()}
-    ).named(renames["GenerateUploadUrlRequestIn"])
-    types["GenerateUploadUrlRequestOut"] = t.struct(
-        {
-            "kmsKeyName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GenerateUploadUrlRequestOut"])
-    types["GoogleCloudFunctionsV2alphaStageIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "stateMessages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2alphaStateMessageIn"])
-            ).optional(),
-            "name": t.string().optional(),
-            "resourceUri": t.string().optional(),
-            "resource": t.string().optional(),
-            "state": t.string().optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2alphaStageIn"])
-    types["GoogleCloudFunctionsV2alphaStageOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "stateMessages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2alphaStateMessageOut"])
-            ).optional(),
-            "name": t.string().optional(),
-            "resourceUri": t.string().optional(),
-            "resource": t.string().optional(),
-            "state": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2alphaStageOut"])
-    types["ListFunctionsResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "functions": t.array(t.proxy(renames["FunctionIn"])).optional(),
-            "unreachable": t.array(t.string()).optional(),
-        }
-    ).named(renames["ListFunctionsResponseIn"])
-    types["ListFunctionsResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "functions": t.array(t.proxy(renames["FunctionOut"])).optional(),
-            "unreachable": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListFunctionsResponseOut"])
+    ).named(renames["SecretEnvVarOut"])
     types["StorageSourceIn"] = t.struct(
         {
-            "object": t.string().optional(),
             "bucket": t.string().optional(),
+            "object": t.string().optional(),
             "generation": t.string().optional(),
         }
     ).named(renames["StorageSourceIn"])
     types["StorageSourceOut"] = t.struct(
         {
-            "object": t.string().optional(),
             "bucket": t.string().optional(),
+            "object": t.string().optional(),
             "generation": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["StorageSourceOut"])
+    types["ServiceConfigIn"] = t.struct(
+        {
+            "availableMemory": t.string().optional(),
+            "vpcConnector": t.string().optional(),
+            "maxInstanceRequestConcurrency": t.integer().optional(),
+            "timeoutSeconds": t.integer().optional(),
+            "secretVolumes": t.array(t.proxy(renames["SecretVolumeIn"])).optional(),
+            "secretEnvironmentVariables": t.array(
+                t.proxy(renames["SecretEnvVarIn"])
+            ).optional(),
+            "vpcConnectorEgressSettings": t.string().optional(),
+            "allTrafficOnLatestRevision": t.boolean().optional(),
+            "ingressSettings": t.string().optional(),
+            "serviceAccountEmail": t.string().optional(),
+            "securityLevel": t.string().optional(),
+            "availableCpu": t.string().optional(),
+            "minInstanceCount": t.integer().optional(),
+            "maxInstanceCount": t.integer().optional(),
+            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["ServiceConfigIn"])
+    types["ServiceConfigOut"] = t.struct(
+        {
+            "availableMemory": t.string().optional(),
+            "vpcConnector": t.string().optional(),
+            "maxInstanceRequestConcurrency": t.integer().optional(),
+            "timeoutSeconds": t.integer().optional(),
+            "secretVolumes": t.array(t.proxy(renames["SecretVolumeOut"])).optional(),
+            "secretEnvironmentVariables": t.array(
+                t.proxy(renames["SecretEnvVarOut"])
+            ).optional(),
+            "vpcConnectorEgressSettings": t.string().optional(),
+            "allTrafficOnLatestRevision": t.boolean().optional(),
+            "ingressSettings": t.string().optional(),
+            "revision": t.string().optional(),
+            "serviceAccountEmail": t.string().optional(),
+            "securityLevel": t.string().optional(),
+            "service": t.string().optional(),
+            "availableCpu": t.string().optional(),
+            "minInstanceCount": t.integer().optional(),
+            "maxInstanceCount": t.integer().optional(),
+            "uri": t.string().optional(),
+            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ServiceConfigOut"])
+    types["GoogleCloudFunctionsV2alphaOperationMetadataIn"] = t.struct(
+        {
+            "cancelRequested": t.boolean().optional(),
+            "requestResource": t.struct({"_": t.string().optional()}).optional(),
+            "statusDetail": t.string().optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "target": t.string().optional(),
+            "verb": t.string().optional(),
+            "stages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2alphaStageIn"])
+            ).optional(),
+            "apiVersion": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2alphaOperationMetadataIn"])
+    types["GoogleCloudFunctionsV2alphaOperationMetadataOut"] = t.struct(
+        {
+            "cancelRequested": t.boolean().optional(),
+            "requestResource": t.struct({"_": t.string().optional()}).optional(),
+            "statusDetail": t.string().optional(),
+            "endTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "target": t.string().optional(),
+            "verb": t.string().optional(),
+            "stages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2alphaStageOut"])
+            ).optional(),
+            "apiVersion": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2alphaOperationMetadataOut"])
+    types["BindingIn"] = t.struct(
+        {
+            "condition": t.proxy(renames["ExprIn"]).optional(),
+            "role": t.string().optional(),
+            "members": t.array(t.string()).optional(),
+        }
+    ).named(renames["BindingIn"])
+    types["BindingOut"] = t.struct(
+        {
+            "condition": t.proxy(renames["ExprOut"]).optional(),
+            "role": t.string().optional(),
+            "members": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BindingOut"])
     types["PolicyIn"] = t.struct(
         {
+            "etag": t.string().optional(),
             "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
             "version": t.integer().optional(),
-            "etag": t.string().optional(),
             "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
         }
     ).named(renames["PolicyIn"])
     types["PolicyOut"] = t.struct(
         {
+            "etag": t.string().optional(),
             "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
             "version": t.integer().optional(),
-            "etag": t.string().optional(),
             "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["PolicyOut"])
-    types["BuildConfigIn"] = t.struct(
+    types["TestIamPermissionsRequestIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsRequestIn"])
+    types["TestIamPermissionsRequestOut"] = t.struct(
         {
-            "dockerRegistry": t.string().optional(),
-            "dockerRepository": t.string().optional(),
-            "workerPool": t.string().optional(),
-            "source": t.proxy(renames["SourceIn"]).optional(),
-            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
-            "runtime": t.string().optional(),
-            "entryPoint": t.string().optional(),
-        }
-    ).named(renames["BuildConfigIn"])
-    types["BuildConfigOut"] = t.struct(
-        {
-            "dockerRegistry": t.string().optional(),
-            "dockerRepository": t.string().optional(),
-            "build": t.string().optional(),
-            "workerPool": t.string().optional(),
-            "source": t.proxy(renames["SourceOut"]).optional(),
-            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
-            "sourceProvenance": t.proxy(renames["SourceProvenanceOut"]).optional(),
-            "runtime": t.string().optional(),
-            "entryPoint": t.string().optional(),
+            "permissions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["BuildConfigOut"])
-    types["GenerateDownloadUrlResponseIn"] = t.struct(
-        {"downloadUrl": t.string().optional()}
-    ).named(renames["GenerateDownloadUrlResponseIn"])
-    types["GenerateDownloadUrlResponseOut"] = t.struct(
+    ).named(renames["TestIamPermissionsRequestOut"])
+    types["ListFunctionsResponseIn"] = t.struct(
         {
-            "downloadUrl": t.string().optional(),
+            "unreachable": t.array(t.string()).optional(),
+            "nextPageToken": t.string().optional(),
+            "functions": t.array(t.proxy(renames["FunctionIn"])).optional(),
+        }
+    ).named(renames["ListFunctionsResponseIn"])
+    types["ListFunctionsResponseOut"] = t.struct(
+        {
+            "unreachable": t.array(t.string()).optional(),
+            "nextPageToken": t.string().optional(),
+            "functions": t.array(t.proxy(renames["FunctionOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GenerateDownloadUrlResponseOut"])
+    ).named(renames["ListFunctionsResponseOut"])
+    types["GoogleCloudFunctionsV2alphaLocationMetadataIn"] = t.struct(
+        {"environments": t.array(t.string()).optional()}
+    ).named(renames["GoogleCloudFunctionsV2alphaLocationMetadataIn"])
+    types["GoogleCloudFunctionsV2alphaLocationMetadataOut"] = t.struct(
+        {
+            "environments": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2alphaLocationMetadataOut"])
     types["GoogleCloudFunctionsV2betaStageIn"] = t.struct(
         {
-            "name": t.string().optional(),
-            "message": t.string().optional(),
             "state": t.string().optional(),
-            "resource": t.string().optional(),
             "resourceUri": t.string().optional(),
+            "name": t.string().optional(),
             "stateMessages": t.array(
                 t.proxy(renames["GoogleCloudFunctionsV2betaStateMessageIn"])
             ).optional(),
+            "message": t.string().optional(),
+            "resource": t.string().optional(),
         }
     ).named(renames["GoogleCloudFunctionsV2betaStageIn"])
     types["GoogleCloudFunctionsV2betaStageOut"] = t.struct(
         {
-            "name": t.string().optional(),
-            "message": t.string().optional(),
             "state": t.string().optional(),
-            "resource": t.string().optional(),
             "resourceUri": t.string().optional(),
+            "name": t.string().optional(),
             "stateMessages": t.array(
                 t.proxy(renames["GoogleCloudFunctionsV2betaStateMessageOut"])
             ).optional(),
+            "message": t.string().optional(),
+            "resource": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleCloudFunctionsV2betaStageOut"])
-    types["GenerateDownloadUrlRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["GenerateDownloadUrlRequestIn"])
-    types["GenerateDownloadUrlRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["GenerateDownloadUrlRequestOut"])
-    types["GoogleCloudFunctionsV2betaStateMessageIn"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "severity": t.string().optional(),
-            "message": t.string().optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2betaStateMessageIn"])
-    types["GoogleCloudFunctionsV2betaStateMessageOut"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "severity": t.string().optional(),
-            "message": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2betaStateMessageOut"])
-    types["GoogleCloudFunctionsV2OperationMetadataIn"] = t.struct(
-        {
-            "apiVersion": t.string().optional(),
-            "createTime": t.string().optional(),
-            "cancelRequested": t.boolean().optional(),
-            "verb": t.string().optional(),
-            "requestResource": t.struct({"_": t.string().optional()}).optional(),
-            "stages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2StageIn"])
-            ).optional(),
-            "target": t.string().optional(),
-            "endTime": t.string().optional(),
-            "statusDetail": t.string().optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2OperationMetadataIn"])
-    types["GoogleCloudFunctionsV2OperationMetadataOut"] = t.struct(
-        {
-            "apiVersion": t.string().optional(),
-            "createTime": t.string().optional(),
-            "cancelRequested": t.boolean().optional(),
-            "verb": t.string().optional(),
-            "requestResource": t.struct({"_": t.string().optional()}).optional(),
-            "stages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2StageOut"])
-            ).optional(),
-            "target": t.string().optional(),
-            "endTime": t.string().optional(),
-            "statusDetail": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2OperationMetadataOut"])
-    types["OperationMetadataV1In"] = t.struct(
-        {
-            "request": t.struct({"_": t.string().optional()}).optional(),
-            "type": t.string().optional(),
-            "buildName": t.string().optional(),
-            "sourceToken": t.string().optional(),
-            "updateTime": t.string().optional(),
-            "buildId": t.string().optional(),
-            "target": t.string().optional(),
-            "versionId": t.string().optional(),
-        }
-    ).named(renames["OperationMetadataV1In"])
-    types["OperationMetadataV1Out"] = t.struct(
-        {
-            "request": t.struct({"_": t.string().optional()}).optional(),
-            "type": t.string().optional(),
-            "buildName": t.string().optional(),
-            "sourceToken": t.string().optional(),
-            "updateTime": t.string().optional(),
-            "buildId": t.string().optional(),
-            "target": t.string().optional(),
-            "versionId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OperationMetadataV1Out"])
-    types["FunctionIn"] = t.struct(
-        {
-            "buildConfig": t.proxy(renames["BuildConfigIn"]).optional(),
-            "description": t.string().optional(),
-            "environment": t.string().optional(),
-            "eventTrigger": t.proxy(renames["EventTriggerIn"]).optional(),
-            "name": t.string().optional(),
-            "kmsKeyName": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "serviceConfig": t.proxy(renames["ServiceConfigIn"]).optional(),
-        }
-    ).named(renames["FunctionIn"])
-    types["FunctionOut"] = t.struct(
-        {
-            "buildConfig": t.proxy(renames["BuildConfigOut"]).optional(),
-            "updateTime": t.string().optional(),
-            "description": t.string().optional(),
-            "state": t.string().optional(),
-            "environment": t.string().optional(),
-            "eventTrigger": t.proxy(renames["EventTriggerOut"]).optional(),
-            "name": t.string().optional(),
-            "kmsKeyName": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "serviceConfig": t.proxy(renames["ServiceConfigOut"]).optional(),
-            "stateMessages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2StateMessageOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FunctionOut"])
-    types["ExprIn"] = t.struct(
-        {
-            "expression": t.string().optional(),
-            "description": t.string().optional(),
-            "location": t.string().optional(),
-            "title": t.string().optional(),
-        }
-    ).named(renames["ExprIn"])
-    types["ExprOut"] = t.struct(
-        {
-            "expression": t.string().optional(),
-            "description": t.string().optional(),
-            "location": t.string().optional(),
-            "title": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExprOut"])
-    types["BindingIn"] = t.struct(
-        {
-            "members": t.array(t.string()).optional(),
-            "role": t.string().optional(),
-            "condition": t.proxy(renames["ExprIn"]).optional(),
-        }
-    ).named(renames["BindingIn"])
-    types["BindingOut"] = t.struct(
-        {
-            "members": t.array(t.string()).optional(),
-            "role": t.string().optional(),
-            "condition": t.proxy(renames["ExprOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BindingOut"])
-    types["GoogleCloudFunctionsV2StageIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "name": t.string().optional(),
-            "state": t.string().optional(),
-            "resource": t.string().optional(),
-            "resourceUri": t.string().optional(),
-            "stateMessages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2StateMessageIn"])
-            ).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2StageIn"])
-    types["GoogleCloudFunctionsV2StageOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "name": t.string().optional(),
-            "state": t.string().optional(),
-            "resource": t.string().optional(),
-            "resourceUri": t.string().optional(),
-            "stateMessages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2StateMessageOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2StageOut"])
-    types["SourceIn"] = t.struct(
-        {
-            "repoSource": t.proxy(renames["RepoSourceIn"]).optional(),
-            "storageSource": t.proxy(renames["StorageSourceIn"]).optional(),
-        }
-    ).named(renames["SourceIn"])
-    types["SourceOut"] = t.struct(
-        {
-            "repoSource": t.proxy(renames["RepoSourceOut"]).optional(),
-            "storageSource": t.proxy(renames["StorageSourceOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SourceOut"])
-    types["SourceProvenanceIn"] = t.struct(
-        {
-            "resolvedStorageSource": t.proxy(renames["StorageSourceIn"]).optional(),
-            "resolvedRepoSource": t.proxy(renames["RepoSourceIn"]).optional(),
-        }
-    ).named(renames["SourceProvenanceIn"])
-    types["SourceProvenanceOut"] = t.struct(
-        {
-            "resolvedStorageSource": t.proxy(renames["StorageSourceOut"]).optional(),
-            "resolvedRepoSource": t.proxy(renames["RepoSourceOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SourceProvenanceOut"])
     types["ListLocationsResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -535,6 +386,21 @@ def import_cloudfunctions() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListLocationsResponseOut"])
+    types["SourceIn"] = t.struct(
+        {
+            "gitUri": t.string().optional(),
+            "repoSource": t.proxy(renames["RepoSourceIn"]).optional(),
+            "storageSource": t.proxy(renames["StorageSourceIn"]).optional(),
+        }
+    ).named(renames["SourceIn"])
+    types["SourceOut"] = t.struct(
+        {
+            "gitUri": t.string().optional(),
+            "repoSource": t.proxy(renames["RepoSourceOut"]).optional(),
+            "storageSource": t.proxy(renames["StorageSourceOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SourceOut"])
     types["SecretVersionIn"] = t.struct(
         {"path": t.string().optional(), "version": t.string().optional()}
     ).named(renames["SecretVersionIn"])
@@ -545,154 +411,470 @@ def import_cloudfunctions() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SecretVersionOut"])
-    types["SecretEnvVarIn"] = t.struct(
+    types["GoogleCloudFunctionsV2alphaStateMessageIn"] = t.struct(
         {
-            "key": t.string().optional(),
-            "version": t.string().optional(),
-            "secret": t.string().optional(),
-            "projectId": t.string().optional(),
+            "type": t.string().optional(),
+            "severity": t.string().optional(),
+            "message": t.string().optional(),
         }
-    ).named(renames["SecretEnvVarIn"])
-    types["SecretEnvVarOut"] = t.struct(
+    ).named(renames["GoogleCloudFunctionsV2alphaStateMessageIn"])
+    types["GoogleCloudFunctionsV2alphaStateMessageOut"] = t.struct(
         {
-            "key": t.string().optional(),
-            "version": t.string().optional(),
-            "secret": t.string().optional(),
-            "projectId": t.string().optional(),
+            "type": t.string().optional(),
+            "severity": t.string().optional(),
+            "message": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SecretEnvVarOut"])
-    types["ServiceConfigIn"] = t.struct(
+    ).named(renames["GoogleCloudFunctionsV2alphaStateMessageOut"])
+    types["GenerateDownloadUrlRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["GenerateDownloadUrlRequestIn"])
+    types["GenerateDownloadUrlRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["GenerateDownloadUrlRequestOut"])
+    types["SourceProvenanceIn"] = t.struct(
         {
-            "minInstanceCount": t.integer().optional(),
-            "allTrafficOnLatestRevision": t.boolean().optional(),
-            "availableCpu": t.string().optional(),
-            "secretEnvironmentVariables": t.array(
-                t.proxy(renames["SecretEnvVarIn"])
-            ).optional(),
-            "maxInstanceRequestConcurrency": t.integer().optional(),
-            "timeoutSeconds": t.integer().optional(),
-            "securityLevel": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "ingressSettings": t.string().optional(),
-            "vpcConnector": t.string().optional(),
-            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
-            "availableMemory": t.string().optional(),
-            "maxInstanceCount": t.integer().optional(),
-            "vpcConnectorEgressSettings": t.string().optional(),
-            "secretVolumes": t.array(t.proxy(renames["SecretVolumeIn"])).optional(),
+            "resolvedStorageSource": t.proxy(renames["StorageSourceIn"]).optional(),
+            "resolvedRepoSource": t.proxy(renames["RepoSourceIn"]).optional(),
+            "gitUri": t.string().optional(),
         }
-    ).named(renames["ServiceConfigIn"])
-    types["ServiceConfigOut"] = t.struct(
+    ).named(renames["SourceProvenanceIn"])
+    types["SourceProvenanceOut"] = t.struct(
         {
-            "minInstanceCount": t.integer().optional(),
-            "allTrafficOnLatestRevision": t.boolean().optional(),
-            "availableCpu": t.string().optional(),
-            "secretEnvironmentVariables": t.array(
-                t.proxy(renames["SecretEnvVarOut"])
-            ).optional(),
-            "maxInstanceRequestConcurrency": t.integer().optional(),
-            "timeoutSeconds": t.integer().optional(),
-            "securityLevel": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "ingressSettings": t.string().optional(),
-            "vpcConnector": t.string().optional(),
-            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
-            "uri": t.string().optional(),
-            "availableMemory": t.string().optional(),
-            "revision": t.string().optional(),
-            "maxInstanceCount": t.integer().optional(),
-            "vpcConnectorEgressSettings": t.string().optional(),
-            "service": t.string().optional(),
-            "secretVolumes": t.array(t.proxy(renames["SecretVolumeOut"])).optional(),
+            "resolvedStorageSource": t.proxy(renames["StorageSourceOut"]).optional(),
+            "resolvedRepoSource": t.proxy(renames["RepoSourceOut"]).optional(),
+            "gitUri": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ServiceConfigOut"])
+    ).named(renames["SourceProvenanceOut"])
+    types["GoogleCloudFunctionsV2betaLocationMetadataIn"] = t.struct(
+        {"environments": t.array(t.string()).optional()}
+    ).named(renames["GoogleCloudFunctionsV2betaLocationMetadataIn"])
+    types["GoogleCloudFunctionsV2betaLocationMetadataOut"] = t.struct(
+        {
+            "environments": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2betaLocationMetadataOut"])
+    types["ListRuntimesResponseIn"] = t.struct(
+        {"runtimes": t.array(t.proxy(renames["RuntimeIn"])).optional()}
+    ).named(renames["ListRuntimesResponseIn"])
+    types["ListRuntimesResponseOut"] = t.struct(
+        {
+            "runtimes": t.array(t.proxy(renames["RuntimeOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListRuntimesResponseOut"])
+    types["SecretVolumeIn"] = t.struct(
+        {
+            "mountPath": t.string().optional(),
+            "projectId": t.string().optional(),
+            "versions": t.array(t.proxy(renames["SecretVersionIn"])).optional(),
+            "secret": t.string().optional(),
+        }
+    ).named(renames["SecretVolumeIn"])
+    types["SecretVolumeOut"] = t.struct(
+        {
+            "mountPath": t.string().optional(),
+            "projectId": t.string().optional(),
+            "versions": t.array(t.proxy(renames["SecretVersionOut"])).optional(),
+            "secret": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SecretVolumeOut"])
+    types["TestIamPermissionsResponseIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsResponseIn"])
+    types["TestIamPermissionsResponseOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestIamPermissionsResponseOut"])
+    types["OperationMetadataV1In"] = t.struct(
+        {
+            "sourceToken": t.string().optional(),
+            "versionId": t.string().optional(),
+            "request": t.struct({"_": t.string().optional()}).optional(),
+            "buildName": t.string().optional(),
+            "buildId": t.string().optional(),
+            "target": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "type": t.string().optional(),
+        }
+    ).named(renames["OperationMetadataV1In"])
+    types["OperationMetadataV1Out"] = t.struct(
+        {
+            "sourceToken": t.string().optional(),
+            "versionId": t.string().optional(),
+            "request": t.struct({"_": t.string().optional()}).optional(),
+            "buildName": t.string().optional(),
+            "buildId": t.string().optional(),
+            "target": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "type": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationMetadataV1Out"])
     types["GoogleCloudFunctionsV2betaOperationMetadataIn"] = t.struct(
         {
-            "apiVersion": t.string().optional(),
             "stages": t.array(
                 t.proxy(renames["GoogleCloudFunctionsV2betaStageIn"])
             ).optional(),
-            "endTime": t.string().optional(),
-            "createTime": t.string().optional(),
-            "verb": t.string().optional(),
+            "apiVersion": t.string().optional(),
             "target": t.string().optional(),
             "requestResource": t.struct({"_": t.string().optional()}).optional(),
-            "statusDetail": t.string().optional(),
+            "endTime": t.string().optional(),
             "cancelRequested": t.boolean().optional(),
+            "statusDetail": t.string().optional(),
+            "verb": t.string().optional(),
+            "createTime": t.string().optional(),
         }
     ).named(renames["GoogleCloudFunctionsV2betaOperationMetadataIn"])
     types["GoogleCloudFunctionsV2betaOperationMetadataOut"] = t.struct(
         {
-            "apiVersion": t.string().optional(),
             "stages": t.array(
                 t.proxy(renames["GoogleCloudFunctionsV2betaStageOut"])
             ).optional(),
-            "endTime": t.string().optional(),
-            "createTime": t.string().optional(),
-            "verb": t.string().optional(),
+            "apiVersion": t.string().optional(),
             "target": t.string().optional(),
             "requestResource": t.struct({"_": t.string().optional()}).optional(),
-            "statusDetail": t.string().optional(),
+            "endTime": t.string().optional(),
             "cancelRequested": t.boolean().optional(),
+            "statusDetail": t.string().optional(),
+            "verb": t.string().optional(),
+            "createTime": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GoogleCloudFunctionsV2betaOperationMetadataOut"])
+    types["OperationIn"] = t.struct(
+        {
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["StatusIn"]).optional(),
+            "done": t.boolean().optional(),
+        }
+    ).named(renames["OperationIn"])
+    types["OperationOut"] = t.struct(
+        {
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "done": t.boolean().optional(),
+        }
+    ).named(renames["OperationOut"])
+    types["RuntimeIn"] = t.struct(
+        {
+            "warnings": t.array(t.string()).optional(),
+            "environment": t.string().optional(),
+            "stage": t.string().optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+        }
+    ).named(renames["RuntimeIn"])
+    types["RuntimeOut"] = t.struct(
+        {
+            "warnings": t.array(t.string()).optional(),
+            "environment": t.string().optional(),
+            "stage": t.string().optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RuntimeOut"])
+    types["LocationIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "displayName": t.string().optional(),
+            "locationId": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["LocationIn"])
+    types["LocationOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "displayName": t.string().optional(),
+            "locationId": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["LocationOut"])
+    types["RepoSourceIn"] = t.struct(
+        {
+            "commitSha": t.string().optional(),
+            "branchName": t.string().optional(),
+            "tagName": t.string().optional(),
+            "repoName": t.string().optional(),
+            "dir": t.string().optional(),
+            "projectId": t.string().optional(),
+        }
+    ).named(renames["RepoSourceIn"])
+    types["RepoSourceOut"] = t.struct(
+        {
+            "commitSha": t.string().optional(),
+            "branchName": t.string().optional(),
+            "tagName": t.string().optional(),
+            "repoName": t.string().optional(),
+            "dir": t.string().optional(),
+            "projectId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["RepoSourceOut"])
+    types["GenerateUploadUrlRequestIn"] = t.struct(
+        {"kmsKeyName": t.string().optional()}
+    ).named(renames["GenerateUploadUrlRequestIn"])
+    types["GenerateUploadUrlRequestOut"] = t.struct(
+        {
+            "kmsKeyName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GenerateUploadUrlRequestOut"])
+    types["AuditConfigIn"] = t.struct(
+        {
+            "service": t.string().optional(),
+            "auditLogConfigs": t.array(t.proxy(renames["AuditLogConfigIn"])).optional(),
+        }
+    ).named(renames["AuditConfigIn"])
+    types["AuditConfigOut"] = t.struct(
+        {
+            "service": t.string().optional(),
+            "auditLogConfigs": t.array(
+                t.proxy(renames["AuditLogConfigOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AuditConfigOut"])
+    types["ListOperationsResponseIn"] = t.struct(
+        {
+            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListOperationsResponseIn"])
+    types["ListOperationsResponseOut"] = t.struct(
+        {
+            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListOperationsResponseOut"])
+    types["GoogleCloudFunctionsV2alphaStageIn"] = t.struct(
+        {
+            "resource": t.string().optional(),
+            "name": t.string().optional(),
+            "state": t.string().optional(),
+            "message": t.string().optional(),
+            "resourceUri": t.string().optional(),
+            "stateMessages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2alphaStateMessageIn"])
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2alphaStageIn"])
+    types["GoogleCloudFunctionsV2alphaStageOut"] = t.struct(
+        {
+            "resource": t.string().optional(),
+            "name": t.string().optional(),
+            "state": t.string().optional(),
+            "message": t.string().optional(),
+            "resourceUri": t.string().optional(),
+            "stateMessages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2alphaStateMessageOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2alphaStageOut"])
+    types["GoogleCloudFunctionsV2betaStateMessageIn"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "message": t.string().optional(),
+            "severity": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2betaStateMessageIn"])
+    types["GoogleCloudFunctionsV2betaStateMessageOut"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "message": t.string().optional(),
+            "severity": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2betaStateMessageOut"])
+    types["GoogleCloudFunctionsV2StageIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "state": t.string().optional(),
+            "message": t.string().optional(),
+            "resourceUri": t.string().optional(),
+            "resource": t.string().optional(),
+            "stateMessages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2StateMessageIn"])
+            ).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2StageIn"])
+    types["GoogleCloudFunctionsV2StageOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "state": t.string().optional(),
+            "message": t.string().optional(),
+            "resourceUri": t.string().optional(),
+            "resource": t.string().optional(),
+            "stateMessages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2StateMessageOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2StageOut"])
     types["EventFilterIn"] = t.struct(
         {
-            "operator": t.string().optional(),
             "value": t.string(),
+            "operator": t.string().optional(),
             "attribute": t.string(),
         }
     ).named(renames["EventFilterIn"])
     types["EventFilterOut"] = t.struct(
         {
-            "operator": t.string().optional(),
             "value": t.string(),
+            "operator": t.string().optional(),
             "attribute": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["EventFilterOut"])
-    types["TestIamPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsRequestIn"])
-    types["TestIamPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsRequestOut"])
     types["SetIamPolicyRequestIn"] = t.struct(
         {
-            "updateMask": t.string().optional(),
             "policy": t.proxy(renames["PolicyIn"]).optional(),
+            "updateMask": t.string().optional(),
         }
     ).named(renames["SetIamPolicyRequestIn"])
     types["SetIamPolicyRequestOut"] = t.struct(
         {
-            "updateMask": t.string().optional(),
             "policy": t.proxy(renames["PolicyOut"]).optional(),
+            "updateMask": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SetIamPolicyRequestOut"])
-    types["SecretVolumeIn"] = t.struct(
+    types["BuildConfigIn"] = t.struct(
         {
-            "secret": t.string().optional(),
-            "mountPath": t.string().optional(),
-            "versions": t.array(t.proxy(renames["SecretVersionIn"])).optional(),
-            "projectId": t.string().optional(),
+            "entryPoint": t.string().optional(),
+            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
+            "runtime": t.string().optional(),
+            "source": t.proxy(renames["SourceIn"]).optional(),
+            "dockerRegistry": t.string().optional(),
+            "workerPool": t.string().optional(),
+            "dockerRepository": t.string().optional(),
         }
-    ).named(renames["SecretVolumeIn"])
-    types["SecretVolumeOut"] = t.struct(
+    ).named(renames["BuildConfigIn"])
+    types["BuildConfigOut"] = t.struct(
         {
-            "secret": t.string().optional(),
-            "mountPath": t.string().optional(),
-            "versions": t.array(t.proxy(renames["SecretVersionOut"])).optional(),
-            "projectId": t.string().optional(),
+            "entryPoint": t.string().optional(),
+            "build": t.string().optional(),
+            "environmentVariables": t.struct({"_": t.string().optional()}).optional(),
+            "sourceProvenance": t.proxy(renames["SourceProvenanceOut"]).optional(),
+            "runtime": t.string().optional(),
+            "source": t.proxy(renames["SourceOut"]).optional(),
+            "dockerRegistry": t.string().optional(),
+            "workerPool": t.string().optional(),
+            "dockerRepository": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SecretVolumeOut"])
+    ).named(renames["BuildConfigOut"])
+    types["GoogleCloudFunctionsV2LocationMetadataIn"] = t.struct(
+        {"environments": t.array(t.string()).optional()}
+    ).named(renames["GoogleCloudFunctionsV2LocationMetadataIn"])
+    types["GoogleCloudFunctionsV2LocationMetadataOut"] = t.struct(
+        {
+            "environments": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2LocationMetadataOut"])
+    types["FunctionIn"] = t.struct(
+        {
+            "environment": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "buildConfig": t.proxy(renames["BuildConfigIn"]).optional(),
+            "kmsKeyName": t.string().optional(),
+            "eventTrigger": t.proxy(renames["EventTriggerIn"]).optional(),
+            "name": t.string().optional(),
+            "description": t.string().optional(),
+            "serviceConfig": t.proxy(renames["ServiceConfigIn"]).optional(),
+        }
+    ).named(renames["FunctionIn"])
+    types["FunctionOut"] = t.struct(
+        {
+            "environment": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "buildConfig": t.proxy(renames["BuildConfigOut"]).optional(),
+            "stateMessages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2StateMessageOut"])
+            ).optional(),
+            "kmsKeyName": t.string().optional(),
+            "eventTrigger": t.proxy(renames["EventTriggerOut"]).optional(),
+            "name": t.string().optional(),
+            "url": t.string().optional(),
+            "description": t.string().optional(),
+            "state": t.string().optional(),
+            "satisfiesPzs": t.boolean().optional(),
+            "serviceConfig": t.proxy(renames["ServiceConfigOut"]).optional(),
+            "updateTime": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FunctionOut"])
+    types["GenerateDownloadUrlResponseIn"] = t.struct(
+        {"downloadUrl": t.string().optional()}
+    ).named(renames["GenerateDownloadUrlResponseIn"])
+    types["GenerateDownloadUrlResponseOut"] = t.struct(
+        {
+            "downloadUrl": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GenerateDownloadUrlResponseOut"])
+    types["GoogleCloudFunctionsV2OperationMetadataIn"] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "target": t.string().optional(),
+            "stages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2StageIn"])
+            ).optional(),
+            "apiVersion": t.string().optional(),
+            "cancelRequested": t.boolean().optional(),
+            "endTime": t.string().optional(),
+            "verb": t.string().optional(),
+            "requestResource": t.struct({"_": t.string().optional()}).optional(),
+            "statusDetail": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2OperationMetadataIn"])
+    types["GoogleCloudFunctionsV2OperationMetadataOut"] = t.struct(
+        {
+            "createTime": t.string().optional(),
+            "target": t.string().optional(),
+            "stages": t.array(
+                t.proxy(renames["GoogleCloudFunctionsV2StageOut"])
+            ).optional(),
+            "apiVersion": t.string().optional(),
+            "cancelRequested": t.boolean().optional(),
+            "endTime": t.string().optional(),
+            "verb": t.string().optional(),
+            "requestResource": t.struct({"_": t.string().optional()}).optional(),
+            "statusDetail": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2OperationMetadataOut"])
+    types["GoogleCloudFunctionsV2StateMessageIn"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "message": t.string().optional(),
+            "severity": t.string().optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2StateMessageIn"])
+    types["GoogleCloudFunctionsV2StateMessageOut"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "message": t.string().optional(),
+            "severity": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GoogleCloudFunctionsV2StateMessageOut"])
     types["GenerateUploadUrlResponseIn"] = t.struct(
         {
             "uploadUrl": t.string().optional(),
@@ -706,161 +888,16 @@ def import_cloudfunctions() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GenerateUploadUrlResponseOut"])
-    types["RepoSourceIn"] = t.struct(
-        {
-            "invertRegex": t.boolean().optional(),
-            "repoName": t.string().optional(),
-            "tagName": t.string().optional(),
-            "projectId": t.string().optional(),
-            "commitSha": t.string().optional(),
-            "dir": t.string().optional(),
-            "branchName": t.string().optional(),
-        }
-    ).named(renames["RepoSourceIn"])
-    types["RepoSourceOut"] = t.struct(
-        {
-            "invertRegex": t.boolean().optional(),
-            "repoName": t.string().optional(),
-            "tagName": t.string().optional(),
-            "projectId": t.string().optional(),
-            "commitSha": t.string().optional(),
-            "dir": t.string().optional(),
-            "branchName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RepoSourceOut"])
-    types["OperationIn"] = t.struct(
-        {
-            "done": t.boolean().optional(),
-            "error": t.proxy(renames["StatusIn"]).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["OperationIn"])
-    types["OperationOut"] = t.struct(
-        {
-            "done": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string().optional(),
-        }
-    ).named(renames["OperationOut"])
-    types["EventTriggerIn"] = t.struct(
-        {
-            "pubsubTopic": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "eventType": t.string(),
-            "channel": t.string().optional(),
-            "retryPolicy": t.string().optional(),
-            "eventFilters": t.array(t.proxy(renames["EventFilterIn"])).optional(),
-            "triggerRegion": t.string().optional(),
-        }
-    ).named(renames["EventTriggerIn"])
-    types["EventTriggerOut"] = t.struct(
-        {
-            "pubsubTopic": t.string().optional(),
-            "serviceAccountEmail": t.string().optional(),
-            "eventType": t.string(),
-            "channel": t.string().optional(),
-            "retryPolicy": t.string().optional(),
-            "eventFilters": t.array(t.proxy(renames["EventFilterOut"])).optional(),
-            "trigger": t.string().optional(),
-            "triggerRegion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EventTriggerOut"])
-    types["StatusIn"] = t.struct(
-        {
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-        }
-    ).named(renames["StatusIn"])
-    types["StatusOut"] = t.struct(
-        {
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "message": t.string().optional(),
-            "code": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusOut"])
-    types["RuntimeIn"] = t.struct(
-        {
-            "displayName": t.string().optional(),
-            "warnings": t.array(t.string()).optional(),
-            "name": t.string().optional(),
-            "stage": t.string().optional(),
-            "environment": t.string().optional(),
-        }
-    ).named(renames["RuntimeIn"])
-    types["RuntimeOut"] = t.struct(
-        {
-            "displayName": t.string().optional(),
-            "warnings": t.array(t.string()).optional(),
-            "name": t.string().optional(),
-            "stage": t.string().optional(),
-            "environment": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RuntimeOut"])
-    types["GoogleCloudFunctionsV2alphaOperationMetadataIn"] = t.struct(
-        {
-            "statusDetail": t.string().optional(),
-            "requestResource": t.struct({"_": t.string().optional()}).optional(),
-            "verb": t.string().optional(),
-            "createTime": t.string().optional(),
-            "target": t.string().optional(),
-            "cancelRequested": t.boolean().optional(),
-            "endTime": t.string().optional(),
-            "stages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2alphaStageIn"])
-            ).optional(),
-            "apiVersion": t.string().optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2alphaOperationMetadataIn"])
-    types["GoogleCloudFunctionsV2alphaOperationMetadataOut"] = t.struct(
-        {
-            "statusDetail": t.string().optional(),
-            "requestResource": t.struct({"_": t.string().optional()}).optional(),
-            "verb": t.string().optional(),
-            "createTime": t.string().optional(),
-            "target": t.string().optional(),
-            "cancelRequested": t.boolean().optional(),
-            "endTime": t.string().optional(),
-            "stages": t.array(
-                t.proxy(renames["GoogleCloudFunctionsV2alphaStageOut"])
-            ).optional(),
-            "apiVersion": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2alphaOperationMetadataOut"])
-    types["GoogleCloudFunctionsV2StateMessageIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "type": t.string().optional(),
-            "severity": t.string().optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2StateMessageIn"])
-    types["GoogleCloudFunctionsV2StateMessageOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "type": t.string().optional(),
-            "severity": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GoogleCloudFunctionsV2StateMessageOut"])
 
     functions = {}
     functions["projectsLocationsList"] = cloudfunctions.get(
         "v2/{name}/locations",
         t.struct(
             {
-                "pageToken": t.string().optional(),
                 "filter": t.string().optional(),
                 "pageSize": t.integer().optional(),
                 "name": t.string().optional(),
+                "pageToken": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -868,46 +905,17 @@ def import_cloudfunctions() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsOperationsGet"] = cloudfunctions.get(
-        "v2/{name}/operations",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "name": t.string().optional(),
-                "filter": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListOperationsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["projectsLocationsOperationsList"] = cloudfunctions.get(
-        "v2/{name}/operations",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "name": t.string().optional(),
-                "filter": t.string(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListOperationsResponseOut"]),
+        "v2/{name}",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsRuntimesList"] = cloudfunctions.get(
-        "v2/{parent}/runtimes",
-        t.struct(
-            {
-                "parent": t.string(),
-                "filter": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListRuntimesResponseOut"]),
+    functions["projectsLocationsOperationsGet"] = cloudfunctions.get(
+        "v2/{name}",
+        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
+        t.proxy(renames["OperationOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -916,8 +924,8 @@ def import_cloudfunctions() -> Import:
         t.struct(
             {
                 "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
                 "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -930,64 +938,8 @@ def import_cloudfunctions() -> Import:
         t.struct(
             {
                 "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
                 "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsFunctionsGenerateUploadUrl"] = cloudfunctions.post(
-        "v2/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
                 "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsFunctionsCreate"] = cloudfunctions.post(
-        "v2/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsFunctionsList"] = cloudfunctions.post(
-        "v2/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsFunctionsGetIamPolicy"] = cloudfunctions.post(
-        "v2/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1000,22 +952,8 @@ def import_cloudfunctions() -> Import:
         t.struct(
             {
                 "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
                 "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsFunctionsTestIamPermissions"] = cloudfunctions.post(
-        "v2/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
                 "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1028,8 +966,78 @@ def import_cloudfunctions() -> Import:
         t.struct(
             {
                 "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
                 "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsFunctionsCreate"] = cloudfunctions.post(
+        "v2/{resource}:setIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsFunctionsList"] = cloudfunctions.post(
+        "v2/{resource}:setIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsFunctionsGetIamPolicy"] = cloudfunctions.post(
+        "v2/{resource}:setIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsFunctionsGenerateUploadUrl"] = cloudfunctions.post(
+        "v2/{resource}:setIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsFunctionsTestIamPermissions"] = cloudfunctions.post(
+        "v2/{resource}:setIamPolicy",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1042,12 +1050,25 @@ def import_cloudfunctions() -> Import:
         t.struct(
             {
                 "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
                 "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "updateMask": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
         t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsRuntimesList"] = cloudfunctions.get(
+        "v2/{parent}/runtimes",
+        t.struct(
+            {
+                "filter": t.string().optional(),
+                "parent": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListRuntimesResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
