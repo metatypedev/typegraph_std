@@ -1,10 +1,10 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_groupsmigration() -> Import:
+def import_groupsmigration():
     groupsmigration = HTTPRuntime("https://groupsmigration.googleapis.com/")
 
     renames = {

@@ -1,10 +1,10 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_siteVerification() -> Import:
+def import_siteVerification():
     siteVerification = HTTPRuntime("https://www.googleapis.com/")
 
     renames = {
@@ -13,10 +13,10 @@ def import_siteVerification() -> Import:
         "SiteVerificationWebResourceListResponseOut": "_siteVerification_3_SiteVerificationWebResourceListResponseOut",
         "SiteVerificationWebResourceGettokenRequestIn": "_siteVerification_4_SiteVerificationWebResourceGettokenRequestIn",
         "SiteVerificationWebResourceGettokenRequestOut": "_siteVerification_5_SiteVerificationWebResourceGettokenRequestOut",
-        "SiteVerificationWebResourceGettokenResponseIn": "_siteVerification_6_SiteVerificationWebResourceGettokenResponseIn",
-        "SiteVerificationWebResourceGettokenResponseOut": "_siteVerification_7_SiteVerificationWebResourceGettokenResponseOut",
-        "SiteVerificationWebResourceResourceIn": "_siteVerification_8_SiteVerificationWebResourceResourceIn",
-        "SiteVerificationWebResourceResourceOut": "_siteVerification_9_SiteVerificationWebResourceResourceOut",
+        "SiteVerificationWebResourceResourceIn": "_siteVerification_6_SiteVerificationWebResourceResourceIn",
+        "SiteVerificationWebResourceResourceOut": "_siteVerification_7_SiteVerificationWebResourceResourceOut",
+        "SiteVerificationWebResourceGettokenResponseIn": "_siteVerification_8_SiteVerificationWebResourceGettokenResponseIn",
+        "SiteVerificationWebResourceGettokenResponseOut": "_siteVerification_9_SiteVerificationWebResourceGettokenResponseOut",
     }
 
     types = {}
@@ -40,21 +40,40 @@ def import_siteVerification() -> Import:
     ).named(renames["SiteVerificationWebResourceListResponseOut"])
     types["SiteVerificationWebResourceGettokenRequestIn"] = t.struct(
         {
+            "verificationMethod": t.string().optional(),
             "site": t.struct(
                 {"type": t.string().optional(), "identifier": t.string().optional()}
             ).optional(),
-            "verificationMethod": t.string().optional(),
         }
     ).named(renames["SiteVerificationWebResourceGettokenRequestIn"])
     types["SiteVerificationWebResourceGettokenRequestOut"] = t.struct(
         {
+            "verificationMethod": t.string().optional(),
             "site": t.struct(
                 {"type": t.string().optional(), "identifier": t.string().optional()}
             ).optional(),
-            "verificationMethod": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SiteVerificationWebResourceGettokenRequestOut"])
+    types["SiteVerificationWebResourceResourceIn"] = t.struct(
+        {
+            "id": t.string().optional(),
+            "site": t.struct(
+                {"type": t.string().optional(), "identifier": t.string().optional()}
+            ).optional(),
+            "owners": t.array(t.string()).optional(),
+        }
+    ).named(renames["SiteVerificationWebResourceResourceIn"])
+    types["SiteVerificationWebResourceResourceOut"] = t.struct(
+        {
+            "id": t.string().optional(),
+            "site": t.struct(
+                {"type": t.string().optional(), "identifier": t.string().optional()}
+            ).optional(),
+            "owners": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SiteVerificationWebResourceResourceOut"])
     types["SiteVerificationWebResourceGettokenResponseIn"] = t.struct(
         {"token": t.string().optional(), "method": t.string().optional()}
     ).named(renames["SiteVerificationWebResourceGettokenResponseIn"])
@@ -65,73 +84,110 @@ def import_siteVerification() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SiteVerificationWebResourceGettokenResponseOut"])
-    types["SiteVerificationWebResourceResourceIn"] = t.struct(
-        {
-            "owners": t.array(t.string()).optional(),
-            "id": t.string().optional(),
-            "site": t.struct(
-                {"type": t.string().optional(), "identifier": t.string().optional()}
-            ).optional(),
-        }
-    ).named(renames["SiteVerificationWebResourceResourceIn"])
-    types["SiteVerificationWebResourceResourceOut"] = t.struct(
-        {
-            "owners": t.array(t.string()).optional(),
-            "id": t.string().optional(),
-            "site": t.struct(
-                {"type": t.string().optional(), "identifier": t.string().optional()}
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SiteVerificationWebResourceResourceOut"])
 
     functions = {}
-    functions["webResourceInsert"] = siteVerification.delete(
-        "webResource/{id}",
-        t.struct({"id": t.string().optional(), "auth": t.string().optional()}),
-        t.struct({"_": t.string().optional()}),
+    functions["webResourceGet"] = siteVerification.post(
+        "token",
+        t.struct(
+            {
+                "verificationMethod": t.string().optional(),
+                "site": t.struct(
+                    {"type": t.string().optional(), "identifier": t.string().optional()}
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SiteVerificationWebResourceGettokenResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["webResourceList"] = siteVerification.delete(
-        "webResource/{id}",
-        t.struct({"id": t.string().optional(), "auth": t.string().optional()}),
-        t.struct({"_": t.string().optional()}),
+    functions["webResourceDelete"] = siteVerification.post(
+        "token",
+        t.struct(
+            {
+                "verificationMethod": t.string().optional(),
+                "site": t.struct(
+                    {"type": t.string().optional(), "identifier": t.string().optional()}
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SiteVerificationWebResourceGettokenResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["webResourcePatch"] = siteVerification.delete(
-        "webResource/{id}",
-        t.struct({"id": t.string().optional(), "auth": t.string().optional()}),
-        t.struct({"_": t.string().optional()}),
+    functions["webResourceUpdate"] = siteVerification.post(
+        "token",
+        t.struct(
+            {
+                "verificationMethod": t.string().optional(),
+                "site": t.struct(
+                    {"type": t.string().optional(), "identifier": t.string().optional()}
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SiteVerificationWebResourceGettokenResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["webResourceGet"] = siteVerification.delete(
-        "webResource/{id}",
-        t.struct({"id": t.string().optional(), "auth": t.string().optional()}),
-        t.struct({"_": t.string().optional()}),
+    functions["webResourceInsert"] = siteVerification.post(
+        "token",
+        t.struct(
+            {
+                "verificationMethod": t.string().optional(),
+                "site": t.struct(
+                    {"type": t.string().optional(), "identifier": t.string().optional()}
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SiteVerificationWebResourceGettokenResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["webResourceGetToken"] = siteVerification.delete(
-        "webResource/{id}",
-        t.struct({"id": t.string().optional(), "auth": t.string().optional()}),
-        t.struct({"_": t.string().optional()}),
+    functions["webResourcePatch"] = siteVerification.post(
+        "token",
+        t.struct(
+            {
+                "verificationMethod": t.string().optional(),
+                "site": t.struct(
+                    {"type": t.string().optional(), "identifier": t.string().optional()}
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SiteVerificationWebResourceGettokenResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["webResourceUpdate"] = siteVerification.delete(
-        "webResource/{id}",
-        t.struct({"id": t.string().optional(), "auth": t.string().optional()}),
-        t.struct({"_": t.string().optional()}),
+    functions["webResourceList"] = siteVerification.post(
+        "token",
+        t.struct(
+            {
+                "verificationMethod": t.string().optional(),
+                "site": t.struct(
+                    {"type": t.string().optional(), "identifier": t.string().optional()}
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SiteVerificationWebResourceGettokenResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["webResourceDelete"] = siteVerification.delete(
-        "webResource/{id}",
-        t.struct({"id": t.string().optional(), "auth": t.string().optional()}),
-        t.struct({"_": t.string().optional()}),
+    functions["webResourceGetToken"] = siteVerification.post(
+        "token",
+        t.struct(
+            {
+                "verificationMethod": t.string().optional(),
+                "site": t.struct(
+                    {"type": t.string().optional(), "identifier": t.string().optional()}
+                ).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SiteVerificationWebResourceGettokenResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

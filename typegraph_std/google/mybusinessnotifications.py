@@ -1,10 +1,10 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_mybusinessnotifications() -> Import:
+def import_mybusinessnotifications():
     mybusinessnotifications = HTTPRuntime(
         "https://mybusinessnotifications.googleapis.com/"
     )
@@ -21,16 +21,16 @@ def import_mybusinessnotifications() -> Import:
     ).named(renames["ErrorResponse"])
     types["NotificationSettingIn"] = t.struct(
         {
-            "notificationTypes": t.array(t.string()).optional(),
-            "pubsubTopic": t.string().optional(),
             "name": t.string(),
+            "pubsubTopic": t.string().optional(),
+            "notificationTypes": t.array(t.string()).optional(),
         }
     ).named(renames["NotificationSettingIn"])
     types["NotificationSettingOut"] = t.struct(
         {
-            "notificationTypes": t.array(t.string()).optional(),
-            "pubsubTopic": t.string().optional(),
             "name": t.string(),
+            "pubsubTopic": t.string().optional(),
+            "notificationTypes": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["NotificationSettingOut"])
@@ -40,10 +40,10 @@ def import_mybusinessnotifications() -> Import:
         "v1/{name}",
         t.struct(
             {
-                "name": t.string(),
                 "updateMask": t.string(),
-                "notificationTypes": t.array(t.string()).optional(),
+                "name": t.string(),
                 "pubsubTopic": t.string().optional(),
+                "notificationTypes": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -55,10 +55,10 @@ def import_mybusinessnotifications() -> Import:
         "v1/{name}",
         t.struct(
             {
-                "name": t.string(),
                 "updateMask": t.string(),
-                "notificationTypes": t.array(t.string()).optional(),
+                "name": t.string(),
                 "pubsubTopic": t.string().optional(),
+                "notificationTypes": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),

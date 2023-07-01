@@ -1,317 +1,111 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_iap() -> Import:
+def import_iap():
     iap = HTTPRuntime("https://iap.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_iap_1_ErrorResponse",
-        "ExprIn": "_iap_2_ExprIn",
-        "ExprOut": "_iap_3_ExprOut",
-        "ListIdentityAwareProxyClientsResponseIn": "_iap_4_ListIdentityAwareProxyClientsResponseIn",
-        "ListIdentityAwareProxyClientsResponseOut": "_iap_5_ListIdentityAwareProxyClientsResponseOut",
-        "ReauthSettingsIn": "_iap_6_ReauthSettingsIn",
-        "ReauthSettingsOut": "_iap_7_ReauthSettingsOut",
-        "AllowedDomainsSettingsIn": "_iap_8_AllowedDomainsSettingsIn",
-        "AllowedDomainsSettingsOut": "_iap_9_AllowedDomainsSettingsOut",
-        "PolicyNameIn": "_iap_10_PolicyNameIn",
-        "PolicyNameOut": "_iap_11_PolicyNameOut",
-        "AccessDeniedPageSettingsIn": "_iap_12_AccessDeniedPageSettingsIn",
-        "AccessDeniedPageSettingsOut": "_iap_13_AccessDeniedPageSettingsOut",
-        "TestIamPermissionsResponseIn": "_iap_14_TestIamPermissionsResponseIn",
-        "TestIamPermissionsResponseOut": "_iap_15_TestIamPermissionsResponseOut",
-        "GetPolicyOptionsIn": "_iap_16_GetPolicyOptionsIn",
-        "GetPolicyOptionsOut": "_iap_17_GetPolicyOptionsOut",
-        "IapSettingsIn": "_iap_18_IapSettingsIn",
-        "IapSettingsOut": "_iap_19_IapSettingsOut",
-        "CsmSettingsIn": "_iap_20_CsmSettingsIn",
-        "CsmSettingsOut": "_iap_21_CsmSettingsOut",
-        "ListBrandsResponseIn": "_iap_22_ListBrandsResponseIn",
-        "ListBrandsResponseOut": "_iap_23_ListBrandsResponseOut",
-        "PolicyIn": "_iap_24_PolicyIn",
-        "PolicyOut": "_iap_25_PolicyOut",
-        "EmptyIn": "_iap_26_EmptyIn",
-        "EmptyOut": "_iap_27_EmptyOut",
-        "OAuthSettingsIn": "_iap_28_OAuthSettingsIn",
-        "OAuthSettingsOut": "_iap_29_OAuthSettingsOut",
-        "ResourceIn": "_iap_30_ResourceIn",
-        "ResourceOut": "_iap_31_ResourceOut",
-        "TunnelDestGroupIn": "_iap_32_TunnelDestGroupIn",
-        "TunnelDestGroupOut": "_iap_33_TunnelDestGroupOut",
-        "TestIamPermissionsRequestIn": "_iap_34_TestIamPermissionsRequestIn",
-        "TestIamPermissionsRequestOut": "_iap_35_TestIamPermissionsRequestOut",
-        "CorsSettingsIn": "_iap_36_CorsSettingsIn",
-        "CorsSettingsOut": "_iap_37_CorsSettingsOut",
-        "ListTunnelDestGroupsResponseIn": "_iap_38_ListTunnelDestGroupsResponseIn",
-        "ListTunnelDestGroupsResponseOut": "_iap_39_ListTunnelDestGroupsResponseOut",
-        "SetIamPolicyRequestIn": "_iap_40_SetIamPolicyRequestIn",
-        "SetIamPolicyRequestOut": "_iap_41_SetIamPolicyRequestOut",
-        "GetIamPolicyRequestIn": "_iap_42_GetIamPolicyRequestIn",
-        "GetIamPolicyRequestOut": "_iap_43_GetIamPolicyRequestOut",
+        "AccessSettingsIn": "_iap_2_AccessSettingsIn",
+        "AccessSettingsOut": "_iap_3_AccessSettingsOut",
+        "SetIamPolicyRequestIn": "_iap_4_SetIamPolicyRequestIn",
+        "SetIamPolicyRequestOut": "_iap_5_SetIamPolicyRequestOut",
+        "ListTunnelDestGroupsResponseIn": "_iap_6_ListTunnelDestGroupsResponseIn",
+        "ListTunnelDestGroupsResponseOut": "_iap_7_ListTunnelDestGroupsResponseOut",
+        "TestIamPermissionsResponseIn": "_iap_8_TestIamPermissionsResponseIn",
+        "TestIamPermissionsResponseOut": "_iap_9_TestIamPermissionsResponseOut",
+        "ListIdentityAwareProxyClientsResponseIn": "_iap_10_ListIdentityAwareProxyClientsResponseIn",
+        "ListIdentityAwareProxyClientsResponseOut": "_iap_11_ListIdentityAwareProxyClientsResponseOut",
+        "ApplicationSettingsIn": "_iap_12_ApplicationSettingsIn",
+        "ApplicationSettingsOut": "_iap_13_ApplicationSettingsOut",
+        "PolicyIn": "_iap_14_PolicyIn",
+        "PolicyOut": "_iap_15_PolicyOut",
+        "OAuthSettingsIn": "_iap_16_OAuthSettingsIn",
+        "OAuthSettingsOut": "_iap_17_OAuthSettingsOut",
+        "CsmSettingsIn": "_iap_18_CsmSettingsIn",
+        "CsmSettingsOut": "_iap_19_CsmSettingsOut",
+        "CorsSettingsIn": "_iap_20_CorsSettingsIn",
+        "CorsSettingsOut": "_iap_21_CorsSettingsOut",
+        "BindingIn": "_iap_22_BindingIn",
+        "BindingOut": "_iap_23_BindingOut",
+        "ReauthSettingsIn": "_iap_24_ReauthSettingsIn",
+        "ReauthSettingsOut": "_iap_25_ReauthSettingsOut",
+        "AttributePropagationSettingsIn": "_iap_26_AttributePropagationSettingsIn",
+        "AttributePropagationSettingsOut": "_iap_27_AttributePropagationSettingsOut",
+        "GetIamPolicyRequestIn": "_iap_28_GetIamPolicyRequestIn",
+        "GetIamPolicyRequestOut": "_iap_29_GetIamPolicyRequestOut",
+        "TestIamPermissionsRequestIn": "_iap_30_TestIamPermissionsRequestIn",
+        "TestIamPermissionsRequestOut": "_iap_31_TestIamPermissionsRequestOut",
+        "EmptyIn": "_iap_32_EmptyIn",
+        "EmptyOut": "_iap_33_EmptyOut",
+        "ValidateIapAttributeExpressionResponseIn": "_iap_34_ValidateIapAttributeExpressionResponseIn",
+        "ValidateIapAttributeExpressionResponseOut": "_iap_35_ValidateIapAttributeExpressionResponseOut",
+        "PolicyNameIn": "_iap_36_PolicyNameIn",
+        "PolicyNameOut": "_iap_37_PolicyNameOut",
+        "AccessDeniedPageSettingsIn": "_iap_38_AccessDeniedPageSettingsIn",
+        "AccessDeniedPageSettingsOut": "_iap_39_AccessDeniedPageSettingsOut",
+        "ExprIn": "_iap_40_ExprIn",
+        "ExprOut": "_iap_41_ExprOut",
+        "BrandIn": "_iap_42_BrandIn",
+        "BrandOut": "_iap_43_BrandOut",
         "IdentityAwareProxyClientIn": "_iap_44_IdentityAwareProxyClientIn",
         "IdentityAwareProxyClientOut": "_iap_45_IdentityAwareProxyClientOut",
-        "GcipSettingsIn": "_iap_46_GcipSettingsIn",
-        "GcipSettingsOut": "_iap_47_GcipSettingsOut",
-        "ApplicationSettingsIn": "_iap_48_ApplicationSettingsIn",
-        "ApplicationSettingsOut": "_iap_49_ApplicationSettingsOut",
-        "AttributePropagationSettingsIn": "_iap_50_AttributePropagationSettingsIn",
-        "AttributePropagationSettingsOut": "_iap_51_AttributePropagationSettingsOut",
-        "BindingIn": "_iap_52_BindingIn",
-        "BindingOut": "_iap_53_BindingOut",
-        "AccessSettingsIn": "_iap_54_AccessSettingsIn",
-        "AccessSettingsOut": "_iap_55_AccessSettingsOut",
-        "ResetIdentityAwareProxyClientSecretRequestIn": "_iap_56_ResetIdentityAwareProxyClientSecretRequestIn",
-        "ResetIdentityAwareProxyClientSecretRequestOut": "_iap_57_ResetIdentityAwareProxyClientSecretRequestOut",
-        "PolicyDelegationSettingsIn": "_iap_58_PolicyDelegationSettingsIn",
-        "PolicyDelegationSettingsOut": "_iap_59_PolicyDelegationSettingsOut",
-        "BrandIn": "_iap_60_BrandIn",
-        "BrandOut": "_iap_61_BrandOut",
+        "PolicyDelegationSettingsIn": "_iap_46_PolicyDelegationSettingsIn",
+        "PolicyDelegationSettingsOut": "_iap_47_PolicyDelegationSettingsOut",
+        "ResourceIn": "_iap_48_ResourceIn",
+        "ResourceOut": "_iap_49_ResourceOut",
+        "GcipSettingsIn": "_iap_50_GcipSettingsIn",
+        "GcipSettingsOut": "_iap_51_GcipSettingsOut",
+        "ListBrandsResponseIn": "_iap_52_ListBrandsResponseIn",
+        "ListBrandsResponseOut": "_iap_53_ListBrandsResponseOut",
+        "IapSettingsIn": "_iap_54_IapSettingsIn",
+        "IapSettingsOut": "_iap_55_IapSettingsOut",
+        "GetPolicyOptionsIn": "_iap_56_GetPolicyOptionsIn",
+        "GetPolicyOptionsOut": "_iap_57_GetPolicyOptionsOut",
+        "ResetIdentityAwareProxyClientSecretRequestIn": "_iap_58_ResetIdentityAwareProxyClientSecretRequestIn",
+        "ResetIdentityAwareProxyClientSecretRequestOut": "_iap_59_ResetIdentityAwareProxyClientSecretRequestOut",
+        "AllowedDomainsSettingsIn": "_iap_60_AllowedDomainsSettingsIn",
+        "AllowedDomainsSettingsOut": "_iap_61_AllowedDomainsSettingsOut",
+        "TunnelDestGroupIn": "_iap_62_TunnelDestGroupIn",
+        "TunnelDestGroupOut": "_iap_63_TunnelDestGroupOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["ExprIn"] = t.struct(
+    types["AccessSettingsIn"] = t.struct(
         {
-            "title": t.string().optional(),
-            "location": t.string().optional(),
-            "expression": t.string().optional(),
-            "description": t.string().optional(),
-        }
-    ).named(renames["ExprIn"])
-    types["ExprOut"] = t.struct(
-        {
-            "title": t.string().optional(),
-            "location": t.string().optional(),
-            "expression": t.string().optional(),
-            "description": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ExprOut"])
-    types["ListIdentityAwareProxyClientsResponseIn"] = t.struct(
-        {
-            "identityAwareProxyClients": t.array(
-                t.proxy(renames["IdentityAwareProxyClientIn"])
+            "corsSettings": t.proxy(renames["CorsSettingsIn"]).optional(),
+            "oauthSettings": t.proxy(renames["OAuthSettingsIn"]).optional(),
+            "policyDelegationSettings": t.proxy(
+                renames["PolicyDelegationSettingsIn"]
             ).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListIdentityAwareProxyClientsResponseIn"])
-    types["ListIdentityAwareProxyClientsResponseOut"] = t.struct(
-        {
-            "identityAwareProxyClients": t.array(
-                t.proxy(renames["IdentityAwareProxyClientOut"])
+            "allowedDomainsSettings": t.proxy(
+                renames["AllowedDomainsSettingsIn"]
             ).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "gcipSettings": t.proxy(renames["GcipSettingsIn"]).optional(),
+            "reauthSettings": t.proxy(renames["ReauthSettingsIn"]).optional(),
         }
-    ).named(renames["ListIdentityAwareProxyClientsResponseOut"])
-    types["ReauthSettingsIn"] = t.struct(
+    ).named(renames["AccessSettingsIn"])
+    types["AccessSettingsOut"] = t.struct(
         {
-            "policyType": t.string().optional(),
-            "method": t.string().optional(),
-            "maxAge": t.string().optional(),
-        }
-    ).named(renames["ReauthSettingsIn"])
-    types["ReauthSettingsOut"] = t.struct(
-        {
-            "policyType": t.string().optional(),
-            "method": t.string().optional(),
-            "maxAge": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ReauthSettingsOut"])
-    types["AllowedDomainsSettingsIn"] = t.struct(
-        {"enable": t.boolean().optional(), "domains": t.array(t.string()).optional()}
-    ).named(renames["AllowedDomainsSettingsIn"])
-    types["AllowedDomainsSettingsOut"] = t.struct(
-        {
-            "enable": t.boolean().optional(),
-            "domains": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AllowedDomainsSettingsOut"])
-    types["PolicyNameIn"] = t.struct(
-        {
-            "region": t.string().optional(),
-            "id": t.string().optional(),
-            "type": t.string().optional(),
-        }
-    ).named(renames["PolicyNameIn"])
-    types["PolicyNameOut"] = t.struct(
-        {
-            "region": t.string().optional(),
-            "id": t.string().optional(),
-            "type": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PolicyNameOut"])
-    types["AccessDeniedPageSettingsIn"] = t.struct(
-        {
-            "generateTroubleshootingUri": t.boolean().optional(),
-            "remediationTokenGenerationEnabled": t.boolean().optional(),
-            "accessDeniedPageUri": t.string().optional(),
-        }
-    ).named(renames["AccessDeniedPageSettingsIn"])
-    types["AccessDeniedPageSettingsOut"] = t.struct(
-        {
-            "generateTroubleshootingUri": t.boolean().optional(),
-            "remediationTokenGenerationEnabled": t.boolean().optional(),
-            "accessDeniedPageUri": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AccessDeniedPageSettingsOut"])
-    types["TestIamPermissionsResponseIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsResponseIn"])
-    types["TestIamPermissionsResponseOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsResponseOut"])
-    types["GetPolicyOptionsIn"] = t.struct(
-        {"requestedPolicyVersion": t.integer().optional()}
-    ).named(renames["GetPolicyOptionsIn"])
-    types["GetPolicyOptionsOut"] = t.struct(
-        {
-            "requestedPolicyVersion": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GetPolicyOptionsOut"])
-    types["IapSettingsIn"] = t.struct(
-        {
-            "name": t.string(),
-            "applicationSettings": t.proxy(renames["ApplicationSettingsIn"]).optional(),
-            "accessSettings": t.proxy(renames["AccessSettingsIn"]).optional(),
-        }
-    ).named(renames["IapSettingsIn"])
-    types["IapSettingsOut"] = t.struct(
-        {
-            "name": t.string(),
-            "applicationSettings": t.proxy(
-                renames["ApplicationSettingsOut"]
+            "corsSettings": t.proxy(renames["CorsSettingsOut"]).optional(),
+            "oauthSettings": t.proxy(renames["OAuthSettingsOut"]).optional(),
+            "policyDelegationSettings": t.proxy(
+                renames["PolicyDelegationSettingsOut"]
             ).optional(),
-            "accessSettings": t.proxy(renames["AccessSettingsOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["IapSettingsOut"])
-    types["CsmSettingsIn"] = t.struct({"rctokenAud": t.string().optional()}).named(
-        renames["CsmSettingsIn"]
-    )
-    types["CsmSettingsOut"] = t.struct(
-        {
-            "rctokenAud": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CsmSettingsOut"])
-    types["ListBrandsResponseIn"] = t.struct(
-        {"brands": t.array(t.proxy(renames["BrandIn"])).optional()}
-    ).named(renames["ListBrandsResponseIn"])
-    types["ListBrandsResponseOut"] = t.struct(
-        {
-            "brands": t.array(t.proxy(renames["BrandOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListBrandsResponseOut"])
-    types["PolicyIn"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
-            "version": t.integer().optional(),
-        }
-    ).named(renames["PolicyIn"])
-    types["PolicyOut"] = t.struct(
-        {
-            "etag": t.string().optional(),
-            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
-            "version": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PolicyOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["OAuthSettingsIn"] = t.struct({"loginHint": t.string().optional()}).named(
-        renames["OAuthSettingsIn"]
-    )
-    types["OAuthSettingsOut"] = t.struct(
-        {
-            "loginHint": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["OAuthSettingsOut"])
-    types["ResourceIn"] = t.struct(
-        {
-            "service": t.string().optional(),
-            "type": t.string().optional(),
-            "name": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["ResourceIn"])
-    types["ResourceOut"] = t.struct(
-        {
-            "service": t.string().optional(),
-            "type": t.string().optional(),
-            "name": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ResourceOut"])
-    types["TunnelDestGroupIn"] = t.struct(
-        {
-            "fqdns": t.array(t.string()).optional(),
-            "cidrs": t.array(t.string()).optional(),
-            "name": t.string(),
-        }
-    ).named(renames["TunnelDestGroupIn"])
-    types["TunnelDestGroupOut"] = t.struct(
-        {
-            "fqdns": t.array(t.string()).optional(),
-            "cidrs": t.array(t.string()).optional(),
-            "name": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TunnelDestGroupOut"])
-    types["TestIamPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsRequestIn"])
-    types["TestIamPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsRequestOut"])
-    types["CorsSettingsIn"] = t.struct(
-        {"allowHttpOptions": t.boolean().optional()}
-    ).named(renames["CorsSettingsIn"])
-    types["CorsSettingsOut"] = t.struct(
-        {
-            "allowHttpOptions": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CorsSettingsOut"])
-    types["ListTunnelDestGroupsResponseIn"] = t.struct(
-        {
-            "tunnelDestGroups": t.array(
-                t.proxy(renames["TunnelDestGroupIn"])
+            "allowedDomainsSettings": t.proxy(
+                renames["AllowedDomainsSettingsOut"]
             ).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListTunnelDestGroupsResponseIn"])
-    types["ListTunnelDestGroupsResponseOut"] = t.struct(
-        {
-            "tunnelDestGroups": t.array(
-                t.proxy(renames["TunnelDestGroupOut"])
-            ).optional(),
-            "nextPageToken": t.string().optional(),
+            "gcipSettings": t.proxy(renames["GcipSettingsOut"]).optional(),
+            "reauthSettings": t.proxy(renames["ReauthSettingsOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListTunnelDestGroupsResponseOut"])
+    ).named(renames["AccessSettingsOut"])
     types["SetIamPolicyRequestIn"] = t.struct(
         {"policy": t.proxy(renames["PolicyIn"]).optional()}
     ).named(renames["SetIamPolicyRequestIn"])
@@ -321,39 +115,49 @@ def import_iap() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["SetIamPolicyRequestOut"])
-    types["GetIamPolicyRequestIn"] = t.struct(
-        {"options": t.proxy(renames["GetPolicyOptionsIn"]).optional()}
-    ).named(renames["GetIamPolicyRequestIn"])
-    types["GetIamPolicyRequestOut"] = t.struct(
+    types["ListTunnelDestGroupsResponseIn"] = t.struct(
         {
-            "options": t.proxy(renames["GetPolicyOptionsOut"]).optional(),
+            "nextPageToken": t.string().optional(),
+            "tunnelDestGroups": t.array(
+                t.proxy(renames["TunnelDestGroupIn"])
+            ).optional(),
+        }
+    ).named(renames["ListTunnelDestGroupsResponseIn"])
+    types["ListTunnelDestGroupsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "tunnelDestGroups": t.array(
+                t.proxy(renames["TunnelDestGroupOut"])
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GetIamPolicyRequestOut"])
-    types["IdentityAwareProxyClientIn"] = t.struct(
-        {"displayName": t.string().optional()}
-    ).named(renames["IdentityAwareProxyClientIn"])
-    types["IdentityAwareProxyClientOut"] = t.struct(
+    ).named(renames["ListTunnelDestGroupsResponseOut"])
+    types["TestIamPermissionsResponseIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsResponseIn"])
+    types["TestIamPermissionsResponseOut"] = t.struct(
         {
-            "displayName": t.string().optional(),
-            "name": t.string().optional(),
-            "secret": t.string().optional(),
+            "permissions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["IdentityAwareProxyClientOut"])
-    types["GcipSettingsIn"] = t.struct(
+    ).named(renames["TestIamPermissionsResponseOut"])
+    types["ListIdentityAwareProxyClientsResponseIn"] = t.struct(
         {
-            "tenantIds": t.array(t.string()).optional(),
-            "loginPageUri": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "identityAwareProxyClients": t.array(
+                t.proxy(renames["IdentityAwareProxyClientIn"])
+            ).optional(),
         }
-    ).named(renames["GcipSettingsIn"])
-    types["GcipSettingsOut"] = t.struct(
+    ).named(renames["ListIdentityAwareProxyClientsResponseIn"])
+    types["ListIdentityAwareProxyClientsResponseOut"] = t.struct(
         {
-            "tenantIds": t.array(t.string()).optional(),
-            "loginPageUri": t.string().optional(),
+            "nextPageToken": t.string().optional(),
+            "identityAwareProxyClients": t.array(
+                t.proxy(renames["IdentityAwareProxyClientOut"])
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GcipSettingsOut"])
+    ).named(renames["ListIdentityAwareProxyClientsResponseOut"])
     types["ApplicationSettingsIn"] = t.struct(
         {
             "cookieDomain": t.string().optional(),
@@ -379,379 +183,504 @@ def import_iap() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ApplicationSettingsOut"])
-    types["AttributePropagationSettingsIn"] = t.struct(
+    types["PolicyIn"] = t.struct(
         {
-            "outputCredentials": t.array(t.string()).optional(),
-            "expression": t.string().optional(),
-            "enable": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "version": t.integer().optional(),
+            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
         }
-    ).named(renames["AttributePropagationSettingsIn"])
-    types["AttributePropagationSettingsOut"] = t.struct(
+    ).named(renames["PolicyIn"])
+    types["PolicyOut"] = t.struct(
         {
-            "outputCredentials": t.array(t.string()).optional(),
-            "expression": t.string().optional(),
-            "enable": t.boolean().optional(),
+            "etag": t.string().optional(),
+            "version": t.integer().optional(),
+            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AttributePropagationSettingsOut"])
+    ).named(renames["PolicyOut"])
+    types["OAuthSettingsIn"] = t.struct({"loginHint": t.string().optional()}).named(
+        renames["OAuthSettingsIn"]
+    )
+    types["OAuthSettingsOut"] = t.struct(
+        {
+            "loginHint": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OAuthSettingsOut"])
+    types["CsmSettingsIn"] = t.struct({"rctokenAud": t.string().optional()}).named(
+        renames["CsmSettingsIn"]
+    )
+    types["CsmSettingsOut"] = t.struct(
+        {
+            "rctokenAud": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CsmSettingsOut"])
+    types["CorsSettingsIn"] = t.struct(
+        {"allowHttpOptions": t.boolean().optional()}
+    ).named(renames["CorsSettingsIn"])
+    types["CorsSettingsOut"] = t.struct(
+        {
+            "allowHttpOptions": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CorsSettingsOut"])
     types["BindingIn"] = t.struct(
         {
             "condition": t.proxy(renames["ExprIn"]).optional(),
-            "role": t.string().optional(),
             "members": t.array(t.string()).optional(),
+            "role": t.string().optional(),
         }
     ).named(renames["BindingIn"])
     types["BindingOut"] = t.struct(
         {
             "condition": t.proxy(renames["ExprOut"]).optional(),
-            "role": t.string().optional(),
             "members": t.array(t.string()).optional(),
+            "role": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["BindingOut"])
-    types["AccessSettingsIn"] = t.struct(
+    types["ReauthSettingsIn"] = t.struct(
         {
-            "policyDelegationSettings": t.proxy(
-                renames["PolicyDelegationSettingsIn"]
-            ).optional(),
-            "reauthSettings": t.proxy(renames["ReauthSettingsIn"]).optional(),
-            "allowedDomainsSettings": t.proxy(
-                renames["AllowedDomainsSettingsIn"]
-            ).optional(),
-            "corsSettings": t.proxy(renames["CorsSettingsIn"]).optional(),
-            "gcipSettings": t.proxy(renames["GcipSettingsIn"]).optional(),
-            "oauthSettings": t.proxy(renames["OAuthSettingsIn"]).optional(),
+            "method": t.string().optional(),
+            "policyType": t.string().optional(),
+            "maxAge": t.string().optional(),
         }
-    ).named(renames["AccessSettingsIn"])
-    types["AccessSettingsOut"] = t.struct(
+    ).named(renames["ReauthSettingsIn"])
+    types["ReauthSettingsOut"] = t.struct(
         {
-            "policyDelegationSettings": t.proxy(
-                renames["PolicyDelegationSettingsOut"]
-            ).optional(),
-            "reauthSettings": t.proxy(renames["ReauthSettingsOut"]).optional(),
-            "allowedDomainsSettings": t.proxy(
-                renames["AllowedDomainsSettingsOut"]
-            ).optional(),
-            "corsSettings": t.proxy(renames["CorsSettingsOut"]).optional(),
-            "gcipSettings": t.proxy(renames["GcipSettingsOut"]).optional(),
-            "oauthSettings": t.proxy(renames["OAuthSettingsOut"]).optional(),
+            "method": t.string().optional(),
+            "policyType": t.string().optional(),
+            "maxAge": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AccessSettingsOut"])
+    ).named(renames["ReauthSettingsOut"])
+    types["AttributePropagationSettingsIn"] = t.struct(
+        {
+            "expression": t.string().optional(),
+            "outputCredentials": t.array(t.string()).optional(),
+            "enable": t.boolean().optional(),
+        }
+    ).named(renames["AttributePropagationSettingsIn"])
+    types["AttributePropagationSettingsOut"] = t.struct(
+        {
+            "expression": t.string().optional(),
+            "outputCredentials": t.array(t.string()).optional(),
+            "enable": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AttributePropagationSettingsOut"])
+    types["GetIamPolicyRequestIn"] = t.struct(
+        {"options": t.proxy(renames["GetPolicyOptionsIn"]).optional()}
+    ).named(renames["GetIamPolicyRequestIn"])
+    types["GetIamPolicyRequestOut"] = t.struct(
+        {
+            "options": t.proxy(renames["GetPolicyOptionsOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetIamPolicyRequestOut"])
+    types["TestIamPermissionsRequestIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsRequestIn"])
+    types["TestIamPermissionsRequestOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestIamPermissionsRequestOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
+    types["ValidateIapAttributeExpressionResponseIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["ValidateIapAttributeExpressionResponseIn"])
+    types["ValidateIapAttributeExpressionResponseOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["ValidateIapAttributeExpressionResponseOut"])
+    types["PolicyNameIn"] = t.struct(
+        {
+            "region": t.string().optional(),
+            "type": t.string().optional(),
+            "id": t.string().optional(),
+        }
+    ).named(renames["PolicyNameIn"])
+    types["PolicyNameOut"] = t.struct(
+        {
+            "region": t.string().optional(),
+            "type": t.string().optional(),
+            "id": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PolicyNameOut"])
+    types["AccessDeniedPageSettingsIn"] = t.struct(
+        {
+            "accessDeniedPageUri": t.string().optional(),
+            "remediationTokenGenerationEnabled": t.boolean().optional(),
+            "generateTroubleshootingUri": t.boolean().optional(),
+        }
+    ).named(renames["AccessDeniedPageSettingsIn"])
+    types["AccessDeniedPageSettingsOut"] = t.struct(
+        {
+            "accessDeniedPageUri": t.string().optional(),
+            "remediationTokenGenerationEnabled": t.boolean().optional(),
+            "generateTroubleshootingUri": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AccessDeniedPageSettingsOut"])
+    types["ExprIn"] = t.struct(
+        {
+            "description": t.string().optional(),
+            "expression": t.string().optional(),
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+        }
+    ).named(renames["ExprIn"])
+    types["ExprOut"] = t.struct(
+        {
+            "description": t.string().optional(),
+            "expression": t.string().optional(),
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ExprOut"])
+    types["BrandIn"] = t.struct(
+        {
+            "applicationTitle": t.string().optional(),
+            "supportEmail": t.string().optional(),
+        }
+    ).named(renames["BrandIn"])
+    types["BrandOut"] = t.struct(
+        {
+            "applicationTitle": t.string().optional(),
+            "orgInternalOnly": t.boolean().optional(),
+            "supportEmail": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BrandOut"])
+    types["IdentityAwareProxyClientIn"] = t.struct(
+        {"displayName": t.string().optional()}
+    ).named(renames["IdentityAwareProxyClientIn"])
+    types["IdentityAwareProxyClientOut"] = t.struct(
+        {
+            "secret": t.string().optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["IdentityAwareProxyClientOut"])
+    types["PolicyDelegationSettingsIn"] = t.struct(
+        {
+            "iamPermission": t.string().optional(),
+            "iamServiceName": t.string().optional(),
+            "policyName": t.proxy(renames["PolicyNameIn"]).optional(),
+            "resource": t.proxy(renames["ResourceIn"]).optional(),
+        }
+    ).named(renames["PolicyDelegationSettingsIn"])
+    types["PolicyDelegationSettingsOut"] = t.struct(
+        {
+            "iamPermission": t.string().optional(),
+            "iamServiceName": t.string().optional(),
+            "policyName": t.proxy(renames["PolicyNameOut"]).optional(),
+            "resource": t.proxy(renames["ResourceOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PolicyDelegationSettingsOut"])
+    types["ResourceIn"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "service": t.string().optional(),
+            "name": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["ResourceIn"])
+    types["ResourceOut"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "service": t.string().optional(),
+            "name": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ResourceOut"])
+    types["GcipSettingsIn"] = t.struct(
+        {
+            "loginPageUri": t.string().optional(),
+            "tenantIds": t.array(t.string()).optional(),
+        }
+    ).named(renames["GcipSettingsIn"])
+    types["GcipSettingsOut"] = t.struct(
+        {
+            "loginPageUri": t.string().optional(),
+            "tenantIds": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GcipSettingsOut"])
+    types["ListBrandsResponseIn"] = t.struct(
+        {"brands": t.array(t.proxy(renames["BrandIn"])).optional()}
+    ).named(renames["ListBrandsResponseIn"])
+    types["ListBrandsResponseOut"] = t.struct(
+        {
+            "brands": t.array(t.proxy(renames["BrandOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListBrandsResponseOut"])
+    types["IapSettingsIn"] = t.struct(
+        {
+            "accessSettings": t.proxy(renames["AccessSettingsIn"]).optional(),
+            "applicationSettings": t.proxy(renames["ApplicationSettingsIn"]).optional(),
+            "name": t.string(),
+        }
+    ).named(renames["IapSettingsIn"])
+    types["IapSettingsOut"] = t.struct(
+        {
+            "accessSettings": t.proxy(renames["AccessSettingsOut"]).optional(),
+            "applicationSettings": t.proxy(
+                renames["ApplicationSettingsOut"]
+            ).optional(),
+            "name": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["IapSettingsOut"])
+    types["GetPolicyOptionsIn"] = t.struct(
+        {"requestedPolicyVersion": t.integer().optional()}
+    ).named(renames["GetPolicyOptionsIn"])
+    types["GetPolicyOptionsOut"] = t.struct(
+        {
+            "requestedPolicyVersion": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GetPolicyOptionsOut"])
     types["ResetIdentityAwareProxyClientSecretRequestIn"] = t.struct(
         {"_": t.string().optional()}
     ).named(renames["ResetIdentityAwareProxyClientSecretRequestIn"])
     types["ResetIdentityAwareProxyClientSecretRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
     ).named(renames["ResetIdentityAwareProxyClientSecretRequestOut"])
-    types["PolicyDelegationSettingsIn"] = t.struct(
+    types["AllowedDomainsSettingsIn"] = t.struct(
+        {"domains": t.array(t.string()).optional(), "enable": t.boolean().optional()}
+    ).named(renames["AllowedDomainsSettingsIn"])
+    types["AllowedDomainsSettingsOut"] = t.struct(
         {
-            "resource": t.proxy(renames["ResourceIn"]).optional(),
-            "iamServiceName": t.string().optional(),
-            "policyName": t.proxy(renames["PolicyNameIn"]).optional(),
-            "iamPermission": t.string().optional(),
-        }
-    ).named(renames["PolicyDelegationSettingsIn"])
-    types["PolicyDelegationSettingsOut"] = t.struct(
-        {
-            "resource": t.proxy(renames["ResourceOut"]).optional(),
-            "iamServiceName": t.string().optional(),
-            "policyName": t.proxy(renames["PolicyNameOut"]).optional(),
-            "iamPermission": t.string().optional(),
+            "domains": t.array(t.string()).optional(),
+            "enable": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PolicyDelegationSettingsOut"])
-    types["BrandIn"] = t.struct(
+    ).named(renames["AllowedDomainsSettingsOut"])
+    types["TunnelDestGroupIn"] = t.struct(
         {
-            "supportEmail": t.string().optional(),
-            "applicationTitle": t.string().optional(),
+            "fqdns": t.array(t.string()).optional(),
+            "name": t.string(),
+            "cidrs": t.array(t.string()).optional(),
         }
-    ).named(renames["BrandIn"])
-    types["BrandOut"] = t.struct(
+    ).named(renames["TunnelDestGroupIn"])
+    types["TunnelDestGroupOut"] = t.struct(
         {
-            "supportEmail": t.string().optional(),
-            "orgInternalOnly": t.boolean().optional(),
-            "applicationTitle": t.string().optional(),
-            "name": t.string().optional(),
+            "fqdns": t.array(t.string()).optional(),
+            "name": t.string(),
+            "cidrs": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["BrandOut"])
+    ).named(renames["TunnelDestGroupOut"])
 
     functions = {}
-    functions["v1GetIamPolicy"] = iap.patch(
+    functions["v1GetIamPolicy"] = iap.get(
         "v1/{name}:iapSettings",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string(),
-                "applicationSettings": t.proxy(
-                    renames["ApplicationSettingsIn"]
-                ).optional(),
-                "accessSettings": t.proxy(renames["AccessSettingsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["IapSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["v1TestIamPermissions"] = iap.patch(
+    functions["v1ValidateAttributeExpression"] = iap.get(
         "v1/{name}:iapSettings",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string(),
-                "applicationSettings": t.proxy(
-                    renames["ApplicationSettingsIn"]
-                ).optional(),
-                "accessSettings": t.proxy(renames["AccessSettingsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["IapSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["v1SetIamPolicy"] = iap.patch(
+    functions["v1SetIamPolicy"] = iap.get(
         "v1/{name}:iapSettings",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string(),
-                "applicationSettings": t.proxy(
-                    renames["ApplicationSettingsIn"]
-                ).optional(),
-                "accessSettings": t.proxy(renames["AccessSettingsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["IapSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["v1GetIapSettings"] = iap.patch(
+    functions["v1UpdateIapSettings"] = iap.get(
         "v1/{name}:iapSettings",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string(),
-                "applicationSettings": t.proxy(
-                    renames["ApplicationSettingsIn"]
-                ).optional(),
-                "accessSettings": t.proxy(renames["AccessSettingsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["IapSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["v1UpdateIapSettings"] = iap.patch(
+    functions["v1TestIamPermissions"] = iap.get(
         "v1/{name}:iapSettings",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string(),
-                "applicationSettings": t.proxy(
-                    renames["ApplicationSettingsIn"]
-                ).optional(),
-                "accessSettings": t.proxy(renames["AccessSettingsIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["IapSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsIap_tunnelLocationsDestGroupsGet"] = iap.post(
-        "v1/{parent}/destGroups",
-        t.struct(
-            {
-                "tunnelDestGroupId": t.string(),
-                "parent": t.string(),
-                "fqdns": t.array(t.string()).optional(),
-                "cidrs": t.array(t.string()).optional(),
-                "name": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["TunnelDestGroupOut"]),
+    functions["v1GetIapSettings"] = iap.get(
+        "v1/{name}:iapSettings",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["IapSettingsOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsIap_tunnelLocationsDestGroupsPatch"] = iap.post(
-        "v1/{parent}/destGroups",
-        t.struct(
-            {
-                "tunnelDestGroupId": t.string(),
-                "parent": t.string(),
-                "fqdns": t.array(t.string()).optional(),
-                "cidrs": t.array(t.string()).optional(),
-                "name": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["TunnelDestGroupOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIap_tunnelLocationsDestGroupsDelete"] = iap.post(
-        "v1/{parent}/destGroups",
-        t.struct(
-            {
-                "tunnelDestGroupId": t.string(),
-                "parent": t.string(),
-                "fqdns": t.array(t.string()).optional(),
-                "cidrs": t.array(t.string()).optional(),
-                "name": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["TunnelDestGroupOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIap_tunnelLocationsDestGroupsList"] = iap.post(
-        "v1/{parent}/destGroups",
-        t.struct(
-            {
-                "tunnelDestGroupId": t.string(),
-                "parent": t.string(),
-                "fqdns": t.array(t.string()).optional(),
-                "cidrs": t.array(t.string()).optional(),
-                "name": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["TunnelDestGroupOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsIap_tunnelLocationsDestGroupsCreate"] = iap.post(
-        "v1/{parent}/destGroups",
-        t.struct(
-            {
-                "tunnelDestGroupId": t.string(),
-                "parent": t.string(),
-                "fqdns": t.array(t.string()).optional(),
-                "cidrs": t.array(t.string()).optional(),
-                "name": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["TunnelDestGroupOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsBrandsGet"] = iap.post(
-        "v1/{parent}/brands",
-        t.struct(
-            {
-                "parent": t.string(),
-                "supportEmail": t.string().optional(),
-                "applicationTitle": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["projectsBrandsCreate"] = iap.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["BrandOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBrandsList"] = iap.post(
-        "v1/{parent}/brands",
-        t.struct(
-            {
-                "parent": t.string(),
-                "supportEmail": t.string().optional(),
-                "applicationTitle": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["projectsBrandsList"] = iap.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["BrandOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBrandsCreate"] = iap.post(
-        "v1/{parent}/brands",
-        t.struct(
-            {
-                "parent": t.string(),
-                "supportEmail": t.string().optional(),
-                "applicationTitle": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
+    functions["projectsBrandsGet"] = iap.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["BrandOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBrandsIdentityAwareProxyClientsDelete"] = iap.get(
-        "v1/{parent}/identityAwareProxyClients",
+    functions["projectsBrandsIdentityAwareProxyClientsDelete"] = iap.post(
+        "v1/{name}:resetSecret",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "name": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListIdentityAwareProxyClientsResponseOut"]),
+        t.proxy(renames["IdentityAwareProxyClientOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBrandsIdentityAwareProxyClientsGet"] = iap.get(
-        "v1/{parent}/identityAwareProxyClients",
+    functions["projectsBrandsIdentityAwareProxyClientsList"] = iap.post(
+        "v1/{name}:resetSecret",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "name": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListIdentityAwareProxyClientsResponseOut"]),
+        t.proxy(renames["IdentityAwareProxyClientOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBrandsIdentityAwareProxyClientsCreate"] = iap.get(
-        "v1/{parent}/identityAwareProxyClients",
+    functions["projectsBrandsIdentityAwareProxyClientsCreate"] = iap.post(
+        "v1/{name}:resetSecret",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "name": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListIdentityAwareProxyClientsResponseOut"]),
+        t.proxy(renames["IdentityAwareProxyClientOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBrandsIdentityAwareProxyClientsResetSecret"] = iap.get(
-        "v1/{parent}/identityAwareProxyClients",
+    functions["projectsBrandsIdentityAwareProxyClientsGet"] = iap.post(
+        "v1/{name}:resetSecret",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "name": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListIdentityAwareProxyClientsResponseOut"]),
+        t.proxy(renames["IdentityAwareProxyClientOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsBrandsIdentityAwareProxyClientsList"] = iap.get(
-        "v1/{parent}/identityAwareProxyClients",
+    functions["projectsBrandsIdentityAwareProxyClientsResetSecret"] = iap.post(
+        "v1/{name}:resetSecret",
         t.struct(
             {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "name": t.string(),
+                "_": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListIdentityAwareProxyClientsResponseOut"]),
+        t.proxy(renames["IdentityAwareProxyClientOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIap_tunnelLocationsDestGroupsCreate"] = iap.get(
+        "v1/{parent}/destGroups",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTunnelDestGroupsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIap_tunnelLocationsDestGroupsGet"] = iap.get(
+        "v1/{parent}/destGroups",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTunnelDestGroupsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIap_tunnelLocationsDestGroupsDelete"] = iap.get(
+        "v1/{parent}/destGroups",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTunnelDestGroupsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIap_tunnelLocationsDestGroupsPatch"] = iap.get(
+        "v1/{parent}/destGroups",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTunnelDestGroupsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsIap_tunnelLocationsDestGroupsList"] = iap.get(
+        "v1/{parent}/destGroups",
+        t.struct(
+            {
+                "pageToken": t.string().optional(),
+                "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTunnelDestGroupsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

@@ -1,332 +1,236 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_authorizedbuyersmarketplace() -> Import:
+def import_authorizedbuyersmarketplace():
     authorizedbuyersmarketplace = HTTPRuntime(
         "https://authorizedbuyersmarketplace.googleapis.com/"
     )
 
     renames = {
         "ErrorResponse": "_authorizedbuyersmarketplace_1_ErrorResponse",
-        "PlacementTargetingIn": "_authorizedbuyersmarketplace_2_PlacementTargetingIn",
-        "PlacementTargetingOut": "_authorizedbuyersmarketplace_3_PlacementTargetingOut",
-        "ProposalIn": "_authorizedbuyersmarketplace_4_ProposalIn",
-        "ProposalOut": "_authorizedbuyersmarketplace_5_ProposalOut",
-        "UnsubscribeClientsRequestIn": "_authorizedbuyersmarketplace_6_UnsubscribeClientsRequestIn",
-        "UnsubscribeClientsRequestOut": "_authorizedbuyersmarketplace_7_UnsubscribeClientsRequestOut",
-        "MoneyIn": "_authorizedbuyersmarketplace_8_MoneyIn",
-        "MoneyOut": "_authorizedbuyersmarketplace_9_MoneyOut",
-        "PriceIn": "_authorizedbuyersmarketplace_10_PriceIn",
-        "PriceOut": "_authorizedbuyersmarketplace_11_PriceOut",
-        "PauseFinalizedDealRequestIn": "_authorizedbuyersmarketplace_12_PauseFinalizedDealRequestIn",
-        "PauseFinalizedDealRequestOut": "_authorizedbuyersmarketplace_13_PauseFinalizedDealRequestOut",
-        "PreferredDealTermsIn": "_authorizedbuyersmarketplace_14_PreferredDealTermsIn",
-        "PreferredDealTermsOut": "_authorizedbuyersmarketplace_15_PreferredDealTermsOut",
-        "CriteriaTargetingIn": "_authorizedbuyersmarketplace_16_CriteriaTargetingIn",
-        "CriteriaTargetingOut": "_authorizedbuyersmarketplace_17_CriteriaTargetingOut",
-        "InventorySizeTargetingIn": "_authorizedbuyersmarketplace_18_InventorySizeTargetingIn",
-        "InventorySizeTargetingOut": "_authorizedbuyersmarketplace_19_InventorySizeTargetingOut",
-        "TimeOfDayIn": "_authorizedbuyersmarketplace_20_TimeOfDayIn",
-        "TimeOfDayOut": "_authorizedbuyersmarketplace_21_TimeOfDayOut",
-        "BatchUpdateDealsResponseIn": "_authorizedbuyersmarketplace_22_BatchUpdateDealsResponseIn",
-        "BatchUpdateDealsResponseOut": "_authorizedbuyersmarketplace_23_BatchUpdateDealsResponseOut",
+        "TechnologyTargetingIn": "_authorizedbuyersmarketplace_2_TechnologyTargetingIn",
+        "TechnologyTargetingOut": "_authorizedbuyersmarketplace_3_TechnologyTargetingOut",
+        "FinalizedDealIn": "_authorizedbuyersmarketplace_4_FinalizedDealIn",
+        "FinalizedDealOut": "_authorizedbuyersmarketplace_5_FinalizedDealOut",
+        "InventorySizeTargetingIn": "_authorizedbuyersmarketplace_6_InventorySizeTargetingIn",
+        "InventorySizeTargetingOut": "_authorizedbuyersmarketplace_7_InventorySizeTargetingOut",
+        "CancelNegotiationRequestIn": "_authorizedbuyersmarketplace_8_CancelNegotiationRequestIn",
+        "CancelNegotiationRequestOut": "_authorizedbuyersmarketplace_9_CancelNegotiationRequestOut",
+        "FirstPartyMobileApplicationTargetingIn": "_authorizedbuyersmarketplace_10_FirstPartyMobileApplicationTargetingIn",
+        "FirstPartyMobileApplicationTargetingOut": "_authorizedbuyersmarketplace_11_FirstPartyMobileApplicationTargetingOut",
+        "ActivateClientRequestIn": "_authorizedbuyersmarketplace_12_ActivateClientRequestIn",
+        "ActivateClientRequestOut": "_authorizedbuyersmarketplace_13_ActivateClientRequestOut",
+        "ListFinalizedDealsResponseIn": "_authorizedbuyersmarketplace_14_ListFinalizedDealsResponseIn",
+        "ListFinalizedDealsResponseOut": "_authorizedbuyersmarketplace_15_ListFinalizedDealsResponseOut",
+        "SendRfpRequestIn": "_authorizedbuyersmarketplace_16_SendRfpRequestIn",
+        "SendRfpRequestOut": "_authorizedbuyersmarketplace_17_SendRfpRequestOut",
+        "BatchUpdateDealsResponseIn": "_authorizedbuyersmarketplace_18_BatchUpdateDealsResponseIn",
+        "BatchUpdateDealsResponseOut": "_authorizedbuyersmarketplace_19_BatchUpdateDealsResponseOut",
+        "VideoTargetingIn": "_authorizedbuyersmarketplace_20_VideoTargetingIn",
+        "VideoTargetingOut": "_authorizedbuyersmarketplace_21_VideoTargetingOut",
+        "MoneyIn": "_authorizedbuyersmarketplace_22_MoneyIn",
+        "MoneyOut": "_authorizedbuyersmarketplace_23_MoneyOut",
         "SubscribeClientsRequestIn": "_authorizedbuyersmarketplace_24_SubscribeClientsRequestIn",
         "SubscribeClientsRequestOut": "_authorizedbuyersmarketplace_25_SubscribeClientsRequestOut",
-        "FrequencyCapIn": "_authorizedbuyersmarketplace_26_FrequencyCapIn",
-        "FrequencyCapOut": "_authorizedbuyersmarketplace_27_FrequencyCapOut",
-        "ListFinalizedDealsResponseIn": "_authorizedbuyersmarketplace_28_ListFinalizedDealsResponseIn",
-        "ListFinalizedDealsResponseOut": "_authorizedbuyersmarketplace_29_ListFinalizedDealsResponseOut",
-        "EmptyIn": "_authorizedbuyersmarketplace_30_EmptyIn",
-        "EmptyOut": "_authorizedbuyersmarketplace_31_EmptyOut",
-        "PublisherProfileMobileApplicationIn": "_authorizedbuyersmarketplace_32_PublisherProfileMobileApplicationIn",
-        "PublisherProfileMobileApplicationOut": "_authorizedbuyersmarketplace_33_PublisherProfileMobileApplicationOut",
-        "NoteIn": "_authorizedbuyersmarketplace_34_NoteIn",
-        "NoteOut": "_authorizedbuyersmarketplace_35_NoteOut",
-        "ListClientsResponseIn": "_authorizedbuyersmarketplace_36_ListClientsResponseIn",
-        "ListClientsResponseOut": "_authorizedbuyersmarketplace_37_ListClientsResponseOut",
-        "DeliveryControlIn": "_authorizedbuyersmarketplace_38_DeliveryControlIn",
-        "DeliveryControlOut": "_authorizedbuyersmarketplace_39_DeliveryControlOut",
-        "OperatingSystemTargetingIn": "_authorizedbuyersmarketplace_40_OperatingSystemTargetingIn",
-        "OperatingSystemTargetingOut": "_authorizedbuyersmarketplace_41_OperatingSystemTargetingOut",
-        "ProgrammaticGuaranteedTermsIn": "_authorizedbuyersmarketplace_42_ProgrammaticGuaranteedTermsIn",
-        "ProgrammaticGuaranteedTermsOut": "_authorizedbuyersmarketplace_43_ProgrammaticGuaranteedTermsOut",
-        "DayPartTargetingIn": "_authorizedbuyersmarketplace_44_DayPartTargetingIn",
-        "DayPartTargetingOut": "_authorizedbuyersmarketplace_45_DayPartTargetingOut",
-        "PrivateDataIn": "_authorizedbuyersmarketplace_46_PrivateDataIn",
-        "PrivateDataOut": "_authorizedbuyersmarketplace_47_PrivateDataOut",
-        "InventoryTypeTargetingIn": "_authorizedbuyersmarketplace_48_InventoryTypeTargetingIn",
-        "InventoryTypeTargetingOut": "_authorizedbuyersmarketplace_49_InventoryTypeTargetingOut",
-        "UpdateDealRequestIn": "_authorizedbuyersmarketplace_50_UpdateDealRequestIn",
-        "UpdateDealRequestOut": "_authorizedbuyersmarketplace_51_UpdateDealRequestOut",
-        "ListProposalsResponseIn": "_authorizedbuyersmarketplace_52_ListProposalsResponseIn",
-        "ListProposalsResponseOut": "_authorizedbuyersmarketplace_53_ListProposalsResponseOut",
-        "ClientIn": "_authorizedbuyersmarketplace_54_ClientIn",
-        "ClientOut": "_authorizedbuyersmarketplace_55_ClientOut",
-        "FirstPartyMobileApplicationTargetingIn": "_authorizedbuyersmarketplace_56_FirstPartyMobileApplicationTargetingIn",
-        "FirstPartyMobileApplicationTargetingOut": "_authorizedbuyersmarketplace_57_FirstPartyMobileApplicationTargetingOut",
-        "PrivateAuctionTermsIn": "_authorizedbuyersmarketplace_58_PrivateAuctionTermsIn",
-        "PrivateAuctionTermsOut": "_authorizedbuyersmarketplace_59_PrivateAuctionTermsOut",
-        "ListDealsResponseIn": "_authorizedbuyersmarketplace_60_ListDealsResponseIn",
-        "ListDealsResponseOut": "_authorizedbuyersmarketplace_61_ListDealsResponseOut",
-        "UriTargetingIn": "_authorizedbuyersmarketplace_62_UriTargetingIn",
-        "UriTargetingOut": "_authorizedbuyersmarketplace_63_UriTargetingOut",
-        "VideoTargetingIn": "_authorizedbuyersmarketplace_64_VideoTargetingIn",
-        "VideoTargetingOut": "_authorizedbuyersmarketplace_65_VideoTargetingOut",
-        "FinalizedDealIn": "_authorizedbuyersmarketplace_66_FinalizedDealIn",
-        "FinalizedDealOut": "_authorizedbuyersmarketplace_67_FinalizedDealOut",
-        "AuctionPackageIn": "_authorizedbuyersmarketplace_68_AuctionPackageIn",
-        "AuctionPackageOut": "_authorizedbuyersmarketplace_69_AuctionPackageOut",
-        "SubscribeAuctionPackageRequestIn": "_authorizedbuyersmarketplace_70_SubscribeAuctionPackageRequestIn",
-        "SubscribeAuctionPackageRequestOut": "_authorizedbuyersmarketplace_71_SubscribeAuctionPackageRequestOut",
-        "AddNoteRequestIn": "_authorizedbuyersmarketplace_72_AddNoteRequestIn",
-        "AddNoteRequestOut": "_authorizedbuyersmarketplace_73_AddNoteRequestOut",
-        "ContactIn": "_authorizedbuyersmarketplace_74_ContactIn",
-        "ContactOut": "_authorizedbuyersmarketplace_75_ContactOut",
-        "CancelNegotiationRequestIn": "_authorizedbuyersmarketplace_76_CancelNegotiationRequestIn",
-        "CancelNegotiationRequestOut": "_authorizedbuyersmarketplace_77_CancelNegotiationRequestOut",
-        "CreativeRequirementsIn": "_authorizedbuyersmarketplace_78_CreativeRequirementsIn",
-        "CreativeRequirementsOut": "_authorizedbuyersmarketplace_79_CreativeRequirementsOut",
-        "TechnologyTargetingIn": "_authorizedbuyersmarketplace_80_TechnologyTargetingIn",
-        "TechnologyTargetingOut": "_authorizedbuyersmarketplace_81_TechnologyTargetingOut",
-        "PublisherProfileIn": "_authorizedbuyersmarketplace_82_PublisherProfileIn",
-        "PublisherProfileOut": "_authorizedbuyersmarketplace_83_PublisherProfileOut",
-        "DeactivateClientUserRequestIn": "_authorizedbuyersmarketplace_84_DeactivateClientUserRequestIn",
-        "DeactivateClientUserRequestOut": "_authorizedbuyersmarketplace_85_DeactivateClientUserRequestOut",
-        "SetReadyToServeRequestIn": "_authorizedbuyersmarketplace_86_SetReadyToServeRequestIn",
-        "SetReadyToServeRequestOut": "_authorizedbuyersmarketplace_87_SetReadyToServeRequestOut",
-        "ResumeFinalizedDealRequestIn": "_authorizedbuyersmarketplace_88_ResumeFinalizedDealRequestIn",
-        "ResumeFinalizedDealRequestOut": "_authorizedbuyersmarketplace_89_ResumeFinalizedDealRequestOut",
-        "DealIn": "_authorizedbuyersmarketplace_90_DealIn",
-        "DealOut": "_authorizedbuyersmarketplace_91_DealOut",
-        "AddCreativeRequestIn": "_authorizedbuyersmarketplace_92_AddCreativeRequestIn",
-        "AddCreativeRequestOut": "_authorizedbuyersmarketplace_93_AddCreativeRequestOut",
-        "BatchUpdateDealsRequestIn": "_authorizedbuyersmarketplace_94_BatchUpdateDealsRequestIn",
-        "BatchUpdateDealsRequestOut": "_authorizedbuyersmarketplace_95_BatchUpdateDealsRequestOut",
-        "TimeZoneIn": "_authorizedbuyersmarketplace_96_TimeZoneIn",
-        "TimeZoneOut": "_authorizedbuyersmarketplace_97_TimeZoneOut",
-        "MobileApplicationTargetingIn": "_authorizedbuyersmarketplace_98_MobileApplicationTargetingIn",
-        "MobileApplicationTargetingOut": "_authorizedbuyersmarketplace_99_MobileApplicationTargetingOut",
-        "ListPublisherProfilesResponseIn": "_authorizedbuyersmarketplace_100_ListPublisherProfilesResponseIn",
-        "ListPublisherProfilesResponseOut": "_authorizedbuyersmarketplace_101_ListPublisherProfilesResponseOut",
-        "UnsubscribeAuctionPackageRequestIn": "_authorizedbuyersmarketplace_102_UnsubscribeAuctionPackageRequestIn",
-        "UnsubscribeAuctionPackageRequestOut": "_authorizedbuyersmarketplace_103_UnsubscribeAuctionPackageRequestOut",
-        "ActivateClientUserRequestIn": "_authorizedbuyersmarketplace_104_ActivateClientUserRequestIn",
-        "ActivateClientUserRequestOut": "_authorizedbuyersmarketplace_105_ActivateClientUserRequestOut",
-        "DayPartIn": "_authorizedbuyersmarketplace_106_DayPartIn",
-        "DayPartOut": "_authorizedbuyersmarketplace_107_DayPartOut",
-        "ActivateClientRequestIn": "_authorizedbuyersmarketplace_108_ActivateClientRequestIn",
-        "ActivateClientRequestOut": "_authorizedbuyersmarketplace_109_ActivateClientRequestOut",
-        "DealPausingInfoIn": "_authorizedbuyersmarketplace_110_DealPausingInfoIn",
-        "DealPausingInfoOut": "_authorizedbuyersmarketplace_111_DealPausingInfoOut",
-        "AcceptProposalRequestIn": "_authorizedbuyersmarketplace_112_AcceptProposalRequestIn",
-        "AcceptProposalRequestOut": "_authorizedbuyersmarketplace_113_AcceptProposalRequestOut",
-        "MarketplaceTargetingIn": "_authorizedbuyersmarketplace_114_MarketplaceTargetingIn",
-        "MarketplaceTargetingOut": "_authorizedbuyersmarketplace_115_MarketplaceTargetingOut",
-        "SendRfpRequestIn": "_authorizedbuyersmarketplace_116_SendRfpRequestIn",
-        "SendRfpRequestOut": "_authorizedbuyersmarketplace_117_SendRfpRequestOut",
-        "ListAuctionPackagesResponseIn": "_authorizedbuyersmarketplace_118_ListAuctionPackagesResponseIn",
-        "ListAuctionPackagesResponseOut": "_authorizedbuyersmarketplace_119_ListAuctionPackagesResponseOut",
-        "DeactivateClientRequestIn": "_authorizedbuyersmarketplace_120_DeactivateClientRequestIn",
-        "DeactivateClientRequestOut": "_authorizedbuyersmarketplace_121_DeactivateClientRequestOut",
-        "RtbMetricsIn": "_authorizedbuyersmarketplace_122_RtbMetricsIn",
-        "RtbMetricsOut": "_authorizedbuyersmarketplace_123_RtbMetricsOut",
-        "AdSizeIn": "_authorizedbuyersmarketplace_124_AdSizeIn",
-        "AdSizeOut": "_authorizedbuyersmarketplace_125_AdSizeOut",
-        "ClientUserIn": "_authorizedbuyersmarketplace_126_ClientUserIn",
-        "ClientUserOut": "_authorizedbuyersmarketplace_127_ClientUserOut",
-        "ListClientUsersResponseIn": "_authorizedbuyersmarketplace_128_ListClientUsersResponseIn",
-        "ListClientUsersResponseOut": "_authorizedbuyersmarketplace_129_ListClientUsersResponseOut",
+        "UpdateDealRequestIn": "_authorizedbuyersmarketplace_26_UpdateDealRequestIn",
+        "UpdateDealRequestOut": "_authorizedbuyersmarketplace_27_UpdateDealRequestOut",
+        "PlacementTargetingIn": "_authorizedbuyersmarketplace_28_PlacementTargetingIn",
+        "PlacementTargetingOut": "_authorizedbuyersmarketplace_29_PlacementTargetingOut",
+        "UnsubscribeClientsRequestIn": "_authorizedbuyersmarketplace_30_UnsubscribeClientsRequestIn",
+        "UnsubscribeClientsRequestOut": "_authorizedbuyersmarketplace_31_UnsubscribeClientsRequestOut",
+        "MobileApplicationTargetingIn": "_authorizedbuyersmarketplace_32_MobileApplicationTargetingIn",
+        "MobileApplicationTargetingOut": "_authorizedbuyersmarketplace_33_MobileApplicationTargetingOut",
+        "ListProposalsResponseIn": "_authorizedbuyersmarketplace_34_ListProposalsResponseIn",
+        "ListProposalsResponseOut": "_authorizedbuyersmarketplace_35_ListProposalsResponseOut",
+        "OperatingSystemTargetingIn": "_authorizedbuyersmarketplace_36_OperatingSystemTargetingIn",
+        "OperatingSystemTargetingOut": "_authorizedbuyersmarketplace_37_OperatingSystemTargetingOut",
+        "DealIn": "_authorizedbuyersmarketplace_38_DealIn",
+        "DealOut": "_authorizedbuyersmarketplace_39_DealOut",
+        "InventoryTypeTargetingIn": "_authorizedbuyersmarketplace_40_InventoryTypeTargetingIn",
+        "InventoryTypeTargetingOut": "_authorizedbuyersmarketplace_41_InventoryTypeTargetingOut",
+        "PrivateDataIn": "_authorizedbuyersmarketplace_42_PrivateDataIn",
+        "PrivateDataOut": "_authorizedbuyersmarketplace_43_PrivateDataOut",
+        "AuctionPackageIn": "_authorizedbuyersmarketplace_44_AuctionPackageIn",
+        "AuctionPackageOut": "_authorizedbuyersmarketplace_45_AuctionPackageOut",
+        "ListAuctionPackagesResponseIn": "_authorizedbuyersmarketplace_46_ListAuctionPackagesResponseIn",
+        "ListAuctionPackagesResponseOut": "_authorizedbuyersmarketplace_47_ListAuctionPackagesResponseOut",
+        "PriceIn": "_authorizedbuyersmarketplace_48_PriceIn",
+        "PriceOut": "_authorizedbuyersmarketplace_49_PriceOut",
+        "DeactivateClientRequestIn": "_authorizedbuyersmarketplace_50_DeactivateClientRequestIn",
+        "DeactivateClientRequestOut": "_authorizedbuyersmarketplace_51_DeactivateClientRequestOut",
+        "DayPartIn": "_authorizedbuyersmarketplace_52_DayPartIn",
+        "DayPartOut": "_authorizedbuyersmarketplace_53_DayPartOut",
+        "NoteIn": "_authorizedbuyersmarketplace_54_NoteIn",
+        "NoteOut": "_authorizedbuyersmarketplace_55_NoteOut",
+        "ContactIn": "_authorizedbuyersmarketplace_56_ContactIn",
+        "ContactOut": "_authorizedbuyersmarketplace_57_ContactOut",
+        "MarketplaceTargetingIn": "_authorizedbuyersmarketplace_58_MarketplaceTargetingIn",
+        "MarketplaceTargetingOut": "_authorizedbuyersmarketplace_59_MarketplaceTargetingOut",
+        "ListClientUsersResponseIn": "_authorizedbuyersmarketplace_60_ListClientUsersResponseIn",
+        "ListClientUsersResponseOut": "_authorizedbuyersmarketplace_61_ListClientUsersResponseOut",
+        "PreferredDealTermsIn": "_authorizedbuyersmarketplace_62_PreferredDealTermsIn",
+        "PreferredDealTermsOut": "_authorizedbuyersmarketplace_63_PreferredDealTermsOut",
+        "AcceptProposalRequestIn": "_authorizedbuyersmarketplace_64_AcceptProposalRequestIn",
+        "AcceptProposalRequestOut": "_authorizedbuyersmarketplace_65_AcceptProposalRequestOut",
+        "PrivateAuctionTermsIn": "_authorizedbuyersmarketplace_66_PrivateAuctionTermsIn",
+        "PrivateAuctionTermsOut": "_authorizedbuyersmarketplace_67_PrivateAuctionTermsOut",
+        "ListPublisherProfilesResponseIn": "_authorizedbuyersmarketplace_68_ListPublisherProfilesResponseIn",
+        "ListPublisherProfilesResponseOut": "_authorizedbuyersmarketplace_69_ListPublisherProfilesResponseOut",
+        "PublisherProfileIn": "_authorizedbuyersmarketplace_70_PublisherProfileIn",
+        "PublisherProfileOut": "_authorizedbuyersmarketplace_71_PublisherProfileOut",
+        "DealPausingInfoIn": "_authorizedbuyersmarketplace_72_DealPausingInfoIn",
+        "DealPausingInfoOut": "_authorizedbuyersmarketplace_73_DealPausingInfoOut",
+        "TimeOfDayIn": "_authorizedbuyersmarketplace_74_TimeOfDayIn",
+        "TimeOfDayOut": "_authorizedbuyersmarketplace_75_TimeOfDayOut",
+        "ProgrammaticGuaranteedTermsIn": "_authorizedbuyersmarketplace_76_ProgrammaticGuaranteedTermsIn",
+        "ProgrammaticGuaranteedTermsOut": "_authorizedbuyersmarketplace_77_ProgrammaticGuaranteedTermsOut",
+        "SubscribeAuctionPackageRequestIn": "_authorizedbuyersmarketplace_78_SubscribeAuctionPackageRequestIn",
+        "SubscribeAuctionPackageRequestOut": "_authorizedbuyersmarketplace_79_SubscribeAuctionPackageRequestOut",
+        "AdSizeIn": "_authorizedbuyersmarketplace_80_AdSizeIn",
+        "AdSizeOut": "_authorizedbuyersmarketplace_81_AdSizeOut",
+        "ClientUserIn": "_authorizedbuyersmarketplace_82_ClientUserIn",
+        "ClientUserOut": "_authorizedbuyersmarketplace_83_ClientUserOut",
+        "RtbMetricsIn": "_authorizedbuyersmarketplace_84_RtbMetricsIn",
+        "RtbMetricsOut": "_authorizedbuyersmarketplace_85_RtbMetricsOut",
+        "BatchUpdateDealsRequestIn": "_authorizedbuyersmarketplace_86_BatchUpdateDealsRequestIn",
+        "BatchUpdateDealsRequestOut": "_authorizedbuyersmarketplace_87_BatchUpdateDealsRequestOut",
+        "UnsubscribeAuctionPackageRequestIn": "_authorizedbuyersmarketplace_88_UnsubscribeAuctionPackageRequestIn",
+        "UnsubscribeAuctionPackageRequestOut": "_authorizedbuyersmarketplace_89_UnsubscribeAuctionPackageRequestOut",
+        "AddCreativeRequestIn": "_authorizedbuyersmarketplace_90_AddCreativeRequestIn",
+        "AddCreativeRequestOut": "_authorizedbuyersmarketplace_91_AddCreativeRequestOut",
+        "UriTargetingIn": "_authorizedbuyersmarketplace_92_UriTargetingIn",
+        "UriTargetingOut": "_authorizedbuyersmarketplace_93_UriTargetingOut",
+        "PauseFinalizedDealRequestIn": "_authorizedbuyersmarketplace_94_PauseFinalizedDealRequestIn",
+        "PauseFinalizedDealRequestOut": "_authorizedbuyersmarketplace_95_PauseFinalizedDealRequestOut",
+        "AddNoteRequestIn": "_authorizedbuyersmarketplace_96_AddNoteRequestIn",
+        "AddNoteRequestOut": "_authorizedbuyersmarketplace_97_AddNoteRequestOut",
+        "ClientIn": "_authorizedbuyersmarketplace_98_ClientIn",
+        "ClientOut": "_authorizedbuyersmarketplace_99_ClientOut",
+        "DeliveryControlIn": "_authorizedbuyersmarketplace_100_DeliveryControlIn",
+        "DeliveryControlOut": "_authorizedbuyersmarketplace_101_DeliveryControlOut",
+        "TimeZoneIn": "_authorizedbuyersmarketplace_102_TimeZoneIn",
+        "TimeZoneOut": "_authorizedbuyersmarketplace_103_TimeZoneOut",
+        "ListClientsResponseIn": "_authorizedbuyersmarketplace_104_ListClientsResponseIn",
+        "ListClientsResponseOut": "_authorizedbuyersmarketplace_105_ListClientsResponseOut",
+        "ActivateClientUserRequestIn": "_authorizedbuyersmarketplace_106_ActivateClientUserRequestIn",
+        "ActivateClientUserRequestOut": "_authorizedbuyersmarketplace_107_ActivateClientUserRequestOut",
+        "FrequencyCapIn": "_authorizedbuyersmarketplace_108_FrequencyCapIn",
+        "FrequencyCapOut": "_authorizedbuyersmarketplace_109_FrequencyCapOut",
+        "DayPartTargetingIn": "_authorizedbuyersmarketplace_110_DayPartTargetingIn",
+        "DayPartTargetingOut": "_authorizedbuyersmarketplace_111_DayPartTargetingOut",
+        "ResumeFinalizedDealRequestIn": "_authorizedbuyersmarketplace_112_ResumeFinalizedDealRequestIn",
+        "ResumeFinalizedDealRequestOut": "_authorizedbuyersmarketplace_113_ResumeFinalizedDealRequestOut",
+        "PublisherProfileMobileApplicationIn": "_authorizedbuyersmarketplace_114_PublisherProfileMobileApplicationIn",
+        "PublisherProfileMobileApplicationOut": "_authorizedbuyersmarketplace_115_PublisherProfileMobileApplicationOut",
+        "CreativeRequirementsIn": "_authorizedbuyersmarketplace_116_CreativeRequirementsIn",
+        "CreativeRequirementsOut": "_authorizedbuyersmarketplace_117_CreativeRequirementsOut",
+        "DeactivateClientUserRequestIn": "_authorizedbuyersmarketplace_118_DeactivateClientUserRequestIn",
+        "DeactivateClientUserRequestOut": "_authorizedbuyersmarketplace_119_DeactivateClientUserRequestOut",
+        "EmptyIn": "_authorizedbuyersmarketplace_120_EmptyIn",
+        "EmptyOut": "_authorizedbuyersmarketplace_121_EmptyOut",
+        "ListDealsResponseIn": "_authorizedbuyersmarketplace_122_ListDealsResponseIn",
+        "ListDealsResponseOut": "_authorizedbuyersmarketplace_123_ListDealsResponseOut",
+        "SetReadyToServeRequestIn": "_authorizedbuyersmarketplace_124_SetReadyToServeRequestIn",
+        "SetReadyToServeRequestOut": "_authorizedbuyersmarketplace_125_SetReadyToServeRequestOut",
+        "ProposalIn": "_authorizedbuyersmarketplace_126_ProposalIn",
+        "ProposalOut": "_authorizedbuyersmarketplace_127_ProposalOut",
+        "CriteriaTargetingIn": "_authorizedbuyersmarketplace_128_CriteriaTargetingIn",
+        "CriteriaTargetingOut": "_authorizedbuyersmarketplace_129_CriteriaTargetingOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["PlacementTargetingIn"] = t.struct(
+    types["TechnologyTargetingIn"] = t.struct(
         {
-            "uriTargeting": t.proxy(renames["UriTargetingIn"]).optional(),
-            "mobileApplicationTargeting": t.proxy(
-                renames["MobileApplicationTargetingIn"]
+            "deviceCapabilityTargeting": t.proxy(
+                renames["CriteriaTargetingIn"]
+            ).optional(),
+            "operatingSystemTargeting": t.proxy(
+                renames["OperatingSystemTargetingIn"]
+            ).optional(),
+            "deviceCategoryTargeting": t.proxy(
+                renames["CriteriaTargetingIn"]
             ).optional(),
         }
-    ).named(renames["PlacementTargetingIn"])
-    types["PlacementTargetingOut"] = t.struct(
+    ).named(renames["TechnologyTargetingIn"])
+    types["TechnologyTargetingOut"] = t.struct(
         {
-            "uriTargeting": t.proxy(renames["UriTargetingOut"]).optional(),
-            "mobileApplicationTargeting": t.proxy(
-                renames["MobileApplicationTargetingOut"]
+            "deviceCapabilityTargeting": t.proxy(
+                renames["CriteriaTargetingOut"]
+            ).optional(),
+            "operatingSystemTargeting": t.proxy(
+                renames["OperatingSystemTargetingOut"]
+            ).optional(),
+            "deviceCategoryTargeting": t.proxy(
+                renames["CriteriaTargetingOut"]
             ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PlacementTargetingOut"])
-    types["ProposalIn"] = t.struct(
+    ).named(renames["TechnologyTargetingOut"])
+    types["FinalizedDealIn"] = t.struct(
         {
-            "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
-            "pausingConsented": t.boolean().optional(),
-            "buyerPrivateData": t.proxy(renames["PrivateDataIn"]).optional(),
-            "notes": t.array(t.proxy(renames["NoteIn"])).optional(),
-            "publisherProfile": t.string().optional(),
+            "deal": t.proxy(renames["DealIn"]).optional(),
             "name": t.string().optional(),
+            "dealServingStatus": t.string().optional(),
+            "dealPausingInfo": t.proxy(renames["DealPausingInfoIn"]).optional(),
+            "readyToServe": t.boolean().optional(),
+            "rtbMetrics": t.proxy(renames["RtbMetricsIn"]).optional(),
         }
-    ).named(renames["ProposalIn"])
-    types["ProposalOut"] = t.struct(
+    ).named(renames["FinalizedDealIn"])
+    types["FinalizedDealOut"] = t.struct(
         {
-            "buyerContacts": t.array(t.proxy(renames["ContactOut"])).optional(),
-            "buyer": t.string().optional(),
-            "billedBuyer": t.string().optional(),
-            "dealType": t.string().optional(),
-            "state": t.string().optional(),
-            "termsAndConditions": t.string().optional(),
-            "pausingConsented": t.boolean().optional(),
-            "buyerPrivateData": t.proxy(renames["PrivateDataOut"]).optional(),
-            "displayName": t.string().optional(),
-            "notes": t.array(t.proxy(renames["NoteOut"])).optional(),
-            "client": t.string().optional(),
-            "proposalRevision": t.string().optional(),
-            "isRenegotiating": t.boolean().optional(),
-            "publisherProfile": t.string().optional(),
-            "lastUpdaterOrCommentorRole": t.string().optional(),
-            "updateTime": t.string().optional(),
-            "sellerContacts": t.array(t.proxy(renames["ContactOut"])).optional(),
+            "deal": t.proxy(renames["DealOut"]).optional(),
             "name": t.string().optional(),
-            "originatorRole": t.string().optional(),
+            "dealServingStatus": t.string().optional(),
+            "dealPausingInfo": t.proxy(renames["DealPausingInfoOut"]).optional(),
+            "readyToServe": t.boolean().optional(),
+            "rtbMetrics": t.proxy(renames["RtbMetricsOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ProposalOut"])
-    types["UnsubscribeClientsRequestIn"] = t.struct(
-        {"clients": t.array(t.string()).optional()}
-    ).named(renames["UnsubscribeClientsRequestIn"])
-    types["UnsubscribeClientsRequestOut"] = t.struct(
-        {
-            "clients": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UnsubscribeClientsRequestOut"])
-    types["MoneyIn"] = t.struct(
-        {
-            "currencyCode": t.string().optional(),
-            "units": t.string().optional(),
-            "nanos": t.integer().optional(),
-        }
-    ).named(renames["MoneyIn"])
-    types["MoneyOut"] = t.struct(
-        {
-            "currencyCode": t.string().optional(),
-            "units": t.string().optional(),
-            "nanos": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MoneyOut"])
-    types["PriceIn"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "amount": t.proxy(renames["MoneyIn"]).optional(),
-        }
-    ).named(renames["PriceIn"])
-    types["PriceOut"] = t.struct(
-        {
-            "type": t.string().optional(),
-            "amount": t.proxy(renames["MoneyOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PriceOut"])
-    types["PauseFinalizedDealRequestIn"] = t.struct(
-        {"reason": t.string().optional()}
-    ).named(renames["PauseFinalizedDealRequestIn"])
-    types["PauseFinalizedDealRequestOut"] = t.struct(
-        {
-            "reason": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PauseFinalizedDealRequestOut"])
-    types["PreferredDealTermsIn"] = t.struct(
-        {"fixedPrice": t.proxy(renames["PriceIn"]).optional()}
-    ).named(renames["PreferredDealTermsIn"])
-    types["PreferredDealTermsOut"] = t.struct(
-        {
-            "fixedPrice": t.proxy(renames["PriceOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PreferredDealTermsOut"])
-    types["CriteriaTargetingIn"] = t.struct(
-        {
-            "excludedCriteriaIds": t.array(t.string()).optional(),
-            "targetedCriteriaIds": t.array(t.string()).optional(),
-        }
-    ).named(renames["CriteriaTargetingIn"])
-    types["CriteriaTargetingOut"] = t.struct(
-        {
-            "excludedCriteriaIds": t.array(t.string()).optional(),
-            "targetedCriteriaIds": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CriteriaTargetingOut"])
+    ).named(renames["FinalizedDealOut"])
     types["InventorySizeTargetingIn"] = t.struct(
         {
-            "targetedInventorySizes": t.array(t.proxy(renames["AdSizeIn"])).optional(),
             "excludedInventorySizes": t.array(t.proxy(renames["AdSizeIn"])).optional(),
+            "targetedInventorySizes": t.array(t.proxy(renames["AdSizeIn"])).optional(),
         }
     ).named(renames["InventorySizeTargetingIn"])
     types["InventorySizeTargetingOut"] = t.struct(
         {
-            "targetedInventorySizes": t.array(t.proxy(renames["AdSizeOut"])).optional(),
             "excludedInventorySizes": t.array(t.proxy(renames["AdSizeOut"])).optional(),
+            "targetedInventorySizes": t.array(t.proxy(renames["AdSizeOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["InventorySizeTargetingOut"])
-    types["TimeOfDayIn"] = t.struct(
+    types["CancelNegotiationRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["CancelNegotiationRequestIn"]
+    )
+    types["CancelNegotiationRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["CancelNegotiationRequestOut"])
+    types["FirstPartyMobileApplicationTargetingIn"] = t.struct(
         {
-            "minutes": t.integer().optional(),
-            "hours": t.integer().optional(),
-            "nanos": t.integer().optional(),
-            "seconds": t.integer().optional(),
+            "targetedAppIds": t.array(t.string()).optional(),
+            "excludedAppIds": t.array(t.string()).optional(),
         }
-    ).named(renames["TimeOfDayIn"])
-    types["TimeOfDayOut"] = t.struct(
+    ).named(renames["FirstPartyMobileApplicationTargetingIn"])
+    types["FirstPartyMobileApplicationTargetingOut"] = t.struct(
         {
-            "minutes": t.integer().optional(),
-            "hours": t.integer().optional(),
-            "nanos": t.integer().optional(),
-            "seconds": t.integer().optional(),
+            "targetedAppIds": t.array(t.string()).optional(),
+            "excludedAppIds": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TimeOfDayOut"])
-    types["BatchUpdateDealsResponseIn"] = t.struct(
-        {"deals": t.array(t.proxy(renames["DealIn"])).optional()}
-    ).named(renames["BatchUpdateDealsResponseIn"])
-    types["BatchUpdateDealsResponseOut"] = t.struct(
-        {
-            "deals": t.array(t.proxy(renames["DealOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BatchUpdateDealsResponseOut"])
-    types["SubscribeClientsRequestIn"] = t.struct(
-        {"clients": t.array(t.string()).optional()}
-    ).named(renames["SubscribeClientsRequestIn"])
-    types["SubscribeClientsRequestOut"] = t.struct(
-        {
-            "clients": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SubscribeClientsRequestOut"])
-    types["FrequencyCapIn"] = t.struct(
-        {
-            "timeUnitType": t.string().optional(),
-            "timeUnitsCount": t.integer().optional(),
-            "maxImpressions": t.integer().optional(),
-        }
-    ).named(renames["FrequencyCapIn"])
-    types["FrequencyCapOut"] = t.struct(
-        {
-            "timeUnitType": t.string().optional(),
-            "timeUnitsCount": t.integer().optional(),
-            "maxImpressions": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FrequencyCapOut"])
+    ).named(renames["FirstPartyMobileApplicationTargetingOut"])
+    types["ActivateClientRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["ActivateClientRequestIn"]
+    )
+    types["ActivateClientRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["ActivateClientRequestOut"])
     types["ListFinalizedDealsResponseIn"] = t.struct(
         {
             "nextPageToken": t.string().optional(),
@@ -340,60 +244,157 @@ def import_authorizedbuyersmarketplace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListFinalizedDealsResponseOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["PublisherProfileMobileApplicationIn"] = t.struct(
+    types["SendRfpRequestIn"] = t.struct(
         {
-            "name": t.string().optional(),
-            "appStore": t.string().optional(),
-            "externalAppId": t.string().optional(),
-        }
-    ).named(renames["PublisherProfileMobileApplicationIn"])
-    types["PublisherProfileMobileApplicationOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "appStore": t.string().optional(),
-            "externalAppId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PublisherProfileMobileApplicationOut"])
-    types["NoteIn"] = t.struct({"note": t.string().optional()}).named(renames["NoteIn"])
-    types["NoteOut"] = t.struct(
-        {
-            "createTime": t.string().optional(),
-            "creatorRole": t.string().optional(),
+            "programmaticGuaranteedTerms": t.proxy(
+                renames["ProgrammaticGuaranteedTermsIn"]
+            ).optional(),
+            "flightStartTime": t.string(),
+            "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+            "client": t.string().optional(),
+            "publisherProfile": t.string(),
+            "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+            "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
             "note": t.string().optional(),
+            "flightEndTime": t.string(),
+            "preferredDealTerms": t.proxy(renames["PreferredDealTermsIn"]).optional(),
+            "inventorySizeTargeting": t.proxy(
+                renames["InventorySizeTargetingIn"]
+            ).optional(),
+            "displayName": t.string(),
+        }
+    ).named(renames["SendRfpRequestIn"])
+    types["SendRfpRequestOut"] = t.struct(
+        {
+            "programmaticGuaranteedTerms": t.proxy(
+                renames["ProgrammaticGuaranteedTermsOut"]
+            ).optional(),
+            "flightStartTime": t.string(),
+            "estimatedGrossSpend": t.proxy(renames["MoneyOut"]).optional(),
+            "client": t.string().optional(),
+            "publisherProfile": t.string(),
+            "geoTargeting": t.proxy(renames["CriteriaTargetingOut"]).optional(),
+            "buyerContacts": t.array(t.proxy(renames["ContactOut"])).optional(),
+            "note": t.string().optional(),
+            "flightEndTime": t.string(),
+            "preferredDealTerms": t.proxy(renames["PreferredDealTermsOut"]).optional(),
+            "inventorySizeTargeting": t.proxy(
+                renames["InventorySizeTargetingOut"]
+            ).optional(),
+            "displayName": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["NoteOut"])
-    types["ListClientsResponseIn"] = t.struct(
+    ).named(renames["SendRfpRequestOut"])
+    types["BatchUpdateDealsResponseIn"] = t.struct(
+        {"deals": t.array(t.proxy(renames["DealIn"])).optional()}
+    ).named(renames["BatchUpdateDealsResponseIn"])
+    types["BatchUpdateDealsResponseOut"] = t.struct(
         {
-            "clients": t.array(t.proxy(renames["ClientIn"])).optional(),
+            "deals": t.array(t.proxy(renames["DealOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BatchUpdateDealsResponseOut"])
+    types["VideoTargetingIn"] = t.struct(
+        {
+            "targetedPositionTypes": t.array(t.string()).optional(),
+            "excludedPositionTypes": t.array(t.string()).optional(),
+        }
+    ).named(renames["VideoTargetingIn"])
+    types["VideoTargetingOut"] = t.struct(
+        {
+            "targetedPositionTypes": t.array(t.string()).optional(),
+            "excludedPositionTypes": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["VideoTargetingOut"])
+    types["MoneyIn"] = t.struct(
+        {
+            "units": t.string().optional(),
+            "nanos": t.integer().optional(),
+            "currencyCode": t.string().optional(),
+        }
+    ).named(renames["MoneyIn"])
+    types["MoneyOut"] = t.struct(
+        {
+            "units": t.string().optional(),
+            "nanos": t.integer().optional(),
+            "currencyCode": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MoneyOut"])
+    types["SubscribeClientsRequestIn"] = t.struct(
+        {"clients": t.array(t.string()).optional()}
+    ).named(renames["SubscribeClientsRequestIn"])
+    types["SubscribeClientsRequestOut"] = t.struct(
+        {
+            "clients": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SubscribeClientsRequestOut"])
+    types["UpdateDealRequestIn"] = t.struct(
+        {"updateMask": t.string().optional(), "deal": t.proxy(renames["DealIn"])}
+    ).named(renames["UpdateDealRequestIn"])
+    types["UpdateDealRequestOut"] = t.struct(
+        {
+            "updateMask": t.string().optional(),
+            "deal": t.proxy(renames["DealOut"]),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UpdateDealRequestOut"])
+    types["PlacementTargetingIn"] = t.struct(
+        {
+            "mobileApplicationTargeting": t.proxy(
+                renames["MobileApplicationTargetingIn"]
+            ).optional(),
+            "uriTargeting": t.proxy(renames["UriTargetingIn"]).optional(),
+        }
+    ).named(renames["PlacementTargetingIn"])
+    types["PlacementTargetingOut"] = t.struct(
+        {
+            "mobileApplicationTargeting": t.proxy(
+                renames["MobileApplicationTargetingOut"]
+            ).optional(),
+            "uriTargeting": t.proxy(renames["UriTargetingOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PlacementTargetingOut"])
+    types["UnsubscribeClientsRequestIn"] = t.struct(
+        {"clients": t.array(t.string()).optional()}
+    ).named(renames["UnsubscribeClientsRequestIn"])
+    types["UnsubscribeClientsRequestOut"] = t.struct(
+        {
+            "clients": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UnsubscribeClientsRequestOut"])
+    types["MobileApplicationTargetingIn"] = t.struct(
+        {
+            "firstPartyTargeting": t.proxy(
+                renames["FirstPartyMobileApplicationTargetingIn"]
+            ).optional()
+        }
+    ).named(renames["MobileApplicationTargetingIn"])
+    types["MobileApplicationTargetingOut"] = t.struct(
+        {
+            "firstPartyTargeting": t.proxy(
+                renames["FirstPartyMobileApplicationTargetingOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MobileApplicationTargetingOut"])
+    types["ListProposalsResponseIn"] = t.struct(
+        {
             "nextPageToken": t.string().optional(),
+            "proposals": t.array(t.proxy(renames["ProposalIn"])).optional(),
         }
-    ).named(renames["ListClientsResponseIn"])
-    types["ListClientsResponseOut"] = t.struct(
+    ).named(renames["ListProposalsResponseIn"])
+    types["ListProposalsResponseOut"] = t.struct(
         {
-            "clients": t.array(t.proxy(renames["ClientOut"])).optional(),
             "nextPageToken": t.string().optional(),
+            "proposals": t.array(t.proxy(renames["ProposalOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListClientsResponseOut"])
-    types["DeliveryControlIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["DeliveryControlIn"]
-    )
-    types["DeliveryControlOut"] = t.struct(
-        {
-            "deliveryRateType": t.string().optional(),
-            "companionDeliveryType": t.string().optional(),
-            "roadblockingType": t.string().optional(),
-            "frequencyCap": t.array(t.proxy(renames["FrequencyCapOut"])).optional(),
-            "creativeRotationType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DeliveryControlOut"])
+    ).named(renames["ListProposalsResponseOut"])
     types["OperatingSystemTargetingIn"] = t.struct(
         {
             "operatingSystemVersionCriteria": t.proxy(
@@ -415,49 +416,53 @@ def import_authorizedbuyersmarketplace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["OperatingSystemTargetingOut"])
-    types["ProgrammaticGuaranteedTermsIn"] = t.struct(
+    types["DealIn"] = t.struct(
         {
-            "reservationType": t.string().optional(),
-            "impressionCap": t.string().optional(),
-            "fixedPrice": t.proxy(renames["PriceIn"]).optional(),
-            "minimumDailyLooks": t.string().optional(),
-            "guaranteedLooks": t.string().optional(),
-            "percentShareOfVoice": t.string().optional(),
+            "privateAuctionTerms": t.proxy(renames["PrivateAuctionTermsIn"]).optional(),
+            "publisherProfile": t.string().optional(),
+            "programmaticGuaranteedTerms": t.proxy(
+                renames["ProgrammaticGuaranteedTermsIn"]
+            ).optional(),
+            "preferredDealTerms": t.proxy(renames["PreferredDealTermsIn"]).optional(),
+            "targeting": t.proxy(renames["MarketplaceTargetingIn"]).optional(),
+            "flightEndTime": t.string().optional(),
+            "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+            "flightStartTime": t.string().optional(),
+            "name": t.string().optional(),
         }
-    ).named(renames["ProgrammaticGuaranteedTermsIn"])
-    types["ProgrammaticGuaranteedTermsOut"] = t.struct(
+    ).named(renames["DealIn"])
+    types["DealOut"] = t.struct(
         {
-            "reservationType": t.string().optional(),
-            "impressionCap": t.string().optional(),
-            "fixedPrice": t.proxy(renames["PriceOut"]).optional(),
-            "minimumDailyLooks": t.string().optional(),
-            "guaranteedLooks": t.string().optional(),
-            "percentShareOfVoice": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "description": t.string().optional(),
+            "creativeRequirements": t.proxy(
+                renames["CreativeRequirementsOut"]
+            ).optional(),
+            "billedBuyer": t.string().optional(),
+            "sellerTimeZone": t.proxy(renames["TimeZoneOut"]).optional(),
+            "privateAuctionTerms": t.proxy(
+                renames["PrivateAuctionTermsOut"]
+            ).optional(),
+            "createTime": t.string().optional(),
+            "client": t.string().optional(),
+            "displayName": t.string().optional(),
+            "publisherProfile": t.string().optional(),
+            "proposalRevision": t.string().optional(),
+            "programmaticGuaranteedTerms": t.proxy(
+                renames["ProgrammaticGuaranteedTermsOut"]
+            ).optional(),
+            "preferredDealTerms": t.proxy(renames["PreferredDealTermsOut"]).optional(),
+            "buyer": t.string().optional(),
+            "dealType": t.string().optional(),
+            "targeting": t.proxy(renames["MarketplaceTargetingOut"]).optional(),
+            "deliveryControl": t.proxy(renames["DeliveryControlOut"]).optional(),
+            "flightEndTime": t.string().optional(),
+            "estimatedGrossSpend": t.proxy(renames["MoneyOut"]).optional(),
+            "flightStartTime": t.string().optional(),
+            "name": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ProgrammaticGuaranteedTermsOut"])
-    types["DayPartTargetingIn"] = t.struct(
-        {
-            "dayParts": t.array(t.proxy(renames["DayPartIn"])).optional(),
-            "timeZoneType": t.string().optional(),
-        }
-    ).named(renames["DayPartTargetingIn"])
-    types["DayPartTargetingOut"] = t.struct(
-        {
-            "dayParts": t.array(t.proxy(renames["DayPartOut"])).optional(),
-            "timeZoneType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DayPartTargetingOut"])
-    types["PrivateDataIn"] = t.struct({"referenceId": t.string().optional()}).named(
-        renames["PrivateDataIn"]
-    )
-    types["PrivateDataOut"] = t.struct(
-        {
-            "referenceId": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PrivateDataOut"])
+    ).named(renames["DealOut"])
     types["InventoryTypeTargetingIn"] = t.struct(
         {"inventoryTypes": t.array(t.string()).optional()}
     ).named(renames["InventoryTypeTargetingIn"])
@@ -467,369 +472,164 @@ def import_authorizedbuyersmarketplace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["InventoryTypeTargetingOut"])
-    types["UpdateDealRequestIn"] = t.struct(
-        {"updateMask": t.string().optional(), "deal": t.proxy(renames["DealIn"])}
-    ).named(renames["UpdateDealRequestIn"])
-    types["UpdateDealRequestOut"] = t.struct(
+    types["PrivateDataIn"] = t.struct({"referenceId": t.string().optional()}).named(
+        renames["PrivateDataIn"]
+    )
+    types["PrivateDataOut"] = t.struct(
         {
-            "updateMask": t.string().optional(),
-            "deal": t.proxy(renames["DealOut"]),
+            "referenceId": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["UpdateDealRequestOut"])
-    types["ListProposalsResponseIn"] = t.struct(
+    ).named(renames["PrivateDataOut"])
+    types["AuctionPackageIn"] = t.struct(
+        {"displayName": t.string().optional(), "name": t.string().optional()}
+    ).named(renames["AuctionPackageIn"])
+    types["AuctionPackageOut"] = t.struct(
         {
-            "proposals": t.array(t.proxy(renames["ProposalIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListProposalsResponseIn"])
-    types["ListProposalsResponseOut"] = t.struct(
-        {
-            "proposals": t.array(t.proxy(renames["ProposalOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListProposalsResponseOut"])
-    types["ClientIn"] = t.struct(
-        {
-            "displayName": t.string(),
-            "partnerClientId": t.string().optional(),
-            "role": t.string(),
-            "sellerVisible": t.boolean().optional(),
-        }
-    ).named(renames["ClientIn"])
-    types["ClientOut"] = t.struct(
-        {
-            "displayName": t.string(),
-            "partnerClientId": t.string().optional(),
+            "subscribedClients": t.array(t.string()).optional(),
+            "description": t.string().optional(),
+            "displayName": t.string().optional(),
+            "creator": t.string().optional(),
+            "createTime": t.string().optional(),
+            "updateTime": t.string().optional(),
             "name": t.string().optional(),
-            "state": t.string().optional(),
-            "role": t.string(),
-            "sellerVisible": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ClientOut"])
-    types["FirstPartyMobileApplicationTargetingIn"] = t.struct(
+    ).named(renames["AuctionPackageOut"])
+    types["ListAuctionPackagesResponseIn"] = t.struct(
         {
-            "targetedAppIds": t.array(t.string()).optional(),
-            "excludedAppIds": t.array(t.string()).optional(),
+            "nextPageToken": t.string().optional(),
+            "auctionPackages": t.array(t.proxy(renames["AuctionPackageIn"])).optional(),
         }
-    ).named(renames["FirstPartyMobileApplicationTargetingIn"])
-    types["FirstPartyMobileApplicationTargetingOut"] = t.struct(
+    ).named(renames["ListAuctionPackagesResponseIn"])
+    types["ListAuctionPackagesResponseOut"] = t.struct(
         {
-            "targetedAppIds": t.array(t.string()).optional(),
-            "excludedAppIds": t.array(t.string()).optional(),
+            "nextPageToken": t.string().optional(),
+            "auctionPackages": t.array(
+                t.proxy(renames["AuctionPackageOut"])
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["FirstPartyMobileApplicationTargetingOut"])
+    ).named(renames["ListAuctionPackagesResponseOut"])
+    types["PriceIn"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "amount": t.proxy(renames["MoneyIn"]).optional(),
+        }
+    ).named(renames["PriceIn"])
+    types["PriceOut"] = t.struct(
+        {
+            "type": t.string().optional(),
+            "amount": t.proxy(renames["MoneyOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PriceOut"])
+    types["DeactivateClientRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["DeactivateClientRequestIn"]
+    )
+    types["DeactivateClientRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["DeactivateClientRequestOut"])
+    types["DayPartIn"] = t.struct(
+        {
+            "startTime": t.proxy(renames["TimeOfDayIn"]).optional(),
+            "dayOfWeek": t.string().optional(),
+            "endTime": t.proxy(renames["TimeOfDayIn"]).optional(),
+        }
+    ).named(renames["DayPartIn"])
+    types["DayPartOut"] = t.struct(
+        {
+            "startTime": t.proxy(renames["TimeOfDayOut"]).optional(),
+            "dayOfWeek": t.string().optional(),
+            "endTime": t.proxy(renames["TimeOfDayOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DayPartOut"])
+    types["NoteIn"] = t.struct({"note": t.string().optional()}).named(renames["NoteIn"])
+    types["NoteOut"] = t.struct(
+        {
+            "note": t.string().optional(),
+            "createTime": t.string().optional(),
+            "creatorRole": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["NoteOut"])
+    types["ContactIn"] = t.struct(
+        {"displayName": t.string().optional(), "email": t.string().optional()}
+    ).named(renames["ContactIn"])
+    types["ContactOut"] = t.struct(
+        {
+            "displayName": t.string().optional(),
+            "email": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ContactOut"])
+    types["MarketplaceTargetingIn"] = t.struct(
+        {
+            "userListTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+            "daypartTargeting": t.proxy(renames["DayPartTargetingIn"]).optional(),
+        }
+    ).named(renames["MarketplaceTargetingIn"])
+    types["MarketplaceTargetingOut"] = t.struct(
+        {
+            "userListTargeting": t.proxy(renames["CriteriaTargetingOut"]).optional(),
+            "daypartTargeting": t.proxy(renames["DayPartTargetingOut"]).optional(),
+            "inventoryTypeTargeting": t.proxy(
+                renames["InventoryTypeTargetingOut"]
+            ).optional(),
+            "geoTargeting": t.proxy(renames["CriteriaTargetingOut"]).optional(),
+            "videoTargeting": t.proxy(renames["VideoTargetingOut"]).optional(),
+            "technologyTargeting": t.proxy(
+                renames["TechnologyTargetingOut"]
+            ).optional(),
+            "placementTargeting": t.proxy(renames["PlacementTargetingOut"]).optional(),
+            "inventorySizeTargeting": t.proxy(
+                renames["InventorySizeTargetingOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["MarketplaceTargetingOut"])
+    types["ListClientUsersResponseIn"] = t.struct(
+        {
+            "clientUsers": t.array(t.proxy(renames["ClientUserIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListClientUsersResponseIn"])
+    types["ListClientUsersResponseOut"] = t.struct(
+        {
+            "clientUsers": t.array(t.proxy(renames["ClientUserOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListClientUsersResponseOut"])
+    types["PreferredDealTermsIn"] = t.struct(
+        {"fixedPrice": t.proxy(renames["PriceIn"]).optional()}
+    ).named(renames["PreferredDealTermsIn"])
+    types["PreferredDealTermsOut"] = t.struct(
+        {
+            "fixedPrice": t.proxy(renames["PriceOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PreferredDealTermsOut"])
+    types["AcceptProposalRequestIn"] = t.struct(
+        {"proposalRevision": t.string().optional()}
+    ).named(renames["AcceptProposalRequestIn"])
+    types["AcceptProposalRequestOut"] = t.struct(
+        {
+            "proposalRevision": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AcceptProposalRequestOut"])
     types["PrivateAuctionTermsIn"] = t.struct(
         {"floorPrice": t.proxy(renames["PriceIn"]).optional()}
     ).named(renames["PrivateAuctionTermsIn"])
     types["PrivateAuctionTermsOut"] = t.struct(
         {
-            "openAuctionAllowed": t.boolean().optional(),
             "floorPrice": t.proxy(renames["PriceOut"]).optional(),
+            "openAuctionAllowed": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["PrivateAuctionTermsOut"])
-    types["ListDealsResponseIn"] = t.struct(
-        {
-            "deals": t.array(t.proxy(renames["DealIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListDealsResponseIn"])
-    types["ListDealsResponseOut"] = t.struct(
-        {
-            "deals": t.array(t.proxy(renames["DealOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListDealsResponseOut"])
-    types["UriTargetingIn"] = t.struct(
-        {
-            "targetedUris": t.array(t.string()).optional(),
-            "excludedUris": t.array(t.string()).optional(),
-        }
-    ).named(renames["UriTargetingIn"])
-    types["UriTargetingOut"] = t.struct(
-        {
-            "targetedUris": t.array(t.string()).optional(),
-            "excludedUris": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["UriTargetingOut"])
-    types["VideoTargetingIn"] = t.struct(
-        {
-            "excludedPositionTypes": t.array(t.string()).optional(),
-            "targetedPositionTypes": t.array(t.string()).optional(),
-        }
-    ).named(renames["VideoTargetingIn"])
-    types["VideoTargetingOut"] = t.struct(
-        {
-            "excludedPositionTypes": t.array(t.string()).optional(),
-            "targetedPositionTypes": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["VideoTargetingOut"])
-    types["FinalizedDealIn"] = t.struct(
-        {
-            "dealPausingInfo": t.proxy(renames["DealPausingInfoIn"]).optional(),
-            "readyToServe": t.boolean().optional(),
-            "rtbMetrics": t.proxy(renames["RtbMetricsIn"]).optional(),
-            "name": t.string().optional(),
-            "dealServingStatus": t.string().optional(),
-            "deal": t.proxy(renames["DealIn"]).optional(),
-        }
-    ).named(renames["FinalizedDealIn"])
-    types["FinalizedDealOut"] = t.struct(
-        {
-            "dealPausingInfo": t.proxy(renames["DealPausingInfoOut"]).optional(),
-            "readyToServe": t.boolean().optional(),
-            "rtbMetrics": t.proxy(renames["RtbMetricsOut"]).optional(),
-            "name": t.string().optional(),
-            "dealServingStatus": t.string().optional(),
-            "deal": t.proxy(renames["DealOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["FinalizedDealOut"])
-    types["AuctionPackageIn"] = t.struct(
-        {"name": t.string().optional(), "displayName": t.string().optional()}
-    ).named(renames["AuctionPackageIn"])
-    types["AuctionPackageOut"] = t.struct(
-        {
-            "createTime": t.string().optional(),
-            "name": t.string().optional(),
-            "updateTime": t.string().optional(),
-            "subscribedClients": t.array(t.string()).optional(),
-            "description": t.string().optional(),
-            "creator": t.string().optional(),
-            "displayName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AuctionPackageOut"])
-    types["SubscribeAuctionPackageRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["SubscribeAuctionPackageRequestIn"])
-    types["SubscribeAuctionPackageRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["SubscribeAuctionPackageRequestOut"])
-    types["AddNoteRequestIn"] = t.struct(
-        {"note": t.proxy(renames["NoteIn"]).optional()}
-    ).named(renames["AddNoteRequestIn"])
-    types["AddNoteRequestOut"] = t.struct(
-        {
-            "note": t.proxy(renames["NoteOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AddNoteRequestOut"])
-    types["ContactIn"] = t.struct(
-        {"email": t.string().optional(), "displayName": t.string().optional()}
-    ).named(renames["ContactIn"])
-    types["ContactOut"] = t.struct(
-        {
-            "email": t.string().optional(),
-            "displayName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ContactOut"])
-    types["CancelNegotiationRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["CancelNegotiationRequestIn"]
-    )
-    types["CancelNegotiationRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["CancelNegotiationRequestOut"])
-    types["CreativeRequirementsIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["CreativeRequirementsIn"]
-    )
-    types["CreativeRequirementsOut"] = t.struct(
-        {
-            "creativePreApprovalPolicy": t.string().optional(),
-            "programmaticCreativeSource": t.string().optional(),
-            "creativeSafeFrameCompatibility": t.string().optional(),
-            "skippableAdType": t.string().optional(),
-            "maxAdDurationMs": t.string().optional(),
-            "creativeFormat": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["CreativeRequirementsOut"])
-    types["TechnologyTargetingIn"] = t.struct(
-        {
-            "deviceCategoryTargeting": t.proxy(
-                renames["CriteriaTargetingIn"]
-            ).optional(),
-            "deviceCapabilityTargeting": t.proxy(
-                renames["CriteriaTargetingIn"]
-            ).optional(),
-            "operatingSystemTargeting": t.proxy(
-                renames["OperatingSystemTargetingIn"]
-            ).optional(),
-        }
-    ).named(renames["TechnologyTargetingIn"])
-    types["TechnologyTargetingOut"] = t.struct(
-        {
-            "deviceCategoryTargeting": t.proxy(
-                renames["CriteriaTargetingOut"]
-            ).optional(),
-            "deviceCapabilityTargeting": t.proxy(
-                renames["CriteriaTargetingOut"]
-            ).optional(),
-            "operatingSystemTargeting": t.proxy(
-                renames["OperatingSystemTargetingOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TechnologyTargetingOut"])
-    types["PublisherProfileIn"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "logoUrl": t.string().optional(),
-            "publisherCode": t.string().optional(),
-            "directDealsContact": t.string().optional(),
-            "programmaticDealsContact": t.string().optional(),
-            "mobileApps": t.array(
-                t.proxy(renames["PublisherProfileMobileApplicationIn"])
-            ).optional(),
-            "domains": t.array(t.string()).optional(),
-            "pitchStatement": t.string().optional(),
-            "displayName": t.string().optional(),
-            "mediaKitUrl": t.string().optional(),
-            "topHeadlines": t.array(t.string()).optional(),
-            "overview": t.string().optional(),
-            "isParent": t.boolean().optional(),
-            "audienceDescription": t.string().optional(),
-            "samplePageUrl": t.string().optional(),
-        }
-    ).named(renames["PublisherProfileIn"])
-    types["PublisherProfileOut"] = t.struct(
-        {
-            "name": t.string().optional(),
-            "logoUrl": t.string().optional(),
-            "publisherCode": t.string().optional(),
-            "directDealsContact": t.string().optional(),
-            "programmaticDealsContact": t.string().optional(),
-            "mobileApps": t.array(
-                t.proxy(renames["PublisherProfileMobileApplicationOut"])
-            ).optional(),
-            "domains": t.array(t.string()).optional(),
-            "pitchStatement": t.string().optional(),
-            "displayName": t.string().optional(),
-            "mediaKitUrl": t.string().optional(),
-            "topHeadlines": t.array(t.string()).optional(),
-            "overview": t.string().optional(),
-            "isParent": t.boolean().optional(),
-            "audienceDescription": t.string().optional(),
-            "samplePageUrl": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["PublisherProfileOut"])
-    types["DeactivateClientUserRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["DeactivateClientUserRequestIn"])
-    types["DeactivateClientUserRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["DeactivateClientUserRequestOut"])
-    types["SetReadyToServeRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["SetReadyToServeRequestIn"]
-    )
-    types["SetReadyToServeRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["SetReadyToServeRequestOut"])
-    types["ResumeFinalizedDealRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["ResumeFinalizedDealRequestIn"])
-    types["ResumeFinalizedDealRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["ResumeFinalizedDealRequestOut"])
-    types["DealIn"] = t.struct(
-        {
-            "privateAuctionTerms": t.proxy(renames["PrivateAuctionTermsIn"]).optional(),
-            "flightEndTime": t.string().optional(),
-            "preferredDealTerms": t.proxy(renames["PreferredDealTermsIn"]).optional(),
-            "flightStartTime": t.string().optional(),
-            "name": t.string().optional(),
-            "programmaticGuaranteedTerms": t.proxy(
-                renames["ProgrammaticGuaranteedTermsIn"]
-            ).optional(),
-            "targeting": t.proxy(renames["MarketplaceTargetingIn"]).optional(),
-            "publisherProfile": t.string().optional(),
-            "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
-        }
-    ).named(renames["DealIn"])
-    types["DealOut"] = t.struct(
-        {
-            "description": t.string().optional(),
-            "privateAuctionTerms": t.proxy(
-                renames["PrivateAuctionTermsOut"]
-            ).optional(),
-            "client": t.string().optional(),
-            "deliveryControl": t.proxy(renames["DeliveryControlOut"]).optional(),
-            "flightEndTime": t.string().optional(),
-            "preferredDealTerms": t.proxy(renames["PreferredDealTermsOut"]).optional(),
-            "displayName": t.string().optional(),
-            "createTime": t.string().optional(),
-            "flightStartTime": t.string().optional(),
-            "billedBuyer": t.string().optional(),
-            "sellerTimeZone": t.proxy(renames["TimeZoneOut"]).optional(),
-            "creativeRequirements": t.proxy(
-                renames["CreativeRequirementsOut"]
-            ).optional(),
-            "buyer": t.string().optional(),
-            "name": t.string().optional(),
-            "programmaticGuaranteedTerms": t.proxy(
-                renames["ProgrammaticGuaranteedTermsOut"]
-            ).optional(),
-            "targeting": t.proxy(renames["MarketplaceTargetingOut"]).optional(),
-            "dealType": t.string().optional(),
-            "publisherProfile": t.string().optional(),
-            "proposalRevision": t.string().optional(),
-            "estimatedGrossSpend": t.proxy(renames["MoneyOut"]).optional(),
-            "updateTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["DealOut"])
-    types["AddCreativeRequestIn"] = t.struct({"creative": t.string().optional()}).named(
-        renames["AddCreativeRequestIn"]
-    )
-    types["AddCreativeRequestOut"] = t.struct(
-        {
-            "creative": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AddCreativeRequestOut"])
-    types["BatchUpdateDealsRequestIn"] = t.struct(
-        {"requests": t.array(t.proxy(renames["UpdateDealRequestIn"]))}
-    ).named(renames["BatchUpdateDealsRequestIn"])
-    types["BatchUpdateDealsRequestOut"] = t.struct(
-        {
-            "requests": t.array(t.proxy(renames["UpdateDealRequestOut"])),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BatchUpdateDealsRequestOut"])
-    types["TimeZoneIn"] = t.struct(
-        {"id": t.string().optional(), "version": t.string().optional()}
-    ).named(renames["TimeZoneIn"])
-    types["TimeZoneOut"] = t.struct(
-        {
-            "id": t.string().optional(),
-            "version": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TimeZoneOut"])
-    types["MobileApplicationTargetingIn"] = t.struct(
-        {
-            "firstPartyTargeting": t.proxy(
-                renames["FirstPartyMobileApplicationTargetingIn"]
-            ).optional()
-        }
-    ).named(renames["MobileApplicationTargetingIn"])
-    types["MobileApplicationTargetingOut"] = t.struct(
-        {
-            "firstPartyTargeting": t.proxy(
-                renames["FirstPartyMobileApplicationTargetingOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["MobileApplicationTargetingOut"])
     types["ListPublisherProfilesResponseIn"] = t.struct(
         {
             "publisherProfiles": t.array(
@@ -847,183 +647,120 @@ def import_authorizedbuyersmarketplace() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ListPublisherProfilesResponseOut"])
-    types["UnsubscribeAuctionPackageRequestIn"] = t.struct(
-        {"_": t.string().optional()}
-    ).named(renames["UnsubscribeAuctionPackageRequestIn"])
-    types["UnsubscribeAuctionPackageRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["UnsubscribeAuctionPackageRequestOut"])
-    types["ActivateClientUserRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["ActivateClientUserRequestIn"]
-    )
-    types["ActivateClientUserRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["ActivateClientUserRequestOut"])
-    types["DayPartIn"] = t.struct(
+    types["PublisherProfileIn"] = t.struct(
         {
-            "endTime": t.proxy(renames["TimeOfDayIn"]).optional(),
-            "startTime": t.proxy(renames["TimeOfDayIn"]).optional(),
-            "dayOfWeek": t.string().optional(),
+            "samplePageUrl": t.string().optional(),
+            "publisherCode": t.string().optional(),
+            "pitchStatement": t.string().optional(),
+            "programmaticDealsContact": t.string().optional(),
+            "directDealsContact": t.string().optional(),
+            "logoUrl": t.string().optional(),
+            "domains": t.array(t.string()).optional(),
+            "topHeadlines": t.array(t.string()).optional(),
+            "mediaKitUrl": t.string().optional(),
+            "isParent": t.boolean().optional(),
+            "mobileApps": t.array(
+                t.proxy(renames["PublisherProfileMobileApplicationIn"])
+            ).optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "overview": t.string().optional(),
+            "audienceDescription": t.string().optional(),
         }
-    ).named(renames["DayPartIn"])
-    types["DayPartOut"] = t.struct(
+    ).named(renames["PublisherProfileIn"])
+    types["PublisherProfileOut"] = t.struct(
         {
-            "endTime": t.proxy(renames["TimeOfDayOut"]).optional(),
-            "startTime": t.proxy(renames["TimeOfDayOut"]).optional(),
-            "dayOfWeek": t.string().optional(),
+            "samplePageUrl": t.string().optional(),
+            "publisherCode": t.string().optional(),
+            "pitchStatement": t.string().optional(),
+            "programmaticDealsContact": t.string().optional(),
+            "directDealsContact": t.string().optional(),
+            "logoUrl": t.string().optional(),
+            "domains": t.array(t.string()).optional(),
+            "topHeadlines": t.array(t.string()).optional(),
+            "mediaKitUrl": t.string().optional(),
+            "isParent": t.boolean().optional(),
+            "mobileApps": t.array(
+                t.proxy(renames["PublisherProfileMobileApplicationOut"])
+            ).optional(),
+            "displayName": t.string().optional(),
+            "name": t.string().optional(),
+            "overview": t.string().optional(),
+            "audienceDescription": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["DayPartOut"])
-    types["ActivateClientRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["ActivateClientRequestIn"]
-    )
-    types["ActivateClientRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["ActivateClientRequestOut"])
+    ).named(renames["PublisherProfileOut"])
     types["DealPausingInfoIn"] = t.struct(
         {
-            "pauseReason": t.string().optional(),
-            "pauseRole": t.string().optional(),
             "pausingConsented": t.boolean().optional(),
+            "pauseRole": t.string().optional(),
+            "pauseReason": t.string().optional(),
         }
     ).named(renames["DealPausingInfoIn"])
     types["DealPausingInfoOut"] = t.struct(
         {
-            "pauseReason": t.string().optional(),
-            "pauseRole": t.string().optional(),
             "pausingConsented": t.boolean().optional(),
+            "pauseRole": t.string().optional(),
+            "pauseReason": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["DealPausingInfoOut"])
-    types["AcceptProposalRequestIn"] = t.struct(
-        {"proposalRevision": t.string().optional()}
-    ).named(renames["AcceptProposalRequestIn"])
-    types["AcceptProposalRequestOut"] = t.struct(
+    types["TimeOfDayIn"] = t.struct(
         {
-            "proposalRevision": t.string().optional(),
+            "hours": t.integer().optional(),
+            "nanos": t.integer().optional(),
+            "minutes": t.integer().optional(),
+            "seconds": t.integer().optional(),
+        }
+    ).named(renames["TimeOfDayIn"])
+    types["TimeOfDayOut"] = t.struct(
+        {
+            "hours": t.integer().optional(),
+            "nanos": t.integer().optional(),
+            "minutes": t.integer().optional(),
+            "seconds": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["AcceptProposalRequestOut"])
-    types["MarketplaceTargetingIn"] = t.struct(
+    ).named(renames["TimeOfDayOut"])
+    types["ProgrammaticGuaranteedTermsIn"] = t.struct(
         {
-            "daypartTargeting": t.proxy(renames["DayPartTargetingIn"]).optional(),
-            "userListTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+            "impressionCap": t.string().optional(),
+            "guaranteedLooks": t.string().optional(),
+            "percentShareOfVoice": t.string().optional(),
+            "reservationType": t.string().optional(),
+            "fixedPrice": t.proxy(renames["PriceIn"]).optional(),
+            "minimumDailyLooks": t.string().optional(),
         }
-    ).named(renames["MarketplaceTargetingIn"])
-    types["MarketplaceTargetingOut"] = t.struct(
+    ).named(renames["ProgrammaticGuaranteedTermsIn"])
+    types["ProgrammaticGuaranteedTermsOut"] = t.struct(
         {
-            "daypartTargeting": t.proxy(renames["DayPartTargetingOut"]).optional(),
-            "placementTargeting": t.proxy(renames["PlacementTargetingOut"]).optional(),
-            "videoTargeting": t.proxy(renames["VideoTargetingOut"]).optional(),
-            "geoTargeting": t.proxy(renames["CriteriaTargetingOut"]).optional(),
-            "userListTargeting": t.proxy(renames["CriteriaTargetingOut"]).optional(),
-            "inventorySizeTargeting": t.proxy(
-                renames["InventorySizeTargetingOut"]
-            ).optional(),
-            "technologyTargeting": t.proxy(
-                renames["TechnologyTargetingOut"]
-            ).optional(),
-            "inventoryTypeTargeting": t.proxy(
-                renames["InventoryTypeTargetingOut"]
-            ).optional(),
+            "impressionCap": t.string().optional(),
+            "guaranteedLooks": t.string().optional(),
+            "percentShareOfVoice": t.string().optional(),
+            "reservationType": t.string().optional(),
+            "fixedPrice": t.proxy(renames["PriceOut"]).optional(),
+            "minimumDailyLooks": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["MarketplaceTargetingOut"])
-    types["SendRfpRequestIn"] = t.struct(
-        {
-            "flightEndTime": t.string(),
-            "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
-            "inventorySizeTargeting": t.proxy(
-                renames["InventorySizeTargetingIn"]
-            ).optional(),
-            "client": t.string().optional(),
-            "publisherProfile": t.string(),
-            "displayName": t.string(),
-            "flightStartTime": t.string(),
-            "note": t.string().optional(),
-            "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
-            "preferredDealTerms": t.proxy(renames["PreferredDealTermsIn"]).optional(),
-            "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
-            "programmaticGuaranteedTerms": t.proxy(
-                renames["ProgrammaticGuaranteedTermsIn"]
-            ).optional(),
-        }
-    ).named(renames["SendRfpRequestIn"])
-    types["SendRfpRequestOut"] = t.struct(
-        {
-            "flightEndTime": t.string(),
-            "geoTargeting": t.proxy(renames["CriteriaTargetingOut"]).optional(),
-            "inventorySizeTargeting": t.proxy(
-                renames["InventorySizeTargetingOut"]
-            ).optional(),
-            "client": t.string().optional(),
-            "publisherProfile": t.string(),
-            "displayName": t.string(),
-            "flightStartTime": t.string(),
-            "note": t.string().optional(),
-            "buyerContacts": t.array(t.proxy(renames["ContactOut"])).optional(),
-            "preferredDealTerms": t.proxy(renames["PreferredDealTermsOut"]).optional(),
-            "estimatedGrossSpend": t.proxy(renames["MoneyOut"]).optional(),
-            "programmaticGuaranteedTerms": t.proxy(
-                renames["ProgrammaticGuaranteedTermsOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SendRfpRequestOut"])
-    types["ListAuctionPackagesResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "auctionPackages": t.array(t.proxy(renames["AuctionPackageIn"])).optional(),
-        }
-    ).named(renames["ListAuctionPackagesResponseIn"])
-    types["ListAuctionPackagesResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "auctionPackages": t.array(
-                t.proxy(renames["AuctionPackageOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListAuctionPackagesResponseOut"])
-    types["DeactivateClientRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["DeactivateClientRequestIn"]
-    )
-    types["DeactivateClientRequestOut"] = t.struct(
+    ).named(renames["ProgrammaticGuaranteedTermsOut"])
+    types["SubscribeAuctionPackageRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["SubscribeAuctionPackageRequestIn"])
+    types["SubscribeAuctionPackageRequestOut"] = t.struct(
         {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["DeactivateClientRequestOut"])
-    types["RtbMetricsIn"] = t.struct(
-        {
-            "bids7Days": t.string().optional(),
-            "bidRate7Days": t.number().optional(),
-            "filteredBidRate7Days": t.number().optional(),
-            "bidRequests7Days": t.string().optional(),
-            "adImpressions7Days": t.string().optional(),
-            "mustBidRateCurrentMonth": t.number().optional(),
-        }
-    ).named(renames["RtbMetricsIn"])
-    types["RtbMetricsOut"] = t.struct(
-        {
-            "bids7Days": t.string().optional(),
-            "bidRate7Days": t.number().optional(),
-            "filteredBidRate7Days": t.number().optional(),
-            "bidRequests7Days": t.string().optional(),
-            "adImpressions7Days": t.string().optional(),
-            "mustBidRateCurrentMonth": t.number().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["RtbMetricsOut"])
+    ).named(renames["SubscribeAuctionPackageRequestOut"])
     types["AdSizeIn"] = t.struct(
         {
             "height": t.string().optional(),
-            "type": t.string().optional(),
             "width": t.string().optional(),
+            "type": t.string().optional(),
         }
     ).named(renames["AdSizeIn"])
     types["AdSizeOut"] = t.struct(
         {
             "height": t.string().optional(),
-            "type": t.string().optional(),
             "width": t.string().optional(),
+            "type": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AdSizeOut"])
@@ -1033,117 +770,760 @@ def import_authorizedbuyersmarketplace() -> Import:
     types["ClientUserOut"] = t.struct(
         {
             "state": t.string().optional(),
-            "email": t.string(),
             "name": t.string().optional(),
+            "email": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["ClientUserOut"])
-    types["ListClientUsersResponseIn"] = t.struct(
+    types["RtbMetricsIn"] = t.struct(
         {
-            "clientUsers": t.array(t.proxy(renames["ClientUserIn"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "mustBidRateCurrentMonth": t.number().optional(),
+            "bidRate7Days": t.number().optional(),
+            "bidRequests7Days": t.string().optional(),
+            "filteredBidRate7Days": t.number().optional(),
+            "adImpressions7Days": t.string().optional(),
+            "bids7Days": t.string().optional(),
         }
-    ).named(renames["ListClientUsersResponseIn"])
-    types["ListClientUsersResponseOut"] = t.struct(
+    ).named(renames["RtbMetricsIn"])
+    types["RtbMetricsOut"] = t.struct(
         {
-            "clientUsers": t.array(t.proxy(renames["ClientUserOut"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "mustBidRateCurrentMonth": t.number().optional(),
+            "bidRate7Days": t.number().optional(),
+            "bidRequests7Days": t.string().optional(),
+            "filteredBidRate7Days": t.number().optional(),
+            "adImpressions7Days": t.string().optional(),
+            "bids7Days": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListClientUsersResponseOut"])
+    ).named(renames["RtbMetricsOut"])
+    types["BatchUpdateDealsRequestIn"] = t.struct(
+        {"requests": t.array(t.proxy(renames["UpdateDealRequestIn"]))}
+    ).named(renames["BatchUpdateDealsRequestIn"])
+    types["BatchUpdateDealsRequestOut"] = t.struct(
+        {
+            "requests": t.array(t.proxy(renames["UpdateDealRequestOut"])),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BatchUpdateDealsRequestOut"])
+    types["UnsubscribeAuctionPackageRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["UnsubscribeAuctionPackageRequestIn"])
+    types["UnsubscribeAuctionPackageRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["UnsubscribeAuctionPackageRequestOut"])
+    types["AddCreativeRequestIn"] = t.struct({"creative": t.string().optional()}).named(
+        renames["AddCreativeRequestIn"]
+    )
+    types["AddCreativeRequestOut"] = t.struct(
+        {
+            "creative": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AddCreativeRequestOut"])
+    types["UriTargetingIn"] = t.struct(
+        {
+            "excludedUris": t.array(t.string()).optional(),
+            "targetedUris": t.array(t.string()).optional(),
+        }
+    ).named(renames["UriTargetingIn"])
+    types["UriTargetingOut"] = t.struct(
+        {
+            "excludedUris": t.array(t.string()).optional(),
+            "targetedUris": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["UriTargetingOut"])
+    types["PauseFinalizedDealRequestIn"] = t.struct(
+        {"reason": t.string().optional()}
+    ).named(renames["PauseFinalizedDealRequestIn"])
+    types["PauseFinalizedDealRequestOut"] = t.struct(
+        {
+            "reason": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PauseFinalizedDealRequestOut"])
+    types["AddNoteRequestIn"] = t.struct(
+        {"note": t.proxy(renames["NoteIn"]).optional()}
+    ).named(renames["AddNoteRequestIn"])
+    types["AddNoteRequestOut"] = t.struct(
+        {
+            "note": t.proxy(renames["NoteOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["AddNoteRequestOut"])
+    types["ClientIn"] = t.struct(
+        {
+            "sellerVisible": t.boolean().optional(),
+            "role": t.string(),
+            "partnerClientId": t.string().optional(),
+            "displayName": t.string(),
+        }
+    ).named(renames["ClientIn"])
+    types["ClientOut"] = t.struct(
+        {
+            "sellerVisible": t.boolean().optional(),
+            "role": t.string(),
+            "partnerClientId": t.string().optional(),
+            "state": t.string().optional(),
+            "displayName": t.string(),
+            "name": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ClientOut"])
+    types["DeliveryControlIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["DeliveryControlIn"]
+    )
+    types["DeliveryControlOut"] = t.struct(
+        {
+            "deliveryRateType": t.string().optional(),
+            "frequencyCap": t.array(t.proxy(renames["FrequencyCapOut"])).optional(),
+            "roadblockingType": t.string().optional(),
+            "companionDeliveryType": t.string().optional(),
+            "creativeRotationType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DeliveryControlOut"])
+    types["TimeZoneIn"] = t.struct(
+        {"id": t.string().optional(), "version": t.string().optional()}
+    ).named(renames["TimeZoneIn"])
+    types["TimeZoneOut"] = t.struct(
+        {
+            "id": t.string().optional(),
+            "version": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TimeZoneOut"])
+    types["ListClientsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "clients": t.array(t.proxy(renames["ClientIn"])).optional(),
+        }
+    ).named(renames["ListClientsResponseIn"])
+    types["ListClientsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "clients": t.array(t.proxy(renames["ClientOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListClientsResponseOut"])
+    types["ActivateClientUserRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["ActivateClientUserRequestIn"]
+    )
+    types["ActivateClientUserRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["ActivateClientUserRequestOut"])
+    types["FrequencyCapIn"] = t.struct(
+        {
+            "timeUnitType": t.string().optional(),
+            "timeUnitsCount": t.integer().optional(),
+            "maxImpressions": t.integer().optional(),
+        }
+    ).named(renames["FrequencyCapIn"])
+    types["FrequencyCapOut"] = t.struct(
+        {
+            "timeUnitType": t.string().optional(),
+            "timeUnitsCount": t.integer().optional(),
+            "maxImpressions": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["FrequencyCapOut"])
+    types["DayPartTargetingIn"] = t.struct(
+        {
+            "dayParts": t.array(t.proxy(renames["DayPartIn"])).optional(),
+            "timeZoneType": t.string().optional(),
+        }
+    ).named(renames["DayPartTargetingIn"])
+    types["DayPartTargetingOut"] = t.struct(
+        {
+            "dayParts": t.array(t.proxy(renames["DayPartOut"])).optional(),
+            "timeZoneType": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["DayPartTargetingOut"])
+    types["ResumeFinalizedDealRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["ResumeFinalizedDealRequestIn"])
+    types["ResumeFinalizedDealRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["ResumeFinalizedDealRequestOut"])
+    types["PublisherProfileMobileApplicationIn"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "appStore": t.string().optional(),
+            "externalAppId": t.string().optional(),
+        }
+    ).named(renames["PublisherProfileMobileApplicationIn"])
+    types["PublisherProfileMobileApplicationOut"] = t.struct(
+        {
+            "name": t.string().optional(),
+            "appStore": t.string().optional(),
+            "externalAppId": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PublisherProfileMobileApplicationOut"])
+    types["CreativeRequirementsIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["CreativeRequirementsIn"]
+    )
+    types["CreativeRequirementsOut"] = t.struct(
+        {
+            "programmaticCreativeSource": t.string().optional(),
+            "creativePreApprovalPolicy": t.string().optional(),
+            "creativeFormat": t.string().optional(),
+            "skippableAdType": t.string().optional(),
+            "maxAdDurationMs": t.string().optional(),
+            "creativeSafeFrameCompatibility": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CreativeRequirementsOut"])
+    types["DeactivateClientUserRequestIn"] = t.struct(
+        {"_": t.string().optional()}
+    ).named(renames["DeactivateClientUserRequestIn"])
+    types["DeactivateClientUserRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["DeactivateClientUserRequestOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
+    types["ListDealsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "deals": t.array(t.proxy(renames["DealIn"])).optional(),
+        }
+    ).named(renames["ListDealsResponseIn"])
+    types["ListDealsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "deals": t.array(t.proxy(renames["DealOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListDealsResponseOut"])
+    types["SetReadyToServeRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["SetReadyToServeRequestIn"]
+    )
+    types["SetReadyToServeRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["SetReadyToServeRequestOut"])
+    types["ProposalIn"] = t.struct(
+        {
+            "buyerPrivateData": t.proxy(renames["PrivateDataIn"]).optional(),
+            "publisherProfile": t.string().optional(),
+            "notes": t.array(t.proxy(renames["NoteIn"])).optional(),
+            "name": t.string().optional(),
+            "pausingConsented": t.boolean().optional(),
+            "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+        }
+    ).named(renames["ProposalIn"])
+    types["ProposalOut"] = t.struct(
+        {
+            "state": t.string().optional(),
+            "billedBuyer": t.string().optional(),
+            "buyerPrivateData": t.proxy(renames["PrivateDataOut"]).optional(),
+            "updateTime": t.string().optional(),
+            "publisherProfile": t.string().optional(),
+            "sellerContacts": t.array(t.proxy(renames["ContactOut"])).optional(),
+            "lastUpdaterOrCommentorRole": t.string().optional(),
+            "notes": t.array(t.proxy(renames["NoteOut"])).optional(),
+            "buyer": t.string().optional(),
+            "originatorRole": t.string().optional(),
+            "isRenegotiating": t.boolean().optional(),
+            "name": t.string().optional(),
+            "client": t.string().optional(),
+            "pausingConsented": t.boolean().optional(),
+            "termsAndConditions": t.string().optional(),
+            "proposalRevision": t.string().optional(),
+            "buyerContacts": t.array(t.proxy(renames["ContactOut"])).optional(),
+            "dealType": t.string().optional(),
+            "displayName": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ProposalOut"])
+    types["CriteriaTargetingIn"] = t.struct(
+        {
+            "excludedCriteriaIds": t.array(t.string()).optional(),
+            "targetedCriteriaIds": t.array(t.string()).optional(),
+        }
+    ).named(renames["CriteriaTargetingIn"])
+    types["CriteriaTargetingOut"] = t.struct(
+        {
+            "excludedCriteriaIds": t.array(t.string()).optional(),
+            "targetedCriteriaIds": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["CriteriaTargetingOut"])
 
     functions = {}
-    functions["buyersClientsCreate"] = authorizedbuyersmarketplace.get(
-        "v1/{parent}/clients",
+    functions["biddersFinalizedDealsList"] = authorizedbuyersmarketplace.get(
+        "v1/{parent}/finalizedDeals",
         t.struct(
             {
                 "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
+                "orderBy": t.string().optional(),
                 "parent": t.string(),
+                "pageSize": t.integer().optional(),
+                "pageToken": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListClientsResponseOut"]),
+        t.proxy(renames["ListFinalizedDealsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsActivate"] = authorizedbuyersmarketplace.get(
-        "v1/{parent}/clients",
+    functions["buyersProposalsGet"] = authorizedbuyersmarketplace.post(
+        "v1/{buyer}/proposals:sendRfp",
         t.struct(
             {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "buyer": t.string(),
+                "programmaticGuaranteedTerms": t.proxy(
+                    renames["ProgrammaticGuaranteedTermsIn"]
+                ).optional(),
+                "flightStartTime": t.string(),
+                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+                "client": t.string().optional(),
+                "publisherProfile": t.string(),
+                "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+                "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+                "note": t.string().optional(),
+                "flightEndTime": t.string(),
+                "preferredDealTerms": t.proxy(
+                    renames["PreferredDealTermsIn"]
+                ).optional(),
+                "inventorySizeTargeting": t.proxy(
+                    renames["InventorySizeTargetingIn"]
+                ).optional(),
+                "displayName": t.string(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListClientsResponseOut"]),
+        t.proxy(renames["ProposalOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsGet"] = authorizedbuyersmarketplace.get(
-        "v1/{parent}/clients",
+    functions["buyersProposalsPatch"] = authorizedbuyersmarketplace.post(
+        "v1/{buyer}/proposals:sendRfp",
         t.struct(
             {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "buyer": t.string(),
+                "programmaticGuaranteedTerms": t.proxy(
+                    renames["ProgrammaticGuaranteedTermsIn"]
+                ).optional(),
+                "flightStartTime": t.string(),
+                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+                "client": t.string().optional(),
+                "publisherProfile": t.string(),
+                "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+                "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+                "note": t.string().optional(),
+                "flightEndTime": t.string(),
+                "preferredDealTerms": t.proxy(
+                    renames["PreferredDealTermsIn"]
+                ).optional(),
+                "inventorySizeTargeting": t.proxy(
+                    renames["InventorySizeTargetingIn"]
+                ).optional(),
+                "displayName": t.string(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListClientsResponseOut"]),
+        t.proxy(renames["ProposalOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsDeactivate"] = authorizedbuyersmarketplace.get(
-        "v1/{parent}/clients",
+    functions["buyersProposalsList"] = authorizedbuyersmarketplace.post(
+        "v1/{buyer}/proposals:sendRfp",
         t.struct(
             {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "buyer": t.string(),
+                "programmaticGuaranteedTerms": t.proxy(
+                    renames["ProgrammaticGuaranteedTermsIn"]
+                ).optional(),
+                "flightStartTime": t.string(),
+                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+                "client": t.string().optional(),
+                "publisherProfile": t.string(),
+                "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+                "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+                "note": t.string().optional(),
+                "flightEndTime": t.string(),
+                "preferredDealTerms": t.proxy(
+                    renames["PreferredDealTermsIn"]
+                ).optional(),
+                "inventorySizeTargeting": t.proxy(
+                    renames["InventorySizeTargetingIn"]
+                ).optional(),
+                "displayName": t.string(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListClientsResponseOut"]),
+        t.proxy(renames["ProposalOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsPatch"] = authorizedbuyersmarketplace.get(
-        "v1/{parent}/clients",
+    functions["buyersProposalsCancelNegotiation"] = authorizedbuyersmarketplace.post(
+        "v1/{buyer}/proposals:sendRfp",
         t.struct(
             {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "buyer": t.string(),
+                "programmaticGuaranteedTerms": t.proxy(
+                    renames["ProgrammaticGuaranteedTermsIn"]
+                ).optional(),
+                "flightStartTime": t.string(),
+                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+                "client": t.string().optional(),
+                "publisherProfile": t.string(),
+                "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+                "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+                "note": t.string().optional(),
+                "flightEndTime": t.string(),
+                "preferredDealTerms": t.proxy(
+                    renames["PreferredDealTermsIn"]
+                ).optional(),
+                "inventorySizeTargeting": t.proxy(
+                    renames["InventorySizeTargetingIn"]
+                ).optional(),
+                "displayName": t.string(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListClientsResponseOut"]),
+        t.proxy(renames["ProposalOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsList"] = authorizedbuyersmarketplace.get(
-        "v1/{parent}/clients",
+    functions["buyersProposalsAccept"] = authorizedbuyersmarketplace.post(
+        "v1/{buyer}/proposals:sendRfp",
         t.struct(
             {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
+                "buyer": t.string(),
+                "programmaticGuaranteedTerms": t.proxy(
+                    renames["ProgrammaticGuaranteedTermsIn"]
+                ).optional(),
+                "flightStartTime": t.string(),
+                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+                "client": t.string().optional(),
+                "publisherProfile": t.string(),
+                "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+                "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+                "note": t.string().optional(),
+                "flightEndTime": t.string(),
+                "preferredDealTerms": t.proxy(
+                    renames["PreferredDealTermsIn"]
+                ).optional(),
+                "inventorySizeTargeting": t.proxy(
+                    renames["InventorySizeTargetingIn"]
+                ).optional(),
+                "displayName": t.string(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["ListClientsResponseOut"]),
+        t.proxy(renames["ProposalOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsUsersGet"] = authorizedbuyersmarketplace.post(
+    functions["buyersProposalsAddNote"] = authorizedbuyersmarketplace.post(
+        "v1/{buyer}/proposals:sendRfp",
+        t.struct(
+            {
+                "buyer": t.string(),
+                "programmaticGuaranteedTerms": t.proxy(
+                    renames["ProgrammaticGuaranteedTermsIn"]
+                ).optional(),
+                "flightStartTime": t.string(),
+                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+                "client": t.string().optional(),
+                "publisherProfile": t.string(),
+                "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+                "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+                "note": t.string().optional(),
+                "flightEndTime": t.string(),
+                "preferredDealTerms": t.proxy(
+                    renames["PreferredDealTermsIn"]
+                ).optional(),
+                "inventorySizeTargeting": t.proxy(
+                    renames["InventorySizeTargetingIn"]
+                ).optional(),
+                "displayName": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ProposalOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersProposalsSendRfp"] = authorizedbuyersmarketplace.post(
+        "v1/{buyer}/proposals:sendRfp",
+        t.struct(
+            {
+                "buyer": t.string(),
+                "programmaticGuaranteedTerms": t.proxy(
+                    renames["ProgrammaticGuaranteedTermsIn"]
+                ).optional(),
+                "flightStartTime": t.string(),
+                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
+                "client": t.string().optional(),
+                "publisherProfile": t.string(),
+                "geoTargeting": t.proxy(renames["CriteriaTargetingIn"]).optional(),
+                "buyerContacts": t.array(t.proxy(renames["ContactIn"])).optional(),
+                "note": t.string().optional(),
+                "flightEndTime": t.string(),
+                "preferredDealTerms": t.proxy(
+                    renames["PreferredDealTermsIn"]
+                ).optional(),
+                "inventorySizeTargeting": t.proxy(
+                    renames["InventorySizeTargetingIn"]
+                ).optional(),
+                "displayName": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ProposalOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersProposalsDealsPatch"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["DealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersProposalsDealsList"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["DealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersProposalsDealsBatchUpdate"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["DealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersProposalsDealsGet"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["DealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersFinalizedDealsList"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:pause",
+        t.struct(
+            {
+                "name": t.string(),
+                "reason": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["FinalizedDealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersFinalizedDealsAddCreative"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:pause",
+        t.struct(
+            {
+                "name": t.string(),
+                "reason": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["FinalizedDealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersFinalizedDealsResume"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:pause",
+        t.struct(
+            {
+                "name": t.string(),
+                "reason": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["FinalizedDealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersFinalizedDealsGet"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:pause",
+        t.struct(
+            {
+                "name": t.string(),
+                "reason": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["FinalizedDealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersFinalizedDealsSetReadyToServe"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:pause",
+        t.struct(
+            {
+                "name": t.string(),
+                "reason": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["FinalizedDealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersFinalizedDealsPause"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:pause",
+        t.struct(
+            {
+                "name": t.string(),
+                "reason": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["FinalizedDealOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "buyersAuctionPackagesSubscribeClients"
+    ] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["AuctionPackageOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "buyersAuctionPackagesUnsubscribeClients"
+    ] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["AuctionPackageOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersAuctionPackagesSubscribe"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["AuctionPackageOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersAuctionPackagesUnsubscribe"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["AuctionPackageOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersAuctionPackagesList"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["AuctionPackageOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersAuctionPackagesGet"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["AuctionPackageOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersPublisherProfilesList"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["PublisherProfileOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersPublisherProfilesGet"] = authorizedbuyersmarketplace.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["PublisherProfileOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersClientsList"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:activate",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ClientOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersClientsDeactivate"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:activate",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ClientOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersClientsGet"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:activate",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ClientOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersClientsPatch"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:activate",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ClientOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersClientsCreate"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:activate",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ClientOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersClientsActivate"] = authorizedbuyersmarketplace.post(
+        "v1/{name}:activate",
+        t.struct(
+            {
+                "name": t.string(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ClientOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["buyersClientsUsersDelete"] = authorizedbuyersmarketplace.post(
         "v1/{name}:deactivate",
         t.struct(
             {
@@ -1169,7 +1549,7 @@ def import_authorizedbuyersmarketplace() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsUsersDelete"] = authorizedbuyersmarketplace.post(
+    functions["buyersClientsUsersList"] = authorizedbuyersmarketplace.post(
         "v1/{name}:deactivate",
         t.struct(
             {
@@ -1182,7 +1562,7 @@ def import_authorizedbuyersmarketplace() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["buyersClientsUsersList"] = authorizedbuyersmarketplace.post(
+    functions["buyersClientsUsersGet"] = authorizedbuyersmarketplace.post(
         "v1/{name}:deactivate",
         t.struct(
             {
@@ -1218,395 +1598,6 @@ def import_authorizedbuyersmarketplace() -> Import:
             }
         ),
         t.proxy(renames["ClientUserOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsGet"] = authorizedbuyersmarketplace.post(
-        "v1/{proposal}:cancelNegotiation",
-        t.struct(
-            {
-                "proposal": t.string().optional(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ProposalOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsPatch"] = authorizedbuyersmarketplace.post(
-        "v1/{proposal}:cancelNegotiation",
-        t.struct(
-            {
-                "proposal": t.string().optional(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ProposalOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsList"] = authorizedbuyersmarketplace.post(
-        "v1/{proposal}:cancelNegotiation",
-        t.struct(
-            {
-                "proposal": t.string().optional(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ProposalOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsSendRfp"] = authorizedbuyersmarketplace.post(
-        "v1/{proposal}:cancelNegotiation",
-        t.struct(
-            {
-                "proposal": t.string().optional(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ProposalOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsAddNote"] = authorizedbuyersmarketplace.post(
-        "v1/{proposal}:cancelNegotiation",
-        t.struct(
-            {
-                "proposal": t.string().optional(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ProposalOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsAccept"] = authorizedbuyersmarketplace.post(
-        "v1/{proposal}:cancelNegotiation",
-        t.struct(
-            {
-                "proposal": t.string().optional(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ProposalOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsCancelNegotiation"] = authorizedbuyersmarketplace.post(
-        "v1/{proposal}:cancelNegotiation",
-        t.struct(
-            {
-                "proposal": t.string().optional(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ProposalOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsDealsGet"] = authorizedbuyersmarketplace.patch(
-        "v1/{name}",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "privateAuctionTerms": t.proxy(
-                    renames["PrivateAuctionTermsIn"]
-                ).optional(),
-                "flightEndTime": t.string().optional(),
-                "preferredDealTerms": t.proxy(
-                    renames["PreferredDealTermsIn"]
-                ).optional(),
-                "flightStartTime": t.string().optional(),
-                "programmaticGuaranteedTerms": t.proxy(
-                    renames["ProgrammaticGuaranteedTermsIn"]
-                ).optional(),
-                "targeting": t.proxy(renames["MarketplaceTargetingIn"]).optional(),
-                "publisherProfile": t.string().optional(),
-                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsDealsBatchUpdate"] = authorizedbuyersmarketplace.patch(
-        "v1/{name}",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "privateAuctionTerms": t.proxy(
-                    renames["PrivateAuctionTermsIn"]
-                ).optional(),
-                "flightEndTime": t.string().optional(),
-                "preferredDealTerms": t.proxy(
-                    renames["PreferredDealTermsIn"]
-                ).optional(),
-                "flightStartTime": t.string().optional(),
-                "programmaticGuaranteedTerms": t.proxy(
-                    renames["ProgrammaticGuaranteedTermsIn"]
-                ).optional(),
-                "targeting": t.proxy(renames["MarketplaceTargetingIn"]).optional(),
-                "publisherProfile": t.string().optional(),
-                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsDealsList"] = authorizedbuyersmarketplace.patch(
-        "v1/{name}",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "privateAuctionTerms": t.proxy(
-                    renames["PrivateAuctionTermsIn"]
-                ).optional(),
-                "flightEndTime": t.string().optional(),
-                "preferredDealTerms": t.proxy(
-                    renames["PreferredDealTermsIn"]
-                ).optional(),
-                "flightStartTime": t.string().optional(),
-                "programmaticGuaranteedTerms": t.proxy(
-                    renames["ProgrammaticGuaranteedTermsIn"]
-                ).optional(),
-                "targeting": t.proxy(renames["MarketplaceTargetingIn"]).optional(),
-                "publisherProfile": t.string().optional(),
-                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersProposalsDealsPatch"] = authorizedbuyersmarketplace.patch(
-        "v1/{name}",
-        t.struct(
-            {
-                "updateMask": t.string().optional(),
-                "name": t.string().optional(),
-                "privateAuctionTerms": t.proxy(
-                    renames["PrivateAuctionTermsIn"]
-                ).optional(),
-                "flightEndTime": t.string().optional(),
-                "preferredDealTerms": t.proxy(
-                    renames["PreferredDealTermsIn"]
-                ).optional(),
-                "flightStartTime": t.string().optional(),
-                "programmaticGuaranteedTerms": t.proxy(
-                    renames["ProgrammaticGuaranteedTermsIn"]
-                ).optional(),
-                "targeting": t.proxy(renames["MarketplaceTargetingIn"]).optional(),
-                "publisherProfile": t.string().optional(),
-                "estimatedGrossSpend": t.proxy(renames["MoneyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["DealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersAuctionPackagesGet"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:subscribe",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["AuctionPackageOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "buyersAuctionPackagesSubscribeClients"
-    ] = authorizedbuyersmarketplace.post(
-        "v1/{name}:subscribe",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["AuctionPackageOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersAuctionPackagesList"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:subscribe",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["AuctionPackageOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "buyersAuctionPackagesUnsubscribeClients"
-    ] = authorizedbuyersmarketplace.post(
-        "v1/{name}:subscribe",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["AuctionPackageOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersAuctionPackagesUnsubscribe"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:subscribe",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["AuctionPackageOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersAuctionPackagesSubscribe"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:subscribe",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["AuctionPackageOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersPublisherProfilesList"] = authorizedbuyersmarketplace.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["PublisherProfileOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersPublisherProfilesGet"] = authorizedbuyersmarketplace.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["PublisherProfileOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersFinalizedDealsPause"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:resume",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["FinalizedDealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersFinalizedDealsSetReadyToServe"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:resume",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["FinalizedDealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersFinalizedDealsGet"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:resume",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["FinalizedDealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersFinalizedDealsList"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:resume",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["FinalizedDealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersFinalizedDealsAddCreative"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:resume",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["FinalizedDealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["buyersFinalizedDealsResume"] = authorizedbuyersmarketplace.post(
-        "v1/{name}:resume",
-        t.struct(
-            {
-                "name": t.string(),
-                "_": t.string().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["FinalizedDealOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["biddersFinalizedDealsList"] = authorizedbuyersmarketplace.get(
-        "v1/{parent}/finalizedDeals",
-        t.struct(
-            {
-                "filter": t.string().optional(),
-                "pageToken": t.string().optional(),
-                "parent": t.string(),
-                "orderBy": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListFinalizedDealsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

@@ -1,8 +1,8 @@
-from typegraph.importers.base.importer import Import
-from typegraph.utils.sanitizers import inject_params
-from typegraph import t
-from box import Box
 from typegraph.runtimes.http import HTTPRuntime
+from box import Box
+from typegraph.utils.sanitizers import inject_params
+from typegraph.importers.base.importer import Import
+from typegraph import t
 
 
 def import_github(params=None):
@@ -79,110 +79,110 @@ def import_github(params=None):
         "thread": "_github_67_thread",
         "thread_subscription": "_github_68_thread_subscription",
         "organization_simple": "_github_69_organization_simple",
-        "organization_programmatic_access_grant_request": "_github_70_organization_programmatic_access_grant_request",
-        "organization_programmatic_access_grant": "_github_71_organization_programmatic_access_grant",
-        "organization_full": "_github_72_organization_full",
-        "actions_cache_usage_org_enterprise": "_github_73_actions_cache_usage_org_enterprise",
-        "actions_cache_usage_by_repository": "_github_74_actions_cache_usage_by_repository",
-        "oidc_custom_sub": "_github_75_oidc_custom_sub",
-        "empty_object": "_github_76_empty_object",
-        "enabled_repositories": "_github_77_enabled_repositories",
-        "allowed_actions": "_github_78_allowed_actions",
-        "selected_actions_url": "_github_79_selected_actions_url",
-        "actions_organization_permissions": "_github_80_actions_organization_permissions",
-        "selected_actions": "_github_81_selected_actions",
-        "actions_default_workflow_permissions": "_github_82_actions_default_workflow_permissions",
-        "actions_can_approve_pull_request_reviews": "_github_83_actions_can_approve_pull_request_reviews",
-        "actions_get_default_workflow_permissions": "_github_84_actions_get_default_workflow_permissions",
-        "actions_set_default_workflow_permissions": "_github_85_actions_set_default_workflow_permissions",
-        "required_workflow": "_github_86_required_workflow",
-        "runner_label": "_github_87_runner_label",
-        "runner": "_github_88_runner",
-        "runner_application": "_github_89_runner_application",
-        "authentication_token": "_github_90_authentication_token",
-        "organization_actions_secret": "_github_91_organization_actions_secret",
-        "actions_public_key": "_github_92_actions_public_key",
-        "organization_actions_variable": "_github_93_organization_actions_variable",
-        "code_scanning_analysis_tool_name": "_github_94_code_scanning_analysis_tool_name",
-        "code_scanning_analysis_tool_guid": "_github_95_code_scanning_analysis_tool_guid",
+        "organization_full": "_github_70_organization_full",
+        "actions_cache_usage_org_enterprise": "_github_71_actions_cache_usage_org_enterprise",
+        "actions_cache_usage_by_repository": "_github_72_actions_cache_usage_by_repository",
+        "oidc_custom_sub": "_github_73_oidc_custom_sub",
+        "empty_object": "_github_74_empty_object",
+        "enabled_repositories": "_github_75_enabled_repositories",
+        "allowed_actions": "_github_76_allowed_actions",
+        "selected_actions_url": "_github_77_selected_actions_url",
+        "actions_organization_permissions": "_github_78_actions_organization_permissions",
+        "selected_actions": "_github_79_selected_actions",
+        "actions_default_workflow_permissions": "_github_80_actions_default_workflow_permissions",
+        "actions_can_approve_pull_request_reviews": "_github_81_actions_can_approve_pull_request_reviews",
+        "actions_get_default_workflow_permissions": "_github_82_actions_get_default_workflow_permissions",
+        "actions_set_default_workflow_permissions": "_github_83_actions_set_default_workflow_permissions",
+        "runner_label": "_github_84_runner_label",
+        "runner": "_github_85_runner",
+        "runner_application": "_github_86_runner_application",
+        "authentication_token": "_github_87_authentication_token",
+        "organization_actions_secret": "_github_88_organization_actions_secret",
+        "actions_public_key": "_github_89_actions_public_key",
+        "organization_actions_variable": "_github_90_organization_actions_variable",
+        "code_scanning_analysis_tool_name": "_github_91_code_scanning_analysis_tool_name",
+        "code_scanning_analysis_tool_guid": "_github_92_code_scanning_analysis_tool_guid",
+        "code_scanning_alert_state_query": "_github_93_code_scanning_alert_state_query",
+        "code_scanning_alert_severity": "_github_94_code_scanning_alert_severity",
+        "alert_instances_url": "_github_95_alert_instances_url",
         "code_scanning_alert_state": "_github_96_code_scanning_alert_state",
-        "code_scanning_alert_severity": "_github_97_code_scanning_alert_severity",
-        "alert_instances_url": "_github_98_alert_instances_url",
-        "code_scanning_alert_dismissed_reason": "_github_99_code_scanning_alert_dismissed_reason",
-        "code_scanning_alert_dismissed_comment": "_github_100_code_scanning_alert_dismissed_comment",
-        "code_scanning_alert_rule": "_github_101_code_scanning_alert_rule",
-        "code_scanning_analysis_tool_version": "_github_102_code_scanning_analysis_tool_version",
-        "code_scanning_analysis_tool": "_github_103_code_scanning_analysis_tool",
-        "code_scanning_ref": "_github_104_code_scanning_ref",
-        "code_scanning_analysis_analysis_key": "_github_105_code_scanning_analysis_analysis_key",
-        "code_scanning_alert_environment": "_github_106_code_scanning_alert_environment",
-        "code_scanning_analysis_category": "_github_107_code_scanning_analysis_category",
-        "code_scanning_alert_location": "_github_108_code_scanning_alert_location",
-        "code_scanning_alert_classification": "_github_109_code_scanning_alert_classification",
-        "code_scanning_alert_instance": "_github_110_code_scanning_alert_instance",
-        "code_scanning_organization_alert_items": "_github_111_code_scanning_organization_alert_items",
-        "nullable_codespace_machine": "_github_112_nullable_codespace_machine",
-        "codespace": "_github_113_codespace",
-        "codespaces_org_secret": "_github_114_codespaces_org_secret",
-        "codespaces_public_key": "_github_115_codespaces_public_key",
-        "organization_dependabot_secret": "_github_116_organization_dependabot_secret",
-        "dependabot_public_key": "_github_117_dependabot_public_key",
-        "nullable_minimal_repository": "_github_118_nullable_minimal_repository",
-        "package": "_github_119_package",
-        "organization_invitation": "_github_120_organization_invitation",
-        "org_hook": "_github_121_org_hook",
-        "interaction_group": "_github_122_interaction_group",
-        "interaction_limit_response": "_github_123_interaction_limit_response",
-        "interaction_expiry": "_github_124_interaction_expiry",
-        "interaction_limit": "_github_125_interaction_limit",
-        "nullable_team_simple": "_github_126_nullable_team_simple",
-        "team": "_github_127_team",
-        "org_membership": "_github_128_org_membership",
-        "migration": "_github_129_migration",
-        "package_version": "_github_130_package_version",
+        "code_scanning_alert_dismissed_reason": "_github_97_code_scanning_alert_dismissed_reason",
+        "code_scanning_alert_dismissed_comment": "_github_98_code_scanning_alert_dismissed_comment",
+        "code_scanning_alert_rule": "_github_99_code_scanning_alert_rule",
+        "code_scanning_analysis_tool_version": "_github_100_code_scanning_analysis_tool_version",
+        "code_scanning_analysis_tool": "_github_101_code_scanning_analysis_tool",
+        "code_scanning_ref": "_github_102_code_scanning_ref",
+        "code_scanning_analysis_analysis_key": "_github_103_code_scanning_analysis_analysis_key",
+        "code_scanning_alert_environment": "_github_104_code_scanning_alert_environment",
+        "code_scanning_analysis_category": "_github_105_code_scanning_analysis_category",
+        "code_scanning_alert_location": "_github_106_code_scanning_alert_location",
+        "code_scanning_alert_classification": "_github_107_code_scanning_alert_classification",
+        "code_scanning_alert_instance": "_github_108_code_scanning_alert_instance",
+        "code_scanning_organization_alert_items": "_github_109_code_scanning_organization_alert_items",
+        "nullable_codespace_machine": "_github_110_nullable_codespace_machine",
+        "codespace": "_github_111_codespace",
+        "codespaces_org_secret": "_github_112_codespaces_org_secret",
+        "codespaces_public_key": "_github_113_codespaces_public_key",
+        "organization_dependabot_secret": "_github_114_organization_dependabot_secret",
+        "dependabot_public_key": "_github_115_dependabot_public_key",
+        "nullable_minimal_repository": "_github_116_nullable_minimal_repository",
+        "package": "_github_117_package",
+        "organization_invitation": "_github_118_organization_invitation",
+        "org_hook": "_github_119_org_hook",
+        "interaction_group": "_github_120_interaction_group",
+        "interaction_limit_response": "_github_121_interaction_limit_response",
+        "interaction_expiry": "_github_122_interaction_expiry",
+        "interaction_limit": "_github_123_interaction_limit",
+        "nullable_team_simple": "_github_124_nullable_team_simple",
+        "team": "_github_125_team",
+        "org_membership": "_github_126_org_membership",
+        "migration": "_github_127_migration",
+        "package_version": "_github_128_package_version",
+        "organization_programmatic_access_grant_request": "_github_129_organization_programmatic_access_grant_request",
+        "organization_programmatic_access_grant": "_github_130_organization_programmatic_access_grant",
         "project": "_github_131_project",
         "repository_rule_enforcement": "_github_132_repository_rule_enforcement",
         "repository_ruleset_bypass_actor": "_github_133_repository_ruleset_bypass_actor",
         "repository_ruleset_conditions": "_github_134_repository_ruleset_conditions",
         "repository_ruleset_conditions_repository_name_target": "_github_135_repository_ruleset_conditions_repository_name_target",
-        "org_ruleset_conditions": "_github_136_org_ruleset_conditions",
-        "repository_rule_creation": "_github_137_repository_rule_creation",
-        "repository_rule_update": "_github_138_repository_rule_update",
-        "repository_rule_deletion": "_github_139_repository_rule_deletion",
-        "repository_rule_required_linear_history": "_github_140_repository_rule_required_linear_history",
-        "repository_rule_required_deployments": "_github_141_repository_rule_required_deployments",
-        "repository_rule_required_signatures": "_github_142_repository_rule_required_signatures",
-        "repository_rule_pull_request": "_github_143_repository_rule_pull_request",
-        "repository_rule_params_status_check_configuration": "_github_144_repository_rule_params_status_check_configuration",
-        "repository_rule_required_status_checks": "_github_145_repository_rule_required_status_checks",
-        "repository_rule_non_fast_forward": "_github_146_repository_rule_non_fast_forward",
-        "repository_rule_commit_message_pattern": "_github_147_repository_rule_commit_message_pattern",
-        "repository_rule_commit_author_email_pattern": "_github_148_repository_rule_commit_author_email_pattern",
-        "repository_rule_committer_email_pattern": "_github_149_repository_rule_committer_email_pattern",
-        "repository_rule_branch_name_pattern": "_github_150_repository_rule_branch_name_pattern",
-        "repository_rule_tag_name_pattern": "_github_151_repository_rule_tag_name_pattern",
-        "repository_rule": "_github_152_repository_rule",
-        "repository_ruleset": "_github_153_repository_ruleset",
-        "team_simple": "_github_154_team_simple",
-        "actions_billing_usage": "_github_155_actions_billing_usage",
-        "packages_billing_usage": "_github_156_packages_billing_usage",
-        "combined_billing_usage": "_github_157_combined_billing_usage",
-        "team_organization": "_github_158_team_organization",
-        "team_full": "_github_159_team_full",
-        "team_discussion": "_github_160_team_discussion",
-        "team_discussion_comment": "_github_161_team_discussion_comment",
-        "reaction": "_github_162_reaction",
-        "team_membership": "_github_163_team_membership",
-        "team_project": "_github_164_team_project",
-        "nullable_repository": "_github_165_nullable_repository",
-        "team_repository": "_github_166_team_repository",
-        "project_card": "_github_167_project_card",
-        "project_column": "_github_168_project_column",
-        "project_collaborator_permission": "_github_169_project_collaborator_permission",
-        "rate_limit": "_github_170_rate_limit",
-        "rate_limit_overview": "_github_171_rate_limit_overview",
-        "repo_required_workflow": "_github_172_repo_required_workflow",
-        "workflow_usage": "_github_173_workflow_usage",
+        "repository_ruleset_conditions_repository_id_target": "_github_136_repository_ruleset_conditions_repository_id_target",
+        "org_ruleset_conditions": "_github_137_org_ruleset_conditions",
+        "repository_rule_creation": "_github_138_repository_rule_creation",
+        "repository_rule_update": "_github_139_repository_rule_update",
+        "repository_rule_deletion": "_github_140_repository_rule_deletion",
+        "repository_rule_required_linear_history": "_github_141_repository_rule_required_linear_history",
+        "repository_rule_required_deployments": "_github_142_repository_rule_required_deployments",
+        "repository_rule_required_signatures": "_github_143_repository_rule_required_signatures",
+        "repository_rule_pull_request": "_github_144_repository_rule_pull_request",
+        "repository_rule_params_status_check_configuration": "_github_145_repository_rule_params_status_check_configuration",
+        "repository_rule_required_status_checks": "_github_146_repository_rule_required_status_checks",
+        "repository_rule_non_fast_forward": "_github_147_repository_rule_non_fast_forward",
+        "repository_rule_commit_message_pattern": "_github_148_repository_rule_commit_message_pattern",
+        "repository_rule_commit_author_email_pattern": "_github_149_repository_rule_commit_author_email_pattern",
+        "repository_rule_committer_email_pattern": "_github_150_repository_rule_committer_email_pattern",
+        "repository_rule_branch_name_pattern": "_github_151_repository_rule_branch_name_pattern",
+        "repository_rule_tag_name_pattern": "_github_152_repository_rule_tag_name_pattern",
+        "repository_rule": "_github_153_repository_rule",
+        "repository_ruleset": "_github_154_repository_ruleset",
+        "team_simple": "_github_155_team_simple",
+        "actions_billing_usage": "_github_156_actions_billing_usage",
+        "packages_billing_usage": "_github_157_packages_billing_usage",
+        "combined_billing_usage": "_github_158_combined_billing_usage",
+        "team_organization": "_github_159_team_organization",
+        "team_full": "_github_160_team_full",
+        "team_discussion": "_github_161_team_discussion",
+        "team_discussion_comment": "_github_162_team_discussion_comment",
+        "reaction": "_github_163_reaction",
+        "team_membership": "_github_164_team_membership",
+        "team_project": "_github_165_team_project",
+        "nullable_repository": "_github_166_nullable_repository",
+        "team_repository": "_github_167_team_repository",
+        "code_scanning_query_suite": "_github_168_code_scanning_query_suite",
+        "project_card": "_github_169_project_card",
+        "project_column": "_github_170_project_column",
+        "project_collaborator_permission": "_github_171_project_collaborator_permission",
+        "rate_limit": "_github_172_rate_limit",
+        "rate_limit_overview": "_github_173_rate_limit_overview",
         "code_of_conduct_simple": "_github_174_code_of_conduct_simple",
         "full_repository": "_github_175_full_repository",
         "artifact": "_github_176_artifact",
@@ -206,451 +206,452 @@ def import_github(params=None):
         "deployment": "_github_194_deployment",
         "workflow_run_usage": "_github_195_workflow_run_usage",
         "workflow": "_github_196_workflow",
-        "autolink": "_github_197_autolink",
-        "protected_branch_required_status_check": "_github_198_protected_branch_required_status_check",
-        "protected_branch_admin_enforced": "_github_199_protected_branch_admin_enforced",
-        "protected_branch_pull_request_review": "_github_200_protected_branch_pull_request_review",
-        "branch_restriction_policy": "_github_201_branch_restriction_policy",
-        "branch_protection": "_github_202_branch_protection",
-        "short_branch": "_github_203_short_branch",
-        "nullable_git_user": "_github_204_nullable_git_user",
-        "verification": "_github_205_verification",
-        "diff_entry": "_github_206_diff_entry",
-        "commit": "_github_207_commit",
-        "branch_with_protection": "_github_208_branch_with_protection",
-        "status_check_policy": "_github_209_status_check_policy",
-        "protected_branch": "_github_210_protected_branch",
-        "deployment_simple": "_github_211_deployment_simple",
-        "check_run": "_github_212_check_run",
-        "check_annotation": "_github_213_check_annotation",
-        "simple_commit": "_github_214_simple_commit",
-        "check_suite": "_github_215_check_suite",
-        "check_suite_preference": "_github_216_check_suite_preference",
-        "code_scanning_alert_rule_summary": "_github_217_code_scanning_alert_rule_summary",
-        "code_scanning_alert_items": "_github_218_code_scanning_alert_items",
-        "code_scanning_alert": "_github_219_code_scanning_alert",
-        "code_scanning_alert_set_state": "_github_220_code_scanning_alert_set_state",
-        "code_scanning_analysis_sarif_id": "_github_221_code_scanning_analysis_sarif_id",
-        "code_scanning_analysis_commit_sha": "_github_222_code_scanning_analysis_commit_sha",
-        "code_scanning_analysis_environment": "_github_223_code_scanning_analysis_environment",
-        "code_scanning_analysis_created_at": "_github_224_code_scanning_analysis_created_at",
-        "code_scanning_analysis_url": "_github_225_code_scanning_analysis_url",
-        "code_scanning_analysis": "_github_226_code_scanning_analysis",
-        "code_scanning_analysis_deletion": "_github_227_code_scanning_analysis_deletion",
-        "code_scanning_codeql_database": "_github_228_code_scanning_codeql_database",
-        "code_scanning_default_setup": "_github_229_code_scanning_default_setup",
-        "code_scanning_default_setup_update": "_github_230_code_scanning_default_setup_update",
-        "code_scanning_default_setup_update_response": "_github_231_code_scanning_default_setup_update_response",
-        "code_scanning_analysis_sarif_file": "_github_232_code_scanning_analysis_sarif_file",
-        "code_scanning_sarifs_receipt": "_github_233_code_scanning_sarifs_receipt",
-        "code_scanning_sarifs_status": "_github_234_code_scanning_sarifs_status",
-        "codeowners_errors": "_github_235_codeowners_errors",
-        "codespace_machine": "_github_236_codespace_machine",
-        "repo_codespaces_secret": "_github_237_repo_codespaces_secret",
-        "collaborator": "_github_238_collaborator",
-        "repository_invitation": "_github_239_repository_invitation",
-        "nullable_collaborator": "_github_240_nullable_collaborator",
-        "repository_collaborator_permission": "_github_241_repository_collaborator_permission",
-        "commit_comment": "_github_242_commit_comment",
-        "branch_short": "_github_243_branch_short",
-        "link": "_github_244_link",
-        "auto_merge": "_github_245_auto_merge",
-        "pull_request_simple": "_github_246_pull_request_simple",
-        "simple_commit_status": "_github_247_simple_commit_status",
-        "combined_commit_status": "_github_248_combined_commit_status",
-        "status": "_github_249_status",
-        "nullable_code_of_conduct_simple": "_github_250_nullable_code_of_conduct_simple",
-        "nullable_community_health_file": "_github_251_nullable_community_health_file",
-        "community_profile": "_github_252_community_profile",
-        "commit_comparison": "_github_253_commit_comparison",
-        "content_tree": "_github_254_content_tree",
-        "content_directory": "_github_255_content_directory",
-        "content_file": "_github_256_content_file",
-        "content_symlink": "_github_257_content_symlink",
-        "content_submodule": "_github_258_content_submodule",
-        "file_commit": "_github_259_file_commit",
-        "contributor": "_github_260_contributor",
-        "dependabot_alert": "_github_261_dependabot_alert",
-        "dependabot_secret": "_github_262_dependabot_secret",
-        "dependency_graph_diff": "_github_263_dependency_graph_diff",
-        "dependency_graph_spdx_sbom": "_github_264_dependency_graph_spdx_sbom",
-        "metadata": "_github_265_metadata",
-        "dependency": "_github_266_dependency",
-        "manifest": "_github_267_manifest",
-        "snapshot": "_github_268_snapshot",
-        "deployment_status": "_github_269_deployment_status",
-        "wait_timer": "_github_270_wait_timer",
-        "deployment_branch_policy_settings": "_github_271_deployment_branch_policy_settings",
-        "environment": "_github_272_environment",
-        "deployment_branch_policy": "_github_273_deployment_branch_policy",
-        "deployment_branch_policy_name_pattern": "_github_274_deployment_branch_policy_name_pattern",
-        "custom_deployment_rule_app": "_github_275_custom_deployment_rule_app",
-        "deployment_protection_rule": "_github_276_deployment_protection_rule",
-        "short_blob": "_github_277_short_blob",
-        "blob": "_github_278_blob",
-        "git_commit": "_github_279_git_commit",
-        "git_ref": "_github_280_git_ref",
-        "git_tag": "_github_281_git_tag",
-        "git_tree": "_github_282_git_tree",
-        "hook_response": "_github_283_hook_response",
-        "hook": "_github_284_hook",
-        "ximport": "_github_285_ximport",
-        "porter_author": "_github_286_porter_author",
-        "porter_large_file": "_github_287_porter_large_file",
-        "nullable_issue": "_github_288_nullable_issue",
-        "issue_event_label": "_github_289_issue_event_label",
-        "issue_event_dismissed_review": "_github_290_issue_event_dismissed_review",
-        "issue_event_milestone": "_github_291_issue_event_milestone",
-        "issue_event_project_card": "_github_292_issue_event_project_card",
-        "issue_event_rename": "_github_293_issue_event_rename",
-        "issue_event": "_github_294_issue_event",
-        "labeled_issue_event": "_github_295_labeled_issue_event",
-        "unlabeled_issue_event": "_github_296_unlabeled_issue_event",
-        "assigned_issue_event": "_github_297_assigned_issue_event",
-        "unassigned_issue_event": "_github_298_unassigned_issue_event",
-        "milestoned_issue_event": "_github_299_milestoned_issue_event",
-        "demilestoned_issue_event": "_github_300_demilestoned_issue_event",
-        "renamed_issue_event": "_github_301_renamed_issue_event",
-        "review_requested_issue_event": "_github_302_review_requested_issue_event",
-        "review_request_removed_issue_event": "_github_303_review_request_removed_issue_event",
-        "review_dismissed_issue_event": "_github_304_review_dismissed_issue_event",
-        "locked_issue_event": "_github_305_locked_issue_event",
-        "added_to_project_issue_event": "_github_306_added_to_project_issue_event",
-        "moved_column_in_project_issue_event": "_github_307_moved_column_in_project_issue_event",
-        "removed_from_project_issue_event": "_github_308_removed_from_project_issue_event",
-        "converted_note_to_issue_issue_event": "_github_309_converted_note_to_issue_issue_event",
-        "issue_event_for_issue": "_github_310_issue_event_for_issue",
-        "label": "_github_311_label",
-        "timeline_comment_event": "_github_312_timeline_comment_event",
-        "timeline_cross_referenced_event": "_github_313_timeline_cross_referenced_event",
-        "timeline_committed_event": "_github_314_timeline_committed_event",
-        "timeline_reviewed_event": "_github_315_timeline_reviewed_event",
-        "pull_request_review_comment": "_github_316_pull_request_review_comment",
-        "timeline_line_commented_event": "_github_317_timeline_line_commented_event",
-        "timeline_commit_commented_event": "_github_318_timeline_commit_commented_event",
-        "timeline_assigned_issue_event": "_github_319_timeline_assigned_issue_event",
-        "timeline_unassigned_issue_event": "_github_320_timeline_unassigned_issue_event",
-        "state_change_issue_event": "_github_321_state_change_issue_event",
-        "timeline_issue_events": "_github_322_timeline_issue_events",
-        "deploy_key": "_github_323_deploy_key",
-        "language": "_github_324_language",
-        "license_content": "_github_325_license_content",
-        "merged_upstream": "_github_326_merged_upstream",
-        "milestone": "_github_327_milestone",
-        "pages_source_hash": "_github_328_pages_source_hash",
-        "pages_https_certificate": "_github_329_pages_https_certificate",
-        "page": "_github_330_page",
-        "page_build": "_github_331_page_build",
-        "page_build_status": "_github_332_page_build_status",
-        "page_deployment": "_github_333_page_deployment",
-        "pages_health_check": "_github_334_pages_health_check",
-        "pull_request": "_github_335_pull_request",
-        "pull_request_merge_result": "_github_336_pull_request_merge_result",
-        "pull_request_review_request": "_github_337_pull_request_review_request",
-        "pull_request_review": "_github_338_pull_request_review",
-        "review_comment": "_github_339_review_comment",
-        "release_asset": "_github_340_release_asset",
-        "release": "_github_341_release",
-        "release_notes_content": "_github_342_release_notes_content",
-        "secret_scanning_alert": "_github_343_secret_scanning_alert",
-        "secret_scanning_alert_resolution_comment": "_github_344_secret_scanning_alert_resolution_comment",
-        "secret_scanning_location_commit": "_github_345_secret_scanning_location_commit",
-        "secret_scanning_location_issue_title": "_github_346_secret_scanning_location_issue_title",
-        "secret_scanning_location_issue_body": "_github_347_secret_scanning_location_issue_body",
-        "secret_scanning_location_issue_comment": "_github_348_secret_scanning_location_issue_comment",
-        "secret_scanning_location": "_github_349_secret_scanning_location",
-        "security_advisory_ecosystems": "_github_350_security_advisory_ecosystems",
-        "repository_advisory_vulnerability": "_github_351_repository_advisory_vulnerability",
-        "security_advisory_credit_types": "_github_352_security_advisory_credit_types",
-        "repository_advisory_credit": "_github_353_repository_advisory_credit",
-        "repository_advisory": "_github_354_repository_advisory",
-        "repository_advisory_create": "_github_355_repository_advisory_create",
-        "private_vulnerability_report_create": "_github_356_private_vulnerability_report_create",
-        "repository_advisory_update": "_github_357_repository_advisory_update",
-        "stargazer": "_github_358_stargazer",
-        "code_frequency_stat": "_github_359_code_frequency_stat",
-        "commit_activity": "_github_360_commit_activity",
-        "contributor_activity": "_github_361_contributor_activity",
-        "participation_stats": "_github_362_participation_stats",
-        "repository_subscription": "_github_363_repository_subscription",
-        "tag": "_github_364_tag",
-        "tag_protection": "_github_365_tag_protection",
-        "topic": "_github_366_topic",
-        "traffic": "_github_367_traffic",
-        "clone_traffic": "_github_368_clone_traffic",
-        "content_traffic": "_github_369_content_traffic",
-        "referrer_traffic": "_github_370_referrer_traffic",
-        "view_traffic": "_github_371_view_traffic",
-        "search_result_text_matches": "_github_372_search_result_text_matches",
-        "code_search_result_item": "_github_373_code_search_result_item",
-        "commit_search_result_item": "_github_374_commit_search_result_item",
-        "issue_search_result_item": "_github_375_issue_search_result_item",
-        "label_search_result_item": "_github_376_label_search_result_item",
-        "repo_search_result_item": "_github_377_repo_search_result_item",
-        "topic_search_result_item": "_github_378_topic_search_result_item",
-        "user_search_result_item": "_github_379_user_search_result_item",
-        "private_user": "_github_380_private_user",
-        "codespaces_secret": "_github_381_codespaces_secret",
-        "codespaces_user_public_key": "_github_382_codespaces_user_public_key",
-        "codespace_export_details": "_github_383_codespace_export_details",
-        "codespace_with_full_repository": "_github_384_codespace_with_full_repository",
-        "email": "_github_385_email",
-        "gpg_key": "_github_386_gpg_key",
-        "key": "_github_387_key",
-        "marketplace_account": "_github_388_marketplace_account",
-        "user_marketplace_purchase": "_github_389_user_marketplace_purchase",
-        "social_account": "_github_390_social_account",
-        "ssh_signing_key": "_github_391_ssh_signing_key",
-        "starred_repository": "_github_392_starred_repository",
-        "hovercard": "_github_393_hovercard",
-        "key_simple": "_github_394_key_simple",
-        "simple_installation": "_github_395_simple_installation",
-        "simple_check_suite": "_github_396_simple_check_suite",
-        "check_run_with_simple_check_suite": "_github_397_check_run_with_simple_check_suite",
-        "discussion": "_github_398_discussion",
-        "merge_group": "_github_399_merge_group",
-        "personal_access_token_request": "_github_400_personal_access_token_request",
-        "projects_v2": "_github_401_projects_v2",
-        "projects_v2_item_content_type": "_github_402_projects_v2_item_content_type",
-        "projects_v2_item": "_github_403_projects_v2_item",
-        "webhook_branch_protection_rule_created": "_github_404_webhook_branch_protection_rule_created",
-        "webhook_branch_protection_rule_deleted": "_github_405_webhook_branch_protection_rule_deleted",
-        "webhook_branch_protection_rule_edited": "_github_406_webhook_branch_protection_rule_edited",
-        "webhook_check_run_completed": "_github_407_webhook_check_run_completed",
-        "webhook_check_run_completed_form_encoded": "_github_408_webhook_check_run_completed_form_encoded",
-        "webhook_check_run_created": "_github_409_webhook_check_run_created",
-        "webhook_check_run_created_form_encoded": "_github_410_webhook_check_run_created_form_encoded",
-        "webhook_check_run_requested_action": "_github_411_webhook_check_run_requested_action",
-        "webhook_check_run_requested_action_form_encoded": "_github_412_webhook_check_run_requested_action_form_encoded",
-        "webhook_check_run_rerequested": "_github_413_webhook_check_run_rerequested",
-        "webhook_check_run_rerequested_form_encoded": "_github_414_webhook_check_run_rerequested_form_encoded",
-        "webhook_check_suite_completed": "_github_415_webhook_check_suite_completed",
-        "webhook_check_suite_requested": "_github_416_webhook_check_suite_requested",
-        "webhook_check_suite_rerequested": "_github_417_webhook_check_suite_rerequested",
-        "webhook_code_scanning_alert_appeared_in_branch": "_github_418_webhook_code_scanning_alert_appeared_in_branch",
-        "webhook_code_scanning_alert_closed_by_user": "_github_419_webhook_code_scanning_alert_closed_by_user",
-        "webhook_code_scanning_alert_created": "_github_420_webhook_code_scanning_alert_created",
-        "webhook_code_scanning_alert_fixed": "_github_421_webhook_code_scanning_alert_fixed",
-        "webhook_code_scanning_alert_reopened": "_github_422_webhook_code_scanning_alert_reopened",
-        "webhook_code_scanning_alert_reopened_by_user": "_github_423_webhook_code_scanning_alert_reopened_by_user",
-        "webhook_commit_comment_created": "_github_424_webhook_commit_comment_created",
-        "webhook_create": "_github_425_webhook_create",
-        "webhook_delete": "_github_426_webhook_delete",
-        "webhook_dependabot_alert_auto_dismissed": "_github_427_webhook_dependabot_alert_auto_dismissed",
-        "webhook_dependabot_alert_auto_reopened": "_github_428_webhook_dependabot_alert_auto_reopened",
-        "webhook_dependabot_alert_created": "_github_429_webhook_dependabot_alert_created",
-        "webhook_dependabot_alert_dismissed": "_github_430_webhook_dependabot_alert_dismissed",
-        "webhook_dependabot_alert_fixed": "_github_431_webhook_dependabot_alert_fixed",
-        "webhook_dependabot_alert_reintroduced": "_github_432_webhook_dependabot_alert_reintroduced",
-        "webhook_dependabot_alert_reopened": "_github_433_webhook_dependabot_alert_reopened",
-        "webhook_deploy_key_created": "_github_434_webhook_deploy_key_created",
-        "webhook_deploy_key_deleted": "_github_435_webhook_deploy_key_deleted",
-        "webhook_deployment_created": "_github_436_webhook_deployment_created",
-        "webhook_deployment_protection_rule_requested": "_github_437_webhook_deployment_protection_rule_requested",
-        "webhook_deployment_status_created": "_github_438_webhook_deployment_status_created",
-        "webhook_discussion_answered": "_github_439_webhook_discussion_answered",
-        "webhook_discussion_category_changed": "_github_440_webhook_discussion_category_changed",
-        "webhook_discussion_closed": "_github_441_webhook_discussion_closed",
-        "webhook_discussion_comment_created": "_github_442_webhook_discussion_comment_created",
-        "webhook_discussion_comment_deleted": "_github_443_webhook_discussion_comment_deleted",
-        "webhook_discussion_comment_edited": "_github_444_webhook_discussion_comment_edited",
-        "webhook_discussion_created": "_github_445_webhook_discussion_created",
-        "webhook_discussion_deleted": "_github_446_webhook_discussion_deleted",
-        "webhook_discussion_edited": "_github_447_webhook_discussion_edited",
-        "webhook_discussion_labeled": "_github_448_webhook_discussion_labeled",
-        "webhook_discussion_locked": "_github_449_webhook_discussion_locked",
-        "webhook_discussion_pinned": "_github_450_webhook_discussion_pinned",
-        "webhook_discussion_reopened": "_github_451_webhook_discussion_reopened",
-        "webhook_discussion_transferred": "_github_452_webhook_discussion_transferred",
-        "webhook_discussion_unanswered": "_github_453_webhook_discussion_unanswered",
-        "webhook_discussion_unlabeled": "_github_454_webhook_discussion_unlabeled",
-        "webhook_discussion_unlocked": "_github_455_webhook_discussion_unlocked",
-        "webhook_discussion_unpinned": "_github_456_webhook_discussion_unpinned",
-        "webhook_fork": "_github_457_webhook_fork",
-        "webhook_github_app_authorization_revoked": "_github_458_webhook_github_app_authorization_revoked",
-        "webhook_gollum": "_github_459_webhook_gollum",
-        "webhook_installation_created": "_github_460_webhook_installation_created",
-        "webhook_installation_deleted": "_github_461_webhook_installation_deleted",
-        "webhook_installation_new_permissions_accepted": "_github_462_webhook_installation_new_permissions_accepted",
-        "webhook_installation_repositories_added": "_github_463_webhook_installation_repositories_added",
-        "webhook_installation_repositories_removed": "_github_464_webhook_installation_repositories_removed",
-        "webhook_installation_suspend": "_github_465_webhook_installation_suspend",
-        "webhook_installation_target_renamed": "_github_466_webhook_installation_target_renamed",
-        "webhook_installation_unsuspend": "_github_467_webhook_installation_unsuspend",
-        "webhook_issue_comment_created": "_github_468_webhook_issue_comment_created",
-        "webhook_issue_comment_deleted": "_github_469_webhook_issue_comment_deleted",
-        "webhook_issue_comment_edited": "_github_470_webhook_issue_comment_edited",
-        "webhook_issues_assigned": "_github_471_webhook_issues_assigned",
-        "webhook_issues_closed": "_github_472_webhook_issues_closed",
-        "webhook_issues_deleted": "_github_473_webhook_issues_deleted",
-        "webhook_issues_demilestoned": "_github_474_webhook_issues_demilestoned",
-        "webhook_issues_edited": "_github_475_webhook_issues_edited",
-        "webhook_issues_labeled": "_github_476_webhook_issues_labeled",
-        "webhook_issues_locked": "_github_477_webhook_issues_locked",
-        "webhook_issues_milestoned": "_github_478_webhook_issues_milestoned",
-        "webhook_issues_opened": "_github_479_webhook_issues_opened",
-        "webhook_issues_pinned": "_github_480_webhook_issues_pinned",
-        "webhook_issues_reopened": "_github_481_webhook_issues_reopened",
-        "webhook_issues_transferred": "_github_482_webhook_issues_transferred",
-        "webhook_issues_unassigned": "_github_483_webhook_issues_unassigned",
-        "webhook_issues_unlabeled": "_github_484_webhook_issues_unlabeled",
-        "webhook_issues_unlocked": "_github_485_webhook_issues_unlocked",
-        "webhook_issues_unpinned": "_github_486_webhook_issues_unpinned",
-        "webhook_label_created": "_github_487_webhook_label_created",
-        "webhook_label_deleted": "_github_488_webhook_label_deleted",
-        "webhook_label_edited": "_github_489_webhook_label_edited",
-        "webhook_marketplace_purchase_cancelled": "_github_490_webhook_marketplace_purchase_cancelled",
-        "webhook_marketplace_purchase_changed": "_github_491_webhook_marketplace_purchase_changed",
-        "webhook_marketplace_purchase_pending_change": "_github_492_webhook_marketplace_purchase_pending_change",
-        "webhook_marketplace_purchase_pending_change_cancelled": "_github_493_webhook_marketplace_purchase_pending_change_cancelled",
-        "webhook_marketplace_purchase_purchased": "_github_494_webhook_marketplace_purchase_purchased",
-        "webhook_member_added": "_github_495_webhook_member_added",
-        "webhook_member_edited": "_github_496_webhook_member_edited",
-        "webhook_member_removed": "_github_497_webhook_member_removed",
-        "webhook_membership_added": "_github_498_webhook_membership_added",
-        "webhook_membership_removed": "_github_499_webhook_membership_removed",
-        "webhook_merge_group_checks_requested": "_github_500_webhook_merge_group_checks_requested",
-        "webhook_merge_group_destroyed": "_github_501_webhook_merge_group_destroyed",
-        "webhook_meta_deleted": "_github_502_webhook_meta_deleted",
-        "webhook_milestone_closed": "_github_503_webhook_milestone_closed",
-        "webhook_milestone_created": "_github_504_webhook_milestone_created",
-        "webhook_milestone_deleted": "_github_505_webhook_milestone_deleted",
-        "webhook_milestone_edited": "_github_506_webhook_milestone_edited",
-        "webhook_milestone_opened": "_github_507_webhook_milestone_opened",
-        "webhook_org_block_blocked": "_github_508_webhook_org_block_blocked",
-        "webhook_org_block_unblocked": "_github_509_webhook_org_block_unblocked",
-        "webhook_organization_deleted": "_github_510_webhook_organization_deleted",
-        "webhook_organization_member_added": "_github_511_webhook_organization_member_added",
-        "webhook_organization_member_invited": "_github_512_webhook_organization_member_invited",
-        "webhook_organization_member_removed": "_github_513_webhook_organization_member_removed",
-        "webhook_organization_renamed": "_github_514_webhook_organization_renamed",
-        "webhook_rubygems_metadata": "_github_515_webhook_rubygems_metadata",
-        "webhook_package_published": "_github_516_webhook_package_published",
-        "webhook_package_updated": "_github_517_webhook_package_updated",
-        "webhook_page_build": "_github_518_webhook_page_build",
-        "webhook_personal_access_token_request_approved": "_github_519_webhook_personal_access_token_request_approved",
-        "webhook_personal_access_token_request_cancelled": "_github_520_webhook_personal_access_token_request_cancelled",
-        "webhook_personal_access_token_request_created": "_github_521_webhook_personal_access_token_request_created",
-        "webhook_personal_access_token_request_denied": "_github_522_webhook_personal_access_token_request_denied",
-        "webhook_ping": "_github_523_webhook_ping",
-        "webhook_ping_form_encoded": "_github_524_webhook_ping_form_encoded",
-        "webhook_project_card_converted": "_github_525_webhook_project_card_converted",
-        "webhook_project_card_created": "_github_526_webhook_project_card_created",
-        "webhook_project_card_deleted": "_github_527_webhook_project_card_deleted",
-        "webhook_project_card_edited": "_github_528_webhook_project_card_edited",
-        "webhook_project_card_moved": "_github_529_webhook_project_card_moved",
-        "webhook_project_closed": "_github_530_webhook_project_closed",
-        "webhook_project_column_created": "_github_531_webhook_project_column_created",
-        "webhook_project_column_deleted": "_github_532_webhook_project_column_deleted",
-        "webhook_project_column_edited": "_github_533_webhook_project_column_edited",
-        "webhook_project_column_moved": "_github_534_webhook_project_column_moved",
-        "webhook_project_created": "_github_535_webhook_project_created",
-        "webhook_project_deleted": "_github_536_webhook_project_deleted",
-        "webhook_project_edited": "_github_537_webhook_project_edited",
-        "webhook_project_reopened": "_github_538_webhook_project_reopened",
-        "webhook_projects_v2_project_closed": "_github_539_webhook_projects_v2_project_closed",
-        "webhook_projects_v2_project_created": "_github_540_webhook_projects_v2_project_created",
-        "webhook_projects_v2_project_deleted": "_github_541_webhook_projects_v2_project_deleted",
-        "webhook_projects_v2_project_edited": "_github_542_webhook_projects_v2_project_edited",
-        "webhook_projects_v2_item_archived": "_github_543_webhook_projects_v2_item_archived",
-        "webhook_projects_v2_item_converted": "_github_544_webhook_projects_v2_item_converted",
-        "webhook_projects_v2_item_created": "_github_545_webhook_projects_v2_item_created",
-        "webhook_projects_v2_item_deleted": "_github_546_webhook_projects_v2_item_deleted",
-        "webhook_projects_v2_item_edited": "_github_547_webhook_projects_v2_item_edited",
-        "webhook_projects_v2_item_reordered": "_github_548_webhook_projects_v2_item_reordered",
-        "webhook_projects_v2_item_restored": "_github_549_webhook_projects_v2_item_restored",
-        "webhook_projects_v2_project_reopened": "_github_550_webhook_projects_v2_project_reopened",
-        "webhook_public": "_github_551_webhook_public",
-        "webhook_pull_request_assigned": "_github_552_webhook_pull_request_assigned",
-        "webhook_pull_request_auto_merge_disabled": "_github_553_webhook_pull_request_auto_merge_disabled",
-        "webhook_pull_request_auto_merge_enabled": "_github_554_webhook_pull_request_auto_merge_enabled",
-        "webhook_pull_request_closed": "_github_555_webhook_pull_request_closed",
-        "webhook_pull_request_converted_to_draft": "_github_556_webhook_pull_request_converted_to_draft",
-        "webhook_pull_request_demilestoned": "_github_557_webhook_pull_request_demilestoned",
-        "webhook_pull_request_dequeued": "_github_558_webhook_pull_request_dequeued",
-        "webhook_pull_request_edited": "_github_559_webhook_pull_request_edited",
-        "webhook_pull_request_enqueued": "_github_560_webhook_pull_request_enqueued",
-        "webhook_pull_request_labeled": "_github_561_webhook_pull_request_labeled",
-        "webhook_pull_request_locked": "_github_562_webhook_pull_request_locked",
-        "webhook_pull_request_milestoned": "_github_563_webhook_pull_request_milestoned",
-        "webhook_pull_request_opened": "_github_564_webhook_pull_request_opened",
-        "webhook_pull_request_ready_for_review": "_github_565_webhook_pull_request_ready_for_review",
-        "webhook_pull_request_reopened": "_github_566_webhook_pull_request_reopened",
-        "webhook_pull_request_review_comment_created": "_github_567_webhook_pull_request_review_comment_created",
-        "webhook_pull_request_review_comment_deleted": "_github_568_webhook_pull_request_review_comment_deleted",
-        "webhook_pull_request_review_comment_edited": "_github_569_webhook_pull_request_review_comment_edited",
-        "webhook_pull_request_review_dismissed": "_github_570_webhook_pull_request_review_dismissed",
-        "webhook_pull_request_review_edited": "_github_571_webhook_pull_request_review_edited",
-        "webhook_pull_request_review_request_removed": "_github_572_webhook_pull_request_review_request_removed",
-        "webhook_pull_request_review_requested": "_github_573_webhook_pull_request_review_requested",
-        "webhook_pull_request_review_submitted": "_github_574_webhook_pull_request_review_submitted",
-        "webhook_pull_request_review_thread_resolved": "_github_575_webhook_pull_request_review_thread_resolved",
-        "webhook_pull_request_review_thread_unresolved": "_github_576_webhook_pull_request_review_thread_unresolved",
-        "webhook_pull_request_synchronize": "_github_577_webhook_pull_request_synchronize",
-        "webhook_pull_request_unassigned": "_github_578_webhook_pull_request_unassigned",
-        "webhook_pull_request_unlabeled": "_github_579_webhook_pull_request_unlabeled",
-        "webhook_pull_request_unlocked": "_github_580_webhook_pull_request_unlocked",
-        "webhook_push": "_github_581_webhook_push",
-        "webhook_registry_package_published": "_github_582_webhook_registry_package_published",
-        "webhook_registry_package_updated": "_github_583_webhook_registry_package_updated",
-        "webhook_release_created": "_github_584_webhook_release_created",
-        "webhook_release_deleted": "_github_585_webhook_release_deleted",
-        "webhook_release_edited": "_github_586_webhook_release_edited",
-        "webhook_release_prereleased": "_github_587_webhook_release_prereleased",
-        "webhook_release_published": "_github_588_webhook_release_published",
-        "webhook_release_released": "_github_589_webhook_release_released",
-        "webhook_release_unpublished": "_github_590_webhook_release_unpublished",
-        "webhook_repository_advisory_published": "_github_591_webhook_repository_advisory_published",
-        "webhook_repository_advisory_reported": "_github_592_webhook_repository_advisory_reported",
-        "webhook_repository_archived": "_github_593_webhook_repository_archived",
-        "webhook_repository_created": "_github_594_webhook_repository_created",
-        "webhook_repository_deleted": "_github_595_webhook_repository_deleted",
-        "webhook_repository_dispatch_sample": "_github_596_webhook_repository_dispatch_sample",
-        "webhook_repository_edited": "_github_597_webhook_repository_edited",
-        "webhook_repository_import": "_github_598_webhook_repository_import",
-        "webhook_repository_privatized": "_github_599_webhook_repository_privatized",
-        "webhook_repository_publicized": "_github_600_webhook_repository_publicized",
-        "webhook_repository_renamed": "_github_601_webhook_repository_renamed",
-        "webhook_repository_transferred": "_github_602_webhook_repository_transferred",
-        "webhook_repository_unarchived": "_github_603_webhook_repository_unarchived",
-        "webhook_repository_vulnerability_alert_create": "_github_604_webhook_repository_vulnerability_alert_create",
-        "webhook_repository_vulnerability_alert_dismiss": "_github_605_webhook_repository_vulnerability_alert_dismiss",
-        "webhook_repository_vulnerability_alert_reopen": "_github_606_webhook_repository_vulnerability_alert_reopen",
-        "webhook_repository_vulnerability_alert_resolve": "_github_607_webhook_repository_vulnerability_alert_resolve",
-        "webhook_secret_scanning_alert_created": "_github_608_webhook_secret_scanning_alert_created",
-        "webhook_secret_scanning_alert_location_created": "_github_609_webhook_secret_scanning_alert_location_created",
-        "webhook_secret_scanning_alert_location_created_form_encoded": "_github_610_webhook_secret_scanning_alert_location_created_form_encoded",
-        "webhook_secret_scanning_alert_reopened": "_github_611_webhook_secret_scanning_alert_reopened",
-        "webhook_secret_scanning_alert_resolved": "_github_612_webhook_secret_scanning_alert_resolved",
-        "webhook_secret_scanning_alert_revoked": "_github_613_webhook_secret_scanning_alert_revoked",
-        "webhook_security_advisory_published": "_github_614_webhook_security_advisory_published",
-        "webhook_security_advisory_updated": "_github_615_webhook_security_advisory_updated",
-        "webhook_security_advisory_withdrawn": "_github_616_webhook_security_advisory_withdrawn",
-        "webhook_security_and_analysis": "_github_617_webhook_security_and_analysis",
-        "webhook_sponsorship_cancelled": "_github_618_webhook_sponsorship_cancelled",
-        "webhook_sponsorship_created": "_github_619_webhook_sponsorship_created",
-        "webhook_sponsorship_edited": "_github_620_webhook_sponsorship_edited",
-        "webhook_sponsorship_pending_cancellation": "_github_621_webhook_sponsorship_pending_cancellation",
-        "webhook_sponsorship_pending_tier_change": "_github_622_webhook_sponsorship_pending_tier_change",
-        "webhook_sponsorship_tier_changed": "_github_623_webhook_sponsorship_tier_changed",
-        "webhook_star_created": "_github_624_webhook_star_created",
-        "webhook_star_deleted": "_github_625_webhook_star_deleted",
-        "webhook_status": "_github_626_webhook_status",
-        "webhook_team_add": "_github_627_webhook_team_add",
-        "webhook_team_added_to_repository": "_github_628_webhook_team_added_to_repository",
-        "webhook_team_created": "_github_629_webhook_team_created",
-        "webhook_team_deleted": "_github_630_webhook_team_deleted",
-        "webhook_team_edited": "_github_631_webhook_team_edited",
-        "webhook_team_removed_from_repository": "_github_632_webhook_team_removed_from_repository",
-        "webhook_watch_started": "_github_633_webhook_watch_started",
-        "webhook_workflow_dispatch": "_github_634_webhook_workflow_dispatch",
-        "webhook_workflow_job_completed": "_github_635_webhook_workflow_job_completed",
-        "webhook_workflow_job_in_progress": "_github_636_webhook_workflow_job_in_progress",
-        "webhook_workflow_job_queued": "_github_637_webhook_workflow_job_queued",
-        "webhook_workflow_job_waiting": "_github_638_webhook_workflow_job_waiting",
-        "webhook_workflow_run_completed": "_github_639_webhook_workflow_run_completed",
-        "webhook_workflow_run_in_progress": "_github_640_webhook_workflow_run_in_progress",
-        "webhook_workflow_run_requested": "_github_641_webhook_workflow_run_requested",
+        "workflow_usage": "_github_197_workflow_usage",
+        "autolink": "_github_198_autolink",
+        "protected_branch_required_status_check": "_github_199_protected_branch_required_status_check",
+        "protected_branch_admin_enforced": "_github_200_protected_branch_admin_enforced",
+        "protected_branch_pull_request_review": "_github_201_protected_branch_pull_request_review",
+        "branch_restriction_policy": "_github_202_branch_restriction_policy",
+        "branch_protection": "_github_203_branch_protection",
+        "short_branch": "_github_204_short_branch",
+        "nullable_git_user": "_github_205_nullable_git_user",
+        "verification": "_github_206_verification",
+        "diff_entry": "_github_207_diff_entry",
+        "commit": "_github_208_commit",
+        "branch_with_protection": "_github_209_branch_with_protection",
+        "status_check_policy": "_github_210_status_check_policy",
+        "protected_branch": "_github_211_protected_branch",
+        "deployment_simple": "_github_212_deployment_simple",
+        "check_run": "_github_213_check_run",
+        "check_annotation": "_github_214_check_annotation",
+        "simple_commit": "_github_215_simple_commit",
+        "check_suite": "_github_216_check_suite",
+        "check_suite_preference": "_github_217_check_suite_preference",
+        "code_scanning_alert_rule_summary": "_github_218_code_scanning_alert_rule_summary",
+        "code_scanning_alert_items": "_github_219_code_scanning_alert_items",
+        "code_scanning_alert": "_github_220_code_scanning_alert",
+        "code_scanning_alert_set_state": "_github_221_code_scanning_alert_set_state",
+        "code_scanning_analysis_sarif_id": "_github_222_code_scanning_analysis_sarif_id",
+        "code_scanning_analysis_commit_sha": "_github_223_code_scanning_analysis_commit_sha",
+        "code_scanning_analysis_environment": "_github_224_code_scanning_analysis_environment",
+        "code_scanning_analysis_created_at": "_github_225_code_scanning_analysis_created_at",
+        "code_scanning_analysis_url": "_github_226_code_scanning_analysis_url",
+        "code_scanning_analysis": "_github_227_code_scanning_analysis",
+        "code_scanning_analysis_deletion": "_github_228_code_scanning_analysis_deletion",
+        "code_scanning_codeql_database": "_github_229_code_scanning_codeql_database",
+        "code_scanning_default_setup": "_github_230_code_scanning_default_setup",
+        "code_scanning_default_setup_update": "_github_231_code_scanning_default_setup_update",
+        "code_scanning_default_setup_update_response": "_github_232_code_scanning_default_setup_update_response",
+        "code_scanning_analysis_sarif_file": "_github_233_code_scanning_analysis_sarif_file",
+        "code_scanning_sarifs_receipt": "_github_234_code_scanning_sarifs_receipt",
+        "code_scanning_sarifs_status": "_github_235_code_scanning_sarifs_status",
+        "codeowners_errors": "_github_236_codeowners_errors",
+        "codespace_machine": "_github_237_codespace_machine",
+        "repo_codespaces_secret": "_github_238_repo_codespaces_secret",
+        "collaborator": "_github_239_collaborator",
+        "repository_invitation": "_github_240_repository_invitation",
+        "nullable_collaborator": "_github_241_nullable_collaborator",
+        "repository_collaborator_permission": "_github_242_repository_collaborator_permission",
+        "commit_comment": "_github_243_commit_comment",
+        "branch_short": "_github_244_branch_short",
+        "link": "_github_245_link",
+        "auto_merge": "_github_246_auto_merge",
+        "pull_request_simple": "_github_247_pull_request_simple",
+        "simple_commit_status": "_github_248_simple_commit_status",
+        "combined_commit_status": "_github_249_combined_commit_status",
+        "status": "_github_250_status",
+        "nullable_code_of_conduct_simple": "_github_251_nullable_code_of_conduct_simple",
+        "nullable_community_health_file": "_github_252_nullable_community_health_file",
+        "community_profile": "_github_253_community_profile",
+        "commit_comparison": "_github_254_commit_comparison",
+        "content_tree": "_github_255_content_tree",
+        "content_directory": "_github_256_content_directory",
+        "content_file": "_github_257_content_file",
+        "content_symlink": "_github_258_content_symlink",
+        "content_submodule": "_github_259_content_submodule",
+        "file_commit": "_github_260_file_commit",
+        "contributor": "_github_261_contributor",
+        "dependabot_alert": "_github_262_dependabot_alert",
+        "dependabot_secret": "_github_263_dependabot_secret",
+        "dependency_graph_diff": "_github_264_dependency_graph_diff",
+        "dependency_graph_spdx_sbom": "_github_265_dependency_graph_spdx_sbom",
+        "metadata": "_github_266_metadata",
+        "dependency": "_github_267_dependency",
+        "manifest": "_github_268_manifest",
+        "snapshot": "_github_269_snapshot",
+        "deployment_status": "_github_270_deployment_status",
+        "wait_timer": "_github_271_wait_timer",
+        "deployment_branch_policy_settings": "_github_272_deployment_branch_policy_settings",
+        "environment": "_github_273_environment",
+        "deployment_branch_policy": "_github_274_deployment_branch_policy",
+        "deployment_branch_policy_name_pattern": "_github_275_deployment_branch_policy_name_pattern",
+        "custom_deployment_rule_app": "_github_276_custom_deployment_rule_app",
+        "deployment_protection_rule": "_github_277_deployment_protection_rule",
+        "short_blob": "_github_278_short_blob",
+        "blob": "_github_279_blob",
+        "git_commit": "_github_280_git_commit",
+        "git_ref": "_github_281_git_ref",
+        "git_tag": "_github_282_git_tag",
+        "git_tree": "_github_283_git_tree",
+        "hook_response": "_github_284_hook_response",
+        "hook": "_github_285_hook",
+        "ximport": "_github_286_ximport",
+        "porter_author": "_github_287_porter_author",
+        "porter_large_file": "_github_288_porter_large_file",
+        "nullable_issue": "_github_289_nullable_issue",
+        "issue_event_label": "_github_290_issue_event_label",
+        "issue_event_dismissed_review": "_github_291_issue_event_dismissed_review",
+        "issue_event_milestone": "_github_292_issue_event_milestone",
+        "issue_event_project_card": "_github_293_issue_event_project_card",
+        "issue_event_rename": "_github_294_issue_event_rename",
+        "issue_event": "_github_295_issue_event",
+        "labeled_issue_event": "_github_296_labeled_issue_event",
+        "unlabeled_issue_event": "_github_297_unlabeled_issue_event",
+        "assigned_issue_event": "_github_298_assigned_issue_event",
+        "unassigned_issue_event": "_github_299_unassigned_issue_event",
+        "milestoned_issue_event": "_github_300_milestoned_issue_event",
+        "demilestoned_issue_event": "_github_301_demilestoned_issue_event",
+        "renamed_issue_event": "_github_302_renamed_issue_event",
+        "review_requested_issue_event": "_github_303_review_requested_issue_event",
+        "review_request_removed_issue_event": "_github_304_review_request_removed_issue_event",
+        "review_dismissed_issue_event": "_github_305_review_dismissed_issue_event",
+        "locked_issue_event": "_github_306_locked_issue_event",
+        "added_to_project_issue_event": "_github_307_added_to_project_issue_event",
+        "moved_column_in_project_issue_event": "_github_308_moved_column_in_project_issue_event",
+        "removed_from_project_issue_event": "_github_309_removed_from_project_issue_event",
+        "converted_note_to_issue_issue_event": "_github_310_converted_note_to_issue_issue_event",
+        "issue_event_for_issue": "_github_311_issue_event_for_issue",
+        "label": "_github_312_label",
+        "timeline_comment_event": "_github_313_timeline_comment_event",
+        "timeline_cross_referenced_event": "_github_314_timeline_cross_referenced_event",
+        "timeline_committed_event": "_github_315_timeline_committed_event",
+        "timeline_reviewed_event": "_github_316_timeline_reviewed_event",
+        "pull_request_review_comment": "_github_317_pull_request_review_comment",
+        "timeline_line_commented_event": "_github_318_timeline_line_commented_event",
+        "timeline_commit_commented_event": "_github_319_timeline_commit_commented_event",
+        "timeline_assigned_issue_event": "_github_320_timeline_assigned_issue_event",
+        "timeline_unassigned_issue_event": "_github_321_timeline_unassigned_issue_event",
+        "state_change_issue_event": "_github_322_state_change_issue_event",
+        "timeline_issue_events": "_github_323_timeline_issue_events",
+        "deploy_key": "_github_324_deploy_key",
+        "language": "_github_325_language",
+        "license_content": "_github_326_license_content",
+        "merged_upstream": "_github_327_merged_upstream",
+        "milestone": "_github_328_milestone",
+        "pages_source_hash": "_github_329_pages_source_hash",
+        "pages_https_certificate": "_github_330_pages_https_certificate",
+        "page": "_github_331_page",
+        "page_build": "_github_332_page_build",
+        "page_build_status": "_github_333_page_build_status",
+        "page_deployment": "_github_334_page_deployment",
+        "pages_health_check": "_github_335_pages_health_check",
+        "pull_request": "_github_336_pull_request",
+        "pull_request_merge_result": "_github_337_pull_request_merge_result",
+        "pull_request_review_request": "_github_338_pull_request_review_request",
+        "pull_request_review": "_github_339_pull_request_review",
+        "review_comment": "_github_340_review_comment",
+        "release_asset": "_github_341_release_asset",
+        "release": "_github_342_release",
+        "release_notes_content": "_github_343_release_notes_content",
+        "secret_scanning_alert": "_github_344_secret_scanning_alert",
+        "secret_scanning_alert_resolution_comment": "_github_345_secret_scanning_alert_resolution_comment",
+        "secret_scanning_location_commit": "_github_346_secret_scanning_location_commit",
+        "secret_scanning_location_issue_title": "_github_347_secret_scanning_location_issue_title",
+        "secret_scanning_location_issue_body": "_github_348_secret_scanning_location_issue_body",
+        "secret_scanning_location_issue_comment": "_github_349_secret_scanning_location_issue_comment",
+        "secret_scanning_location": "_github_350_secret_scanning_location",
+        "security_advisory_ecosystems": "_github_351_security_advisory_ecosystems",
+        "repository_advisory_vulnerability": "_github_352_repository_advisory_vulnerability",
+        "security_advisory_credit_types": "_github_353_security_advisory_credit_types",
+        "repository_advisory_credit": "_github_354_repository_advisory_credit",
+        "repository_advisory": "_github_355_repository_advisory",
+        "repository_advisory_create": "_github_356_repository_advisory_create",
+        "private_vulnerability_report_create": "_github_357_private_vulnerability_report_create",
+        "repository_advisory_update": "_github_358_repository_advisory_update",
+        "stargazer": "_github_359_stargazer",
+        "code_frequency_stat": "_github_360_code_frequency_stat",
+        "commit_activity": "_github_361_commit_activity",
+        "contributor_activity": "_github_362_contributor_activity",
+        "participation_stats": "_github_363_participation_stats",
+        "repository_subscription": "_github_364_repository_subscription",
+        "tag": "_github_365_tag",
+        "tag_protection": "_github_366_tag_protection",
+        "topic": "_github_367_topic",
+        "traffic": "_github_368_traffic",
+        "clone_traffic": "_github_369_clone_traffic",
+        "content_traffic": "_github_370_content_traffic",
+        "referrer_traffic": "_github_371_referrer_traffic",
+        "view_traffic": "_github_372_view_traffic",
+        "search_result_text_matches": "_github_373_search_result_text_matches",
+        "code_search_result_item": "_github_374_code_search_result_item",
+        "commit_search_result_item": "_github_375_commit_search_result_item",
+        "issue_search_result_item": "_github_376_issue_search_result_item",
+        "label_search_result_item": "_github_377_label_search_result_item",
+        "repo_search_result_item": "_github_378_repo_search_result_item",
+        "topic_search_result_item": "_github_379_topic_search_result_item",
+        "user_search_result_item": "_github_380_user_search_result_item",
+        "private_user": "_github_381_private_user",
+        "codespaces_secret": "_github_382_codespaces_secret",
+        "codespaces_user_public_key": "_github_383_codespaces_user_public_key",
+        "codespace_export_details": "_github_384_codespace_export_details",
+        "codespace_with_full_repository": "_github_385_codespace_with_full_repository",
+        "email": "_github_386_email",
+        "gpg_key": "_github_387_gpg_key",
+        "key": "_github_388_key",
+        "marketplace_account": "_github_389_marketplace_account",
+        "user_marketplace_purchase": "_github_390_user_marketplace_purchase",
+        "social_account": "_github_391_social_account",
+        "ssh_signing_key": "_github_392_ssh_signing_key",
+        "starred_repository": "_github_393_starred_repository",
+        "hovercard": "_github_394_hovercard",
+        "key_simple": "_github_395_key_simple",
+        "simple_installation": "_github_396_simple_installation",
+        "simple_check_suite": "_github_397_simple_check_suite",
+        "check_run_with_simple_check_suite": "_github_398_check_run_with_simple_check_suite",
+        "discussion": "_github_399_discussion",
+        "merge_group": "_github_400_merge_group",
+        "personal_access_token_request": "_github_401_personal_access_token_request",
+        "projects_v2": "_github_402_projects_v2",
+        "projects_v2_item_content_type": "_github_403_projects_v2_item_content_type",
+        "projects_v2_item": "_github_404_projects_v2_item",
+        "webhook_branch_protection_rule_created": "_github_405_webhook_branch_protection_rule_created",
+        "webhook_branch_protection_rule_deleted": "_github_406_webhook_branch_protection_rule_deleted",
+        "webhook_branch_protection_rule_edited": "_github_407_webhook_branch_protection_rule_edited",
+        "webhook_check_run_completed": "_github_408_webhook_check_run_completed",
+        "webhook_check_run_completed_form_encoded": "_github_409_webhook_check_run_completed_form_encoded",
+        "webhook_check_run_created": "_github_410_webhook_check_run_created",
+        "webhook_check_run_created_form_encoded": "_github_411_webhook_check_run_created_form_encoded",
+        "webhook_check_run_requested_action": "_github_412_webhook_check_run_requested_action",
+        "webhook_check_run_requested_action_form_encoded": "_github_413_webhook_check_run_requested_action_form_encoded",
+        "webhook_check_run_rerequested": "_github_414_webhook_check_run_rerequested",
+        "webhook_check_run_rerequested_form_encoded": "_github_415_webhook_check_run_rerequested_form_encoded",
+        "webhook_check_suite_completed": "_github_416_webhook_check_suite_completed",
+        "webhook_check_suite_requested": "_github_417_webhook_check_suite_requested",
+        "webhook_check_suite_rerequested": "_github_418_webhook_check_suite_rerequested",
+        "webhook_code_scanning_alert_appeared_in_branch": "_github_419_webhook_code_scanning_alert_appeared_in_branch",
+        "webhook_code_scanning_alert_closed_by_user": "_github_420_webhook_code_scanning_alert_closed_by_user",
+        "webhook_code_scanning_alert_created": "_github_421_webhook_code_scanning_alert_created",
+        "webhook_code_scanning_alert_fixed": "_github_422_webhook_code_scanning_alert_fixed",
+        "webhook_code_scanning_alert_reopened": "_github_423_webhook_code_scanning_alert_reopened",
+        "webhook_code_scanning_alert_reopened_by_user": "_github_424_webhook_code_scanning_alert_reopened_by_user",
+        "webhook_commit_comment_created": "_github_425_webhook_commit_comment_created",
+        "webhook_create": "_github_426_webhook_create",
+        "webhook_delete": "_github_427_webhook_delete",
+        "webhook_dependabot_alert_auto_dismissed": "_github_428_webhook_dependabot_alert_auto_dismissed",
+        "webhook_dependabot_alert_auto_reopened": "_github_429_webhook_dependabot_alert_auto_reopened",
+        "webhook_dependabot_alert_created": "_github_430_webhook_dependabot_alert_created",
+        "webhook_dependabot_alert_dismissed": "_github_431_webhook_dependabot_alert_dismissed",
+        "webhook_dependabot_alert_fixed": "_github_432_webhook_dependabot_alert_fixed",
+        "webhook_dependabot_alert_reintroduced": "_github_433_webhook_dependabot_alert_reintroduced",
+        "webhook_dependabot_alert_reopened": "_github_434_webhook_dependabot_alert_reopened",
+        "webhook_deploy_key_created": "_github_435_webhook_deploy_key_created",
+        "webhook_deploy_key_deleted": "_github_436_webhook_deploy_key_deleted",
+        "webhook_deployment_created": "_github_437_webhook_deployment_created",
+        "webhook_deployment_protection_rule_requested": "_github_438_webhook_deployment_protection_rule_requested",
+        "webhook_deployment_status_created": "_github_439_webhook_deployment_status_created",
+        "webhook_discussion_answered": "_github_440_webhook_discussion_answered",
+        "webhook_discussion_category_changed": "_github_441_webhook_discussion_category_changed",
+        "webhook_discussion_closed": "_github_442_webhook_discussion_closed",
+        "webhook_discussion_comment_created": "_github_443_webhook_discussion_comment_created",
+        "webhook_discussion_comment_deleted": "_github_444_webhook_discussion_comment_deleted",
+        "webhook_discussion_comment_edited": "_github_445_webhook_discussion_comment_edited",
+        "webhook_discussion_created": "_github_446_webhook_discussion_created",
+        "webhook_discussion_deleted": "_github_447_webhook_discussion_deleted",
+        "webhook_discussion_edited": "_github_448_webhook_discussion_edited",
+        "webhook_discussion_labeled": "_github_449_webhook_discussion_labeled",
+        "webhook_discussion_locked": "_github_450_webhook_discussion_locked",
+        "webhook_discussion_pinned": "_github_451_webhook_discussion_pinned",
+        "webhook_discussion_reopened": "_github_452_webhook_discussion_reopened",
+        "webhook_discussion_transferred": "_github_453_webhook_discussion_transferred",
+        "webhook_discussion_unanswered": "_github_454_webhook_discussion_unanswered",
+        "webhook_discussion_unlabeled": "_github_455_webhook_discussion_unlabeled",
+        "webhook_discussion_unlocked": "_github_456_webhook_discussion_unlocked",
+        "webhook_discussion_unpinned": "_github_457_webhook_discussion_unpinned",
+        "webhook_fork": "_github_458_webhook_fork",
+        "webhook_github_app_authorization_revoked": "_github_459_webhook_github_app_authorization_revoked",
+        "webhook_gollum": "_github_460_webhook_gollum",
+        "webhook_installation_created": "_github_461_webhook_installation_created",
+        "webhook_installation_deleted": "_github_462_webhook_installation_deleted",
+        "webhook_installation_new_permissions_accepted": "_github_463_webhook_installation_new_permissions_accepted",
+        "webhook_installation_repositories_added": "_github_464_webhook_installation_repositories_added",
+        "webhook_installation_repositories_removed": "_github_465_webhook_installation_repositories_removed",
+        "webhook_installation_suspend": "_github_466_webhook_installation_suspend",
+        "webhook_installation_target_renamed": "_github_467_webhook_installation_target_renamed",
+        "webhook_installation_unsuspend": "_github_468_webhook_installation_unsuspend",
+        "webhook_issue_comment_created": "_github_469_webhook_issue_comment_created",
+        "webhook_issue_comment_deleted": "_github_470_webhook_issue_comment_deleted",
+        "webhook_issue_comment_edited": "_github_471_webhook_issue_comment_edited",
+        "webhook_issues_assigned": "_github_472_webhook_issues_assigned",
+        "webhook_issues_closed": "_github_473_webhook_issues_closed",
+        "webhook_issues_deleted": "_github_474_webhook_issues_deleted",
+        "webhook_issues_demilestoned": "_github_475_webhook_issues_demilestoned",
+        "webhook_issues_edited": "_github_476_webhook_issues_edited",
+        "webhook_issues_labeled": "_github_477_webhook_issues_labeled",
+        "webhook_issues_locked": "_github_478_webhook_issues_locked",
+        "webhook_issues_milestoned": "_github_479_webhook_issues_milestoned",
+        "webhook_issues_opened": "_github_480_webhook_issues_opened",
+        "webhook_issues_pinned": "_github_481_webhook_issues_pinned",
+        "webhook_issues_reopened": "_github_482_webhook_issues_reopened",
+        "webhook_issues_transferred": "_github_483_webhook_issues_transferred",
+        "webhook_issues_unassigned": "_github_484_webhook_issues_unassigned",
+        "webhook_issues_unlabeled": "_github_485_webhook_issues_unlabeled",
+        "webhook_issues_unlocked": "_github_486_webhook_issues_unlocked",
+        "webhook_issues_unpinned": "_github_487_webhook_issues_unpinned",
+        "webhook_label_created": "_github_488_webhook_label_created",
+        "webhook_label_deleted": "_github_489_webhook_label_deleted",
+        "webhook_label_edited": "_github_490_webhook_label_edited",
+        "webhook_marketplace_purchase_cancelled": "_github_491_webhook_marketplace_purchase_cancelled",
+        "webhook_marketplace_purchase_changed": "_github_492_webhook_marketplace_purchase_changed",
+        "webhook_marketplace_purchase_pending_change": "_github_493_webhook_marketplace_purchase_pending_change",
+        "webhook_marketplace_purchase_pending_change_cancelled": "_github_494_webhook_marketplace_purchase_pending_change_cancelled",
+        "webhook_marketplace_purchase_purchased": "_github_495_webhook_marketplace_purchase_purchased",
+        "webhook_member_added": "_github_496_webhook_member_added",
+        "webhook_member_edited": "_github_497_webhook_member_edited",
+        "webhook_member_removed": "_github_498_webhook_member_removed",
+        "webhook_membership_added": "_github_499_webhook_membership_added",
+        "webhook_membership_removed": "_github_500_webhook_membership_removed",
+        "webhook_merge_group_checks_requested": "_github_501_webhook_merge_group_checks_requested",
+        "webhook_merge_group_destroyed": "_github_502_webhook_merge_group_destroyed",
+        "webhook_meta_deleted": "_github_503_webhook_meta_deleted",
+        "webhook_milestone_closed": "_github_504_webhook_milestone_closed",
+        "webhook_milestone_created": "_github_505_webhook_milestone_created",
+        "webhook_milestone_deleted": "_github_506_webhook_milestone_deleted",
+        "webhook_milestone_edited": "_github_507_webhook_milestone_edited",
+        "webhook_milestone_opened": "_github_508_webhook_milestone_opened",
+        "webhook_org_block_blocked": "_github_509_webhook_org_block_blocked",
+        "webhook_org_block_unblocked": "_github_510_webhook_org_block_unblocked",
+        "webhook_organization_deleted": "_github_511_webhook_organization_deleted",
+        "webhook_organization_member_added": "_github_512_webhook_organization_member_added",
+        "webhook_organization_member_invited": "_github_513_webhook_organization_member_invited",
+        "webhook_organization_member_removed": "_github_514_webhook_organization_member_removed",
+        "webhook_organization_renamed": "_github_515_webhook_organization_renamed",
+        "webhook_rubygems_metadata": "_github_516_webhook_rubygems_metadata",
+        "webhook_package_published": "_github_517_webhook_package_published",
+        "webhook_package_updated": "_github_518_webhook_package_updated",
+        "webhook_page_build": "_github_519_webhook_page_build",
+        "webhook_personal_access_token_request_approved": "_github_520_webhook_personal_access_token_request_approved",
+        "webhook_personal_access_token_request_cancelled": "_github_521_webhook_personal_access_token_request_cancelled",
+        "webhook_personal_access_token_request_created": "_github_522_webhook_personal_access_token_request_created",
+        "webhook_personal_access_token_request_denied": "_github_523_webhook_personal_access_token_request_denied",
+        "webhook_ping": "_github_524_webhook_ping",
+        "webhook_ping_form_encoded": "_github_525_webhook_ping_form_encoded",
+        "webhook_project_card_converted": "_github_526_webhook_project_card_converted",
+        "webhook_project_card_created": "_github_527_webhook_project_card_created",
+        "webhook_project_card_deleted": "_github_528_webhook_project_card_deleted",
+        "webhook_project_card_edited": "_github_529_webhook_project_card_edited",
+        "webhook_project_card_moved": "_github_530_webhook_project_card_moved",
+        "webhook_project_closed": "_github_531_webhook_project_closed",
+        "webhook_project_column_created": "_github_532_webhook_project_column_created",
+        "webhook_project_column_deleted": "_github_533_webhook_project_column_deleted",
+        "webhook_project_column_edited": "_github_534_webhook_project_column_edited",
+        "webhook_project_column_moved": "_github_535_webhook_project_column_moved",
+        "webhook_project_created": "_github_536_webhook_project_created",
+        "webhook_project_deleted": "_github_537_webhook_project_deleted",
+        "webhook_project_edited": "_github_538_webhook_project_edited",
+        "webhook_project_reopened": "_github_539_webhook_project_reopened",
+        "webhook_projects_v2_project_closed": "_github_540_webhook_projects_v2_project_closed",
+        "webhook_projects_v2_project_created": "_github_541_webhook_projects_v2_project_created",
+        "webhook_projects_v2_project_deleted": "_github_542_webhook_projects_v2_project_deleted",
+        "webhook_projects_v2_project_edited": "_github_543_webhook_projects_v2_project_edited",
+        "webhook_projects_v2_item_archived": "_github_544_webhook_projects_v2_item_archived",
+        "webhook_projects_v2_item_converted": "_github_545_webhook_projects_v2_item_converted",
+        "webhook_projects_v2_item_created": "_github_546_webhook_projects_v2_item_created",
+        "webhook_projects_v2_item_deleted": "_github_547_webhook_projects_v2_item_deleted",
+        "webhook_projects_v2_item_edited": "_github_548_webhook_projects_v2_item_edited",
+        "webhook_projects_v2_item_reordered": "_github_549_webhook_projects_v2_item_reordered",
+        "webhook_projects_v2_item_restored": "_github_550_webhook_projects_v2_item_restored",
+        "webhook_projects_v2_project_reopened": "_github_551_webhook_projects_v2_project_reopened",
+        "webhook_public": "_github_552_webhook_public",
+        "webhook_pull_request_assigned": "_github_553_webhook_pull_request_assigned",
+        "webhook_pull_request_auto_merge_disabled": "_github_554_webhook_pull_request_auto_merge_disabled",
+        "webhook_pull_request_auto_merge_enabled": "_github_555_webhook_pull_request_auto_merge_enabled",
+        "webhook_pull_request_closed": "_github_556_webhook_pull_request_closed",
+        "webhook_pull_request_converted_to_draft": "_github_557_webhook_pull_request_converted_to_draft",
+        "webhook_pull_request_demilestoned": "_github_558_webhook_pull_request_demilestoned",
+        "webhook_pull_request_dequeued": "_github_559_webhook_pull_request_dequeued",
+        "webhook_pull_request_edited": "_github_560_webhook_pull_request_edited",
+        "webhook_pull_request_enqueued": "_github_561_webhook_pull_request_enqueued",
+        "webhook_pull_request_labeled": "_github_562_webhook_pull_request_labeled",
+        "webhook_pull_request_locked": "_github_563_webhook_pull_request_locked",
+        "webhook_pull_request_milestoned": "_github_564_webhook_pull_request_milestoned",
+        "webhook_pull_request_opened": "_github_565_webhook_pull_request_opened",
+        "webhook_pull_request_ready_for_review": "_github_566_webhook_pull_request_ready_for_review",
+        "webhook_pull_request_reopened": "_github_567_webhook_pull_request_reopened",
+        "webhook_pull_request_review_comment_created": "_github_568_webhook_pull_request_review_comment_created",
+        "webhook_pull_request_review_comment_deleted": "_github_569_webhook_pull_request_review_comment_deleted",
+        "webhook_pull_request_review_comment_edited": "_github_570_webhook_pull_request_review_comment_edited",
+        "webhook_pull_request_review_dismissed": "_github_571_webhook_pull_request_review_dismissed",
+        "webhook_pull_request_review_edited": "_github_572_webhook_pull_request_review_edited",
+        "webhook_pull_request_review_request_removed": "_github_573_webhook_pull_request_review_request_removed",
+        "webhook_pull_request_review_requested": "_github_574_webhook_pull_request_review_requested",
+        "webhook_pull_request_review_submitted": "_github_575_webhook_pull_request_review_submitted",
+        "webhook_pull_request_review_thread_resolved": "_github_576_webhook_pull_request_review_thread_resolved",
+        "webhook_pull_request_review_thread_unresolved": "_github_577_webhook_pull_request_review_thread_unresolved",
+        "webhook_pull_request_synchronize": "_github_578_webhook_pull_request_synchronize",
+        "webhook_pull_request_unassigned": "_github_579_webhook_pull_request_unassigned",
+        "webhook_pull_request_unlabeled": "_github_580_webhook_pull_request_unlabeled",
+        "webhook_pull_request_unlocked": "_github_581_webhook_pull_request_unlocked",
+        "webhook_push": "_github_582_webhook_push",
+        "webhook_registry_package_published": "_github_583_webhook_registry_package_published",
+        "webhook_registry_package_updated": "_github_584_webhook_registry_package_updated",
+        "webhook_release_created": "_github_585_webhook_release_created",
+        "webhook_release_deleted": "_github_586_webhook_release_deleted",
+        "webhook_release_edited": "_github_587_webhook_release_edited",
+        "webhook_release_prereleased": "_github_588_webhook_release_prereleased",
+        "webhook_release_published": "_github_589_webhook_release_published",
+        "webhook_release_released": "_github_590_webhook_release_released",
+        "webhook_release_unpublished": "_github_591_webhook_release_unpublished",
+        "webhook_repository_advisory_published": "_github_592_webhook_repository_advisory_published",
+        "webhook_repository_advisory_reported": "_github_593_webhook_repository_advisory_reported",
+        "webhook_repository_archived": "_github_594_webhook_repository_archived",
+        "webhook_repository_created": "_github_595_webhook_repository_created",
+        "webhook_repository_deleted": "_github_596_webhook_repository_deleted",
+        "webhook_repository_dispatch_sample": "_github_597_webhook_repository_dispatch_sample",
+        "webhook_repository_edited": "_github_598_webhook_repository_edited",
+        "webhook_repository_import": "_github_599_webhook_repository_import",
+        "webhook_repository_privatized": "_github_600_webhook_repository_privatized",
+        "webhook_repository_publicized": "_github_601_webhook_repository_publicized",
+        "webhook_repository_renamed": "_github_602_webhook_repository_renamed",
+        "webhook_repository_transferred": "_github_603_webhook_repository_transferred",
+        "webhook_repository_unarchived": "_github_604_webhook_repository_unarchived",
+        "webhook_repository_vulnerability_alert_create": "_github_605_webhook_repository_vulnerability_alert_create",
+        "webhook_repository_vulnerability_alert_dismiss": "_github_606_webhook_repository_vulnerability_alert_dismiss",
+        "webhook_repository_vulnerability_alert_reopen": "_github_607_webhook_repository_vulnerability_alert_reopen",
+        "webhook_repository_vulnerability_alert_resolve": "_github_608_webhook_repository_vulnerability_alert_resolve",
+        "webhook_secret_scanning_alert_created": "_github_609_webhook_secret_scanning_alert_created",
+        "webhook_secret_scanning_alert_location_created": "_github_610_webhook_secret_scanning_alert_location_created",
+        "webhook_secret_scanning_alert_location_created_form_encoded": "_github_611_webhook_secret_scanning_alert_location_created_form_encoded",
+        "webhook_secret_scanning_alert_reopened": "_github_612_webhook_secret_scanning_alert_reopened",
+        "webhook_secret_scanning_alert_resolved": "_github_613_webhook_secret_scanning_alert_resolved",
+        "webhook_secret_scanning_alert_revoked": "_github_614_webhook_secret_scanning_alert_revoked",
+        "webhook_security_advisory_published": "_github_615_webhook_security_advisory_published",
+        "webhook_security_advisory_updated": "_github_616_webhook_security_advisory_updated",
+        "webhook_security_advisory_withdrawn": "_github_617_webhook_security_advisory_withdrawn",
+        "webhook_security_and_analysis": "_github_618_webhook_security_and_analysis",
+        "webhook_sponsorship_cancelled": "_github_619_webhook_sponsorship_cancelled",
+        "webhook_sponsorship_created": "_github_620_webhook_sponsorship_created",
+        "webhook_sponsorship_edited": "_github_621_webhook_sponsorship_edited",
+        "webhook_sponsorship_pending_cancellation": "_github_622_webhook_sponsorship_pending_cancellation",
+        "webhook_sponsorship_pending_tier_change": "_github_623_webhook_sponsorship_pending_tier_change",
+        "webhook_sponsorship_tier_changed": "_github_624_webhook_sponsorship_tier_changed",
+        "webhook_star_created": "_github_625_webhook_star_created",
+        "webhook_star_deleted": "_github_626_webhook_star_deleted",
+        "webhook_status": "_github_627_webhook_status",
+        "webhook_team_add": "_github_628_webhook_team_add",
+        "webhook_team_added_to_repository": "_github_629_webhook_team_added_to_repository",
+        "webhook_team_created": "_github_630_webhook_team_created",
+        "webhook_team_deleted": "_github_631_webhook_team_deleted",
+        "webhook_team_edited": "_github_632_webhook_team_edited",
+        "webhook_team_removed_from_repository": "_github_633_webhook_team_removed_from_repository",
+        "webhook_watch_started": "_github_634_webhook_watch_started",
+        "webhook_workflow_dispatch": "_github_635_webhook_workflow_dispatch",
+        "webhook_workflow_job_completed": "_github_636_webhook_workflow_job_completed",
+        "webhook_workflow_job_in_progress": "_github_637_webhook_workflow_job_in_progress",
+        "webhook_workflow_job_queued": "_github_638_webhook_workflow_job_queued",
+        "webhook_workflow_job_waiting": "_github_639_webhook_workflow_job_waiting",
+        "webhook_workflow_run_completed": "_github_640_webhook_workflow_run_completed",
+        "webhook_workflow_run_in_progress": "_github_641_webhook_workflow_run_in_progress",
+        "webhook_workflow_run_requested": "_github_642_webhook_workflow_run_requested",
     }
 
     types = {}
@@ -1940,12 +1941,23 @@ def import_github(params=None):
             "importer": t.array(t.string()).optional(),
             "actions": t.array(t.string()).optional(),
             "dependabot": t.array(t.string()).optional(),
+            "domains": t.struct(
+                {
+                    "website": t.array(t.string()).optional(),
+                    "codespaces": t.array(t.string()).optional(),
+                    "copilot": t.array(t.string()).optional(),
+                    "packages": t.array(t.string()).optional(),
+                }
+            ).optional(),
         }
     ).named(renames["api_overview"])
     types["security_and_analysis"] = (
         t.struct(
             {
                 "advanced_security": t.struct(
+                    {"status": t.string().optional()}
+                ).optional(),
+                "dependabot_security_updates": t.struct(
                     {"status": t.string().optional()}
                 ).optional(),
                 "secret_scanning": t.struct(
@@ -2115,45 +2127,6 @@ def import_github(params=None):
             "description": t.string().optional(),
         }
     ).named(renames["organization_simple"])
-    types["organization_programmatic_access_grant_request"] = t.struct(
-        {
-            "id": t.integer(),
-            "reason": t.string().optional(),
-            "owner": t.proxy(renames["simple_user"]),
-            "repository_selection": t.string(),
-            "repositories_url": t.string(),
-            "permissions": t.struct(
-                {
-                    "organization": t.struct({}).optional(),
-                    "repository": t.struct({}).optional(),
-                    "other": t.struct({}).optional(),
-                }
-            ),
-            "created_at": t.string(),
-            "token_expired": t.boolean(),
-            "token_expires_at": t.string().optional(),
-            "token_last_used_at": t.string().optional(),
-        }
-    ).named(renames["organization_programmatic_access_grant_request"])
-    types["organization_programmatic_access_grant"] = t.struct(
-        {
-            "id": t.integer(),
-            "owner": t.proxy(renames["simple_user"]),
-            "repository_selection": t.string(),
-            "repositories_url": t.string(),
-            "permissions": t.struct(
-                {
-                    "organization": t.struct({}).optional(),
-                    "repository": t.struct({}).optional(),
-                    "other": t.struct({}).optional(),
-                }
-            ),
-            "access_granted_at": t.string(),
-            "token_expired": t.boolean(),
-            "token_expires_at": t.string().optional(),
-            "token_last_used_at": t.string().optional(),
-        }
-    ).named(renames["organization_programmatic_access_grant"])
     types["organization_full"] = t.struct(
         {
             "login": t.string(),
@@ -2283,20 +2256,6 @@ def import_github(params=None):
             ).optional(),
         }
     ).named(renames["actions_set_default_workflow_permissions"])
-    types["required_workflow"] = t.struct(
-        {
-            "id": t.number(),
-            "name": t.string(),
-            "path": t.string(),
-            "scope": t.string(),
-            "ref": t.string(),
-            "state": t.string(),
-            "selected_repositories_url": t.string().optional(),
-            "created_at": t.string(),
-            "updated_at": t.string(),
-            "repository": t.proxy(renames["minimal_repository"]),
-        }
-    ).named(renames["required_workflow"])
     types["runner_label"] = t.struct(
         {
             "id": t.integer().optional(),
@@ -2370,13 +2329,16 @@ def import_github(params=None):
     types["code_scanning_analysis_tool_guid"] = (
         t.string().optional().named(renames["code_scanning_analysis_tool_guid"])
     )
-    types["code_scanning_alert_state"] = t.string().named(
-        renames["code_scanning_alert_state"]
+    types["code_scanning_alert_state_query"] = t.string().named(
+        renames["code_scanning_alert_state_query"]
     )
     types["code_scanning_alert_severity"] = t.string().named(
         renames["code_scanning_alert_severity"]
     )
     types["alert_instances_url"] = t.string().named(renames["alert_instances_url"])
+    types["code_scanning_alert_state"] = t.string().named(
+        renames["code_scanning_alert_state"]
+    )
     types["code_scanning_alert_dismissed_reason"] = (
         t.string().optional().named(renames["code_scanning_alert_dismissed_reason"])
     )
@@ -2850,6 +2812,45 @@ def import_github(params=None):
             ).optional(),
         }
     ).named(renames["package_version"])
+    types["organization_programmatic_access_grant_request"] = t.struct(
+        {
+            "id": t.integer(),
+            "reason": t.string().optional(),
+            "owner": t.proxy(renames["simple_user"]),
+            "repository_selection": t.string(),
+            "repositories_url": t.string(),
+            "permissions": t.struct(
+                {
+                    "organization": t.struct({}).optional(),
+                    "repository": t.struct({}).optional(),
+                    "other": t.struct({}).optional(),
+                }
+            ),
+            "created_at": t.string(),
+            "token_expired": t.boolean(),
+            "token_expires_at": t.string().optional(),
+            "token_last_used_at": t.string().optional(),
+        }
+    ).named(renames["organization_programmatic_access_grant_request"])
+    types["organization_programmatic_access_grant"] = t.struct(
+        {
+            "id": t.integer(),
+            "owner": t.proxy(renames["simple_user"]),
+            "repository_selection": t.string(),
+            "repositories_url": t.string(),
+            "permissions": t.struct(
+                {
+                    "organization": t.struct({}).optional(),
+                    "repository": t.struct({}).optional(),
+                    "other": t.struct({}).optional(),
+                }
+            ),
+            "access_granted_at": t.string(),
+            "token_expired": t.boolean(),
+            "token_expires_at": t.string().optional(),
+            "token_last_used_at": t.string().optional(),
+        }
+    ).named(renames["organization_programmatic_access_grant"])
     types["project"] = t.struct(
         {
             "owner_url": t.string(),
@@ -2873,7 +2874,7 @@ def import_github(params=None):
         renames["repository_rule_enforcement"]
     )
     types["repository_ruleset_bypass_actor"] = t.struct(
-        {"actor_id": t.integer().optional(), "actor_type": t.string().optional()}
+        {"actor_id": t.integer(), "actor_type": t.string(), "bypass_mode": t.string()}
     ).named(renames["repository_ruleset_bypass_actor"])
     types["repository_ruleset_conditions"] = t.struct(
         {
@@ -2893,57 +2894,113 @@ def import_github(params=None):
                     "exclude": t.array(t.string()).optional(),
                     "protected": t.boolean().optional(),
                 }
-            ).optional()
+            )
         }
     ).named(renames["repository_ruleset_conditions_repository_name_target"])
-    types["org_ruleset_conditions"] = t.struct(
-        {
-            "ref_name": t.struct(
+    types["repository_ruleset_conditions_repository_id_target"] = t.struct(
+        {"repository_id": t.struct({"repository_ids": t.array(t.integer()).optional()})}
+    ).named(renames["repository_ruleset_conditions_repository_id_target"])
+    types["org_ruleset_conditions"] = t.either(
+        [
+            t.struct(
                 {
-                    "include": t.array(t.string()).optional(),
-                    "exclude": t.array(t.string()).optional(),
+                    "ref_name": t.struct(
+                        {
+                            "include": t.array(t.string()).optional(),
+                            "exclude": t.array(t.string()).optional(),
+                        }
+                    ).optional(),
+                    "repository_name": t.struct(
+                        {
+                            "include": t.array(t.string()).optional(),
+                            "exclude": t.array(t.string()).optional(),
+                            "protected": t.boolean().optional(),
+                        }
+                    ),
                 }
-            ).optional(),
-            "repository_name": t.struct(
+            ),
+            t.struct(
                 {
-                    "include": t.array(t.string()).optional(),
-                    "exclude": t.array(t.string()).optional(),
-                    "protected": t.boolean().optional(),
+                    "ref_name": t.struct(
+                        {
+                            "include": t.array(t.string()).optional(),
+                            "exclude": t.array(t.string()).optional(),
+                        }
+                    ).optional(),
+                    "repository_name": t.struct(
+                        {
+                            "include": t.array(t.string()).optional(),
+                            "exclude": t.array(t.string()).optional(),
+                            "protected": t.boolean().optional(),
+                        }
+                    ).optional(),
+                    "repository_id": t.struct(
+                        {"repository_ids": t.array(t.integer()).optional()}
+                    ),
                 }
-            ).optional(),
-        }
+            ),
+        ]
     ).named(renames["org_ruleset_conditions"])
-    types["repository_rule_creation"] = t.struct({"type": t.string()}).named(
-        renames["repository_rule_creation"]
-    )
+    types["repository_rule_creation"] = t.struct(
+        {
+            "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
+        }
+    ).named(renames["repository_rule_creation"])
     types["repository_rule_update"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {"update_allows_fetch_and_merge": t.boolean()}
             ).optional(),
         }
     ).named(renames["repository_rule_update"])
-    types["repository_rule_deletion"] = t.struct({"type": t.string()}).named(
-        renames["repository_rule_deletion"]
-    )
+    types["repository_rule_deletion"] = t.struct(
+        {
+            "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
+        }
+    ).named(renames["repository_rule_deletion"])
     types["repository_rule_required_linear_history"] = t.struct(
-        {"type": t.string()}
+        {
+            "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
+        }
     ).named(renames["repository_rule_required_linear_history"])
     types["repository_rule_required_deployments"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {"required_deployment_environments": t.array(t.string())}
             ).optional(),
         }
     ).named(renames["repository_rule_required_deployments"])
-    types["repository_rule_required_signatures"] = t.struct({"type": t.string()}).named(
-        renames["repository_rule_required_signatures"]
-    )
+    types["repository_rule_required_signatures"] = t.struct(
+        {
+            "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
+        }
+    ).named(renames["repository_rule_required_signatures"])
     types["repository_rule_pull_request"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {
                     "dismiss_stale_reviews_on_push": t.boolean(),
@@ -2961,6 +3018,9 @@ def import_github(params=None):
     types["repository_rule_required_status_checks"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {
                     "required_status_checks": t.array(
@@ -2973,12 +3033,20 @@ def import_github(params=None):
             ).optional(),
         }
     ).named(renames["repository_rule_required_status_checks"])
-    types["repository_rule_non_fast_forward"] = t.struct({"type": t.string()}).named(
-        renames["repository_rule_non_fast_forward"]
-    )
+    types["repository_rule_non_fast_forward"] = t.struct(
+        {
+            "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
+        }
+    ).named(renames["repository_rule_non_fast_forward"])
     types["repository_rule_commit_message_pattern"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {
                     "name": t.string().optional(),
@@ -2992,6 +3060,9 @@ def import_github(params=None):
     types["repository_rule_commit_author_email_pattern"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {
                     "name": t.string().optional(),
@@ -3005,6 +3076,9 @@ def import_github(params=None):
     types["repository_rule_committer_email_pattern"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {
                     "name": t.string().optional(),
@@ -3018,6 +3092,9 @@ def import_github(params=None):
     types["repository_rule_branch_name_pattern"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {
                     "name": t.string().optional(),
@@ -3031,6 +3108,9 @@ def import_github(params=None):
     types["repository_rule_tag_name_pattern"] = t.struct(
         {
             "type": t.string(),
+            "ruleset_source_type": t.string().optional(),
+            "ruleset_source": t.string().optional(),
+            "ruleset_id": t.integer().optional(),
             "parameters": t.struct(
                 {
                     "name": t.string().optional(),
@@ -3067,13 +3147,16 @@ def import_github(params=None):
             "source_type": t.string().optional(),
             "source": t.string(),
             "enforcement": t.proxy(renames["repository_rule_enforcement"]),
-            "bypass_mode": t.string().optional(),
             "bypass_actors": t.array(
                 t.proxy(renames["repository_ruleset_bypass_actor"])
             ).optional(),
+            "current_user_can_bypass": t.boolean().optional(),
             "node_id": t.string().optional(),
             "_links": t.struct(
-                {"self": t.struct({"href": t.string().optional()}).optional()}
+                {
+                    "self": t.struct({"href": t.string().optional()}).optional(),
+                    "html": t.struct({"href": t.string().optional()}).optional(),
+                }
             ).optional(),
             "conditions": t.union(
                 [
@@ -3082,6 +3165,8 @@ def import_github(params=None):
                 ]
             ).optional(),
             "rules": t.array(t.proxy(renames["repository_rule"])).optional(),
+            "created_at": t.string().optional(),
+            "updated_at": t.string().optional(),
         }
     ).named(renames["repository_ruleset"])
     types["team_simple"] = t.struct(
@@ -3633,6 +3718,9 @@ def import_github(params=None):
             "master_branch": t.string().optional(),
         }
     ).named(renames["team_repository"])
+    types["code_scanning_query_suite"] = t.string().named(
+        renames["code_scanning_query_suite"]
+    )
     types["project_card"] = t.struct(
         {
             "url": t.string(),
@@ -3680,6 +3768,7 @@ def import_github(params=None):
                     "core": t.proxy(renames["rate_limit"]),
                     "graphql": t.proxy(renames["rate_limit"]).optional(),
                     "search": t.proxy(renames["rate_limit"]),
+                    "code_search": t.proxy(renames["rate_limit"]).optional(),
                     "source_import": t.proxy(renames["rate_limit"]).optional(),
                     "integration_manifest": t.proxy(renames["rate_limit"]).optional(),
                     "code_scanning_upload": t.proxy(renames["rate_limit"]).optional(),
@@ -3693,34 +3782,6 @@ def import_github(params=None):
             "rate": t.proxy(renames["rate_limit"]),
         }
     ).named(renames["rate_limit_overview"])
-    types["repo_required_workflow"] = t.struct(
-        {
-            "id": t.integer(),
-            "node_id": t.string(),
-            "name": t.string(),
-            "path": t.string(),
-            "state": t.string(),
-            "source_repository": t.proxy(renames["minimal_repository"]),
-            "created_at": t.string(),
-            "updated_at": t.string(),
-            "url": t.string(),
-            "html_url": t.string(),
-            "badge_url": t.string(),
-        }
-    ).named(renames["repo_required_workflow"])
-    types["workflow_usage"] = t.struct(
-        {
-            "billable": t.struct(
-                {
-                    "UBUNTU": t.struct({"total_ms": t.integer().optional()}).optional(),
-                    "MACOS": t.struct({"total_ms": t.integer().optional()}).optional(),
-                    "WINDOWS": t.struct(
-                        {"total_ms": t.integer().optional()}
-                    ).optional(),
-                }
-            )
-        }
-    ).named(renames["workflow_usage"])
     types["code_of_conduct_simple"] = t.struct(
         {
             "url": t.string(),
@@ -4182,6 +4243,19 @@ def import_github(params=None):
             "deleted_at": t.string().optional(),
         }
     ).named(renames["workflow"])
+    types["workflow_usage"] = t.struct(
+        {
+            "billable": t.struct(
+                {
+                    "UBUNTU": t.struct({"total_ms": t.integer().optional()}).optional(),
+                    "MACOS": t.struct({"total_ms": t.integer().optional()}).optional(),
+                    "WINDOWS": t.struct(
+                        {"total_ms": t.integer().optional()}
+                    ).optional(),
+                }
+            )
+        }
+    ).named(renames["workflow_usage"])
     types["autolink"] = t.struct(
         {
             "id": t.integer(),
@@ -4756,7 +4830,11 @@ def import_github(params=None):
         }
     ).named(renames["code_scanning_default_setup"])
     types["code_scanning_default_setup_update"] = t.struct(
-        {"state": t.string(), "query_suite": t.string().optional()}
+        {
+            "state": t.string(),
+            "query_suite": t.proxy(renames["code_scanning_query_suite"]).optional(),
+            "languages": t.array(t.string()).optional(),
+        }
     ).named(renames["code_scanning_default_setup_update"])
     types["code_scanning_default_setup_update_response"] = t.struct(
         {"run_id": t.integer().optional(), "run_url": t.string().optional()}
@@ -8261,6 +8339,7 @@ def import_github(params=None):
                     "pull_request_reviews_enforcement_level": t.string(),
                     "repository_id": t.integer(),
                     "require_code_owner_review": t.boolean(),
+                    "require_last_push_approval": t.boolean().optional(),
                     "required_approving_review_count": t.integer(),
                     "required_conversation_resolution_level": t.string(),
                     "required_deployments_enforcement_level": t.string(),
@@ -8300,6 +8379,7 @@ def import_github(params=None):
                     "pull_request_reviews_enforcement_level": t.string(),
                     "repository_id": t.integer(),
                     "require_code_owner_review": t.boolean(),
+                    "require_last_push_approval": t.boolean().optional(),
                     "required_approving_review_count": t.integer(),
                     "required_conversation_resolution_level": t.string(),
                     "required_deployments_enforcement_level": t.string(),
@@ -8364,6 +8444,7 @@ def import_github(params=None):
                     "pull_request_reviews_enforcement_level": t.string(),
                     "repository_id": t.integer(),
                     "require_code_owner_review": t.boolean(),
+                    "require_last_push_approval": t.boolean().optional(),
                     "required_approving_review_count": t.integer(),
                     "required_conversation_resolution_level": t.string(),
                     "required_deployments_enforcement_level": t.string(),
@@ -20569,6 +20650,7 @@ def import_github(params=None):
     types["webhook_projects_v2_project_closed"] = t.struct(
         {
             "action": t.string(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "organization": t.proxy(renames["organization_simple"]),
             "projects_v2": t.proxy(renames["projects_v2"]),
             "sender": t.proxy(renames["simple_user"]),
@@ -20577,6 +20659,7 @@ def import_github(params=None):
     types["webhook_projects_v2_project_created"] = t.struct(
         {
             "action": t.string(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "organization": t.proxy(renames["organization_simple"]),
             "projects_v2": t.proxy(renames["projects_v2"]),
             "sender": t.proxy(renames["simple_user"]),
@@ -20585,6 +20668,7 @@ def import_github(params=None):
     types["webhook_projects_v2_project_deleted"] = t.struct(
         {
             "action": t.string(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "organization": t.proxy(renames["organization_simple"]),
             "projects_v2": t.proxy(renames["projects_v2"]),
             "sender": t.proxy(renames["simple_user"]),
@@ -20609,6 +20693,7 @@ def import_github(params=None):
                     ).optional(),
                 }
             ),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "organization": t.proxy(renames["organization_simple"]),
             "projects_v2": t.proxy(renames["projects_v2"]),
             "sender": t.proxy(renames["simple_user"]),
@@ -20732,6 +20817,7 @@ def import_github(params=None):
     types["webhook_projects_v2_project_reopened"] = t.struct(
         {
             "action": t.string(),
+            "installation": t.proxy(renames["simple_installation"]).optional(),
             "organization": t.proxy(renames["organization_simple"]),
             "projects_v2": t.proxy(renames["projects_v2"]),
             "sender": t.proxy(renames["simple_user"]),
@@ -46525,112 +46611,6 @@ def import_github(params=None):
         t.struct({"since": t.integer(), "per_page": t.integer()}),
         t.array(t.proxy(renames["organization_simple"])),
     )
-    functions["orgs_list_pat_grant_requests"] = github.get(
-        "/organizations/{org}/personal-access-token-requests",
-        t.struct(
-            {
-                "org": t.string(),
-                "per_page": t.integer(),
-                "page": t.integer(),
-                "sort": t.string(),
-                "direction": t.string(),
-                "owner": t.array(t.string()),
-                "repository": t.string(),
-                "permission": t.string(),
-                "last_used_before": t.string(),
-                "last_used_after": t.string(),
-            }
-        ),
-        t.array(
-            t.proxy(renames["organization_programmatic_access_grant_request"])
-        ).optional(),
-    )
-    functions["orgs_review_pat_grant_requests_in_bulk"] = github.post(
-        "/organizations/{org}/personal-access-token-requests",
-        t.struct(
-            {
-                "org": t.string(),
-                "pat_request_ids": t.array(t.integer()).optional(),
-                "action": t.string(),
-                "reason": t.string().optional(),
-            }
-        ),
-        t.struct({}).optional(),
-        content_type="application/json",
-        body_fields=("pat_request_ids", "action", "reason"),
-    )
-    functions["orgs_review_pat_grant_request"] = github.post(
-        "/organizations/{org}/personal-access-token-requests/{pat_request_id}",
-        t.struct(
-            {
-                "org": t.string(),
-                "pat_request_id": t.integer(),
-                "action": t.string(),
-                "reason": t.string().optional(),
-            }
-        ),
-        t.boolean().optional(),
-        content_type="application/json",
-        body_fields=("action", "reason"),
-    )
-    functions["orgs_list_pat_grant_request_repositories"] = github.get(
-        "/organizations/{org}/personal-access-token-requests/{pat_request_id}/repositories",
-        t.struct(
-            {
-                "org": t.string(),
-                "pat_request_id": t.integer(),
-                "per_page": t.integer(),
-                "page": t.integer(),
-            }
-        ),
-        t.array(t.proxy(renames["minimal_repository"])).optional(),
-    )
-    functions["orgs_list_pat_grants"] = github.get(
-        "/organizations/{org}/personal-access-tokens",
-        t.struct(
-            {
-                "org": t.string(),
-                "per_page": t.integer(),
-                "page": t.integer(),
-                "sort": t.string(),
-                "direction": t.string(),
-                "owner": t.array(t.string()),
-                "repository": t.string(),
-                "permission": t.string(),
-                "last_used_before": t.string(),
-                "last_used_after": t.string(),
-            }
-        ),
-        t.array(t.proxy(renames["organization_programmatic_access_grant"])).optional(),
-    )
-    functions["orgs_update_pat_accesses"] = github.post(
-        "/organizations/{org}/personal-access-tokens",
-        t.struct(
-            {"org": t.string(), "action": t.string(), "pat_ids": t.array(t.integer())}
-        ),
-        t.struct({}).optional(),
-        content_type="application/json",
-        body_fields=("action", "pat_ids"),
-    )
-    functions["orgs_update_pat_access"] = github.post(
-        "/organizations/{org}/personal-access-tokens/{pat_id}",
-        t.struct({"org": t.string(), "pat_id": t.integer(), "action": t.string()}),
-        t.boolean().optional(),
-        content_type="application/json",
-        body_fields=("action",),
-    )
-    functions["orgs_list_pat_grant_repositories"] = github.get(
-        "/organizations/{org}/personal-access-tokens/{pat_id}/repositories",
-        t.struct(
-            {
-                "org": t.string(),
-                "pat_id": t.integer(),
-                "per_page": t.integer(),
-                "page": t.integer(),
-            }
-        ),
-        t.array(t.proxy(renames["minimal_repository"])).optional(),
-    )
     functions["orgs_get"] = github.get(
         "/orgs/{org}",
         t.struct({"org": t.string()}),
@@ -46841,112 +46821,6 @@ def import_github(params=None):
             "can_approve_pull_request_reviews",
         ),
     )
-    functions["actions_list_required_workflows"] = github.get(
-        "/orgs/{org}/actions/required_workflows",
-        t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
-        t.struct(
-            {
-                "total_count": t.integer(),
-                "required_workflows": t.array(t.proxy(renames["required_workflow"])),
-            }
-        ),
-    )
-    functions["actions_create_required_workflow"] = github.post(
-        "/orgs/{org}/actions/required_workflows",
-        t.struct(
-            {
-                "org": t.string(),
-                "workflow_file_path": t.string(),
-                "repository_id": t.string(),
-                "scope": t.string().optional(),
-                "selected_repository_ids": t.array(t.integer()).optional(),
-            }
-        ),
-        t.proxy(renames["required_workflow"]),
-        content_type="application/json",
-        body_fields=(
-            "workflow_file_path",
-            "repository_id",
-            "scope",
-            "selected_repository_ids",
-        ),
-    )
-    functions["actions_get_required_workflow"] = github.get(
-        "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
-        t.struct({"org": t.string(), "required_workflow_id": t.integer()}),
-        t.proxy(renames["required_workflow"]),
-    )
-    functions["actions_update_required_workflow"] = github.patch(
-        "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
-        t.struct(
-            {
-                "org": t.string(),
-                "required_workflow_id": t.integer(),
-                "workflow_file_path": t.string().optional(),
-                "repository_id": t.string().optional(),
-                "scope": t.string().optional(),
-                "selected_repository_ids": t.array(t.integer()).optional(),
-            }
-        ),
-        t.proxy(renames["required_workflow"]),
-        content_type="application/json",
-        body_fields=(
-            "workflow_file_path",
-            "repository_id",
-            "scope",
-            "selected_repository_ids",
-        ),
-    )
-    functions["actions_delete_required_workflow"] = github.delete(
-        "/orgs/{org}/actions/required_workflows/{required_workflow_id}",
-        t.struct({"org": t.string(), "required_workflow_id": t.integer()}),
-        t.boolean(),
-    )
-    functions["actions_list_selected_repositories_required_workflow"] = github.get(
-        "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories",
-        t.struct({"org": t.string(), "required_workflow_id": t.integer()}),
-        t.struct(
-            {
-                "total_count": t.number(),
-                "repositories": t.array(t.proxy(renames["repository"])),
-            }
-        ).optional(),
-    )
-    functions["actions_set_selected_repos_to_required_workflow"] = github.put(
-        "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories",
-        t.struct(
-            {
-                "org": t.string(),
-                "required_workflow_id": t.integer(),
-                "selected_repository_ids": t.array(t.integer()),
-            }
-        ),
-        t.boolean(),
-        content_type="application/json",
-        body_fields=("selected_repository_ids",),
-    )
-    functions["actions_add_selected_repo_to_required_workflow"] = github.put(
-        "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories/{repository_id}",
-        t.struct(
-            {
-                "org": t.string(),
-                "required_workflow_id": t.integer(),
-                "repository_id": t.integer(),
-            }
-        ),
-        t.boolean().optional(),
-    )
-    functions["actions_remove_selected_repo_from_required_workflow"] = github.delete(
-        "/orgs/{org}/actions/required_workflows/{required_workflow_id}/repositories/{repository_id}",
-        t.struct(
-            {
-                "org": t.string(),
-                "required_workflow_id": t.integer(),
-                "repository_id": t.integer(),
-            }
-        ),
-        t.boolean().optional(),
-    )
     functions["actions_list_self_hosted_runners_for_org"] = github.get(
         "/orgs/{org}/actions/runners",
         t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
@@ -46958,6 +46832,21 @@ def import_github(params=None):
         "/orgs/{org}/actions/runners/downloads",
         t.struct({"org": t.string()}),
         t.array(t.proxy(renames["runner_application"])),
+    )
+    functions["actions_generate_runner_jitconfig_for_org"] = github.post(
+        "/orgs/{org}/actions/runners/generate-jitconfig",
+        t.struct(
+            {
+                "org": t.string(),
+                "name": t.string(),
+                "runner_group_id": t.integer(),
+                "labels": t.array(t.string()),
+                "work_folder": t.string().optional(),
+            }
+        ),
+        t.struct({}).optional(),
+        content_type="application/json",
+        body_fields=("name", "runner_group_id", "labels", "work_folder"),
     )
     functions["actions_create_registration_token_for_org"] = github.post(
         "/orgs/{org}/actions/runners/registration-token",
@@ -47213,7 +47102,7 @@ def import_github(params=None):
                 "page": t.integer(),
                 "per_page": t.integer(),
                 "direction": t.string(),
-                "state": t.proxy(renames["code_scanning_alert_state"]),
+                "state": t.proxy(renames["code_scanning_alert_state_query"]),
                 "sort": t.string(),
                 "severity": t.proxy(renames["code_scanning_alert_severity"]),
             }
@@ -47974,6 +47863,112 @@ def import_github(params=None):
         ),
         t.boolean().optional(),
     )
+    functions["orgs_list_pat_grant_requests"] = github.get(
+        "/orgs/{org}/personal-access-token-requests",
+        t.struct(
+            {
+                "org": t.string(),
+                "per_page": t.integer(),
+                "page": t.integer(),
+                "sort": t.string(),
+                "direction": t.string(),
+                "owner": t.array(t.string()),
+                "repository": t.string(),
+                "permission": t.string(),
+                "last_used_before": t.string(),
+                "last_used_after": t.string(),
+            }
+        ),
+        t.array(
+            t.proxy(renames["organization_programmatic_access_grant_request"])
+        ).optional(),
+    )
+    functions["orgs_review_pat_grant_requests_in_bulk"] = github.post(
+        "/orgs/{org}/personal-access-token-requests",
+        t.struct(
+            {
+                "org": t.string(),
+                "pat_request_ids": t.array(t.integer()).optional(),
+                "action": t.string(),
+                "reason": t.string().optional(),
+            }
+        ),
+        t.struct({}).optional(),
+        content_type="application/json",
+        body_fields=("pat_request_ids", "action", "reason"),
+    )
+    functions["orgs_review_pat_grant_request"] = github.post(
+        "/orgs/{org}/personal-access-token-requests/{pat_request_id}",
+        t.struct(
+            {
+                "org": t.string(),
+                "pat_request_id": t.integer(),
+                "action": t.string(),
+                "reason": t.string().optional(),
+            }
+        ),
+        t.boolean().optional(),
+        content_type="application/json",
+        body_fields=("action", "reason"),
+    )
+    functions["orgs_list_pat_grant_request_repositories"] = github.get(
+        "/orgs/{org}/personal-access-token-requests/{pat_request_id}/repositories",
+        t.struct(
+            {
+                "org": t.string(),
+                "pat_request_id": t.integer(),
+                "per_page": t.integer(),
+                "page": t.integer(),
+            }
+        ),
+        t.array(t.proxy(renames["minimal_repository"])).optional(),
+    )
+    functions["orgs_list_pat_grants"] = github.get(
+        "/orgs/{org}/personal-access-tokens",
+        t.struct(
+            {
+                "org": t.string(),
+                "per_page": t.integer(),
+                "page": t.integer(),
+                "sort": t.string(),
+                "direction": t.string(),
+                "owner": t.array(t.string()),
+                "repository": t.string(),
+                "permission": t.string(),
+                "last_used_before": t.string(),
+                "last_used_after": t.string(),
+            }
+        ),
+        t.array(t.proxy(renames["organization_programmatic_access_grant"])).optional(),
+    )
+    functions["orgs_update_pat_accesses"] = github.post(
+        "/orgs/{org}/personal-access-tokens",
+        t.struct(
+            {"org": t.string(), "action": t.string(), "pat_ids": t.array(t.integer())}
+        ),
+        t.struct({}).optional(),
+        content_type="application/json",
+        body_fields=("action", "pat_ids"),
+    )
+    functions["orgs_update_pat_access"] = github.post(
+        "/orgs/{org}/personal-access-tokens/{pat_id}",
+        t.struct({"org": t.string(), "pat_id": t.integer(), "action": t.string()}),
+        t.boolean().optional(),
+        content_type="application/json",
+        body_fields=("action",),
+    )
+    functions["orgs_list_pat_grant_repositories"] = github.get(
+        "/orgs/{org}/personal-access-tokens/{pat_id}/repositories",
+        t.struct(
+            {
+                "org": t.string(),
+                "pat_id": t.integer(),
+                "per_page": t.integer(),
+                "page": t.integer(),
+            }
+        ),
+        t.array(t.proxy(renames["minimal_repository"])).optional(),
+    )
     functions["projects_list_for_org"] = github.get(
         "/orgs/{org}/projects",
         t.struct(
@@ -48091,7 +48086,7 @@ def import_github(params=None):
     )
     functions["repos_get_org_rulesets"] = github.get(
         "/orgs/{org}/rulesets",
-        t.struct({"org": t.string()}),
+        t.struct({"org": t.string(), "per_page": t.integer(), "page": t.integer()}),
         t.array(t.proxy(renames["repository_ruleset"])).optional(),
     )
     functions["repos_create_org_ruleset"] = github.post(
@@ -48806,47 +48801,6 @@ def import_github(params=None):
         t.struct({}),
         t.proxy(renames["rate_limit_overview"]).optional(),
     )
-    functions["actions_list_repo_required_workflows"] = github.get(
-        "/repos/{org}/{repo}/actions/required_workflows",
-        t.struct(
-            {
-                "org": t.string(),
-                "repo": t.string(),
-                "per_page": t.integer(),
-                "page": t.integer(),
-            }
-        ),
-        t.struct(
-            {
-                "total_count": t.integer(),
-                "required_workflows": t.array(
-                    t.proxy(renames["repo_required_workflow"])
-                ),
-            }
-        ).optional(),
-    )
-    functions["actions_get_repo_required_workflow"] = github.get(
-        "/repos/{org}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}",
-        t.struct(
-            {
-                "org": t.string(),
-                "repo": t.string(),
-                "required_workflow_id_for_repo": t.integer(),
-            }
-        ),
-        t.proxy(renames["repo_required_workflow"]).optional(),
-    )
-    functions["actions_get_repo_required_workflow_usage"] = github.get(
-        "/repos/{org}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}/timing",
-        t.struct(
-            {
-                "org": t.string(),
-                "repo": t.string(),
-                "required_workflow_id_for_repo": t.integer(),
-            }
-        ),
-        t.proxy(renames["workflow_usage"]).optional(),
-    )
     functions["repos_get"] = github.get(
         "/repos/{owner}/{repo}",
         t.struct({"owner": t.string(), "repo": t.string()}),
@@ -49168,32 +49122,6 @@ def import_github(params=None):
             "can_approve_pull_request_reviews",
         ),
     )
-    functions["actions_list_required_workflow_runs"] = github.get(
-        "/repos/{owner}/{repo}/actions/required_workflows/{required_workflow_id_for_repo}/runs",
-        t.struct(
-            {
-                "owner": t.string(),
-                "repo": t.string(),
-                "required_workflow_id_for_repo": t.integer(),
-                "actor": t.string(),
-                "branch": t.string(),
-                "event": t.string(),
-                "status": t.string(),
-                "per_page": t.integer(),
-                "page": t.integer(),
-                "created": t.string(),
-                "exclude_pull_requests": t.boolean(),
-                "check_suite_id": t.integer(),
-                "head_sha": t.string(),
-            }
-        ),
-        t.struct(
-            {
-                "total_count": t.integer(),
-                "workflow_runs": t.array(t.proxy(renames["workflow_run"])),
-            }
-        ),
-    )
     functions["actions_list_self_hosted_runners_for_repo"] = github.get(
         "/repos/{owner}/{repo}/actions/runners",
         t.struct(
@@ -49212,6 +49140,22 @@ def import_github(params=None):
         "/repos/{owner}/{repo}/actions/runners/downloads",
         t.struct({"owner": t.string(), "repo": t.string()}),
         t.array(t.proxy(renames["runner_application"])),
+    )
+    functions["actions_generate_runner_jitconfig_for_repo"] = github.post(
+        "/repos/{owner}/{repo}/actions/runners/generate-jitconfig",
+        t.struct(
+            {
+                "owner": t.string(),
+                "repo": t.string(),
+                "name": t.string(),
+                "runner_group_id": t.integer(),
+                "labels": t.array(t.string()),
+                "work_folder": t.string().optional(),
+            }
+        ),
+        t.struct({}).optional(),
+        content_type="application/json",
+        body_fields=("name", "runner_group_id", "labels", "work_folder"),
     )
     functions["actions_create_registration_token_for_repo"] = github.post(
         "/repos/{owner}/{repo}/actions/runners/registration-token",
@@ -50081,7 +50025,7 @@ def import_github(params=None):
                 "ref": t.proxy(renames["code_scanning_ref"]),
                 "direction": t.string(),
                 "sort": t.string(),
-                "state": t.proxy(renames["code_scanning_alert_state"]),
+                "state": t.proxy(renames["code_scanning_alert_state_query"]),
                 "severity": t.proxy(renames["code_scanning_alert_severity"]),
             }
         ),
@@ -50189,12 +50133,13 @@ def import_github(params=None):
                 "owner": t.string(),
                 "repo": t.string(),
                 "state": t.string(),
-                "query_suite": t.string().optional(),
+                "query_suite": t.proxy(renames["code_scanning_query_suite"]).optional(),
+                "languages": t.array(t.string()).optional(),
             }
         ),
         t.proxy(renames["empty_object"]).optional(),
         content_type="application/json",
-        body_fields=("state", "query_suite"),
+        body_fields=("state", "query_suite", "languages"),
     )
     functions["code_scanning_upload_sarif"] = github.post(
         "/repos/{owner}/{repo}/code-scanning/sarifs",
@@ -53038,7 +52983,7 @@ def import_github(params=None):
     functions["repos_get_release"] = github.get(
         "/repos/{owner}/{repo}/releases/{release_id}",
         t.struct({"owner": t.string(), "repo": t.string(), "release_id": t.integer()}),
-        t.proxy(renames["release"]).optional(),
+        t.proxy(renames["release"]),
     )
     functions["repos_update_release"] = github.patch(
         "/repos/{owner}/{repo}/releases/{release_id}",
@@ -53130,13 +53075,27 @@ def import_github(params=None):
     )
     functions["repos_get_branch_rules"] = github.get(
         "/repos/{owner}/{repo}/rules/branches/{branch}",
-        t.struct({"owner": t.string(), "repo": t.string(), "branch": t.string()}),
+        t.struct(
+            {
+                "owner": t.string(),
+                "repo": t.string(),
+                "branch": t.string(),
+                "per_page": t.integer(),
+                "page": t.integer(),
+            }
+        ),
         t.array(t.proxy(renames["repository_rule"])),
     )
     functions["repos_get_repo_rulesets"] = github.get(
         "/repos/{owner}/{repo}/rulesets",
         t.struct(
-            {"owner": t.string(), "repo": t.string(), "includes_parents": t.boolean()}
+            {
+                "owner": t.string(),
+                "repo": t.string(),
+                "per_page": t.integer(),
+                "page": t.integer(),
+                "includes_parents": t.boolean(),
+            }
         ),
         t.array(t.proxy(renames["repository_ruleset"])).optional(),
     )
@@ -53149,7 +53108,6 @@ def import_github(params=None):
                 "name": t.string(),
                 "target": t.string().optional(),
                 "enforcement": t.proxy(renames["repository_rule_enforcement"]),
-                "bypass_mode": t.string().optional(),
                 "bypass_actors": t.array(
                     t.proxy(renames["repository_ruleset_bypass_actor"])
                 ).optional(),
@@ -53165,7 +53123,6 @@ def import_github(params=None):
             "name",
             "target",
             "enforcement",
-            "bypass_mode",
             "bypass_actors",
             "conditions",
             "rules",
@@ -53195,7 +53152,6 @@ def import_github(params=None):
                 "enforcement": t.proxy(
                     renames["repository_rule_enforcement"]
                 ).optional(),
-                "bypass_mode": t.string().optional(),
                 "bypass_actors": t.array(
                     t.proxy(renames["repository_ruleset_bypass_actor"])
                 ).optional(),
@@ -53211,7 +53167,6 @@ def import_github(params=None):
             "name",
             "target",
             "enforcement",
-            "bypass_mode",
             "bypass_actors",
             "conditions",
             "rules",
@@ -53595,7 +53550,7 @@ def import_github(params=None):
                 "page": t.integer(),
             }
         ),
-        t.array(t.proxy(renames["team"])),
+        t.array(t.proxy(renames["team"])).optional(),
     )
     functions["repos_get_all_topics"] = github.get(
         "/repos/{owner}/{repo}/topics",

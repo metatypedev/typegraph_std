@@ -1,8 +1,8 @@
 from typegraph.runtimes.http import HTTPRuntime
 from box import Box
+from typegraph.utils.sanitizers import inject_params
 from typegraph.importers.base.importer import Import
 from typegraph import t
-from typegraph.utils.sanitizers import inject_params
 
 
 def import_spec3_sdk(params=None):
@@ -40,7 +40,7 @@ def import_spec3_sdk(params=None):
         "apple_pay_domain": "_spec3_sdk_28_apple_pay_domain",
         "application": "_spec3_sdk_29_application",
         "application_fee": "_spec3_sdk_30_application_fee",
-        "apps.secret": "_spec3_sdk_31_apps.secret",
+        "apps_secret": "_spec3_sdk_31_apps_secret",
         "automatic_tax": "_spec3_sdk_32_automatic_tax",
         "balance": "_spec3_sdk_33_balance",
         "balance_amount": "_spec3_sdk_34_balance_amount",
@@ -57,8 +57,8 @@ def import_spec3_sdk(params=None):
         "bank_connections_resource_link_account_session_filters": "_spec3_sdk_45_bank_connections_resource_link_account_session_filters",
         "bank_connections_resource_ownership_refresh": "_spec3_sdk_46_bank_connections_resource_ownership_refresh",
         "billing_details": "_spec3_sdk_47_billing_details",
-        "billing_portal.configuration": "_spec3_sdk_48_billing_portal.configuration",
-        "billing_portal.session": "_spec3_sdk_49_billing_portal.session",
+        "billing_portal_configuration": "_spec3_sdk_48_billing_portal_configuration",
+        "billing_portal_session": "_spec3_sdk_49_billing_portal_session",
         "cancellation_details": "_spec3_sdk_50_cancellation_details",
         "capability": "_spec3_sdk_51_capability",
         "card": "_spec3_sdk_52_card",
@@ -69,7 +69,7 @@ def import_spec3_sdk(params=None):
         "charge_fraud_details": "_spec3_sdk_57_charge_fraud_details",
         "charge_outcome": "_spec3_sdk_58_charge_outcome",
         "charge_transfer_data": "_spec3_sdk_59_charge_transfer_data",
-        "checkout.session": "_spec3_sdk_60_checkout.session",
+        "checkout_session": "_spec3_sdk_60_checkout_session",
         "checkout_acss_debit_mandate_options": "_spec3_sdk_61_checkout_acss_debit_mandate_options",
         "checkout_acss_debit_payment_method_options": "_spec3_sdk_62_checkout_acss_debit_payment_method_options",
         "checkout_affirm_payment_method_options": "_spec3_sdk_63_checkout_affirm_payment_method_options",
@@ -121,693 +121,698 @@ def import_spec3_sdk(params=None):
         "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer": "_spec3_sdk_109_customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_eu_bank_transfer",
         "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_gb_bank_transfer": "_spec3_sdk_110_customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_gb_bank_transfer",
         "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transfer": "_spec3_sdk_111_customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transfer",
-        "customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction": "_spec3_sdk_112_customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction",
-        "customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction": "_spec3_sdk_113_customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction",
-        "customer_balance_transaction": "_spec3_sdk_114_customer_balance_transaction",
-        "customer_cash_balance_transaction": "_spec3_sdk_115_customer_cash_balance_transaction",
-        "customer_tax": "_spec3_sdk_116_customer_tax",
-        "customer_tax_location": "_spec3_sdk_117_customer_tax_location",
-        "deleted_account": "_spec3_sdk_118_deleted_account",
-        "deleted_apple_pay_domain": "_spec3_sdk_119_deleted_apple_pay_domain",
-        "deleted_application": "_spec3_sdk_120_deleted_application",
-        "deleted_bank_account": "_spec3_sdk_121_deleted_bank_account",
-        "deleted_card": "_spec3_sdk_122_deleted_card",
-        "deleted_coupon": "_spec3_sdk_123_deleted_coupon",
-        "deleted_customer": "_spec3_sdk_124_deleted_customer",
-        "deleted_discount": "_spec3_sdk_125_deleted_discount",
-        "deleted_external_account": "_spec3_sdk_126_deleted_external_account",
-        "deleted_invoice": "_spec3_sdk_127_deleted_invoice",
-        "deleted_invoiceitem": "_spec3_sdk_128_deleted_invoiceitem",
-        "deleted_payment_source": "_spec3_sdk_129_deleted_payment_source",
-        "deleted_person": "_spec3_sdk_130_deleted_person",
-        "deleted_plan": "_spec3_sdk_131_deleted_plan",
-        "deleted_price": "_spec3_sdk_132_deleted_price",
-        "deleted_product": "_spec3_sdk_133_deleted_product",
-        "deleted_radar.value_list": "_spec3_sdk_134_deleted_radar.value_list",
-        "deleted_radar.value_list_item": "_spec3_sdk_135_deleted_radar.value_list_item",
-        "deleted_subscription_item": "_spec3_sdk_136_deleted_subscription_item",
-        "deleted_tax_id": "_spec3_sdk_137_deleted_tax_id",
-        "deleted_terminal.configuration": "_spec3_sdk_138_deleted_terminal.configuration",
-        "deleted_terminal.location": "_spec3_sdk_139_deleted_terminal.location",
-        "deleted_terminal.reader": "_spec3_sdk_140_deleted_terminal.reader",
-        "deleted_test_helpers.test_clock": "_spec3_sdk_141_deleted_test_helpers.test_clock",
-        "deleted_webhook_endpoint": "_spec3_sdk_142_deleted_webhook_endpoint",
-        "discount": "_spec3_sdk_143_discount",
-        "discounts_resource_discount_amount": "_spec3_sdk_144_discounts_resource_discount_amount",
-        "dispute": "_spec3_sdk_145_dispute",
-        "dispute_evidence": "_spec3_sdk_146_dispute_evidence",
-        "dispute_evidence_details": "_spec3_sdk_147_dispute_evidence_details",
-        "email_sent": "_spec3_sdk_148_email_sent",
-        "ephemeral_key": "_spec3_sdk_149_ephemeral_key",
-        "error": "_spec3_sdk_150_error",
-        "event": "_spec3_sdk_151_event",
-        "exchange_rate": "_spec3_sdk_152_exchange_rate",
-        "external_account": "_spec3_sdk_153_external_account",
-        "external_account_requirements": "_spec3_sdk_154_external_account_requirements",
-        "fee": "_spec3_sdk_155_fee",
-        "fee_refund": "_spec3_sdk_156_fee_refund",
-        "file": "_spec3_sdk_157_file",
-        "file_link": "_spec3_sdk_158_file_link",
-        "financial_connections.account": "_spec3_sdk_159_financial_connections.account",
-        "financial_connections.account_owner": "_spec3_sdk_160_financial_connections.account_owner",
-        "financial_connections.account_ownership": "_spec3_sdk_161_financial_connections.account_ownership",
-        "financial_connections.session": "_spec3_sdk_162_financial_connections.session",
-        "financial_reporting_finance_report_run_run_parameters": "_spec3_sdk_163_financial_reporting_finance_report_run_run_parameters",
-        "funding_instructions": "_spec3_sdk_164_funding_instructions",
-        "funding_instructions_bank_transfer": "_spec3_sdk_165_funding_instructions_bank_transfer",
-        "funding_instructions_bank_transfer_financial_address": "_spec3_sdk_166_funding_instructions_bank_transfer_financial_address",
-        "funding_instructions_bank_transfer_iban_record": "_spec3_sdk_167_funding_instructions_bank_transfer_iban_record",
-        "funding_instructions_bank_transfer_sort_code_record": "_spec3_sdk_168_funding_instructions_bank_transfer_sort_code_record",
-        "funding_instructions_bank_transfer_spei_record": "_spec3_sdk_169_funding_instructions_bank_transfer_spei_record",
-        "funding_instructions_bank_transfer_zengin_record": "_spec3_sdk_170_funding_instructions_bank_transfer_zengin_record",
-        "gelato_data_document_report_date_of_birth": "_spec3_sdk_171_gelato_data_document_report_date_of_birth",
-        "gelato_data_document_report_expiration_date": "_spec3_sdk_172_gelato_data_document_report_expiration_date",
-        "gelato_data_document_report_issued_date": "_spec3_sdk_173_gelato_data_document_report_issued_date",
-        "gelato_data_id_number_report_date": "_spec3_sdk_174_gelato_data_id_number_report_date",
-        "gelato_data_verified_outputs_date": "_spec3_sdk_175_gelato_data_verified_outputs_date",
-        "gelato_document_report": "_spec3_sdk_176_gelato_document_report",
-        "gelato_document_report_error": "_spec3_sdk_177_gelato_document_report_error",
-        "gelato_id_number_report": "_spec3_sdk_178_gelato_id_number_report",
-        "gelato_id_number_report_error": "_spec3_sdk_179_gelato_id_number_report_error",
-        "gelato_report_document_options": "_spec3_sdk_180_gelato_report_document_options",
-        "gelato_report_id_number_options": "_spec3_sdk_181_gelato_report_id_number_options",
-        "gelato_selfie_report": "_spec3_sdk_182_gelato_selfie_report",
-        "gelato_selfie_report_error": "_spec3_sdk_183_gelato_selfie_report_error",
-        "gelato_session_document_options": "_spec3_sdk_184_gelato_session_document_options",
-        "gelato_session_id_number_options": "_spec3_sdk_185_gelato_session_id_number_options",
-        "gelato_session_last_error": "_spec3_sdk_186_gelato_session_last_error",
-        "gelato_verification_report_options": "_spec3_sdk_187_gelato_verification_report_options",
-        "gelato_verification_session_options": "_spec3_sdk_188_gelato_verification_session_options",
-        "gelato_verified_outputs": "_spec3_sdk_189_gelato_verified_outputs",
-        "identity.verification_report": "_spec3_sdk_190_identity.verification_report",
-        "identity.verification_session": "_spec3_sdk_191_identity.verification_session",
-        "inbound_transfers": "_spec3_sdk_192_inbound_transfers",
-        "inbound_transfers_payment_method_details_us_bank_account": "_spec3_sdk_193_inbound_transfers_payment_method_details_us_bank_account",
-        "invoice": "_spec3_sdk_194_invoice",
-        "invoice_installments_card": "_spec3_sdk_195_invoice_installments_card",
-        "invoice_item_threshold_reason": "_spec3_sdk_196_invoice_item_threshold_reason",
-        "invoice_line_item_period": "_spec3_sdk_197_invoice_line_item_period",
-        "invoice_mandate_options_card": "_spec3_sdk_198_invoice_mandate_options_card",
-        "invoice_payment_method_options_acss_debit": "_spec3_sdk_199_invoice_payment_method_options_acss_debit",
-        "invoice_payment_method_options_acss_debit_mandate_options": "_spec3_sdk_200_invoice_payment_method_options_acss_debit_mandate_options",
-        "invoice_payment_method_options_bancontact": "_spec3_sdk_201_invoice_payment_method_options_bancontact",
-        "invoice_payment_method_options_card": "_spec3_sdk_202_invoice_payment_method_options_card",
-        "invoice_payment_method_options_customer_balance": "_spec3_sdk_203_invoice_payment_method_options_customer_balance",
-        "invoice_payment_method_options_customer_balance_bank_transfer": "_spec3_sdk_204_invoice_payment_method_options_customer_balance_bank_transfer",
-        "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer": "_spec3_sdk_205_invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer",
-        "invoice_payment_method_options_konbini": "_spec3_sdk_206_invoice_payment_method_options_konbini",
-        "invoice_payment_method_options_us_bank_account": "_spec3_sdk_207_invoice_payment_method_options_us_bank_account",
-        "invoice_payment_method_options_us_bank_account_linked_account_options": "_spec3_sdk_208_invoice_payment_method_options_us_bank_account_linked_account_options",
-        "invoice_setting_custom_field": "_spec3_sdk_209_invoice_setting_custom_field",
-        "invoice_setting_customer_setting": "_spec3_sdk_210_invoice_setting_customer_setting",
-        "invoice_setting_phase_setting": "_spec3_sdk_211_invoice_setting_phase_setting",
-        "invoice_setting_quote_setting": "_spec3_sdk_212_invoice_setting_quote_setting",
-        "invoice_setting_rendering_options": "_spec3_sdk_213_invoice_setting_rendering_options",
-        "invoice_setting_subscription_schedule_setting": "_spec3_sdk_214_invoice_setting_subscription_schedule_setting",
-        "invoice_tax_amount": "_spec3_sdk_215_invoice_tax_amount",
-        "invoice_threshold_reason": "_spec3_sdk_216_invoice_threshold_reason",
-        "invoice_transfer_data": "_spec3_sdk_217_invoice_transfer_data",
-        "invoiceitem": "_spec3_sdk_218_invoiceitem",
-        "invoices_from_invoice": "_spec3_sdk_219_invoices_from_invoice",
-        "invoices_line_items_credited_items": "_spec3_sdk_220_invoices_line_items_credited_items",
-        "invoices_line_items_proration_details": "_spec3_sdk_221_invoices_line_items_proration_details",
-        "invoices_payment_method_options": "_spec3_sdk_222_invoices_payment_method_options",
-        "invoices_payment_settings": "_spec3_sdk_223_invoices_payment_settings",
-        "invoices_resource_invoice_tax_id": "_spec3_sdk_224_invoices_resource_invoice_tax_id",
-        "invoices_shipping_cost": "_spec3_sdk_225_invoices_shipping_cost",
-        "invoices_status_transitions": "_spec3_sdk_226_invoices_status_transitions",
-        "issuing.authorization": "_spec3_sdk_227_issuing.authorization",
-        "issuing.card": "_spec3_sdk_228_issuing.card",
-        "issuing.cardholder": "_spec3_sdk_229_issuing.cardholder",
-        "issuing.dispute": "_spec3_sdk_230_issuing.dispute",
-        "issuing.transaction": "_spec3_sdk_231_issuing.transaction",
-        "issuing_authorization_amount_details": "_spec3_sdk_232_issuing_authorization_amount_details",
-        "issuing_authorization_merchant_data": "_spec3_sdk_233_issuing_authorization_merchant_data",
-        "issuing_authorization_network_data": "_spec3_sdk_234_issuing_authorization_network_data",
-        "issuing_authorization_pending_request": "_spec3_sdk_235_issuing_authorization_pending_request",
-        "issuing_authorization_request": "_spec3_sdk_236_issuing_authorization_request",
-        "issuing_authorization_treasury": "_spec3_sdk_237_issuing_authorization_treasury",
-        "issuing_authorization_verification_data": "_spec3_sdk_238_issuing_authorization_verification_data",
-        "issuing_card_apple_pay": "_spec3_sdk_239_issuing_card_apple_pay",
-        "issuing_card_authorization_controls": "_spec3_sdk_240_issuing_card_authorization_controls",
-        "issuing_card_google_pay": "_spec3_sdk_241_issuing_card_google_pay",
-        "issuing_card_shipping": "_spec3_sdk_242_issuing_card_shipping",
-        "issuing_card_shipping_customs": "_spec3_sdk_243_issuing_card_shipping_customs",
-        "issuing_card_spending_limit": "_spec3_sdk_244_issuing_card_spending_limit",
-        "issuing_card_wallets": "_spec3_sdk_245_issuing_card_wallets",
-        "issuing_cardholder_address": "_spec3_sdk_246_issuing_cardholder_address",
-        "issuing_cardholder_authorization_controls": "_spec3_sdk_247_issuing_cardholder_authorization_controls",
-        "issuing_cardholder_card_issuing": "_spec3_sdk_248_issuing_cardholder_card_issuing",
-        "issuing_cardholder_company": "_spec3_sdk_249_issuing_cardholder_company",
-        "issuing_cardholder_id_document": "_spec3_sdk_250_issuing_cardholder_id_document",
-        "issuing_cardholder_individual": "_spec3_sdk_251_issuing_cardholder_individual",
-        "issuing_cardholder_individual_dob": "_spec3_sdk_252_issuing_cardholder_individual_dob",
-        "issuing_cardholder_requirements": "_spec3_sdk_253_issuing_cardholder_requirements",
-        "issuing_cardholder_spending_limit": "_spec3_sdk_254_issuing_cardholder_spending_limit",
-        "issuing_cardholder_user_terms_acceptance": "_spec3_sdk_255_issuing_cardholder_user_terms_acceptance",
-        "issuing_cardholder_verification": "_spec3_sdk_256_issuing_cardholder_verification",
-        "issuing_dispute_canceled_evidence": "_spec3_sdk_257_issuing_dispute_canceled_evidence",
-        "issuing_dispute_duplicate_evidence": "_spec3_sdk_258_issuing_dispute_duplicate_evidence",
-        "issuing_dispute_evidence": "_spec3_sdk_259_issuing_dispute_evidence",
-        "issuing_dispute_fraudulent_evidence": "_spec3_sdk_260_issuing_dispute_fraudulent_evidence",
-        "issuing_dispute_merchandise_not_as_described_evidence": "_spec3_sdk_261_issuing_dispute_merchandise_not_as_described_evidence",
-        "issuing_dispute_not_received_evidence": "_spec3_sdk_262_issuing_dispute_not_received_evidence",
-        "issuing_dispute_other_evidence": "_spec3_sdk_263_issuing_dispute_other_evidence",
-        "issuing_dispute_service_not_as_described_evidence": "_spec3_sdk_264_issuing_dispute_service_not_as_described_evidence",
-        "issuing_dispute_treasury": "_spec3_sdk_265_issuing_dispute_treasury",
-        "issuing_transaction_amount_details": "_spec3_sdk_266_issuing_transaction_amount_details",
-        "issuing_transaction_flight_data": "_spec3_sdk_267_issuing_transaction_flight_data",
-        "issuing_transaction_flight_data_leg": "_spec3_sdk_268_issuing_transaction_flight_data_leg",
-        "issuing_transaction_fuel_data": "_spec3_sdk_269_issuing_transaction_fuel_data",
-        "issuing_transaction_lodging_data": "_spec3_sdk_270_issuing_transaction_lodging_data",
-        "issuing_transaction_purchase_details": "_spec3_sdk_271_issuing_transaction_purchase_details",
-        "issuing_transaction_receipt_data": "_spec3_sdk_272_issuing_transaction_receipt_data",
-        "issuing_transaction_treasury": "_spec3_sdk_273_issuing_transaction_treasury",
-        "item": "_spec3_sdk_274_item",
-        "legal_entity_company": "_spec3_sdk_275_legal_entity_company",
-        "legal_entity_company_verification": "_spec3_sdk_276_legal_entity_company_verification",
-        "legal_entity_company_verification_document": "_spec3_sdk_277_legal_entity_company_verification_document",
-        "legal_entity_dob": "_spec3_sdk_278_legal_entity_dob",
-        "legal_entity_japan_address": "_spec3_sdk_279_legal_entity_japan_address",
-        "legal_entity_person_verification": "_spec3_sdk_280_legal_entity_person_verification",
-        "legal_entity_person_verification_document": "_spec3_sdk_281_legal_entity_person_verification_document",
-        "legal_entity_ubo_declaration": "_spec3_sdk_282_legal_entity_ubo_declaration",
-        "level3": "_spec3_sdk_283_level3",
-        "level3_line_items": "_spec3_sdk_284_level3_line_items",
-        "line_item": "_spec3_sdk_285_line_item",
-        "line_items_discount_amount": "_spec3_sdk_286_line_items_discount_amount",
-        "line_items_tax_amount": "_spec3_sdk_287_line_items_tax_amount",
-        "linked_account_options_us_bank_account": "_spec3_sdk_288_linked_account_options_us_bank_account",
-        "login_link": "_spec3_sdk_289_login_link",
-        "mandate": "_spec3_sdk_290_mandate",
-        "mandate_acss_debit": "_spec3_sdk_291_mandate_acss_debit",
-        "mandate_au_becs_debit": "_spec3_sdk_292_mandate_au_becs_debit",
-        "mandate_bacs_debit": "_spec3_sdk_293_mandate_bacs_debit",
-        "mandate_blik": "_spec3_sdk_294_mandate_blik",
-        "mandate_cashapp": "_spec3_sdk_295_mandate_cashapp",
-        "mandate_link": "_spec3_sdk_296_mandate_link",
-        "mandate_multi_use": "_spec3_sdk_297_mandate_multi_use",
-        "mandate_options_off_session_details_blik": "_spec3_sdk_298_mandate_options_off_session_details_blik",
-        "mandate_payment_method_details": "_spec3_sdk_299_mandate_payment_method_details",
-        "mandate_paypal": "_spec3_sdk_300_mandate_paypal",
-        "mandate_sepa_debit": "_spec3_sdk_301_mandate_sepa_debit",
-        "mandate_single_use": "_spec3_sdk_302_mandate_single_use",
-        "mandate_us_bank_account": "_spec3_sdk_303_mandate_us_bank_account",
-        "networks": "_spec3_sdk_304_networks",
-        "notification_event_data": "_spec3_sdk_305_notification_event_data",
-        "notification_event_request": "_spec3_sdk_306_notification_event_request",
-        "offline_acceptance": "_spec3_sdk_307_offline_acceptance",
-        "online_acceptance": "_spec3_sdk_308_online_acceptance",
-        "outbound_payments_payment_method_details": "_spec3_sdk_309_outbound_payments_payment_method_details",
-        "outbound_payments_payment_method_details_financial_account": "_spec3_sdk_310_outbound_payments_payment_method_details_financial_account",
-        "outbound_payments_payment_method_details_us_bank_account": "_spec3_sdk_311_outbound_payments_payment_method_details_us_bank_account",
-        "outbound_transfers_payment_method_details": "_spec3_sdk_312_outbound_transfers_payment_method_details",
-        "outbound_transfers_payment_method_details_us_bank_account": "_spec3_sdk_313_outbound_transfers_payment_method_details_us_bank_account",
-        "package_dimensions": "_spec3_sdk_314_package_dimensions",
-        "payment_flows_amount_details": "_spec3_sdk_315_payment_flows_amount_details",
-        "payment_flows_amount_details_resource_tip": "_spec3_sdk_316_payment_flows_amount_details_resource_tip",
-        "payment_flows_automatic_payment_methods_payment_intent": "_spec3_sdk_317_payment_flows_automatic_payment_methods_payment_intent",
-        "payment_flows_automatic_payment_methods_setup_intent": "_spec3_sdk_318_payment_flows_automatic_payment_methods_setup_intent",
-        "payment_flows_installment_options": "_spec3_sdk_319_payment_flows_installment_options",
-        "payment_flows_private_payment_methods_alipay": "_spec3_sdk_320_payment_flows_private_payment_methods_alipay",
-        "payment_flows_private_payment_methods_alipay_details": "_spec3_sdk_321_payment_flows_private_payment_methods_alipay_details",
-        "payment_flows_private_payment_methods_klarna_dob": "_spec3_sdk_322_payment_flows_private_payment_methods_klarna_dob",
-        "payment_intent": "_spec3_sdk_323_payment_intent",
-        "payment_intent_card_processing": "_spec3_sdk_324_payment_intent_card_processing",
-        "payment_intent_next_action": "_spec3_sdk_325_payment_intent_next_action",
-        "payment_intent_next_action_alipay_handle_redirect": "_spec3_sdk_326_payment_intent_next_action_alipay_handle_redirect",
-        "payment_intent_next_action_boleto": "_spec3_sdk_327_payment_intent_next_action_boleto",
-        "payment_intent_next_action_card_await_notification": "_spec3_sdk_328_payment_intent_next_action_card_await_notification",
-        "payment_intent_next_action_cashapp_handle_redirect_or_display_qr_code": "_spec3_sdk_329_payment_intent_next_action_cashapp_handle_redirect_or_display_qr_code",
-        "payment_intent_next_action_cashapp_qr_code": "_spec3_sdk_330_payment_intent_next_action_cashapp_qr_code",
-        "payment_intent_next_action_display_bank_transfer_instructions": "_spec3_sdk_331_payment_intent_next_action_display_bank_transfer_instructions",
-        "payment_intent_next_action_display_oxxo_details": "_spec3_sdk_332_payment_intent_next_action_display_oxxo_details",
-        "payment_intent_next_action_konbini": "_spec3_sdk_333_payment_intent_next_action_konbini",
-        "payment_intent_next_action_konbini_familymart": "_spec3_sdk_334_payment_intent_next_action_konbini_familymart",
-        "payment_intent_next_action_konbini_lawson": "_spec3_sdk_335_payment_intent_next_action_konbini_lawson",
-        "payment_intent_next_action_konbini_ministop": "_spec3_sdk_336_payment_intent_next_action_konbini_ministop",
-        "payment_intent_next_action_konbini_seicomart": "_spec3_sdk_337_payment_intent_next_action_konbini_seicomart",
-        "payment_intent_next_action_konbini_stores": "_spec3_sdk_338_payment_intent_next_action_konbini_stores",
-        "payment_intent_next_action_paynow_display_qr_code": "_spec3_sdk_339_payment_intent_next_action_paynow_display_qr_code",
-        "payment_intent_next_action_pix_display_qr_code": "_spec3_sdk_340_payment_intent_next_action_pix_display_qr_code",
-        "payment_intent_next_action_promptpay_display_qr_code": "_spec3_sdk_341_payment_intent_next_action_promptpay_display_qr_code",
-        "payment_intent_next_action_redirect_to_url": "_spec3_sdk_342_payment_intent_next_action_redirect_to_url",
-        "payment_intent_next_action_verify_with_microdeposits": "_spec3_sdk_343_payment_intent_next_action_verify_with_microdeposits",
-        "payment_intent_next_action_wechat_pay_display_qr_code": "_spec3_sdk_344_payment_intent_next_action_wechat_pay_display_qr_code",
-        "payment_intent_next_action_wechat_pay_redirect_to_android_app": "_spec3_sdk_345_payment_intent_next_action_wechat_pay_redirect_to_android_app",
-        "payment_intent_next_action_wechat_pay_redirect_to_ios_app": "_spec3_sdk_346_payment_intent_next_action_wechat_pay_redirect_to_ios_app",
-        "payment_intent_payment_method_options": "_spec3_sdk_347_payment_intent_payment_method_options",
-        "payment_intent_payment_method_options_acss_debit": "_spec3_sdk_348_payment_intent_payment_method_options_acss_debit",
-        "payment_intent_payment_method_options_au_becs_debit": "_spec3_sdk_349_payment_intent_payment_method_options_au_becs_debit",
-        "payment_intent_payment_method_options_blik": "_spec3_sdk_350_payment_intent_payment_method_options_blik",
-        "payment_intent_payment_method_options_card": "_spec3_sdk_351_payment_intent_payment_method_options_card",
-        "payment_intent_payment_method_options_eps": "_spec3_sdk_352_payment_intent_payment_method_options_eps",
-        "payment_intent_payment_method_options_link": "_spec3_sdk_353_payment_intent_payment_method_options_link",
-        "payment_intent_payment_method_options_mandate_options_acss_debit": "_spec3_sdk_354_payment_intent_payment_method_options_mandate_options_acss_debit",
-        "payment_intent_payment_method_options_mandate_options_sepa_debit": "_spec3_sdk_355_payment_intent_payment_method_options_mandate_options_sepa_debit",
-        "payment_intent_payment_method_options_sepa_debit": "_spec3_sdk_356_payment_intent_payment_method_options_sepa_debit",
-        "payment_intent_payment_method_options_us_bank_account": "_spec3_sdk_357_payment_intent_payment_method_options_us_bank_account",
-        "payment_intent_processing": "_spec3_sdk_358_payment_intent_processing",
-        "payment_intent_processing_customer_notification": "_spec3_sdk_359_payment_intent_processing_customer_notification",
-        "payment_intent_type_specific_payment_method_options_client": "_spec3_sdk_360_payment_intent_type_specific_payment_method_options_client",
-        "payment_link": "_spec3_sdk_361_payment_link",
-        "payment_links_resource_after_completion": "_spec3_sdk_362_payment_links_resource_after_completion",
-        "payment_links_resource_automatic_tax": "_spec3_sdk_363_payment_links_resource_automatic_tax",
-        "payment_links_resource_completion_behavior_confirmation_page": "_spec3_sdk_364_payment_links_resource_completion_behavior_confirmation_page",
-        "payment_links_resource_completion_behavior_redirect": "_spec3_sdk_365_payment_links_resource_completion_behavior_redirect",
-        "payment_links_resource_consent_collection": "_spec3_sdk_366_payment_links_resource_consent_collection",
-        "payment_links_resource_custom_fields": "_spec3_sdk_367_payment_links_resource_custom_fields",
-        "payment_links_resource_custom_fields_dropdown": "_spec3_sdk_368_payment_links_resource_custom_fields_dropdown",
-        "payment_links_resource_custom_fields_dropdown_option": "_spec3_sdk_369_payment_links_resource_custom_fields_dropdown_option",
-        "payment_links_resource_custom_fields_label": "_spec3_sdk_370_payment_links_resource_custom_fields_label",
-        "payment_links_resource_custom_text": "_spec3_sdk_371_payment_links_resource_custom_text",
-        "payment_links_resource_custom_text_position": "_spec3_sdk_372_payment_links_resource_custom_text_position",
-        "payment_links_resource_invoice_creation": "_spec3_sdk_373_payment_links_resource_invoice_creation",
-        "payment_links_resource_invoice_settings": "_spec3_sdk_374_payment_links_resource_invoice_settings",
-        "payment_links_resource_payment_intent_data": "_spec3_sdk_375_payment_links_resource_payment_intent_data",
-        "payment_links_resource_phone_number_collection": "_spec3_sdk_376_payment_links_resource_phone_number_collection",
-        "payment_links_resource_shipping_address_collection": "_spec3_sdk_377_payment_links_resource_shipping_address_collection",
-        "payment_links_resource_shipping_option": "_spec3_sdk_378_payment_links_resource_shipping_option",
-        "payment_links_resource_subscription_data": "_spec3_sdk_379_payment_links_resource_subscription_data",
-        "payment_links_resource_tax_id_collection": "_spec3_sdk_380_payment_links_resource_tax_id_collection",
-        "payment_links_resource_transfer_data": "_spec3_sdk_381_payment_links_resource_transfer_data",
-        "payment_method": "_spec3_sdk_382_payment_method",
-        "payment_method_acss_debit": "_spec3_sdk_383_payment_method_acss_debit",
-        "payment_method_affirm": "_spec3_sdk_384_payment_method_affirm",
-        "payment_method_afterpay_clearpay": "_spec3_sdk_385_payment_method_afterpay_clearpay",
-        "payment_method_au_becs_debit": "_spec3_sdk_386_payment_method_au_becs_debit",
-        "payment_method_bacs_debit": "_spec3_sdk_387_payment_method_bacs_debit",
-        "payment_method_bancontact": "_spec3_sdk_388_payment_method_bancontact",
-        "payment_method_blik": "_spec3_sdk_389_payment_method_blik",
-        "payment_method_boleto": "_spec3_sdk_390_payment_method_boleto",
-        "payment_method_card": "_spec3_sdk_391_payment_method_card",
-        "payment_method_card_checks": "_spec3_sdk_392_payment_method_card_checks",
-        "payment_method_card_present": "_spec3_sdk_393_payment_method_card_present",
-        "payment_method_card_present_networks": "_spec3_sdk_394_payment_method_card_present_networks",
-        "payment_method_card_wallet": "_spec3_sdk_395_payment_method_card_wallet",
-        "payment_method_card_wallet_amex_express_checkout": "_spec3_sdk_396_payment_method_card_wallet_amex_express_checkout",
-        "payment_method_card_wallet_apple_pay": "_spec3_sdk_397_payment_method_card_wallet_apple_pay",
-        "payment_method_card_wallet_google_pay": "_spec3_sdk_398_payment_method_card_wallet_google_pay",
-        "payment_method_card_wallet_link": "_spec3_sdk_399_payment_method_card_wallet_link",
-        "payment_method_card_wallet_masterpass": "_spec3_sdk_400_payment_method_card_wallet_masterpass",
-        "payment_method_card_wallet_samsung_pay": "_spec3_sdk_401_payment_method_card_wallet_samsung_pay",
-        "payment_method_card_wallet_visa_checkout": "_spec3_sdk_402_payment_method_card_wallet_visa_checkout",
-        "payment_method_cashapp": "_spec3_sdk_403_payment_method_cashapp",
-        "payment_method_customer_balance": "_spec3_sdk_404_payment_method_customer_balance",
-        "payment_method_details": "_spec3_sdk_405_payment_method_details",
-        "payment_method_details_ach_credit_transfer": "_spec3_sdk_406_payment_method_details_ach_credit_transfer",
-        "payment_method_details_ach_debit": "_spec3_sdk_407_payment_method_details_ach_debit",
-        "payment_method_details_acss_debit": "_spec3_sdk_408_payment_method_details_acss_debit",
-        "payment_method_details_affirm": "_spec3_sdk_409_payment_method_details_affirm",
-        "payment_method_details_afterpay_clearpay": "_spec3_sdk_410_payment_method_details_afterpay_clearpay",
-        "payment_method_details_au_becs_debit": "_spec3_sdk_411_payment_method_details_au_becs_debit",
-        "payment_method_details_bacs_debit": "_spec3_sdk_412_payment_method_details_bacs_debit",
-        "payment_method_details_bancontact": "_spec3_sdk_413_payment_method_details_bancontact",
-        "payment_method_details_blik": "_spec3_sdk_414_payment_method_details_blik",
-        "payment_method_details_boleto": "_spec3_sdk_415_payment_method_details_boleto",
-        "payment_method_details_card": "_spec3_sdk_416_payment_method_details_card",
-        "payment_method_details_card_checks": "_spec3_sdk_417_payment_method_details_card_checks",
-        "payment_method_details_card_installments": "_spec3_sdk_418_payment_method_details_card_installments",
-        "payment_method_details_card_installments_plan": "_spec3_sdk_419_payment_method_details_card_installments_plan",
-        "payment_method_details_card_network_token": "_spec3_sdk_420_payment_method_details_card_network_token",
-        "payment_method_details_card_present": "_spec3_sdk_421_payment_method_details_card_present",
-        "payment_method_details_card_present_receipt": "_spec3_sdk_422_payment_method_details_card_present_receipt",
-        "payment_method_details_card_wallet": "_spec3_sdk_423_payment_method_details_card_wallet",
-        "payment_method_details_card_wallet_amex_express_checkout": "_spec3_sdk_424_payment_method_details_card_wallet_amex_express_checkout",
-        "payment_method_details_card_wallet_apple_pay": "_spec3_sdk_425_payment_method_details_card_wallet_apple_pay",
-        "payment_method_details_card_wallet_google_pay": "_spec3_sdk_426_payment_method_details_card_wallet_google_pay",
-        "payment_method_details_card_wallet_link": "_spec3_sdk_427_payment_method_details_card_wallet_link",
-        "payment_method_details_card_wallet_masterpass": "_spec3_sdk_428_payment_method_details_card_wallet_masterpass",
-        "payment_method_details_card_wallet_samsung_pay": "_spec3_sdk_429_payment_method_details_card_wallet_samsung_pay",
-        "payment_method_details_card_wallet_visa_checkout": "_spec3_sdk_430_payment_method_details_card_wallet_visa_checkout",
-        "payment_method_details_cashapp": "_spec3_sdk_431_payment_method_details_cashapp",
-        "payment_method_details_customer_balance": "_spec3_sdk_432_payment_method_details_customer_balance",
-        "payment_method_details_eps": "_spec3_sdk_433_payment_method_details_eps",
-        "payment_method_details_fpx": "_spec3_sdk_434_payment_method_details_fpx",
-        "payment_method_details_giropay": "_spec3_sdk_435_payment_method_details_giropay",
-        "payment_method_details_grabpay": "_spec3_sdk_436_payment_method_details_grabpay",
-        "payment_method_details_ideal": "_spec3_sdk_437_payment_method_details_ideal",
-        "payment_method_details_interac_present": "_spec3_sdk_438_payment_method_details_interac_present",
-        "payment_method_details_interac_present_receipt": "_spec3_sdk_439_payment_method_details_interac_present_receipt",
-        "payment_method_details_klarna": "_spec3_sdk_440_payment_method_details_klarna",
-        "payment_method_details_konbini": "_spec3_sdk_441_payment_method_details_konbini",
-        "payment_method_details_konbini_store": "_spec3_sdk_442_payment_method_details_konbini_store",
-        "payment_method_details_link": "_spec3_sdk_443_payment_method_details_link",
-        "payment_method_details_multibanco": "_spec3_sdk_444_payment_method_details_multibanco",
-        "payment_method_details_oxxo": "_spec3_sdk_445_payment_method_details_oxxo",
-        "payment_method_details_p24": "_spec3_sdk_446_payment_method_details_p24",
-        "payment_method_details_paynow": "_spec3_sdk_447_payment_method_details_paynow",
-        "payment_method_details_paypal": "_spec3_sdk_448_payment_method_details_paypal",
-        "payment_method_details_pix": "_spec3_sdk_449_payment_method_details_pix",
-        "payment_method_details_promptpay": "_spec3_sdk_450_payment_method_details_promptpay",
-        "payment_method_details_sepa_credit_transfer": "_spec3_sdk_451_payment_method_details_sepa_credit_transfer",
-        "payment_method_details_sepa_debit": "_spec3_sdk_452_payment_method_details_sepa_debit",
-        "payment_method_details_sofort": "_spec3_sdk_453_payment_method_details_sofort",
-        "payment_method_details_stripe_account": "_spec3_sdk_454_payment_method_details_stripe_account",
-        "payment_method_details_us_bank_account": "_spec3_sdk_455_payment_method_details_us_bank_account",
-        "payment_method_details_wechat": "_spec3_sdk_456_payment_method_details_wechat",
-        "payment_method_details_wechat_pay": "_spec3_sdk_457_payment_method_details_wechat_pay",
-        "payment_method_eps": "_spec3_sdk_458_payment_method_eps",
-        "payment_method_fpx": "_spec3_sdk_459_payment_method_fpx",
-        "payment_method_giropay": "_spec3_sdk_460_payment_method_giropay",
-        "payment_method_grabpay": "_spec3_sdk_461_payment_method_grabpay",
-        "payment_method_ideal": "_spec3_sdk_462_payment_method_ideal",
-        "payment_method_interac_present": "_spec3_sdk_463_payment_method_interac_present",
-        "payment_method_klarna": "_spec3_sdk_464_payment_method_klarna",
-        "payment_method_konbini": "_spec3_sdk_465_payment_method_konbini",
-        "payment_method_link": "_spec3_sdk_466_payment_method_link",
-        "payment_method_options_affirm": "_spec3_sdk_467_payment_method_options_affirm",
-        "payment_method_options_afterpay_clearpay": "_spec3_sdk_468_payment_method_options_afterpay_clearpay",
-        "payment_method_options_alipay": "_spec3_sdk_469_payment_method_options_alipay",
-        "payment_method_options_bacs_debit": "_spec3_sdk_470_payment_method_options_bacs_debit",
-        "payment_method_options_bancontact": "_spec3_sdk_471_payment_method_options_bancontact",
-        "payment_method_options_boleto": "_spec3_sdk_472_payment_method_options_boleto",
-        "payment_method_options_card_installments": "_spec3_sdk_473_payment_method_options_card_installments",
-        "payment_method_options_card_mandate_options": "_spec3_sdk_474_payment_method_options_card_mandate_options",
-        "payment_method_options_card_present": "_spec3_sdk_475_payment_method_options_card_present",
-        "payment_method_options_cashapp": "_spec3_sdk_476_payment_method_options_cashapp",
-        "payment_method_options_customer_balance": "_spec3_sdk_477_payment_method_options_customer_balance",
-        "payment_method_options_customer_balance_bank_transfer": "_spec3_sdk_478_payment_method_options_customer_balance_bank_transfer",
-        "payment_method_options_customer_balance_eu_bank_account": "_spec3_sdk_479_payment_method_options_customer_balance_eu_bank_account",
-        "payment_method_options_fpx": "_spec3_sdk_480_payment_method_options_fpx",
-        "payment_method_options_giropay": "_spec3_sdk_481_payment_method_options_giropay",
-        "payment_method_options_grabpay": "_spec3_sdk_482_payment_method_options_grabpay",
-        "payment_method_options_ideal": "_spec3_sdk_483_payment_method_options_ideal",
-        "payment_method_options_interac_present": "_spec3_sdk_484_payment_method_options_interac_present",
-        "payment_method_options_klarna": "_spec3_sdk_485_payment_method_options_klarna",
-        "payment_method_options_konbini": "_spec3_sdk_486_payment_method_options_konbini",
-        "payment_method_options_oxxo": "_spec3_sdk_487_payment_method_options_oxxo",
-        "payment_method_options_p24": "_spec3_sdk_488_payment_method_options_p24",
-        "payment_method_options_paynow": "_spec3_sdk_489_payment_method_options_paynow",
-        "payment_method_options_paypal": "_spec3_sdk_490_payment_method_options_paypal",
-        "payment_method_options_pix": "_spec3_sdk_491_payment_method_options_pix",
-        "payment_method_options_promptpay": "_spec3_sdk_492_payment_method_options_promptpay",
-        "payment_method_options_sofort": "_spec3_sdk_493_payment_method_options_sofort",
-        "payment_method_options_wechat_pay": "_spec3_sdk_494_payment_method_options_wechat_pay",
-        "payment_method_oxxo": "_spec3_sdk_495_payment_method_oxxo",
-        "payment_method_p24": "_spec3_sdk_496_payment_method_p24",
-        "payment_method_paynow": "_spec3_sdk_497_payment_method_paynow",
-        "payment_method_paypal": "_spec3_sdk_498_payment_method_paypal",
-        "payment_method_pix": "_spec3_sdk_499_payment_method_pix",
-        "payment_method_promptpay": "_spec3_sdk_500_payment_method_promptpay",
-        "payment_method_sepa_debit": "_spec3_sdk_501_payment_method_sepa_debit",
-        "payment_method_sofort": "_spec3_sdk_502_payment_method_sofort",
-        "payment_method_us_bank_account": "_spec3_sdk_503_payment_method_us_bank_account",
-        "payment_method_us_bank_account_blocked": "_spec3_sdk_504_payment_method_us_bank_account_blocked",
-        "payment_method_us_bank_account_status_details": "_spec3_sdk_505_payment_method_us_bank_account_status_details",
-        "payment_method_wechat_pay": "_spec3_sdk_506_payment_method_wechat_pay",
-        "payment_pages_checkout_session_after_expiration": "_spec3_sdk_507_payment_pages_checkout_session_after_expiration",
-        "payment_pages_checkout_session_after_expiration_recovery": "_spec3_sdk_508_payment_pages_checkout_session_after_expiration_recovery",
-        "payment_pages_checkout_session_automatic_tax": "_spec3_sdk_509_payment_pages_checkout_session_automatic_tax",
-        "payment_pages_checkout_session_consent": "_spec3_sdk_510_payment_pages_checkout_session_consent",
-        "payment_pages_checkout_session_consent_collection": "_spec3_sdk_511_payment_pages_checkout_session_consent_collection",
-        "payment_pages_checkout_session_currency_conversion": "_spec3_sdk_512_payment_pages_checkout_session_currency_conversion",
-        "payment_pages_checkout_session_custom_fields": "_spec3_sdk_513_payment_pages_checkout_session_custom_fields",
-        "payment_pages_checkout_session_custom_fields_dropdown": "_spec3_sdk_514_payment_pages_checkout_session_custom_fields_dropdown",
-        "payment_pages_checkout_session_custom_fields_label": "_spec3_sdk_515_payment_pages_checkout_session_custom_fields_label",
-        "payment_pages_checkout_session_custom_fields_numeric": "_spec3_sdk_516_payment_pages_checkout_session_custom_fields_numeric",
-        "payment_pages_checkout_session_custom_fields_option": "_spec3_sdk_517_payment_pages_checkout_session_custom_fields_option",
-        "payment_pages_checkout_session_custom_fields_text": "_spec3_sdk_518_payment_pages_checkout_session_custom_fields_text",
-        "payment_pages_checkout_session_custom_text": "_spec3_sdk_519_payment_pages_checkout_session_custom_text",
-        "payment_pages_checkout_session_custom_text_position": "_spec3_sdk_520_payment_pages_checkout_session_custom_text_position",
-        "payment_pages_checkout_session_customer_details": "_spec3_sdk_521_payment_pages_checkout_session_customer_details",
-        "payment_pages_checkout_session_invoice_creation": "_spec3_sdk_522_payment_pages_checkout_session_invoice_creation",
-        "payment_pages_checkout_session_invoice_settings": "_spec3_sdk_523_payment_pages_checkout_session_invoice_settings",
-        "payment_pages_checkout_session_phone_number_collection": "_spec3_sdk_524_payment_pages_checkout_session_phone_number_collection",
-        "payment_pages_checkout_session_shipping_address_collection": "_spec3_sdk_525_payment_pages_checkout_session_shipping_address_collection",
-        "payment_pages_checkout_session_shipping_cost": "_spec3_sdk_526_payment_pages_checkout_session_shipping_cost",
-        "payment_pages_checkout_session_shipping_option": "_spec3_sdk_527_payment_pages_checkout_session_shipping_option",
-        "payment_pages_checkout_session_tax_id": "_spec3_sdk_528_payment_pages_checkout_session_tax_id",
-        "payment_pages_checkout_session_tax_id_collection": "_spec3_sdk_529_payment_pages_checkout_session_tax_id_collection",
-        "payment_pages_checkout_session_total_details": "_spec3_sdk_530_payment_pages_checkout_session_total_details",
-        "payment_pages_checkout_session_total_details_resource_breakdown": "_spec3_sdk_531_payment_pages_checkout_session_total_details_resource_breakdown",
-        "payment_source": "_spec3_sdk_532_payment_source",
-        "payout": "_spec3_sdk_533_payout",
-        "paypal_seller_protection": "_spec3_sdk_534_paypal_seller_protection",
-        "period": "_spec3_sdk_535_period",
-        "person": "_spec3_sdk_536_person",
-        "person_future_requirements": "_spec3_sdk_537_person_future_requirements",
-        "person_relationship": "_spec3_sdk_538_person_relationship",
-        "person_requirements": "_spec3_sdk_539_person_requirements",
-        "plan": "_spec3_sdk_540_plan",
-        "plan_tier": "_spec3_sdk_541_plan_tier",
-        "platform_tax_fee": "_spec3_sdk_542_platform_tax_fee",
-        "portal_business_profile": "_spec3_sdk_543_portal_business_profile",
-        "portal_customer_update": "_spec3_sdk_544_portal_customer_update",
-        "portal_features": "_spec3_sdk_545_portal_features",
-        "portal_flows_after_completion_hosted_confirmation": "_spec3_sdk_546_portal_flows_after_completion_hosted_confirmation",
-        "portal_flows_after_completion_redirect": "_spec3_sdk_547_portal_flows_after_completion_redirect",
-        "portal_flows_flow": "_spec3_sdk_548_portal_flows_flow",
-        "portal_flows_flow_after_completion": "_spec3_sdk_549_portal_flows_flow_after_completion",
-        "portal_flows_flow_subscription_cancel": "_spec3_sdk_550_portal_flows_flow_subscription_cancel",
-        "portal_flows_flow_subscription_update": "_spec3_sdk_551_portal_flows_flow_subscription_update",
-        "portal_flows_flow_subscription_update_confirm": "_spec3_sdk_552_portal_flows_flow_subscription_update_confirm",
-        "portal_flows_subscription_update_confirm_discount": "_spec3_sdk_553_portal_flows_subscription_update_confirm_discount",
-        "portal_flows_subscription_update_confirm_item": "_spec3_sdk_554_portal_flows_subscription_update_confirm_item",
-        "portal_invoice_list": "_spec3_sdk_555_portal_invoice_list",
-        "portal_login_page": "_spec3_sdk_556_portal_login_page",
-        "portal_payment_method_update": "_spec3_sdk_557_portal_payment_method_update",
-        "portal_subscription_cancel": "_spec3_sdk_558_portal_subscription_cancel",
-        "portal_subscription_cancellation_reason": "_spec3_sdk_559_portal_subscription_cancellation_reason",
-        "portal_subscription_pause": "_spec3_sdk_560_portal_subscription_pause",
-        "portal_subscription_update": "_spec3_sdk_561_portal_subscription_update",
-        "portal_subscription_update_product": "_spec3_sdk_562_portal_subscription_update_product",
-        "price": "_spec3_sdk_563_price",
-        "price_tier": "_spec3_sdk_564_price_tier",
-        "product": "_spec3_sdk_565_product",
-        "promotion_code": "_spec3_sdk_566_promotion_code",
-        "promotion_code_currency_option": "_spec3_sdk_567_promotion_code_currency_option",
-        "promotion_codes_resource_restrictions": "_spec3_sdk_568_promotion_codes_resource_restrictions",
-        "quote": "_spec3_sdk_569_quote",
-        "quotes_resource_automatic_tax": "_spec3_sdk_570_quotes_resource_automatic_tax",
-        "quotes_resource_computed": "_spec3_sdk_571_quotes_resource_computed",
-        "quotes_resource_from_quote": "_spec3_sdk_572_quotes_resource_from_quote",
-        "quotes_resource_recurring": "_spec3_sdk_573_quotes_resource_recurring",
-        "quotes_resource_status_transitions": "_spec3_sdk_574_quotes_resource_status_transitions",
-        "quotes_resource_subscription_data_subscription_data": "_spec3_sdk_575_quotes_resource_subscription_data_subscription_data",
-        "quotes_resource_total_details": "_spec3_sdk_576_quotes_resource_total_details",
-        "quotes_resource_total_details_resource_breakdown": "_spec3_sdk_577_quotes_resource_total_details_resource_breakdown",
-        "quotes_resource_transfer_data": "_spec3_sdk_578_quotes_resource_transfer_data",
-        "quotes_resource_upfront": "_spec3_sdk_579_quotes_resource_upfront",
-        "radar.early_fraud_warning": "_spec3_sdk_580_radar.early_fraud_warning",
-        "radar.value_list": "_spec3_sdk_581_radar.value_list",
-        "radar.value_list_item": "_spec3_sdk_582_radar.value_list_item",
-        "radar_radar_options": "_spec3_sdk_583_radar_radar_options",
-        "radar_review_resource_location": "_spec3_sdk_584_radar_review_resource_location",
-        "radar_review_resource_session": "_spec3_sdk_585_radar_review_resource_session",
-        "received_payment_method_details_financial_account": "_spec3_sdk_586_received_payment_method_details_financial_account",
-        "recurring": "_spec3_sdk_587_recurring",
-        "refund": "_spec3_sdk_588_refund",
-        "refund_next_action": "_spec3_sdk_589_refund_next_action",
-        "refund_next_action_display_details": "_spec3_sdk_590_refund_next_action_display_details",
-        "reporting.report_run": "_spec3_sdk_591_reporting.report_run",
-        "reporting.report_type": "_spec3_sdk_592_reporting.report_type",
-        "reserve_transaction": "_spec3_sdk_593_reserve_transaction",
-        "review": "_spec3_sdk_594_review",
-        "rule": "_spec3_sdk_595_rule",
-        "scheduled_query_run": "_spec3_sdk_596_scheduled_query_run",
-        "schedules_phase_automatic_tax": "_spec3_sdk_597_schedules_phase_automatic_tax",
-        "secret_service_resource_scope": "_spec3_sdk_598_secret_service_resource_scope",
-        "sepa_debit_generated_from": "_spec3_sdk_599_sepa_debit_generated_from",
-        "setup_attempt": "_spec3_sdk_600_setup_attempt",
-        "setup_attempt_payment_method_details": "_spec3_sdk_601_setup_attempt_payment_method_details",
-        "setup_attempt_payment_method_details_acss_debit": "_spec3_sdk_602_setup_attempt_payment_method_details_acss_debit",
-        "setup_attempt_payment_method_details_au_becs_debit": "_spec3_sdk_603_setup_attempt_payment_method_details_au_becs_debit",
-        "setup_attempt_payment_method_details_bacs_debit": "_spec3_sdk_604_setup_attempt_payment_method_details_bacs_debit",
-        "setup_attempt_payment_method_details_bancontact": "_spec3_sdk_605_setup_attempt_payment_method_details_bancontact",
-        "setup_attempt_payment_method_details_blik": "_spec3_sdk_606_setup_attempt_payment_method_details_blik",
-        "setup_attempt_payment_method_details_boleto": "_spec3_sdk_607_setup_attempt_payment_method_details_boleto",
-        "setup_attempt_payment_method_details_card": "_spec3_sdk_608_setup_attempt_payment_method_details_card",
-        "setup_attempt_payment_method_details_card_present": "_spec3_sdk_609_setup_attempt_payment_method_details_card_present",
-        "setup_attempt_payment_method_details_card_wallet": "_spec3_sdk_610_setup_attempt_payment_method_details_card_wallet",
-        "setup_attempt_payment_method_details_cashapp": "_spec3_sdk_611_setup_attempt_payment_method_details_cashapp",
-        "setup_attempt_payment_method_details_ideal": "_spec3_sdk_612_setup_attempt_payment_method_details_ideal",
-        "setup_attempt_payment_method_details_klarna": "_spec3_sdk_613_setup_attempt_payment_method_details_klarna",
-        "setup_attempt_payment_method_details_link": "_spec3_sdk_614_setup_attempt_payment_method_details_link",
-        "setup_attempt_payment_method_details_paypal": "_spec3_sdk_615_setup_attempt_payment_method_details_paypal",
-        "setup_attempt_payment_method_details_sepa_debit": "_spec3_sdk_616_setup_attempt_payment_method_details_sepa_debit",
-        "setup_attempt_payment_method_details_sofort": "_spec3_sdk_617_setup_attempt_payment_method_details_sofort",
-        "setup_attempt_payment_method_details_us_bank_account": "_spec3_sdk_618_setup_attempt_payment_method_details_us_bank_account",
-        "setup_intent": "_spec3_sdk_619_setup_intent",
-        "setup_intent_next_action": "_spec3_sdk_620_setup_intent_next_action",
-        "setup_intent_next_action_redirect_to_url": "_spec3_sdk_621_setup_intent_next_action_redirect_to_url",
-        "setup_intent_next_action_verify_with_microdeposits": "_spec3_sdk_622_setup_intent_next_action_verify_with_microdeposits",
-        "setup_intent_payment_method_options": "_spec3_sdk_623_setup_intent_payment_method_options",
-        "setup_intent_payment_method_options_acss_debit": "_spec3_sdk_624_setup_intent_payment_method_options_acss_debit",
-        "setup_intent_payment_method_options_blik": "_spec3_sdk_625_setup_intent_payment_method_options_blik",
-        "setup_intent_payment_method_options_card": "_spec3_sdk_626_setup_intent_payment_method_options_card",
-        "setup_intent_payment_method_options_card_mandate_options": "_spec3_sdk_627_setup_intent_payment_method_options_card_mandate_options",
-        "setup_intent_payment_method_options_link": "_spec3_sdk_628_setup_intent_payment_method_options_link",
-        "setup_intent_payment_method_options_mandate_options_acss_debit": "_spec3_sdk_629_setup_intent_payment_method_options_mandate_options_acss_debit",
-        "setup_intent_payment_method_options_mandate_options_blik": "_spec3_sdk_630_setup_intent_payment_method_options_mandate_options_blik",
-        "setup_intent_payment_method_options_mandate_options_sepa_debit": "_spec3_sdk_631_setup_intent_payment_method_options_mandate_options_sepa_debit",
-        "setup_intent_payment_method_options_paypal": "_spec3_sdk_632_setup_intent_payment_method_options_paypal",
-        "setup_intent_payment_method_options_sepa_debit": "_spec3_sdk_633_setup_intent_payment_method_options_sepa_debit",
-        "setup_intent_payment_method_options_us_bank_account": "_spec3_sdk_634_setup_intent_payment_method_options_us_bank_account",
-        "setup_intent_type_specific_payment_method_options_client": "_spec3_sdk_635_setup_intent_type_specific_payment_method_options_client",
-        "shipping": "_spec3_sdk_636_shipping",
-        "shipping_rate": "_spec3_sdk_637_shipping_rate",
-        "shipping_rate_currency_option": "_spec3_sdk_638_shipping_rate_currency_option",
-        "shipping_rate_delivery_estimate": "_spec3_sdk_639_shipping_rate_delivery_estimate",
-        "shipping_rate_delivery_estimate_bound": "_spec3_sdk_640_shipping_rate_delivery_estimate_bound",
-        "shipping_rate_fixed_amount": "_spec3_sdk_641_shipping_rate_fixed_amount",
-        "sigma_scheduled_query_run_error": "_spec3_sdk_642_sigma_scheduled_query_run_error",
-        "source": "_spec3_sdk_643_source",
-        "source_code_verification_flow": "_spec3_sdk_644_source_code_verification_flow",
-        "source_mandate_notification": "_spec3_sdk_645_source_mandate_notification",
-        "source_mandate_notification_acss_debit_data": "_spec3_sdk_646_source_mandate_notification_acss_debit_data",
-        "source_mandate_notification_bacs_debit_data": "_spec3_sdk_647_source_mandate_notification_bacs_debit_data",
-        "source_mandate_notification_sepa_debit_data": "_spec3_sdk_648_source_mandate_notification_sepa_debit_data",
-        "source_order": "_spec3_sdk_649_source_order",
-        "source_order_item": "_spec3_sdk_650_source_order_item",
-        "source_owner": "_spec3_sdk_651_source_owner",
-        "source_receiver_flow": "_spec3_sdk_652_source_receiver_flow",
-        "source_redirect_flow": "_spec3_sdk_653_source_redirect_flow",
-        "source_transaction": "_spec3_sdk_654_source_transaction",
-        "source_transaction_ach_credit_transfer_data": "_spec3_sdk_655_source_transaction_ach_credit_transfer_data",
-        "source_transaction_chf_credit_transfer_data": "_spec3_sdk_656_source_transaction_chf_credit_transfer_data",
-        "source_transaction_gbp_credit_transfer_data": "_spec3_sdk_657_source_transaction_gbp_credit_transfer_data",
-        "source_transaction_paper_check_data": "_spec3_sdk_658_source_transaction_paper_check_data",
-        "source_transaction_sepa_credit_transfer_data": "_spec3_sdk_659_source_transaction_sepa_credit_transfer_data",
-        "source_type_ach_credit_transfer": "_spec3_sdk_660_source_type_ach_credit_transfer",
-        "source_type_ach_debit": "_spec3_sdk_661_source_type_ach_debit",
-        "source_type_acss_debit": "_spec3_sdk_662_source_type_acss_debit",
-        "source_type_alipay": "_spec3_sdk_663_source_type_alipay",
-        "source_type_au_becs_debit": "_spec3_sdk_664_source_type_au_becs_debit",
-        "source_type_bancontact": "_spec3_sdk_665_source_type_bancontact",
-        "source_type_card": "_spec3_sdk_666_source_type_card",
-        "source_type_card_present": "_spec3_sdk_667_source_type_card_present",
-        "source_type_eps": "_spec3_sdk_668_source_type_eps",
-        "source_type_giropay": "_spec3_sdk_669_source_type_giropay",
-        "source_type_ideal": "_spec3_sdk_670_source_type_ideal",
-        "source_type_klarna": "_spec3_sdk_671_source_type_klarna",
-        "source_type_multibanco": "_spec3_sdk_672_source_type_multibanco",
-        "source_type_p24": "_spec3_sdk_673_source_type_p24",
-        "source_type_sepa_credit_transfer": "_spec3_sdk_674_source_type_sepa_credit_transfer",
-        "source_type_sepa_debit": "_spec3_sdk_675_source_type_sepa_debit",
-        "source_type_sofort": "_spec3_sdk_676_source_type_sofort",
-        "source_type_three_d_secure": "_spec3_sdk_677_source_type_three_d_secure",
-        "source_type_wechat": "_spec3_sdk_678_source_type_wechat",
-        "subscription": "_spec3_sdk_679_subscription",
-        "subscription_automatic_tax": "_spec3_sdk_680_subscription_automatic_tax",
-        "subscription_billing_thresholds": "_spec3_sdk_681_subscription_billing_thresholds",
-        "subscription_item": "_spec3_sdk_682_subscription_item",
-        "subscription_item_billing_thresholds": "_spec3_sdk_683_subscription_item_billing_thresholds",
-        "subscription_payment_method_options_card": "_spec3_sdk_684_subscription_payment_method_options_card",
-        "subscription_pending_invoice_item_interval": "_spec3_sdk_685_subscription_pending_invoice_item_interval",
-        "subscription_schedule": "_spec3_sdk_686_subscription_schedule",
-        "subscription_schedule_add_invoice_item": "_spec3_sdk_687_subscription_schedule_add_invoice_item",
-        "subscription_schedule_configuration_item": "_spec3_sdk_688_subscription_schedule_configuration_item",
-        "subscription_schedule_current_phase": "_spec3_sdk_689_subscription_schedule_current_phase",
-        "subscription_schedule_phase_configuration": "_spec3_sdk_690_subscription_schedule_phase_configuration",
-        "subscription_schedules_resource_default_settings": "_spec3_sdk_691_subscription_schedules_resource_default_settings",
-        "subscription_schedules_resource_default_settings_automatic_tax": "_spec3_sdk_692_subscription_schedules_resource_default_settings_automatic_tax",
-        "subscription_transfer_data": "_spec3_sdk_693_subscription_transfer_data",
-        "subscriptions_resource_pause_collection": "_spec3_sdk_694_subscriptions_resource_pause_collection",
-        "subscriptions_resource_payment_method_options": "_spec3_sdk_695_subscriptions_resource_payment_method_options",
-        "subscriptions_resource_payment_settings": "_spec3_sdk_696_subscriptions_resource_payment_settings",
-        "subscriptions_resource_pending_update": "_spec3_sdk_697_subscriptions_resource_pending_update",
-        "subscriptions_trials_resource_end_behavior": "_spec3_sdk_698_subscriptions_trials_resource_end_behavior",
-        "subscriptions_trials_resource_trial_settings": "_spec3_sdk_699_subscriptions_trials_resource_trial_settings",
-        "tax.calculation": "_spec3_sdk_700_tax.calculation",
-        "tax.calculation_line_item": "_spec3_sdk_701_tax.calculation_line_item",
-        "tax.transaction": "_spec3_sdk_702_tax.transaction",
-        "tax.transaction_line_item": "_spec3_sdk_703_tax.transaction_line_item",
-        "tax_code": "_spec3_sdk_704_tax_code",
-        "tax_deducted_at_source": "_spec3_sdk_705_tax_deducted_at_source",
-        "tax_id": "_spec3_sdk_706_tax_id",
-        "tax_id_verification": "_spec3_sdk_707_tax_id_verification",
-        "tax_product_resource_customer_details": "_spec3_sdk_708_tax_product_resource_customer_details",
-        "tax_product_resource_customer_details_resource_tax_id": "_spec3_sdk_709_tax_product_resource_customer_details_resource_tax_id",
-        "tax_product_resource_jurisdiction": "_spec3_sdk_710_tax_product_resource_jurisdiction",
-        "tax_product_resource_line_item_tax_breakdown": "_spec3_sdk_711_tax_product_resource_line_item_tax_breakdown",
-        "tax_product_resource_line_item_tax_rate_details": "_spec3_sdk_712_tax_product_resource_line_item_tax_rate_details",
-        "tax_product_resource_postal_address": "_spec3_sdk_713_tax_product_resource_postal_address",
-        "tax_product_resource_tax_breakdown": "_spec3_sdk_714_tax_product_resource_tax_breakdown",
-        "tax_product_resource_tax_calculation_shipping_cost": "_spec3_sdk_715_tax_product_resource_tax_calculation_shipping_cost",
-        "tax_product_resource_tax_rate_details": "_spec3_sdk_716_tax_product_resource_tax_rate_details",
-        "tax_product_resource_tax_transaction_line_item_resource_reversal": "_spec3_sdk_717_tax_product_resource_tax_transaction_line_item_resource_reversal",
-        "tax_product_resource_tax_transaction_resource_reversal": "_spec3_sdk_718_tax_product_resource_tax_transaction_resource_reversal",
-        "tax_product_resource_tax_transaction_shipping_cost": "_spec3_sdk_719_tax_product_resource_tax_transaction_shipping_cost",
-        "tax_rate": "_spec3_sdk_720_tax_rate",
-        "terminal.configuration": "_spec3_sdk_721_terminal.configuration",
-        "terminal.connection_token": "_spec3_sdk_722_terminal.connection_token",
-        "terminal.location": "_spec3_sdk_723_terminal.location",
-        "terminal.reader": "_spec3_sdk_724_terminal.reader",
-        "terminal_configuration_configuration_resource_currency_specific_config": "_spec3_sdk_725_terminal_configuration_configuration_resource_currency_specific_config",
-        "terminal_configuration_configuration_resource_device_type_specific_config": "_spec3_sdk_726_terminal_configuration_configuration_resource_device_type_specific_config",
-        "terminal_configuration_configuration_resource_tipping": "_spec3_sdk_727_terminal_configuration_configuration_resource_tipping",
-        "terminal_reader_reader_resource_cart": "_spec3_sdk_728_terminal_reader_reader_resource_cart",
-        "terminal_reader_reader_resource_line_item": "_spec3_sdk_729_terminal_reader_reader_resource_line_item",
-        "terminal_reader_reader_resource_process_config": "_spec3_sdk_730_terminal_reader_reader_resource_process_config",
-        "terminal_reader_reader_resource_process_payment_intent_action": "_spec3_sdk_731_terminal_reader_reader_resource_process_payment_intent_action",
-        "terminal_reader_reader_resource_process_setup_intent_action": "_spec3_sdk_732_terminal_reader_reader_resource_process_setup_intent_action",
-        "terminal_reader_reader_resource_reader_action": "_spec3_sdk_733_terminal_reader_reader_resource_reader_action",
-        "terminal_reader_reader_resource_refund_payment_action": "_spec3_sdk_734_terminal_reader_reader_resource_refund_payment_action",
-        "terminal_reader_reader_resource_set_reader_display_action": "_spec3_sdk_735_terminal_reader_reader_resource_set_reader_display_action",
-        "terminal_reader_reader_resource_tipping_config": "_spec3_sdk_736_terminal_reader_reader_resource_tipping_config",
-        "test_helpers.test_clock": "_spec3_sdk_737_test_helpers.test_clock",
-        "three_d_secure_details": "_spec3_sdk_738_three_d_secure_details",
-        "three_d_secure_usage": "_spec3_sdk_739_three_d_secure_usage",
-        "token": "_spec3_sdk_740_token",
-        "topup": "_spec3_sdk_741_topup",
-        "transfer": "_spec3_sdk_742_transfer",
-        "transfer_data": "_spec3_sdk_743_transfer_data",
-        "transfer_reversal": "_spec3_sdk_744_transfer_reversal",
-        "transfer_schedule": "_spec3_sdk_745_transfer_schedule",
-        "transform_quantity": "_spec3_sdk_746_transform_quantity",
-        "transform_usage": "_spec3_sdk_747_transform_usage",
-        "treasury.credit_reversal": "_spec3_sdk_748_treasury.credit_reversal",
-        "treasury.debit_reversal": "_spec3_sdk_749_treasury.debit_reversal",
-        "treasury.financial_account": "_spec3_sdk_750_treasury.financial_account",
-        "treasury.financial_account_features": "_spec3_sdk_751_treasury.financial_account_features",
-        "treasury.inbound_transfer": "_spec3_sdk_752_treasury.inbound_transfer",
-        "treasury.outbound_payment": "_spec3_sdk_753_treasury.outbound_payment",
-        "treasury.outbound_transfer": "_spec3_sdk_754_treasury.outbound_transfer",
-        "treasury.received_credit": "_spec3_sdk_755_treasury.received_credit",
-        "treasury.received_debit": "_spec3_sdk_756_treasury.received_debit",
-        "treasury.transaction": "_spec3_sdk_757_treasury.transaction",
-        "treasury.transaction_entry": "_spec3_sdk_758_treasury.transaction_entry",
-        "treasury_financial_accounts_resource_aba_record": "_spec3_sdk_759_treasury_financial_accounts_resource_aba_record",
-        "treasury_financial_accounts_resource_ach_toggle_settings": "_spec3_sdk_760_treasury_financial_accounts_resource_ach_toggle_settings",
-        "treasury_financial_accounts_resource_balance": "_spec3_sdk_761_treasury_financial_accounts_resource_balance",
-        "treasury_financial_accounts_resource_closed_status_details": "_spec3_sdk_762_treasury_financial_accounts_resource_closed_status_details",
-        "treasury_financial_accounts_resource_financial_address": "_spec3_sdk_763_treasury_financial_accounts_resource_financial_address",
-        "treasury_financial_accounts_resource_financial_addresses_features": "_spec3_sdk_764_treasury_financial_accounts_resource_financial_addresses_features",
-        "treasury_financial_accounts_resource_inbound_transfers": "_spec3_sdk_765_treasury_financial_accounts_resource_inbound_transfers",
-        "treasury_financial_accounts_resource_outbound_payments": "_spec3_sdk_766_treasury_financial_accounts_resource_outbound_payments",
-        "treasury_financial_accounts_resource_outbound_transfers": "_spec3_sdk_767_treasury_financial_accounts_resource_outbound_transfers",
-        "treasury_financial_accounts_resource_platform_restrictions": "_spec3_sdk_768_treasury_financial_accounts_resource_platform_restrictions",
-        "treasury_financial_accounts_resource_status_details": "_spec3_sdk_769_treasury_financial_accounts_resource_status_details",
-        "treasury_financial_accounts_resource_toggle_settings": "_spec3_sdk_770_treasury_financial_accounts_resource_toggle_settings",
-        "treasury_financial_accounts_resource_toggles_setting_status_details": "_spec3_sdk_771_treasury_financial_accounts_resource_toggles_setting_status_details",
-        "treasury_inbound_transfers_resource_failure_details": "_spec3_sdk_772_treasury_inbound_transfers_resource_failure_details",
-        "treasury_inbound_transfers_resource_inbound_transfer_resource_linked_flows": "_spec3_sdk_773_treasury_inbound_transfers_resource_inbound_transfer_resource_linked_flows",
-        "treasury_inbound_transfers_resource_inbound_transfer_resource_status_transitions": "_spec3_sdk_774_treasury_inbound_transfers_resource_inbound_transfer_resource_status_transitions",
-        "treasury_outbound_payments_resource_outbound_payment_resource_end_user_details": "_spec3_sdk_775_treasury_outbound_payments_resource_outbound_payment_resource_end_user_details",
-        "treasury_outbound_payments_resource_outbound_payment_resource_status_transitions": "_spec3_sdk_776_treasury_outbound_payments_resource_outbound_payment_resource_status_transitions",
-        "treasury_outbound_payments_resource_returned_status": "_spec3_sdk_777_treasury_outbound_payments_resource_returned_status",
-        "treasury_outbound_transfers_resource_returned_details": "_spec3_sdk_778_treasury_outbound_transfers_resource_returned_details",
-        "treasury_outbound_transfers_resource_status_transitions": "_spec3_sdk_779_treasury_outbound_transfers_resource_status_transitions",
-        "treasury_received_credits_resource_linked_flows": "_spec3_sdk_780_treasury_received_credits_resource_linked_flows",
-        "treasury_received_credits_resource_reversal_details": "_spec3_sdk_781_treasury_received_credits_resource_reversal_details",
-        "treasury_received_credits_resource_source_flows_details": "_spec3_sdk_782_treasury_received_credits_resource_source_flows_details",
-        "treasury_received_credits_resource_status_transitions": "_spec3_sdk_783_treasury_received_credits_resource_status_transitions",
-        "treasury_received_debits_resource_debit_reversal_linked_flows": "_spec3_sdk_784_treasury_received_debits_resource_debit_reversal_linked_flows",
-        "treasury_received_debits_resource_linked_flows": "_spec3_sdk_785_treasury_received_debits_resource_linked_flows",
-        "treasury_received_debits_resource_reversal_details": "_spec3_sdk_786_treasury_received_debits_resource_reversal_details",
-        "treasury_received_debits_resource_status_transitions": "_spec3_sdk_787_treasury_received_debits_resource_status_transitions",
-        "treasury_shared_resource_billing_details": "_spec3_sdk_788_treasury_shared_resource_billing_details",
-        "treasury_shared_resource_initiating_payment_method_details_initiating_payment_method_details": "_spec3_sdk_789_treasury_shared_resource_initiating_payment_method_details_initiating_payment_method_details",
-        "treasury_shared_resource_initiating_payment_method_details_us_bank_account": "_spec3_sdk_790_treasury_shared_resource_initiating_payment_method_details_us_bank_account",
-        "treasury_transactions_resource_abstract_transaction_resource_status_transitions": "_spec3_sdk_791_treasury_transactions_resource_abstract_transaction_resource_status_transitions",
-        "treasury_transactions_resource_balance_impact": "_spec3_sdk_792_treasury_transactions_resource_balance_impact",
-        "treasury_transactions_resource_flow_details": "_spec3_sdk_793_treasury_transactions_resource_flow_details",
-        "us_bank_account_networks": "_spec3_sdk_794_us_bank_account_networks",
-        "usage_record": "_spec3_sdk_795_usage_record",
-        "usage_record_summary": "_spec3_sdk_796_usage_record_summary",
-        "verification_session_redaction": "_spec3_sdk_797_verification_session_redaction",
-        "webhook_endpoint": "_spec3_sdk_798_webhook_endpoint",
+        "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer": "_spec3_sdk_112_customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer",
+        "customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction": "_spec3_sdk_113_customer_balance_resource_cash_balance_transaction_resource_refunded_from_payment_transaction",
+        "customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction": "_spec3_sdk_114_customer_balance_resource_cash_balance_transaction_resource_unapplied_from_payment_transaction",
+        "customer_balance_transaction": "_spec3_sdk_115_customer_balance_transaction",
+        "customer_cash_balance_transaction": "_spec3_sdk_116_customer_cash_balance_transaction",
+        "customer_tax": "_spec3_sdk_117_customer_tax",
+        "customer_tax_location": "_spec3_sdk_118_customer_tax_location",
+        "deleted_account": "_spec3_sdk_119_deleted_account",
+        "deleted_apple_pay_domain": "_spec3_sdk_120_deleted_apple_pay_domain",
+        "deleted_application": "_spec3_sdk_121_deleted_application",
+        "deleted_bank_account": "_spec3_sdk_122_deleted_bank_account",
+        "deleted_card": "_spec3_sdk_123_deleted_card",
+        "deleted_coupon": "_spec3_sdk_124_deleted_coupon",
+        "deleted_customer": "_spec3_sdk_125_deleted_customer",
+        "deleted_discount": "_spec3_sdk_126_deleted_discount",
+        "deleted_external_account": "_spec3_sdk_127_deleted_external_account",
+        "deleted_invoice": "_spec3_sdk_128_deleted_invoice",
+        "deleted_invoiceitem": "_spec3_sdk_129_deleted_invoiceitem",
+        "deleted_payment_source": "_spec3_sdk_130_deleted_payment_source",
+        "deleted_person": "_spec3_sdk_131_deleted_person",
+        "deleted_plan": "_spec3_sdk_132_deleted_plan",
+        "deleted_price": "_spec3_sdk_133_deleted_price",
+        "deleted_product": "_spec3_sdk_134_deleted_product",
+        "deleted_radar_value_list": "_spec3_sdk_135_deleted_radar_value_list",
+        "deleted_radar_value_list_item": "_spec3_sdk_136_deleted_radar_value_list_item",
+        "deleted_subscription_item": "_spec3_sdk_137_deleted_subscription_item",
+        "deleted_tax_id": "_spec3_sdk_138_deleted_tax_id",
+        "deleted_terminal_configuration": "_spec3_sdk_139_deleted_terminal_configuration",
+        "deleted_terminal_location": "_spec3_sdk_140_deleted_terminal_location",
+        "deleted_terminal_reader": "_spec3_sdk_141_deleted_terminal_reader",
+        "deleted_test_helpers_test_clock": "_spec3_sdk_142_deleted_test_helpers_test_clock",
+        "deleted_webhook_endpoint": "_spec3_sdk_143_deleted_webhook_endpoint",
+        "discount": "_spec3_sdk_144_discount",
+        "discounts_resource_discount_amount": "_spec3_sdk_145_discounts_resource_discount_amount",
+        "dispute": "_spec3_sdk_146_dispute",
+        "dispute_evidence": "_spec3_sdk_147_dispute_evidence",
+        "dispute_evidence_details": "_spec3_sdk_148_dispute_evidence_details",
+        "email_sent": "_spec3_sdk_149_email_sent",
+        "ephemeral_key": "_spec3_sdk_150_ephemeral_key",
+        "error": "_spec3_sdk_151_error",
+        "event": "_spec3_sdk_152_event",
+        "exchange_rate": "_spec3_sdk_153_exchange_rate",
+        "external_account": "_spec3_sdk_154_external_account",
+        "external_account_requirements": "_spec3_sdk_155_external_account_requirements",
+        "fee": "_spec3_sdk_156_fee",
+        "fee_refund": "_spec3_sdk_157_fee_refund",
+        "file": "_spec3_sdk_158_file",
+        "file_link": "_spec3_sdk_159_file_link",
+        "financial_connections_account": "_spec3_sdk_160_financial_connections_account",
+        "financial_connections_account_owner": "_spec3_sdk_161_financial_connections_account_owner",
+        "financial_connections_account_ownership": "_spec3_sdk_162_financial_connections_account_ownership",
+        "financial_connections_session": "_spec3_sdk_163_financial_connections_session",
+        "financial_reporting_finance_report_run_run_parameters": "_spec3_sdk_164_financial_reporting_finance_report_run_run_parameters",
+        "funding_instructions": "_spec3_sdk_165_funding_instructions",
+        "funding_instructions_bank_transfer": "_spec3_sdk_166_funding_instructions_bank_transfer",
+        "funding_instructions_bank_transfer_financial_address": "_spec3_sdk_167_funding_instructions_bank_transfer_financial_address",
+        "funding_instructions_bank_transfer_iban_record": "_spec3_sdk_168_funding_instructions_bank_transfer_iban_record",
+        "funding_instructions_bank_transfer_sort_code_record": "_spec3_sdk_169_funding_instructions_bank_transfer_sort_code_record",
+        "funding_instructions_bank_transfer_spei_record": "_spec3_sdk_170_funding_instructions_bank_transfer_spei_record",
+        "funding_instructions_bank_transfer_zengin_record": "_spec3_sdk_171_funding_instructions_bank_transfer_zengin_record",
+        "gelato_data_document_report_date_of_birth": "_spec3_sdk_172_gelato_data_document_report_date_of_birth",
+        "gelato_data_document_report_expiration_date": "_spec3_sdk_173_gelato_data_document_report_expiration_date",
+        "gelato_data_document_report_issued_date": "_spec3_sdk_174_gelato_data_document_report_issued_date",
+        "gelato_data_id_number_report_date": "_spec3_sdk_175_gelato_data_id_number_report_date",
+        "gelato_data_verified_outputs_date": "_spec3_sdk_176_gelato_data_verified_outputs_date",
+        "gelato_document_report": "_spec3_sdk_177_gelato_document_report",
+        "gelato_document_report_error": "_spec3_sdk_178_gelato_document_report_error",
+        "gelato_id_number_report": "_spec3_sdk_179_gelato_id_number_report",
+        "gelato_id_number_report_error": "_spec3_sdk_180_gelato_id_number_report_error",
+        "gelato_report_document_options": "_spec3_sdk_181_gelato_report_document_options",
+        "gelato_report_id_number_options": "_spec3_sdk_182_gelato_report_id_number_options",
+        "gelato_selfie_report": "_spec3_sdk_183_gelato_selfie_report",
+        "gelato_selfie_report_error": "_spec3_sdk_184_gelato_selfie_report_error",
+        "gelato_session_document_options": "_spec3_sdk_185_gelato_session_document_options",
+        "gelato_session_id_number_options": "_spec3_sdk_186_gelato_session_id_number_options",
+        "gelato_session_last_error": "_spec3_sdk_187_gelato_session_last_error",
+        "gelato_verification_report_options": "_spec3_sdk_188_gelato_verification_report_options",
+        "gelato_verification_session_options": "_spec3_sdk_189_gelato_verification_session_options",
+        "gelato_verified_outputs": "_spec3_sdk_190_gelato_verified_outputs",
+        "identity_verification_report": "_spec3_sdk_191_identity_verification_report",
+        "identity_verification_session": "_spec3_sdk_192_identity_verification_session",
+        "inbound_transfers": "_spec3_sdk_193_inbound_transfers",
+        "inbound_transfers_payment_method_details_us_bank_account": "_spec3_sdk_194_inbound_transfers_payment_method_details_us_bank_account",
+        "invoice": "_spec3_sdk_195_invoice",
+        "invoice_installments_card": "_spec3_sdk_196_invoice_installments_card",
+        "invoice_item_threshold_reason": "_spec3_sdk_197_invoice_item_threshold_reason",
+        "invoice_line_item_period": "_spec3_sdk_198_invoice_line_item_period",
+        "invoice_mandate_options_card": "_spec3_sdk_199_invoice_mandate_options_card",
+        "invoice_payment_method_options_acss_debit": "_spec3_sdk_200_invoice_payment_method_options_acss_debit",
+        "invoice_payment_method_options_acss_debit_mandate_options": "_spec3_sdk_201_invoice_payment_method_options_acss_debit_mandate_options",
+        "invoice_payment_method_options_bancontact": "_spec3_sdk_202_invoice_payment_method_options_bancontact",
+        "invoice_payment_method_options_card": "_spec3_sdk_203_invoice_payment_method_options_card",
+        "invoice_payment_method_options_customer_balance": "_spec3_sdk_204_invoice_payment_method_options_customer_balance",
+        "invoice_payment_method_options_customer_balance_bank_transfer": "_spec3_sdk_205_invoice_payment_method_options_customer_balance_bank_transfer",
+        "invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer": "_spec3_sdk_206_invoice_payment_method_options_customer_balance_bank_transfer_eu_bank_transfer",
+        "invoice_payment_method_options_konbini": "_spec3_sdk_207_invoice_payment_method_options_konbini",
+        "invoice_payment_method_options_us_bank_account": "_spec3_sdk_208_invoice_payment_method_options_us_bank_account",
+        "invoice_payment_method_options_us_bank_account_linked_account_options": "_spec3_sdk_209_invoice_payment_method_options_us_bank_account_linked_account_options",
+        "invoice_setting_custom_field": "_spec3_sdk_210_invoice_setting_custom_field",
+        "invoice_setting_customer_setting": "_spec3_sdk_211_invoice_setting_customer_setting",
+        "invoice_setting_phase_setting": "_spec3_sdk_212_invoice_setting_phase_setting",
+        "invoice_setting_quote_setting": "_spec3_sdk_213_invoice_setting_quote_setting",
+        "invoice_setting_rendering_options": "_spec3_sdk_214_invoice_setting_rendering_options",
+        "invoice_setting_subscription_schedule_setting": "_spec3_sdk_215_invoice_setting_subscription_schedule_setting",
+        "invoice_tax_amount": "_spec3_sdk_216_invoice_tax_amount",
+        "invoice_threshold_reason": "_spec3_sdk_217_invoice_threshold_reason",
+        "invoice_transfer_data": "_spec3_sdk_218_invoice_transfer_data",
+        "invoiceitem": "_spec3_sdk_219_invoiceitem",
+        "invoices_from_invoice": "_spec3_sdk_220_invoices_from_invoice",
+        "invoices_payment_method_options": "_spec3_sdk_221_invoices_payment_method_options",
+        "invoices_payment_settings": "_spec3_sdk_222_invoices_payment_settings",
+        "invoices_resource_invoice_tax_id": "_spec3_sdk_223_invoices_resource_invoice_tax_id",
+        "invoices_resource_line_items_credited_items": "_spec3_sdk_224_invoices_resource_line_items_credited_items",
+        "invoices_resource_line_items_proration_details": "_spec3_sdk_225_invoices_resource_line_items_proration_details",
+        "invoices_shipping_cost": "_spec3_sdk_226_invoices_shipping_cost",
+        "invoices_status_transitions": "_spec3_sdk_227_invoices_status_transitions",
+        "issuing_authorization": "_spec3_sdk_228_issuing_authorization",
+        "issuing_card": "_spec3_sdk_229_issuing_card",
+        "issuing_cardholder": "_spec3_sdk_230_issuing_cardholder",
+        "issuing_dispute": "_spec3_sdk_231_issuing_dispute",
+        "issuing_transaction": "_spec3_sdk_232_issuing_transaction",
+        "issuing_authorization_amount_details": "_spec3_sdk_233_issuing_authorization_amount_details",
+        "issuing_authorization_merchant_data": "_spec3_sdk_234_issuing_authorization_merchant_data",
+        "issuing_authorization_network_data": "_spec3_sdk_235_issuing_authorization_network_data",
+        "issuing_authorization_pending_request": "_spec3_sdk_236_issuing_authorization_pending_request",
+        "issuing_authorization_request": "_spec3_sdk_237_issuing_authorization_request",
+        "issuing_authorization_treasury": "_spec3_sdk_238_issuing_authorization_treasury",
+        "issuing_authorization_verification_data": "_spec3_sdk_239_issuing_authorization_verification_data",
+        "issuing_card_apple_pay": "_spec3_sdk_240_issuing_card_apple_pay",
+        "issuing_card_authorization_controls": "_spec3_sdk_241_issuing_card_authorization_controls",
+        "issuing_card_google_pay": "_spec3_sdk_242_issuing_card_google_pay",
+        "issuing_card_shipping": "_spec3_sdk_243_issuing_card_shipping",
+        "issuing_card_shipping_customs": "_spec3_sdk_244_issuing_card_shipping_customs",
+        "issuing_card_spending_limit": "_spec3_sdk_245_issuing_card_spending_limit",
+        "issuing_card_wallets": "_spec3_sdk_246_issuing_card_wallets",
+        "issuing_cardholder_address": "_spec3_sdk_247_issuing_cardholder_address",
+        "issuing_cardholder_authorization_controls": "_spec3_sdk_248_issuing_cardholder_authorization_controls",
+        "issuing_cardholder_card_issuing": "_spec3_sdk_249_issuing_cardholder_card_issuing",
+        "issuing_cardholder_company": "_spec3_sdk_250_issuing_cardholder_company",
+        "issuing_cardholder_id_document": "_spec3_sdk_251_issuing_cardholder_id_document",
+        "issuing_cardholder_individual": "_spec3_sdk_252_issuing_cardholder_individual",
+        "issuing_cardholder_individual_dob": "_spec3_sdk_253_issuing_cardholder_individual_dob",
+        "issuing_cardholder_requirements": "_spec3_sdk_254_issuing_cardholder_requirements",
+        "issuing_cardholder_spending_limit": "_spec3_sdk_255_issuing_cardholder_spending_limit",
+        "issuing_cardholder_user_terms_acceptance": "_spec3_sdk_256_issuing_cardholder_user_terms_acceptance",
+        "issuing_cardholder_verification": "_spec3_sdk_257_issuing_cardholder_verification",
+        "issuing_dispute_canceled_evidence": "_spec3_sdk_258_issuing_dispute_canceled_evidence",
+        "issuing_dispute_duplicate_evidence": "_spec3_sdk_259_issuing_dispute_duplicate_evidence",
+        "issuing_dispute_evidence": "_spec3_sdk_260_issuing_dispute_evidence",
+        "issuing_dispute_fraudulent_evidence": "_spec3_sdk_261_issuing_dispute_fraudulent_evidence",
+        "issuing_dispute_merchandise_not_as_described_evidence": "_spec3_sdk_262_issuing_dispute_merchandise_not_as_described_evidence",
+        "issuing_dispute_not_received_evidence": "_spec3_sdk_263_issuing_dispute_not_received_evidence",
+        "issuing_dispute_other_evidence": "_spec3_sdk_264_issuing_dispute_other_evidence",
+        "issuing_dispute_service_not_as_described_evidence": "_spec3_sdk_265_issuing_dispute_service_not_as_described_evidence",
+        "issuing_dispute_treasury": "_spec3_sdk_266_issuing_dispute_treasury",
+        "issuing_transaction_amount_details": "_spec3_sdk_267_issuing_transaction_amount_details",
+        "issuing_transaction_flight_data": "_spec3_sdk_268_issuing_transaction_flight_data",
+        "issuing_transaction_flight_data_leg": "_spec3_sdk_269_issuing_transaction_flight_data_leg",
+        "issuing_transaction_fuel_data": "_spec3_sdk_270_issuing_transaction_fuel_data",
+        "issuing_transaction_lodging_data": "_spec3_sdk_271_issuing_transaction_lodging_data",
+        "issuing_transaction_purchase_details": "_spec3_sdk_272_issuing_transaction_purchase_details",
+        "issuing_transaction_receipt_data": "_spec3_sdk_273_issuing_transaction_receipt_data",
+        "issuing_transaction_treasury": "_spec3_sdk_274_issuing_transaction_treasury",
+        "item": "_spec3_sdk_275_item",
+        "legal_entity_company": "_spec3_sdk_276_legal_entity_company",
+        "legal_entity_company_verification": "_spec3_sdk_277_legal_entity_company_verification",
+        "legal_entity_company_verification_document": "_spec3_sdk_278_legal_entity_company_verification_document",
+        "legal_entity_dob": "_spec3_sdk_279_legal_entity_dob",
+        "legal_entity_japan_address": "_spec3_sdk_280_legal_entity_japan_address",
+        "legal_entity_person_verification": "_spec3_sdk_281_legal_entity_person_verification",
+        "legal_entity_person_verification_document": "_spec3_sdk_282_legal_entity_person_verification_document",
+        "legal_entity_ubo_declaration": "_spec3_sdk_283_legal_entity_ubo_declaration",
+        "level3": "_spec3_sdk_284_level3",
+        "level3_line_items": "_spec3_sdk_285_level3_line_items",
+        "line_item": "_spec3_sdk_286_line_item",
+        "line_items_discount_amount": "_spec3_sdk_287_line_items_discount_amount",
+        "line_items_tax_amount": "_spec3_sdk_288_line_items_tax_amount",
+        "linked_account_options_us_bank_account": "_spec3_sdk_289_linked_account_options_us_bank_account",
+        "login_link": "_spec3_sdk_290_login_link",
+        "mandate": "_spec3_sdk_291_mandate",
+        "mandate_acss_debit": "_spec3_sdk_292_mandate_acss_debit",
+        "mandate_au_becs_debit": "_spec3_sdk_293_mandate_au_becs_debit",
+        "mandate_bacs_debit": "_spec3_sdk_294_mandate_bacs_debit",
+        "mandate_blik": "_spec3_sdk_295_mandate_blik",
+        "mandate_cashapp": "_spec3_sdk_296_mandate_cashapp",
+        "mandate_link": "_spec3_sdk_297_mandate_link",
+        "mandate_multi_use": "_spec3_sdk_298_mandate_multi_use",
+        "mandate_options_off_session_details_blik": "_spec3_sdk_299_mandate_options_off_session_details_blik",
+        "mandate_payment_method_details": "_spec3_sdk_300_mandate_payment_method_details",
+        "mandate_paypal": "_spec3_sdk_301_mandate_paypal",
+        "mandate_sepa_debit": "_spec3_sdk_302_mandate_sepa_debit",
+        "mandate_single_use": "_spec3_sdk_303_mandate_single_use",
+        "mandate_us_bank_account": "_spec3_sdk_304_mandate_us_bank_account",
+        "networks": "_spec3_sdk_305_networks",
+        "notification_event_data": "_spec3_sdk_306_notification_event_data",
+        "notification_event_request": "_spec3_sdk_307_notification_event_request",
+        "offline_acceptance": "_spec3_sdk_308_offline_acceptance",
+        "online_acceptance": "_spec3_sdk_309_online_acceptance",
+        "outbound_payments_payment_method_details": "_spec3_sdk_310_outbound_payments_payment_method_details",
+        "outbound_payments_payment_method_details_financial_account": "_spec3_sdk_311_outbound_payments_payment_method_details_financial_account",
+        "outbound_payments_payment_method_details_us_bank_account": "_spec3_sdk_312_outbound_payments_payment_method_details_us_bank_account",
+        "outbound_transfers_payment_method_details": "_spec3_sdk_313_outbound_transfers_payment_method_details",
+        "outbound_transfers_payment_method_details_us_bank_account": "_spec3_sdk_314_outbound_transfers_payment_method_details_us_bank_account",
+        "package_dimensions": "_spec3_sdk_315_package_dimensions",
+        "payment_flows_amount_details": "_spec3_sdk_316_payment_flows_amount_details",
+        "payment_flows_amount_details_resource_tip": "_spec3_sdk_317_payment_flows_amount_details_resource_tip",
+        "payment_flows_automatic_payment_methods_payment_intent": "_spec3_sdk_318_payment_flows_automatic_payment_methods_payment_intent",
+        "payment_flows_automatic_payment_methods_setup_intent": "_spec3_sdk_319_payment_flows_automatic_payment_methods_setup_intent",
+        "payment_flows_installment_options": "_spec3_sdk_320_payment_flows_installment_options",
+        "payment_flows_private_payment_methods_alipay": "_spec3_sdk_321_payment_flows_private_payment_methods_alipay",
+        "payment_flows_private_payment_methods_alipay_details": "_spec3_sdk_322_payment_flows_private_payment_methods_alipay_details",
+        "payment_flows_private_payment_methods_klarna_dob": "_spec3_sdk_323_payment_flows_private_payment_methods_klarna_dob",
+        "payment_intent": "_spec3_sdk_324_payment_intent",
+        "payment_intent_card_processing": "_spec3_sdk_325_payment_intent_card_processing",
+        "payment_intent_next_action": "_spec3_sdk_326_payment_intent_next_action",
+        "payment_intent_next_action_alipay_handle_redirect": "_spec3_sdk_327_payment_intent_next_action_alipay_handle_redirect",
+        "payment_intent_next_action_boleto": "_spec3_sdk_328_payment_intent_next_action_boleto",
+        "payment_intent_next_action_card_await_notification": "_spec3_sdk_329_payment_intent_next_action_card_await_notification",
+        "payment_intent_next_action_cashapp_handle_redirect_or_display_qr_code": "_spec3_sdk_330_payment_intent_next_action_cashapp_handle_redirect_or_display_qr_code",
+        "payment_intent_next_action_cashapp_qr_code": "_spec3_sdk_331_payment_intent_next_action_cashapp_qr_code",
+        "payment_intent_next_action_display_bank_transfer_instructions": "_spec3_sdk_332_payment_intent_next_action_display_bank_transfer_instructions",
+        "payment_intent_next_action_display_oxxo_details": "_spec3_sdk_333_payment_intent_next_action_display_oxxo_details",
+        "payment_intent_next_action_konbini": "_spec3_sdk_334_payment_intent_next_action_konbini",
+        "payment_intent_next_action_konbini_familymart": "_spec3_sdk_335_payment_intent_next_action_konbini_familymart",
+        "payment_intent_next_action_konbini_lawson": "_spec3_sdk_336_payment_intent_next_action_konbini_lawson",
+        "payment_intent_next_action_konbini_ministop": "_spec3_sdk_337_payment_intent_next_action_konbini_ministop",
+        "payment_intent_next_action_konbini_seicomart": "_spec3_sdk_338_payment_intent_next_action_konbini_seicomart",
+        "payment_intent_next_action_konbini_stores": "_spec3_sdk_339_payment_intent_next_action_konbini_stores",
+        "payment_intent_next_action_paynow_display_qr_code": "_spec3_sdk_340_payment_intent_next_action_paynow_display_qr_code",
+        "payment_intent_next_action_pix_display_qr_code": "_spec3_sdk_341_payment_intent_next_action_pix_display_qr_code",
+        "payment_intent_next_action_promptpay_display_qr_code": "_spec3_sdk_342_payment_intent_next_action_promptpay_display_qr_code",
+        "payment_intent_next_action_redirect_to_url": "_spec3_sdk_343_payment_intent_next_action_redirect_to_url",
+        "payment_intent_next_action_verify_with_microdeposits": "_spec3_sdk_344_payment_intent_next_action_verify_with_microdeposits",
+        "payment_intent_next_action_wechat_pay_display_qr_code": "_spec3_sdk_345_payment_intent_next_action_wechat_pay_display_qr_code",
+        "payment_intent_next_action_wechat_pay_redirect_to_android_app": "_spec3_sdk_346_payment_intent_next_action_wechat_pay_redirect_to_android_app",
+        "payment_intent_next_action_wechat_pay_redirect_to_ios_app": "_spec3_sdk_347_payment_intent_next_action_wechat_pay_redirect_to_ios_app",
+        "payment_intent_payment_method_options": "_spec3_sdk_348_payment_intent_payment_method_options",
+        "payment_intent_payment_method_options_acss_debit": "_spec3_sdk_349_payment_intent_payment_method_options_acss_debit",
+        "payment_intent_payment_method_options_au_becs_debit": "_spec3_sdk_350_payment_intent_payment_method_options_au_becs_debit",
+        "payment_intent_payment_method_options_blik": "_spec3_sdk_351_payment_intent_payment_method_options_blik",
+        "payment_intent_payment_method_options_card": "_spec3_sdk_352_payment_intent_payment_method_options_card",
+        "payment_intent_payment_method_options_eps": "_spec3_sdk_353_payment_intent_payment_method_options_eps",
+        "payment_intent_payment_method_options_link": "_spec3_sdk_354_payment_intent_payment_method_options_link",
+        "payment_intent_payment_method_options_mandate_options_acss_debit": "_spec3_sdk_355_payment_intent_payment_method_options_mandate_options_acss_debit",
+        "payment_intent_payment_method_options_mandate_options_sepa_debit": "_spec3_sdk_356_payment_intent_payment_method_options_mandate_options_sepa_debit",
+        "payment_intent_payment_method_options_sepa_debit": "_spec3_sdk_357_payment_intent_payment_method_options_sepa_debit",
+        "payment_intent_payment_method_options_us_bank_account": "_spec3_sdk_358_payment_intent_payment_method_options_us_bank_account",
+        "payment_intent_processing": "_spec3_sdk_359_payment_intent_processing",
+        "payment_intent_processing_customer_notification": "_spec3_sdk_360_payment_intent_processing_customer_notification",
+        "payment_intent_type_specific_payment_method_options_client": "_spec3_sdk_361_payment_intent_type_specific_payment_method_options_client",
+        "payment_link": "_spec3_sdk_362_payment_link",
+        "payment_links_resource_after_completion": "_spec3_sdk_363_payment_links_resource_after_completion",
+        "payment_links_resource_automatic_tax": "_spec3_sdk_364_payment_links_resource_automatic_tax",
+        "payment_links_resource_completion_behavior_confirmation_page": "_spec3_sdk_365_payment_links_resource_completion_behavior_confirmation_page",
+        "payment_links_resource_completion_behavior_redirect": "_spec3_sdk_366_payment_links_resource_completion_behavior_redirect",
+        "payment_links_resource_consent_collection": "_spec3_sdk_367_payment_links_resource_consent_collection",
+        "payment_links_resource_custom_fields": "_spec3_sdk_368_payment_links_resource_custom_fields",
+        "payment_links_resource_custom_fields_dropdown": "_spec3_sdk_369_payment_links_resource_custom_fields_dropdown",
+        "payment_links_resource_custom_fields_dropdown_option": "_spec3_sdk_370_payment_links_resource_custom_fields_dropdown_option",
+        "payment_links_resource_custom_fields_label": "_spec3_sdk_371_payment_links_resource_custom_fields_label",
+        "payment_links_resource_custom_text": "_spec3_sdk_372_payment_links_resource_custom_text",
+        "payment_links_resource_custom_text_position": "_spec3_sdk_373_payment_links_resource_custom_text_position",
+        "payment_links_resource_invoice_creation": "_spec3_sdk_374_payment_links_resource_invoice_creation",
+        "payment_links_resource_invoice_settings": "_spec3_sdk_375_payment_links_resource_invoice_settings",
+        "payment_links_resource_payment_intent_data": "_spec3_sdk_376_payment_links_resource_payment_intent_data",
+        "payment_links_resource_phone_number_collection": "_spec3_sdk_377_payment_links_resource_phone_number_collection",
+        "payment_links_resource_shipping_address_collection": "_spec3_sdk_378_payment_links_resource_shipping_address_collection",
+        "payment_links_resource_shipping_option": "_spec3_sdk_379_payment_links_resource_shipping_option",
+        "payment_links_resource_subscription_data": "_spec3_sdk_380_payment_links_resource_subscription_data",
+        "payment_links_resource_tax_id_collection": "_spec3_sdk_381_payment_links_resource_tax_id_collection",
+        "payment_links_resource_transfer_data": "_spec3_sdk_382_payment_links_resource_transfer_data",
+        "payment_method": "_spec3_sdk_383_payment_method",
+        "payment_method_acss_debit": "_spec3_sdk_384_payment_method_acss_debit",
+        "payment_method_affirm": "_spec3_sdk_385_payment_method_affirm",
+        "payment_method_afterpay_clearpay": "_spec3_sdk_386_payment_method_afterpay_clearpay",
+        "payment_method_au_becs_debit": "_spec3_sdk_387_payment_method_au_becs_debit",
+        "payment_method_bacs_debit": "_spec3_sdk_388_payment_method_bacs_debit",
+        "payment_method_bancontact": "_spec3_sdk_389_payment_method_bancontact",
+        "payment_method_blik": "_spec3_sdk_390_payment_method_blik",
+        "payment_method_boleto": "_spec3_sdk_391_payment_method_boleto",
+        "payment_method_card": "_spec3_sdk_392_payment_method_card",
+        "payment_method_card_checks": "_spec3_sdk_393_payment_method_card_checks",
+        "payment_method_card_present": "_spec3_sdk_394_payment_method_card_present",
+        "payment_method_card_present_networks": "_spec3_sdk_395_payment_method_card_present_networks",
+        "payment_method_card_wallet": "_spec3_sdk_396_payment_method_card_wallet",
+        "payment_method_card_wallet_amex_express_checkout": "_spec3_sdk_397_payment_method_card_wallet_amex_express_checkout",
+        "payment_method_card_wallet_apple_pay": "_spec3_sdk_398_payment_method_card_wallet_apple_pay",
+        "payment_method_card_wallet_google_pay": "_spec3_sdk_399_payment_method_card_wallet_google_pay",
+        "payment_method_card_wallet_link": "_spec3_sdk_400_payment_method_card_wallet_link",
+        "payment_method_card_wallet_masterpass": "_spec3_sdk_401_payment_method_card_wallet_masterpass",
+        "payment_method_card_wallet_samsung_pay": "_spec3_sdk_402_payment_method_card_wallet_samsung_pay",
+        "payment_method_card_wallet_visa_checkout": "_spec3_sdk_403_payment_method_card_wallet_visa_checkout",
+        "payment_method_cashapp": "_spec3_sdk_404_payment_method_cashapp",
+        "payment_method_customer_balance": "_spec3_sdk_405_payment_method_customer_balance",
+        "payment_method_details": "_spec3_sdk_406_payment_method_details",
+        "payment_method_details_ach_credit_transfer": "_spec3_sdk_407_payment_method_details_ach_credit_transfer",
+        "payment_method_details_ach_debit": "_spec3_sdk_408_payment_method_details_ach_debit",
+        "payment_method_details_acss_debit": "_spec3_sdk_409_payment_method_details_acss_debit",
+        "payment_method_details_affirm": "_spec3_sdk_410_payment_method_details_affirm",
+        "payment_method_details_afterpay_clearpay": "_spec3_sdk_411_payment_method_details_afterpay_clearpay",
+        "payment_method_details_au_becs_debit": "_spec3_sdk_412_payment_method_details_au_becs_debit",
+        "payment_method_details_bacs_debit": "_spec3_sdk_413_payment_method_details_bacs_debit",
+        "payment_method_details_bancontact": "_spec3_sdk_414_payment_method_details_bancontact",
+        "payment_method_details_blik": "_spec3_sdk_415_payment_method_details_blik",
+        "payment_method_details_boleto": "_spec3_sdk_416_payment_method_details_boleto",
+        "payment_method_details_card": "_spec3_sdk_417_payment_method_details_card",
+        "payment_method_details_card_checks": "_spec3_sdk_418_payment_method_details_card_checks",
+        "payment_method_details_card_installments": "_spec3_sdk_419_payment_method_details_card_installments",
+        "payment_method_details_card_installments_plan": "_spec3_sdk_420_payment_method_details_card_installments_plan",
+        "payment_method_details_card_network_token": "_spec3_sdk_421_payment_method_details_card_network_token",
+        "payment_method_details_card_present": "_spec3_sdk_422_payment_method_details_card_present",
+        "payment_method_details_card_present_receipt": "_spec3_sdk_423_payment_method_details_card_present_receipt",
+        "payment_method_details_card_wallet": "_spec3_sdk_424_payment_method_details_card_wallet",
+        "payment_method_details_card_wallet_amex_express_checkout": "_spec3_sdk_425_payment_method_details_card_wallet_amex_express_checkout",
+        "payment_method_details_card_wallet_apple_pay": "_spec3_sdk_426_payment_method_details_card_wallet_apple_pay",
+        "payment_method_details_card_wallet_google_pay": "_spec3_sdk_427_payment_method_details_card_wallet_google_pay",
+        "payment_method_details_card_wallet_link": "_spec3_sdk_428_payment_method_details_card_wallet_link",
+        "payment_method_details_card_wallet_masterpass": "_spec3_sdk_429_payment_method_details_card_wallet_masterpass",
+        "payment_method_details_card_wallet_samsung_pay": "_spec3_sdk_430_payment_method_details_card_wallet_samsung_pay",
+        "payment_method_details_card_wallet_visa_checkout": "_spec3_sdk_431_payment_method_details_card_wallet_visa_checkout",
+        "payment_method_details_cashapp": "_spec3_sdk_432_payment_method_details_cashapp",
+        "payment_method_details_customer_balance": "_spec3_sdk_433_payment_method_details_customer_balance",
+        "payment_method_details_eps": "_spec3_sdk_434_payment_method_details_eps",
+        "payment_method_details_fpx": "_spec3_sdk_435_payment_method_details_fpx",
+        "payment_method_details_giropay": "_spec3_sdk_436_payment_method_details_giropay",
+        "payment_method_details_grabpay": "_spec3_sdk_437_payment_method_details_grabpay",
+        "payment_method_details_ideal": "_spec3_sdk_438_payment_method_details_ideal",
+        "payment_method_details_interac_present": "_spec3_sdk_439_payment_method_details_interac_present",
+        "payment_method_details_interac_present_receipt": "_spec3_sdk_440_payment_method_details_interac_present_receipt",
+        "payment_method_details_klarna": "_spec3_sdk_441_payment_method_details_klarna",
+        "payment_method_details_konbini": "_spec3_sdk_442_payment_method_details_konbini",
+        "payment_method_details_konbini_store": "_spec3_sdk_443_payment_method_details_konbini_store",
+        "payment_method_details_link": "_spec3_sdk_444_payment_method_details_link",
+        "payment_method_details_multibanco": "_spec3_sdk_445_payment_method_details_multibanco",
+        "payment_method_details_oxxo": "_spec3_sdk_446_payment_method_details_oxxo",
+        "payment_method_details_p24": "_spec3_sdk_447_payment_method_details_p24",
+        "payment_method_details_paynow": "_spec3_sdk_448_payment_method_details_paynow",
+        "payment_method_details_paypal": "_spec3_sdk_449_payment_method_details_paypal",
+        "payment_method_details_pix": "_spec3_sdk_450_payment_method_details_pix",
+        "payment_method_details_promptpay": "_spec3_sdk_451_payment_method_details_promptpay",
+        "payment_method_details_sepa_credit_transfer": "_spec3_sdk_452_payment_method_details_sepa_credit_transfer",
+        "payment_method_details_sepa_debit": "_spec3_sdk_453_payment_method_details_sepa_debit",
+        "payment_method_details_sofort": "_spec3_sdk_454_payment_method_details_sofort",
+        "payment_method_details_stripe_account": "_spec3_sdk_455_payment_method_details_stripe_account",
+        "payment_method_details_us_bank_account": "_spec3_sdk_456_payment_method_details_us_bank_account",
+        "payment_method_details_wechat": "_spec3_sdk_457_payment_method_details_wechat",
+        "payment_method_details_wechat_pay": "_spec3_sdk_458_payment_method_details_wechat_pay",
+        "payment_method_details_zip": "_spec3_sdk_459_payment_method_details_zip",
+        "payment_method_eps": "_spec3_sdk_460_payment_method_eps",
+        "payment_method_fpx": "_spec3_sdk_461_payment_method_fpx",
+        "payment_method_giropay": "_spec3_sdk_462_payment_method_giropay",
+        "payment_method_grabpay": "_spec3_sdk_463_payment_method_grabpay",
+        "payment_method_ideal": "_spec3_sdk_464_payment_method_ideal",
+        "payment_method_interac_present": "_spec3_sdk_465_payment_method_interac_present",
+        "payment_method_klarna": "_spec3_sdk_466_payment_method_klarna",
+        "payment_method_konbini": "_spec3_sdk_467_payment_method_konbini",
+        "payment_method_link": "_spec3_sdk_468_payment_method_link",
+        "payment_method_options_affirm": "_spec3_sdk_469_payment_method_options_affirm",
+        "payment_method_options_afterpay_clearpay": "_spec3_sdk_470_payment_method_options_afterpay_clearpay",
+        "payment_method_options_alipay": "_spec3_sdk_471_payment_method_options_alipay",
+        "payment_method_options_bacs_debit": "_spec3_sdk_472_payment_method_options_bacs_debit",
+        "payment_method_options_bancontact": "_spec3_sdk_473_payment_method_options_bancontact",
+        "payment_method_options_boleto": "_spec3_sdk_474_payment_method_options_boleto",
+        "payment_method_options_card_installments": "_spec3_sdk_475_payment_method_options_card_installments",
+        "payment_method_options_card_mandate_options": "_spec3_sdk_476_payment_method_options_card_mandate_options",
+        "payment_method_options_card_present": "_spec3_sdk_477_payment_method_options_card_present",
+        "payment_method_options_cashapp": "_spec3_sdk_478_payment_method_options_cashapp",
+        "payment_method_options_customer_balance": "_spec3_sdk_479_payment_method_options_customer_balance",
+        "payment_method_options_customer_balance_bank_transfer": "_spec3_sdk_480_payment_method_options_customer_balance_bank_transfer",
+        "payment_method_options_customer_balance_eu_bank_account": "_spec3_sdk_481_payment_method_options_customer_balance_eu_bank_account",
+        "payment_method_options_fpx": "_spec3_sdk_482_payment_method_options_fpx",
+        "payment_method_options_giropay": "_spec3_sdk_483_payment_method_options_giropay",
+        "payment_method_options_grabpay": "_spec3_sdk_484_payment_method_options_grabpay",
+        "payment_method_options_ideal": "_spec3_sdk_485_payment_method_options_ideal",
+        "payment_method_options_interac_present": "_spec3_sdk_486_payment_method_options_interac_present",
+        "payment_method_options_klarna": "_spec3_sdk_487_payment_method_options_klarna",
+        "payment_method_options_konbini": "_spec3_sdk_488_payment_method_options_konbini",
+        "payment_method_options_oxxo": "_spec3_sdk_489_payment_method_options_oxxo",
+        "payment_method_options_p24": "_spec3_sdk_490_payment_method_options_p24",
+        "payment_method_options_paynow": "_spec3_sdk_491_payment_method_options_paynow",
+        "payment_method_options_paypal": "_spec3_sdk_492_payment_method_options_paypal",
+        "payment_method_options_pix": "_spec3_sdk_493_payment_method_options_pix",
+        "payment_method_options_promptpay": "_spec3_sdk_494_payment_method_options_promptpay",
+        "payment_method_options_sofort": "_spec3_sdk_495_payment_method_options_sofort",
+        "payment_method_options_wechat_pay": "_spec3_sdk_496_payment_method_options_wechat_pay",
+        "payment_method_options_zip": "_spec3_sdk_497_payment_method_options_zip",
+        "payment_method_oxxo": "_spec3_sdk_498_payment_method_oxxo",
+        "payment_method_p24": "_spec3_sdk_499_payment_method_p24",
+        "payment_method_paynow": "_spec3_sdk_500_payment_method_paynow",
+        "payment_method_paypal": "_spec3_sdk_501_payment_method_paypal",
+        "payment_method_pix": "_spec3_sdk_502_payment_method_pix",
+        "payment_method_promptpay": "_spec3_sdk_503_payment_method_promptpay",
+        "payment_method_sepa_debit": "_spec3_sdk_504_payment_method_sepa_debit",
+        "payment_method_sofort": "_spec3_sdk_505_payment_method_sofort",
+        "payment_method_us_bank_account": "_spec3_sdk_506_payment_method_us_bank_account",
+        "payment_method_us_bank_account_blocked": "_spec3_sdk_507_payment_method_us_bank_account_blocked",
+        "payment_method_us_bank_account_status_details": "_spec3_sdk_508_payment_method_us_bank_account_status_details",
+        "payment_method_wechat_pay": "_spec3_sdk_509_payment_method_wechat_pay",
+        "payment_method_zip": "_spec3_sdk_510_payment_method_zip",
+        "payment_pages_checkout_session_after_expiration": "_spec3_sdk_511_payment_pages_checkout_session_after_expiration",
+        "payment_pages_checkout_session_after_expiration_recovery": "_spec3_sdk_512_payment_pages_checkout_session_after_expiration_recovery",
+        "payment_pages_checkout_session_automatic_tax": "_spec3_sdk_513_payment_pages_checkout_session_automatic_tax",
+        "payment_pages_checkout_session_consent": "_spec3_sdk_514_payment_pages_checkout_session_consent",
+        "payment_pages_checkout_session_consent_collection": "_spec3_sdk_515_payment_pages_checkout_session_consent_collection",
+        "payment_pages_checkout_session_currency_conversion": "_spec3_sdk_516_payment_pages_checkout_session_currency_conversion",
+        "payment_pages_checkout_session_custom_fields": "_spec3_sdk_517_payment_pages_checkout_session_custom_fields",
+        "payment_pages_checkout_session_custom_fields_dropdown": "_spec3_sdk_518_payment_pages_checkout_session_custom_fields_dropdown",
+        "payment_pages_checkout_session_custom_fields_label": "_spec3_sdk_519_payment_pages_checkout_session_custom_fields_label",
+        "payment_pages_checkout_session_custom_fields_numeric": "_spec3_sdk_520_payment_pages_checkout_session_custom_fields_numeric",
+        "payment_pages_checkout_session_custom_fields_option": "_spec3_sdk_521_payment_pages_checkout_session_custom_fields_option",
+        "payment_pages_checkout_session_custom_fields_text": "_spec3_sdk_522_payment_pages_checkout_session_custom_fields_text",
+        "payment_pages_checkout_session_custom_text": "_spec3_sdk_523_payment_pages_checkout_session_custom_text",
+        "payment_pages_checkout_session_custom_text_position": "_spec3_sdk_524_payment_pages_checkout_session_custom_text_position",
+        "payment_pages_checkout_session_customer_details": "_spec3_sdk_525_payment_pages_checkout_session_customer_details",
+        "payment_pages_checkout_session_invoice_creation": "_spec3_sdk_526_payment_pages_checkout_session_invoice_creation",
+        "payment_pages_checkout_session_invoice_settings": "_spec3_sdk_527_payment_pages_checkout_session_invoice_settings",
+        "payment_pages_checkout_session_phone_number_collection": "_spec3_sdk_528_payment_pages_checkout_session_phone_number_collection",
+        "payment_pages_checkout_session_shipping_address_collection": "_spec3_sdk_529_payment_pages_checkout_session_shipping_address_collection",
+        "payment_pages_checkout_session_shipping_cost": "_spec3_sdk_530_payment_pages_checkout_session_shipping_cost",
+        "payment_pages_checkout_session_shipping_option": "_spec3_sdk_531_payment_pages_checkout_session_shipping_option",
+        "payment_pages_checkout_session_tax_id": "_spec3_sdk_532_payment_pages_checkout_session_tax_id",
+        "payment_pages_checkout_session_tax_id_collection": "_spec3_sdk_533_payment_pages_checkout_session_tax_id_collection",
+        "payment_pages_checkout_session_total_details": "_spec3_sdk_534_payment_pages_checkout_session_total_details",
+        "payment_pages_checkout_session_total_details_resource_breakdown": "_spec3_sdk_535_payment_pages_checkout_session_total_details_resource_breakdown",
+        "payment_source": "_spec3_sdk_536_payment_source",
+        "payout": "_spec3_sdk_537_payout",
+        "paypal_seller_protection": "_spec3_sdk_538_paypal_seller_protection",
+        "period": "_spec3_sdk_539_period",
+        "person": "_spec3_sdk_540_person",
+        "person_future_requirements": "_spec3_sdk_541_person_future_requirements",
+        "person_relationship": "_spec3_sdk_542_person_relationship",
+        "person_requirements": "_spec3_sdk_543_person_requirements",
+        "plan": "_spec3_sdk_544_plan",
+        "plan_tier": "_spec3_sdk_545_plan_tier",
+        "platform_tax_fee": "_spec3_sdk_546_platform_tax_fee",
+        "portal_business_profile": "_spec3_sdk_547_portal_business_profile",
+        "portal_customer_update": "_spec3_sdk_548_portal_customer_update",
+        "portal_features": "_spec3_sdk_549_portal_features",
+        "portal_flows_after_completion_hosted_confirmation": "_spec3_sdk_550_portal_flows_after_completion_hosted_confirmation",
+        "portal_flows_after_completion_redirect": "_spec3_sdk_551_portal_flows_after_completion_redirect",
+        "portal_flows_flow": "_spec3_sdk_552_portal_flows_flow",
+        "portal_flows_flow_after_completion": "_spec3_sdk_553_portal_flows_flow_after_completion",
+        "portal_flows_flow_subscription_cancel": "_spec3_sdk_554_portal_flows_flow_subscription_cancel",
+        "portal_flows_flow_subscription_update": "_spec3_sdk_555_portal_flows_flow_subscription_update",
+        "portal_flows_flow_subscription_update_confirm": "_spec3_sdk_556_portal_flows_flow_subscription_update_confirm",
+        "portal_flows_subscription_update_confirm_discount": "_spec3_sdk_557_portal_flows_subscription_update_confirm_discount",
+        "portal_flows_subscription_update_confirm_item": "_spec3_sdk_558_portal_flows_subscription_update_confirm_item",
+        "portal_invoice_list": "_spec3_sdk_559_portal_invoice_list",
+        "portal_login_page": "_spec3_sdk_560_portal_login_page",
+        "portal_payment_method_update": "_spec3_sdk_561_portal_payment_method_update",
+        "portal_subscription_cancel": "_spec3_sdk_562_portal_subscription_cancel",
+        "portal_subscription_cancellation_reason": "_spec3_sdk_563_portal_subscription_cancellation_reason",
+        "portal_subscription_pause": "_spec3_sdk_564_portal_subscription_pause",
+        "portal_subscription_update": "_spec3_sdk_565_portal_subscription_update",
+        "portal_subscription_update_product": "_spec3_sdk_566_portal_subscription_update_product",
+        "price": "_spec3_sdk_567_price",
+        "price_tier": "_spec3_sdk_568_price_tier",
+        "product": "_spec3_sdk_569_product",
+        "promotion_code": "_spec3_sdk_570_promotion_code",
+        "promotion_code_currency_option": "_spec3_sdk_571_promotion_code_currency_option",
+        "promotion_codes_resource_restrictions": "_spec3_sdk_572_promotion_codes_resource_restrictions",
+        "quote": "_spec3_sdk_573_quote",
+        "quotes_resource_automatic_tax": "_spec3_sdk_574_quotes_resource_automatic_tax",
+        "quotes_resource_computed": "_spec3_sdk_575_quotes_resource_computed",
+        "quotes_resource_from_quote": "_spec3_sdk_576_quotes_resource_from_quote",
+        "quotes_resource_recurring": "_spec3_sdk_577_quotes_resource_recurring",
+        "quotes_resource_status_transitions": "_spec3_sdk_578_quotes_resource_status_transitions",
+        "quotes_resource_subscription_data_subscription_data": "_spec3_sdk_579_quotes_resource_subscription_data_subscription_data",
+        "quotes_resource_total_details": "_spec3_sdk_580_quotes_resource_total_details",
+        "quotes_resource_total_details_resource_breakdown": "_spec3_sdk_581_quotes_resource_total_details_resource_breakdown",
+        "quotes_resource_transfer_data": "_spec3_sdk_582_quotes_resource_transfer_data",
+        "quotes_resource_upfront": "_spec3_sdk_583_quotes_resource_upfront",
+        "radar_early_fraud_warning": "_spec3_sdk_584_radar_early_fraud_warning",
+        "radar_value_list": "_spec3_sdk_585_radar_value_list",
+        "radar_value_list_item": "_spec3_sdk_586_radar_value_list_item",
+        "radar_radar_options": "_spec3_sdk_587_radar_radar_options",
+        "radar_review_resource_location": "_spec3_sdk_588_radar_review_resource_location",
+        "radar_review_resource_session": "_spec3_sdk_589_radar_review_resource_session",
+        "received_payment_method_details_financial_account": "_spec3_sdk_590_received_payment_method_details_financial_account",
+        "recurring": "_spec3_sdk_591_recurring",
+        "refund": "_spec3_sdk_592_refund",
+        "refund_next_action": "_spec3_sdk_593_refund_next_action",
+        "refund_next_action_display_details": "_spec3_sdk_594_refund_next_action_display_details",
+        "reporting_report_run": "_spec3_sdk_595_reporting_report_run",
+        "reporting_report_type": "_spec3_sdk_596_reporting_report_type",
+        "reserve_transaction": "_spec3_sdk_597_reserve_transaction",
+        "review": "_spec3_sdk_598_review",
+        "rule": "_spec3_sdk_599_rule",
+        "scheduled_query_run": "_spec3_sdk_600_scheduled_query_run",
+        "schedules_phase_automatic_tax": "_spec3_sdk_601_schedules_phase_automatic_tax",
+        "secret_service_resource_scope": "_spec3_sdk_602_secret_service_resource_scope",
+        "sepa_debit_generated_from": "_spec3_sdk_603_sepa_debit_generated_from",
+        "setup_attempt": "_spec3_sdk_604_setup_attempt",
+        "setup_attempt_payment_method_details": "_spec3_sdk_605_setup_attempt_payment_method_details",
+        "setup_attempt_payment_method_details_acss_debit": "_spec3_sdk_606_setup_attempt_payment_method_details_acss_debit",
+        "setup_attempt_payment_method_details_au_becs_debit": "_spec3_sdk_607_setup_attempt_payment_method_details_au_becs_debit",
+        "setup_attempt_payment_method_details_bacs_debit": "_spec3_sdk_608_setup_attempt_payment_method_details_bacs_debit",
+        "setup_attempt_payment_method_details_bancontact": "_spec3_sdk_609_setup_attempt_payment_method_details_bancontact",
+        "setup_attempt_payment_method_details_blik": "_spec3_sdk_610_setup_attempt_payment_method_details_blik",
+        "setup_attempt_payment_method_details_boleto": "_spec3_sdk_611_setup_attempt_payment_method_details_boleto",
+        "setup_attempt_payment_method_details_card": "_spec3_sdk_612_setup_attempt_payment_method_details_card",
+        "setup_attempt_payment_method_details_card_present": "_spec3_sdk_613_setup_attempt_payment_method_details_card_present",
+        "setup_attempt_payment_method_details_card_wallet": "_spec3_sdk_614_setup_attempt_payment_method_details_card_wallet",
+        "setup_attempt_payment_method_details_cashapp": "_spec3_sdk_615_setup_attempt_payment_method_details_cashapp",
+        "setup_attempt_payment_method_details_ideal": "_spec3_sdk_616_setup_attempt_payment_method_details_ideal",
+        "setup_attempt_payment_method_details_klarna": "_spec3_sdk_617_setup_attempt_payment_method_details_klarna",
+        "setup_attempt_payment_method_details_link": "_spec3_sdk_618_setup_attempt_payment_method_details_link",
+        "setup_attempt_payment_method_details_paypal": "_spec3_sdk_619_setup_attempt_payment_method_details_paypal",
+        "setup_attempt_payment_method_details_sepa_debit": "_spec3_sdk_620_setup_attempt_payment_method_details_sepa_debit",
+        "setup_attempt_payment_method_details_sofort": "_spec3_sdk_621_setup_attempt_payment_method_details_sofort",
+        "setup_attempt_payment_method_details_us_bank_account": "_spec3_sdk_622_setup_attempt_payment_method_details_us_bank_account",
+        "setup_intent": "_spec3_sdk_623_setup_intent",
+        "setup_intent_next_action": "_spec3_sdk_624_setup_intent_next_action",
+        "setup_intent_next_action_redirect_to_url": "_spec3_sdk_625_setup_intent_next_action_redirect_to_url",
+        "setup_intent_next_action_verify_with_microdeposits": "_spec3_sdk_626_setup_intent_next_action_verify_with_microdeposits",
+        "setup_intent_payment_method_options": "_spec3_sdk_627_setup_intent_payment_method_options",
+        "setup_intent_payment_method_options_acss_debit": "_spec3_sdk_628_setup_intent_payment_method_options_acss_debit",
+        "setup_intent_payment_method_options_blik": "_spec3_sdk_629_setup_intent_payment_method_options_blik",
+        "setup_intent_payment_method_options_card": "_spec3_sdk_630_setup_intent_payment_method_options_card",
+        "setup_intent_payment_method_options_card_mandate_options": "_spec3_sdk_631_setup_intent_payment_method_options_card_mandate_options",
+        "setup_intent_payment_method_options_link": "_spec3_sdk_632_setup_intent_payment_method_options_link",
+        "setup_intent_payment_method_options_mandate_options_acss_debit": "_spec3_sdk_633_setup_intent_payment_method_options_mandate_options_acss_debit",
+        "setup_intent_payment_method_options_mandate_options_blik": "_spec3_sdk_634_setup_intent_payment_method_options_mandate_options_blik",
+        "setup_intent_payment_method_options_mandate_options_sepa_debit": "_spec3_sdk_635_setup_intent_payment_method_options_mandate_options_sepa_debit",
+        "setup_intent_payment_method_options_paypal": "_spec3_sdk_636_setup_intent_payment_method_options_paypal",
+        "setup_intent_payment_method_options_sepa_debit": "_spec3_sdk_637_setup_intent_payment_method_options_sepa_debit",
+        "setup_intent_payment_method_options_us_bank_account": "_spec3_sdk_638_setup_intent_payment_method_options_us_bank_account",
+        "setup_intent_type_specific_payment_method_options_client": "_spec3_sdk_639_setup_intent_type_specific_payment_method_options_client",
+        "shipping": "_spec3_sdk_640_shipping",
+        "shipping_rate": "_spec3_sdk_641_shipping_rate",
+        "shipping_rate_currency_option": "_spec3_sdk_642_shipping_rate_currency_option",
+        "shipping_rate_delivery_estimate": "_spec3_sdk_643_shipping_rate_delivery_estimate",
+        "shipping_rate_delivery_estimate_bound": "_spec3_sdk_644_shipping_rate_delivery_estimate_bound",
+        "shipping_rate_fixed_amount": "_spec3_sdk_645_shipping_rate_fixed_amount",
+        "sigma_scheduled_query_run_error": "_spec3_sdk_646_sigma_scheduled_query_run_error",
+        "source": "_spec3_sdk_647_source",
+        "source_code_verification_flow": "_spec3_sdk_648_source_code_verification_flow",
+        "source_mandate_notification": "_spec3_sdk_649_source_mandate_notification",
+        "source_mandate_notification_acss_debit_data": "_spec3_sdk_650_source_mandate_notification_acss_debit_data",
+        "source_mandate_notification_bacs_debit_data": "_spec3_sdk_651_source_mandate_notification_bacs_debit_data",
+        "source_mandate_notification_sepa_debit_data": "_spec3_sdk_652_source_mandate_notification_sepa_debit_data",
+        "source_order": "_spec3_sdk_653_source_order",
+        "source_order_item": "_spec3_sdk_654_source_order_item",
+        "source_owner": "_spec3_sdk_655_source_owner",
+        "source_receiver_flow": "_spec3_sdk_656_source_receiver_flow",
+        "source_redirect_flow": "_spec3_sdk_657_source_redirect_flow",
+        "source_transaction": "_spec3_sdk_658_source_transaction",
+        "source_transaction_ach_credit_transfer_data": "_spec3_sdk_659_source_transaction_ach_credit_transfer_data",
+        "source_transaction_chf_credit_transfer_data": "_spec3_sdk_660_source_transaction_chf_credit_transfer_data",
+        "source_transaction_gbp_credit_transfer_data": "_spec3_sdk_661_source_transaction_gbp_credit_transfer_data",
+        "source_transaction_paper_check_data": "_spec3_sdk_662_source_transaction_paper_check_data",
+        "source_transaction_sepa_credit_transfer_data": "_spec3_sdk_663_source_transaction_sepa_credit_transfer_data",
+        "source_type_ach_credit_transfer": "_spec3_sdk_664_source_type_ach_credit_transfer",
+        "source_type_ach_debit": "_spec3_sdk_665_source_type_ach_debit",
+        "source_type_acss_debit": "_spec3_sdk_666_source_type_acss_debit",
+        "source_type_alipay": "_spec3_sdk_667_source_type_alipay",
+        "source_type_au_becs_debit": "_spec3_sdk_668_source_type_au_becs_debit",
+        "source_type_bancontact": "_spec3_sdk_669_source_type_bancontact",
+        "source_type_card": "_spec3_sdk_670_source_type_card",
+        "source_type_card_present": "_spec3_sdk_671_source_type_card_present",
+        "source_type_eps": "_spec3_sdk_672_source_type_eps",
+        "source_type_giropay": "_spec3_sdk_673_source_type_giropay",
+        "source_type_ideal": "_spec3_sdk_674_source_type_ideal",
+        "source_type_klarna": "_spec3_sdk_675_source_type_klarna",
+        "source_type_multibanco": "_spec3_sdk_676_source_type_multibanco",
+        "source_type_p24": "_spec3_sdk_677_source_type_p24",
+        "source_type_sepa_credit_transfer": "_spec3_sdk_678_source_type_sepa_credit_transfer",
+        "source_type_sepa_debit": "_spec3_sdk_679_source_type_sepa_debit",
+        "source_type_sofort": "_spec3_sdk_680_source_type_sofort",
+        "source_type_three_d_secure": "_spec3_sdk_681_source_type_three_d_secure",
+        "source_type_wechat": "_spec3_sdk_682_source_type_wechat",
+        "subscription": "_spec3_sdk_683_subscription",
+        "subscription_automatic_tax": "_spec3_sdk_684_subscription_automatic_tax",
+        "subscription_billing_thresholds": "_spec3_sdk_685_subscription_billing_thresholds",
+        "subscription_item": "_spec3_sdk_686_subscription_item",
+        "subscription_item_billing_thresholds": "_spec3_sdk_687_subscription_item_billing_thresholds",
+        "subscription_payment_method_options_card": "_spec3_sdk_688_subscription_payment_method_options_card",
+        "subscription_pending_invoice_item_interval": "_spec3_sdk_689_subscription_pending_invoice_item_interval",
+        "subscription_schedule": "_spec3_sdk_690_subscription_schedule",
+        "subscription_schedule_add_invoice_item": "_spec3_sdk_691_subscription_schedule_add_invoice_item",
+        "subscription_schedule_configuration_item": "_spec3_sdk_692_subscription_schedule_configuration_item",
+        "subscription_schedule_current_phase": "_spec3_sdk_693_subscription_schedule_current_phase",
+        "subscription_schedule_phase_configuration": "_spec3_sdk_694_subscription_schedule_phase_configuration",
+        "subscription_schedules_resource_default_settings": "_spec3_sdk_695_subscription_schedules_resource_default_settings",
+        "subscription_schedules_resource_default_settings_automatic_tax": "_spec3_sdk_696_subscription_schedules_resource_default_settings_automatic_tax",
+        "subscription_transfer_data": "_spec3_sdk_697_subscription_transfer_data",
+        "subscriptions_resource_pause_collection": "_spec3_sdk_698_subscriptions_resource_pause_collection",
+        "subscriptions_resource_payment_method_options": "_spec3_sdk_699_subscriptions_resource_payment_method_options",
+        "subscriptions_resource_payment_settings": "_spec3_sdk_700_subscriptions_resource_payment_settings",
+        "subscriptions_resource_pending_update": "_spec3_sdk_701_subscriptions_resource_pending_update",
+        "subscriptions_trials_resource_end_behavior": "_spec3_sdk_702_subscriptions_trials_resource_end_behavior",
+        "subscriptions_trials_resource_trial_settings": "_spec3_sdk_703_subscriptions_trials_resource_trial_settings",
+        "tax_calculation": "_spec3_sdk_704_tax_calculation",
+        "tax_calculation_line_item": "_spec3_sdk_705_tax_calculation_line_item",
+        "tax_transaction": "_spec3_sdk_706_tax_transaction",
+        "tax_transaction_line_item": "_spec3_sdk_707_tax_transaction_line_item",
+        "tax_code": "_spec3_sdk_708_tax_code",
+        "tax_deducted_at_source": "_spec3_sdk_709_tax_deducted_at_source",
+        "tax_id": "_spec3_sdk_710_tax_id",
+        "tax_id_verification": "_spec3_sdk_711_tax_id_verification",
+        "tax_product_resource_customer_details": "_spec3_sdk_712_tax_product_resource_customer_details",
+        "tax_product_resource_customer_details_resource_tax_id": "_spec3_sdk_713_tax_product_resource_customer_details_resource_tax_id",
+        "tax_product_resource_jurisdiction": "_spec3_sdk_714_tax_product_resource_jurisdiction",
+        "tax_product_resource_line_item_tax_breakdown": "_spec3_sdk_715_tax_product_resource_line_item_tax_breakdown",
+        "tax_product_resource_line_item_tax_rate_details": "_spec3_sdk_716_tax_product_resource_line_item_tax_rate_details",
+        "tax_product_resource_postal_address": "_spec3_sdk_717_tax_product_resource_postal_address",
+        "tax_product_resource_tax_breakdown": "_spec3_sdk_718_tax_product_resource_tax_breakdown",
+        "tax_product_resource_tax_calculation_shipping_cost": "_spec3_sdk_719_tax_product_resource_tax_calculation_shipping_cost",
+        "tax_product_resource_tax_rate_details": "_spec3_sdk_720_tax_product_resource_tax_rate_details",
+        "tax_product_resource_tax_transaction_line_item_resource_reversal": "_spec3_sdk_721_tax_product_resource_tax_transaction_line_item_resource_reversal",
+        "tax_product_resource_tax_transaction_resource_reversal": "_spec3_sdk_722_tax_product_resource_tax_transaction_resource_reversal",
+        "tax_product_resource_tax_transaction_shipping_cost": "_spec3_sdk_723_tax_product_resource_tax_transaction_shipping_cost",
+        "tax_rate": "_spec3_sdk_724_tax_rate",
+        "terminal_configuration": "_spec3_sdk_725_terminal_configuration",
+        "terminal_connection_token": "_spec3_sdk_726_terminal_connection_token",
+        "terminal_location": "_spec3_sdk_727_terminal_location",
+        "terminal_reader": "_spec3_sdk_728_terminal_reader",
+        "terminal_configuration_configuration_resource_currency_specific_config": "_spec3_sdk_729_terminal_configuration_configuration_resource_currency_specific_config",
+        "terminal_configuration_configuration_resource_device_type_specific_config": "_spec3_sdk_730_terminal_configuration_configuration_resource_device_type_specific_config",
+        "terminal_configuration_configuration_resource_tipping": "_spec3_sdk_731_terminal_configuration_configuration_resource_tipping",
+        "terminal_reader_reader_resource_cart": "_spec3_sdk_732_terminal_reader_reader_resource_cart",
+        "terminal_reader_reader_resource_line_item": "_spec3_sdk_733_terminal_reader_reader_resource_line_item",
+        "terminal_reader_reader_resource_process_config": "_spec3_sdk_734_terminal_reader_reader_resource_process_config",
+        "terminal_reader_reader_resource_process_payment_intent_action": "_spec3_sdk_735_terminal_reader_reader_resource_process_payment_intent_action",
+        "terminal_reader_reader_resource_process_setup_intent_action": "_spec3_sdk_736_terminal_reader_reader_resource_process_setup_intent_action",
+        "terminal_reader_reader_resource_reader_action": "_spec3_sdk_737_terminal_reader_reader_resource_reader_action",
+        "terminal_reader_reader_resource_refund_payment_action": "_spec3_sdk_738_terminal_reader_reader_resource_refund_payment_action",
+        "terminal_reader_reader_resource_set_reader_display_action": "_spec3_sdk_739_terminal_reader_reader_resource_set_reader_display_action",
+        "terminal_reader_reader_resource_tipping_config": "_spec3_sdk_740_terminal_reader_reader_resource_tipping_config",
+        "test_helpers_test_clock": "_spec3_sdk_741_test_helpers_test_clock",
+        "three_d_secure_details": "_spec3_sdk_742_three_d_secure_details",
+        "three_d_secure_usage": "_spec3_sdk_743_three_d_secure_usage",
+        "token": "_spec3_sdk_744_token",
+        "topup": "_spec3_sdk_745_topup",
+        "transfer": "_spec3_sdk_746_transfer",
+        "transfer_data": "_spec3_sdk_747_transfer_data",
+        "transfer_reversal": "_spec3_sdk_748_transfer_reversal",
+        "transfer_schedule": "_spec3_sdk_749_transfer_schedule",
+        "transform_quantity": "_spec3_sdk_750_transform_quantity",
+        "transform_usage": "_spec3_sdk_751_transform_usage",
+        "treasury_credit_reversal": "_spec3_sdk_752_treasury_credit_reversal",
+        "treasury_debit_reversal": "_spec3_sdk_753_treasury_debit_reversal",
+        "treasury_financial_account": "_spec3_sdk_754_treasury_financial_account",
+        "treasury_financial_account_features": "_spec3_sdk_755_treasury_financial_account_features",
+        "treasury_inbound_transfer": "_spec3_sdk_756_treasury_inbound_transfer",
+        "treasury_outbound_payment": "_spec3_sdk_757_treasury_outbound_payment",
+        "treasury_outbound_transfer": "_spec3_sdk_758_treasury_outbound_transfer",
+        "treasury_received_credit": "_spec3_sdk_759_treasury_received_credit",
+        "treasury_received_debit": "_spec3_sdk_760_treasury_received_debit",
+        "treasury_transaction": "_spec3_sdk_761_treasury_transaction",
+        "treasury_transaction_entry": "_spec3_sdk_762_treasury_transaction_entry",
+        "treasury_financial_accounts_resource_aba_record": "_spec3_sdk_763_treasury_financial_accounts_resource_aba_record",
+        "treasury_financial_accounts_resource_aba_toggle_settings": "_spec3_sdk_764_treasury_financial_accounts_resource_aba_toggle_settings",
+        "treasury_financial_accounts_resource_ach_toggle_settings": "_spec3_sdk_765_treasury_financial_accounts_resource_ach_toggle_settings",
+        "treasury_financial_accounts_resource_balance": "_spec3_sdk_766_treasury_financial_accounts_resource_balance",
+        "treasury_financial_accounts_resource_closed_status_details": "_spec3_sdk_767_treasury_financial_accounts_resource_closed_status_details",
+        "treasury_financial_accounts_resource_financial_address": "_spec3_sdk_768_treasury_financial_accounts_resource_financial_address",
+        "treasury_financial_accounts_resource_financial_addresses_features": "_spec3_sdk_769_treasury_financial_accounts_resource_financial_addresses_features",
+        "treasury_financial_accounts_resource_inbound_transfers": "_spec3_sdk_770_treasury_financial_accounts_resource_inbound_transfers",
+        "treasury_financial_accounts_resource_outbound_payments": "_spec3_sdk_771_treasury_financial_accounts_resource_outbound_payments",
+        "treasury_financial_accounts_resource_outbound_transfers": "_spec3_sdk_772_treasury_financial_accounts_resource_outbound_transfers",
+        "treasury_financial_accounts_resource_platform_restrictions": "_spec3_sdk_773_treasury_financial_accounts_resource_platform_restrictions",
+        "treasury_financial_accounts_resource_status_details": "_spec3_sdk_774_treasury_financial_accounts_resource_status_details",
+        "treasury_financial_accounts_resource_toggle_settings": "_spec3_sdk_775_treasury_financial_accounts_resource_toggle_settings",
+        "treasury_financial_accounts_resource_toggles_setting_status_details": "_spec3_sdk_776_treasury_financial_accounts_resource_toggles_setting_status_details",
+        "treasury_inbound_transfers_resource_failure_details": "_spec3_sdk_777_treasury_inbound_transfers_resource_failure_details",
+        "treasury_inbound_transfers_resource_inbound_transfer_resource_linked_flows": "_spec3_sdk_778_treasury_inbound_transfers_resource_inbound_transfer_resource_linked_flows",
+        "treasury_inbound_transfers_resource_inbound_transfer_resource_status_transitions": "_spec3_sdk_779_treasury_inbound_transfers_resource_inbound_transfer_resource_status_transitions",
+        "treasury_outbound_payments_resource_outbound_payment_resource_end_user_details": "_spec3_sdk_780_treasury_outbound_payments_resource_outbound_payment_resource_end_user_details",
+        "treasury_outbound_payments_resource_outbound_payment_resource_status_transitions": "_spec3_sdk_781_treasury_outbound_payments_resource_outbound_payment_resource_status_transitions",
+        "treasury_outbound_payments_resource_returned_status": "_spec3_sdk_782_treasury_outbound_payments_resource_returned_status",
+        "treasury_outbound_transfers_resource_returned_details": "_spec3_sdk_783_treasury_outbound_transfers_resource_returned_details",
+        "treasury_outbound_transfers_resource_status_transitions": "_spec3_sdk_784_treasury_outbound_transfers_resource_status_transitions",
+        "treasury_received_credits_resource_linked_flows": "_spec3_sdk_785_treasury_received_credits_resource_linked_flows",
+        "treasury_received_credits_resource_reversal_details": "_spec3_sdk_786_treasury_received_credits_resource_reversal_details",
+        "treasury_received_credits_resource_source_flows_details": "_spec3_sdk_787_treasury_received_credits_resource_source_flows_details",
+        "treasury_received_credits_resource_status_transitions": "_spec3_sdk_788_treasury_received_credits_resource_status_transitions",
+        "treasury_received_debits_resource_debit_reversal_linked_flows": "_spec3_sdk_789_treasury_received_debits_resource_debit_reversal_linked_flows",
+        "treasury_received_debits_resource_linked_flows": "_spec3_sdk_790_treasury_received_debits_resource_linked_flows",
+        "treasury_received_debits_resource_reversal_details": "_spec3_sdk_791_treasury_received_debits_resource_reversal_details",
+        "treasury_received_debits_resource_status_transitions": "_spec3_sdk_792_treasury_received_debits_resource_status_transitions",
+        "treasury_shared_resource_billing_details": "_spec3_sdk_793_treasury_shared_resource_billing_details",
+        "treasury_shared_resource_initiating_payment_method_details_initiating_payment_method_details": "_spec3_sdk_794_treasury_shared_resource_initiating_payment_method_details_initiating_payment_method_details",
+        "treasury_shared_resource_initiating_payment_method_details_us_bank_account": "_spec3_sdk_795_treasury_shared_resource_initiating_payment_method_details_us_bank_account",
+        "treasury_transactions_resource_abstract_transaction_resource_status_transitions": "_spec3_sdk_796_treasury_transactions_resource_abstract_transaction_resource_status_transitions",
+        "treasury_transactions_resource_balance_impact": "_spec3_sdk_797_treasury_transactions_resource_balance_impact",
+        "treasury_transactions_resource_flow_details": "_spec3_sdk_798_treasury_transactions_resource_flow_details",
+        "us_bank_account_networks": "_spec3_sdk_799_us_bank_account_networks",
+        "usage_record": "_spec3_sdk_800_usage_record",
+        "usage_record_summary": "_spec3_sdk_801_usage_record_summary",
+        "verification_session_redaction": "_spec3_sdk_802_verification_session_redaction",
+        "webhook_endpoint": "_spec3_sdk_803_webhook_endpoint",
     }
 
     types = {}
@@ -908,6 +913,7 @@ def import_spec3_sdk(params=None):
             "transfers": t.string().optional(),
             "treasury": t.string().optional(),
             "us_bank_account_ach_payments": t.string().optional(),
+            "zip_payments": t.string().optional(),
         }
     ).named(renames["account_capabilities"])
     types["account_capability_future_requirements"] = t.struct(
@@ -1138,7 +1144,7 @@ def import_spec3_sdk(params=None):
             ),
         }
     ).named(renames["application_fee"])
-    types["apps.secret"] = t.struct(
+    types["apps_secret"] = t.struct(
         {
             "created": t.integer(),
             "deleted": t.boolean().optional(),
@@ -1150,7 +1156,7 @@ def import_spec3_sdk(params=None):
             "payload": t.string().optional(),
             "scope": t.proxy(renames["secret_service_resource_scope"]),
         }
-    ).named(renames["apps.secret"])
+    ).named(renames["apps_secret"])
     types["automatic_tax"] = t.struct(
         {"enabled": t.boolean(), "status": t.string().optional()}
     ).named(renames["automatic_tax"])
@@ -1212,9 +1218,9 @@ def import_spec3_sdk(params=None):
             t.proxy(renames["connect_collection_transfer"]),
             t.proxy(renames["dispute"]),
             t.proxy(renames["fee_refund"]),
-            t.proxy(renames["issuing.authorization"]),
-            t.proxy(renames["issuing.dispute"]),
-            t.proxy(renames["issuing.transaction"]),
+            t.proxy(renames["issuing_authorization"]),
+            t.proxy(renames["issuing_dispute"]),
+            t.proxy(renames["issuing_transaction"]),
             t.proxy(renames["payout"]),
             t.proxy(renames["platform_tax_fee"]),
             t.proxy(renames["refund"]),
@@ -1301,7 +1307,7 @@ def import_spec3_sdk(params=None):
             "phone": t.string().optional(),
         }
     ).named(renames["billing_details"])
-    types["billing_portal.configuration"] = t.struct(
+    types["billing_portal_configuration"] = t.struct(
         {
             "active": t.boolean(),
             "application": t.union(
@@ -1323,11 +1329,11 @@ def import_spec3_sdk(params=None):
             "object": t.string(),
             "updated": t.integer(),
         }
-    ).named(renames["billing_portal.configuration"])
-    types["billing_portal.session"] = t.struct(
+    ).named(renames["billing_portal_configuration"])
+    types["billing_portal_session"] = t.struct(
         {
             "configuration": t.union(
-                [t.string(), t.proxy(renames["billing_portal.configuration"])]
+                [t.string(), t.proxy(renames["billing_portal_configuration"])]
             ),
             "created": t.integer(),
             "customer": t.string(),
@@ -1340,7 +1346,7 @@ def import_spec3_sdk(params=None):
             "return_url": t.string().optional(),
             "url": t.string(),
         }
-    ).named(renames["billing_portal.session"])
+    ).named(renames["billing_portal_session"])
     types["cancellation_details"] = t.struct(
         {
             "comment": t.string().optional(),
@@ -1532,7 +1538,7 @@ def import_spec3_sdk(params=None):
             "destination": t.union([t.string(), t.proxy(renames["account"])]),
         }
     ).named(renames["charge_transfer_data"])
-    types["checkout.session"] = t.struct(
+    types["checkout_session"] = t.struct(
         {
             "after_expiration": t.proxy(
                 renames["payment_pages_checkout_session_after_expiration"]
@@ -1628,7 +1634,7 @@ def import_spec3_sdk(params=None):
             "subscription": t.union(
                 [t.string(), t.proxy(renames["subscription"])]
             ).optional(),
-            "success_url": t.string(),
+            "success_url": t.string().optional(),
             "tax_id_collection": t.proxy(
                 renames["payment_pages_checkout_session_tax_id_collection"]
             ).optional(),
@@ -1637,7 +1643,7 @@ def import_spec3_sdk(params=None):
             ).optional(),
             "url": t.string().optional(),
         }
-    ).named(renames["checkout.session"])
+    ).named(renames["checkout_session"])
     types["checkout_acss_debit_mandate_options"] = t.struct(
         {
             "custom_mandate_url": t.string().optional(),
@@ -1914,6 +1920,7 @@ def import_spec3_sdk(params=None):
             "discount_amounts": t.array(
                 t.proxy(renames["discounts_resource_discount_amount"])
             ),
+            "effective_at": t.integer().optional(),
             "id": t.string(),
             "invoice": t.union([t.string(), t.proxy(renames["invoice"])]),
             "lines": t.struct(
@@ -2046,7 +2053,7 @@ def import_spec3_sdk(params=None):
                 }
             ).optional(),
             "test_clock": t.union(
-                [t.string(), t.proxy(renames["test_helpers.test_clock"])]
+                [t.string(), t.proxy(renames["test_helpers_test_clock"])]
             ).optional(),
         }
     ).named(renames["customer"])
@@ -2106,6 +2113,11 @@ def import_spec3_sdk(params=None):
             ).optional(),
             "reference": t.string().optional(),
             "type": t.string(),
+            "us_bank_transfer": t.proxy(
+                renames[
+                    "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer"
+                ]
+            ).optional(),
         }
     ).named(
         renames[
@@ -2149,6 +2161,15 @@ def import_spec3_sdk(params=None):
     ).named(
         renames[
             "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_jp_bank_transfer"
+        ]
+    )
+    types[
+        "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer"
+    ] = t.struct(
+        {"network": t.string().optional(), "sender_name": t.string().optional()}
+    ).named(
+        renames[
+            "customer_balance_resource_cash_balance_transaction_resource_funded_transaction_resource_bank_transfer_resource_us_bank_transfer"
         ]
     )
     types[
@@ -2312,30 +2333,30 @@ def import_spec3_sdk(params=None):
     types["deleted_product"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
     ).named(renames["deleted_product"])
-    types["deleted_radar.value_list"] = t.struct(
+    types["deleted_radar_value_list"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
-    ).named(renames["deleted_radar.value_list"])
-    types["deleted_radar.value_list_item"] = t.struct(
+    ).named(renames["deleted_radar_value_list"])
+    types["deleted_radar_value_list_item"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
-    ).named(renames["deleted_radar.value_list_item"])
+    ).named(renames["deleted_radar_value_list_item"])
     types["deleted_subscription_item"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
     ).named(renames["deleted_subscription_item"])
     types["deleted_tax_id"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
     ).named(renames["deleted_tax_id"])
-    types["deleted_terminal.configuration"] = t.struct(
+    types["deleted_terminal_configuration"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
-    ).named(renames["deleted_terminal.configuration"])
-    types["deleted_terminal.location"] = t.struct(
+    ).named(renames["deleted_terminal_configuration"])
+    types["deleted_terminal_location"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
-    ).named(renames["deleted_terminal.location"])
-    types["deleted_terminal.reader"] = t.struct(
+    ).named(renames["deleted_terminal_location"])
+    types["deleted_terminal_reader"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
-    ).named(renames["deleted_terminal.reader"])
-    types["deleted_test_helpers.test_clock"] = t.struct(
+    ).named(renames["deleted_terminal_reader"])
+    types["deleted_test_helpers_test_clock"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
-    ).named(renames["deleted_test_helpers.test_clock"])
+    ).named(renames["deleted_test_helpers_test_clock"])
     types["deleted_webhook_endpoint"] = t.struct(
         {"deleted": t.boolean(), "id": t.string(), "object": t.string()}
     ).named(renames["deleted_webhook_endpoint"])
@@ -2553,7 +2574,7 @@ def import_spec3_sdk(params=None):
             "url": t.string().optional(),
         }
     ).named(renames["file_link"])
-    types["financial_connections.account"] = t.struct(
+    types["financial_connections_account"] = t.struct(
         {
             "account_holder": t.proxy(
                 renames["bank_connections_resource_accountholder"]
@@ -2573,7 +2594,7 @@ def import_spec3_sdk(params=None):
             "ownership": t.union(
                 [
                     t.string(),
-                    t.proxy(renames["financial_connections.account_ownership"]),
+                    t.proxy(renames["financial_connections_account_ownership"]),
                 ]
             ).optional(),
             "ownership_refresh": t.proxy(
@@ -2584,8 +2605,8 @@ def import_spec3_sdk(params=None):
             "subcategory": t.string(),
             "supported_payment_method_types": t.array(t.string()),
         }
-    ).named(renames["financial_connections.account"])
-    types["financial_connections.account_owner"] = t.struct(
+    ).named(renames["financial_connections_account"])
+    types["financial_connections_account_owner"] = t.struct(
         {
             "email": t.string().optional(),
             "id": t.string(),
@@ -2596,8 +2617,8 @@ def import_spec3_sdk(params=None):
             "raw_address": t.string().optional(),
             "refreshed_at": t.integer().optional(),
         }
-    ).named(renames["financial_connections.account_owner"])
-    types["financial_connections.account_ownership"] = t.struct(
+    ).named(renames["financial_connections_account_owner"])
+    types["financial_connections_account_ownership"] = t.struct(
         {
             "created": t.integer(),
             "id": t.string(),
@@ -2605,7 +2626,7 @@ def import_spec3_sdk(params=None):
             "owners": t.struct(
                 {
                     "data": t.array(
-                        t.proxy(renames["financial_connections.account_owner"])
+                        t.proxy(renames["financial_connections_account_owner"])
                     ),
                     "has_more": t.boolean(),
                     "object": t.string(),
@@ -2613,15 +2634,15 @@ def import_spec3_sdk(params=None):
                 }
             ),
         }
-    ).named(renames["financial_connections.account_ownership"])
-    types["financial_connections.session"] = t.struct(
+    ).named(renames["financial_connections_account_ownership"])
+    types["financial_connections_session"] = t.struct(
         {
             "account_holder": t.proxy(
                 renames["bank_connections_resource_accountholder"]
             ).optional(),
             "accounts": t.struct(
                 {
-                    "data": t.array(t.proxy(renames["financial_connections.account"])),
+                    "data": t.array(t.proxy(renames["financial_connections_account"])),
                     "has_more": t.boolean(),
                     "object": t.string(),
                     "url": t.string(),
@@ -2637,7 +2658,7 @@ def import_spec3_sdk(params=None):
             "permissions": t.array(t.string()),
             "return_url": t.string().optional(),
         }
-    ).named(renames["financial_connections.session"])
+    ).named(renames["financial_connections_session"])
     types["financial_reporting_finance_report_run_run_parameters"] = t.struct(
         {
             "columns": t.array(t.string()).optional(),
@@ -2849,7 +2870,7 @@ def import_spec3_sdk(params=None):
             "last_name": t.string().optional(),
         }
     ).named(renames["gelato_verified_outputs"])
-    types["identity.verification_report"] = t.struct(
+    types["identity_verification_report"] = t.struct(
         {
             "created": t.integer(),
             "document": t.proxy(renames["gelato_document_report"]).optional(),
@@ -2864,15 +2885,15 @@ def import_spec3_sdk(params=None):
             "type": t.string().optional(),
             "verification_session": t.string().optional(),
         }
-    ).named(renames["identity.verification_report"])
-    types["identity.verification_session"] = t.struct(
+    ).named(renames["identity_verification_report"])
+    types["identity_verification_session"] = t.struct(
         {
             "client_secret": t.string().optional(),
             "created": t.integer(),
             "id": t.string(),
             "last_error": t.proxy(renames["gelato_session_last_error"]).optional(),
             "last_verification_report": t.union(
-                [t.string(), t.proxy(renames["identity.verification_report"])]
+                [t.string(), t.proxy(renames["identity_verification_report"])]
             ).optional(),
             "livemode": t.boolean(),
             "metadata": t.struct({}),
@@ -2886,7 +2907,7 @@ def import_spec3_sdk(params=None):
             "url": t.string().optional(),
             "verified_outputs": t.proxy(renames["gelato_verified_outputs"]).optional(),
         }
-    ).named(renames["identity.verification_session"])
+    ).named(renames["identity_verification_session"])
     types["inbound_transfers"] = t.struct(
         {
             "billing_details": t.proxy(
@@ -2981,6 +3002,7 @@ def import_spec3_sdk(params=None):
                 )
             ).optional(),
             "due_date": t.integer().optional(),
+            "effective_at": t.integer().optional(),
             "ending_balance": t.integer().optional(),
             "footer": t.string().optional(),
             "from_invoice": t.proxy(renames["invoices_from_invoice"]).optional(),
@@ -3036,7 +3058,7 @@ def import_spec3_sdk(params=None):
             "subtotal_excluding_tax": t.integer().optional(),
             "tax": t.integer().optional(),
             "test_clock": t.union(
-                [t.string(), t.proxy(renames["test_helpers.test_clock"])]
+                [t.string(), t.proxy(renames["test_helpers_test_clock"])]
             ).optional(),
             "threshold_reason": t.proxy(renames["invoice_threshold_reason"]).optional(),
             "total": t.integer(),
@@ -3211,7 +3233,7 @@ def import_spec3_sdk(params=None):
             "subscription_item": t.string().optional(),
             "tax_rates": t.array(t.proxy(renames["tax_rate"])).optional(),
             "test_clock": t.union(
-                [t.string(), t.proxy(renames["test_helpers.test_clock"])]
+                [t.string(), t.proxy(renames["test_helpers_test_clock"])]
             ).optional(),
             "unit_amount": t.integer().optional(),
             "unit_amount_decimal": t.string().optional(),
@@ -3223,16 +3245,6 @@ def import_spec3_sdk(params=None):
             "invoice": t.union([t.string(), t.proxy(renames["invoice"])]),
         }
     ).named(renames["invoices_from_invoice"])
-    types["invoices_line_items_credited_items"] = t.struct(
-        {"invoice": t.string(), "invoice_line_items": t.array(t.string())}
-    ).named(renames["invoices_line_items_credited_items"])
-    types["invoices_line_items_proration_details"] = t.struct(
-        {
-            "credited_items": t.proxy(
-                renames["invoices_line_items_credited_items"]
-            ).optional()
-        }
-    ).named(renames["invoices_line_items_proration_details"])
     types["invoices_payment_method_options"] = t.struct(
         {
             "acss_debit": t.proxy(
@@ -3265,6 +3277,16 @@ def import_spec3_sdk(params=None):
     types["invoices_resource_invoice_tax_id"] = t.struct(
         {"type": t.string(), "value": t.string().optional()}
     ).named(renames["invoices_resource_invoice_tax_id"])
+    types["invoices_resource_line_items_credited_items"] = t.struct(
+        {"invoice": t.string(), "invoice_line_items": t.array(t.string())}
+    ).named(renames["invoices_resource_line_items_credited_items"])
+    types["invoices_resource_line_items_proration_details"] = t.struct(
+        {
+            "credited_items": t.proxy(
+                renames["invoices_resource_line_items_credited_items"]
+            ).optional()
+        }
+    ).named(renames["invoices_resource_line_items_proration_details"])
     types["invoices_shipping_cost"] = t.struct(
         {
             "amount_subtotal": t.integer(),
@@ -3284,7 +3306,7 @@ def import_spec3_sdk(params=None):
             "voided_at": t.integer().optional(),
         }
     ).named(renames["invoices_status_transitions"])
-    types["issuing.authorization"] = t.struct(
+    types["issuing_authorization"] = t.struct(
         {
             "amount": t.integer(),
             "amount_details": t.proxy(
@@ -3293,9 +3315,9 @@ def import_spec3_sdk(params=None):
             "approved": t.boolean(),
             "authorization_method": t.string(),
             "balance_transactions": t.array(t.proxy(renames["balance_transaction"])),
-            "card": t.proxy(renames["issuing.card"]),
+            "card": t.proxy(renames["issuing_card"]),
             "cardholder": t.union(
-                [t.string(), t.proxy(renames["issuing.cardholder"])]
+                [t.string(), t.proxy(renames["issuing_cardholder"])]
             ).optional(),
             "created": t.integer(),
             "currency": t.string(),
@@ -3316,19 +3338,19 @@ def import_spec3_sdk(params=None):
                 t.proxy(renames["issuing_authorization_request"])
             ),
             "status": t.string(),
-            "transactions": t.array(t.proxy(renames["issuing.transaction"])),
+            "transactions": t.array(t.proxy(renames["issuing_transaction"])),
             "treasury": t.proxy(renames["issuing_authorization_treasury"]).optional(),
             "verification_data": t.proxy(
                 renames["issuing_authorization_verification_data"]
             ),
             "wallet": t.string().optional(),
         }
-    ).named(renames["issuing.authorization"])
-    types["issuing.card"] = t.struct(
+    ).named(renames["issuing_authorization"])
+    types["issuing_card"] = t.struct(
         {
             "brand": t.string(),
             "cancellation_reason": t.string().optional(),
-            "cardholder": t.proxy(renames["issuing.cardholder"]),
+            "cardholder": t.proxy(renames["issuing_cardholder"]),
             "created": t.integer(),
             "currency": t.string(),
             "cvc": t.string().optional(),
@@ -3342,10 +3364,10 @@ def import_spec3_sdk(params=None):
             "number": t.string().optional(),
             "object": t.string(),
             "replaced_by": t.union(
-                [t.string(), t.proxy(renames["issuing.card"])]
+                [t.string(), t.proxy(renames["issuing_card"])]
             ).optional(),
             "replacement_for": t.union(
-                [t.string(), t.proxy(renames["issuing.card"])]
+                [t.string(), t.proxy(renames["issuing_card"])]
             ).optional(),
             "replacement_reason": t.string().optional(),
             "shipping": t.proxy(renames["issuing_card_shipping"]).optional(),
@@ -3356,8 +3378,8 @@ def import_spec3_sdk(params=None):
             "type": t.string(),
             "wallets": t.proxy(renames["issuing_card_wallets"]).optional(),
         }
-    ).named(renames["issuing.card"])
-    types["issuing.cardholder"] = t.struct(
+    ).named(renames["issuing_card"])
+    types["issuing_cardholder"] = t.struct(
         {
             "billing": t.proxy(renames["issuing_cardholder_address"]),
             "company": t.proxy(renames["issuing_cardholder_company"]).optional(),
@@ -3370,6 +3392,7 @@ def import_spec3_sdk(params=None):
             "name": t.string(),
             "object": t.string(),
             "phone_number": t.string().optional(),
+            "preferred_locales": t.array(t.string()).optional(),
             "requirements": t.proxy(renames["issuing_cardholder_requirements"]),
             "spending_controls": t.proxy(
                 renames["issuing_cardholder_authorization_controls"]
@@ -3377,8 +3400,8 @@ def import_spec3_sdk(params=None):
             "status": t.string(),
             "type": t.string(),
         }
-    ).named(renames["issuing.cardholder"])
-    types["issuing.dispute"] = t.struct(
+    ).named(renames["issuing_cardholder"])
+    types["issuing_dispute"] = t.struct(
         {
             "amount": t.integer(),
             "balance_transactions": t.array(
@@ -3393,31 +3416,31 @@ def import_spec3_sdk(params=None):
             "object": t.string(),
             "status": t.string(),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["issuing.transaction"])]
+                [t.string(), t.proxy(renames["issuing_transaction"])]
             ),
             "treasury": t.proxy(renames["issuing_dispute_treasury"]).optional(),
         }
-    ).named(renames["issuing.dispute"])
-    types["issuing.transaction"] = t.struct(
+    ).named(renames["issuing_dispute"])
+    types["issuing_transaction"] = t.struct(
         {
             "amount": t.integer(),
             "amount_details": t.proxy(
                 renames["issuing_transaction_amount_details"]
             ).optional(),
             "authorization": t.union(
-                [t.string(), t.proxy(renames["issuing.authorization"])]
+                [t.string(), t.proxy(renames["issuing_authorization"])]
             ).optional(),
             "balance_transaction": t.union(
                 [t.string(), t.proxy(renames["balance_transaction"])]
             ).optional(),
-            "card": t.union([t.string(), t.proxy(renames["issuing.card"])]),
+            "card": t.union([t.string(), t.proxy(renames["issuing_card"])]),
             "cardholder": t.union(
-                [t.string(), t.proxy(renames["issuing.cardholder"])]
+                [t.string(), t.proxy(renames["issuing_cardholder"])]
             ).optional(),
             "created": t.integer(),
             "currency": t.string(),
             "dispute": t.union(
-                [t.string(), t.proxy(renames["issuing.dispute"])]
+                [t.string(), t.proxy(renames["issuing_dispute"])]
             ).optional(),
             "id": t.string(),
             "livemode": t.boolean(),
@@ -3433,7 +3456,7 @@ def import_spec3_sdk(params=None):
             "type": t.string(),
             "wallet": t.string().optional(),
         }
-    ).named(renames["issuing.transaction"])
+    ).named(renames["issuing_transaction"])
     types["issuing_authorization_amount_details"] = t.struct(
         {"atm_fee": t.integer().optional()}
     ).named(renames["issuing_authorization_amount_details"])
@@ -3931,7 +3954,7 @@ def import_spec3_sdk(params=None):
             "price": t.proxy(renames["price"]).optional(),
             "proration": t.boolean(),
             "proration_details": t.proxy(
-                renames["invoices_line_items_proration_details"]
+                renames["invoices_resource_line_items_proration_details"]
             ).optional(),
             "quantity": t.integer().optional(),
             "subscription": t.union(
@@ -3973,6 +3996,7 @@ def import_spec3_sdk(params=None):
             "livemode": t.boolean(),
             "multi_use": t.proxy(renames["mandate_multi_use"]).optional(),
             "object": t.string(),
+            "on_behalf_of": t.string().optional(),
             "payment_method": t.union([t.string(), t.proxy(renames["payment_method"])]),
             "payment_method_details": t.proxy(
                 renames["mandate_payment_method_details"]
@@ -4505,6 +4529,7 @@ def import_spec3_sdk(params=None):
             "wechat_pay": t.proxy(
                 renames["payment_method_options_wechat_pay"]
             ).optional(),
+            "zip": t.proxy(renames["payment_method_options_zip"]).optional(),
         }
     ).named(renames["payment_intent_payment_method_options"])
     types["payment_intent_payment_method_options_acss_debit"] = t.struct(
@@ -4851,6 +4876,7 @@ def import_spec3_sdk(params=None):
                 renames["payment_method_us_bank_account"]
             ).optional(),
             "wechat_pay": t.proxy(renames["payment_method_wechat_pay"]).optional(),
+            "zip": t.proxy(renames["payment_method_zip"]).optional(),
         }
     ).named(renames["payment_method"])
     types["payment_method_acss_debit"] = t.struct(
@@ -4919,10 +4945,13 @@ def import_spec3_sdk(params=None):
             "brand": t.string().optional(),
             "cardholder_name": t.string().optional(),
             "country": t.string().optional(),
+            "description": t.string().optional(),
             "exp_month": t.integer(),
             "exp_year": t.integer(),
             "fingerprint": t.string().optional(),
             "funding": t.string().optional(),
+            "iin": t.string().optional(),
+            "issuer": t.string().optional(),
             "last4": t.string().optional(),
             "networks": t.proxy(
                 renames["payment_method_card_present_networks"]
@@ -5072,6 +5101,7 @@ def import_spec3_sdk(params=None):
             "wechat_pay": t.proxy(
                 renames["payment_method_details_wechat_pay"]
             ).optional(),
+            "zip": t.proxy(renames["payment_method_details_zip"]).optional(),
         }
     ).named(renames["payment_method_details"])
     types["payment_method_details_ach_credit_transfer"] = t.struct(
@@ -5471,6 +5501,9 @@ def import_spec3_sdk(params=None):
     types["payment_method_details_wechat_pay"] = t.struct(
         {"fingerprint": t.string().optional(), "transaction_id": t.string().optional()}
     ).named(renames["payment_method_details_wechat_pay"])
+    types["payment_method_details_zip"] = t.struct({}).named(
+        renames["payment_method_details_zip"]
+    )
     types["payment_method_eps"] = t.struct({"bank": t.string().optional()}).named(
         renames["payment_method_eps"]
     )
@@ -5491,10 +5524,13 @@ def import_spec3_sdk(params=None):
             "brand": t.string().optional(),
             "cardholder_name": t.string().optional(),
             "country": t.string().optional(),
+            "description": t.string().optional(),
             "exp_month": t.integer(),
             "exp_year": t.integer(),
             "fingerprint": t.string().optional(),
             "funding": t.string().optional(),
+            "iin": t.string().optional(),
+            "issuer": t.string().optional(),
             "last4": t.string().optional(),
             "networks": t.proxy(
                 renames["payment_method_card_present_networks"]
@@ -5674,6 +5710,9 @@ def import_spec3_sdk(params=None):
             "setup_future_usage": t.string().optional(),
         }
     ).named(renames["payment_method_options_wechat_pay"])
+    types["payment_method_options_zip"] = t.struct(
+        {"setup_future_usage": t.string().optional()}
+    ).named(renames["payment_method_options_zip"])
     types["payment_method_oxxo"] = t.struct({}).named(renames["payment_method_oxxo"])
     types["payment_method_p24"] = t.struct({"bank": t.string().optional()}).named(
         renames["payment_method_p24"]
@@ -5682,7 +5721,7 @@ def import_spec3_sdk(params=None):
         renames["payment_method_paynow"]
     )
     types["payment_method_paypal"] = t.struct(
-        {"payer_id": t.string().optional()}
+        {"payer_email": t.string().optional(), "payer_id": t.string().optional()}
     ).named(renames["payment_method_paypal"])
     types["payment_method_pix"] = t.struct({}).named(renames["payment_method_pix"])
     types["payment_method_promptpay"] = t.struct({}).named(
@@ -5729,6 +5768,7 @@ def import_spec3_sdk(params=None):
     types["payment_method_wechat_pay"] = t.struct({}).named(
         renames["payment_method_wechat_pay"]
     )
+    types["payment_method_zip"] = t.struct({}).named(renames["payment_method_zip"])
     types["payment_pages_checkout_session_after_expiration"] = t.struct(
         {
             "recovery": t.proxy(
@@ -5792,13 +5832,21 @@ def import_spec3_sdk(params=None):
         {"custom": t.string().optional(), "type": t.string()}
     ).named(renames["payment_pages_checkout_session_custom_fields_label"])
     types["payment_pages_checkout_session_custom_fields_numeric"] = t.struct(
-        {"value": t.string().optional()}
+        {
+            "maximum_length": t.integer().optional(),
+            "minimum_length": t.integer().optional(),
+            "value": t.string().optional(),
+        }
     ).named(renames["payment_pages_checkout_session_custom_fields_numeric"])
     types["payment_pages_checkout_session_custom_fields_option"] = t.struct(
         {"label": t.string(), "value": t.string()}
     ).named(renames["payment_pages_checkout_session_custom_fields_option"])
     types["payment_pages_checkout_session_custom_fields_text"] = t.struct(
-        {"value": t.string().optional()}
+        {
+            "maximum_length": t.integer().optional(),
+            "minimum_length": t.integer().optional(),
+            "value": t.string().optional(),
+        }
     ).named(renames["payment_pages_checkout_session_custom_fields_text"])
     types["payment_pages_checkout_session_custom_text"] = t.struct(
         {
@@ -6367,7 +6415,7 @@ def import_spec3_sdk(params=None):
                 [t.string(), t.proxy(renames["subscription_schedule"])]
             ).optional(),
             "test_clock": t.union(
-                [t.string(), t.proxy(renames["test_helpers.test_clock"])]
+                [t.string(), t.proxy(renames["test_helpers_test_clock"])]
             ).optional(),
             "total_details": t.proxy(renames["quotes_resource_total_details"]),
             "transfer_data": t.proxy(
@@ -6451,7 +6499,7 @@ def import_spec3_sdk(params=None):
             "total_details": t.proxy(renames["quotes_resource_total_details"]),
         }
     ).named(renames["quotes_resource_upfront"])
-    types["radar.early_fraud_warning"] = t.struct(
+    types["radar_early_fraud_warning"] = t.struct(
         {
             "actionable": t.boolean(),
             "charge": t.union([t.string(), t.proxy(renames["charge"])]),
@@ -6464,8 +6512,8 @@ def import_spec3_sdk(params=None):
                 [t.string(), t.proxy(renames["payment_intent"])]
             ).optional(),
         }
-    ).named(renames["radar.early_fraud_warning"])
-    types["radar.value_list"] = t.struct(
+    ).named(renames["radar_early_fraud_warning"])
+    types["radar_value_list"] = t.struct(
         {
             "alias": t.string(),
             "created": t.integer(),
@@ -6474,7 +6522,7 @@ def import_spec3_sdk(params=None):
             "item_type": t.string(),
             "list_items": t.struct(
                 {
-                    "data": t.array(t.proxy(renames["radar.value_list_item"])),
+                    "data": t.array(t.proxy(renames["radar_value_list_item"])),
                     "has_more": t.boolean(),
                     "object": t.string(),
                     "url": t.string(),
@@ -6485,8 +6533,8 @@ def import_spec3_sdk(params=None):
             "name": t.string(),
             "object": t.string(),
         }
-    ).named(renames["radar.value_list"])
-    types["radar.value_list_item"] = t.struct(
+    ).named(renames["radar_value_list"])
+    types["radar_value_list_item"] = t.struct(
         {
             "created": t.integer(),
             "created_by": t.string(),
@@ -6496,7 +6544,7 @@ def import_spec3_sdk(params=None):
             "value": t.string(),
             "value_list": t.string(),
         }
-    ).named(renames["radar.value_list_item"])
+    ).named(renames["radar_value_list_item"])
     types["radar_radar_options"] = t.struct({"session": t.string().optional()}).named(
         renames["radar_radar_options"]
     )
@@ -6573,7 +6621,7 @@ def import_spec3_sdk(params=None):
     types["refund_next_action_display_details"] = t.struct(
         {"email_sent": t.proxy(renames["email_sent"]), "expires_at": t.integer()}
     ).named(renames["refund_next_action_display_details"])
-    types["reporting.report_run"] = t.struct(
+    types["reporting_report_run"] = t.struct(
         {
             "created": t.integer(),
             "error": t.string().optional(),
@@ -6588,8 +6636,8 @@ def import_spec3_sdk(params=None):
             "status": t.string(),
             "succeeded_at": t.integer().optional(),
         }
-    ).named(renames["reporting.report_run"])
-    types["reporting.report_type"] = t.struct(
+    ).named(renames["reporting_report_run"])
+    types["reporting_report_type"] = t.struct(
         {
             "data_available_end": t.integer(),
             "data_available_start": t.integer(),
@@ -6601,7 +6649,7 @@ def import_spec3_sdk(params=None):
             "updated": t.integer(),
             "version": t.integer(),
         }
-    ).named(renames["reporting.report_type"])
+    ).named(renames["reporting_report_type"])
     types["reserve_transaction"] = t.struct(
         {
             "amount": t.integer(),
@@ -7638,7 +7686,7 @@ def import_spec3_sdk(params=None):
             "start_date": t.integer(),
             "status": t.string(),
             "test_clock": t.union(
-                [t.string(), t.proxy(renames["test_helpers.test_clock"])]
+                [t.string(), t.proxy(renames["test_helpers_test_clock"])]
             ).optional(),
             "transfer_data": t.proxy(renames["subscription_transfer_data"]).optional(),
             "trial_end": t.integer().optional(),
@@ -7728,7 +7776,7 @@ def import_spec3_sdk(params=None):
                 [t.string(), t.proxy(renames["subscription"])]
             ).optional(),
             "test_clock": t.union(
-                [t.string(), t.proxy(renames["test_helpers.test_clock"])]
+                [t.string(), t.proxy(renames["test_helpers_test_clock"])]
             ).optional(),
         }
     ).named(renames["subscription_schedule"])
@@ -7898,7 +7946,7 @@ def import_spec3_sdk(params=None):
     types["subscriptions_trials_resource_trial_settings"] = t.struct(
         {"end_behavior": t.proxy(renames["subscriptions_trials_resource_end_behavior"])}
     ).named(renames["subscriptions_trials_resource_trial_settings"])
-    types["tax.calculation"] = t.struct(
+    types["tax_calculation"] = t.struct(
         {
             "amount_total": t.integer(),
             "currency": t.string(),
@@ -7910,7 +7958,7 @@ def import_spec3_sdk(params=None):
             "id": t.string().optional(),
             "line_items": t.struct(
                 {
-                    "data": t.array(t.proxy(renames["tax.calculation_line_item"])),
+                    "data": t.array(t.proxy(renames["tax_calculation_line_item"])),
                     "has_more": t.boolean(),
                     "object": t.string(),
                     "url": t.string(),
@@ -7928,8 +7976,8 @@ def import_spec3_sdk(params=None):
             ),
             "tax_date": t.integer(),
         }
-    ).named(renames["tax.calculation"])
-    types["tax.calculation_line_item"] = t.struct(
+    ).named(renames["tax_calculation"])
+    types["tax_calculation_line_item"] = t.struct(
         {
             "amount": t.integer(),
             "amount_tax": t.integer(),
@@ -7945,8 +7993,8 @@ def import_spec3_sdk(params=None):
             ).optional(),
             "tax_code": t.string(),
         }
-    ).named(renames["tax.calculation_line_item"])
-    types["tax.transaction"] = t.struct(
+    ).named(renames["tax_calculation_line_item"])
+    types["tax_transaction"] = t.struct(
         {
             "created": t.integer(),
             "currency": t.string(),
@@ -7957,7 +8005,7 @@ def import_spec3_sdk(params=None):
             "id": t.string(),
             "line_items": t.struct(
                 {
-                    "data": t.array(t.proxy(renames["tax.transaction_line_item"])),
+                    "data": t.array(t.proxy(renames["tax_transaction_line_item"])),
                     "has_more": t.boolean(),
                     "object": t.string(),
                     "url": t.string(),
@@ -7976,8 +8024,8 @@ def import_spec3_sdk(params=None):
             "tax_date": t.integer(),
             "type": t.string(),
         }
-    ).named(renames["tax.transaction"])
-    types["tax.transaction_line_item"] = t.struct(
+    ).named(renames["tax_transaction"])
+    types["tax_transaction_line_item"] = t.struct(
         {
             "amount": t.integer(),
             "amount_tax": t.integer(),
@@ -7996,7 +8044,7 @@ def import_spec3_sdk(params=None):
             "tax_code": t.string(),
             "type": t.string(),
         }
-    ).named(renames["tax.transaction_line_item"])
+    ).named(renames["tax_transaction_line_item"])
     types["tax_code"] = t.struct(
         {
             "description": t.string(),
@@ -8096,6 +8144,7 @@ def import_spec3_sdk(params=None):
             "tax_rate_details": t.proxy(
                 renames["tax_product_resource_tax_rate_details"]
             ),
+            "taxability_reason": t.string(),
             "taxable_amount": t.integer(),
         }
     ).named(renames["tax_product_resource_tax_breakdown"])
@@ -8158,7 +8207,7 @@ def import_spec3_sdk(params=None):
             "tax_type": t.string().optional(),
         }
     ).named(renames["tax_rate"])
-    types["terminal.configuration"] = t.struct(
+    types["terminal_configuration"] = t.struct(
         {
             "bbpos_wisepos_e": t.proxy(
                 renames[
@@ -8178,11 +8227,11 @@ def import_spec3_sdk(params=None):
                 ]
             ).optional(),
         }
-    ).named(renames["terminal.configuration"])
-    types["terminal.connection_token"] = t.struct(
+    ).named(renames["terminal_configuration"])
+    types["terminal_connection_token"] = t.struct(
         {"location": t.string().optional(), "object": t.string(), "secret": t.string()}
-    ).named(renames["terminal.connection_token"])
-    types["terminal.location"] = t.struct(
+    ).named(renames["terminal_connection_token"])
+    types["terminal_location"] = t.struct(
         {
             "address": t.proxy(renames["address"]),
             "configuration_overrides": t.string().optional(),
@@ -8192,8 +8241,8 @@ def import_spec3_sdk(params=None):
             "metadata": t.struct({}),
             "object": t.string(),
         }
-    ).named(renames["terminal.location"])
-    types["terminal.reader"] = t.struct(
+    ).named(renames["terminal_location"])
+    types["terminal_reader"] = t.struct(
         {
             "action": t.proxy(
                 renames["terminal_reader_reader_resource_reader_action"]
@@ -8205,14 +8254,14 @@ def import_spec3_sdk(params=None):
             "label": t.string(),
             "livemode": t.boolean(),
             "location": t.union(
-                [t.string(), t.proxy(renames["terminal.location"])]
+                [t.string(), t.proxy(renames["terminal_location"])]
             ).optional(),
             "metadata": t.struct({}),
             "object": t.string(),
             "serial_number": t.string(),
             "status": t.string().optional(),
         }
-    ).named(renames["terminal.reader"])
+    ).named(renames["terminal_reader"])
     types[
         "terminal_configuration_configuration_resource_currency_specific_config"
     ] = t.struct(
@@ -8387,7 +8436,7 @@ def import_spec3_sdk(params=None):
     types["terminal_reader_reader_resource_tipping_config"] = t.struct(
         {"amount_eligible": t.integer().optional()}
     ).named(renames["terminal_reader_reader_resource_tipping_config"])
-    types["test_helpers.test_clock"] = t.struct(
+    types["test_helpers_test_clock"] = t.struct(
         {
             "created": t.integer(),
             "deletes_after": t.integer(),
@@ -8398,7 +8447,7 @@ def import_spec3_sdk(params=None):
             "object": t.string(),
             "status": t.string(),
         }
-    ).named(renames["test_helpers.test_clock"])
+    ).named(renames["test_helpers_test_clock"])
     types["three_d_secure_details"] = t.struct(
         {
             "authentication_flow": t.string().optional(),
@@ -8521,7 +8570,7 @@ def import_spec3_sdk(params=None):
     types["transform_usage"] = t.struct(
         {"divide_by": t.integer(), "round": t.string()}
     ).named(renames["transform_usage"])
-    types["treasury.credit_reversal"] = t.struct(
+    types["treasury_credit_reversal"] = t.struct(
         {
             "amount": t.integer(),
             "created": t.integer(),
@@ -8539,11 +8588,11 @@ def import_spec3_sdk(params=None):
                 renames["treasury_received_credits_resource_status_transitions"]
             ),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ).optional(),
         }
-    ).named(renames["treasury.credit_reversal"])
-    types["treasury.debit_reversal"] = t.struct(
+    ).named(renames["treasury_credit_reversal"])
+    types["treasury_debit_reversal"] = t.struct(
         {
             "amount": t.integer(),
             "created": t.integer(),
@@ -8564,18 +8613,18 @@ def import_spec3_sdk(params=None):
                 renames["treasury_received_debits_resource_status_transitions"]
             ),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ).optional(),
         }
-    ).named(renames["treasury.debit_reversal"])
-    types["treasury.financial_account"] = t.struct(
+    ).named(renames["treasury_debit_reversal"])
+    types["treasury_financial_account"] = t.struct(
         {
             "active_features": t.array(t.string()).optional(),
             "balance": t.proxy(renames["treasury_financial_accounts_resource_balance"]),
             "country": t.string(),
             "created": t.integer(),
             "features": t.proxy(
-                renames["treasury.financial_account_features"]
+                renames["treasury_financial_account_features"]
             ).optional(),
             "financial_addresses": t.array(
                 t.proxy(
@@ -8597,8 +8646,8 @@ def import_spec3_sdk(params=None):
             ),
             "supported_currencies": t.array(t.string()),
         }
-    ).named(renames["treasury.financial_account"])
-    types["treasury.financial_account_features"] = t.struct(
+    ).named(renames["treasury_financial_account"])
+    types["treasury_financial_account_features"] = t.struct(
         {
             "card_issuing": t.proxy(
                 renames["treasury_financial_accounts_resource_toggle_settings"]
@@ -8625,8 +8674,8 @@ def import_spec3_sdk(params=None):
                 renames["treasury_financial_accounts_resource_outbound_transfers"]
             ).optional(),
         }
-    ).named(renames["treasury.financial_account_features"])
-    types["treasury.inbound_transfer"] = t.struct(
+    ).named(renames["treasury_financial_account_features"])
+    types["treasury_inbound_transfer"] = t.struct(
         {
             "amount": t.integer(),
             "cancelable": t.boolean(),
@@ -8660,11 +8709,11 @@ def import_spec3_sdk(params=None):
                 ]
             ),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ).optional(),
         }
-    ).named(renames["treasury.inbound_transfer"])
-    types["treasury.outbound_payment"] = t.struct(
+    ).named(renames["treasury_inbound_transfer"])
+    types["treasury_outbound_payment"] = t.struct(
         {
             "amount": t.integer(),
             "cancelable": t.boolean(),
@@ -8699,11 +8748,11 @@ def import_spec3_sdk(params=None):
                 ]
             ),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ),
         }
-    ).named(renames["treasury.outbound_payment"])
-    types["treasury.outbound_transfer"] = t.struct(
+    ).named(renames["treasury_outbound_payment"])
+    types["treasury_outbound_transfer"] = t.struct(
         {
             "amount": t.integer(),
             "cancelable": t.boolean(),
@@ -8730,11 +8779,11 @@ def import_spec3_sdk(params=None):
                 renames["treasury_outbound_transfers_resource_status_transitions"]
             ),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ),
         }
-    ).named(renames["treasury.outbound_transfer"])
-    types["treasury.received_credit"] = t.struct(
+    ).named(renames["treasury_outbound_transfer"])
+    types["treasury_received_credit"] = t.struct(
         {
             "amount": t.integer(),
             "created": t.integer(),
@@ -8760,11 +8809,11 @@ def import_spec3_sdk(params=None):
             ).optional(),
             "status": t.string(),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ).optional(),
         }
-    ).named(renames["treasury.received_credit"])
-    types["treasury.received_debit"] = t.struct(
+    ).named(renames["treasury_received_credit"])
+    types["treasury_received_debit"] = t.struct(
         {
             "amount": t.integer(),
             "created": t.integer(),
@@ -8790,11 +8839,11 @@ def import_spec3_sdk(params=None):
             ).optional(),
             "status": t.string(),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ).optional(),
         }
-    ).named(renames["treasury.received_debit"])
-    types["treasury.transaction"] = t.struct(
+    ).named(renames["treasury_received_debit"])
+    types["treasury_transaction"] = t.struct(
         {
             "amount": t.integer(),
             "balance_impact": t.proxy(
@@ -8805,7 +8854,7 @@ def import_spec3_sdk(params=None):
             "description": t.string(),
             "entries": t.struct(
                 {
-                    "data": t.array(t.proxy(renames["treasury.transaction_entry"])),
+                    "data": t.array(t.proxy(renames["treasury_transaction_entry"])),
                     "has_more": t.boolean(),
                     "object": t.string(),
                     "url": t.string(),
@@ -8827,8 +8876,8 @@ def import_spec3_sdk(params=None):
                 ]
             ),
         }
-    ).named(renames["treasury.transaction"])
-    types["treasury.transaction_entry"] = t.struct(
+    ).named(renames["treasury_transaction"])
+    types["treasury_transaction_entry"] = t.struct(
         {
             "balance_impact": t.proxy(
                 renames["treasury_transactions_resource_balance_impact"]
@@ -8846,11 +8895,11 @@ def import_spec3_sdk(params=None):
             "livemode": t.boolean(),
             "object": t.string(),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ),
             "type": t.string(),
         }
-    ).named(renames["treasury.transaction_entry"])
+    ).named(renames["treasury_transaction_entry"])
     types["treasury_financial_accounts_resource_aba_record"] = t.struct(
         {
             "account_holder_name": t.string(),
@@ -8860,6 +8909,19 @@ def import_spec3_sdk(params=None):
             "routing_number": t.string(),
         }
     ).named(renames["treasury_financial_accounts_resource_aba_record"])
+    types["treasury_financial_accounts_resource_aba_toggle_settings"] = t.struct(
+        {
+            "requested": t.boolean(),
+            "status": t.string(),
+            "status_details": t.array(
+                t.proxy(
+                    renames[
+                        "treasury_financial_accounts_resource_toggles_setting_status_details"
+                    ]
+                )
+            ),
+        }
+    ).named(renames["treasury_financial_accounts_resource_aba_toggle_settings"])
     types["treasury_financial_accounts_resource_ach_toggle_settings"] = t.struct(
         {
             "requested": t.boolean(),
@@ -8897,7 +8959,7 @@ def import_spec3_sdk(params=None):
     ] = t.struct(
         {
             "aba": t.proxy(
-                renames["treasury_financial_accounts_resource_toggle_settings"]
+                renames["treasury_financial_accounts_resource_aba_toggle_settings"]
             ).optional()
         }
     ).named(
@@ -9015,7 +9077,7 @@ def import_spec3_sdk(params=None):
         {
             "code": t.string(),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ),
         }
     ).named(renames["treasury_outbound_payments_resource_returned_status"])
@@ -9023,7 +9085,7 @@ def import_spec3_sdk(params=None):
         {
             "code": t.string(),
             "transaction": t.union(
-                [t.string(), t.proxy(renames["treasury.transaction"])]
+                [t.string(), t.proxy(renames["treasury_transaction"])]
             ),
         }
     ).named(renames["treasury_outbound_transfers_resource_returned_details"])
@@ -9052,9 +9114,9 @@ def import_spec3_sdk(params=None):
     ).named(renames["treasury_received_credits_resource_reversal_details"])
     types["treasury_received_credits_resource_source_flows_details"] = t.struct(
         {
-            "credit_reversal": t.proxy(renames["treasury.credit_reversal"]).optional(),
+            "credit_reversal": t.proxy(renames["treasury_credit_reversal"]).optional(),
             "outbound_payment": t.proxy(
-                renames["treasury.outbound_payment"]
+                renames["treasury_outbound_payment"]
             ).optional(),
             "payout": t.proxy(renames["payout"]).optional(),
             "type": t.string(),
@@ -9142,22 +9204,22 @@ def import_spec3_sdk(params=None):
     ).named(renames["treasury_transactions_resource_balance_impact"])
     types["treasury_transactions_resource_flow_details"] = t.struct(
         {
-            "credit_reversal": t.proxy(renames["treasury.credit_reversal"]).optional(),
-            "debit_reversal": t.proxy(renames["treasury.debit_reversal"]).optional(),
+            "credit_reversal": t.proxy(renames["treasury_credit_reversal"]).optional(),
+            "debit_reversal": t.proxy(renames["treasury_debit_reversal"]).optional(),
             "inbound_transfer": t.proxy(
-                renames["treasury.inbound_transfer"]
+                renames["treasury_inbound_transfer"]
             ).optional(),
             "issuing_authorization": t.proxy(
-                renames["issuing.authorization"]
+                renames["issuing_authorization"]
             ).optional(),
             "outbound_payment": t.proxy(
-                renames["treasury.outbound_payment"]
+                renames["treasury_outbound_payment"]
             ).optional(),
             "outbound_transfer": t.proxy(
-                renames["treasury.outbound_transfer"]
+                renames["treasury_outbound_transfer"]
             ).optional(),
-            "received_credit": t.proxy(renames["treasury.received_credit"]).optional(),
-            "received_debit": t.proxy(renames["treasury.received_debit"]).optional(),
+            "received_credit": t.proxy(renames["treasury_received_credit"]).optional(),
+            "received_debit": t.proxy(renames["treasury_received_debit"]).optional(),
             "type": t.string(),
         }
     ).named(renames["treasury_transactions_resource_flow_details"])
@@ -9402,6 +9464,9 @@ def import_spec3_sdk(params=None):
                             {"requested": t.boolean().optional()}
                         ).optional(),
                         "us_bank_account_ach_payments": t.struct(
+                            {"requested": t.boolean().optional()}
+                        ).optional(),
+                        "zip_payments": t.struct(
                             {"requested": t.boolean().optional()}
                         ).optional(),
                     }
@@ -9849,6 +9914,9 @@ def import_spec3_sdk(params=None):
                             {"requested": t.boolean().optional()}
                         ).optional(),
                         "us_bank_account_ach_payments": t.struct(
+                            {"requested": t.boolean().optional()}
+                        ).optional(),
+                        "zip_payments": t.struct(
                             {"requested": t.boolean().optional()}
                         ).optional(),
                     }
@@ -10822,7 +10890,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["apps.secret"])),
+                "data": t.array(t.proxy(renames["apps_secret"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -10842,7 +10910,7 @@ def import_spec3_sdk(params=None):
                 "scope": t.struct({"type": t.string(), "user": t.string().optional()}),
             }
         ),
-        t.proxy(renames["apps.secret"]),
+        t.proxy(renames["apps_secret"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "expires_at", "name", "payload", "scope"),
     )
@@ -10855,7 +10923,7 @@ def import_spec3_sdk(params=None):
                 "scope": t.struct({"type": t.string(), "user": t.string().optional()}),
             }
         ),
-        t.proxy(renames["apps.secret"]),
+        t.proxy(renames["apps_secret"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "name", "scope"),
     )
@@ -10868,7 +10936,7 @@ def import_spec3_sdk(params=None):
                 "scope": t.struct({"type": t.string(), "user": t.string().optional()}),
             }
         ),
-        t.proxy(renames["apps.secret"]),
+        t.proxy(renames["apps_secret"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -10951,7 +11019,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["billing_portal.configuration"])),
+                "data": t.array(t.proxy(renames["billing_portal_configuration"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -11035,7 +11103,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.struct({}).optional(),
             }
         ),
-        t.proxy(renames["billing_portal.configuration"]),
+        t.proxy(renames["billing_portal_configuration"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "business_profile",
@@ -11049,7 +11117,7 @@ def import_spec3_sdk(params=None):
     functions["GetBillingPortalConfigurationsConfiguration"] = spec3_sdk.get(
         "/v1/billing_portal/configurations/{configuration}",
         t.struct({"configuration": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["billing_portal.configuration"]),
+        t.proxy(renames["billing_portal_configuration"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -11134,7 +11202,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["billing_portal.configuration"]),
+        t.proxy(renames["billing_portal_configuration"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "active",
@@ -11202,7 +11270,7 @@ def import_spec3_sdk(params=None):
                 "return_url": t.string().optional(),
             }
         ),
-        t.proxy(renames["billing_portal.session"]),
+        t.proxy(renames["billing_portal_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "configuration",
@@ -11478,7 +11546,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["checkout.session"])),
+                "data": t.array(t.proxy(renames["checkout_session"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -11529,7 +11597,19 @@ def import_spec3_sdk(params=None):
                             "label": t.struct(
                                 {"custom": t.string(), "type": t.string()}
                             ),
+                            "numeric": t.struct(
+                                {
+                                    "maximum_length": t.integer().optional(),
+                                    "minimum_length": t.integer().optional(),
+                                }
+                            ).optional(),
                             "optional": t.boolean().optional(),
+                            "text": t.struct(
+                                {
+                                    "maximum_length": t.integer().optional(),
+                                    "minimum_length": t.integer().optional(),
+                                }
+                            ).optional(),
                             "type": t.string(),
                         }
                     )
@@ -11924,7 +12004,7 @@ def import_spec3_sdk(params=None):
                 "tax_id_collection": t.struct({"enabled": t.boolean()}).optional(),
             }
         ),
-        t.proxy(renames["checkout.session"]),
+        t.proxy(renames["checkout_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "after_expiration",
@@ -11967,14 +12047,14 @@ def import_spec3_sdk(params=None):
     functions["GetCheckoutSessionsSession"] = spec3_sdk.get(
         "/v1/checkout/sessions/{session}",
         t.struct({"expand": t.array(t.string()), "session": t.string()}),
-        t.proxy(renames["checkout.session"]),
+        t.proxy(renames["checkout_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
     functions["PostCheckoutSessionsSessionExpire"] = spec3_sdk.post(
         "/v1/checkout/sessions/{session}/expire",
         t.struct({"session": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["checkout.session"]),
+        t.proxy(renames["checkout_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -12159,6 +12239,7 @@ def import_spec3_sdk(params=None):
             {
                 "amount": t.integer().optional(),
                 "credit_amount": t.integer().optional(),
+                "effective_at": t.integer().optional(),
                 "expand": t.array(t.string()).optional(),
                 "invoice": t.string(),
                 "lines": t.array(
@@ -12193,6 +12274,7 @@ def import_spec3_sdk(params=None):
         body_fields=(
             "amount",
             "credit_amount",
+            "effective_at",
             "expand",
             "invoice",
             "lines",
@@ -12211,6 +12293,7 @@ def import_spec3_sdk(params=None):
             {
                 "amount": t.integer(),
                 "credit_amount": t.integer(),
+                "effective_at": t.integer(),
                 "expand": t.array(t.string()),
                 "invoice": t.string(),
                 "lines": t.array(
@@ -12248,6 +12331,7 @@ def import_spec3_sdk(params=None):
             {
                 "amount": t.integer(),
                 "credit_amount": t.integer(),
+                "effective_at": t.integer(),
                 "ending_before": t.string(),
                 "expand": t.array(t.string()),
                 "invoice": t.string(),
@@ -13370,7 +13454,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["financial_connections.account"])),
+                "data": t.array(t.proxy(renames["financial_connections_account"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -13382,14 +13466,14 @@ def import_spec3_sdk(params=None):
     functions["GetFinancialConnectionsAccountsAccount"] = spec3_sdk.get(
         "/v1/financial_connections/accounts/{account}",
         t.struct({"account": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["financial_connections.account"]),
+        t.proxy(renames["financial_connections_account"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
     functions["PostFinancialConnectionsAccountsAccountDisconnect"] = spec3_sdk.post(
         "/v1/financial_connections/accounts/{account}/disconnect",
         t.struct({"account": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["financial_connections.account"]),
+        t.proxy(renames["financial_connections_account"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -13408,7 +13492,7 @@ def import_spec3_sdk(params=None):
         t.struct(
             {
                 "data": t.array(
-                    t.proxy(renames["financial_connections.account_owner"])
+                    t.proxy(renames["financial_connections_account_owner"])
                 ),
                 "has_more": t.boolean(),
                 "object": t.string(),
@@ -13427,7 +13511,7 @@ def import_spec3_sdk(params=None):
                 "features": t.array(t.string()),
             }
         ),
-        t.proxy(renames["financial_connections.account"]),
+        t.proxy(renames["financial_connections_account"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "features"),
     )
@@ -13448,7 +13532,7 @@ def import_spec3_sdk(params=None):
                 "return_url": t.string().optional(),
             }
         ),
-        t.proxy(renames["financial_connections.session"]),
+        t.proxy(renames["financial_connections_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "account_holder",
@@ -13461,7 +13545,7 @@ def import_spec3_sdk(params=None):
     functions["GetFinancialConnectionsSessionsSession"] = spec3_sdk.get(
         "/v1/financial_connections/sessions/{session}",
         t.struct({"expand": t.array(t.string()), "session": t.string()}),
-        t.proxy(renames["financial_connections.session"]),
+        t.proxy(renames["financial_connections_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -13492,7 +13576,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["identity.verification_report"])),
+                "data": t.array(t.proxy(renames["identity_verification_report"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -13504,7 +13588,7 @@ def import_spec3_sdk(params=None):
     functions["GetIdentityVerificationReportsReport"] = spec3_sdk.get(
         "/v1/identity/verification_reports/{report}",
         t.struct({"expand": t.array(t.string()), "report": t.string()}),
-        t.proxy(renames["identity.verification_report"]),
+        t.proxy(renames["identity_verification_report"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -13534,7 +13618,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["identity.verification_session"])),
+                "data": t.array(t.proxy(renames["identity_verification_session"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -13570,14 +13654,14 @@ def import_spec3_sdk(params=None):
                 "type": t.string(),
             }
         ),
-        t.proxy(renames["identity.verification_session"]),
+        t.proxy(renames["identity_verification_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata", "options", "return_url", "type"),
     )
     functions["GetIdentityVerificationSessionsSession"] = spec3_sdk.get(
         "/v1/identity/verification_sessions/{session}",
         t.struct({"expand": t.array(t.string()), "session": t.string()}),
-        t.proxy(renames["identity.verification_session"]),
+        t.proxy(renames["identity_verification_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -13608,21 +13692,21 @@ def import_spec3_sdk(params=None):
                 "type": t.string().optional(),
             }
         ),
-        t.proxy(renames["identity.verification_session"]),
+        t.proxy(renames["identity_verification_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata", "options", "type"),
     )
     functions["PostIdentityVerificationSessionsSessionCancel"] = spec3_sdk.post(
         "/v1/identity/verification_sessions/{session}/cancel",
         t.struct({"session": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["identity.verification_session"]),
+        t.proxy(renames["identity_verification_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
     functions["PostIdentityVerificationSessionsSessionRedact"] = spec3_sdk.post(
         "/v1/identity/verification_sessions/{session}/redact",
         t.struct({"session": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["identity.verification_session"]),
+        t.proxy(renames["identity_verification_session"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -13901,6 +13985,7 @@ def import_spec3_sdk(params=None):
                     ]
                 ).optional(),
                 "due_date": t.integer().optional(),
+                "effective_at": t.integer().optional(),
                 "expand": t.array(t.string()).optional(),
                 "footer": t.string().optional(),
                 "from_invoice": t.struct(
@@ -14089,6 +14174,7 @@ def import_spec3_sdk(params=None):
             "description",
             "discounts",
             "due_date",
+            "effective_at",
             "expand",
             "footer",
             "from_invoice",
@@ -14530,6 +14616,7 @@ def import_spec3_sdk(params=None):
                     ]
                 ).optional(),
                 "due_date": t.integer().optional(),
+                "effective_at": t.union([t.integer(), t.string()]).optional(),
                 "expand": t.array(t.string()).optional(),
                 "footer": t.string().optional(),
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
@@ -14737,6 +14824,7 @@ def import_spec3_sdk(params=None):
             "description",
             "discounts",
             "due_date",
+            "effective_at",
             "expand",
             "footer",
             "metadata",
@@ -14859,7 +14947,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["issuing.authorization"])),
+                "data": t.array(t.proxy(renames["issuing_authorization"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -14871,7 +14959,7 @@ def import_spec3_sdk(params=None):
     functions["GetIssuingAuthorizationsAuthorization"] = spec3_sdk.get(
         "/v1/issuing/authorizations/{authorization}",
         t.struct({"authorization": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["issuing.authorization"]),
+        t.proxy(renames["issuing_authorization"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -14884,7 +14972,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["issuing.authorization"]),
+        t.proxy(renames["issuing_authorization"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata"),
     )
@@ -14898,7 +14986,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["issuing.authorization"]),
+        t.proxy(renames["issuing_authorization"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("amount", "expand", "metadata"),
     )
@@ -14911,7 +14999,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["issuing.authorization"]),
+        t.proxy(renames["issuing_authorization"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata"),
     )
@@ -14944,7 +15032,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["issuing.cardholder"])),
+                "data": t.array(t.proxy(renames["issuing_cardholder"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -15011,6 +15099,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.struct({}).optional(),
                 "name": t.string(),
                 "phone_number": t.string().optional(),
+                "preferred_locales": t.array(t.string()).optional(),
                 "spending_controls": t.struct(
                     {
                         "allowed_categories": t.array(t.string()).optional(),
@@ -15031,7 +15120,7 @@ def import_spec3_sdk(params=None):
                 "type": t.string().optional(),
             }
         ),
-        t.proxy(renames["issuing.cardholder"]),
+        t.proxy(renames["issuing_cardholder"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "billing",
@@ -15042,6 +15131,7 @@ def import_spec3_sdk(params=None):
             "metadata",
             "name",
             "phone_number",
+            "preferred_locales",
             "spending_controls",
             "status",
             "type",
@@ -15050,7 +15140,7 @@ def import_spec3_sdk(params=None):
     functions["GetIssuingCardholdersCardholder"] = spec3_sdk.get(
         "/v1/issuing/cardholders/{cardholder}",
         t.struct({"cardholder": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["issuing.cardholder"]),
+        t.proxy(renames["issuing_cardholder"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -15112,6 +15202,7 @@ def import_spec3_sdk(params=None):
                 ).optional(),
                 "metadata": t.struct({}).optional(),
                 "phone_number": t.string().optional(),
+                "preferred_locales": t.array(t.string()).optional(),
                 "spending_controls": t.struct(
                     {
                         "allowed_categories": t.array(t.string()).optional(),
@@ -15131,7 +15222,7 @@ def import_spec3_sdk(params=None):
                 "status": t.string().optional(),
             }
         ),
-        t.proxy(renames["issuing.cardholder"]),
+        t.proxy(renames["issuing_cardholder"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "billing",
@@ -15141,6 +15232,7 @@ def import_spec3_sdk(params=None):
             "individual",
             "metadata",
             "phone_number",
+            "preferred_locales",
             "spending_controls",
             "status",
         ),
@@ -15176,7 +15268,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["issuing.card"])),
+                "data": t.array(t.proxy(renames["issuing_card"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -15237,7 +15329,7 @@ def import_spec3_sdk(params=None):
                 "type": t.string(),
             }
         ),
-        t.proxy(renames["issuing.card"]),
+        t.proxy(renames["issuing_card"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "cardholder",
@@ -15256,7 +15348,7 @@ def import_spec3_sdk(params=None):
     functions["GetIssuingCardsCard"] = spec3_sdk.get(
         "/v1/issuing/cards/{card}",
         t.struct({"card": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["issuing.card"]),
+        t.proxy(renames["issuing_card"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -15287,7 +15379,7 @@ def import_spec3_sdk(params=None):
                 "status": t.string().optional(),
             }
         ),
-        t.proxy(renames["issuing.card"]),
+        t.proxy(renames["issuing_card"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "cancellation_reason",
@@ -15325,7 +15417,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["issuing.dispute"])),
+                "data": t.array(t.proxy(renames["issuing_dispute"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -15489,7 +15581,7 @@ def import_spec3_sdk(params=None):
                 "treasury": t.struct({"received_debit": t.string()}).optional(),
             }
         ),
-        t.proxy(renames["issuing.dispute"]),
+        t.proxy(renames["issuing_dispute"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "amount",
@@ -15503,7 +15595,7 @@ def import_spec3_sdk(params=None):
     functions["GetIssuingDisputesDispute"] = spec3_sdk.get(
         "/v1/issuing/disputes/{dispute}",
         t.struct({"dispute": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["issuing.dispute"]),
+        t.proxy(renames["issuing_dispute"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -15661,7 +15753,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["issuing.dispute"]),
+        t.proxy(renames["issuing_dispute"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("amount", "evidence", "expand", "metadata"),
     )
@@ -15674,7 +15766,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["issuing.dispute"]),
+        t.proxy(renames["issuing_dispute"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata"),
     )
@@ -15706,7 +15798,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["issuing.transaction"])),
+                "data": t.array(t.proxy(renames["issuing_transaction"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -15718,7 +15810,7 @@ def import_spec3_sdk(params=None):
     functions["GetIssuingTransactionsTransaction"] = spec3_sdk.get(
         "/v1/issuing/transactions/{transaction}",
         t.struct({"expand": t.array(t.string()), "transaction": t.string()}),
-        t.proxy(renames["issuing.transaction"]),
+        t.proxy(renames["issuing_transaction"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -15731,7 +15823,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["issuing.transaction"]),
+        t.proxy(renames["issuing_transaction"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata"),
     )
@@ -15908,6 +16000,7 @@ def import_spec3_sdk(params=None):
                             }
                         ).optional(),
                         "wechat_pay": t.struct({}).optional(),
+                        "zip": t.struct({}).optional(),
                     }
                 ).optional(),
                 "payment_method_options": t.struct(
@@ -16289,6 +16382,12 @@ def import_spec3_sdk(params=None):
                                         "setup_future_usage": t.string().optional(),
                                     }
                                 ),
+                                t.string(),
+                            ]
+                        ).optional(),
+                        "zip": t.union(
+                            [
+                                t.struct({"setup_future_usage": t.string().optional()}),
                                 t.string(),
                             ]
                         ).optional(),
@@ -16508,6 +16607,7 @@ def import_spec3_sdk(params=None):
                             }
                         ).optional(),
                         "wechat_pay": t.struct({}).optional(),
+                        "zip": t.struct({}).optional(),
                     }
                 ).optional(),
                 "payment_method_options": t.struct(
@@ -16889,6 +16989,12 @@ def import_spec3_sdk(params=None):
                                         "setup_future_usage": t.string().optional(),
                                     }
                                 ),
+                                t.string(),
+                            ]
+                        ).optional(),
+                        "zip": t.union(
+                            [
+                                t.struct({"setup_future_usage": t.string().optional()}),
                                 t.string(),
                             ]
                         ).optional(),
@@ -17149,6 +17255,7 @@ def import_spec3_sdk(params=None):
                             }
                         ).optional(),
                         "wechat_pay": t.struct({}).optional(),
+                        "zip": t.struct({}).optional(),
                     }
                 ).optional(),
                 "payment_method_options": t.struct(
@@ -17533,6 +17640,12 @@ def import_spec3_sdk(params=None):
                                 t.string(),
                             ]
                         ).optional(),
+                        "zip": t.union(
+                            [
+                                t.struct({"setup_future_usage": t.string().optional()}),
+                                t.string(),
+                            ]
+                        ).optional(),
                     }
                 ).optional(),
                 "radar_options": t.struct(
@@ -17692,7 +17805,19 @@ def import_spec3_sdk(params=None):
                             "label": t.struct(
                                 {"custom": t.string(), "type": t.string()}
                             ),
+                            "numeric": t.struct(
+                                {
+                                    "maximum_length": t.integer().optional(),
+                                    "minimum_length": t.integer().optional(),
+                                }
+                            ).optional(),
                             "optional": t.boolean().optional(),
+                            "text": t.struct(
+                                {
+                                    "maximum_length": t.integer().optional(),
+                                    "minimum_length": t.integer().optional(),
+                                }
+                            ).optional(),
                             "type": t.string(),
                         }
                     )
@@ -17873,7 +17998,19 @@ def import_spec3_sdk(params=None):
                                     "label": t.struct(
                                         {"custom": t.string(), "type": t.string()}
                                     ),
+                                    "numeric": t.struct(
+                                        {
+                                            "maximum_length": t.integer().optional(),
+                                            "minimum_length": t.integer().optional(),
+                                        }
+                                    ).optional(),
                                     "optional": t.boolean().optional(),
+                                    "text": t.struct(
+                                        {
+                                            "maximum_length": t.integer().optional(),
+                                            "minimum_length": t.integer().optional(),
+                                        }
+                                    ).optional(),
                                     "type": t.string(),
                                 }
                             )
@@ -18133,6 +18270,7 @@ def import_spec3_sdk(params=None):
                     }
                 ).optional(),
                 "wechat_pay": t.struct({}).optional(),
+                "zip": t.struct({}).optional(),
             }
         ),
         t.proxy(renames["payment_method"]),
@@ -18176,6 +18314,7 @@ def import_spec3_sdk(params=None):
             "type",
             "us_bank_account",
             "wechat_pay",
+            "zip",
         ),
     )
     functions["GetPaymentMethodsPaymentMethod"] = spec3_sdk.get(
@@ -18231,6 +18370,7 @@ def import_spec3_sdk(params=None):
                 "us_bank_account": t.struct(
                     {"account_holder_type": t.string().optional()}
                 ).optional(),
+                "zip": t.struct({}).optional(),
             }
         ),
         t.proxy(renames["payment_method"]),
@@ -18249,6 +18389,7 @@ def import_spec3_sdk(params=None):
             "metadata",
             "sepa_debit",
             "us_bank_account",
+            "zip",
         ),
     )
     functions["PostPaymentMethodsPaymentMethodAttach"] = spec3_sdk.post(
@@ -19375,7 +19516,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["radar.early_fraud_warning"])),
+                "data": t.array(t.proxy(renames["radar_early_fraud_warning"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -19387,7 +19528,7 @@ def import_spec3_sdk(params=None):
     functions["GetRadarEarlyFraudWarningsEarlyFraudWarning"] = spec3_sdk.get(
         "/v1/radar/early_fraud_warnings/{early_fraud_warning}",
         t.struct({"early_fraud_warning": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["radar.early_fraud_warning"]),
+        t.proxy(renames["radar_early_fraud_warning"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -19418,7 +19559,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["radar.value_list_item"])),
+                "data": t.array(t.proxy(renames["radar_value_list_item"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -19436,21 +19577,21 @@ def import_spec3_sdk(params=None):
                 "value_list": t.string(),
             }
         ),
-        t.proxy(renames["radar.value_list_item"]),
+        t.proxy(renames["radar_value_list_item"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "value", "value_list"),
     )
     functions["DeleteRadarValueListItemsItem"] = spec3_sdk.delete(
         "/v1/radar/value_list_items/{item}",
         t.struct({"item": t.string()}),
-        t.proxy(renames["deleted_radar.value_list_item"]),
+        t.proxy(renames["deleted_radar_value_list_item"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
     functions["GetRadarValueListItemsItem"] = spec3_sdk.get(
         "/v1/radar/value_list_items/{item}",
         t.struct({"expand": t.array(t.string()), "item": t.string()}),
-        t.proxy(renames["radar.value_list_item"]),
+        t.proxy(renames["radar_value_list_item"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -19481,7 +19622,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["radar.value_list"])),
+                "data": t.array(t.proxy(renames["radar_value_list"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -19501,21 +19642,21 @@ def import_spec3_sdk(params=None):
                 "name": t.string(),
             }
         ),
-        t.proxy(renames["radar.value_list"]),
+        t.proxy(renames["radar_value_list"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("alias", "expand", "item_type", "metadata", "name"),
     )
     functions["DeleteRadarValueListsValueList"] = spec3_sdk.delete(
         "/v1/radar/value_lists/{value_list}",
         t.struct({"value_list": t.string()}),
-        t.proxy(renames["deleted_radar.value_list"]),
+        t.proxy(renames["deleted_radar_value_list"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
     functions["GetRadarValueListsValueList"] = spec3_sdk.get(
         "/v1/radar/value_lists/{value_list}",
         t.struct({"expand": t.array(t.string()), "value_list": t.string()}),
-        t.proxy(renames["radar.value_list"]),
+        t.proxy(renames["radar_value_list"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -19530,7 +19671,7 @@ def import_spec3_sdk(params=None):
                 "name": t.string().optional(),
             }
         ),
-        t.proxy(renames["radar.value_list"]),
+        t.proxy(renames["radar_value_list"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("alias", "expand", "metadata", "name"),
     )
@@ -19657,7 +19798,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["reporting.report_run"])),
+                "data": t.array(t.proxy(renames["reporting_report_run"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -19686,14 +19827,14 @@ def import_spec3_sdk(params=None):
                 "report_type": t.string(),
             }
         ),
-        t.proxy(renames["reporting.report_run"]),
+        t.proxy(renames["reporting_report_run"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "parameters", "report_type"),
     )
     functions["GetReportingReportRunsReportRun"] = spec3_sdk.get(
         "/v1/reporting/report_runs/{report_run}",
         t.struct({"expand": t.array(t.string()), "report_run": t.string()}),
-        t.proxy(renames["reporting.report_run"]),
+        t.proxy(renames["reporting_report_run"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -19702,7 +19843,7 @@ def import_spec3_sdk(params=None):
         t.struct({"expand": t.array(t.string())}),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["reporting.report_type"])),
+                "data": t.array(t.proxy(renames["reporting_report_type"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -19714,7 +19855,7 @@ def import_spec3_sdk(params=None):
     functions["GetReportingReportTypesReportType"] = spec3_sdk.get(
         "/v1/reporting/report_types/{report_type}",
         t.struct({"expand": t.array(t.string()), "report_type": t.string()}),
-        t.proxy(renames["reporting.report_type"]),
+        t.proxy(renames["reporting_report_type"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -19963,6 +20104,7 @@ def import_spec3_sdk(params=None):
                             }
                         ).optional(),
                         "wechat_pay": t.struct({}).optional(),
+                        "zip": t.struct({}).optional(),
                     }
                 ).optional(),
                 "payment_method_options": t.struct(
@@ -20183,6 +20325,7 @@ def import_spec3_sdk(params=None):
                             }
                         ).optional(),
                         "wechat_pay": t.struct({}).optional(),
+                        "zip": t.struct({}).optional(),
                     }
                 ).optional(),
                 "payment_method_options": t.struct(
@@ -20422,6 +20565,7 @@ def import_spec3_sdk(params=None):
                             }
                         ).optional(),
                         "wechat_pay": t.struct({}).optional(),
+                        "zip": t.struct({}).optional(),
                     }
                 ).optional(),
                 "payment_method_options": t.struct(
@@ -22236,7 +22380,7 @@ def import_spec3_sdk(params=None):
                 "tax_date": t.integer().optional(),
             }
         ),
-        t.proxy(renames["tax.calculation"]),
+        t.proxy(renames["tax_calculation"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "currency",
@@ -22261,7 +22405,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["tax.calculation_line_item"])),
+                "data": t.array(t.proxy(renames["tax_calculation_line_item"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -22280,7 +22424,7 @@ def import_spec3_sdk(params=None):
                 "reference": t.string(),
             }
         ),
-        t.proxy(renames["tax.transaction"]),
+        t.proxy(renames["tax_transaction"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("calculation", "expand", "metadata", "reference"),
     )
@@ -22310,7 +22454,7 @@ def import_spec3_sdk(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["tax.transaction"]),
+        t.proxy(renames["tax_transaction"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "expand",
@@ -22325,7 +22469,7 @@ def import_spec3_sdk(params=None):
     functions["GetTaxTransactionsTransaction"] = spec3_sdk.get(
         "/v1/tax/transactions/{transaction}",
         t.struct({"expand": t.array(t.string()), "transaction": t.string()}),
-        t.proxy(renames["tax.transaction"]),
+        t.proxy(renames["tax_transaction"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -22342,7 +22486,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["tax.transaction_line_item"])),
+                "data": t.array(t.proxy(renames["tax_transaction_line_item"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -22498,7 +22642,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["terminal.configuration"])),
+                "data": t.array(t.proxy(renames["terminal_configuration"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -22655,14 +22799,14 @@ def import_spec3_sdk(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["terminal.configuration"]),
+        t.proxy(renames["terminal_configuration"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("bbpos_wisepos_e", "expand", "tipping", "verifone_p400"),
     )
     functions["DeleteTerminalConfigurationsConfiguration"] = spec3_sdk.delete(
         "/v1/terminal/configurations/{configuration}",
         t.struct({"configuration": t.string()}),
-        t.proxy(renames["deleted_terminal.configuration"]),
+        t.proxy(renames["deleted_terminal_configuration"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -22671,8 +22815,8 @@ def import_spec3_sdk(params=None):
         t.struct({"configuration": t.string(), "expand": t.array(t.string())}),
         t.union(
             [
-                t.proxy(renames["terminal.configuration"]),
-                t.proxy(renames["deleted_terminal.configuration"]),
+                t.proxy(renames["terminal_configuration"]),
+                t.proxy(renames["deleted_terminal_configuration"]),
             ]
         ),
         content_type="application/x-www-form-urlencoded",
@@ -22847,8 +22991,8 @@ def import_spec3_sdk(params=None):
         ),
         t.union(
             [
-                t.proxy(renames["terminal.configuration"]),
-                t.proxy(renames["deleted_terminal.configuration"]),
+                t.proxy(renames["terminal_configuration"]),
+                t.proxy(renames["deleted_terminal_configuration"]),
             ]
         ),
         content_type="application/x-www-form-urlencoded",
@@ -22862,7 +23006,7 @@ def import_spec3_sdk(params=None):
                 "location": t.string().optional(),
             }
         ),
-        t.proxy(renames["terminal.connection_token"]),
+        t.proxy(renames["terminal_connection_token"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "location"),
     )
@@ -22878,7 +23022,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["terminal.location"])),
+                "data": t.array(t.proxy(renames["terminal_location"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -22907,7 +23051,7 @@ def import_spec3_sdk(params=None):
                 "metadata": t.union([t.struct({}), t.string()]).optional(),
             }
         ),
-        t.proxy(renames["terminal.location"]),
+        t.proxy(renames["terminal_location"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "address",
@@ -22920,7 +23064,7 @@ def import_spec3_sdk(params=None):
     functions["DeleteTerminalLocationsLocation"] = spec3_sdk.delete(
         "/v1/terminal/locations/{location}",
         t.struct({"location": t.string()}),
-        t.proxy(renames["deleted_terminal.location"]),
+        t.proxy(renames["deleted_terminal_location"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -22929,8 +23073,8 @@ def import_spec3_sdk(params=None):
         t.struct({"expand": t.array(t.string()), "location": t.string()}),
         t.union(
             [
-                t.proxy(renames["terminal.location"]),
-                t.proxy(renames["deleted_terminal.location"]),
+                t.proxy(renames["terminal_location"]),
+                t.proxy(renames["deleted_terminal_location"]),
             ]
         ),
         content_type="application/x-www-form-urlencoded",
@@ -22959,8 +23103,8 @@ def import_spec3_sdk(params=None):
         ),
         t.union(
             [
-                t.proxy(renames["terminal.location"]),
-                t.proxy(renames["deleted_terminal.location"]),
+                t.proxy(renames["terminal_location"]),
+                t.proxy(renames["deleted_terminal_location"]),
             ]
         ),
         content_type="application/x-www-form-urlencoded",
@@ -22987,7 +23131,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["terminal.reader"])),
+                "data": t.array(t.proxy(renames["terminal_reader"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -23007,14 +23151,14 @@ def import_spec3_sdk(params=None):
                 "registration_code": t.string(),
             }
         ),
-        t.proxy(renames["terminal.reader"]),
+        t.proxy(renames["terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "label", "location", "metadata", "registration_code"),
     )
     functions["DeleteTerminalReadersReader"] = spec3_sdk.delete(
         "/v1/terminal/readers/{reader}",
         t.struct({"reader": t.string()}),
-        t.proxy(renames["deleted_terminal.reader"]),
+        t.proxy(renames["deleted_terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -23023,8 +23167,8 @@ def import_spec3_sdk(params=None):
         t.struct({"expand": t.array(t.string()), "reader": t.string()}),
         t.union(
             [
-                t.proxy(renames["terminal.reader"]),
-                t.proxy(renames["deleted_terminal.reader"]),
+                t.proxy(renames["terminal_reader"]),
+                t.proxy(renames["deleted_terminal_reader"]),
             ]
         ),
         content_type="application/x-www-form-urlencoded",
@@ -23042,8 +23186,8 @@ def import_spec3_sdk(params=None):
         ),
         t.union(
             [
-                t.proxy(renames["terminal.reader"]),
-                t.proxy(renames["deleted_terminal.reader"]),
+                t.proxy(renames["terminal_reader"]),
+                t.proxy(renames["deleted_terminal_reader"]),
             ]
         ),
         content_type="application/x-www-form-urlencoded",
@@ -23052,7 +23196,7 @@ def import_spec3_sdk(params=None):
     functions["PostTerminalReadersReaderCancelAction"] = spec3_sdk.post(
         "/v1/terminal/readers/{reader}/cancel_action",
         t.struct({"reader": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["terminal.reader"]),
+        t.proxy(renames["terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -23073,7 +23217,7 @@ def import_spec3_sdk(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["terminal.reader"]),
+        t.proxy(renames["terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "payment_intent", "process_config"),
     )
@@ -23087,7 +23231,7 @@ def import_spec3_sdk(params=None):
                 "setup_intent": t.string(),
             }
         ),
-        t.proxy(renames["terminal.reader"]),
+        t.proxy(renames["terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("customer_consent_collected", "expand", "setup_intent"),
     )
@@ -23105,7 +23249,7 @@ def import_spec3_sdk(params=None):
                 "reverse_transfer": t.boolean().optional(),
             }
         ),
-        t.proxy(renames["terminal.reader"]),
+        t.proxy(renames["terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "amount",
@@ -23142,7 +23286,7 @@ def import_spec3_sdk(params=None):
                 "type": t.string(),
             }
         ),
-        t.proxy(renames["terminal.reader"]),
+        t.proxy(renames["terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("cart", "expand", "type"),
     )
@@ -23164,28 +23308,28 @@ def import_spec3_sdk(params=None):
     functions["PostTestHelpersIssuingCardsCardShippingDeliver"] = spec3_sdk.post(
         "/v1/test_helpers/issuing/cards/{card}/shipping/deliver",
         t.struct({"card": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["issuing.card"]),
+        t.proxy(renames["issuing_card"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
     functions["PostTestHelpersIssuingCardsCardShippingFail"] = spec3_sdk.post(
         "/v1/test_helpers/issuing/cards/{card}/shipping/fail",
         t.struct({"card": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["issuing.card"]),
+        t.proxy(renames["issuing_card"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
     functions["PostTestHelpersIssuingCardsCardShippingReturn"] = spec3_sdk.post(
         "/v1/test_helpers/issuing/cards/{card}/shipping/return",
         t.struct({"card": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["issuing.card"]),
+        t.proxy(renames["issuing_card"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
     functions["PostTestHelpersIssuingCardsCardShippingShip"] = spec3_sdk.post(
         "/v1/test_helpers/issuing/cards/{card}/shipping/ship",
         t.struct({"card": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["issuing.card"]),
+        t.proxy(renames["issuing_card"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -23212,7 +23356,7 @@ def import_spec3_sdk(params=None):
                 "type": t.string().optional(),
             }
         ),
-        t.proxy(renames["terminal.reader"]),
+        t.proxy(renames["terminal_reader"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("amount_tip", "card_present", "expand", "interac_present", "type"),
     )
@@ -23228,7 +23372,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["test_helpers.test_clock"])),
+                "data": t.array(t.proxy(renames["test_helpers_test_clock"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -23246,21 +23390,21 @@ def import_spec3_sdk(params=None):
                 "name": t.string().optional(),
             }
         ),
-        t.proxy(renames["test_helpers.test_clock"]),
+        t.proxy(renames["test_helpers_test_clock"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "frozen_time", "name"),
     )
     functions["DeleteTestHelpersTestClocksTestClock"] = spec3_sdk.delete(
         "/v1/test_helpers/test_clocks/{test_clock}",
         t.struct({"test_clock": t.string()}),
-        t.proxy(renames["deleted_test_helpers.test_clock"]),
+        t.proxy(renames["deleted_test_helpers_test_clock"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
     functions["GetTestHelpersTestClocksTestClock"] = spec3_sdk.get(
         "/v1/test_helpers/test_clocks/{test_clock}",
         t.struct({"expand": t.array(t.string()), "test_clock": t.string()}),
-        t.proxy(renames["test_helpers.test_clock"]),
+        t.proxy(renames["test_helpers_test_clock"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -23273,7 +23417,7 @@ def import_spec3_sdk(params=None):
                 "frozen_time": t.integer(),
             }
         ),
-        t.proxy(renames["test_helpers.test_clock"]),
+        t.proxy(renames["test_helpers_test_clock"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "frozen_time"),
     )
@@ -23286,35 +23430,35 @@ def import_spec3_sdk(params=None):
                 "failure_details": t.struct({"code": t.string().optional()}).optional(),
             }
         ),
-        t.proxy(renames["treasury.inbound_transfer"]),
+        t.proxy(renames["treasury_inbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "failure_details"),
     )
     functions["PostTestHelpersTreasuryInboundTransfersIdReturn"] = spec3_sdk.post(
         "/v1/test_helpers/treasury/inbound_transfers/{id}/return",
         t.struct({"id": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["treasury.inbound_transfer"]),
+        t.proxy(renames["treasury_inbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
     functions["PostTestHelpersTreasuryInboundTransfersIdSucceed"] = spec3_sdk.post(
         "/v1/test_helpers/treasury/inbound_transfers/{id}/succeed",
         t.struct({"id": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["treasury.inbound_transfer"]),
+        t.proxy(renames["treasury_inbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
     functions["PostTestHelpersTreasuryOutboundPaymentsIdFail"] = spec3_sdk.post(
         "/v1/test_helpers/treasury/outbound_payments/{id}/fail",
         t.struct({"id": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["treasury.outbound_payment"]),
+        t.proxy(renames["treasury_outbound_payment"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
     functions["PostTestHelpersTreasuryOutboundPaymentsIdPost"] = spec3_sdk.post(
         "/v1/test_helpers/treasury/outbound_payments/{id}/post",
         t.struct({"id": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["treasury.outbound_payment"]),
+        t.proxy(renames["treasury_outbound_payment"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -23329,7 +23473,7 @@ def import_spec3_sdk(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["treasury.outbound_payment"]),
+        t.proxy(renames["treasury_outbound_payment"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "returned_details"),
     )
@@ -23340,7 +23484,7 @@ def import_spec3_sdk(params=None):
         t.struct(
             {"outbound_transfer": t.string(), "expand": t.array(t.string()).optional()}
         ),
-        t.proxy(renames["treasury.outbound_transfer"]),
+        t.proxy(renames["treasury_outbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -23351,7 +23495,7 @@ def import_spec3_sdk(params=None):
         t.struct(
             {"outbound_transfer": t.string(), "expand": t.array(t.string()).optional()}
         ),
-        t.proxy(renames["treasury.outbound_transfer"]),
+        t.proxy(renames["treasury_outbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -23368,7 +23512,7 @@ def import_spec3_sdk(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["treasury.outbound_transfer"]),
+        t.proxy(renames["treasury_outbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "returned_details"),
     )
@@ -23396,7 +23540,7 @@ def import_spec3_sdk(params=None):
                 "network": t.string(),
             }
         ),
-        t.proxy(renames["treasury.received_credit"]),
+        t.proxy(renames["treasury_received_credit"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "amount",
@@ -23432,7 +23576,7 @@ def import_spec3_sdk(params=None):
                 "network": t.string(),
             }
         ),
-        t.proxy(renames["treasury.received_debit"]),
+        t.proxy(renames["treasury_received_debit"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "amount",
@@ -24063,7 +24207,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.credit_reversal"])),
+                "data": t.array(t.proxy(renames["treasury_credit_reversal"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24081,14 +24225,14 @@ def import_spec3_sdk(params=None):
                 "received_credit": t.string(),
             }
         ),
-        t.proxy(renames["treasury.credit_reversal"]),
+        t.proxy(renames["treasury_credit_reversal"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata", "received_credit"),
     )
     functions["GetTreasuryCreditReversalsCreditReversal"] = spec3_sdk.get(
         "/v1/treasury/credit_reversals/{credit_reversal}",
         t.struct({"credit_reversal": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["treasury.credit_reversal"]),
+        t.proxy(renames["treasury_credit_reversal"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24108,7 +24252,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.debit_reversal"])),
+                "data": t.array(t.proxy(renames["treasury_debit_reversal"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24126,14 +24270,14 @@ def import_spec3_sdk(params=None):
                 "received_debit": t.string(),
             }
         ),
-        t.proxy(renames["treasury.debit_reversal"]),
+        t.proxy(renames["treasury_debit_reversal"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "metadata", "received_debit"),
     )
     functions["GetTreasuryDebitReversalsDebitReversal"] = spec3_sdk.get(
         "/v1/treasury/debit_reversals/{debit_reversal}",
         t.struct({"debit_reversal": t.string(), "expand": t.array(t.string())}),
-        t.proxy(renames["treasury.debit_reversal"]),
+        t.proxy(renames["treasury_debit_reversal"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24162,7 +24306,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.financial_account"])),
+                "data": t.array(t.proxy(renames["treasury_financial_account"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24219,7 +24363,7 @@ def import_spec3_sdk(params=None):
                 "supported_currencies": t.array(t.string()),
             }
         ),
-        t.proxy(renames["treasury.financial_account"]),
+        t.proxy(renames["treasury_financial_account"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "expand",
@@ -24232,7 +24376,7 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryFinancialAccountsFinancialAccount"] = spec3_sdk.get(
         "/v1/treasury/financial_accounts/{financial_account}",
         t.struct({"expand": t.array(t.string()), "financial_account": t.string()}),
-        t.proxy(renames["treasury.financial_account"]),
+        t.proxy(renames["treasury_financial_account"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24284,14 +24428,14 @@ def import_spec3_sdk(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["treasury.financial_account"]),
+        t.proxy(renames["treasury_financial_account"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand", "features", "metadata", "platform_restrictions"),
     )
     functions["GetTreasuryFinancialAccountsFinancialAccountFeatures"] = spec3_sdk.get(
         "/v1/treasury/financial_accounts/{financial_account}/features",
         t.struct({"expand": t.array(t.string()), "financial_account": t.string()}),
-        t.proxy(renames["treasury.financial_account_features"]),
+        t.proxy(renames["treasury_financial_account_features"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24328,7 +24472,7 @@ def import_spec3_sdk(params=None):
                 ).optional(),
             }
         ),
-        t.proxy(renames["treasury.financial_account_features"]),
+        t.proxy(renames["treasury_financial_account_features"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "card_issuing",
@@ -24355,7 +24499,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.inbound_transfer"])),
+                "data": t.array(t.proxy(renames["treasury_inbound_transfer"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24378,7 +24522,7 @@ def import_spec3_sdk(params=None):
                 "statement_descriptor": t.string().optional(),
             }
         ),
-        t.proxy(renames["treasury.inbound_transfer"]),
+        t.proxy(renames["treasury_inbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "amount",
@@ -24394,7 +24538,7 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryInboundTransfersId"] = spec3_sdk.get(
         "/v1/treasury/inbound_transfers/{id}",
         t.struct({"expand": t.array(t.string()), "id": t.string()}),
-        t.proxy(renames["treasury.inbound_transfer"]),
+        t.proxy(renames["treasury_inbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24403,7 +24547,7 @@ def import_spec3_sdk(params=None):
         t.struct(
             {"inbound_transfer": t.string(), "expand": t.array(t.string()).optional()}
         ),
-        t.proxy(renames["treasury.inbound_transfer"]),
+        t.proxy(renames["treasury_inbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -24422,7 +24566,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.outbound_payment"])),
+                "data": t.array(t.proxy(renames["treasury_outbound_payment"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24494,7 +24638,7 @@ def import_spec3_sdk(params=None):
                 "statement_descriptor": t.string().optional(),
             }
         ),
-        t.proxy(renames["treasury.outbound_payment"]),
+        t.proxy(renames["treasury_outbound_payment"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "amount",
@@ -24514,14 +24658,14 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryOutboundPaymentsId"] = spec3_sdk.get(
         "/v1/treasury/outbound_payments/{id}",
         t.struct({"expand": t.array(t.string()), "id": t.string()}),
-        t.proxy(renames["treasury.outbound_payment"]),
+        t.proxy(renames["treasury_outbound_payment"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
     functions["PostTreasuryOutboundPaymentsIdCancel"] = spec3_sdk.post(
         "/v1/treasury/outbound_payments/{id}/cancel",
         t.struct({"id": t.string(), "expand": t.array(t.string()).optional()}),
-        t.proxy(renames["treasury.outbound_payment"]),
+        t.proxy(renames["treasury_outbound_payment"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -24539,7 +24683,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.outbound_transfer"])),
+                "data": t.array(t.proxy(renames["treasury_outbound_transfer"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24569,7 +24713,7 @@ def import_spec3_sdk(params=None):
                 "statement_descriptor": t.string().optional(),
             }
         ),
-        t.proxy(renames["treasury.outbound_transfer"]),
+        t.proxy(renames["treasury_outbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(
             "amount",
@@ -24586,7 +24730,7 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryOutboundTransfersOutboundTransfer"] = spec3_sdk.get(
         "/v1/treasury/outbound_transfers/{outbound_transfer}",
         t.struct({"expand": t.array(t.string()), "outbound_transfer": t.string()}),
-        t.proxy(renames["treasury.outbound_transfer"]),
+        t.proxy(renames["treasury_outbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24595,7 +24739,7 @@ def import_spec3_sdk(params=None):
         t.struct(
             {"outbound_transfer": t.string(), "expand": t.array(t.string()).optional()}
         ),
-        t.proxy(renames["treasury.outbound_transfer"]),
+        t.proxy(renames["treasury_outbound_transfer"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=("expand",),
     )
@@ -24614,7 +24758,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.received_credit"])),
+                "data": t.array(t.proxy(renames["treasury_received_credit"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24626,7 +24770,7 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryReceivedCreditsId"] = spec3_sdk.get(
         "/v1/treasury/received_credits/{id}",
         t.struct({"expand": t.array(t.string()), "id": t.string()}),
-        t.proxy(renames["treasury.received_credit"]),
+        t.proxy(renames["treasury_received_credit"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24644,7 +24788,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.received_debit"])),
+                "data": t.array(t.proxy(renames["treasury_received_debit"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24656,7 +24800,7 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryReceivedDebitsId"] = spec3_sdk.get(
         "/v1/treasury/received_debits/{id}",
         t.struct({"expand": t.array(t.string()), "id": t.string()}),
-        t.proxy(renames["treasury.received_debit"]),
+        t.proxy(renames["treasury_received_debit"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24701,7 +24845,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.transaction_entry"])),
+                "data": t.array(t.proxy(renames["treasury_transaction_entry"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24713,7 +24857,7 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryTransactionEntriesId"] = spec3_sdk.get(
         "/v1/treasury/transaction_entries/{id}",
         t.struct({"expand": t.array(t.string()), "id": t.string()}),
-        t.proxy(renames["treasury.transaction_entry"]),
+        t.proxy(renames["treasury_transaction_entry"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )
@@ -24762,7 +24906,7 @@ def import_spec3_sdk(params=None):
         ),
         t.struct(
             {
-                "data": t.array(t.proxy(renames["treasury.transaction"])),
+                "data": t.array(t.proxy(renames["treasury_transaction"])),
                 "has_more": t.boolean(),
                 "object": t.string(),
                 "url": t.string(),
@@ -24774,7 +24918,7 @@ def import_spec3_sdk(params=None):
     functions["GetTreasuryTransactionsId"] = spec3_sdk.get(
         "/v1/treasury/transactions/{id}",
         t.struct({"expand": t.array(t.string()), "id": t.string()}),
-        t.proxy(renames["treasury.transaction"]),
+        t.proxy(renames["treasury_transaction"]),
         content_type="application/x-www-form-urlencoded",
         body_fields=(),
     )

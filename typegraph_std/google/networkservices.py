@@ -1,277 +1,335 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_networkservices() -> Import:
+def import_networkservices():
     networkservices = HTTPRuntime("https://networkservices.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_networkservices_1_ErrorResponse",
-        "LocationIn": "_networkservices_2_LocationIn",
-        "LocationOut": "_networkservices_3_LocationOut",
-        "GatewayIn": "_networkservices_4_GatewayIn",
-        "GatewayOut": "_networkservices_5_GatewayOut",
-        "HttpRouteRouteActionIn": "_networkservices_6_HttpRouteRouteActionIn",
-        "HttpRouteRouteActionOut": "_networkservices_7_HttpRouteRouteActionOut",
-        "TlsRouteRouteMatchIn": "_networkservices_8_TlsRouteRouteMatchIn",
-        "TlsRouteRouteMatchOut": "_networkservices_9_TlsRouteRouteMatchOut",
-        "AuditConfigIn": "_networkservices_10_AuditConfigIn",
-        "AuditConfigOut": "_networkservices_11_AuditConfigOut",
-        "ListGrpcRoutesResponseIn": "_networkservices_12_ListGrpcRoutesResponseIn",
-        "ListGrpcRoutesResponseOut": "_networkservices_13_ListGrpcRoutesResponseOut",
-        "SetIamPolicyRequestIn": "_networkservices_14_SetIamPolicyRequestIn",
-        "SetIamPolicyRequestOut": "_networkservices_15_SetIamPolicyRequestOut",
-        "ListHttpRoutesResponseIn": "_networkservices_16_ListHttpRoutesResponseIn",
-        "ListHttpRoutesResponseOut": "_networkservices_17_ListHttpRoutesResponseOut",
-        "TcpRouteIn": "_networkservices_18_TcpRouteIn",
-        "TcpRouteOut": "_networkservices_19_TcpRouteOut",
-        "EmptyIn": "_networkservices_20_EmptyIn",
-        "EmptyOut": "_networkservices_21_EmptyOut",
-        "TlsRouteIn": "_networkservices_22_TlsRouteIn",
-        "TlsRouteOut": "_networkservices_23_TlsRouteOut",
-        "BindingIn": "_networkservices_24_BindingIn",
-        "BindingOut": "_networkservices_25_BindingOut",
-        "GrpcRouteIn": "_networkservices_26_GrpcRouteIn",
-        "GrpcRouteOut": "_networkservices_27_GrpcRouteOut",
-        "HttpRouteHeaderMatchIntegerRangeIn": "_networkservices_28_HttpRouteHeaderMatchIntegerRangeIn",
-        "HttpRouteHeaderMatchIntegerRangeOut": "_networkservices_29_HttpRouteHeaderMatchIntegerRangeOut",
-        "GrpcRouteRetryPolicyIn": "_networkservices_30_GrpcRouteRetryPolicyIn",
-        "GrpcRouteRetryPolicyOut": "_networkservices_31_GrpcRouteRetryPolicyOut",
-        "HttpRouteURLRewriteIn": "_networkservices_32_HttpRouteURLRewriteIn",
-        "HttpRouteURLRewriteOut": "_networkservices_33_HttpRouteURLRewriteOut",
-        "TestIamPermissionsRequestIn": "_networkservices_34_TestIamPermissionsRequestIn",
-        "TestIamPermissionsRequestOut": "_networkservices_35_TestIamPermissionsRequestOut",
-        "GrpcRouteMethodMatchIn": "_networkservices_36_GrpcRouteMethodMatchIn",
-        "GrpcRouteMethodMatchOut": "_networkservices_37_GrpcRouteMethodMatchOut",
-        "HttpRouteFaultInjectionPolicyDelayIn": "_networkservices_38_HttpRouteFaultInjectionPolicyDelayIn",
-        "HttpRouteFaultInjectionPolicyDelayOut": "_networkservices_39_HttpRouteFaultInjectionPolicyDelayOut",
-        "ListTcpRoutesResponseIn": "_networkservices_40_ListTcpRoutesResponseIn",
-        "ListTcpRoutesResponseOut": "_networkservices_41_ListTcpRoutesResponseOut",
-        "HttpRouteIn": "_networkservices_42_HttpRouteIn",
-        "HttpRouteOut": "_networkservices_43_HttpRouteOut",
-        "HttpRouteRouteMatchIn": "_networkservices_44_HttpRouteRouteMatchIn",
-        "HttpRouteRouteMatchOut": "_networkservices_45_HttpRouteRouteMatchOut",
-        "ListLocationsResponseIn": "_networkservices_46_ListLocationsResponseIn",
-        "ListLocationsResponseOut": "_networkservices_47_ListLocationsResponseOut",
-        "ServiceBindingIn": "_networkservices_48_ServiceBindingIn",
-        "ServiceBindingOut": "_networkservices_49_ServiceBindingOut",
-        "GrpcRouteFaultInjectionPolicyAbortIn": "_networkservices_50_GrpcRouteFaultInjectionPolicyAbortIn",
-        "GrpcRouteFaultInjectionPolicyAbortOut": "_networkservices_51_GrpcRouteFaultInjectionPolicyAbortOut",
-        "MeshIn": "_networkservices_52_MeshIn",
-        "MeshOut": "_networkservices_53_MeshOut",
-        "HttpRouteHeaderMatchIn": "_networkservices_54_HttpRouteHeaderMatchIn",
-        "HttpRouteHeaderMatchOut": "_networkservices_55_HttpRouteHeaderMatchOut",
-        "HttpRouteQueryParameterMatchIn": "_networkservices_56_HttpRouteQueryParameterMatchIn",
-        "HttpRouteQueryParameterMatchOut": "_networkservices_57_HttpRouteQueryParameterMatchOut",
-        "ExprIn": "_networkservices_58_ExprIn",
-        "ExprOut": "_networkservices_59_ExprOut",
-        "HttpRouteCorsPolicyIn": "_networkservices_60_HttpRouteCorsPolicyIn",
-        "HttpRouteCorsPolicyOut": "_networkservices_61_HttpRouteCorsPolicyOut",
-        "ListServiceBindingsResponseIn": "_networkservices_62_ListServiceBindingsResponseIn",
-        "ListServiceBindingsResponseOut": "_networkservices_63_ListServiceBindingsResponseOut",
-        "PolicyIn": "_networkservices_64_PolicyIn",
-        "PolicyOut": "_networkservices_65_PolicyOut",
-        "TlsRouteRouteRuleIn": "_networkservices_66_TlsRouteRouteRuleIn",
-        "TlsRouteRouteRuleOut": "_networkservices_67_TlsRouteRouteRuleOut",
-        "ListGatewaysResponseIn": "_networkservices_68_ListGatewaysResponseIn",
-        "ListGatewaysResponseOut": "_networkservices_69_ListGatewaysResponseOut",
-        "TlsRouteRouteDestinationIn": "_networkservices_70_TlsRouteRouteDestinationIn",
-        "TlsRouteRouteDestinationOut": "_networkservices_71_TlsRouteRouteDestinationOut",
-        "ListMeshesResponseIn": "_networkservices_72_ListMeshesResponseIn",
-        "ListMeshesResponseOut": "_networkservices_73_ListMeshesResponseOut",
-        "GrpcRouteFaultInjectionPolicyIn": "_networkservices_74_GrpcRouteFaultInjectionPolicyIn",
-        "GrpcRouteFaultInjectionPolicyOut": "_networkservices_75_GrpcRouteFaultInjectionPolicyOut",
-        "TcpRouteRouteMatchIn": "_networkservices_76_TcpRouteRouteMatchIn",
-        "TcpRouteRouteMatchOut": "_networkservices_77_TcpRouteRouteMatchOut",
-        "EndpointMatcherIn": "_networkservices_78_EndpointMatcherIn",
-        "EndpointMatcherOut": "_networkservices_79_EndpointMatcherOut",
-        "ListTlsRoutesResponseIn": "_networkservices_80_ListTlsRoutesResponseIn",
-        "ListTlsRoutesResponseOut": "_networkservices_81_ListTlsRoutesResponseOut",
-        "TestIamPermissionsResponseIn": "_networkservices_82_TestIamPermissionsResponseIn",
-        "TestIamPermissionsResponseOut": "_networkservices_83_TestIamPermissionsResponseOut",
-        "EndpointMatcherMetadataLabelMatcherIn": "_networkservices_84_EndpointMatcherMetadataLabelMatcherIn",
-        "EndpointMatcherMetadataLabelMatcherOut": "_networkservices_85_EndpointMatcherMetadataLabelMatcherOut",
-        "HttpRouteDestinationIn": "_networkservices_86_HttpRouteDestinationIn",
-        "HttpRouteDestinationOut": "_networkservices_87_HttpRouteDestinationOut",
-        "HttpRouteRouteRuleIn": "_networkservices_88_HttpRouteRouteRuleIn",
-        "HttpRouteRouteRuleOut": "_networkservices_89_HttpRouteRouteRuleOut",
-        "StatusIn": "_networkservices_90_StatusIn",
-        "StatusOut": "_networkservices_91_StatusOut",
-        "GrpcRouteRouteActionIn": "_networkservices_92_GrpcRouteRouteActionIn",
-        "GrpcRouteRouteActionOut": "_networkservices_93_GrpcRouteRouteActionOut",
-        "GrpcRouteFaultInjectionPolicyDelayIn": "_networkservices_94_GrpcRouteFaultInjectionPolicyDelayIn",
-        "GrpcRouteFaultInjectionPolicyDelayOut": "_networkservices_95_GrpcRouteFaultInjectionPolicyDelayOut",
-        "TcpRouteRouteActionIn": "_networkservices_96_TcpRouteRouteActionIn",
-        "TcpRouteRouteActionOut": "_networkservices_97_TcpRouteRouteActionOut",
-        "ListEndpointPoliciesResponseIn": "_networkservices_98_ListEndpointPoliciesResponseIn",
-        "ListEndpointPoliciesResponseOut": "_networkservices_99_ListEndpointPoliciesResponseOut",
-        "HttpRouteFaultInjectionPolicyAbortIn": "_networkservices_100_HttpRouteFaultInjectionPolicyAbortIn",
-        "HttpRouteFaultInjectionPolicyAbortOut": "_networkservices_101_HttpRouteFaultInjectionPolicyAbortOut",
-        "GrpcRouteHeaderMatchIn": "_networkservices_102_GrpcRouteHeaderMatchIn",
-        "GrpcRouteHeaderMatchOut": "_networkservices_103_GrpcRouteHeaderMatchOut",
-        "OperationMetadataIn": "_networkservices_104_OperationMetadataIn",
-        "OperationMetadataOut": "_networkservices_105_OperationMetadataOut",
-        "GrpcRouteDestinationIn": "_networkservices_106_GrpcRouteDestinationIn",
-        "GrpcRouteDestinationOut": "_networkservices_107_GrpcRouteDestinationOut",
-        "TlsRouteRouteActionIn": "_networkservices_108_TlsRouteRouteActionIn",
-        "TlsRouteRouteActionOut": "_networkservices_109_TlsRouteRouteActionOut",
-        "AuditLogConfigIn": "_networkservices_110_AuditLogConfigIn",
-        "AuditLogConfigOut": "_networkservices_111_AuditLogConfigOut",
-        "TcpRouteRouteRuleIn": "_networkservices_112_TcpRouteRouteRuleIn",
-        "TcpRouteRouteRuleOut": "_networkservices_113_TcpRouteRouteRuleOut",
-        "ListOperationsResponseIn": "_networkservices_114_ListOperationsResponseIn",
-        "ListOperationsResponseOut": "_networkservices_115_ListOperationsResponseOut",
-        "GrpcRouteRouteRuleIn": "_networkservices_116_GrpcRouteRouteRuleIn",
-        "GrpcRouteRouteRuleOut": "_networkservices_117_GrpcRouteRouteRuleOut",
-        "GrpcRouteRouteMatchIn": "_networkservices_118_GrpcRouteRouteMatchIn",
-        "GrpcRouteRouteMatchOut": "_networkservices_119_GrpcRouteRouteMatchOut",
-        "EndpointPolicyIn": "_networkservices_120_EndpointPolicyIn",
-        "EndpointPolicyOut": "_networkservices_121_EndpointPolicyOut",
-        "HttpRouteRedirectIn": "_networkservices_122_HttpRouteRedirectIn",
-        "HttpRouteRedirectOut": "_networkservices_123_HttpRouteRedirectOut",
-        "EndpointMatcherMetadataLabelMatcherMetadataLabelsIn": "_networkservices_124_EndpointMatcherMetadataLabelMatcherMetadataLabelsIn",
-        "EndpointMatcherMetadataLabelMatcherMetadataLabelsOut": "_networkservices_125_EndpointMatcherMetadataLabelMatcherMetadataLabelsOut",
-        "HttpRouteHeaderModifierIn": "_networkservices_126_HttpRouteHeaderModifierIn",
-        "HttpRouteHeaderModifierOut": "_networkservices_127_HttpRouteHeaderModifierOut",
-        "HttpRouteRetryPolicyIn": "_networkservices_128_HttpRouteRetryPolicyIn",
-        "HttpRouteRetryPolicyOut": "_networkservices_129_HttpRouteRetryPolicyOut",
-        "TcpRouteRouteDestinationIn": "_networkservices_130_TcpRouteRouteDestinationIn",
-        "TcpRouteRouteDestinationOut": "_networkservices_131_TcpRouteRouteDestinationOut",
-        "HttpRouteRequestMirrorPolicyIn": "_networkservices_132_HttpRouteRequestMirrorPolicyIn",
-        "HttpRouteRequestMirrorPolicyOut": "_networkservices_133_HttpRouteRequestMirrorPolicyOut",
-        "OperationIn": "_networkservices_134_OperationIn",
-        "OperationOut": "_networkservices_135_OperationOut",
-        "TrafficPortSelectorIn": "_networkservices_136_TrafficPortSelectorIn",
-        "TrafficPortSelectorOut": "_networkservices_137_TrafficPortSelectorOut",
-        "CancelOperationRequestIn": "_networkservices_138_CancelOperationRequestIn",
-        "CancelOperationRequestOut": "_networkservices_139_CancelOperationRequestOut",
-        "HttpRouteFaultInjectionPolicyIn": "_networkservices_140_HttpRouteFaultInjectionPolicyIn",
-        "HttpRouteFaultInjectionPolicyOut": "_networkservices_141_HttpRouteFaultInjectionPolicyOut",
+        "ListOperationsResponseIn": "_networkservices_2_ListOperationsResponseIn",
+        "ListOperationsResponseOut": "_networkservices_3_ListOperationsResponseOut",
+        "PolicyIn": "_networkservices_4_PolicyIn",
+        "PolicyOut": "_networkservices_5_PolicyOut",
+        "ListEndpointPoliciesResponseIn": "_networkservices_6_ListEndpointPoliciesResponseIn",
+        "ListEndpointPoliciesResponseOut": "_networkservices_7_ListEndpointPoliciesResponseOut",
+        "ListTlsRoutesResponseIn": "_networkservices_8_ListTlsRoutesResponseIn",
+        "ListTlsRoutesResponseOut": "_networkservices_9_ListTlsRoutesResponseOut",
+        "TlsRouteRouteActionIn": "_networkservices_10_TlsRouteRouteActionIn",
+        "TlsRouteRouteActionOut": "_networkservices_11_TlsRouteRouteActionOut",
+        "TlsRouteRouteDestinationIn": "_networkservices_12_TlsRouteRouteDestinationIn",
+        "TlsRouteRouteDestinationOut": "_networkservices_13_TlsRouteRouteDestinationOut",
+        "GrpcRouteDestinationIn": "_networkservices_14_GrpcRouteDestinationIn",
+        "GrpcRouteDestinationOut": "_networkservices_15_GrpcRouteDestinationOut",
+        "HttpRouteURLRewriteIn": "_networkservices_16_HttpRouteURLRewriteIn",
+        "HttpRouteURLRewriteOut": "_networkservices_17_HttpRouteURLRewriteOut",
+        "HttpRouteRedirectIn": "_networkservices_18_HttpRouteRedirectIn",
+        "HttpRouteRedirectOut": "_networkservices_19_HttpRouteRedirectOut",
+        "TcpRouteRouteRuleIn": "_networkservices_20_TcpRouteRouteRuleIn",
+        "TcpRouteRouteRuleOut": "_networkservices_21_TcpRouteRouteRuleOut",
+        "ListHttpRoutesResponseIn": "_networkservices_22_ListHttpRoutesResponseIn",
+        "ListHttpRoutesResponseOut": "_networkservices_23_ListHttpRoutesResponseOut",
+        "TcpRouteIn": "_networkservices_24_TcpRouteIn",
+        "TcpRouteOut": "_networkservices_25_TcpRouteOut",
+        "AuditConfigIn": "_networkservices_26_AuditConfigIn",
+        "AuditConfigOut": "_networkservices_27_AuditConfigOut",
+        "TcpRouteRouteActionIn": "_networkservices_28_TcpRouteRouteActionIn",
+        "TcpRouteRouteActionOut": "_networkservices_29_TcpRouteRouteActionOut",
+        "TcpRouteRouteDestinationIn": "_networkservices_30_TcpRouteRouteDestinationIn",
+        "TcpRouteRouteDestinationOut": "_networkservices_31_TcpRouteRouteDestinationOut",
+        "GrpcRouteFaultInjectionPolicyAbortIn": "_networkservices_32_GrpcRouteFaultInjectionPolicyAbortIn",
+        "GrpcRouteFaultInjectionPolicyAbortOut": "_networkservices_33_GrpcRouteFaultInjectionPolicyAbortOut",
+        "ServiceBindingIn": "_networkservices_34_ServiceBindingIn",
+        "ServiceBindingOut": "_networkservices_35_ServiceBindingOut",
+        "CancelOperationRequestIn": "_networkservices_36_CancelOperationRequestIn",
+        "CancelOperationRequestOut": "_networkservices_37_CancelOperationRequestOut",
+        "MeshIn": "_networkservices_38_MeshIn",
+        "MeshOut": "_networkservices_39_MeshOut",
+        "GrpcRouteRouteMatchIn": "_networkservices_40_GrpcRouteRouteMatchIn",
+        "GrpcRouteRouteMatchOut": "_networkservices_41_GrpcRouteRouteMatchOut",
+        "HttpRouteFaultInjectionPolicyDelayIn": "_networkservices_42_HttpRouteFaultInjectionPolicyDelayIn",
+        "HttpRouteFaultInjectionPolicyDelayOut": "_networkservices_43_HttpRouteFaultInjectionPolicyDelayOut",
+        "HttpRouteRouteRuleIn": "_networkservices_44_HttpRouteRouteRuleIn",
+        "HttpRouteRouteRuleOut": "_networkservices_45_HttpRouteRouteRuleOut",
+        "HttpRouteCorsPolicyIn": "_networkservices_46_HttpRouteCorsPolicyIn",
+        "HttpRouteCorsPolicyOut": "_networkservices_47_HttpRouteCorsPolicyOut",
+        "GrpcRouteRouteActionIn": "_networkservices_48_GrpcRouteRouteActionIn",
+        "GrpcRouteRouteActionOut": "_networkservices_49_GrpcRouteRouteActionOut",
+        "EndpointMatcherIn": "_networkservices_50_EndpointMatcherIn",
+        "EndpointMatcherOut": "_networkservices_51_EndpointMatcherOut",
+        "TlsRouteRouteMatchIn": "_networkservices_52_TlsRouteRouteMatchIn",
+        "TlsRouteRouteMatchOut": "_networkservices_53_TlsRouteRouteMatchOut",
+        "GrpcRouteFaultInjectionPolicyIn": "_networkservices_54_GrpcRouteFaultInjectionPolicyIn",
+        "GrpcRouteFaultInjectionPolicyOut": "_networkservices_55_GrpcRouteFaultInjectionPolicyOut",
+        "TlsRouteRouteRuleIn": "_networkservices_56_TlsRouteRouteRuleIn",
+        "TlsRouteRouteRuleOut": "_networkservices_57_TlsRouteRouteRuleOut",
+        "GrpcRouteHeaderMatchIn": "_networkservices_58_GrpcRouteHeaderMatchIn",
+        "GrpcRouteHeaderMatchOut": "_networkservices_59_GrpcRouteHeaderMatchOut",
+        "HttpRouteHeaderMatchIntegerRangeIn": "_networkservices_60_HttpRouteHeaderMatchIntegerRangeIn",
+        "HttpRouteHeaderMatchIntegerRangeOut": "_networkservices_61_HttpRouteHeaderMatchIntegerRangeOut",
+        "GrpcRouteFaultInjectionPolicyDelayIn": "_networkservices_62_GrpcRouteFaultInjectionPolicyDelayIn",
+        "GrpcRouteFaultInjectionPolicyDelayOut": "_networkservices_63_GrpcRouteFaultInjectionPolicyDelayOut",
+        "ListLocationsResponseIn": "_networkservices_64_ListLocationsResponseIn",
+        "ListLocationsResponseOut": "_networkservices_65_ListLocationsResponseOut",
+        "OperationIn": "_networkservices_66_OperationIn",
+        "OperationOut": "_networkservices_67_OperationOut",
+        "ListMeshesResponseIn": "_networkservices_68_ListMeshesResponseIn",
+        "ListMeshesResponseOut": "_networkservices_69_ListMeshesResponseOut",
+        "GrpcRouteIn": "_networkservices_70_GrpcRouteIn",
+        "GrpcRouteOut": "_networkservices_71_GrpcRouteOut",
+        "GrpcRouteRetryPolicyIn": "_networkservices_72_GrpcRouteRetryPolicyIn",
+        "GrpcRouteRetryPolicyOut": "_networkservices_73_GrpcRouteRetryPolicyOut",
+        "GrpcRouteRouteRuleIn": "_networkservices_74_GrpcRouteRouteRuleIn",
+        "GrpcRouteRouteRuleOut": "_networkservices_75_GrpcRouteRouteRuleOut",
+        "GrpcRouteMethodMatchIn": "_networkservices_76_GrpcRouteMethodMatchIn",
+        "GrpcRouteMethodMatchOut": "_networkservices_77_GrpcRouteMethodMatchOut",
+        "ListGrpcRoutesResponseIn": "_networkservices_78_ListGrpcRoutesResponseIn",
+        "ListGrpcRoutesResponseOut": "_networkservices_79_ListGrpcRoutesResponseOut",
+        "TestIamPermissionsRequestIn": "_networkservices_80_TestIamPermissionsRequestIn",
+        "TestIamPermissionsRequestOut": "_networkservices_81_TestIamPermissionsRequestOut",
+        "HttpRouteDestinationIn": "_networkservices_82_HttpRouteDestinationIn",
+        "HttpRouteDestinationOut": "_networkservices_83_HttpRouteDestinationOut",
+        "SetIamPolicyRequestIn": "_networkservices_84_SetIamPolicyRequestIn",
+        "SetIamPolicyRequestOut": "_networkservices_85_SetIamPolicyRequestOut",
+        "LocationIn": "_networkservices_86_LocationIn",
+        "LocationOut": "_networkservices_87_LocationOut",
+        "HttpRouteFaultInjectionPolicyIn": "_networkservices_88_HttpRouteFaultInjectionPolicyIn",
+        "HttpRouteFaultInjectionPolicyOut": "_networkservices_89_HttpRouteFaultInjectionPolicyOut",
+        "TcpRouteRouteMatchIn": "_networkservices_90_TcpRouteRouteMatchIn",
+        "TcpRouteRouteMatchOut": "_networkservices_91_TcpRouteRouteMatchOut",
+        "HttpRouteHeaderMatchIn": "_networkservices_92_HttpRouteHeaderMatchIn",
+        "HttpRouteHeaderMatchOut": "_networkservices_93_HttpRouteHeaderMatchOut",
+        "TestIamPermissionsResponseIn": "_networkservices_94_TestIamPermissionsResponseIn",
+        "TestIamPermissionsResponseOut": "_networkservices_95_TestIamPermissionsResponseOut",
+        "OperationMetadataIn": "_networkservices_96_OperationMetadataIn",
+        "OperationMetadataOut": "_networkservices_97_OperationMetadataOut",
+        "StatusIn": "_networkservices_98_StatusIn",
+        "StatusOut": "_networkservices_99_StatusOut",
+        "EmptyIn": "_networkservices_100_EmptyIn",
+        "EmptyOut": "_networkservices_101_EmptyOut",
+        "EndpointMatcherMetadataLabelMatcherIn": "_networkservices_102_EndpointMatcherMetadataLabelMatcherIn",
+        "EndpointMatcherMetadataLabelMatcherOut": "_networkservices_103_EndpointMatcherMetadataLabelMatcherOut",
+        "ListTcpRoutesResponseIn": "_networkservices_104_ListTcpRoutesResponseIn",
+        "ListTcpRoutesResponseOut": "_networkservices_105_ListTcpRoutesResponseOut",
+        "GatewayIn": "_networkservices_106_GatewayIn",
+        "GatewayOut": "_networkservices_107_GatewayOut",
+        "ListServiceBindingsResponseIn": "_networkservices_108_ListServiceBindingsResponseIn",
+        "ListServiceBindingsResponseOut": "_networkservices_109_ListServiceBindingsResponseOut",
+        "HttpRouteRetryPolicyIn": "_networkservices_110_HttpRouteRetryPolicyIn",
+        "HttpRouteRetryPolicyOut": "_networkservices_111_HttpRouteRetryPolicyOut",
+        "TrafficPortSelectorIn": "_networkservices_112_TrafficPortSelectorIn",
+        "TrafficPortSelectorOut": "_networkservices_113_TrafficPortSelectorOut",
+        "ListGatewaysResponseIn": "_networkservices_114_ListGatewaysResponseIn",
+        "ListGatewaysResponseOut": "_networkservices_115_ListGatewaysResponseOut",
+        "EndpointPolicyIn": "_networkservices_116_EndpointPolicyIn",
+        "EndpointPolicyOut": "_networkservices_117_EndpointPolicyOut",
+        "AuditLogConfigIn": "_networkservices_118_AuditLogConfigIn",
+        "AuditLogConfigOut": "_networkservices_119_AuditLogConfigOut",
+        "BindingIn": "_networkservices_120_BindingIn",
+        "BindingOut": "_networkservices_121_BindingOut",
+        "HttpRouteRequestMirrorPolicyIn": "_networkservices_122_HttpRouteRequestMirrorPolicyIn",
+        "HttpRouteRequestMirrorPolicyOut": "_networkservices_123_HttpRouteRequestMirrorPolicyOut",
+        "HttpRouteRouteActionIn": "_networkservices_124_HttpRouteRouteActionIn",
+        "HttpRouteRouteActionOut": "_networkservices_125_HttpRouteRouteActionOut",
+        "HttpRouteIn": "_networkservices_126_HttpRouteIn",
+        "HttpRouteOut": "_networkservices_127_HttpRouteOut",
+        "HttpRouteHeaderModifierIn": "_networkservices_128_HttpRouteHeaderModifierIn",
+        "HttpRouteHeaderModifierOut": "_networkservices_129_HttpRouteHeaderModifierOut",
+        "TlsRouteIn": "_networkservices_130_TlsRouteIn",
+        "TlsRouteOut": "_networkservices_131_TlsRouteOut",
+        "HttpRouteQueryParameterMatchIn": "_networkservices_132_HttpRouteQueryParameterMatchIn",
+        "HttpRouteQueryParameterMatchOut": "_networkservices_133_HttpRouteQueryParameterMatchOut",
+        "HttpRouteRouteMatchIn": "_networkservices_134_HttpRouteRouteMatchIn",
+        "HttpRouteRouteMatchOut": "_networkservices_135_HttpRouteRouteMatchOut",
+        "EndpointMatcherMetadataLabelMatcherMetadataLabelsIn": "_networkservices_136_EndpointMatcherMetadataLabelMatcherMetadataLabelsIn",
+        "EndpointMatcherMetadataLabelMatcherMetadataLabelsOut": "_networkservices_137_EndpointMatcherMetadataLabelMatcherMetadataLabelsOut",
+        "ExprIn": "_networkservices_138_ExprIn",
+        "ExprOut": "_networkservices_139_ExprOut",
+        "HttpRouteFaultInjectionPolicyAbortIn": "_networkservices_140_HttpRouteFaultInjectionPolicyAbortIn",
+        "HttpRouteFaultInjectionPolicyAbortOut": "_networkservices_141_HttpRouteFaultInjectionPolicyAbortOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["LocationIn"] = t.struct(
+    types["ListOperationsResponseIn"] = t.struct(
         {
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "displayName": t.string().optional(),
-            "name": t.string().optional(),
-            "locationId": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
+            "nextPageToken": t.string().optional(),
         }
-    ).named(renames["LocationIn"])
-    types["LocationOut"] = t.struct(
+    ).named(renames["ListOperationsResponseIn"])
+    types["ListOperationsResponseOut"] = t.struct(
         {
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "displayName": t.string().optional(),
-            "name": t.string().optional(),
-            "locationId": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
+            "nextPageToken": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["LocationOut"])
-    types["GatewayIn"] = t.struct(
+    ).named(renames["ListOperationsResponseOut"])
+    types["PolicyIn"] = t.struct(
         {
-            "network": t.string().optional(),
-            "serverTlsPolicy": t.string().optional(),
-            "description": t.string().optional(),
-            "gatewaySecurityPolicy": t.string().optional(),
-            "type": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "subnetwork": t.string().optional(),
-            "ports": t.array(t.integer()),
-            "name": t.string(),
-            "addresses": t.array(t.string()).optional(),
-            "certificateUrls": t.array(t.string()).optional(),
-            "scope": t.string().optional(),
+            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "etag": t.string().optional(),
+            "version": t.integer().optional(),
         }
-    ).named(renames["GatewayIn"])
-    types["GatewayOut"] = t.struct(
+    ).named(renames["PolicyIn"])
+    types["PolicyOut"] = t.struct(
+        {
+            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
+            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "etag": t.string().optional(),
+            "version": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["PolicyOut"])
+    types["ListEndpointPoliciesResponseIn"] = t.struct(
+        {
+            "endpointPolicies": t.array(
+                t.proxy(renames["EndpointPolicyIn"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListEndpointPoliciesResponseIn"])
+    types["ListEndpointPoliciesResponseOut"] = t.struct(
+        {
+            "endpointPolicies": t.array(
+                t.proxy(renames["EndpointPolicyOut"])
+            ).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListEndpointPoliciesResponseOut"])
+    types["ListTlsRoutesResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "tlsRoutes": t.array(t.proxy(renames["TlsRouteIn"])).optional(),
+        }
+    ).named(renames["ListTlsRoutesResponseIn"])
+    types["ListTlsRoutesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "tlsRoutes": t.array(t.proxy(renames["TlsRouteOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListTlsRoutesResponseOut"])
+    types["TlsRouteRouteActionIn"] = t.struct(
+        {"destinations": t.array(t.proxy(renames["TlsRouteRouteDestinationIn"]))}
+    ).named(renames["TlsRouteRouteActionIn"])
+    types["TlsRouteRouteActionOut"] = t.struct(
+        {
+            "destinations": t.array(t.proxy(renames["TlsRouteRouteDestinationOut"])),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TlsRouteRouteActionOut"])
+    types["TlsRouteRouteDestinationIn"] = t.struct(
+        {"weight": t.integer().optional(), "serviceName": t.string()}
+    ).named(renames["TlsRouteRouteDestinationIn"])
+    types["TlsRouteRouteDestinationOut"] = t.struct(
+        {
+            "weight": t.integer().optional(),
+            "serviceName": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TlsRouteRouteDestinationOut"])
+    types["GrpcRouteDestinationIn"] = t.struct(
+        {"serviceName": t.string(), "weight": t.integer().optional()}
+    ).named(renames["GrpcRouteDestinationIn"])
+    types["GrpcRouteDestinationOut"] = t.struct(
+        {
+            "serviceName": t.string(),
+            "weight": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GrpcRouteDestinationOut"])
+    types["HttpRouteURLRewriteIn"] = t.struct(
+        {
+            "pathPrefixRewrite": t.string().optional(),
+            "hostRewrite": t.string().optional(),
+        }
+    ).named(renames["HttpRouteURLRewriteIn"])
+    types["HttpRouteURLRewriteOut"] = t.struct(
+        {
+            "pathPrefixRewrite": t.string().optional(),
+            "hostRewrite": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteURLRewriteOut"])
+    types["HttpRouteRedirectIn"] = t.struct(
+        {
+            "httpsRedirect": t.boolean().optional(),
+            "stripQuery": t.boolean().optional(),
+            "hostRedirect": t.string().optional(),
+            "pathRedirect": t.string().optional(),
+            "portRedirect": t.integer().optional(),
+            "responseCode": t.string().optional(),
+            "prefixRewrite": t.string().optional(),
+        }
+    ).named(renames["HttpRouteRedirectIn"])
+    types["HttpRouteRedirectOut"] = t.struct(
+        {
+            "httpsRedirect": t.boolean().optional(),
+            "stripQuery": t.boolean().optional(),
+            "hostRedirect": t.string().optional(),
+            "pathRedirect": t.string().optional(),
+            "portRedirect": t.integer().optional(),
+            "responseCode": t.string().optional(),
+            "prefixRewrite": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteRedirectOut"])
+    types["TcpRouteRouteRuleIn"] = t.struct(
+        {
+            "matches": t.array(t.proxy(renames["TcpRouteRouteMatchIn"])).optional(),
+            "action": t.proxy(renames["TcpRouteRouteActionIn"]),
+        }
+    ).named(renames["TcpRouteRouteRuleIn"])
+    types["TcpRouteRouteRuleOut"] = t.struct(
+        {
+            "matches": t.array(t.proxy(renames["TcpRouteRouteMatchOut"])).optional(),
+            "action": t.proxy(renames["TcpRouteRouteActionOut"]),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TcpRouteRouteRuleOut"])
+    types["ListHttpRoutesResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "httpRoutes": t.array(t.proxy(renames["HttpRouteIn"])).optional(),
+        }
+    ).named(renames["ListHttpRoutesResponseIn"])
+    types["ListHttpRoutesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "httpRoutes": t.array(t.proxy(renames["HttpRouteOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListHttpRoutesResponseOut"])
+    types["TcpRouteIn"] = t.struct(
+        {
+            "name": t.string(),
+            "rules": t.array(t.proxy(renames["TcpRouteRouteRuleIn"])),
+            "meshes": t.array(t.string()).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "description": t.string().optional(),
+            "gateways": t.array(t.string()).optional(),
+        }
+    ).named(renames["TcpRouteIn"])
+    types["TcpRouteOut"] = t.struct(
         {
             "updateTime": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "network": t.string().optional(),
-            "serverTlsPolicy": t.string().optional(),
-            "description": t.string().optional(),
-            "gatewaySecurityPolicy": t.string().optional(),
-            "createTime": t.string().optional(),
-            "type": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "subnetwork": t.string().optional(),
-            "ports": t.array(t.integer()),
             "name": t.string(),
-            "addresses": t.array(t.string()).optional(),
-            "certificateUrls": t.array(t.string()).optional(),
-            "scope": t.string().optional(),
+            "rules": t.array(t.proxy(renames["TcpRouteRouteRuleOut"])),
+            "meshes": t.array(t.string()).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "createTime": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "description": t.string().optional(),
+            "gateways": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GatewayOut"])
-    types["HttpRouteRouteActionIn"] = t.struct(
-        {
-            "responseHeaderModifier": t.proxy(
-                renames["HttpRouteHeaderModifierIn"]
-            ).optional(),
-            "retryPolicy": t.proxy(renames["HttpRouteRetryPolicyIn"]).optional(),
-            "corsPolicy": t.proxy(renames["HttpRouteCorsPolicyIn"]).optional(),
-            "timeout": t.string().optional(),
-            "redirect": t.proxy(renames["HttpRouteRedirectIn"]).optional(),
-            "requestHeaderModifier": t.proxy(
-                renames["HttpRouteHeaderModifierIn"]
-            ).optional(),
-            "urlRewrite": t.proxy(renames["HttpRouteURLRewriteIn"]).optional(),
-            "requestMirrorPolicy": t.proxy(
-                renames["HttpRouteRequestMirrorPolicyIn"]
-            ).optional(),
-            "faultInjectionPolicy": t.proxy(
-                renames["HttpRouteFaultInjectionPolicyIn"]
-            ).optional(),
-            "destinations": t.array(
-                t.proxy(renames["HttpRouteDestinationIn"])
-            ).optional(),
-        }
-    ).named(renames["HttpRouteRouteActionIn"])
-    types["HttpRouteRouteActionOut"] = t.struct(
-        {
-            "responseHeaderModifier": t.proxy(
-                renames["HttpRouteHeaderModifierOut"]
-            ).optional(),
-            "retryPolicy": t.proxy(renames["HttpRouteRetryPolicyOut"]).optional(),
-            "corsPolicy": t.proxy(renames["HttpRouteCorsPolicyOut"]).optional(),
-            "timeout": t.string().optional(),
-            "redirect": t.proxy(renames["HttpRouteRedirectOut"]).optional(),
-            "requestHeaderModifier": t.proxy(
-                renames["HttpRouteHeaderModifierOut"]
-            ).optional(),
-            "urlRewrite": t.proxy(renames["HttpRouteURLRewriteOut"]).optional(),
-            "requestMirrorPolicy": t.proxy(
-                renames["HttpRouteRequestMirrorPolicyOut"]
-            ).optional(),
-            "faultInjectionPolicy": t.proxy(
-                renames["HttpRouteFaultInjectionPolicyOut"]
-            ).optional(),
-            "destinations": t.array(
-                t.proxy(renames["HttpRouteDestinationOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteRouteActionOut"])
-    types["TlsRouteRouteMatchIn"] = t.struct(
-        {
-            "sniHost": t.array(t.string()).optional(),
-            "alpn": t.array(t.string()).optional(),
-        }
-    ).named(renames["TlsRouteRouteMatchIn"])
-    types["TlsRouteRouteMatchOut"] = t.struct(
-        {
-            "sniHost": t.array(t.string()).optional(),
-            "alpn": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TlsRouteRouteMatchOut"])
+    ).named(renames["TcpRouteOut"])
     types["AuditConfigIn"] = t.struct(
         {
             "service": t.string().optional(),
@@ -287,304 +345,33 @@ def import_networkservices() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["AuditConfigOut"])
-    types["ListGrpcRoutesResponseIn"] = t.struct(
+    types["TcpRouteRouteActionIn"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "grpcRoutes": t.array(t.proxy(renames["GrpcRouteIn"])).optional(),
-        }
-    ).named(renames["ListGrpcRoutesResponseIn"])
-    types["ListGrpcRoutesResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "grpcRoutes": t.array(t.proxy(renames["GrpcRouteOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListGrpcRoutesResponseOut"])
-    types["SetIamPolicyRequestIn"] = t.struct(
-        {
-            "updateMask": t.string().optional(),
-            "policy": t.proxy(renames["PolicyIn"]).optional(),
-        }
-    ).named(renames["SetIamPolicyRequestIn"])
-    types["SetIamPolicyRequestOut"] = t.struct(
-        {
-            "updateMask": t.string().optional(),
-            "policy": t.proxy(renames["PolicyOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SetIamPolicyRequestOut"])
-    types["ListHttpRoutesResponseIn"] = t.struct(
-        {
-            "httpRoutes": t.array(t.proxy(renames["HttpRouteIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListHttpRoutesResponseIn"])
-    types["ListHttpRoutesResponseOut"] = t.struct(
-        {
-            "httpRoutes": t.array(t.proxy(renames["HttpRouteOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListHttpRoutesResponseOut"])
-    types["TcpRouteIn"] = t.struct(
-        {
-            "description": t.string().optional(),
-            "name": t.string(),
-            "gateways": t.array(t.string()).optional(),
-            "rules": t.array(t.proxy(renames["TcpRouteRouteRuleIn"])),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "meshes": t.array(t.string()).optional(),
-        }
-    ).named(renames["TcpRouteIn"])
-    types["TcpRouteOut"] = t.struct(
-        {
-            "description": t.string().optional(),
-            "createTime": t.string().optional(),
-            "name": t.string(),
-            "gateways": t.array(t.string()).optional(),
-            "selfLink": t.string().optional(),
-            "rules": t.array(t.proxy(renames["TcpRouteRouteRuleOut"])),
-            "updateTime": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "meshes": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TcpRouteOut"])
-    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
-    types["EmptyOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["EmptyOut"])
-    types["TlsRouteIn"] = t.struct(
-        {
-            "gateways": t.array(t.string()).optional(),
-            "rules": t.array(t.proxy(renames["TlsRouteRouteRuleIn"])),
-            "name": t.string(),
-            "description": t.string().optional(),
-            "meshes": t.array(t.string()).optional(),
-        }
-    ).named(renames["TlsRouteIn"])
-    types["TlsRouteOut"] = t.struct(
-        {
-            "gateways": t.array(t.string()).optional(),
-            "updateTime": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "rules": t.array(t.proxy(renames["TlsRouteRouteRuleOut"])),
-            "name": t.string(),
-            "description": t.string().optional(),
-            "meshes": t.array(t.string()).optional(),
-            "createTime": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TlsRouteOut"])
-    types["BindingIn"] = t.struct(
-        {
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprIn"]).optional(),
-            "role": t.string().optional(),
-        }
-    ).named(renames["BindingIn"])
-    types["BindingOut"] = t.struct(
-        {
-            "members": t.array(t.string()).optional(),
-            "condition": t.proxy(renames["ExprOut"]).optional(),
-            "role": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["BindingOut"])
-    types["GrpcRouteIn"] = t.struct(
-        {
-            "meshes": t.array(t.string()).optional(),
-            "gateways": t.array(t.string()).optional(),
-            "description": t.string().optional(),
-            "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleIn"])),
-            "hostnames": t.array(t.string()),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string(),
-        }
-    ).named(renames["GrpcRouteIn"])
-    types["GrpcRouteOut"] = t.struct(
-        {
-            "updateTime": t.string().optional(),
-            "createTime": t.string().optional(),
-            "meshes": t.array(t.string()).optional(),
-            "selfLink": t.string().optional(),
-            "gateways": t.array(t.string()).optional(),
-            "description": t.string().optional(),
-            "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleOut"])),
-            "hostnames": t.array(t.string()),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "name": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GrpcRouteOut"])
-    types["HttpRouteHeaderMatchIntegerRangeIn"] = t.struct(
-        {"end": t.integer().optional(), "start": t.integer().optional()}
-    ).named(renames["HttpRouteHeaderMatchIntegerRangeIn"])
-    types["HttpRouteHeaderMatchIntegerRangeOut"] = t.struct(
-        {
-            "end": t.integer().optional(),
-            "start": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteHeaderMatchIntegerRangeOut"])
-    types["GrpcRouteRetryPolicyIn"] = t.struct(
-        {
-            "retryConditions": t.array(t.string()).optional(),
-            "numRetries": t.integer().optional(),
-        }
-    ).named(renames["GrpcRouteRetryPolicyIn"])
-    types["GrpcRouteRetryPolicyOut"] = t.struct(
-        {
-            "retryConditions": t.array(t.string()).optional(),
-            "numRetries": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GrpcRouteRetryPolicyOut"])
-    types["HttpRouteURLRewriteIn"] = t.struct(
-        {
-            "pathPrefixRewrite": t.string().optional(),
-            "hostRewrite": t.string().optional(),
-        }
-    ).named(renames["HttpRouteURLRewriteIn"])
-    types["HttpRouteURLRewriteOut"] = t.struct(
-        {
-            "pathPrefixRewrite": t.string().optional(),
-            "hostRewrite": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteURLRewriteOut"])
-    types["TestIamPermissionsRequestIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsRequestIn"])
-    types["TestIamPermissionsRequestOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsRequestOut"])
-    types["GrpcRouteMethodMatchIn"] = t.struct(
-        {
-            "grpcMethod": t.string(),
-            "type": t.string().optional(),
-            "grpcService": t.string(),
-            "caseSensitive": t.boolean().optional(),
-        }
-    ).named(renames["GrpcRouteMethodMatchIn"])
-    types["GrpcRouteMethodMatchOut"] = t.struct(
-        {
-            "grpcMethod": t.string(),
-            "type": t.string().optional(),
-            "grpcService": t.string(),
-            "caseSensitive": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GrpcRouteMethodMatchOut"])
-    types["HttpRouteFaultInjectionPolicyDelayIn"] = t.struct(
-        {"percentage": t.integer().optional(), "fixedDelay": t.string().optional()}
-    ).named(renames["HttpRouteFaultInjectionPolicyDelayIn"])
-    types["HttpRouteFaultInjectionPolicyDelayOut"] = t.struct(
-        {
-            "percentage": t.integer().optional(),
-            "fixedDelay": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteFaultInjectionPolicyDelayOut"])
-    types["ListTcpRoutesResponseIn"] = t.struct(
-        {
-            "tcpRoutes": t.array(t.proxy(renames["TcpRouteIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListTcpRoutesResponseIn"])
-    types["ListTcpRoutesResponseOut"] = t.struct(
-        {
-            "tcpRoutes": t.array(t.proxy(renames["TcpRouteOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListTcpRoutesResponseOut"])
-    types["HttpRouteIn"] = t.struct(
-        {
-            "description": t.string().optional(),
-            "meshes": t.array(t.string()).optional(),
-            "gateways": t.array(t.string()).optional(),
-            "rules": t.array(t.proxy(renames["HttpRouteRouteRuleIn"])),
-            "name": t.string(),
-            "hostnames": t.array(t.string()),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-        }
-    ).named(renames["HttpRouteIn"])
-    types["HttpRouteOut"] = t.struct(
-        {
-            "description": t.string().optional(),
-            "meshes": t.array(t.string()).optional(),
-            "createTime": t.string().optional(),
-            "gateways": t.array(t.string()).optional(),
-            "rules": t.array(t.proxy(renames["HttpRouteRouteRuleOut"])),
-            "selfLink": t.string().optional(),
-            "updateTime": t.string().optional(),
-            "name": t.string(),
-            "hostnames": t.array(t.string()),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteOut"])
-    types["HttpRouteRouteMatchIn"] = t.struct(
-        {
-            "ignoreCase": t.boolean().optional(),
-            "regexMatch": t.string().optional(),
-            "queryParameters": t.array(
-                t.proxy(renames["HttpRouteQueryParameterMatchIn"])
+            "destinations": t.array(
+                t.proxy(renames["TcpRouteRouteDestinationIn"])
             ).optional(),
-            "headers": t.array(t.proxy(renames["HttpRouteHeaderMatchIn"])).optional(),
-            "prefixMatch": t.string().optional(),
-            "fullPathMatch": t.string().optional(),
+            "originalDestination": t.boolean().optional(),
         }
-    ).named(renames["HttpRouteRouteMatchIn"])
-    types["HttpRouteRouteMatchOut"] = t.struct(
+    ).named(renames["TcpRouteRouteActionIn"])
+    types["TcpRouteRouteActionOut"] = t.struct(
         {
-            "ignoreCase": t.boolean().optional(),
-            "regexMatch": t.string().optional(),
-            "queryParameters": t.array(
-                t.proxy(renames["HttpRouteQueryParameterMatchOut"])
+            "destinations": t.array(
+                t.proxy(renames["TcpRouteRouteDestinationOut"])
             ).optional(),
-            "headers": t.array(t.proxy(renames["HttpRouteHeaderMatchOut"])).optional(),
-            "prefixMatch": t.string().optional(),
-            "fullPathMatch": t.string().optional(),
+            "originalDestination": t.boolean().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HttpRouteRouteMatchOut"])
-    types["ListLocationsResponseIn"] = t.struct(
+    ).named(renames["TcpRouteRouteActionOut"])
+    types["TcpRouteRouteDestinationIn"] = t.struct(
+        {"serviceName": t.string(), "weight": t.integer().optional()}
+    ).named(renames["TcpRouteRouteDestinationIn"])
+    types["TcpRouteRouteDestinationOut"] = t.struct(
         {
-            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListLocationsResponseIn"])
-    types["ListLocationsResponseOut"] = t.struct(
-        {
-            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
-            "nextPageToken": t.string().optional(),
+            "serviceName": t.string(),
+            "weight": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListLocationsResponseOut"])
-    types["ServiceBindingIn"] = t.struct(
-        {
-            "service": t.string(),
-            "name": t.string(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "description": t.string().optional(),
-        }
-    ).named(renames["ServiceBindingIn"])
-    types["ServiceBindingOut"] = t.struct(
-        {
-            "service": t.string(),
-            "name": t.string(),
-            "createTime": t.string().optional(),
-            "updateTime": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "description": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ServiceBindingOut"])
+    ).named(renames["TcpRouteRouteDestinationOut"])
     types["GrpcRouteFaultInjectionPolicyAbortIn"] = t.struct(
         {"percentage": t.integer().optional(), "httpStatus": t.integer().optional()}
     ).named(renames["GrpcRouteFaultInjectionPolicyAbortIn"])
@@ -595,195 +382,166 @@ def import_networkservices() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GrpcRouteFaultInjectionPolicyAbortOut"])
-    types["MeshIn"] = t.struct(
+    types["ServiceBindingIn"] = t.struct(
         {
             "name": t.string(),
+            "description": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "service": t.string(),
+        }
+    ).named(renames["ServiceBindingIn"])
+    types["ServiceBindingOut"] = t.struct(
+        {
+            "name": t.string(),
+            "updateTime": t.string().optional(),
+            "createTime": t.string().optional(),
+            "description": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "serviceId": t.string().optional(),
+            "service": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ServiceBindingOut"])
+    types["CancelOperationRequestIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["CancelOperationRequestIn"]
+    )
+    types["CancelOperationRequestOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["CancelOperationRequestOut"])
+    types["MeshIn"] = t.struct(
+        {
             "interceptionPort": t.integer().optional(),
             "labels": t.struct({"_": t.string().optional()}).optional(),
             "description": t.string().optional(),
+            "name": t.string(),
         }
     ).named(renames["MeshIn"])
     types["MeshOut"] = t.struct(
         {
+            "interceptionPort": t.integer().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "description": t.string().optional(),
+            "createTime": t.string().optional(),
             "updateTime": t.string().optional(),
             "selfLink": t.string().optional(),
             "name": t.string(),
-            "interceptionPort": t.integer().optional(),
-            "createTime": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
-            "description": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["MeshOut"])
-    types["HttpRouteHeaderMatchIn"] = t.struct(
+    types["GrpcRouteRouteMatchIn"] = t.struct(
         {
-            "prefixMatch": t.string().optional(),
-            "regexMatch": t.string().optional(),
-            "exactMatch": t.string().optional(),
-            "header": t.string().optional(),
-            "presentMatch": t.boolean().optional(),
-            "suffixMatch": t.string().optional(),
-            "invertMatch": t.boolean().optional(),
-            "rangeMatch": t.proxy(
-                renames["HttpRouteHeaderMatchIntegerRangeIn"]
-            ).optional(),
+            "headers": t.array(t.proxy(renames["GrpcRouteHeaderMatchIn"])).optional(),
+            "method": t.proxy(renames["GrpcRouteMethodMatchIn"]).optional(),
         }
-    ).named(renames["HttpRouteHeaderMatchIn"])
-    types["HttpRouteHeaderMatchOut"] = t.struct(
+    ).named(renames["GrpcRouteRouteMatchIn"])
+    types["GrpcRouteRouteMatchOut"] = t.struct(
         {
-            "prefixMatch": t.string().optional(),
-            "regexMatch": t.string().optional(),
-            "exactMatch": t.string().optional(),
-            "header": t.string().optional(),
-            "presentMatch": t.boolean().optional(),
-            "suffixMatch": t.string().optional(),
-            "invertMatch": t.boolean().optional(),
-            "rangeMatch": t.proxy(
-                renames["HttpRouteHeaderMatchIntegerRangeOut"]
-            ).optional(),
+            "headers": t.array(t.proxy(renames["GrpcRouteHeaderMatchOut"])).optional(),
+            "method": t.proxy(renames["GrpcRouteMethodMatchOut"]).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HttpRouteHeaderMatchOut"])
-    types["HttpRouteQueryParameterMatchIn"] = t.struct(
+    ).named(renames["GrpcRouteRouteMatchOut"])
+    types["HttpRouteFaultInjectionPolicyDelayIn"] = t.struct(
+        {"fixedDelay": t.string().optional(), "percentage": t.integer().optional()}
+    ).named(renames["HttpRouteFaultInjectionPolicyDelayIn"])
+    types["HttpRouteFaultInjectionPolicyDelayOut"] = t.struct(
         {
-            "regexMatch": t.string().optional(),
-            "queryParameter": t.string().optional(),
-            "presentMatch": t.boolean().optional(),
-            "exactMatch": t.string().optional(),
-        }
-    ).named(renames["HttpRouteQueryParameterMatchIn"])
-    types["HttpRouteQueryParameterMatchOut"] = t.struct(
-        {
-            "regexMatch": t.string().optional(),
-            "queryParameter": t.string().optional(),
-            "presentMatch": t.boolean().optional(),
-            "exactMatch": t.string().optional(),
+            "fixedDelay": t.string().optional(),
+            "percentage": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HttpRouteQueryParameterMatchOut"])
-    types["ExprIn"] = t.struct(
+    ).named(renames["HttpRouteFaultInjectionPolicyDelayOut"])
+    types["HttpRouteRouteRuleIn"] = t.struct(
         {
-            "title": t.string().optional(),
-            "expression": t.string().optional(),
-            "location": t.string().optional(),
-            "description": t.string().optional(),
+            "action": t.proxy(renames["HttpRouteRouteActionIn"]).optional(),
+            "matches": t.array(t.proxy(renames["HttpRouteRouteMatchIn"])).optional(),
         }
-    ).named(renames["ExprIn"])
-    types["ExprOut"] = t.struct(
+    ).named(renames["HttpRouteRouteRuleIn"])
+    types["HttpRouteRouteRuleOut"] = t.struct(
         {
-            "title": t.string().optional(),
-            "expression": t.string().optional(),
-            "location": t.string().optional(),
-            "description": t.string().optional(),
+            "action": t.proxy(renames["HttpRouteRouteActionOut"]).optional(),
+            "matches": t.array(t.proxy(renames["HttpRouteRouteMatchOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ExprOut"])
+    ).named(renames["HttpRouteRouteRuleOut"])
     types["HttpRouteCorsPolicyIn"] = t.struct(
         {
-            "allowHeaders": t.array(t.string()).optional(),
             "allowMethods": t.array(t.string()).optional(),
-            "disabled": t.boolean().optional(),
             "allowOriginRegexes": t.array(t.string()).optional(),
+            "allowHeaders": t.array(t.string()).optional(),
             "allowOrigins": t.array(t.string()).optional(),
+            "disabled": t.boolean().optional(),
+            "exposeHeaders": t.array(t.string()).optional(),
             "allowCredentials": t.boolean().optional(),
             "maxAge": t.string().optional(),
-            "exposeHeaders": t.array(t.string()).optional(),
         }
     ).named(renames["HttpRouteCorsPolicyIn"])
     types["HttpRouteCorsPolicyOut"] = t.struct(
         {
-            "allowHeaders": t.array(t.string()).optional(),
             "allowMethods": t.array(t.string()).optional(),
-            "disabled": t.boolean().optional(),
             "allowOriginRegexes": t.array(t.string()).optional(),
+            "allowHeaders": t.array(t.string()).optional(),
             "allowOrigins": t.array(t.string()).optional(),
+            "disabled": t.boolean().optional(),
+            "exposeHeaders": t.array(t.string()).optional(),
             "allowCredentials": t.boolean().optional(),
             "maxAge": t.string().optional(),
-            "exposeHeaders": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["HttpRouteCorsPolicyOut"])
-    types["ListServiceBindingsResponseIn"] = t.struct(
+    types["GrpcRouteRouteActionIn"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "serviceBindings": t.array(t.proxy(renames["ServiceBindingIn"])).optional(),
+            "faultInjectionPolicy": t.proxy(
+                renames["GrpcRouteFaultInjectionPolicyIn"]
+            ).optional(),
+            "timeout": t.string().optional(),
+            "retryPolicy": t.proxy(renames["GrpcRouteRetryPolicyIn"]).optional(),
+            "destinations": t.array(
+                t.proxy(renames["GrpcRouteDestinationIn"])
+            ).optional(),
         }
-    ).named(renames["ListServiceBindingsResponseIn"])
-    types["ListServiceBindingsResponseOut"] = t.struct(
+    ).named(renames["GrpcRouteRouteActionIn"])
+    types["GrpcRouteRouteActionOut"] = t.struct(
         {
-            "nextPageToken": t.string().optional(),
-            "serviceBindings": t.array(
-                t.proxy(renames["ServiceBindingOut"])
+            "faultInjectionPolicy": t.proxy(
+                renames["GrpcRouteFaultInjectionPolicyOut"]
+            ).optional(),
+            "timeout": t.string().optional(),
+            "retryPolicy": t.proxy(renames["GrpcRouteRetryPolicyOut"]).optional(),
+            "destinations": t.array(
+                t.proxy(renames["GrpcRouteDestinationOut"])
             ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["ListServiceBindingsResponseOut"])
-    types["PolicyIn"] = t.struct(
+    ).named(renames["GrpcRouteRouteActionOut"])
+    types["EndpointMatcherIn"] = t.struct(
         {
-            "bindings": t.array(t.proxy(renames["BindingIn"])).optional(),
-            "version": t.integer().optional(),
-            "etag": t.string().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigIn"])).optional(),
+            "metadataLabelMatcher": t.proxy(
+                renames["EndpointMatcherMetadataLabelMatcherIn"]
+            ).optional()
         }
-    ).named(renames["PolicyIn"])
-    types["PolicyOut"] = t.struct(
+    ).named(renames["EndpointMatcherIn"])
+    types["EndpointMatcherOut"] = t.struct(
         {
-            "bindings": t.array(t.proxy(renames["BindingOut"])).optional(),
-            "version": t.integer().optional(),
-            "etag": t.string().optional(),
-            "auditConfigs": t.array(t.proxy(renames["AuditConfigOut"])).optional(),
+            "metadataLabelMatcher": t.proxy(
+                renames["EndpointMatcherMetadataLabelMatcherOut"]
+            ).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["PolicyOut"])
-    types["TlsRouteRouteRuleIn"] = t.struct(
+    ).named(renames["EndpointMatcherOut"])
+    types["TlsRouteRouteMatchIn"] = t.struct(
         {
-            "action": t.proxy(renames["TlsRouteRouteActionIn"]),
-            "matches": t.array(t.proxy(renames["TlsRouteRouteMatchIn"])),
+            "sniHost": t.array(t.string()).optional(),
+            "alpn": t.array(t.string()).optional(),
         }
-    ).named(renames["TlsRouteRouteRuleIn"])
-    types["TlsRouteRouteRuleOut"] = t.struct(
+    ).named(renames["TlsRouteRouteMatchIn"])
+    types["TlsRouteRouteMatchOut"] = t.struct(
         {
-            "action": t.proxy(renames["TlsRouteRouteActionOut"]),
-            "matches": t.array(t.proxy(renames["TlsRouteRouteMatchOut"])),
+            "sniHost": t.array(t.string()).optional(),
+            "alpn": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TlsRouteRouteRuleOut"])
-    types["ListGatewaysResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "gateways": t.array(t.proxy(renames["GatewayIn"])).optional(),
-        }
-    ).named(renames["ListGatewaysResponseIn"])
-    types["ListGatewaysResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "gateways": t.array(t.proxy(renames["GatewayOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListGatewaysResponseOut"])
-    types["TlsRouteRouteDestinationIn"] = t.struct(
-        {"weight": t.integer().optional(), "serviceName": t.string()}
-    ).named(renames["TlsRouteRouteDestinationIn"])
-    types["TlsRouteRouteDestinationOut"] = t.struct(
-        {
-            "weight": t.integer().optional(),
-            "serviceName": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TlsRouteRouteDestinationOut"])
-    types["ListMeshesResponseIn"] = t.struct(
-        {
-            "meshes": t.array(t.proxy(renames["MeshIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListMeshesResponseIn"])
-    types["ListMeshesResponseOut"] = t.struct(
-        {
-            "meshes": t.array(t.proxy(renames["MeshOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListMeshesResponseOut"])
+    ).named(renames["TlsRouteRouteMatchOut"])
     types["GrpcRouteFaultInjectionPolicyIn"] = t.struct(
         {
             "delay": t.proxy(
@@ -805,187 +563,19 @@ def import_networkservices() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GrpcRouteFaultInjectionPolicyOut"])
-    types["TcpRouteRouteMatchIn"] = t.struct(
-        {"port": t.string(), "address": t.string()}
-    ).named(renames["TcpRouteRouteMatchIn"])
-    types["TcpRouteRouteMatchOut"] = t.struct(
+    types["TlsRouteRouteRuleIn"] = t.struct(
         {
-            "port": t.string(),
-            "address": t.string(),
+            "matches": t.array(t.proxy(renames["TlsRouteRouteMatchIn"])),
+            "action": t.proxy(renames["TlsRouteRouteActionIn"]),
+        }
+    ).named(renames["TlsRouteRouteRuleIn"])
+    types["TlsRouteRouteRuleOut"] = t.struct(
+        {
+            "matches": t.array(t.proxy(renames["TlsRouteRouteMatchOut"])),
+            "action": t.proxy(renames["TlsRouteRouteActionOut"]),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["TcpRouteRouteMatchOut"])
-    types["EndpointMatcherIn"] = t.struct(
-        {
-            "metadataLabelMatcher": t.proxy(
-                renames["EndpointMatcherMetadataLabelMatcherIn"]
-            ).optional()
-        }
-    ).named(renames["EndpointMatcherIn"])
-    types["EndpointMatcherOut"] = t.struct(
-        {
-            "metadataLabelMatcher": t.proxy(
-                renames["EndpointMatcherMetadataLabelMatcherOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EndpointMatcherOut"])
-    types["ListTlsRoutesResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "tlsRoutes": t.array(t.proxy(renames["TlsRouteIn"])).optional(),
-        }
-    ).named(renames["ListTlsRoutesResponseIn"])
-    types["ListTlsRoutesResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "tlsRoutes": t.array(t.proxy(renames["TlsRouteOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListTlsRoutesResponseOut"])
-    types["TestIamPermissionsResponseIn"] = t.struct(
-        {"permissions": t.array(t.string()).optional()}
-    ).named(renames["TestIamPermissionsResponseIn"])
-    types["TestIamPermissionsResponseOut"] = t.struct(
-        {
-            "permissions": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TestIamPermissionsResponseOut"])
-    types["EndpointMatcherMetadataLabelMatcherIn"] = t.struct(
-        {
-            "metadataLabelMatchCriteria": t.string().optional(),
-            "metadataLabels": t.array(
-                t.proxy(renames["EndpointMatcherMetadataLabelMatcherMetadataLabelsIn"])
-            ).optional(),
-        }
-    ).named(renames["EndpointMatcherMetadataLabelMatcherIn"])
-    types["EndpointMatcherMetadataLabelMatcherOut"] = t.struct(
-        {
-            "metadataLabelMatchCriteria": t.string().optional(),
-            "metadataLabels": t.array(
-                t.proxy(renames["EndpointMatcherMetadataLabelMatcherMetadataLabelsOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["EndpointMatcherMetadataLabelMatcherOut"])
-    types["HttpRouteDestinationIn"] = t.struct(
-        {"weight": t.integer().optional(), "serviceName": t.string().optional()}
-    ).named(renames["HttpRouteDestinationIn"])
-    types["HttpRouteDestinationOut"] = t.struct(
-        {
-            "weight": t.integer().optional(),
-            "serviceName": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteDestinationOut"])
-    types["HttpRouteRouteRuleIn"] = t.struct(
-        {
-            "action": t.proxy(renames["HttpRouteRouteActionIn"]).optional(),
-            "matches": t.array(t.proxy(renames["HttpRouteRouteMatchIn"])).optional(),
-        }
-    ).named(renames["HttpRouteRouteRuleIn"])
-    types["HttpRouteRouteRuleOut"] = t.struct(
-        {
-            "action": t.proxy(renames["HttpRouteRouteActionOut"]).optional(),
-            "matches": t.array(t.proxy(renames["HttpRouteRouteMatchOut"])).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteRouteRuleOut"])
-    types["StatusIn"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "code": t.integer().optional(),
-        }
-    ).named(renames["StatusIn"])
-    types["StatusOut"] = t.struct(
-        {
-            "message": t.string().optional(),
-            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
-            "code": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["StatusOut"])
-    types["GrpcRouteRouteActionIn"] = t.struct(
-        {
-            "retryPolicy": t.proxy(renames["GrpcRouteRetryPolicyIn"]).optional(),
-            "faultInjectionPolicy": t.proxy(
-                renames["GrpcRouteFaultInjectionPolicyIn"]
-            ).optional(),
-            "destinations": t.array(
-                t.proxy(renames["GrpcRouteDestinationIn"])
-            ).optional(),
-            "timeout": t.string().optional(),
-        }
-    ).named(renames["GrpcRouteRouteActionIn"])
-    types["GrpcRouteRouteActionOut"] = t.struct(
-        {
-            "retryPolicy": t.proxy(renames["GrpcRouteRetryPolicyOut"]).optional(),
-            "faultInjectionPolicy": t.proxy(
-                renames["GrpcRouteFaultInjectionPolicyOut"]
-            ).optional(),
-            "destinations": t.array(
-                t.proxy(renames["GrpcRouteDestinationOut"])
-            ).optional(),
-            "timeout": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GrpcRouteRouteActionOut"])
-    types["GrpcRouteFaultInjectionPolicyDelayIn"] = t.struct(
-        {"fixedDelay": t.string().optional(), "percentage": t.integer().optional()}
-    ).named(renames["GrpcRouteFaultInjectionPolicyDelayIn"])
-    types["GrpcRouteFaultInjectionPolicyDelayOut"] = t.struct(
-        {
-            "fixedDelay": t.string().optional(),
-            "percentage": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GrpcRouteFaultInjectionPolicyDelayOut"])
-    types["TcpRouteRouteActionIn"] = t.struct(
-        {
-            "destinations": t.array(
-                t.proxy(renames["TcpRouteRouteDestinationIn"])
-            ).optional(),
-            "originalDestination": t.boolean().optional(),
-        }
-    ).named(renames["TcpRouteRouteActionIn"])
-    types["TcpRouteRouteActionOut"] = t.struct(
-        {
-            "destinations": t.array(
-                t.proxy(renames["TcpRouteRouteDestinationOut"])
-            ).optional(),
-            "originalDestination": t.boolean().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TcpRouteRouteActionOut"])
-    types["ListEndpointPoliciesResponseIn"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "endpointPolicies": t.array(
-                t.proxy(renames["EndpointPolicyIn"])
-            ).optional(),
-        }
-    ).named(renames["ListEndpointPoliciesResponseIn"])
-    types["ListEndpointPoliciesResponseOut"] = t.struct(
-        {
-            "nextPageToken": t.string().optional(),
-            "endpointPolicies": t.array(
-                t.proxy(renames["EndpointPolicyOut"])
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListEndpointPoliciesResponseOut"])
-    types["HttpRouteFaultInjectionPolicyAbortIn"] = t.struct(
-        {"httpStatus": t.integer().optional(), "percentage": t.integer().optional()}
-    ).named(renames["HttpRouteFaultInjectionPolicyAbortIn"])
-    types["HttpRouteFaultInjectionPolicyAbortOut"] = t.struct(
-        {
-            "httpStatus": t.integer().optional(),
-            "percentage": t.integer().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteFaultInjectionPolicyAbortOut"])
+    ).named(renames["TlsRouteRouteRuleOut"])
     types["GrpcRouteHeaderMatchIn"] = t.struct(
         {"key": t.string(), "value": t.string(), "type": t.string().optional()}
     ).named(renames["GrpcRouteHeaderMatchIn"])
@@ -997,79 +587,109 @@ def import_networkservices() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GrpcRouteHeaderMatchOut"])
-    types["OperationMetadataIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["OperationMetadataIn"]
-    )
-    types["OperationMetadataOut"] = t.struct(
+    types["HttpRouteHeaderMatchIntegerRangeIn"] = t.struct(
+        {"start": t.integer().optional(), "end": t.integer().optional()}
+    ).named(renames["HttpRouteHeaderMatchIntegerRangeIn"])
+    types["HttpRouteHeaderMatchIntegerRangeOut"] = t.struct(
         {
-            "apiVersion": t.string().optional(),
-            "requestedCancellation": t.boolean().optional(),
-            "endTime": t.string().optional(),
-            "statusMessage": t.string().optional(),
-            "verb": t.string().optional(),
-            "target": t.string().optional(),
+            "start": t.integer().optional(),
+            "end": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteHeaderMatchIntegerRangeOut"])
+    types["GrpcRouteFaultInjectionPolicyDelayIn"] = t.struct(
+        {"fixedDelay": t.string().optional(), "percentage": t.integer().optional()}
+    ).named(renames["GrpcRouteFaultInjectionPolicyDelayIn"])
+    types["GrpcRouteFaultInjectionPolicyDelayOut"] = t.struct(
+        {
+            "fixedDelay": t.string().optional(),
+            "percentage": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GrpcRouteFaultInjectionPolicyDelayOut"])
+    types["ListLocationsResponseIn"] = t.struct(
+        {
+            "locations": t.array(t.proxy(renames["LocationIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListLocationsResponseIn"])
+    types["ListLocationsResponseOut"] = t.struct(
+        {
+            "locations": t.array(t.proxy(renames["LocationOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListLocationsResponseOut"])
+    types["OperationIn"] = t.struct(
+        {
+            "done": t.boolean().optional(),
+            "error": t.proxy(renames["StatusIn"]).optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["OperationIn"])
+    types["OperationOut"] = t.struct(
+        {
+            "done": t.boolean().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+            "response": t.struct({"_": t.string().optional()}).optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["OperationOut"])
+    types["ListMeshesResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "meshes": t.array(t.proxy(renames["MeshIn"])).optional(),
+        }
+    ).named(renames["ListMeshesResponseIn"])
+    types["ListMeshesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "meshes": t.array(t.proxy(renames["MeshOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListMeshesResponseOut"])
+    types["GrpcRouteIn"] = t.struct(
+        {
+            "gateways": t.array(t.string()).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "meshes": t.array(t.string()).optional(),
+            "description": t.string().optional(),
+            "name": t.string(),
+            "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleIn"])),
+            "hostnames": t.array(t.string()),
+        }
+    ).named(renames["GrpcRouteIn"])
+    types["GrpcRouteOut"] = t.struct(
+        {
+            "gateways": t.array(t.string()).optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "meshes": t.array(t.string()).optional(),
+            "description": t.string().optional(),
             "createTime": t.string().optional(),
+            "name": t.string(),
+            "selfLink": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleOut"])),
+            "hostnames": t.array(t.string()),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["OperationMetadataOut"])
-    types["GrpcRouteDestinationIn"] = t.struct(
-        {"serviceName": t.string(), "weight": t.integer().optional()}
-    ).named(renames["GrpcRouteDestinationIn"])
-    types["GrpcRouteDestinationOut"] = t.struct(
+    ).named(renames["GrpcRouteOut"])
+    types["GrpcRouteRetryPolicyIn"] = t.struct(
         {
-            "serviceName": t.string(),
-            "weight": t.integer().optional(),
+            "numRetries": t.integer().optional(),
+            "retryConditions": t.array(t.string()).optional(),
+        }
+    ).named(renames["GrpcRouteRetryPolicyIn"])
+    types["GrpcRouteRetryPolicyOut"] = t.struct(
+        {
+            "numRetries": t.integer().optional(),
+            "retryConditions": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GrpcRouteDestinationOut"])
-    types["TlsRouteRouteActionIn"] = t.struct(
-        {"destinations": t.array(t.proxy(renames["TlsRouteRouteDestinationIn"]))}
-    ).named(renames["TlsRouteRouteActionIn"])
-    types["TlsRouteRouteActionOut"] = t.struct(
-        {
-            "destinations": t.array(t.proxy(renames["TlsRouteRouteDestinationOut"])),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TlsRouteRouteActionOut"])
-    types["AuditLogConfigIn"] = t.struct(
-        {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
-        }
-    ).named(renames["AuditLogConfigIn"])
-    types["AuditLogConfigOut"] = t.struct(
-        {
-            "exemptedMembers": t.array(t.string()).optional(),
-            "logType": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["AuditLogConfigOut"])
-    types["TcpRouteRouteRuleIn"] = t.struct(
-        {
-            "matches": t.array(t.proxy(renames["TcpRouteRouteMatchIn"])).optional(),
-            "action": t.proxy(renames["TcpRouteRouteActionIn"]),
-        }
-    ).named(renames["TcpRouteRouteRuleIn"])
-    types["TcpRouteRouteRuleOut"] = t.struct(
-        {
-            "matches": t.array(t.proxy(renames["TcpRouteRouteMatchOut"])).optional(),
-            "action": t.proxy(renames["TcpRouteRouteActionOut"]),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TcpRouteRouteRuleOut"])
-    types["ListOperationsResponseIn"] = t.struct(
-        {
-            "operations": t.array(t.proxy(renames["OperationIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-        }
-    ).named(renames["ListOperationsResponseIn"])
-    types["ListOperationsResponseOut"] = t.struct(
-        {
-            "operations": t.array(t.proxy(renames["OperationOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["ListOperationsResponseOut"])
+    ).named(renames["GrpcRouteRetryPolicyOut"])
     types["GrpcRouteRouteRuleIn"] = t.struct(
         {
             "action": t.proxy(renames["GrpcRouteRouteActionIn"]),
@@ -1083,73 +703,532 @@ def import_networkservices() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GrpcRouteRouteRuleOut"])
-    types["GrpcRouteRouteMatchIn"] = t.struct(
+    types["GrpcRouteMethodMatchIn"] = t.struct(
         {
-            "headers": t.array(t.proxy(renames["GrpcRouteHeaderMatchIn"])).optional(),
-            "method": t.proxy(renames["GrpcRouteMethodMatchIn"]).optional(),
+            "caseSensitive": t.boolean().optional(),
+            "grpcService": t.string(),
+            "grpcMethod": t.string(),
+            "type": t.string().optional(),
         }
-    ).named(renames["GrpcRouteRouteMatchIn"])
-    types["GrpcRouteRouteMatchOut"] = t.struct(
+    ).named(renames["GrpcRouteMethodMatchIn"])
+    types["GrpcRouteMethodMatchOut"] = t.struct(
         {
-            "headers": t.array(t.proxy(renames["GrpcRouteHeaderMatchOut"])).optional(),
-            "method": t.proxy(renames["GrpcRouteMethodMatchOut"]).optional(),
+            "caseSensitive": t.boolean().optional(),
+            "grpcService": t.string(),
+            "grpcMethod": t.string(),
+            "type": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["GrpcRouteRouteMatchOut"])
+    ).named(renames["GrpcRouteMethodMatchOut"])
+    types["ListGrpcRoutesResponseIn"] = t.struct(
+        {
+            "grpcRoutes": t.array(t.proxy(renames["GrpcRouteIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListGrpcRoutesResponseIn"])
+    types["ListGrpcRoutesResponseOut"] = t.struct(
+        {
+            "grpcRoutes": t.array(t.proxy(renames["GrpcRouteOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListGrpcRoutesResponseOut"])
+    types["TestIamPermissionsRequestIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsRequestIn"])
+    types["TestIamPermissionsRequestOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestIamPermissionsRequestOut"])
+    types["HttpRouteDestinationIn"] = t.struct(
+        {"serviceName": t.string().optional(), "weight": t.integer().optional()}
+    ).named(renames["HttpRouteDestinationIn"])
+    types["HttpRouteDestinationOut"] = t.struct(
+        {
+            "serviceName": t.string().optional(),
+            "weight": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteDestinationOut"])
+    types["SetIamPolicyRequestIn"] = t.struct(
+        {
+            "updateMask": t.string().optional(),
+            "policy": t.proxy(renames["PolicyIn"]).optional(),
+        }
+    ).named(renames["SetIamPolicyRequestIn"])
+    types["SetIamPolicyRequestOut"] = t.struct(
+        {
+            "updateMask": t.string().optional(),
+            "policy": t.proxy(renames["PolicyOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SetIamPolicyRequestOut"])
+    types["LocationIn"] = t.struct(
+        {
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "displayName": t.string().optional(),
+            "locationId": t.string().optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+        }
+    ).named(renames["LocationIn"])
+    types["LocationOut"] = t.struct(
+        {
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "displayName": t.string().optional(),
+            "locationId": t.string().optional(),
+            "name": t.string().optional(),
+            "metadata": t.struct({"_": t.string().optional()}).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["LocationOut"])
+    types["HttpRouteFaultInjectionPolicyIn"] = t.struct(
+        {
+            "abort": t.proxy(
+                renames["HttpRouteFaultInjectionPolicyAbortIn"]
+            ).optional(),
+            "delay": t.proxy(
+                renames["HttpRouteFaultInjectionPolicyDelayIn"]
+            ).optional(),
+        }
+    ).named(renames["HttpRouteFaultInjectionPolicyIn"])
+    types["HttpRouteFaultInjectionPolicyOut"] = t.struct(
+        {
+            "abort": t.proxy(
+                renames["HttpRouteFaultInjectionPolicyAbortOut"]
+            ).optional(),
+            "delay": t.proxy(
+                renames["HttpRouteFaultInjectionPolicyDelayOut"]
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteFaultInjectionPolicyOut"])
+    types["TcpRouteRouteMatchIn"] = t.struct(
+        {"port": t.string(), "address": t.string()}
+    ).named(renames["TcpRouteRouteMatchIn"])
+    types["TcpRouteRouteMatchOut"] = t.struct(
+        {
+            "port": t.string(),
+            "address": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TcpRouteRouteMatchOut"])
+    types["HttpRouteHeaderMatchIn"] = t.struct(
+        {
+            "invertMatch": t.boolean().optional(),
+            "presentMatch": t.boolean().optional(),
+            "header": t.string().optional(),
+            "exactMatch": t.string().optional(),
+            "prefixMatch": t.string().optional(),
+            "rangeMatch": t.proxy(
+                renames["HttpRouteHeaderMatchIntegerRangeIn"]
+            ).optional(),
+            "suffixMatch": t.string().optional(),
+            "regexMatch": t.string().optional(),
+        }
+    ).named(renames["HttpRouteHeaderMatchIn"])
+    types["HttpRouteHeaderMatchOut"] = t.struct(
+        {
+            "invertMatch": t.boolean().optional(),
+            "presentMatch": t.boolean().optional(),
+            "header": t.string().optional(),
+            "exactMatch": t.string().optional(),
+            "prefixMatch": t.string().optional(),
+            "rangeMatch": t.proxy(
+                renames["HttpRouteHeaderMatchIntegerRangeOut"]
+            ).optional(),
+            "suffixMatch": t.string().optional(),
+            "regexMatch": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteHeaderMatchOut"])
+    types["TestIamPermissionsResponseIn"] = t.struct(
+        {"permissions": t.array(t.string()).optional()}
+    ).named(renames["TestIamPermissionsResponseIn"])
+    types["TestIamPermissionsResponseOut"] = t.struct(
+        {
+            "permissions": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TestIamPermissionsResponseOut"])
+    types["OperationMetadataIn"] = t.struct({"_": t.string().optional()}).named(
+        renames["OperationMetadataIn"]
+    )
+    types["OperationMetadataOut"] = t.struct(
+        {
+            "apiVersion": t.string().optional(),
+            "createTime": t.string().optional(),
+            "statusMessage": t.string().optional(),
+            "target": t.string().optional(),
+            "requestedCancellation": t.boolean().optional(),
+            "endTime": t.string().optional(),
+            "verb": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["OperationMetadataOut"])
+    types["StatusIn"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "message": t.string().optional(),
+            "code": t.integer().optional(),
+        }
+    ).named(renames["StatusIn"])
+    types["StatusOut"] = t.struct(
+        {
+            "details": t.array(t.struct({"_": t.string().optional()})).optional(),
+            "message": t.string().optional(),
+            "code": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["StatusOut"])
+    types["EmptyIn"] = t.struct({"_": t.string().optional()}).named(renames["EmptyIn"])
+    types["EmptyOut"] = t.struct(
+        {"error": t.proxy(renames["ErrorResponse"]).optional()}
+    ).named(renames["EmptyOut"])
+    types["EndpointMatcherMetadataLabelMatcherIn"] = t.struct(
+        {
+            "metadataLabels": t.array(
+                t.proxy(renames["EndpointMatcherMetadataLabelMatcherMetadataLabelsIn"])
+            ).optional(),
+            "metadataLabelMatchCriteria": t.string().optional(),
+        }
+    ).named(renames["EndpointMatcherMetadataLabelMatcherIn"])
+    types["EndpointMatcherMetadataLabelMatcherOut"] = t.struct(
+        {
+            "metadataLabels": t.array(
+                t.proxy(renames["EndpointMatcherMetadataLabelMatcherMetadataLabelsOut"])
+            ).optional(),
+            "metadataLabelMatchCriteria": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["EndpointMatcherMetadataLabelMatcherOut"])
+    types["ListTcpRoutesResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "tcpRoutes": t.array(t.proxy(renames["TcpRouteIn"])).optional(),
+        }
+    ).named(renames["ListTcpRoutesResponseIn"])
+    types["ListTcpRoutesResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "tcpRoutes": t.array(t.proxy(renames["TcpRouteOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListTcpRoutesResponseOut"])
+    types["GatewayIn"] = t.struct(
+        {
+            "scope": t.string().optional(),
+            "ports": t.array(t.integer()),
+            "type": t.string().optional(),
+            "description": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "serverTlsPolicy": t.string().optional(),
+            "addresses": t.array(t.string()).optional(),
+            "subnetwork": t.string().optional(),
+            "gatewaySecurityPolicy": t.string().optional(),
+            "network": t.string().optional(),
+            "certificateUrls": t.array(t.string()).optional(),
+            "name": t.string(),
+        }
+    ).named(renames["GatewayIn"])
+    types["GatewayOut"] = t.struct(
+        {
+            "scope": t.string().optional(),
+            "ports": t.array(t.integer()),
+            "type": t.string().optional(),
+            "description": t.string().optional(),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "serverTlsPolicy": t.string().optional(),
+            "addresses": t.array(t.string()).optional(),
+            "subnetwork": t.string().optional(),
+            "gatewaySecurityPolicy": t.string().optional(),
+            "updateTime": t.string().optional(),
+            "network": t.string().optional(),
+            "createTime": t.string().optional(),
+            "certificateUrls": t.array(t.string()).optional(),
+            "selfLink": t.string().optional(),
+            "name": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["GatewayOut"])
+    types["ListServiceBindingsResponseIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "serviceBindings": t.array(t.proxy(renames["ServiceBindingIn"])).optional(),
+        }
+    ).named(renames["ListServiceBindingsResponseIn"])
+    types["ListServiceBindingsResponseOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "serviceBindings": t.array(
+                t.proxy(renames["ServiceBindingOut"])
+            ).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListServiceBindingsResponseOut"])
+    types["HttpRouteRetryPolicyIn"] = t.struct(
+        {
+            "retryConditions": t.array(t.string()).optional(),
+            "perTryTimeout": t.string().optional(),
+            "numRetries": t.integer().optional(),
+        }
+    ).named(renames["HttpRouteRetryPolicyIn"])
+    types["HttpRouteRetryPolicyOut"] = t.struct(
+        {
+            "retryConditions": t.array(t.string()).optional(),
+            "perTryTimeout": t.string().optional(),
+            "numRetries": t.integer().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteRetryPolicyOut"])
+    types["TrafficPortSelectorIn"] = t.struct(
+        {"ports": t.array(t.string()).optional()}
+    ).named(renames["TrafficPortSelectorIn"])
+    types["TrafficPortSelectorOut"] = t.struct(
+        {
+            "ports": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TrafficPortSelectorOut"])
+    types["ListGatewaysResponseIn"] = t.struct(
+        {
+            "unreachable": t.array(t.string()).optional(),
+            "gateways": t.array(t.proxy(renames["GatewayIn"])).optional(),
+            "nextPageToken": t.string().optional(),
+        }
+    ).named(renames["ListGatewaysResponseIn"])
+    types["ListGatewaysResponseOut"] = t.struct(
+        {
+            "unreachable": t.array(t.string()).optional(),
+            "gateways": t.array(t.proxy(renames["GatewayOut"])).optional(),
+            "nextPageToken": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["ListGatewaysResponseOut"])
     types["EndpointPolicyIn"] = t.struct(
         {
-            "description": t.string().optional(),
+            "serverTlsPolicy": t.string().optional(),
+            "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
             "trafficPortSelector": t.proxy(renames["TrafficPortSelectorIn"]).optional(),
             "authorizationPolicy": t.string().optional(),
-            "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
             "clientTlsPolicy": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "description": t.string().optional(),
             "name": t.string(),
-            "serverTlsPolicy": t.string().optional(),
             "type": t.string(),
         }
     ).named(renames["EndpointPolicyIn"])
     types["EndpointPolicyOut"] = t.struct(
         {
-            "description": t.string().optional(),
+            "serverTlsPolicy": t.string().optional(),
+            "endpointMatcher": t.proxy(renames["EndpointMatcherOut"]),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
             "trafficPortSelector": t.proxy(
                 renames["TrafficPortSelectorOut"]
             ).optional(),
-            "createTime": t.string().optional(),
             "authorizationPolicy": t.string().optional(),
-            "endpointMatcher": t.proxy(renames["EndpointMatcherOut"]),
             "clientTlsPolicy": t.string().optional(),
+            "description": t.string().optional(),
+            "createTime": t.string().optional(),
             "updateTime": t.string().optional(),
-            "labels": t.struct({"_": t.string().optional()}).optional(),
             "name": t.string(),
-            "serverTlsPolicy": t.string().optional(),
             "type": t.string(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["EndpointPolicyOut"])
-    types["HttpRouteRedirectIn"] = t.struct(
+    types["AuditLogConfigIn"] = t.struct(
         {
-            "stripQuery": t.boolean().optional(),
-            "httpsRedirect": t.boolean().optional(),
-            "pathRedirect": t.string().optional(),
-            "responseCode": t.string().optional(),
-            "portRedirect": t.integer().optional(),
-            "prefixRewrite": t.string().optional(),
-            "hostRedirect": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
         }
-    ).named(renames["HttpRouteRedirectIn"])
-    types["HttpRouteRedirectOut"] = t.struct(
+    ).named(renames["AuditLogConfigIn"])
+    types["AuditLogConfigOut"] = t.struct(
         {
-            "stripQuery": t.boolean().optional(),
-            "httpsRedirect": t.boolean().optional(),
-            "pathRedirect": t.string().optional(),
-            "responseCode": t.string().optional(),
-            "portRedirect": t.integer().optional(),
-            "prefixRewrite": t.string().optional(),
-            "hostRedirect": t.string().optional(),
+            "exemptedMembers": t.array(t.string()).optional(),
+            "logType": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HttpRouteRedirectOut"])
+    ).named(renames["AuditLogConfigOut"])
+    types["BindingIn"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "condition": t.proxy(renames["ExprIn"]).optional(),
+            "role": t.string().optional(),
+        }
+    ).named(renames["BindingIn"])
+    types["BindingOut"] = t.struct(
+        {
+            "members": t.array(t.string()).optional(),
+            "condition": t.proxy(renames["ExprOut"]).optional(),
+            "role": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["BindingOut"])
+    types["HttpRouteRequestMirrorPolicyIn"] = t.struct(
+        {"destination": t.proxy(renames["HttpRouteDestinationIn"]).optional()}
+    ).named(renames["HttpRouteRequestMirrorPolicyIn"])
+    types["HttpRouteRequestMirrorPolicyOut"] = t.struct(
+        {
+            "destination": t.proxy(renames["HttpRouteDestinationOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteRequestMirrorPolicyOut"])
+    types["HttpRouteRouteActionIn"] = t.struct(
+        {
+            "destinations": t.array(
+                t.proxy(renames["HttpRouteDestinationIn"])
+            ).optional(),
+            "redirect": t.proxy(renames["HttpRouteRedirectIn"]).optional(),
+            "requestHeaderModifier": t.proxy(
+                renames["HttpRouteHeaderModifierIn"]
+            ).optional(),
+            "faultInjectionPolicy": t.proxy(
+                renames["HttpRouteFaultInjectionPolicyIn"]
+            ).optional(),
+            "retryPolicy": t.proxy(renames["HttpRouteRetryPolicyIn"]).optional(),
+            "urlRewrite": t.proxy(renames["HttpRouteURLRewriteIn"]).optional(),
+            "requestMirrorPolicy": t.proxy(
+                renames["HttpRouteRequestMirrorPolicyIn"]
+            ).optional(),
+            "timeout": t.string().optional(),
+            "responseHeaderModifier": t.proxy(
+                renames["HttpRouteHeaderModifierIn"]
+            ).optional(),
+            "corsPolicy": t.proxy(renames["HttpRouteCorsPolicyIn"]).optional(),
+        }
+    ).named(renames["HttpRouteRouteActionIn"])
+    types["HttpRouteRouteActionOut"] = t.struct(
+        {
+            "destinations": t.array(
+                t.proxy(renames["HttpRouteDestinationOut"])
+            ).optional(),
+            "redirect": t.proxy(renames["HttpRouteRedirectOut"]).optional(),
+            "requestHeaderModifier": t.proxy(
+                renames["HttpRouteHeaderModifierOut"]
+            ).optional(),
+            "faultInjectionPolicy": t.proxy(
+                renames["HttpRouteFaultInjectionPolicyOut"]
+            ).optional(),
+            "retryPolicy": t.proxy(renames["HttpRouteRetryPolicyOut"]).optional(),
+            "urlRewrite": t.proxy(renames["HttpRouteURLRewriteOut"]).optional(),
+            "requestMirrorPolicy": t.proxy(
+                renames["HttpRouteRequestMirrorPolicyOut"]
+            ).optional(),
+            "timeout": t.string().optional(),
+            "responseHeaderModifier": t.proxy(
+                renames["HttpRouteHeaderModifierOut"]
+            ).optional(),
+            "corsPolicy": t.proxy(renames["HttpRouteCorsPolicyOut"]).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteRouteActionOut"])
+    types["HttpRouteIn"] = t.struct(
+        {
+            "hostnames": t.array(t.string()),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "gateways": t.array(t.string()).optional(),
+            "rules": t.array(t.proxy(renames["HttpRouteRouteRuleIn"])),
+            "name": t.string(),
+            "description": t.string().optional(),
+            "meshes": t.array(t.string()).optional(),
+        }
+    ).named(renames["HttpRouteIn"])
+    types["HttpRouteOut"] = t.struct(
+        {
+            "updateTime": t.string().optional(),
+            "hostnames": t.array(t.string()),
+            "labels": t.struct({"_": t.string().optional()}).optional(),
+            "selfLink": t.string().optional(),
+            "createTime": t.string().optional(),
+            "gateways": t.array(t.string()).optional(),
+            "rules": t.array(t.proxy(renames["HttpRouteRouteRuleOut"])),
+            "name": t.string(),
+            "description": t.string().optional(),
+            "meshes": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteOut"])
+    types["HttpRouteHeaderModifierIn"] = t.struct(
+        {
+            "set": t.struct({"_": t.string().optional()}).optional(),
+            "add": t.struct({"_": t.string().optional()}).optional(),
+            "remove": t.array(t.string()).optional(),
+        }
+    ).named(renames["HttpRouteHeaderModifierIn"])
+    types["HttpRouteHeaderModifierOut"] = t.struct(
+        {
+            "set": t.struct({"_": t.string().optional()}).optional(),
+            "add": t.struct({"_": t.string().optional()}).optional(),
+            "remove": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteHeaderModifierOut"])
+    types["TlsRouteIn"] = t.struct(
+        {
+            "name": t.string(),
+            "meshes": t.array(t.string()).optional(),
+            "rules": t.array(t.proxy(renames["TlsRouteRouteRuleIn"])),
+            "description": t.string().optional(),
+            "gateways": t.array(t.string()).optional(),
+        }
+    ).named(renames["TlsRouteIn"])
+    types["TlsRouteOut"] = t.struct(
+        {
+            "name": t.string(),
+            "updateTime": t.string().optional(),
+            "selfLink": t.string().optional(),
+            "meshes": t.array(t.string()).optional(),
+            "createTime": t.string().optional(),
+            "rules": t.array(t.proxy(renames["TlsRouteRouteRuleOut"])),
+            "description": t.string().optional(),
+            "gateways": t.array(t.string()).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TlsRouteOut"])
+    types["HttpRouteQueryParameterMatchIn"] = t.struct(
+        {
+            "presentMatch": t.boolean().optional(),
+            "exactMatch": t.string().optional(),
+            "queryParameter": t.string().optional(),
+            "regexMatch": t.string().optional(),
+        }
+    ).named(renames["HttpRouteQueryParameterMatchIn"])
+    types["HttpRouteQueryParameterMatchOut"] = t.struct(
+        {
+            "presentMatch": t.boolean().optional(),
+            "exactMatch": t.string().optional(),
+            "queryParameter": t.string().optional(),
+            "regexMatch": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteQueryParameterMatchOut"])
+    types["HttpRouteRouteMatchIn"] = t.struct(
+        {
+            "regexMatch": t.string().optional(),
+            "ignoreCase": t.boolean().optional(),
+            "prefixMatch": t.string().optional(),
+            "queryParameters": t.array(
+                t.proxy(renames["HttpRouteQueryParameterMatchIn"])
+            ).optional(),
+            "fullPathMatch": t.string().optional(),
+            "headers": t.array(t.proxy(renames["HttpRouteHeaderMatchIn"])).optional(),
+        }
+    ).named(renames["HttpRouteRouteMatchIn"])
+    types["HttpRouteRouteMatchOut"] = t.struct(
+        {
+            "regexMatch": t.string().optional(),
+            "ignoreCase": t.boolean().optional(),
+            "prefixMatch": t.string().optional(),
+            "queryParameters": t.array(
+                t.proxy(renames["HttpRouteQueryParameterMatchOut"])
+            ).optional(),
+            "fullPathMatch": t.string().optional(),
+            "headers": t.array(t.proxy(renames["HttpRouteHeaderMatchOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["HttpRouteRouteMatchOut"])
     types["EndpointMatcherMetadataLabelMatcherMetadataLabelsIn"] = t.struct(
         {"labelValue": t.string(), "labelName": t.string()}
     ).named(renames["EndpointMatcherMetadataLabelMatcherMetadataLabelsIn"])
@@ -1160,136 +1239,669 @@ def import_networkservices() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["EndpointMatcherMetadataLabelMatcherMetadataLabelsOut"])
-    types["HttpRouteHeaderModifierIn"] = t.struct(
+    types["ExprIn"] = t.struct(
         {
-            "remove": t.array(t.string()).optional(),
-            "add": t.struct({"_": t.string().optional()}).optional(),
-            "set": t.struct({"_": t.string().optional()}).optional(),
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
         }
-    ).named(renames["HttpRouteHeaderModifierIn"])
-    types["HttpRouteHeaderModifierOut"] = t.struct(
+    ).named(renames["ExprIn"])
+    types["ExprOut"] = t.struct(
         {
-            "remove": t.array(t.string()).optional(),
-            "add": t.struct({"_": t.string().optional()}).optional(),
-            "set": t.struct({"_": t.string().optional()}).optional(),
+            "title": t.string().optional(),
+            "location": t.string().optional(),
+            "expression": t.string().optional(),
+            "description": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HttpRouteHeaderModifierOut"])
-    types["HttpRouteRetryPolicyIn"] = t.struct(
+    ).named(renames["ExprOut"])
+    types["HttpRouteFaultInjectionPolicyAbortIn"] = t.struct(
+        {"httpStatus": t.integer().optional(), "percentage": t.integer().optional()}
+    ).named(renames["HttpRouteFaultInjectionPolicyAbortIn"])
+    types["HttpRouteFaultInjectionPolicyAbortOut"] = t.struct(
         {
-            "numRetries": t.integer().optional(),
-            "retryConditions": t.array(t.string()).optional(),
-            "perTryTimeout": t.string().optional(),
-        }
-    ).named(renames["HttpRouteRetryPolicyIn"])
-    types["HttpRouteRetryPolicyOut"] = t.struct(
-        {
-            "numRetries": t.integer().optional(),
-            "retryConditions": t.array(t.string()).optional(),
-            "perTryTimeout": t.string().optional(),
+            "httpStatus": t.integer().optional(),
+            "percentage": t.integer().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["HttpRouteRetryPolicyOut"])
-    types["TcpRouteRouteDestinationIn"] = t.struct(
-        {"weight": t.integer().optional(), "serviceName": t.string()}
-    ).named(renames["TcpRouteRouteDestinationIn"])
-    types["TcpRouteRouteDestinationOut"] = t.struct(
-        {
-            "weight": t.integer().optional(),
-            "serviceName": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TcpRouteRouteDestinationOut"])
-    types["HttpRouteRequestMirrorPolicyIn"] = t.struct(
-        {"destination": t.proxy(renames["HttpRouteDestinationIn"]).optional()}
-    ).named(renames["HttpRouteRequestMirrorPolicyIn"])
-    types["HttpRouteRequestMirrorPolicyOut"] = t.struct(
-        {
-            "destination": t.proxy(renames["HttpRouteDestinationOut"]).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteRequestMirrorPolicyOut"])
-    types["OperationIn"] = t.struct(
-        {
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["StatusIn"]).optional(),
-            "name": t.string().optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "done": t.boolean().optional(),
-        }
-    ).named(renames["OperationIn"])
-    types["OperationOut"] = t.struct(
-        {
-            "metadata": t.struct({"_": t.string().optional()}).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-            "name": t.string().optional(),
-            "response": t.struct({"_": t.string().optional()}).optional(),
-            "done": t.boolean().optional(),
-        }
-    ).named(renames["OperationOut"])
-    types["TrafficPortSelectorIn"] = t.struct(
-        {"ports": t.array(t.string()).optional()}
-    ).named(renames["TrafficPortSelectorIn"])
-    types["TrafficPortSelectorOut"] = t.struct(
-        {
-            "ports": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TrafficPortSelectorOut"])
-    types["CancelOperationRequestIn"] = t.struct({"_": t.string().optional()}).named(
-        renames["CancelOperationRequestIn"]
-    )
-    types["CancelOperationRequestOut"] = t.struct(
-        {"error": t.proxy(renames["ErrorResponse"]).optional()}
-    ).named(renames["CancelOperationRequestOut"])
-    types["HttpRouteFaultInjectionPolicyIn"] = t.struct(
-        {
-            "delay": t.proxy(
-                renames["HttpRouteFaultInjectionPolicyDelayIn"]
-            ).optional(),
-            "abort": t.proxy(
-                renames["HttpRouteFaultInjectionPolicyAbortIn"]
-            ).optional(),
-        }
-    ).named(renames["HttpRouteFaultInjectionPolicyIn"])
-    types["HttpRouteFaultInjectionPolicyOut"] = t.struct(
-        {
-            "delay": t.proxy(
-                renames["HttpRouteFaultInjectionPolicyDelayOut"]
-            ).optional(),
-            "abort": t.proxy(
-                renames["HttpRouteFaultInjectionPolicyAbortOut"]
-            ).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["HttpRouteFaultInjectionPolicyOut"])
+    ).named(renames["HttpRouteFaultInjectionPolicyAbortOut"])
 
     functions = {}
-    functions["projectsLocationsList"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["LocationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["projectsLocationsGet"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["LocationOut"]),
+        "v1/{name}/locations",
+        t.struct(
+            {
+                "filter": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListLocationsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsServiceBindingsDelete"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["ServiceBindingOut"]),
+    functions["projectsLocationsList"] = networkservices.get(
+        "v1/{name}/locations",
+        t.struct(
+            {
+                "filter": t.string().optional(),
+                "pageToken": t.string().optional(),
+                "pageSize": t.integer().optional(),
+                "name": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListLocationsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsServiceBindingsGetIamPolicy"] = networkservices.get(
+    functions["projectsLocationsTcpRoutesDelete"] = networkservices.post(
+        "v1/{parent}/tcpRoutes",
+        t.struct(
+            {
+                "tcpRouteId": t.string(),
+                "parent": t.string(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["TcpRouteRouteRuleIn"])),
+                "meshes": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "description": t.string().optional(),
+                "gateways": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTcpRoutesPatch"] = networkservices.post(
+        "v1/{parent}/tcpRoutes",
+        t.struct(
+            {
+                "tcpRouteId": t.string(),
+                "parent": t.string(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["TcpRouteRouteRuleIn"])),
+                "meshes": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "description": t.string().optional(),
+                "gateways": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTcpRoutesGet"] = networkservices.post(
+        "v1/{parent}/tcpRoutes",
+        t.struct(
+            {
+                "tcpRouteId": t.string(),
+                "parent": t.string(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["TcpRouteRouteRuleIn"])),
+                "meshes": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "description": t.string().optional(),
+                "gateways": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTcpRoutesList"] = networkservices.post(
+        "v1/{parent}/tcpRoutes",
+        t.struct(
+            {
+                "tcpRouteId": t.string(),
+                "parent": t.string(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["TcpRouteRouteRuleIn"])),
+                "meshes": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "description": t.string().optional(),
+                "gateways": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTcpRoutesCreate"] = networkservices.post(
+        "v1/{parent}/tcpRoutes",
+        t.struct(
+            {
+                "tcpRouteId": t.string(),
+                "parent": t.string(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["TcpRouteRouteRuleIn"])),
+                "meshes": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "description": t.string().optional(),
+                "gateways": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTlsRoutesDelete"] = networkservices.get(
+        "v1/{parent}/tlsRoutes",
+        t.struct(
+            {
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTlsRoutesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTlsRoutesPatch"] = networkservices.get(
+        "v1/{parent}/tlsRoutes",
+        t.struct(
+            {
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTlsRoutesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTlsRoutesCreate"] = networkservices.get(
+        "v1/{parent}/tlsRoutes",
+        t.struct(
+            {
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTlsRoutesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTlsRoutesGet"] = networkservices.get(
+        "v1/{parent}/tlsRoutes",
+        t.struct(
+            {
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTlsRoutesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsTlsRoutesList"] = networkservices.get(
+        "v1/{parent}/tlsRoutes",
+        t.struct(
+            {
+                "pageSize": t.integer().optional(),
+                "parent": t.string(),
+                "pageToken": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["ListTlsRoutesResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEndpointPoliciesList"] = networkservices.patch(
         "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["ServiceBindingOut"]),
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEndpointPoliciesDelete"] = networkservices.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEndpointPoliciesGet"] = networkservices.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEndpointPoliciesGetIamPolicy"] = networkservices.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEndpointPoliciesCreate"] = networkservices.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEndpointPoliciesSetIamPolicy"] = networkservices.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions[
+        "projectsLocationsEndpointPoliciesTestIamPermissions"
+    ] = networkservices.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEndpointPoliciesPatch"] = networkservices.patch(
+        "v1/{name}",
+        t.struct(
+            {
+                "updateMask": t.string().optional(),
+                "name": t.string(),
+                "serverTlsPolicy": t.string().optional(),
+                "endpointMatcher": t.proxy(renames["EndpointMatcherIn"]),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "trafficPortSelector": t.proxy(
+                    renames["TrafficPortSelectorIn"]
+                ).optional(),
+                "authorizationPolicy": t.string().optional(),
+                "clientTlsPolicy": t.string().optional(),
+                "description": t.string().optional(),
+                "type": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysList"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysGet"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysDelete"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysPatch"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysCreate"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysSetIamPolicy"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysGetIamPolicy"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGatewaysTestIamPermissions"] = networkservices.post(
+        "v1/{resource}:testIamPermissions",
+        t.struct(
+            {
+                "resource": t.string().optional(),
+                "permissions": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGrpcRoutesDelete"] = networkservices.post(
+        "v1/{parent}/grpcRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "grpcRouteId": t.string(),
+                "gateways": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "meshes": t.array(t.string()).optional(),
+                "description": t.string().optional(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleIn"])),
+                "hostnames": t.array(t.string()),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGrpcRoutesPatch"] = networkservices.post(
+        "v1/{parent}/grpcRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "grpcRouteId": t.string(),
+                "gateways": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "meshes": t.array(t.string()).optional(),
+                "description": t.string().optional(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleIn"])),
+                "hostnames": t.array(t.string()),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGrpcRoutesList"] = networkservices.post(
+        "v1/{parent}/grpcRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "grpcRouteId": t.string(),
+                "gateways": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "meshes": t.array(t.string()).optional(),
+                "description": t.string().optional(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleIn"])),
+                "hostnames": t.array(t.string()),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGrpcRoutesGet"] = networkservices.post(
+        "v1/{parent}/grpcRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "grpcRouteId": t.string(),
+                "gateways": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "meshes": t.array(t.string()).optional(),
+                "description": t.string().optional(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleIn"])),
+                "hostnames": t.array(t.string()),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsGrpcRoutesCreate"] = networkservices.post(
+        "v1/{parent}/grpcRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "grpcRouteId": t.string(),
+                "gateways": t.array(t.string()).optional(),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "meshes": t.array(t.string()).optional(),
+                "description": t.string().optional(),
+                "name": t.string(),
+                "rules": t.array(t.proxy(renames["GrpcRouteRouteRuleIn"])),
+                "hostnames": t.array(t.string()),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsOperationsDelete"] = networkservices.post(
+        "v1/{name}:cancel",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsOperationsGet"] = networkservices.post(
+        "v1/{name}:cancel",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsOperationsList"] = networkservices.post(
+        "v1/{name}:cancel",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["EmptyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsOperationsCancel"] = networkservices.post(
+        "v1/{name}:cancel",
+        t.struct(
+            {
+                "name": t.string().optional(),
+                "_": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["EmptyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
@@ -1300,14 +1912,14 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsServiceBindingsSetIamPolicy"] = networkservices.get(
+    functions["projectsLocationsServiceBindingsDelete"] = networkservices.get(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["ServiceBindingOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsServiceBindingsList"] = networkservices.get(
+    functions["projectsLocationsServiceBindingsSetIamPolicy"] = networkservices.get(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
         t.proxy(renames["ServiceBindingOut"]),
@@ -1323,6 +1935,20 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
+    functions["projectsLocationsServiceBindingsList"] = networkservices.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["ServiceBindingOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsServiceBindingsGetIamPolicy"] = networkservices.get(
+        "v1/{name}",
+        t.struct({"name": t.string(), "auth": t.string().optional()}),
+        t.proxy(renames["ServiceBindingOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
     functions["projectsLocationsServiceBindingsGet"] = networkservices.get(
         "v1/{name}",
         t.struct({"name": t.string(), "auth": t.string().optional()}),
@@ -1330,355 +1956,49 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsGatewaysGetIamPolicy"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGatewaysPatch"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGatewaysTestIamPermissions"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGatewaysGet"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGatewaysCreate"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGatewaysList"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGatewaysSetIamPolicy"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGatewaysDelete"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsEdgeCacheServicesSetIamPolicy"] = networkservices.post(
-        "v1/{resource}:testIamPermissions",
+    functions[
+        "projectsLocationsEdgeCacheKeysetsTestIamPermissions"
+    ] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
         t.struct(
             {
+                "options.requestedPolicyVersion": t.integer().optional(),
                 "resource": t.string().optional(),
-                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        t.proxy(renames["PolicyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEdgeCacheServicesGetIamPolicy"] = networkservices.post(
-        "v1/{resource}:testIamPermissions",
+    functions["projectsLocationsEdgeCacheKeysetsSetIamPolicy"] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
         t.struct(
             {
+                "options.requestedPolicyVersion": t.integer().optional(),
                 "resource": t.string().optional(),
-                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEdgeCacheKeysetsGetIamPolicy"] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
+        t.struct(
+            {
+                "options.requestedPolicyVersion": t.integer().optional(),
+                "resource": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions[
         "projectsLocationsEdgeCacheServicesTestIamPermissions"
-    ] = networkservices.post(
-        "v1/{resource}:testIamPermissions",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "permissions": t.array(t.string()).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["TestIamPermissionsResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsOperationsList"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsOperationsGet"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsOperationsCancel"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsOperationsDelete"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string().optional(), "auth": t.string().optional()}),
-        t.proxy(renames["EmptyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTcpRoutesDelete"] = networkservices.get(
-        "v1/{parent}/tcpRoutes",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListTcpRoutesResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTcpRoutesGet"] = networkservices.get(
-        "v1/{parent}/tcpRoutes",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListTcpRoutesResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTcpRoutesCreate"] = networkservices.get(
-        "v1/{parent}/tcpRoutes",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListTcpRoutesResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTcpRoutesPatch"] = networkservices.get(
-        "v1/{parent}/tcpRoutes",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListTcpRoutesResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTcpRoutesList"] = networkservices.get(
-        "v1/{parent}/tcpRoutes",
-        t.struct(
-            {
-                "pageToken": t.string().optional(),
-                "pageSize": t.integer().optional(),
-                "parent": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["ListTcpRoutesResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTlsRoutesList"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTlsRoutesGet"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTlsRoutesCreate"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTlsRoutesPatch"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsTlsRoutesDelete"] = networkservices.delete(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["OperationOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGrpcRoutesDelete"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GrpcRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGrpcRoutesPatch"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GrpcRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGrpcRoutesCreate"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GrpcRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGrpcRoutesList"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GrpcRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsGrpcRoutesGet"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["GrpcRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesSetIamPolicy"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesGetIamPolicy"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesCreate"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesDelete"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesPatch"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesList"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesTestIamPermissions"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsMeshesGet"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["MeshOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsEndpointPoliciesList"] = networkservices.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsEndpointPoliciesSetIamPolicy"] = networkservices.get(
-        "v1/{resource}:getIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "options.requestedPolicyVersion": t.integer().optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions[
-        "projectsLocationsEndpointPoliciesTestIamPermissions"
     ] = networkservices.get(
         "v1/{resource}:getIamPolicy",
         t.struct(
@@ -1692,7 +2012,7 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEndpointPoliciesDelete"] = networkservices.get(
+    functions["projectsLocationsEdgeCacheServicesSetIamPolicy"] = networkservices.get(
         "v1/{resource}:getIamPolicy",
         t.struct(
             {
@@ -1705,7 +2025,7 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEndpointPoliciesPatch"] = networkservices.get(
+    functions["projectsLocationsEdgeCacheServicesGetIamPolicy"] = networkservices.get(
         "v1/{resource}:getIamPolicy",
         t.struct(
             {
@@ -1718,12 +2038,12 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEndpointPoliciesCreate"] = networkservices.get(
+    functions["projectsLocationsMeshesSetIamPolicy"] = networkservices.get(
         "v1/{resource}:getIamPolicy",
         t.struct(
             {
-                "resource": t.string().optional(),
                 "options.requestedPolicyVersion": t.integer().optional(),
+                "resource": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1731,12 +2051,12 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEndpointPoliciesGet"] = networkservices.get(
+    functions["projectsLocationsMeshesDelete"] = networkservices.get(
         "v1/{resource}:getIamPolicy",
         t.struct(
             {
-                "resource": t.string().optional(),
                 "options.requestedPolicyVersion": t.integer().optional(),
+                "resource": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1744,12 +2064,12 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEndpointPoliciesGetIamPolicy"] = networkservices.get(
+    functions["projectsLocationsMeshesList"] = networkservices.get(
         "v1/{resource}:getIamPolicy",
         t.struct(
             {
-                "resource": t.string().optional(),
                 "options.requestedPolicyVersion": t.integer().optional(),
+                "resource": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -1757,35 +2077,172 @@ def import_networkservices() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEdgeCacheKeysetsGetIamPolicy"] = networkservices.post(
-        "v1/{resource}:testIamPermissions",
+    functions["projectsLocationsMeshesTestIamPermissions"] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
         t.struct(
             {
+                "options.requestedPolicyVersion": t.integer().optional(),
                 "resource": t.string().optional(),
-                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        t.proxy(renames["PolicyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["projectsLocationsEdgeCacheKeysetsSetIamPolicy"] = networkservices.post(
-        "v1/{resource}:testIamPermissions",
+    functions["projectsLocationsMeshesGet"] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
         t.struct(
             {
+                "options.requestedPolicyVersion": t.integer().optional(),
                 "resource": t.string().optional(),
-                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["TestIamPermissionsResponseOut"]),
+        t.proxy(renames["PolicyOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions[
-        "projectsLocationsEdgeCacheKeysetsTestIamPermissions"
-    ] = networkservices.post(
+    functions["projectsLocationsMeshesCreate"] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
+        t.struct(
+            {
+                "options.requestedPolicyVersion": t.integer().optional(),
+                "resource": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsMeshesPatch"] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
+        t.struct(
+            {
+                "options.requestedPolicyVersion": t.integer().optional(),
+                "resource": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsMeshesGetIamPolicy"] = networkservices.get(
+        "v1/{resource}:getIamPolicy",
+        t.struct(
+            {
+                "options.requestedPolicyVersion": t.integer().optional(),
+                "resource": t.string().optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["PolicyOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsHttpRoutesGet"] = networkservices.post(
+        "v1/{parent}/httpRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "httpRouteId": t.string(),
+                "hostnames": t.array(t.string()),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "gateways": t.array(t.string()).optional(),
+                "rules": t.array(t.proxy(renames["HttpRouteRouteRuleIn"])),
+                "name": t.string(),
+                "description": t.string().optional(),
+                "meshes": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsHttpRoutesDelete"] = networkservices.post(
+        "v1/{parent}/httpRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "httpRouteId": t.string(),
+                "hostnames": t.array(t.string()),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "gateways": t.array(t.string()).optional(),
+                "rules": t.array(t.proxy(renames["HttpRouteRouteRuleIn"])),
+                "name": t.string(),
+                "description": t.string().optional(),
+                "meshes": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsHttpRoutesList"] = networkservices.post(
+        "v1/{parent}/httpRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "httpRouteId": t.string(),
+                "hostnames": t.array(t.string()),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "gateways": t.array(t.string()).optional(),
+                "rules": t.array(t.proxy(renames["HttpRouteRouteRuleIn"])),
+                "name": t.string(),
+                "description": t.string().optional(),
+                "meshes": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsHttpRoutesPatch"] = networkservices.post(
+        "v1/{parent}/httpRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "httpRouteId": t.string(),
+                "hostnames": t.array(t.string()),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "gateways": t.array(t.string()).optional(),
+                "rules": t.array(t.proxy(renames["HttpRouteRouteRuleIn"])),
+                "name": t.string(),
+                "description": t.string().optional(),
+                "meshes": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsHttpRoutesCreate"] = networkservices.post(
+        "v1/{parent}/httpRoutes",
+        t.struct(
+            {
+                "parent": t.string(),
+                "httpRouteId": t.string(),
+                "hostnames": t.array(t.string()),
+                "labels": t.struct({"_": t.string().optional()}).optional(),
+                "gateways": t.array(t.string()).optional(),
+                "rules": t.array(t.proxy(renames["HttpRouteRouteRuleIn"])),
+                "name": t.string(),
+                "description": t.string().optional(),
+                "meshes": t.array(t.string()).optional(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["OperationOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsLocationsEdgeCacheOriginsSetIamPolicy"] = networkservices.post(
         "v1/{resource}:testIamPermissions",
         t.struct(
             {
@@ -1799,81 +2256,30 @@ def import_networkservices() -> Import:
         content_type="application/json",
     )
     functions["projectsLocationsEdgeCacheOriginsGetIamPolicy"] = networkservices.post(
-        "v1/{resource}:setIamPolicy",
+        "v1/{resource}:testIamPermissions",
         t.struct(
             {
                 "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["PolicyOut"]),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions[
         "projectsLocationsEdgeCacheOriginsTestIamPermissions"
     ] = networkservices.post(
-        "v1/{resource}:setIamPolicy",
+        "v1/{resource}:testIamPermissions",
         t.struct(
             {
                 "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
+                "permissions": t.array(t.string()).optional(),
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsEdgeCacheOriginsSetIamPolicy"] = networkservices.post(
-        "v1/{resource}:setIamPolicy",
-        t.struct(
-            {
-                "resource": t.string().optional(),
-                "updateMask": t.string().optional(),
-                "policy": t.proxy(renames["PolicyIn"]).optional(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["PolicyOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsHttpRoutesList"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["HttpRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsHttpRoutesPatch"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["HttpRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsHttpRoutesCreate"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["HttpRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsHttpRoutesDelete"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["HttpRouteOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsLocationsHttpRoutesGet"] = networkservices.get(
-        "v1/{name}",
-        t.struct({"name": t.string(), "auth": t.string().optional()}),
-        t.proxy(renames["HttpRouteOut"]),
+        t.proxy(renames["TestIamPermissionsResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

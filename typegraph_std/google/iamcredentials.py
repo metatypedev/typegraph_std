@@ -1,56 +1,61 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_iamcredentials() -> Import:
+def import_iamcredentials():
     iamcredentials = HTTPRuntime("https://iamcredentials.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_iamcredentials_1_ErrorResponse",
-        "SignJwtResponseIn": "_iamcredentials_2_SignJwtResponseIn",
-        "SignJwtResponseOut": "_iamcredentials_3_SignJwtResponseOut",
-        "SignBlobResponseIn": "_iamcredentials_4_SignBlobResponseIn",
-        "SignBlobResponseOut": "_iamcredentials_5_SignBlobResponseOut",
+        "SignBlobRequestIn": "_iamcredentials_2_SignBlobRequestIn",
+        "SignBlobRequestOut": "_iamcredentials_3_SignBlobRequestOut",
+        "GenerateAccessTokenRequestIn": "_iamcredentials_4_GenerateAccessTokenRequestIn",
+        "GenerateAccessTokenRequestOut": "_iamcredentials_5_GenerateAccessTokenRequestOut",
         "GenerateIdTokenResponseIn": "_iamcredentials_6_GenerateIdTokenResponseIn",
         "GenerateIdTokenResponseOut": "_iamcredentials_7_GenerateIdTokenResponseOut",
-        "SignBlobRequestIn": "_iamcredentials_8_SignBlobRequestIn",
-        "SignBlobRequestOut": "_iamcredentials_9_SignBlobRequestOut",
-        "SignJwtRequestIn": "_iamcredentials_10_SignJwtRequestIn",
-        "SignJwtRequestOut": "_iamcredentials_11_SignJwtRequestOut",
-        "GenerateAccessTokenRequestIn": "_iamcredentials_12_GenerateAccessTokenRequestIn",
-        "GenerateAccessTokenRequestOut": "_iamcredentials_13_GenerateAccessTokenRequestOut",
-        "GenerateIdTokenRequestIn": "_iamcredentials_14_GenerateIdTokenRequestIn",
-        "GenerateIdTokenRequestOut": "_iamcredentials_15_GenerateIdTokenRequestOut",
-        "GenerateAccessTokenResponseIn": "_iamcredentials_16_GenerateAccessTokenResponseIn",
-        "GenerateAccessTokenResponseOut": "_iamcredentials_17_GenerateAccessTokenResponseOut",
+        "GenerateIdTokenRequestIn": "_iamcredentials_8_GenerateIdTokenRequestIn",
+        "GenerateIdTokenRequestOut": "_iamcredentials_9_GenerateIdTokenRequestOut",
+        "GenerateAccessTokenResponseIn": "_iamcredentials_10_GenerateAccessTokenResponseIn",
+        "GenerateAccessTokenResponseOut": "_iamcredentials_11_GenerateAccessTokenResponseOut",
+        "SignJwtRequestIn": "_iamcredentials_12_SignJwtRequestIn",
+        "SignJwtRequestOut": "_iamcredentials_13_SignJwtRequestOut",
+        "SignJwtResponseIn": "_iamcredentials_14_SignJwtResponseIn",
+        "SignJwtResponseOut": "_iamcredentials_15_SignJwtResponseOut",
+        "SignBlobResponseIn": "_iamcredentials_16_SignBlobResponseIn",
+        "SignBlobResponseOut": "_iamcredentials_17_SignBlobResponseOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["SignJwtResponseIn"] = t.struct(
-        {"signedJwt": t.string().optional(), "keyId": t.string().optional()}
-    ).named(renames["SignJwtResponseIn"])
-    types["SignJwtResponseOut"] = t.struct(
+    types["SignBlobRequestIn"] = t.struct(
+        {"payload": t.string(), "delegates": t.array(t.string()).optional()}
+    ).named(renames["SignBlobRequestIn"])
+    types["SignBlobRequestOut"] = t.struct(
         {
-            "signedJwt": t.string().optional(),
-            "keyId": t.string().optional(),
+            "payload": t.string(),
+            "delegates": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SignJwtResponseOut"])
-    types["SignBlobResponseIn"] = t.struct(
-        {"keyId": t.string().optional(), "signedBlob": t.string().optional()}
-    ).named(renames["SignBlobResponseIn"])
-    types["SignBlobResponseOut"] = t.struct(
+    ).named(renames["SignBlobRequestOut"])
+    types["GenerateAccessTokenRequestIn"] = t.struct(
         {
-            "keyId": t.string().optional(),
-            "signedBlob": t.string().optional(),
+            "delegates": t.array(t.string()).optional(),
+            "lifetime": t.string().optional(),
+            "scope": t.array(t.string()),
+        }
+    ).named(renames["GenerateAccessTokenRequestIn"])
+    types["GenerateAccessTokenRequestOut"] = t.struct(
+        {
+            "delegates": t.array(t.string()).optional(),
+            "lifetime": t.string().optional(),
+            "scope": t.array(t.string()),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
-    ).named(renames["SignBlobResponseOut"])
+    ).named(renames["GenerateAccessTokenRequestOut"])
     types["GenerateIdTokenResponseIn"] = t.struct(
         {"token": t.string().optional()}
     ).named(renames["GenerateIdTokenResponseIn"])
@@ -60,52 +65,17 @@ def import_iamcredentials() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GenerateIdTokenResponseOut"])
-    types["SignBlobRequestIn"] = t.struct(
-        {"delegates": t.array(t.string()).optional(), "payload": t.string()}
-    ).named(renames["SignBlobRequestIn"])
-    types["SignBlobRequestOut"] = t.struct(
-        {
-            "delegates": t.array(t.string()).optional(),
-            "payload": t.string(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SignBlobRequestOut"])
-    types["SignJwtRequestIn"] = t.struct(
-        {"payload": t.string(), "delegates": t.array(t.string()).optional()}
-    ).named(renames["SignJwtRequestIn"])
-    types["SignJwtRequestOut"] = t.struct(
-        {
-            "payload": t.string(),
-            "delegates": t.array(t.string()).optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["SignJwtRequestOut"])
-    types["GenerateAccessTokenRequestIn"] = t.struct(
-        {
-            "lifetime": t.string().optional(),
-            "delegates": t.array(t.string()).optional(),
-            "scope": t.array(t.string()),
-        }
-    ).named(renames["GenerateAccessTokenRequestIn"])
-    types["GenerateAccessTokenRequestOut"] = t.struct(
-        {
-            "lifetime": t.string().optional(),
-            "delegates": t.array(t.string()).optional(),
-            "scope": t.array(t.string()),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["GenerateAccessTokenRequestOut"])
     types["GenerateIdTokenRequestIn"] = t.struct(
         {
-            "includeEmail": t.boolean().optional(),
             "audience": t.string(),
+            "includeEmail": t.boolean().optional(),
             "delegates": t.array(t.string()).optional(),
         }
     ).named(renames["GenerateIdTokenRequestIn"])
     types["GenerateIdTokenRequestOut"] = t.struct(
         {
-            "includeEmail": t.boolean().optional(),
             "audience": t.string(),
+            "includeEmail": t.boolean().optional(),
             "delegates": t.array(t.string()).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
@@ -120,38 +90,40 @@ def import_iamcredentials() -> Import:
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["GenerateAccessTokenResponseOut"])
+    types["SignJwtRequestIn"] = t.struct(
+        {"delegates": t.array(t.string()).optional(), "payload": t.string()}
+    ).named(renames["SignJwtRequestIn"])
+    types["SignJwtRequestOut"] = t.struct(
+        {
+            "delegates": t.array(t.string()).optional(),
+            "payload": t.string(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SignJwtRequestOut"])
+    types["SignJwtResponseIn"] = t.struct(
+        {"keyId": t.string().optional(), "signedJwt": t.string().optional()}
+    ).named(renames["SignJwtResponseIn"])
+    types["SignJwtResponseOut"] = t.struct(
+        {
+            "keyId": t.string().optional(),
+            "signedJwt": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SignJwtResponseOut"])
+    types["SignBlobResponseIn"] = t.struct(
+        {"keyId": t.string().optional(), "signedBlob": t.string().optional()}
+    ).named(renames["SignBlobResponseIn"])
+    types["SignBlobResponseOut"] = t.struct(
+        {
+            "keyId": t.string().optional(),
+            "signedBlob": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["SignBlobResponseOut"])
 
     functions = {}
-    functions["projectsServiceAccountsGenerateAccessToken"] = iamcredentials.post(
-        "v1/{name}:signBlob",
-        t.struct(
-            {
-                "name": t.string(),
-                "delegates": t.array(t.string()).optional(),
-                "payload": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["SignBlobResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
-    functions["projectsServiceAccountsSignJwt"] = iamcredentials.post(
-        "v1/{name}:signBlob",
-        t.struct(
-            {
-                "name": t.string(),
-                "delegates": t.array(t.string()).optional(),
-                "payload": t.string(),
-                "auth": t.string().optional(),
-            }
-        ),
-        t.proxy(renames["SignBlobResponseOut"]),
-        auth_token_field="auth",
-        content_type="application/json",
-    )
     functions["projectsServiceAccountsGenerateIdToken"] = iamcredentials.post(
-        "v1/{name}:signBlob",
+        "v1/{name}:signJwt",
         t.struct(
             {
                 "name": t.string(),
@@ -160,12 +132,12 @@ def import_iamcredentials() -> Import:
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["SignBlobResponseOut"]),
+        t.proxy(renames["SignJwtResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )
     functions["projectsServiceAccountsSignBlob"] = iamcredentials.post(
-        "v1/{name}:signBlob",
+        "v1/{name}:signJwt",
         t.struct(
             {
                 "name": t.string(),
@@ -174,7 +146,35 @@ def import_iamcredentials() -> Import:
                 "auth": t.string().optional(),
             }
         ),
-        t.proxy(renames["SignBlobResponseOut"]),
+        t.proxy(renames["SignJwtResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsServiceAccountsGenerateAccessToken"] = iamcredentials.post(
+        "v1/{name}:signJwt",
+        t.struct(
+            {
+                "name": t.string(),
+                "delegates": t.array(t.string()).optional(),
+                "payload": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SignJwtResponseOut"]),
+        auth_token_field="auth",
+        content_type="application/json",
+    )
+    functions["projectsServiceAccountsSignJwt"] = iamcredentials.post(
+        "v1/{name}:signJwt",
+        t.struct(
+            {
+                "name": t.string(),
+                "delegates": t.array(t.string()).optional(),
+                "payload": t.string(),
+                "auth": t.string().optional(),
+            }
+        ),
+        t.proxy(renames["SignJwtResponseOut"]),
         auth_token_field="auth",
         content_type="application/json",
     )

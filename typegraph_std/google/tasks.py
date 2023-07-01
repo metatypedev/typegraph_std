@@ -1,146 +1,146 @@
-from typegraph import t
-from box import Box
 from typegraph.importers.base.importer import Import
 from typegraph.runtimes.http import HTTPRuntime
+from typegraph import t
+from box import Box
 
 
-def import_tasks() -> Import:
+def import_tasks():
     tasks = HTTPRuntime("https://tasks.googleapis.com/")
 
     renames = {
         "ErrorResponse": "_tasks_1_ErrorResponse",
-        "TaskIn": "_tasks_2_TaskIn",
-        "TaskOut": "_tasks_3_TaskOut",
-        "TaskListsIn": "_tasks_4_TaskListsIn",
-        "TaskListsOut": "_tasks_5_TaskListsOut",
-        "TasksIn": "_tasks_6_TasksIn",
-        "TasksOut": "_tasks_7_TasksOut",
-        "TaskListIn": "_tasks_8_TaskListIn",
-        "TaskListOut": "_tasks_9_TaskListOut",
+        "TaskListsIn": "_tasks_2_TaskListsIn",
+        "TaskListsOut": "_tasks_3_TaskListsOut",
+        "TaskListIn": "_tasks_4_TaskListIn",
+        "TaskListOut": "_tasks_5_TaskListOut",
+        "TaskIn": "_tasks_6_TaskIn",
+        "TaskOut": "_tasks_7_TaskOut",
+        "TasksIn": "_tasks_8_TasksIn",
+        "TasksOut": "_tasks_9_TasksOut",
     }
 
     types = {}
     types["ErrorResponse"] = t.struct(
         {"code": t.integer(), "message": t.string(), "status": t.string()}
     ).named(renames["ErrorResponse"])
-    types["TaskIn"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "status": t.string().optional(),
-            "links": t.array(
-                t.struct(
-                    {
-                        "type": t.string().optional(),
-                        "link": t.string().optional(),
-                        "description": t.string().optional(),
-                    }
-                )
-            ).optional(),
-            "updated": t.string().optional(),
-            "id": t.string().optional(),
-            "title": t.string().optional(),
-            "due": t.string().optional(),
-            "completed": t.string().optional(),
-            "parent": t.string().optional(),
-            "position": t.string().optional(),
-            "deleted": t.boolean().optional(),
-            "notes": t.string().optional(),
-            "hidden": t.boolean().optional(),
-            "etag": t.string().optional(),
-            "selfLink": t.string().optional(),
-        }
-    ).named(renames["TaskIn"])
-    types["TaskOut"] = t.struct(
-        {
-            "kind": t.string().optional(),
-            "status": t.string().optional(),
-            "links": t.array(
-                t.struct(
-                    {
-                        "type": t.string().optional(),
-                        "link": t.string().optional(),
-                        "description": t.string().optional(),
-                    }
-                )
-            ).optional(),
-            "updated": t.string().optional(),
-            "id": t.string().optional(),
-            "title": t.string().optional(),
-            "due": t.string().optional(),
-            "completed": t.string().optional(),
-            "parent": t.string().optional(),
-            "position": t.string().optional(),
-            "deleted": t.boolean().optional(),
-            "notes": t.string().optional(),
-            "hidden": t.boolean().optional(),
-            "etag": t.string().optional(),
-            "selfLink": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TaskOut"])
     types["TaskListsIn"] = t.struct(
         {
             "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["TaskListIn"])).optional(),
             "nextPageToken": t.string().optional(),
             "etag": t.string().optional(),
-            "items": t.array(t.proxy(renames["TaskListIn"])).optional(),
         }
     ).named(renames["TaskListsIn"])
     types["TaskListsOut"] = t.struct(
         {
             "kind": t.string().optional(),
+            "items": t.array(t.proxy(renames["TaskListOut"])).optional(),
             "nextPageToken": t.string().optional(),
             "etag": t.string().optional(),
-            "items": t.array(t.proxy(renames["TaskListOut"])).optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TaskListsOut"])
-    types["TasksIn"] = t.struct(
-        {
-            "items": t.array(t.proxy(renames["TaskIn"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "etag": t.string().optional(),
-            "kind": t.string().optional(),
-        }
-    ).named(renames["TasksIn"])
-    types["TasksOut"] = t.struct(
-        {
-            "items": t.array(t.proxy(renames["TaskOut"])).optional(),
-            "nextPageToken": t.string().optional(),
-            "etag": t.string().optional(),
-            "kind": t.string().optional(),
-            "error": t.proxy(renames["ErrorResponse"]).optional(),
-        }
-    ).named(renames["TasksOut"])
     types["TaskListIn"] = t.struct(
         {
+            "id": t.string().optional(),
             "selfLink": t.string().optional(),
             "title": t.string().optional(),
-            "etag": t.string().optional(),
             "kind": t.string().optional(),
+            "etag": t.string().optional(),
             "updated": t.string().optional(),
-            "id": t.string().optional(),
         }
     ).named(renames["TaskListIn"])
     types["TaskListOut"] = t.struct(
         {
+            "id": t.string().optional(),
             "selfLink": t.string().optional(),
             "title": t.string().optional(),
-            "etag": t.string().optional(),
             "kind": t.string().optional(),
+            "etag": t.string().optional(),
             "updated": t.string().optional(),
-            "id": t.string().optional(),
             "error": t.proxy(renames["ErrorResponse"]).optional(),
         }
     ).named(renames["TaskListOut"])
+    types["TaskIn"] = t.struct(
+        {
+            "status": t.string().optional(),
+            "updated": t.string().optional(),
+            "kind": t.string().optional(),
+            "completed": t.string().optional(),
+            "title": t.string().optional(),
+            "id": t.string().optional(),
+            "hidden": t.boolean().optional(),
+            "selfLink": t.string().optional(),
+            "links": t.array(
+                t.struct(
+                    {
+                        "link": t.string().optional(),
+                        "type": t.string().optional(),
+                        "description": t.string().optional(),
+                    }
+                )
+            ).optional(),
+            "etag": t.string().optional(),
+            "due": t.string().optional(),
+            "deleted": t.boolean().optional(),
+            "position": t.string().optional(),
+            "notes": t.string().optional(),
+            "parent": t.string().optional(),
+        }
+    ).named(renames["TaskIn"])
+    types["TaskOut"] = t.struct(
+        {
+            "status": t.string().optional(),
+            "updated": t.string().optional(),
+            "kind": t.string().optional(),
+            "completed": t.string().optional(),
+            "title": t.string().optional(),
+            "id": t.string().optional(),
+            "hidden": t.boolean().optional(),
+            "selfLink": t.string().optional(),
+            "links": t.array(
+                t.struct(
+                    {
+                        "link": t.string().optional(),
+                        "type": t.string().optional(),
+                        "description": t.string().optional(),
+                    }
+                )
+            ).optional(),
+            "etag": t.string().optional(),
+            "due": t.string().optional(),
+            "deleted": t.boolean().optional(),
+            "position": t.string().optional(),
+            "notes": t.string().optional(),
+            "parent": t.string().optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TaskOut"])
+    types["TasksIn"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
+            "etag": t.string().optional(),
+            "items": t.array(t.proxy(renames["TaskIn"])).optional(),
+        }
+    ).named(renames["TasksIn"])
+    types["TasksOut"] = t.struct(
+        {
+            "nextPageToken": t.string().optional(),
+            "kind": t.string().optional(),
+            "etag": t.string().optional(),
+            "items": t.array(t.proxy(renames["TaskOut"])).optional(),
+            "error": t.proxy(renames["ErrorResponse"]).optional(),
+        }
+    ).named(renames["TasksOut"])
 
     functions = {}
-    functions["tasklistsUpdate"] = tasks.get(
+    functions["tasklistsDelete"] = tasks.get(
         "tasks/v1/users/@me/lists",
         t.struct(
             {
-                "maxResults": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "maxResults": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -148,12 +148,12 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasklistsInsert"] = tasks.get(
+    functions["tasklistsUpdate"] = tasks.get(
         "tasks/v1/users/@me/lists",
         t.struct(
             {
-                "maxResults": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "maxResults": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -165,8 +165,8 @@ def import_tasks() -> Import:
         "tasks/v1/users/@me/lists",
         t.struct(
             {
-                "maxResults": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "maxResults": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -174,12 +174,12 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasklistsDelete"] = tasks.get(
+    functions["tasklistsInsert"] = tasks.get(
         "tasks/v1/users/@me/lists",
         t.struct(
             {
-                "maxResults": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "maxResults": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -191,8 +191,8 @@ def import_tasks() -> Import:
         "tasks/v1/users/@me/lists",
         t.struct(
             {
-                "maxResults": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "maxResults": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -204,8 +204,8 @@ def import_tasks() -> Import:
         "tasks/v1/users/@me/lists",
         t.struct(
             {
-                "maxResults": t.integer().optional(),
                 "pageToken": t.string().optional(),
+                "maxResults": t.integer().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -213,35 +213,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksPatch"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksClear"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -249,35 +228,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksInsert"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksUpdate"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -285,35 +243,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksGet"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksDelete"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -321,35 +258,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksClear"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksGet"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -357,35 +273,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksDelete"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksList"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -393,35 +288,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksMove"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksInsert"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -429,35 +303,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksList"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksPatch"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
@@ -465,35 +318,14 @@ def import_tasks() -> Import:
         auth_token_field="auth",
         content_type="application/json",
     )
-    functions["tasksUpdate"] = tasks.put(
-        "tasks/v1/lists/{tasklist}/tasks/{task}",
+    functions["tasksMove"] = tasks.post(
+        "tasks/v1/lists/{tasklist}/tasks/{task}/move",
         t.struct(
             {
+                "parent": t.string().optional(),
+                "previous": t.string().optional(),
                 "tasklist": t.string().optional(),
                 "task": t.string().optional(),
-                "kind": t.string().optional(),
-                "status": t.string().optional(),
-                "links": t.array(
-                    t.struct(
-                        {
-                            "type": t.string().optional(),
-                            "link": t.string().optional(),
-                            "description": t.string().optional(),
-                        }
-                    )
-                ).optional(),
-                "updated": t.string().optional(),
-                "id": t.string().optional(),
-                "title": t.string().optional(),
-                "due": t.string().optional(),
-                "completed": t.string().optional(),
-                "parent": t.string().optional(),
-                "position": t.string().optional(),
-                "deleted": t.boolean().optional(),
-                "notes": t.string().optional(),
-                "hidden": t.boolean().optional(),
-                "etag": t.string().optional(),
-                "selfLink": t.string().optional(),
                 "auth": t.string().optional(),
             }
         ),
