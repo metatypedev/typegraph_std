@@ -15,7 +15,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-typegraph = "^0.1.10"
+typegraph = ">=0.1.10,<0.3.0"
 
 [tool.poetry.group.dev.dependencies]
 ruff = ">=0.0.265,<0.0.292"
